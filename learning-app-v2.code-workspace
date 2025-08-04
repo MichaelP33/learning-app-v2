@@ -1,0 +1,16 @@
+{
+  "folders": [
+    {
+      "name": "Learning App V2",
+      "path": "."
+    }
+  ],
+  "settings": {
+    "git.openRepositoryInParentFolders": "never",
+    "git.autoRepositoryDetection": false,
+    "files.exclude": {
+      "../learning-app-OLD-BROKEN": true,
+      "../planning docs": true
+    }
+  }
+}

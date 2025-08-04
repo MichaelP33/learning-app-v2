@@ -1,0 +1,18 @@
+---
+description: Simple test rule to verify cursor rules functionality is working properly
+globs:
+alwaysApply: false
+---
+
+# Test Cursor Rules
+
+This is a simple test to see if Cursor can detect cursor rules files.
+
+## Test Rule
+
+- Always be helpful
+- Always explain your code
+
+## Test Verification
+
+When this rule is active, I should mention that the test helper rule is loaded.
