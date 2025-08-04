@@ -1352,7 +1352,203 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "How programs make decisions and repeat operations",
-              "topics": ["If/Else", "Loops", "Switch Statements"]
+              "topics": ["If/Else", "Loops", "Switch Statements"],
+              "quiz": {
+                "title": "Control Flow Knowledge Quiz",
+                "totalQuestions": 10,
+                "totalPoints": 25,
+                "questions": [
+                  {
+                    "id": 1,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "What is the primary purpose of conditional statements in business applications?",
+                    "options": [
+                      "To make code look more professional",
+                      "To enable programs to make decisions based on different situations",
+                      "To prevent programs from running too quickly",
+                      "To reduce the amount of code needed"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Conditional statements allow programs to respond differently to various business scenarios, such as applying different pricing rules for different customer types, showing different content based on user permissions, or processing payments differently based on the payment method selected.",
+                    "keyConcepts": [
+                      "Conditional logic",
+                      "business decision making",
+                      "program flow control"
+                    ]
+                  },
+                  {
+                    "id": 2,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Why are loops particularly valuable for enterprise data processing?",
+                    "options": [
+                      "They make code run slower and more carefully",
+                      "They automate repetitive tasks that would otherwise require manual effort",
+                      "They prevent data from being processed incorrectly",
+                      "They only work with large databases"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Loops enable automation of repetitive business processes like processing customer orders, generating reports for multiple departments, or sending personalized emails to thousands of customers. This automation reduces operational costs and ensures consistent processing across large volumes of data.",
+                    "keyConcepts": [
+                      "Automation",
+                      "data processing",
+                      "operational efficiency"
+                    ]
+                  },
+                  {
+                    "id": 3,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "What happens when nested loops are used inefficiently in business applications?",
+                    "options": [
+                      "The application becomes more secure",
+                      "Processing time can increase exponentially, causing performance issues",
+                      "The code becomes easier to understand",
+                      "Memory usage decreases significantly"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Inefficient nested loops can create severe performance problems, especially when processing large datasets. For example, comparing every customer against every product for recommendations could result in millions of unnecessary calculations, leading to slow page loads and poor user experience.",
+                    "keyConcepts": [
+                      "Performance optimization",
+                      "algorithmic complexity",
+                      "user experience impact"
+                    ]
+                  },
+                  {
+                    "id": 4,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "When should teams consider using early termination (break statements) in loops?",
+                    "options": [
+                      "Only when the loop is taking too much memory",
+                      "When the desired result is found and further processing is unnecessary",
+                      "Never, because it makes code harder to understand",
+                      "Only in emergency situations"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Early termination is crucial for performance optimization. For example, when searching for a specific customer in a database, the loop should stop as soon as the customer is found rather than continuing to check all remaining records. This can reduce processing time by 60-80% in search operations.",
+                    "keyConcepts": [
+                      "Performance optimization",
+                      "search efficiency",
+                      "resource management"
+                    ]
+                  },
+                  {
+                    "id": 5,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "What is the main advantage of using switch statements over multiple if/else statements?",
+                    "options": [
+                      "Switch statements are always faster",
+                      "They provide cleaner, more readable code for handling multiple specific conditions",
+                      "Switch statements use less memory",
+                      "They can handle any type of condition"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Switch statements are particularly useful for handling user roles, payment methods, or subscription tiers where you have several specific options to handle. They make the code more readable and maintainable compared to long chains of if/else statements, especially when dealing with business logic that has many distinct cases.",
+                    "keyConcepts": [
+                      "Code readability",
+                      "maintainability",
+                      "business logic organization"
+                    ]
+                  },
+                  {
+                    "id": 6,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "How do poor control flow decisions typically impact customer experience?",
+                    "options": [
+                      "They improve security but slow down applications",
+                      "They cause slow page loads and inconsistent application behavior",
+                      "They make applications more reliable",
+                      "They have no noticeable effect on users"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Poor control flow can lead to slow-loading dashboards, delayed search results, and inconsistent user experiences. For example, inefficient product filtering can cause e-commerce pages to load slowly, directly impacting sales conversion rates and customer satisfaction.",
+                    "keyConcepts": [
+                      "User experience",
+                      "application performance",
+                      "business impact"
+                    ]
+                  },
+                  {
+                    "id": 7,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "What makes guard clauses beneficial for team development?",
+                    "options": [
+                      "They prevent all types of errors",
+                      "They improve code readability by reducing complex nested conditions",
+                      "They make applications run faster",
+                      "They eliminate the need for error handling"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Guard clauses validate conditions early and exit functions when requirements aren't met, avoiding deep nesting of if/else statements. This makes code easier to read and understand, especially important when multiple team members are working on the same codebase and need to quickly understand business logic.",
+                    "keyConcepts": [
+                      "Code readability",
+                      "team collaboration",
+                      "validation patterns"
+                    ]
+                  },
+                  {
+                    "id": 8,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "What type of business scenario benefits most from while loops compared to for loops?",
+                    "options": [
+                      "Processing a known list of customers",
+                      "Real-time monitoring where you continue until conditions change",
+                      "Generating monthly reports",
+                      "Calculating fixed mathematical sequences"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "While loops are ideal for scenarios where you don't know exactly when to stop, such as monitoring system health until an issue is resolved, processing user input until they choose to exit, or synchronizing data until all updates are complete. These situations require continuous operation until external conditions change.",
+                    "keyConcepts": [
+                      "Real-time processing",
+                      "condition-based iteration",
+                      "system monitoring"
+                    ]
+                  },
+                  {
+                    "id": 9,
+                    "type": "freeform",
+                    "points": 4,
+                    "question": "Explain how conditional statements (if/else) work in business applications and provide two examples of how they might be used to implement business rules.",
+                    "sampleStrongResponse": "Conditional statements allow programs to make different decisions based on specific conditions, similar to how business policies work. They evaluate whether a condition is true or false and then execute different actions accordingly. Two business examples: First, in e-commerce applications, if a customer's order total is over $100, then free shipping is applied, else standard shipping charges apply. Second, in user account systems, if a user has premium subscription status, then they can access advanced features, else they see only basic functionality. These conditionals ensure business rules are applied consistently across all customer interactions without requiring manual intervention.",
+                    "additionalContext": "Understanding conditionals helps explain how business logic is automated in software applications and why consistent rule application is important for customer experience.",
+                    "keyConcepts": [
+                      "Conditional logic",
+                      "business rules automation",
+                      "practical applications"
+                    ],
+                    "customScoringCriteria": {
+                      "fullPoints": "Clearly explains how conditional statements work with appropriate business examples that demonstrate understanding of automated decision-making in applications.",
+                      "partialPoints": "Covers the basic concept with examples but may lack depth in explaining how conditionals relate to business rule automation.",
+                      "noPoints": "Provides unclear explanations or fails to connect conditionals to realistic business scenarios."
+                    }
+                  },
+                  {
+                    "id": 10,
+                    "type": "freeform",
+                    "points": 5,
+                    "question": "Compare for loops and while loops, explaining when each type is most appropriate for business applications. Include examples of performance considerations that teams should keep in mind.",
+                    "sampleStrongResponse": "For loops and while loops serve different purposes in business applications. For loops are best when you know exactly how many items to process, such as generating reports for a specific list of customers or processing a batch of transactions. While loops are ideal for situations where you continue until a condition changes, like monitoring system status or processing user input until they choose to exit. Performance considerations include: for loops with known bounds are generally more predictable and easier to optimize, while while loops require careful condition management to prevent infinite loops. Teams should implement proper exit conditions in while loops and consider early termination in for loops when searching through large datasets. For enterprise applications processing thousands of records, inefficient loop design can cause significant slowdowns, so teams should test with realistic data volumes and implement monitoring to detect performance issues before they impact users.",
+                    "additionalContext": "Understanding loop types and their performance implications helps teams make informed decisions about how to implement business logic efficiently at scale.",
+                    "keyConcepts": [
+                      "Loop types comparison",
+                      "business application scenarios",
+                      "performance optimization",
+                      "enterprise considerations"
+                    ],
+                    "customScoringCriteria": {
+                      "fullPoints": "Clearly distinguishes between for and while loops with appropriate business examples, and demonstrates understanding of performance considerations for enterprise applications.",
+                      "partialPoints": "Covers most concepts but may lack depth in performance considerations or provides limited business context.",
+                      "noPoints": "Provides unclear explanations of loop differences or fails to demonstrate understanding of performance implications."
+                    }
+                  }
+                ]
+              }
             },
             {
               "id": "functions-methods-scope",
@@ -1360,7 +1556,203 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Organizing code into reusable blocks with proper scope management",
-              "topics": ["Function Parameters", "Return Values", "Scope Chain"]
+              "topics": ["Function Parameters", "Return Values", "Scope Chain"],
+              "quiz": {
+                "title": "Functions, Methods, and Scope Knowledge Quiz",
+                "totalQuestions": 10,
+                "totalPoints": 25,
+                "questions": [
+                  {
+                    "id": 1,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "What is the primary benefit of organizing code into functions in business applications?",
+                    "options": [
+                      "Functions make applications run faster automatically",
+                      "They enable code reuse and reduce duplication of business logic",
+                      "Functions prevent all types of errors",
+                      "They make code more secure"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Functions allow teams to write business logic once and reuse it throughout the application. For example, a function for calculating tax rates can be used in multiple places (checkout, invoicing, reporting) without duplicating the calculation logic, making maintenance easier and reducing the chance of inconsistencies.",
+                    "keyConcepts": [
+                      "Code reusability",
+                      "business logic organization",
+                      "maintenance efficiency"
+                    ]
+                  },
+                  {
+                    "id": 2,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Why is scope management important for team development?",
+                    "options": [
+                      "It makes functions run faster",
+                      "It controls where variables can be accessed, reducing conflicts and bugs",
+                      "It automatically documents the code",
+                      "It eliminates the need for testing"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Proper scope management prevents variables from being accidentally modified by unrelated parts of the code. When multiple team members work on the same project, clear scope boundaries ensure that changes in one function don't unexpectedly affect other functions, reducing debugging time and integration issues.",
+                    "keyConcepts": [
+                      "Variable accessibility",
+                      "team collaboration",
+                      "conflict prevention"
+                    ]
+                  },
+                  {
+                    "id": 3,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "What is the difference between global scope and function scope?",
+                    "options": [
+                      "Global scope is faster than function scope",
+                      "Global variables are accessible everywhere; function variables only within their function",
+                      "Function scope can only store numbers",
+                      "Global scope is more secure"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Global scope variables can be accessed and modified from anywhere in the application, which can be useful for configuration settings but risky for business data. Function scope variables are isolated within their function, providing better control and reducing the risk of unintended modifications from other parts of the code.",
+                    "keyConcepts": [
+                      "Variable scope levels",
+                      "accessibility control",
+                      "data isolation"
+                    ]
+                  },
+                  {
+                    "id": 4,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "When should teams prefer pass-by-value over pass-by-reference for function parameters?",
+                    "options": [
+                      "When working with large datasets to improve performance",
+                      "When data integrity is crucial and original values must remain unchanged",
+                      "Only when using certain programming languages",
+                      "When functions need to modify the original data"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Pass-by-value is important for maintaining data integrity, especially in financial calculations, audit trails, and situations where the original data must remain unchanged. This approach ensures that functions can't accidentally modify critical business data, providing better predictability and security for enterprise applications.",
+                    "keyConcepts": [
+                      "Data integrity",
+                      "parameter passing",
+                      "financial security"
+                    ]
+                  },
+                  {
+                    "id": 5,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "What makes functions particularly valuable for testing business logic?",
+                    "options": [
+                      "Functions automatically test themselves",
+                      "Isolated functions can be tested independently with specific inputs and expected outputs",
+                      "Functions prevent the need for any testing",
+                      "Testing functions is always faster than testing other code"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Well-designed functions have clear inputs and outputs, making them easier to test in isolation. Teams can verify that business logic works correctly by testing functions with various scenarios, such as testing a pricing function with different customer types, product categories, and discount rules to ensure it behaves correctly in all business situations.",
+                    "keyConcepts": [
+                      "Isolated testing",
+                      "business logic validation",
+                      "quality assurance"
+                    ]
+                  },
+                  {
+                    "id": 6,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "How do default parameters improve function usability in business applications?",
+                    "options": [
+                      "They make functions run faster",
+                      "They provide fallback values when arguments aren't specified, making functions more flexible",
+                      "They prevent all errors from occurring",
+                      "They automatically optimize function performance"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Default parameters make functions more user-friendly by providing sensible fallback values. For example, a report generation function might default to the current month if no date range is specified, or a search function might default to searching all categories if none are selected, improving the developer experience and reducing the need for error handling.",
+                    "keyConcepts": [
+                      "Function flexibility",
+                      "developer experience",
+                      "error reduction"
+                    ]
+                  },
+                  {
+                    "id": 7,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "What are callback functions most commonly used for in business applications?",
+                    "options": [
+                      "Making functions run faster",
+                      "Customizing behavior and handling events or asynchronous operations",
+                      "Reducing memory usage",
+                      "Automatically documenting code"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Callback functions allow different parts of the application to respond to events or customize behavior. For example, after processing a payment, a callback function might send a confirmation email, update inventory, or trigger a notification. This pattern enables flexible, event-driven architectures that can adapt to different business requirements.",
+                    "keyConcepts": [
+                      "Event handling",
+                      "asynchronous operations",
+                      "flexible architecture"
+                    ]
+                  },
+                  {
+                    "id": 8,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Why do well-designed functions naturally evolve into microservices in enterprise architectures?",
+                    "options": [
+                      "Functions automatically become microservices",
+                      "Isolated, single-purpose functions map well to independent, scalable services",
+                      "Microservices always perform better than functions",
+                      "Functions and microservices are the same thing"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Functions that are well-designed with clear responsibilities and minimal dependencies can be easily extracted into independent microservices. This enables organizations to scale different business capabilities independently, deploy updates without affecting other systems, and assign different teams to maintain different services based on business domain expertise.",
+                    "keyConcepts": [
+                      "Microservices evolution",
+                      "scalable architecture",
+                      "business domain separation"
+                    ]
+                  },
+                  {
+                    "id": 9,
+                    "type": "freeform",
+                    "points": 4,
+                    "question": "Explain how functions help organize business logic and provide an example of how the same function could be reused in different parts of a business application.",
+                    "sampleStrongResponse": "Functions help organize business logic by encapsulating specific operations into reusable, testable components with clear inputs and outputs. This reduces code duplication and ensures consistent behavior across the application. For example, a calculateShippingCost function that takes order weight, destination, and shipping method as parameters could be reused in multiple places: during checkout to show shipping options to customers, in the admin panel for order management, in the mobile app for cost estimation, and in batch processing for generating shipping labels. This ensures that shipping calculation logic is consistent everywhere and any changes to shipping rules only need to be made in one place.",
+                    "additionalContext": "Understanding function reusability helps teams design modular applications that are easier to maintain and ensure business rule consistency across different user interfaces and workflows.",
+                    "keyConcepts": [
+                      "Business logic organization",
+                      "code reusability",
+                      "practical examples"
+                    ],
+                    "customScoringCriteria": {
+                      "fullPoints": "Clearly explains how functions organize business logic with a specific, realistic example showing reuse across multiple application contexts.",
+                      "partialPoints": "Covers the concept of function organization with an example but may lack detail in explaining reusability benefits or provide a limited example.",
+                      "noPoints": "Provides unclear explanations or fails to demonstrate understanding of how functions improve business logic organization."
+                    }
+                  },
+                  {
+                    "id": 10,
+                    "type": "freeform",
+                    "points": 5,
+                    "question": "Compare global scope and function scope, explaining the trade-offs between accessibility and control. Describe a business scenario where each type of scope would be appropriate and explain the potential risks of poor scope management in team environments.",
+                    "sampleStrongResponse": "Global scope and function scope represent different trade-offs between accessibility and control. Global scope makes variables accessible throughout the entire application, which is useful for configuration settings like API endpoints, company branding information, or system-wide settings that multiple parts of the application need. However, global variables can be modified from anywhere, creating risks of unintended changes and making debugging difficult. Function scope provides better control by limiting variable access to within specific functions, which is ideal for business calculations, user session data, or temporary processing variables that shouldn't be modified by other parts of the code. Poor scope management in team environments can lead to several issues: global variables being accidentally modified by different team members working on separate features, naming conflicts where different functions use the same variable names causing unpredictable behavior, and debugging challenges where it's unclear which part of the code modified a global variable. Teams should generally prefer more restrictive scope (function or block level) and only use global scope for truly shared, stable configuration data.",
+                    "additionalContext": "Understanding scope trade-offs helps teams make informed decisions about variable accessibility and prevents common issues that arise in collaborative development environments.",
+                    "keyConcepts": [
+                      "Scope comparison",
+                      "accessibility vs control",
+                      "team development challenges",
+                      "enterprise considerations"
+                    ],
+                    "customScoringCriteria": {
+                      "fullPoints": "Clearly compares global and function scope with appropriate business examples, and demonstrates understanding of team development challenges and best practices for scope management.",
+                      "partialPoints": "Covers most concepts but may lack depth in explaining trade-offs or miss some team development considerations.",
+                      "noPoints": "Provides unclear explanations of scope differences or fails to demonstrate understanding of team development implications."
+                    }
+                  }
+                ]
+              }
             },
             {
               "id": "error-handling",
@@ -1368,7 +1760,204 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Managing and recovering from runtime errors",
-              "topics": ["Try/Catch", "Exception Types", "Error Propagation"]
+              "topics": ["Try/Catch", "Exception Types", "Error Propagation"],
+              "quiz": {
+                "title": "Error Handling and Exceptions Knowledge Quiz",
+                "totalQuestions": 10,
+                "totalPoints": 25,
+                "questions": [
+                  {
+                    "id": 1,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "What is the primary purpose of try/catch blocks in business applications?",
+                    "options": [
+                      "To make applications run faster",
+                      "To gracefully handle potential errors and prevent complete system failures",
+                      "To automatically fix all bugs",
+                      "To reduce the amount of code needed"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Try/catch blocks allow applications to anticipate potential problems and handle them gracefully rather than crashing. For example, when processing a payment, a try/catch block can handle network timeouts or payment gateway errors by showing a user-friendly message and offering alternative payment methods instead of displaying a technical error that confuses customers.",
+                    "keyConcepts": [
+                      "Exception handling",
+                      "graceful degradation",
+                      "system reliability"
+                    ]
+                  },
+                  {
+                    "id": 2,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "How do proper error handling practices impact customer experience?",
+                    "options": [
+                      "They prevent customers from using the application",
+                      "They provide clear feedback and maintain user trust during problems",
+                      "They automatically solve all customer problems",
+                      "They have no effect on user experience"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Good error handling shows users clear, actionable messages when something goes wrong, such as 'Payment processing failed. Please try a different card or contact support.' This maintains customer confidence and provides guidance for next steps, rather than showing cryptic technical errors that frustrate users and drive them away.",
+                    "keyConcepts": [
+                      "User experience",
+                      "error communication",
+                      "customer trust"
+                    ]
+                  },
+                  {
+                    "id": 3,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "What is a circuit breaker pattern and why is it important for business applications?",
+                    "options": [
+                      "A way to reduce electrical costs",
+                      "A pattern that prevents cascading failures by temporarily disabling failed services",
+                      "A method to speed up application performance",
+                      "A security feature to prevent unauthorized access"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Circuit breaker patterns protect business operations by preventing one failed service from bringing down the entire system. For example, if a recommendation service fails on an e-commerce site, the circuit breaker stops trying to call it temporarily, allowing customers to continue shopping without recommendations rather than experiencing a complete site failure.",
+                    "keyConcepts": [
+                      "Cascading failure prevention",
+                      "system resilience",
+                      "business continuity"
+                    ]
+                  },
+                  {
+                    "id": 4,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Why is structured logging important for error tracking in enterprise applications?",
+                    "options": [
+                      "It makes applications run faster",
+                      "It provides consistent format and context for automated analysis and debugging",
+                      "It automatically fixes errors",
+                      "It reduces the amount of storage needed"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Structured logging captures error information in a consistent format that enables automated monitoring and quick debugging. When a payment fails, structured logs can capture customer ID, transaction amount, error code, and timestamp in a standardized way, allowing support teams to quickly identify patterns and resolve issues before they affect more customers.",
+                    "keyConcepts": [
+                      "Error tracking",
+                      "automated monitoring",
+                      "debugging efficiency"
+                    ]
+                  },
+                  {
+                    "id": 5,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "What is the benefit of implementing retry mechanisms for business applications?",
+                    "options": [
+                      "They prevent all types of errors from occurring",
+                      "They automatically retry failed operations for transient issues like network timeouts",
+                      "They make applications run faster",
+                      "They eliminate the need for error handling"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Retry mechanisms help handle temporary failures that often resolve themselves, such as network hiccups or momentary service unavailability. For example, if an API call to verify inventory fails due to a network timeout, automatic retry logic might successfully complete the operation on the second attempt, allowing the customer to complete their purchase without manual intervention.",
+                    "keyConcepts": [
+                      "Transient failure recovery",
+                      "automatic retry logic",
+                      "system resilience"
+                    ]
+                  },
+                  {
+                    "id": 6,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "How does graceful degradation benefit business operations when systems experience failures?",
+                    "options": [
+                      "It completely prevents all failures from occurring",
+                      "It maintains partial functionality so users can continue working with reduced capabilities",
+                      "It automatically fixes all broken components",
+                      "It makes systems run faster during failures"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Graceful degradation allows business operations to continue even when some features are unavailable. For example, if the product recommendation engine fails on an e-commerce site, customers can still browse categories, search for products, and make purchases - just without personalized recommendations. This maintains revenue generation during system issues.",
+                    "keyConcepts": [
+                      "Partial functionality",
+                      "business continuity",
+                      "service degradation"
+                    ]
+                  },
+                  {
+                    "id": 7,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "What is the typical business impact of poor error handling on revenue?",
+                    "options": [
+                      "No impact on business metrics",
+                      "Each minute of downtime can cost thousands in lost revenue and reduce customer lifetime value",
+                      "It always improves customer satisfaction",
+                      "It only affects technical teams"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Poor error handling has direct financial consequences. E-commerce sites can lose $5,000-$25,000 per minute during outages, while poor error experiences can reduce customer lifetime value by 15-30%. Customers who encounter confusing errors or system crashes are more likely to abandon purchases and try competitors instead.",
+                    "keyConcepts": [
+                      "Revenue impact",
+                      "customer lifetime value",
+                      "business metrics"
+                    ]
+                  },
+                  {
+                    "id": 8,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Why do enterprises invest in comprehensive error monitoring and alerting systems?",
+                    "options": [
+                      "To increase application complexity",
+                      "To detect and respond to issues quickly before they impact customers and business operations",
+                      "To reduce development costs",
+                      "To eliminate the need for customer support"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Proactive monitoring enables teams to identify and resolve issues before customers notice them. Intelligent alerting systems can notify operations teams when error rates spike or specific business-critical functions fail, allowing for rapid response that minimizes customer impact and prevents revenue loss during peak business periods.",
+                    "keyConcepts": [
+                      "Proactive monitoring",
+                      "rapid response",
+                      "customer impact prevention"
+                    ]
+                  },
+                  {
+                    "id": 9,
+                    "type": "freeform",
+                    "points": 4,
+                    "question": "Explain the concept of exception propagation and describe how it helps maintain consistent error handling across different parts of a business application.",
+                    "sampleStrongResponse": "Exception propagation refers to how errors bubble up through different layers of an application, from where they occur to where they can be properly handled. This allows centralized error handling and consistent user messaging across business processes. For example, when a database connection fails during order processing, the error propagates from the data layer up through the business logic layer to the user interface layer, where it can be caught and translated into a user-friendly message like 'Unable to process your order right now. Please try again in a few minutes.' This approach ensures that all database-related errors throughout the application are handled consistently, maintaining a professional user experience and enabling centralized logging and monitoring of system issues.",
+                    "additionalContext": "Understanding exception propagation helps teams design error handling strategies that provide consistent user experiences while enabling effective debugging and monitoring across complex business applications.",
+                    "keyConcepts": [
+                      "Exception propagation",
+                      "centralized error handling",
+                      "consistent user experience"
+                    ],
+                    "customScoringCriteria": {
+                      "fullPoints": "Clearly explains exception propagation with a specific business example showing how errors move through application layers and result in consistent handling.",
+                      "partialPoints": "Covers the basic concept with an example but may lack detail in explaining how propagation enables consistent error handling across the application.",
+                      "noPoints": "Provides unclear explanations or fails to demonstrate understanding of how exception propagation works in business applications."
+                    }
+                  },
+                  {
+                    "id": 10,
+                    "type": "freeform",
+                    "points": 5,
+                    "question": "Describe the key components of a comprehensive error handling strategy for enterprise applications. Explain how retry mechanisms, fallback strategies, and circuit breakers work together to maintain business continuity during system failures.",
+                    "sampleStrongResponse": "A comprehensive error handling strategy for enterprise applications includes multiple layers of protection that work together to maintain business continuity. Retry mechanisms automatically attempt failed operations multiple times with appropriate delays, handling transient issues like network timeouts or temporary service unavailability - for example, retrying a payment processing call 3 times with exponential backoff before declaring failure. Fallback strategies provide alternative approaches when primary systems fail, such as serving cached product recommendations when the real-time recommendation engine is down, or offering manual payment processing when automated systems fail. Circuit breakers prevent cascading failures by temporarily disabling calls to failing services, protecting system stability while allowing time for recovery - if a shipping cost calculator fails repeatedly, the circuit breaker stops calling it and uses default shipping rates instead. These components work together by creating multiple levels of resilience: retries handle temporary issues, fallbacks maintain functionality when retries fail, and circuit breakers protect the overall system from being overwhelmed by failing components. This layered approach ensures that business operations can continue even during significant system issues, maintaining customer service and revenue generation while technical teams resolve underlying problems.",
+                    "additionalContext": "Understanding how these error handling components work together helps teams design resilient systems that can maintain business operations during various failure scenarios while providing good customer experiences.",
+                    "keyConcepts": [
+                      "Comprehensive error strategy",
+                      "retry mechanisms",
+                      "fallback strategies",
+                      "circuit breakers",
+                      "business continuity"
+                    ],
+                    "customScoringCriteria": {
+                      "fullPoints": "Clearly explains all three components (retry, fallback, circuit breaker) with specific examples and demonstrates understanding of how they work together to maintain business continuity.",
+                      "partialPoints": "Covers most components with examples but may lack depth in explaining how they work together or miss some key concepts.",
+                      "noPoints": "Provides unclear explanations of the components or fails to demonstrate understanding of how they contribute to enterprise error handling."
+                    }
+                  }
+                ]
+              }
             }
           ]
         },
