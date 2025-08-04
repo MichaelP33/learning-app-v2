@@ -39,7 +39,11 @@
                     ],
                     "correctAnswer": 1,
                     "additionalContext": "This upfront translation is what enables compiled languages to create standalone executables that can run without requiring the original compiler on the target machine. The compilation process includes sophisticated optimization stages (lexical analysis, parsing, optimization, code generation) that restructure code for maximum efficiency. This is why compiled languages eliminate translation overhead during execution - all the heavy lifting happens once during development rather than every time the program runs.",
-                    "keyConcepts": ["Basic compiled language definition", "translation timing", "deployment characteristics"]
+                    "keyConcepts": [
+                      "Basic compiled language definition",
+                      "translation timing",
+                      "deployment characteristics"
+                    ]
                   },
                   {
                     "id": 2,
@@ -54,7 +58,11 @@
                     ],
                     "correctAnswer": 1,
                     "additionalContext": "Go was specifically designed for modern cloud infrastructure and has become the foundation for major containerization technologies like Docker and Kubernetes. Its compiled nature provides fast startup times (milliseconds vs. seconds) and low memory usage (10-50MB vs. 200-500MB for interpreted alternatives) - critical factors when running hundreds of microservices. Companies like Docker migrated from Python to Go for significant performance improvements, while Uber uses Go for 600+ microservices with ~50MB vs. ~300MB per service compared to alternatives.",
-                    "keyConcepts": ["Go-specific advantages", "microservices requirements", "cloud infrastructure adoption"]
+                    "keyConcepts": [
+                      "Go-specific advantages",
+                      "microservices requirements",
+                      "cloud infrastructure adoption"
+                    ]
                   },
                   {
                     "id": 3,
@@ -69,7 +77,11 @@
                     ],
                     "correctAnswer": 1,
                     "additionalContext": "This elimination of translation overhead is why compiled languages can start services in milliseconds rather than seconds - crucial for microservices architectures where you might have hundreds of services starting and stopping. The compiler's multi-stage optimization process (lexical analysis, parsing, optimization, code generation) happens once during development, creating highly efficient machine code that can execute immediately without any interpretation layer.",
-                    "keyConcepts": ["Performance advantages", "compilation timing", "microservices impact"]
+                    "keyConcepts": [
+                      "Performance advantages",
+                      "compilation timing",
+                      "microservices impact"
+                    ]
                   },
                   {
                     "id": 4,
@@ -84,7 +96,12 @@
                     ],
                     "correctAnswer": 1,
                     "additionalContext": "These success rates reflect the risk and complexity differences between approaches. Gradual migrations allow teams to learn and adapt as they go, maintaining business continuity while gaining experience with the new technology. Complete rewrites are much riskier because they require perfect upfront planning and extended periods where the business runs on both old and new systems. The cost ranges reflect that individual microservice migrations can be scoped and managed, while full rewrites involve coordinating changes across entire technology stacks with unpredictable integration challenges.",
-                    "keyConcepts": ["Migration strategies", "business costs", "success patterns", "risk management"]
+                    "keyConcepts": [
+                      "Migration strategies",
+                      "business costs",
+                      "success patterns",
+                      "risk management"
+                    ]
                   },
                   {
                     "id": 5,
@@ -99,7 +116,11 @@
                     ],
                     "correctAnswer": 1,
                     "additionalContext": "When you have hundreds of microservices, small performance improvements in startup time and memory usage compound dramatically. If each service starts in milliseconds instead of seconds and uses 10-50MB instead of 200-500MB, these savings multiply across the entire architecture. This is why companies like Uber achieve significant resource efficiency with Go, using ~50MB vs ~300MB per service compared to interpreted alternatives.",
-                    "keyConcepts": ["Microservices performance", "resource efficiency", "scalability impact"]
+                    "keyConcepts": [
+                      "Microservices performance",
+                      "resource efficiency",
+                      "scalability impact"
+                    ]
                   },
                   {
                     "id": 6,
@@ -114,7 +135,11 @@
                     ],
                     "correctAnswer": 1,
                     "additionalContext": "Performance crises where cloud bills double but traffic only increases 20% represent the most common trigger point where companies realize their current technology choices are becoming a business impediment. Other triggers include scaling inefficiency where teams need 10x the servers to handle 2x the traffic, or deployment velocity issues where microservices startup time kills deployment speed.",
-                    "keyConcepts": ["Migration triggers", "customer pain points", "business drivers"]
+                    "keyConcepts": [
+                      "Migration triggers",
+                      "customer pain points",
+                      "business drivers"
+                    ]
                   },
                   {
                     "id": 7,
@@ -129,22 +154,26 @@
                     ],
                     "correctAnswer": 1,
                     "additionalContext": "The cost difference reflects the scope and risk of each approach. Individual microservice migrations can be scoped and managed within smaller budgets, while full rewrites involve coordinating changes across entire technology stacks with unpredictable integration challenges. These ranges help TAMs set appropriate expectations when discussing migration strategies with customers.",
-                    "keyConcepts": ["Migration costs", "business planning", "risk assessment"]
+                    "keyConcepts": [
+                      "Migration costs",
+                      "business planning",
+                      "risk assessment"
+                    ]
                   },
                   {
                     "id": 8,
                     "type": "multiple-choice",
                     "points": 2,
                     "question": "Which compiled language is specifically designed for system-level programming with memory safety as a core feature?",
-                    "options": [
-                      "Go",
-                      "Java", 
-                      "Rust",
-                      "C++"
-                    ],
+                    "options": ["Go", "Java", "Rust", "C++"],
                     "correctAnswer": 2,
                     "additionalContext": "Rust was designed to provide memory safety without garbage collection, making it ideal for system-level programming where performance and safety are both critical. Companies like Discord achieved 40% cost reduction by migrating from JavaScript to Rust for performance-critical components. Each compiled language serves different strategic purposes: Go for microservices/cloud, Rust for system-level/memory safety, C++ for high-performance computing, and Java for enterprise backends.",
-                    "keyConcepts": ["Language specialization", "memory safety", "system programming", "strategic language selection"]
+                    "keyConcepts": [
+                      "Language specialization",
+                      "memory safety",
+                      "system programming",
+                      "strategic language selection"
+                    ]
                   },
                   {
                     "id": 9,
@@ -153,7 +182,11 @@
                     "question": "Describe the three main customer scenarios that trigger migration discussions about compiled languages. For each scenario, include one specific quoted pain point from the article.",
                     "sampleStrongResponse": "The three main triggers are: (1) Performance crisis - 'Our cloud bills doubled but traffic only increased 20%', (2) Scaling inefficiency - 'We need 10x the servers to handle 2x the traffic', and (3) Deployment velocity issues - 'Microservices startup time is killing deployment velocity'. These represent the key pain points where customers realize their technology choices are becoming business impediments.",
                     "additionalContext": "These scenarios represent the most common trigger points where companies realize their current technology choices are becoming a business impediment. Understanding these patterns helps TAMs identify when customers are ready for architectural discussions.",
-                    "keyConcepts": ["Migration triggers", "customer pain points", "business drivers"],
+                    "keyConcepts": [
+                      "Migration triggers",
+                      "customer pain points",
+                      "business drivers"
+                    ],
                     "customScoringCriteria": {
                       "fullPoints": "Identifies all three trigger scenarios (performance crisis, scaling inefficiency, deployment velocity issues) and includes exact quoted pain points from the article for each one. Demonstrates understanding that these represent business impediment recognition points.",
                       "partialPoints": "Identifies most trigger scenarios and includes some quoted pain points, but may miss one scenario or use paraphrased rather than exact quotes.",
@@ -167,7 +200,12 @@
                     "question": "Analyze how technical requirements drive compiled language selection. Describe the core specialties of Go, Rust, C++, and Java, and explain what types of projects would benefit most from each language's strengths.",
                     "sampleStrongResponse": "Technical requirements should drive language selection based on each language's core strengths: Go excels at microservices and cloud infrastructure due to fast startup times and low memory usage; Rust specializes in system-level programming with memory safety, ideal for performance-critical applications without garbage collection overhead; C++ provides maximum performance for high-performance computing where raw speed is essential; Java offers mature enterprise backend capabilities with cross-platform compatibility and extensive ecosystem support. Project selection should match these strengths - cloud-native applications benefit from Go, system programming from Rust, computational workloads from C++, and enterprise applications from Java.",
                     "additionalContext": "Understanding these technical specializations helps contextualize why development teams choose specific compiled languages and what challenges they're optimizing for in their development environment.",
-                    "keyConcepts": ["Language specialization", "technical requirements", "project matching", "development context"],
+                    "keyConcepts": [
+                      "Language specialization",
+                      "technical requirements",
+                      "project matching",
+                      "development context"
+                    ],
                     "customScoringCriteria": {
                       "fullPoints": "Clearly describes all four languages' core specialties (Go for microservices/cloud, Rust for system-level with memory safety, C++ for high-performance computing, Java for enterprise backends) and explains how technical requirements should drive selection decisions with appropriate project type matches.",
                       "partialPoints": "Covers most languages and their specialties but may lack depth in explaining how technical requirements drive selection OR misses clear project type matching for each language.",
@@ -202,7 +240,10 @@
                     ],
                     "correctAnswer": 1,
                     "additionalContext": "Interpreted languages are executed directly by an interpreter at runtime, which reads and executes the source code line by line. This execution model provides immediate feedback and interactive development capabilities through REPLs, but comes with performance trade-offs compared to compiled languages that translate code to machine code beforehand.",
-                    "keyConcepts": ["Runtime execution model", "interpreter functionality"]
+                    "keyConcepts": [
+                      "Runtime execution model",
+                      "interpreter functionality"
+                    ]
                   },
                   {
                     "id": 2,
@@ -217,7 +258,11 @@
                     ],
                     "correctAnswer": 1,
                     "additionalContext": "Python's strength lies in its extensive ecosystem of specialized libraries (NumPy, Pandas, scikit-learn, TensorFlow) and the ability to rapidly prototype and iterate on data science workflows. The immediate feedback from REPL environments allows data scientists to experiment with algorithms and visualize results instantly, making the development process much faster than compiled alternatives for exploratory work.",
-                    "keyConcepts": ["Python specialization", "data science ecosystem", "rapid prototyping"]
+                    "keyConcepts": [
+                      "Python specialization",
+                      "data science ecosystem",
+                      "rapid prototyping"
+                    ]
                   },
                   {
                     "id": 3,
@@ -232,22 +277,25 @@
                     ],
                     "correctAnswer": 1,
                     "additionalContext": "REPLs create feedback loops measured in seconds rather than minutes, allowing developers to experiment, test, and validate code incrementally. This immediate execution capability is unique to interpreted languages and accelerates the development process significantly, especially for prototyping, learning, and debugging workflows.",
-                    "keyConcepts": ["Interactive development", "immediate feedback", "rapid iteration"]
+                    "keyConcepts": [
+                      "Interactive development",
+                      "immediate feedback",
+                      "rapid iteration"
+                    ]
                   },
                   {
                     "id": 4,
                     "type": "multiple-choice",
                     "points": 2,
                     "question": "According to the article, interpreted languages typically have what percentage higher compute costs compared to compiled alternatives?",
-                    "options": [
-                      "10-20%",
-                      "20-50%",
-                      "50-80%",
-                      "80-100%"
-                    ],
+                    "options": ["10-20%", "20-50%", "50-80%", "80-100%"],
                     "correctAnswer": 1,
                     "additionalContext": "The 20-50% higher compute costs reflect the overhead of runtime interpretation and less aggressive optimization compared to compiled languages. However, this cost difference is often justified by faster development cycles, immediate feedback, and reduced time-to-market, especially when engineering costs exceed operational costs.",
-                    "keyConcepts": ["Performance trade-offs", "cost implications", "infrastructure costs"]
+                    "keyConcepts": [
+                      "Performance trade-offs",
+                      "cost implications",
+                      "infrastructure costs"
+                    ]
                   },
                   {
                     "id": 5,
@@ -262,7 +310,11 @@
                     ],
                     "correctAnswer": 1,
                     "additionalContext": "The 12-24 month ROI break-even point reflects the balance between higher operational costs (compute resources) and lower development costs (faster feature delivery, reduced debugging time). This timeline is particularly relevant for growing companies where developer productivity gains compound over time.",
-                    "keyConcepts": ["Business ROI", "cost-benefit analysis", "financial planning"]
+                    "keyConcepts": [
+                      "Business ROI",
+                      "cost-benefit analysis",
+                      "financial planning"
+                    ]
                   },
                   {
                     "id": 6,
@@ -277,7 +329,11 @@
                     ],
                     "correctAnswer": 1,
                     "additionalContext": "JavaScript's unique position as the native language of web browsers, combined with Node.js enabling server-side execution, creates a unified development environment. This eliminates context switching between different languages and toolchains, allowing full-stack developers to work more efficiently across the entire web application stack.",
-                    "keyConcepts": ["JavaScript specialization", "unified development", "full-stack efficiency"]
+                    "keyConcepts": [
+                      "JavaScript specialization",
+                      "unified development",
+                      "full-stack efficiency"
+                    ]
                   },
                   {
                     "id": 7,
@@ -292,7 +348,11 @@
                     ],
                     "correctAnswer": 1,
                     "additionalContext": "Production deployment of interpreted languages requires managing runtime environments (Python/Node.js versions) consistently across all deployment targets, and some errors only surface during execution rather than before deployment. This creates operational complexity compared to compiled languages that catch errors earlier and create self-contained executables.",
-                    "keyConcepts": ["Production challenges", "environment management", "error discovery timing"]
+                    "keyConcepts": [
+                      "Production challenges",
+                      "environment management",
+                      "error discovery timing"
+                    ]
                   },
                   {
                     "id": 8,
@@ -307,7 +367,11 @@
                     ],
                     "correctAnswer": 1,
                     "additionalContext": "Instagram scaled to 100M+ users on Python/Django before selectively migrating only performance-critical components, while Netflix uses Python extensively for recommendations while using compiled languages for streaming infrastructure. This shows that interpreted languages are viable for core business logic with targeted optimization where needed.",
-                    "keyConcepts": ["Scaling patterns", "selective optimization", "hybrid approaches"]
+                    "keyConcepts": [
+                      "Scaling patterns",
+                      "selective optimization",
+                      "hybrid approaches"
+                    ]
                   },
                   {
                     "id": 9,
@@ -332,9 +396,13 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Languages that combine compilation and interpretation approaches",
-              "topics": ["Virtual Machines", "Bytecode", "Platform Independence"],
+              "topics": [
+                "Virtual Machines",
+                "Bytecode",
+                "Platform Independence"
+              ],
               "quiz": {
-                "title": "Hybrid Languages Knowledge Quiz", 
+                "title": "Hybrid Languages Knowledge Quiz",
                 "totalQuestions": 10,
                 "totalPoints": 25,
                 "questions": [
@@ -345,13 +413,17 @@
                     "question": "What is the defining characteristic of hybrid languages' execution model?",
                     "options": [
                       "They are compiled directly to machine code like C++",
-                      "They are interpreted line by line at runtime like Python", 
+                      "They are interpreted line by line at runtime like Python",
                       "They compile to platform-independent bytecode, then run on virtual machines",
                       "They require manual memory management and platform-specific builds"
                     ],
                     "correctAnswer": 2,
                     "additionalContext": "Hybrid languages use a two-stage execution model: first compiling source code to platform-independent bytecode, then executing that bytecode on virtual machines like the JVM or .NET runtime. This approach combines the performance benefits of compilation with the platform independence of interpretation, while providing advanced runtime features like garbage collection and adaptive optimization.",
-                    "keyConcepts": ["Two-stage execution model", "bytecode compilation", "virtual machine architecture"]
+                    "keyConcepts": [
+                      "Two-stage execution model",
+                      "bytecode compilation",
+                      "virtual machine architecture"
+                    ]
                   },
                   {
                     "id": 2,
@@ -366,7 +438,11 @@
                     ],
                     "correctAnswer": 1,
                     "additionalContext": "Java's strength in enterprise environments comes from its 'write once, run anywhere' philosophy through JVM compatibility, extensive enterprise frameworks (Spring, Hibernate), robust security model, and strong tooling ecosystem. These features make it ideal for large-scale business applications that need to run consistently across different platforms and integrate with diverse enterprise systems.",
-                    "keyConcepts": ["Java specialization", "enterprise ecosystem", "cross-platform compatibility"]
+                    "keyConcepts": [
+                      "Java specialization",
+                      "enterprise ecosystem",
+                      "cross-platform compatibility"
+                    ]
                   },
                   {
                     "id": 3,
@@ -381,7 +457,11 @@
                     ],
                     "correctAnswer": 1,
                     "additionalContext": "Virtual machines like the JVM allow enterprises to install one runtime environment that can host hundreds of different applications without dependency conflicts. This eliminates the complexity of managing multiple platform-specific builds and runtime environments, significantly reducing operational overhead for large-scale deployments.",
-                    "keyConcepts": ["Virtual machine benefits", "enterprise deployment", "operational simplicity"]
+                    "keyConcepts": [
+                      "Virtual machine benefits",
+                      "enterprise deployment",
+                      "operational simplicity"
+                    ]
                   },
                   {
                     "id": 4,
@@ -396,7 +476,11 @@
                     ],
                     "correctAnswer": 1,
                     "additionalContext": "C#/.NET provides seamless integration with Microsoft enterprise infrastructure including Active Directory, SQL Server, Azure services, and Windows-specific features. This deep ecosystem integration makes it the preferred choice for enterprises heavily invested in Microsoft technology stacks, offering productivity benefits through unified tooling and simplified authentication/authorization.",
-                    "keyConcepts": ["C# specialization", "Microsoft ecosystem", "enterprise integration"]
+                    "keyConcepts": [
+                      "C# specialization",
+                      "Microsoft ecosystem",
+                      "enterprise integration"
+                    ]
                   },
                   {
                     "id": 5,
@@ -411,7 +495,11 @@
                     ],
                     "correctAnswer": 1,
                     "additionalContext": "Bytecode serves as a platform-independent intermediate representation that can be executed on any system with the appropriate virtual machine, while still providing optimization benefits through just-in-time compilation. This eliminates the need for separate builds for different platforms while achieving performance closer to compiled languages than interpreted alternatives.",
-                    "keyConcepts": ["Bytecode benefits", "platform independence", "performance optimization"]
+                    "keyConcepts": [
+                      "Bytecode benefits",
+                      "platform independence",
+                      "performance optimization"
+                    ]
                   },
                   {
                     "id": 6,
@@ -426,7 +514,11 @@
                     ],
                     "correctAnswer": 1,
                     "additionalContext": "Hybrid languages reduce deployment complexity by eliminating platform-specific builds and dependency management issues, while providing enterprise features like automatic memory management, security sandboxing, and adaptive optimization. This combination addresses the key enterprise need for both operational simplicity and robust, scalable applications.",
-                    "keyConcepts": ["Operational advantages", "deployment simplicity", "enterprise features"]
+                    "keyConcepts": [
+                      "Operational advantages",
+                      "deployment simplicity",
+                      "enterprise features"
+                    ]
                   },
                   {
                     "id": 7,
@@ -441,7 +533,11 @@
                     ],
                     "correctAnswer": 1,
                     "additionalContext": "Virtual machines provide automatic memory management through garbage collection, eliminating manual memory management complexity and reducing memory-related bugs. Adaptive optimization analyzes runtime performance patterns and optimizes frequently-used code paths, improving application performance over time without developer intervention.",
-                    "keyConcepts": ["Automatic memory management", "performance optimization", "runtime features"]
+                    "keyConcepts": [
+                      "Automatic memory management",
+                      "performance optimization",
+                      "runtime features"
+                    ]
                   },
                   {
                     "id": 8,
@@ -456,7 +552,11 @@
                     ],
                     "correctAnswer": 1,
                     "additionalContext": "Hybrid languages excel when organizations need to balance multiple requirements: platform independence for deployment flexibility, enterprise features like security and scalability, and performance better than interpreted languages. This makes them ideal for large-scale business applications that must run across diverse enterprise environments.",
-                    "keyConcepts": ["Strategic language selection", "enterprise requirements", "platform independence"]
+                    "keyConcepts": [
+                      "Strategic language selection",
+                      "enterprise requirements",
+                      "platform independence"
+                    ]
                   },
                   {
                     "id": 9,
@@ -481,7 +581,12 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Programming paradigm that uses step-by-step functions to organize code",
-              "topics": ["Functions", "Modularity", "Sequential Logic", "Performance"],
+              "topics": [
+                "Functions",
+                "Modularity",
+                "Sequential Logic",
+                "Performance"
+              ],
               "quiz": {
                 "title": "Procedural Programming Knowledge Quiz",
                 "totalQuestions": 10,
@@ -500,7 +605,11 @@
                     ],
                     "correctAnswer": 1,
                     "additionalContext": "The function-first approach with no hidden state is what makes procedural programming predictable and efficient. Functions operate as pure transformations on their inputs, making them easier to test, debug, and optimize. This stateless design also enables better performance in data processing scenarios where the same operations are applied to large datasets.",
-                    "keyConcepts": ["Function-first approach", "stateless functions", "clear data separation"]
+                    "keyConcepts": [
+                      "Function-first approach",
+                      "stateless functions",
+                      "clear data separation"
+                    ]
                   },
                   {
                     "id": 2,
@@ -515,7 +624,11 @@
                     ],
                     "correctAnswer": 1,
                     "additionalContext": "C's strength lies in providing direct access to hardware and system resources with minimal abstraction layers. This makes it ideal for operating systems, device drivers, and embedded systems where every byte of memory and CPU cycle matters. The language's procedural nature enables predictable performance characteristics essential for system-level programming.",
-                    "keyConcepts": ["C specialization", "system programming", "hardware control"]
+                    "keyConcepts": [
+                      "C specialization",
+                      "system programming",
+                      "hardware control"
+                    ]
                   },
                   {
                     "id": 3,
@@ -530,7 +643,11 @@
                     ],
                     "correctAnswer": 1,
                     "additionalContext": "Procedural programming excels at data processing because it models data transformations as explicit step-by-step operations. This approach makes ETL pipelines easier to understand, debug, and optimize. The stateless function design enables efficient processing of large datasets with predictable performance characteristics.",
-                    "keyConcepts": ["Data processing", "ETL operations", "step-by-step transformations"]
+                    "keyConcepts": [
+                      "Data processing",
+                      "ETL operations",
+                      "step-by-step transformations"
+                    ]
                   },
                   {
                     "id": 4,
@@ -545,7 +662,11 @@
                     ],
                     "correctAnswer": 1,
                     "additionalContext": "Python's dominance in DevOps automation stems from its extensive library ecosystem, readable syntax that makes complex automation scripts maintainable, and strong procedural programming capabilities. The language's ability to handle file operations, system calls, and API interactions through clear, sequential functions makes it ideal for automation workflows.",
-                    "keyConcepts": ["Python specialization", "DevOps automation", "library ecosystem"]
+                    "keyConcepts": [
+                      "Python specialization",
+                      "DevOps automation",
+                      "library ecosystem"
+                    ]
                   },
                   {
                     "id": 5,
@@ -560,7 +681,11 @@
                     ],
                     "correctAnswer": 1,
                     "additionalContext": "Mixed-paradigm development represents the practical reality where developers use procedural functions for data processing and utility operations while using object-oriented approaches for business logic and entity modeling. This combination leverages the strengths of each paradigm for different types of problems within the same codebase.",
-                    "keyConcepts": ["Mixed-paradigm development", "paradigm selection", "practical development"]
+                    "keyConcepts": [
+                      "Mixed-paradigm development",
+                      "paradigm selection",
+                      "practical development"
+                    ]
                   },
                   {
                     "id": 6,
@@ -575,7 +700,11 @@
                     ],
                     "correctAnswer": 1,
                     "additionalContext": "Procedural programming excels in data-intensive scenarios because it eliminates object creation overhead, reduces method call chains, and enables better compiler optimizations for mathematical operations. This makes it particularly valuable for financial calculations, scientific computing, and data processing pipelines where performance is critical.",
-                    "keyConcepts": ["Performance advantages", "data processing", "mathematical operations"]
+                    "keyConcepts": [
+                      "Performance advantages",
+                      "data processing",
+                      "mathematical operations"
+                    ]
                   },
                   {
                     "id": 7,
@@ -590,7 +719,11 @@
                     ],
                     "correctAnswer": 1,
                     "additionalContext": "Stateless functions operate as pure transformations where the output depends only on the input parameters, with no hidden state or side effects. This predictability makes them easier to test in isolation, debug when issues occur, and parallelize for performance improvements since there are no shared state concerns.",
-                    "keyConcepts": ["Stateless functions", "testability", "predictability"]
+                    "keyConcepts": [
+                      "Stateless functions",
+                      "testability",
+                      "predictability"
+                    ]
                   },
                   {
                     "id": 8,
@@ -605,7 +738,11 @@
                     ],
                     "correctAnswer": 1,
                     "additionalContext": "Procedural programming is strategically chosen when performance is the primary concern, particularly for computational workloads, data processing pipelines, or system-level programming. The direct, sequential approach with minimal abstraction overhead makes it ideal for scenarios where efficiency and predictable performance are more important than code organization complexity.",
-                    "keyConcepts": ["Strategic adoption", "performance optimization", "computational workloads"]
+                    "keyConcepts": [
+                      "Strategic adoption",
+                      "performance optimization",
+                      "computational workloads"
+                    ]
                   },
                   {
                     "id": 9,
@@ -630,7 +767,12 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Programming paradigm based on objects that combine data and behavior",
-              "topics": ["Encapsulation", "Inheritance", "Polymorphism", "Abstraction"],
+              "topics": [
+                "Encapsulation",
+                "Inheritance",
+                "Polymorphism",
+                "Abstraction"
+              ],
               "quiz": {
                 "title": "Object-Oriented Programming Knowledge Quiz",
                 "totalQuestions": 10,
@@ -649,7 +791,10 @@
                     ],
                     "correctAnswer": 1,
                     "additionalContext": "The fundamental principle of object-oriented programming is encapsulating both data (attributes) and the methods that operate on that data within objects. This approach models real-world entities and their behaviors, making code more intuitive, maintainable, and reusable compared to approaches that separate data from the functions that manipulate it.",
-                    "keyConcepts": ["Object definition", "data and behavior combination"]
+                    "keyConcepts": [
+                      "Object definition",
+                      "data and behavior combination"
+                    ]
                   },
                   {
                     "id": 2,
@@ -664,7 +809,13 @@
                     ],
                     "correctAnswer": 2,
                     "additionalContext": "The four foundational principles of object-oriented programming are encapsulation (hiding internal complexity), inheritance (sharing behavior between classes), polymorphism (objects responding differently to the same message), and abstraction (simplifying complex systems). These principles work together to create maintainable, reusable, and scalable code architectures.",
-                    "keyConcepts": ["Four foundational OOP principles", "encapsulation", "inheritance", "polymorphism", "abstraction"]
+                    "keyConcepts": [
+                      "Four foundational OOP principles",
+                      "encapsulation",
+                      "inheritance",
+                      "polymorphism",
+                      "abstraction"
+                    ]
                   },
                   {
                     "id": 3,
@@ -679,7 +830,10 @@
                     ],
                     "correctAnswer": 2,
                     "additionalContext": "Objects are most appropriate for representing business concepts that have multiple related data pieces and complex state that persists across multiple operations. Examples include Customer, Order, or Payment objects that maintain state and behavior together. Simple calculations, utilities, and one-off operations are better suited to functions.",
-                    "keyConcepts": ["Object vs function decision framework", "architectural choices"]
+                    "keyConcepts": [
+                      "Object vs function decision framework",
+                      "architectural choices"
+                    ]
                   },
                   {
                     "id": 4,
@@ -694,7 +848,11 @@
                     ],
                     "correctAnswer": 1,
                     "additionalContext": "Java's strength in enterprise OOP comes from mature frameworks like Spring and Hibernate that support complex business logic development, comprehensive tooling for large team collaboration, and a robust ecosystem designed for long-term maintainability of business applications with complex object relationships.",
-                    "keyConcepts": ["Java specialization", "enterprise frameworks", "business logic development"]
+                    "keyConcepts": [
+                      "Java specialization",
+                      "enterprise frameworks",
+                      "business logic development"
+                    ]
                   },
                   {
                     "id": 5,
@@ -709,7 +867,11 @@
                     ],
                     "correctAnswer": 1,
                     "additionalContext": "Business logic naturally benefits from object-oriented approaches because business entities like customers, orders, and payments have complex relationships and behaviors that map well to object hierarchies. Meanwhile, data processing, utilities, and database operations often work better with functional or procedural approaches.",
-                    "keyConcepts": ["Mixed-paradigm development", "business entity modeling", "enterprise architecture patterns"]
+                    "keyConcepts": [
+                      "Mixed-paradigm development",
+                      "business entity modeling",
+                      "enterprise architecture patterns"
+                    ]
                   },
                   {
                     "id": 6,
@@ -724,7 +886,11 @@
                     ],
                     "correctAnswer": 1,
                     "additionalContext": "Encapsulation hides internal complexity from users of an object, exposing only the necessary interface for interaction. Like a car where users interact with simple interfaces (steering wheel, gas pedal, brake) while complex engine internals are hidden, this principle allows objects to manage their internal state while providing clean, simple interfaces to other parts of the system.",
-                    "keyConcepts": ["Encapsulation principle", "interface design", "complexity hiding"]
+                    "keyConcepts": [
+                      "Encapsulation principle",
+                      "interface design",
+                      "complexity hiding"
+                    ]
                   },
                   {
                     "id": 7,
@@ -739,7 +905,11 @@
                     ],
                     "correctAnswer": 1,
                     "additionalContext": "Object-oriented programming excels when organizations need to model complex business domains with relationships between entities, require long-term maintainability for large teams, and benefit from code reusability across similar business concepts. The structured approach helps manage complexity as systems grow and evolve.",
-                    "keyConcepts": ["Strategic OOP adoption", "business domain modeling", "long-term maintainability"]
+                    "keyConcepts": [
+                      "Strategic OOP adoption",
+                      "business domain modeling",
+                      "long-term maintainability"
+                    ]
                   },
                   {
                     "id": 8,
@@ -754,7 +924,11 @@
                     ],
                     "correctAnswer": 1,
                     "additionalContext": "Organizations often face over-architecture paralysis where teams spend months designing perfect object hierarchies instead of shipping features, and legacy complexity crisis where OOP systems become so layered that nobody fully understands them. These challenges lead to seeking guidance on when and how to apply OOP effectively.",
-                    "keyConcepts": ["OOP challenges", "architectural paralysis", "complexity management"]
+                    "keyConcepts": [
+                      "OOP challenges",
+                      "architectural paralysis",
+                      "complexity management"
+                    ]
                   },
                   {
                     "id": 9,
@@ -779,7 +953,12 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Programming paradigm treating computation as mathematical transformations",
-              "topics": ["Pure Functions", "Immutability", "Function Composition", "Concurrency"],
+              "topics": [
+                "Pure Functions",
+                "Immutability",
+                "Function Composition",
+                "Concurrency"
+              ],
               "quiz": {
                 "title": "Functional Programming Knowledge Quiz",
                 "totalQuestions": 10,
@@ -798,7 +977,10 @@
                     ],
                     "correctAnswer": 1,
                     "additionalContext": "Functional programming represents a fundamental shift from imperative programming where you modify data in place through sequential steps, to a declarative approach where you transform data through composable pipelines. This paradigm shift emphasizes immutability, pure functions, and data transformation chains that are easier to reason about and debug.",
-                    "keyConcepts": ["Core paradigm definition", "data transformation approach"]
+                    "keyConcepts": [
+                      "Core paradigm definition",
+                      "data transformation approach"
+                    ]
                   },
                   {
                     "id": 2,
@@ -813,7 +995,12 @@
                     ],
                     "correctAnswer": 2,
                     "additionalContext": "The three key concepts of functional programming are immutability (data doesn't change), pure functions (same input always produces same output with no side effects), and function composition (building complex operations by combining simpler functions). These concepts work together to create predictable, testable, and parallelizable code.",
-                    "keyConcepts": ["Core functional programming principles", "immutability", "pure functions", "function composition"]
+                    "keyConcepts": [
+                      "Core functional programming principles",
+                      "immutability",
+                      "pure functions",
+                      "function composition"
+                    ]
                   },
                   {
                     "id": 3,
@@ -828,7 +1015,11 @@
                     ],
                     "correctAnswer": 1,
                     "additionalContext": "JavaScript's strength in functional programming comes from its first-class function support and built-in higher-order functions like .map(), .filter(), and .reduce() that enable elegant data transformation pipelines. These functions allow developers to process collections declaratively without explicit loops or mutable state.",
-                    "keyConcepts": ["JavaScript specialization", "higher-order functions", "data transformation"]
+                    "keyConcepts": [
+                      "JavaScript specialization",
+                      "higher-order functions",
+                      "data transformation"
+                    ]
                   },
                   {
                     "id": 4,
@@ -843,7 +1034,12 @@
                     ],
                     "correctAnswer": 1,
                     "additionalContext": "Pure functions are predictable and isolated - they always produce the same output for the same input and don't modify external state. This makes them easier to test (no complex setup needed), easier to debug (behavior is deterministic), and safer for parallel development (no race conditions or conflicts).",
-                    "keyConcepts": ["Pure functions", "predictability", "testing benefits", "parallel development"]
+                    "keyConcepts": [
+                      "Pure functions",
+                      "predictability",
+                      "testing benefits",
+                      "parallel development"
+                    ]
                   },
                   {
                     "id": 5,
@@ -858,7 +1054,11 @@
                     ],
                     "correctAnswer": 1,
                     "additionalContext": "Immutability prevents data from being changed after creation, eliminating entire categories of bugs related to shared mutable state, race conditions, and unexpected side effects. When data cannot change unexpectedly, it becomes much easier to reason about program behavior and isolate issues.",
-                    "keyConcepts": ["Immutability", "bug prevention", "state management"]
+                    "keyConcepts": [
+                      "Immutability",
+                      "bug prevention",
+                      "state management"
+                    ]
                   },
                   {
                     "id": 6,
@@ -873,7 +1073,11 @@
                     ],
                     "correctAnswer": 1,
                     "additionalContext": "Function composition allows developers to create complex data transformation pipelines by combining simpler, focused functions. This approach promotes code reusability, makes transformations easier to understand and test, and enables building sophisticated operations from well-tested building blocks.",
-                    "keyConcepts": ["Function composition", "code reusability", "pipeline building"]
+                    "keyConcepts": [
+                      "Function composition",
+                      "code reusability",
+                      "pipeline building"
+                    ]
                   },
                   {
                     "id": 7,
@@ -888,7 +1092,11 @@
                     ],
                     "correctAnswer": 1,
                     "additionalContext": "Most enterprise teams use functional patterns selectively for data operations like collections processing with .map(), .filter(), and .reduce() methods, while continuing to use object-oriented programming for business modeling and entity management. This hybrid approach maximizes the benefits of each paradigm for appropriate use cases.",
-                    "keyConcepts": ["Mixed-paradigm development", "selective adoption", "hybrid approaches"]
+                    "keyConcepts": [
+                      "Mixed-paradigm development",
+                      "selective adoption",
+                      "hybrid approaches"
+                    ]
                   },
                   {
                     "id": 8,
@@ -903,7 +1111,11 @@
                     ],
                     "correctAnswer": 1,
                     "additionalContext": "Functional programming is strategically chosen when organizations need reliable data processing pipelines, reproducible calculations, and reduced debugging overhead. The paradigm's emphasis on pure functions and immutability makes it particularly valuable for data-intensive applications where consistency and reliability are critical.",
-                    "keyConcepts": ["Strategic adoption", "data processing reliability", "debugging efficiency"]
+                    "keyConcepts": [
+                      "Strategic adoption",
+                      "data processing reliability",
+                      "debugging efficiency"
+                    ]
                   },
                   {
                     "id": 9,
@@ -936,7 +1148,203 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Understanding how data is stored and manipulated in programs",
-              "topics": ["Memory Management", "Type Systems", "Variable Scope"]
+              "topics": ["Memory Management", "Type Systems", "Variable Scope"],
+              "quiz": {
+                "title": "Variables, Data Types, Memory Concepts Knowledge Quiz",
+                "totalQuestions": 10,
+                "totalPoints": 25,
+                "questions": [
+                  {
+                    "id": 1,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "What is the primary purpose of variables in programming?",
+                    "options": [
+                      "To make code look more professional",
+                      "To store and retrieve information during program execution",
+                      "To prevent programs from running too fast",
+                      "To connect to external databases"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Variables are named containers that store information temporarily while programs run, similar to labeled filing cabinets in an office environment. They enable dynamic data processing by allowing programs to store values like user names, calculations results, or configuration settings and retrieve them later when needed.",
+                    "keyConcepts": [
+                      "Variable purpose",
+                      "data storage",
+                      "program execution"
+                    ]
+                  },
+                  {
+                    "id": 2,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Why do large development teams often prefer static typing over dynamic typing?",
+                    "options": [
+                      "Static typing makes programs run faster in all cases",
+                      "It catches errors before deployment, improving code reliability",
+                      "Static typing uses less computer memory",
+                      "Dynamic typing is too complex for team projects"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Static typing systems like TypeScript check for errors before the code runs, which becomes valuable as team size increases. This helps prevent bugs from reaching production and gives developers more confidence when making changes to shared code, as the system will warn them if they break something.",
+                    "keyConcepts": [
+                      "Static vs dynamic typing",
+                      "error prevention",
+                      "team collaboration"
+                    ]
+                  },
+                  {
+                    "id": 3,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "What is the main difference between automatic and manual memory management?",
+                    "options": [
+                      "Automatic management uses more electricity",
+                      "Manual management requires developers to explicitly clean up memory",
+                      "Automatic management only works on newer computers",
+                      "Manual management prevents memory leaks completely"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Different programming languages handle memory cleanup differently. Some languages automatically clean up unused memory (like Java and Python), while others require developers to explicitly manage memory allocation and cleanup (like C and C++). Automatic management reduces complexity but adds some overhead, while manual management offers more control but requires more careful programming.",
+                    "keyConcepts": [
+                      "Memory management approaches",
+                      "automatic vs manual",
+                      "development complexity"
+                    ]
+                  },
+                  {
+                    "id": 4,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Why is variable scope important for team development?",
+                    "options": [
+                      "Scope determines how fast variables can be accessed",
+                      "Proper scope makes variables accessible only where needed, reducing conflicts",
+                      "Scope controls how much memory variables use",
+                      "Global scope always makes code easier to understand"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Variable scope determines where in the code a variable can be accessed. When variables are accessible everywhere (global scope), it becomes difficult to track what part of the code is modifying them, especially when multiple team members are working on the same project. Limiting scope to only where variables are needed reduces complexity and debugging challenges.",
+                    "keyConcepts": [
+                      "Variable scope",
+                      "code organization",
+                      "team development"
+                    ]
+                  },
+                  {
+                    "id": 5,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "What is the main advantage of choosing appropriate data types for an application?",
+                    "options": [
+                      "All data types perform exactly the same",
+                      "Appropriate types improve performance and reduce memory consumption",
+                      "Using the wrong type will crash the application immediately",
+                      "Data types only affect how code looks, not how it runs"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Choosing the right data type for each situation affects both performance and memory usage. For example, using a smaller number type when you don't need large values saves memory, and using the right text handling for different languages prevents encoding issues. These choices become more important as applications handle more data.",
+                    "keyConcepts": [
+                      "Data type selection",
+                      "performance impact",
+                      "memory efficiency"
+                    ]
+                  },
+                  {
+                    "id": 6,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "When do memory management issues typically become a business concern?",
+                    "options": [
+                      "Only when using certain programming languages",
+                      "When applications crash or slow down, affecting user experience",
+                      "Only during the initial development phase",
+                      "When teams want to learn new technologies"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Memory management becomes a business priority when it starts affecting real users - such as applications crashing unexpectedly, slowing down over time, or consuming too many server resources. These issues directly impact customer experience and can increase infrastructure costs, making memory efficiency important for business operations.",
+                    "keyConcepts": [
+                      "Business impact",
+                      "user experience",
+                      "application reliability"
+                    ]
+                  },
+                  {
+                    "id": 7,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "What type of project typically benefits most from rapid development approaches with dynamic typing?",
+                    "options": [
+                      "Large, stable enterprise systems",
+                      "Prototypes, MVPs, and projects with changing requirements",
+                      "Performance-critical financial systems",
+                      "Applications that never change after launch"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Dynamic typing and automatic memory management prioritize development speed over maximum performance, making them ideal for situations where requirements change frequently. Prototypes, minimum viable products (MVPs), and early-stage projects benefit from this flexibility because teams can adapt quickly without being constrained by strict type definitions.",
+                    "keyConcepts": [
+                      "Project type selection",
+                      "rapid development",
+                      "requirement flexibility"
+                    ]
+                  },
+                  {
+                    "id": 8,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "What is the main benefit of using descriptive variable names in team projects?",
+                    "options": [
+                      "Descriptive names make programs run faster",
+                      "They improve code readability and team collaboration",
+                      "Long names use more memory and improve performance",
+                      "Descriptive names prevent all types of bugs"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Using clear, descriptive names like 'customerName' instead of abbreviated names like 'cn' makes code much easier to understand when multiple team members are working on the same project. This reduces the time needed to understand what existing code does and makes it easier for new team members to contribute effectively.",
+                    "keyConcepts": [
+                      "Variable naming",
+                      "code readability",
+                      "team collaboration"
+                    ]
+                  },
+                  {
+                    "id": 9,
+                    "type": "freeform",
+                    "points": 4,
+                    "question": "Explain the three main types of data (numbers, text, and true/false values) and give an example of how each type is used in business applications.",
+                    "sampleStrongResponse": "The three main data types serve different business purposes: Numbers (integers and decimals) are used for financial calculations, user IDs, and measurement data - for example, storing customer account balances, product prices, or inventory quantities. Text (strings) handles user names, descriptions, and configuration settings - such as customer names, product descriptions, or system messages that need to support different languages. Boolean values (true/false) manage feature flags, user permissions, and status indicators - like whether a user account is active, if a feature is enabled, or whether a payment has been processed. Each type is chosen based on what kind of information needs to be stored and how it will be used in the application.",
+                    "additionalContext": "Understanding these basic data types helps in making decisions about how to structure information in applications and what considerations are important for different types of business data.",
+                    "keyConcepts": [
+                      "Data types",
+                      "business applications",
+                      "practical examples"
+                    ],
+                    "customScoringCriteria": {
+                      "fullPoints": "Clearly explains all three data types (numbers, text, boolean) with appropriate business examples for each. Shows understanding of how data type choice relates to practical application needs.",
+                      "partialPoints": "Covers most data types with examples but may lack detail in explanations or miss one type entirely.",
+                      "noPoints": "Provides unclear explanations or fails to connect data types to realistic business examples."
+                    }
+                  },
+                  {
+                    "id": 10,
+                    "type": "freeform",
+                    "points": 5,
+                    "question": "Compare automatic and manual memory management approaches. Explain the trade-offs between developer productivity and system performance, and describe what types of projects might benefit from each approach.",
+                    "sampleStrongResponse": "Automatic and manual memory management represent different trade-offs between ease of development and system control. Automatic memory management (like in Java and Python) handles memory cleanup automatically, which reduces programming complexity and helps prevent memory-related bugs, making development faster and more reliable. However, this convenience comes with some performance overhead and less predictable timing. Manual memory management (like in C and C++) gives developers complete control over memory allocation and cleanup, which can result in optimal performance and predictable behavior, but requires more careful programming and increases the risk of memory leaks or crashes. For project selection: automatic management works well for business applications, web services, and rapid prototyping where development speed and reliability are priorities; manual management is better suited for system software, embedded devices, and performance-critical applications where maximum efficiency and resource control are essential.",
+                    "additionalContext": "Understanding these trade-offs helps explain why different programming languages make different choices and why certain types of projects gravitate toward specific approaches based on their priorities.",
+                    "keyConcepts": [
+                      "Memory management trade-offs",
+                      "developer productivity",
+                      "system performance",
+                      "project requirements"
+                    ],
+                    "customScoringCriteria": {
+                      "fullPoints": "Clearly explains both automatic and manual memory management with their respective trade-offs, and provides appropriate examples of when each approach is beneficial based on project requirements.",
+                      "partialPoints": "Covers both approaches but may lack depth in explaining trade-offs or provides unclear project matching examples.",
+                      "noPoints": "Provides unclear explanations of the approaches or fails to demonstrate understanding of when each would be appropriate."
+                    }
+                  }
+                ]
+              }
             },
             {
               "id": "control-flow",
@@ -992,7 +1400,11 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Strategies for designing efficient algorithms",
-              "topics": ["Big O Notation", "Time/Space Complexity", "Optimization"]
+              "topics": [
+                "Big O Notation",
+                "Time/Space Complexity",
+                "Optimization"
+              ]
             },
             {
               "id": "common-patterns",
@@ -1032,7 +1444,11 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Creating flexible, reusable code components",
-              "topics": ["DRY Principle", "Abstraction Layers", "Component Design"]
+              "topics": [
+                "DRY Principle",
+                "Abstraction Layers",
+                "Component Design"
+              ]
             },
             {
               "id": "documentation-naming",
@@ -1040,7 +1456,11 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Making code readable and maintainable",
-              "topics": ["Code Comments", "Naming Standards", "API Documentation"]
+              "topics": [
+                "Code Comments",
+                "Naming Standards",
+                "API Documentation"
+              ]
             }
           ]
         }
@@ -1066,7 +1486,11 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Five design principles for writing maintainable object-oriented code",
-              "topics": ["Single Responsibility", "Open/Closed", "Liskov Substitution"]
+              "topics": [
+                "Single Responsibility",
+                "Open/Closed",
+                "Liskov Substitution"
+              ]
             },
             {
               "id": "design-patterns",
@@ -1106,7 +1530,11 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Single deployable unit containing all application functionality",
-              "topics": ["Single Deployment", "Shared Database", "Internal Communication"]
+              "topics": [
+                "Single Deployment",
+                "Shared Database",
+                "Internal Communication"
+              ]
             },
             {
               "id": "microservices-architecture",
@@ -1114,7 +1542,11 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Distributed architecture with independently deployable services",
-              "topics": ["Service Boundaries", "Independent Deployment", "Distributed Systems"]
+              "topics": [
+                "Service Boundaries",
+                "Independent Deployment",
+                "Distributed Systems"
+              ]
             },
             {
               "id": "client-server-patterns",
@@ -1122,7 +1554,11 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Architectural patterns for client-server communication",
-              "topics": ["Request-Response", "Thin/Thick Clients", "Load Distribution"]
+              "topics": [
+                "Request-Response",
+                "Thin/Thick Clients",
+                "Load Distribution"
+              ]
             }
           ]
         },
@@ -1154,7 +1590,11 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Architecture based on event production and consumption",
-              "topics": ["Event Sourcing", "Message Queues", "Asynchronous Processing"]
+              "topics": [
+                "Event Sourcing",
+                "Message Queues",
+                "Asynchronous Processing"
+              ]
             },
             {
               "id": "rpc-vs-rest",
@@ -1186,7 +1626,11 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Trade-offs between consistency and availability",
-              "topics": ["CAP Theorem", "Consistency Models", "Distributed Systems"]
+              "topics": [
+                "CAP Theorem",
+                "Consistency Models",
+                "Distributed Systems"
+              ]
             },
             {
               "id": "read-replicas-write-scaling",
@@ -1202,7 +1646,11 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Techniques for distributing data across multiple databases",
-              "topics": ["Horizontal Partitioning", "Shard Keys", "Cross-Shard Queries"]
+              "topics": [
+                "Horizontal Partitioning",
+                "Shard Keys",
+                "Cross-Shard Queries"
+              ]
             }
           ]
         },
@@ -1218,7 +1666,11 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Different approaches to scaling system capacity",
-              "topics": ["Scale Out vs Up", "Cost Considerations", "Elastic Scaling"]
+              "topics": [
+                "Scale Out vs Up",
+                "Cost Considerations",
+                "Elastic Scaling"
+              ]
             },
             {
               "id": "load-balancing-strategies",
@@ -1226,7 +1678,11 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Techniques for distributing load across multiple servers",
-              "topics": ["Round Robin", "Weighted Distribution", "Health Checks"]
+              "topics": [
+                "Round Robin",
+                "Weighted Distribution",
+                "Health Checks"
+              ]
             },
             {
               "id": "caching-layers",
@@ -1242,7 +1698,11 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Managing database connections efficiently",
-              "topics": ["Connection Management", "Pool Sizing", "Connection Lifecycle"]
+              "topics": [
+                "Connection Management",
+                "Pool Sizing",
+                "Connection Lifecycle"
+              ]
             }
           ]
         }
@@ -1316,7 +1776,11 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Two developers working together on the same code",
-              "topics": ["Driver-Navigator", "Knowledge Transfer", "Code Quality"]
+              "topics": [
+                "Driver-Navigator",
+                "Knowledge Transfer",
+                "Code Quality"
+              ]
             },
             {
               "id": "mob-programming",
@@ -1348,7 +1812,11 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Planning work for upcoming development iterations",
-              "topics": ["Story Estimation", "Capacity Planning", "Sprint Goals"]
+              "topics": [
+                "Story Estimation",
+                "Capacity Planning",
+                "Sprint Goals"
+              ]
             },
             {
               "id": "technical-debt-management",
@@ -1364,7 +1832,11 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Identifying and mitigating project risks",
-              "topics": ["Risk Identification", "Mitigation Strategies", "Contingency Planning"]
+              "topics": [
+                "Risk Identification",
+                "Mitigation Strategies",
+                "Contingency Planning"
+              ]
             },
             {
               "id": "capacity-planning",
@@ -1372,7 +1844,11 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Planning team capacity and resource allocation",
-              "topics": ["Resource Allocation", "Team Velocity", "Workload Balancing"]
+              "topics": [
+                "Resource Allocation",
+                "Team Velocity",
+                "Workload Balancing"
+              ]
             }
           ]
         },
@@ -1404,7 +1880,11 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Procedures for reverting deployments when issues occur",
-              "topics": ["Rollback Strategies", "Blue-Green Deployment", "Canary Releases"]
+              "topics": [
+                "Rollback Strategies",
+                "Blue-Green Deployment",
+                "Canary Releases"
+              ]
             },
             {
               "id": "change-management",
@@ -1462,7 +1942,11 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Best practices for organizing code repositories",
-              "topics": ["Monorepo vs Multirepo", "Directory Structure", "Documentation"]
+              "topics": [
+                "Monorepo vs Multirepo",
+                "Directory Structure",
+                "Documentation"
+              ]
             }
           ]
         },
@@ -1502,7 +1986,11 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Plugin and extension systems for development tools",
-              "topics": ["VS Code Extensions", "Plugin Management", "Customization"]
+              "topics": [
+                "VS Code Extensions",
+                "Plugin Management",
+                "Customization"
+              ]
             }
           ]
         },
@@ -1542,7 +2030,11 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Managing build artifacts and distributable packages",
-              "topics": ["Package Registries", "Artifact Storage", "Distribution"]
+              "topics": [
+                "Package Registries",
+                "Artifact Storage",
+                "Distribution"
+              ]
             }
           ]
         },
@@ -1566,7 +2058,11 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Containerized development environments",
-              "topics": ["Dev Containers", "Remote Development", "Environment Consistency"]
+              "topics": [
+                "Dev Containers",
+                "Remote Development",
+                "Environment Consistency"
+              ]
             },
             {
               "id": "cloud-ides",
@@ -1582,7 +2078,11 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Setting up and maintaining local development environments",
-              "topics": ["Environment Variables", "Local Services", "Development Tools"]
+              "topics": [
+                "Environment Variables",
+                "Local Services",
+                "Development Tools"
+              ]
             }
           ]
         }
@@ -1656,7 +2156,11 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Techniques for improving database query performance",
-              "topics": ["B-Tree Indexes", "Composite Indexes", "Query Optimization"]
+              "topics": [
+                "B-Tree Indexes",
+                "Composite Indexes",
+                "Query Optimization"
+              ]
             },
             {
               "id": "query-optimization",
@@ -1696,7 +2200,11 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Strategies for managing API changes over time",
-              "topics": ["Version Strategies", "Backward Compatibility", "Deprecation"]
+              "topics": [
+                "Version Strategies",
+                "Backward Compatibility",
+                "Deprecation"
+              ]
             },
             {
               "id": "authentication-authorization",
@@ -1728,7 +2236,11 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Different approaches to data transformation and loading",
-              "topics": ["Extract Transform Load", "Extract Load Transform", "Data Warehousing"]
+              "topics": [
+                "Extract Transform Load",
+                "Extract Load Transform",
+                "Data Warehousing"
+              ]
             },
             {
               "id": "real-time-vs-batch-processing",
@@ -1736,7 +2248,11 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Different approaches to processing data",
-              "topics": ["Stream Processing", "Batch Jobs", "Latency Requirements"]
+              "topics": [
+                "Stream Processing",
+                "Batch Jobs",
+                "Latency Requirements"
+              ]
             },
             {
               "id": "data-pipelines",
@@ -1744,7 +2260,11 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Automated workflows for data processing",
-              "topics": ["Pipeline Orchestration", "Data Flow", "Error Handling"]
+              "topics": [
+                "Pipeline Orchestration",
+                "Data Flow",
+                "Error Handling"
+              ]
             },
             {
               "id": "api-gateway-patterns",
@@ -1786,7 +2306,11 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Testing interactions between components",
-              "topics": ["Component Integration", "Database Testing", "API Testing"]
+              "topics": [
+                "Component Integration",
+                "Database Testing",
+                "API Testing"
+              ]
             },
             {
               "id": "end-to-end-testing",
@@ -1794,7 +2318,11 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Testing complete user workflows",
-              "topics": ["User Journeys", "Browser Automation", "System Testing"]
+              "topics": [
+                "User Journeys",
+                "Browser Automation",
+                "System Testing"
+              ]
             },
             {
               "id": "contract-testing",
@@ -1802,7 +2330,11 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Testing interactions between services",
-              "topics": ["API Contracts", "Consumer-Driven", "Service Boundaries"]
+              "topics": [
+                "API Contracts",
+                "Consumer-Driven",
+                "Service Boundaries"
+              ]
             }
           ]
         },
@@ -1842,7 +2374,11 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Automated checks that enforce quality standards",
-              "topics": ["Quality Thresholds", "Build Failures", "Quality Metrics"]
+              "topics": [
+                "Quality Thresholds",
+                "Build Failures",
+                "Quality Metrics"
+              ]
             }
           ]
         },
@@ -1898,7 +2434,11 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Standards and criteria for evaluating code changes",
-              "topics": ["Review Checklist", "Quality Standards", "Best Practices"]
+              "topics": [
+                "Review Checklist",
+                "Quality Standards",
+                "Best Practices"
+              ]
             },
             {
               "id": "review-process",
@@ -1922,7 +2462,11 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Using code reviews to share knowledge across teams",
-              "topics": ["Learning Opportunities", "Best Practices", "Team Growth"]
+              "topics": [
+                "Learning Opportunities",
+                "Best Practices",
+                "Team Growth"
+              ]
             }
           ]
         }
@@ -1948,7 +2492,11 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Different approaches to hosting applications",
-              "topics": ["Physical Servers", "Virtual Machines", "Cloud Hosting"]
+              "topics": [
+                "Physical Servers",
+                "Virtual Machines",
+                "Cloud Hosting"
+              ]
             },
             {
               "id": "containers",
@@ -1996,7 +2544,11 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Automated deployment of code to production",
-              "topics": ["Deployment Automation", "Release Pipeline", "Production Deployment"]
+              "topics": [
+                "Deployment Automation",
+                "Release Pipeline",
+                "Production Deployment"
+              ]
             },
             {
               "id": "pipeline-stages",
@@ -2036,7 +2588,11 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Monitoring servers, networks, and infrastructure",
-              "topics": ["System Metrics", "Resource Usage", "Network Monitoring"]
+              "topics": [
+                "System Metrics",
+                "Resource Usage",
+                "Network Monitoring"
+              ]
             },
             {
               "id": "logging-systems",
@@ -2052,7 +2608,11 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Tracing requests across distributed systems",
-              "topics": ["Request Tracing", "Microservices", "Performance Analysis"]
+              "topics": [
+                "Request Tracing",
+                "Microservices",
+                "Performance Analysis"
+              ]
             }
           ]
         },
@@ -2076,7 +2636,11 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Learning from incidents through structured analysis",
-              "topics": ["Incident Analysis", "Root Cause", "Improvement Actions"]
+              "topics": [
+                "Incident Analysis",
+                "Root Cause",
+                "Improvement Actions"
+              ]
             },
             {
               "id": "site-reliability-engineering",
@@ -2092,7 +2656,11 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Planning and procedures for recovering from major incidents",
-              "topics": ["Backup Strategies", "Recovery Plans", "Business Continuity"]
+              "topics": [
+                "Backup Strategies",
+                "Recovery Plans",
+                "Business Continuity"
+              ]
             }
           ]
         }

@@ -1,68 +1,100 @@
-'use client'
+"use client";
 
-import { useState, useEffect } from 'react'
-import Link from 'next/link'
-import { ArrowLeft, TrendingUp, ChevronLeft, ChevronRight, X, ArrowUp } from 'lucide-react'
-import { getCategoryBackground } from '@/lib/gradients'
-import { Article, Topic, Category } from '@/types'
-import { getQuizByArticleId } from '@/lib/data'
-import { ArticleTableOfContents } from '@/components/article-table-of-contents'
-import { ComparisonTable } from '@/components/comparison-table'
-import { MetricsCard } from '@/components/metrics-card'
-import KnowledgeAssessment from '@/components/knowledge-assessment'
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import {
+  ArrowLeft,
+  TrendingUp,
+  ChevronLeft,
+  ChevronRight,
+  X,
+  ArrowUp,
+} from "lucide-react";
+import { getCategoryBackground } from "@/lib/gradients";
+import { Article, Topic, Category } from "@/types";
+import { getQuizByArticleId } from "@/lib/data";
+import { ArticleTableOfContents } from "@/components/article-table-of-contents";
+import { ComparisonTable } from "@/components/comparison-table";
+import { MetricsCard } from "@/components/metrics-card";
+import KnowledgeAssessment from "@/components/knowledge-assessment";
 
 interface ArticleContentWrapperProps {
-  article: Article
-  topic: Topic | null
-  category: Category | null
-  previousArticle: Article | null
-  nextArticle: Article | null
-  topicLink: string
+  article: Article;
+  topic: Topic | null;
+  category: Category | null;
+  previousArticle: Article | null;
+  nextArticle: Article | null;
+  topicLink: string;
 }
 
-export function ArticleContentWrapper({ 
-  article, 
-  topic, 
-  category, 
-  previousArticle, 
-  nextArticle, 
-  topicLink 
+export function ArticleContentWrapper({
+  article,
+  topic,
+  category,
+  previousArticle,
+  nextArticle,
+  topicLink,
 }: ArticleContentWrapperProps) {
   // Calculate article position in topic
-  const currentArticleIndex = topic?.articles.findIndex(a => a.id === article.id) ?? -1
-  const totalArticles = topic?.articles.length ?? 0
-  const articlePosition = currentArticleIndex + 1
+  const currentArticleIndex =
+    topic?.articles.findIndex((a) => a.id === article.id) ?? -1;
+  const totalArticles = topic?.articles.length ?? 0;
+  const articlePosition = currentArticleIndex + 1;
 
   // Generate table of contents sections
-  const languageArticles = ['compiled-languages', 'interpreted-languages', 'hybrid-languages', 'object-oriented-programming', 'procedural-programming', 'functional-programming']
-  const tocSections = languageArticles.includes(article.id) ? [
-    { id: 'key-concepts', title: 'Key Concepts', level: 1 },
-    { id: 'business-team-impact', title: 'Business & Team Impact', level: 1 },
-    { id: 'cursor-implementation', title: 'Cursor Implementation', level: 1 }
-  ] : [
-    { id: 'learning-objectives', title: 'Learning Objectives', level: 1 },
-    { id: 'overview', title: 'Overview', level: 1 },
-    { id: 'related-topics', title: 'Related Topics', level: 1 }
-  ]
+  const languageArticles = [
+    "compiled-languages",
+    "interpreted-languages",
+    "hybrid-languages",
+    "object-oriented-programming",
+    "procedural-programming",
+    "functional-programming",
+    "variables-data-types",
+  ];
+  const tocSections = languageArticles.includes(article.id)
+    ? [
+        { id: "key-concepts", title: "Key Concepts", level: 1 },
+        {
+          id: "business-team-impact",
+          title: "Business & Team Impact",
+          level: 1,
+        },
+        {
+          id: "cursor-implementation",
+          title: "Cursor Implementation",
+          level: 1,
+        },
+      ]
+    : [
+        { id: "learning-objectives", title: "Learning Objectives", level: 1 },
+        { id: "overview", title: "Overview", level: 1 },
+        { id: "related-topics", title: "Related Topics", level: 1 },
+      ];
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 relative overflow-hidden">
       {/* Category-specific Background gradients */}
-      <div className={`absolute inset-0 bg-gradient-to-r ${category ? getCategoryBackground(category.id) : 'from-slate-50/80 via-white/40 to-slate-50/80 dark:from-gray-900/20 dark:via-gray-800/10 dark:to-gray-900/20'}`} />
+      <div
+        className={`absolute inset-0 bg-gradient-to-r ${
+          category
+            ? getCategoryBackground(category.id)
+            : "from-slate-50/80 via-white/40 to-slate-50/80 dark:from-gray-900/20 dark:via-gray-800/10 dark:to-gray-900/20"
+        }`}
+      />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(139,92,246,0.25),rgba(255,255,255,0))] dark:bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(139,92,246,0.15),rgba(0,0,0,0))]" />
-      
+
       <div className="relative z-10">
         {/* Main Content */}
         <main className="px-6 py-8 sm:px-8 lg:px-12">
           <div className="max-w-4xl mx-auto">
             {/* Navigation */}
             <div className="flex items-center gap-4 mb-8">
-              <Link 
+              <Link
                 href={topicLink}
                 className="inline-flex items-center text-slate-600 dark:text-gray-400 hover:text-slate-900 dark:hover:text-white transition-colors"
               >
                 <ArrowLeft className="w-4 h-4 mr-2" />
-                Back to {topic?.name || 'Topics'}
+                Back to {topic?.name || "Topics"}
               </Link>
             </div>
 
@@ -72,26 +104,26 @@ export function ArticleContentWrapper({
               <div className="flex justify-center mb-16">
                 <div className="h-px w-32 bg-slate-700/30 shadow-sm" />
               </div>
-              
+
               <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-4">
                 {article.name}
               </h1>
-              
+
               <p className="text-xl text-slate-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto">
                 {article.description}
               </p>
 
               {/* Knowledge Assessment - Show if quiz is available */}
               {(() => {
-                const quiz = getQuizByArticleId(article.id)
+                const quiz = getQuizByArticleId(article.id);
                 return quiz ? (
-                  <KnowledgeAssessment 
-                    articleId={article.id} 
+                  <KnowledgeAssessment
+                    articleId={article.id}
                     quiz={quiz}
                     categoryId={category?.id}
-                    className="max-w-2xl mx-auto mb-8" 
+                    className="max-w-2xl mx-auto mb-8"
                   />
-                ) : null
+                ) : null;
               })()}
             </div>
 
@@ -111,18 +143,20 @@ export function ArticleContentWrapper({
                 {/* Article Content with Enhanced Typography */}
                 <div className="prose prose-lg max-w-none prose-slate dark:prose-invert">
                   {/* Render content based on article ID */}
-                  {article.id === 'compiled-languages' ? (
+                  {article.id === "compiled-languages" ? (
                     <CompiledLanguagesContent />
-                  ) : article.id === 'interpreted-languages' ? (
+                  ) : article.id === "interpreted-languages" ? (
                     <InterpretedLanguagesContent />
-                  ) : article.id === 'hybrid-languages' ? (
+                  ) : article.id === "hybrid-languages" ? (
                     <HybridLanguagesContent />
-                  ) : article.id === 'object-oriented-programming' ? (
+                  ) : article.id === "object-oriented-programming" ? (
                     <ObjectOrientedProgrammingContent />
-                  ) : article.id === 'procedural-programming' ? (
+                  ) : article.id === "procedural-programming" ? (
                     <ProceduralProgrammingContent />
-                  ) : article.id === 'functional-programming' ? (
+                  ) : article.id === "functional-programming" ? (
                     <FunctionalProgrammingContent />
+                  ) : article.id === "variables-data-types" ? (
+                    <VariablesDataTypesContent />
                   ) : (
                     <DefaultArticleContent article={article} />
                   )}
@@ -132,7 +166,7 @@ export function ArticleContentWrapper({
 
             {/* Enhanced Navigation - Desktop only */}
             <div className="hidden lg:block">
-              <ArticleNavigation 
+              <ArticleNavigation
                 topicLink={topicLink}
                 previousArticle={previousArticle}
                 nextArticle={nextArticle}
@@ -155,7 +189,7 @@ export function ArticleContentWrapper({
         <ArticleTableOfContents sections={tocSections} />
 
         {/* Floating Close Button - Desktop only */}
-        <Link 
+        <Link
           href={topicLink}
           className="fixed top-6 right-6 z-50 p-3 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-full shadow-lg border border-slate-200/50 dark:border-gray-700/50 text-slate-700 dark:text-gray-300 hover:text-slate-900 dark:hover:text-white hover:bg-white dark:hover:bg-gray-800 transition-all duration-200 hover:shadow-xl hidden lg:block"
           aria-label="Close article"
@@ -164,7 +198,7 @@ export function ArticleContentWrapper({
         </Link>
       </div>
     </div>
-  )
+  );
 }
 
 // Component for the compiled languages article content
@@ -176,12 +210,15 @@ function CompiledLanguagesContent() {
         <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
           Key Concepts
         </h2>
-        
+
         <div className="space-y-6">
           <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Translation happens once upfront</h3>
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Translation happens once upfront
+            </h3>
             <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Source code converts to machine instructions during development, not runtime
+              Source code converts to machine instructions during development,
+              not runtime
             </p>
             <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
               <li className="flex items-start gap-2">
@@ -190,30 +227,37 @@ function CompiledLanguagesContent() {
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Creates standalone executables that run without requiring the original compiler
+                Creates standalone executables that run without requiring the
+                original compiler
               </li>
             </ul>
           </div>
 
           <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Performance advantage through optimization</h3>
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Performance advantage through optimization
+            </h3>
             <p className="text-slate-700 dark:text-gray-300 mb-3">
               Compilers analyze and restructure code for maximum efficiency
             </p>
             <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Sophisticated multi-stage process: lexical analysis, parsing, optimization, code generation
+                Sophisticated multi-stage process: lexical analysis, parsing,
+                optimization, code generation
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Critical for microservices where efficiency multiplies across hundreds of services
+                Critical for microservices where efficiency multiplies across
+                hundreds of services
               </li>
             </ul>
           </div>
 
           <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Primary languages and use cases</h3>
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Primary languages and use cases
+            </h3>
             <p className="text-slate-700 dark:text-gray-300 mb-3">
               Different compiled languages serve distinct enterprise needs
             </p>
@@ -221,34 +265,50 @@ function CompiledLanguagesContent() {
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
                 <div>
-                  <strong className="text-slate-700 dark:text-gray-300">Go:</strong> Microservices, cloud infrastructure (Docker, Kubernetes ecosystem)
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Go:
+                  </strong>{" "}
+                  Microservices, cloud infrastructure (Docker, Kubernetes
+                  ecosystem)
                 </div>
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
                 <div>
-                  <strong className="text-slate-700 dark:text-gray-300">Rust:</strong> System-level programming, memory safety critical applications
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Rust:
+                  </strong>{" "}
+                  System-level programming, memory safety critical applications
                 </div>
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
                 <div>
-                  <strong className="text-slate-700 dark:text-gray-300">C++:</strong> High-performance computing, gaming, embedded systems
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    C++:
+                  </strong>{" "}
+                  High-performance computing, gaming, embedded systems
                 </div>
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
                 <div>
-                  <strong className="text-slate-700 dark:text-gray-300">Java:</strong> Enterprise applications, large-scale backend systems
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Java:
+                  </strong>{" "}
+                  Enterprise applications, large-scale backend systems
                 </div>
               </li>
             </ul>
           </div>
 
           <div className="border-l-4 border-orange-500 bg-orange-50/50 dark:bg-orange-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Platform-specific deployment</h3>
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Platform-specific deployment
+            </h3>
             <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Compiled code targets specific operating systems and processor architectures
+              Compiled code targets specific operating systems and processor
+              architectures
             </p>
             <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
               <li className="flex items-start gap-2">
@@ -272,23 +332,23 @@ function CompiledLanguagesContent() {
               {
                 metric: "Memory Usage",
                 compiled_languages: "10-50MB per service",
-                interpreted_languages: "200-500MB per service"
+                interpreted_languages: "200-500MB per service",
               },
               {
                 metric: "Startup Time",
                 compiled_languages: "Milliseconds",
-                interpreted_languages: "Seconds"
+                interpreted_languages: "Seconds",
               },
               {
                 metric: "Runtime Performance",
                 compiled_languages: "Optimal (no translation overhead)",
-                interpreted_languages: "20-50% higher compute cost"
+                interpreted_languages: "20-50% higher compute cost",
               },
               {
                 metric: "Deployment Complexity",
                 compiled_languages: "Self-contained binaries",
-                interpreted_languages: "Runtime dependencies"
-              }
+                interpreted_languages: "Runtime dependencies",
+              },
             ]}
           />
         </div>
@@ -300,18 +360,22 @@ function CompiledLanguagesContent() {
           <TrendingUp className="w-6 h-6 text-green-500" />
           Business &amp; Team Impact
         </h2>
-        
+
         <div className="space-y-6">
           <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Operational cost optimization</h3>
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Operational cost optimization
+            </h3>
             <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Small performance improvements multiply across millions of requests
+                Small performance improvements multiply across millions of
+                requests
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Services start in milliseconds vs. seconds (critical for microservices)
+                Services start in milliseconds vs. seconds (critical for
+                microservices)
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
@@ -319,43 +383,64 @@ function CompiledLanguagesContent() {
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Network I/O efficiency becomes crucial in distributed architectures
+                Network I/O efficiency becomes crucial in distributed
+                architectures
               </li>
             </ul>
           </div>
 
           <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Common migration triggers and customer scenarios</h3>
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Common migration triggers and customer scenarios
+            </h3>
             <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
                 <div>
-                  <strong className="text-slate-700 dark:text-gray-300">Performance crisis:</strong> &ldquo;Our cloud bills doubled but traffic only increased 20%&rdquo; (Python/Ruby → Go)
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Performance crisis:
+                  </strong>{" "}
+                  &ldquo;Our cloud bills doubled but traffic only increased
+                  20%&rdquo; (Python/Ruby → Go)
                 </div>
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
                 <div>
-                  <strong className="text-slate-700 dark:text-gray-300">Scaling inefficiency:</strong> &ldquo;We need 10x the servers to handle 2x the traffic&rdquo; (JavaScript → Rust/Go)
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Scaling inefficiency:
+                  </strong>{" "}
+                  &ldquo;We need 10x the servers to handle 2x the traffic&rdquo;
+                  (JavaScript → Rust/Go)
                 </div>
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
                 <div>
-                  <strong className="text-slate-700 dark:text-gray-300">Operational agility:</strong> &ldquo;Microservices startup time is killing deployment velocity&rdquo; (Java → Go)
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Operational agility:
+                  </strong>{" "}
+                  &ldquo;Microservices startup time is killing deployment
+                  velocity&rdquo; (Java → Go)
                 </div>
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
                 <div>
-                  <strong className="text-slate-700 dark:text-gray-300">Memory safety:</strong> &ldquo;Security incidents from memory bugs&rdquo; (C/C++ → Rust)
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Memory safety:
+                  </strong>{" "}
+                  &ldquo;Security incidents from memory bugs&rdquo; (C/C++ →
+                  Rust)
                 </div>
               </li>
             </ul>
           </div>
 
           <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Real-world success patterns</h3>
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Real-world success patterns
+            </h3>
             <p className="text-slate-700 dark:text-gray-300 mb-3">
               Leading companies demonstrate viable approaches
             </p>
@@ -363,25 +448,41 @@ function CompiledLanguagesContent() {
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
                 <div>
-                  <strong className="text-slate-700 dark:text-gray-300">Docker:</strong> Python → Go for core engine, significant performance improvements
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Docker:
+                  </strong>{" "}
+                  Python → Go for core engine, significant performance
+                  improvements
                 </div>
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
                 <div>
-                  <strong className="text-slate-700 dark:text-gray-300">Discord:</strong> JavaScript → Rust for critical services, 40% server cost reduction
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Discord:
+                  </strong>{" "}
+                  JavaScript → Rust for critical services, 40% server cost
+                  reduction
                 </div>
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
                 <div>
-                  <strong className="text-slate-700 dark:text-gray-300">Shopify:</strong> Adopted Go for new platform services while maintaining Rails for business logic
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Shopify:
+                  </strong>{" "}
+                  Adopted Go for new platform services while maintaining Rails
+                  for business logic
                 </div>
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
                 <div>
-                  <strong className="text-slate-700 dark:text-gray-300">Uber:</strong> Go for 600+ microservices architecture, ~50MB vs. ~300MB per service
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Uber:
+                  </strong>{" "}
+                  Go for 600+ microservices architecture, ~50MB vs. ~300MB per
+                  service
                 </div>
               </li>
             </ul>
@@ -397,36 +498,39 @@ function CompiledLanguagesContent() {
                 label: "Gradual Migration Success Rate",
                 value: "70%",
                 description: "Service-by-service migration approach",
-                color: "green"
+                color: "green",
               },
               {
-                label: "Complete Rewrite Success Rate", 
+                label: "Complete Rewrite Success Rate",
                 value: "30%",
                 description: "Wholesale platform rewrites",
-                color: "orange"
+                color: "orange",
               },
               {
                 label: "Typical Migration Cost",
                 value: "$50K-$500K",
                 description: "Per microservice migration",
-                color: "blue"
+                color: "blue",
               },
               {
                 label: "Full Platform Rewrite Cost",
                 value: "$1M-$10M+",
                 description: "Complete system overhaul",
-                color: "red"
-              }
+                color: "red",
+              },
             ]}
           />
         </div>
 
         <div className="border-l-4 border-yellow-500 bg-yellow-50/50 dark:bg-yellow-950/30 pl-6 py-4 rounded-r-lg">
-          <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Typical customer profiles seeking migration</h3>
+          <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+            Typical customer profiles seeking migration
+          </h3>
           <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
             <li className="flex items-start gap-2">
               <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-              Series B/C startups spending 30%+ engineering time on performance optimization
+              Series B/C startups spending 30%+ engineering time on performance
+              optimization
             </li>
             <li className="flex items-start gap-2">
               <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
@@ -438,7 +542,8 @@ function CompiledLanguagesContent() {
             </li>
             <li className="flex items-start gap-2">
               <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-              Fintech/gaming companies with regulatory or performance requirements
+              Fintech/gaming companies with regulatory or performance
+              requirements
             </li>
           </ul>
         </div>
@@ -449,14 +554,17 @@ function CompiledLanguagesContent() {
         <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
           Cursor Implementation Considerations
         </h2>
-        
+
         <div className="space-y-6">
           <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Migration acceleration opportunity</h3>
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Migration acceleration opportunity
+            </h3>
             <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                AI-powered code translation could reduce typical 6-18 month migration timelines by 40-60%
+                AI-powered code translation could reduce typical 6-18 month
+                migration timelines by 40-60%
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
@@ -464,32 +572,38 @@ function CompiledLanguagesContent() {
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Intelligent testing to ensure behavioral equivalence during transitions
+                Intelligent testing to ensure behavioral equivalence during
+                transitions
               </li>
             </ul>
           </div>
 
           <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Build optimization assistance</h3>
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Build optimization assistance
+            </h3>
             <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Smart compilation suggestions and incremental build improvements to address developer productivity concerns
+                Smart compilation suggestions and incremental build improvements
+                to address developer productivity concerns
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Cross-platform development support to abstract away platform-specific complexities
+                Cross-platform development support to abstract away
+                platform-specific complexities
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                AI-powered dependency analysis for migration sequencing recommendations
+                AI-powered dependency analysis for migration sequencing
+                recommendations
               </li>
             </ul>
           </div>
         </div>
       </section>
     </article>
-  )
+  );
 }
 
 // Component for the interpreted languages article content
@@ -501,38 +615,63 @@ function InterpretedLanguagesContent() {
         <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
           Key Concepts
         </h2>
-        
+
         <div className="space-y-6">
           <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Runtime execution model</h3>
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Runtime execution model
+            </h3>
             <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Code runs through an interpreter that translates instructions line-by-line during execution
+              Code runs through an interpreter that translates instructions
+              line-by-line during execution
             </p>
             <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <div><strong className="text-slate-700 dark:text-gray-300">JavaScript/Node.js:</strong> Powers web development and server-side applications with V8 just-in-time compilation</div>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    JavaScript/Node.js:
+                  </strong>{" "}
+                  Powers web development and server-side applications with V8
+                  just-in-time compilation
+                </div>
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <div><strong className="text-slate-700 dark:text-gray-300">Python:</strong> Dominates data science, web development, and automation with bytecode interpretation</div>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Python:
+                  </strong>{" "}
+                  Dominates data science, web development, and automation with
+                  bytecode interpretation
+                </div>
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <div><strong className="text-slate-700 dark:text-gray-300">Ruby:</strong> Popular for web applications and rapid prototyping with Rails framework</div>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Ruby:
+                  </strong>{" "}
+                  Popular for web applications and rapid prototyping with Rails
+                  framework
+                </div>
               </li>
             </ul>
           </div>
 
           <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Development velocity advantages</h3>
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Development velocity advantages
+            </h3>
             <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Immediate code execution enables rapid experimentation and iteration
+              Immediate code execution enables rapid experimentation and
+              iteration
             </p>
             <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Interactive development through REPLs (Python console, Node.js shell)
+                Interactive development through REPLs (Python console, Node.js
+                shell)
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
@@ -546,7 +685,9 @@ function InterpretedLanguagesContent() {
           </div>
 
           <div className="border-l-4 border-orange-500 bg-orange-50/50 dark:bg-orange-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Performance and operational trade-offs</h3>
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Performance and operational trade-offs
+            </h3>
             <p className="text-slate-700 dark:text-gray-300 mb-3">
               Runtime interpretation creates infrastructure implications
             </p>
@@ -557,11 +698,13 @@ function InterpretedLanguagesContent() {
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Runtime environment dependencies must be managed across all deployment targets
+                Runtime environment dependencies must be managed across all
+                deployment targets
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Error discovery happens during execution rather than before deployment
+                Error discovery happens during execution rather than before
+                deployment
               </li>
             </ul>
           </div>
@@ -576,26 +719,27 @@ function InterpretedLanguagesContent() {
                 label: "Development Cost Reduction",
                 value: "60-70%",
                 description: "Faster implementation and rich ecosystems",
-                color: "green"
+                color: "green",
               },
               {
                 label: "Infrastructure Cost Increase",
                 value: "25-40%",
                 description: "Higher server and compute requirements",
-                color: "orange"
+                color: "orange",
               },
               {
                 label: "Time-to-Market Advantage",
                 value: "6-18 months",
                 description: "Competitive advantage in fast markets",
-                color: "blue"
+                color: "blue",
               },
               {
                 label: "ROI Break-even",
                 value: "12-24 months",
-                description: "When engineering salaries exceed operational costs",
-                color: "purple"
-              }
+                description:
+                  "When engineering salaries exceed operational costs",
+                color: "purple",
+              },
             ]}
           />
         </div>
@@ -607,58 +751,113 @@ function InterpretedLanguagesContent() {
           <TrendingUp className="w-6 h-6 text-green-500" />
           Business &amp; Team Impact
         </h2>
-        
+
         <div className="space-y-6">
           <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Market adoption patterns with quantified outcomes</h3>
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Market adoption patterns with quantified outcomes
+            </h3>
             <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <div><strong className="text-slate-700 dark:text-gray-300">Instagram:</strong> Scaled to 100M+ users on Python/Django before selective migration of performance-critical components</div>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Instagram:
+                  </strong>{" "}
+                  Scaled to 100M+ users on Python/Django before selective
+                  migration of performance-critical components
+                </div>
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <div><strong className="text-slate-700 dark:text-gray-300">Netflix:</strong> Uses Python for recommendation algorithms serving 200M+ subscribers while using compiled languages for streaming infrastructure</div>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Netflix:
+                  </strong>{" "}
+                  Uses Python for recommendation algorithms serving 200M+
+                  subscribers while using compiled languages for streaming
+                  infrastructure
+                </div>
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <div><strong className="text-slate-700 dark:text-gray-300">Airbnb:</strong> Built core booking platform on Ruby handling millions of transactions before strategic hybrid architecture adoption</div>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Airbnb:
+                  </strong>{" "}
+                  Built core booking platform on Ruby handling millions of
+                  transactions before strategic hybrid architecture adoption
+                </div>
               </li>
             </ul>
           </div>
 
           <div className="border-l-4 border-yellow-500 bg-yellow-50/50 dark:bg-yellow-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Common customer triggers driving adoption decisions</h3>
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Common customer triggers driving adoption decisions
+            </h3>
             <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <div><strong className="text-slate-700 dark:text-gray-300">Speed-to-market pressure:</strong> &ldquo;We need to ship features weekly to compete, not spend months on compilation and deployment&rdquo;</div>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Speed-to-market pressure:
+                  </strong>{" "}
+                  &ldquo;We need to ship features weekly to compete, not spend
+                  months on compilation and deployment&rdquo;
+                </div>
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <div><strong className="text-slate-700 dark:text-gray-300">Development team scaling:</strong> &ldquo;Our engineering team doubled but our deployment complexity tripled&rdquo;</div>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Development team scaling:
+                  </strong>{" "}
+                  &ldquo;Our engineering team doubled but our deployment
+                  complexity tripled&rdquo;
+                </div>
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <div><strong className="text-slate-700 dark:text-gray-300">Environment consistency issues:</strong> &ldquo;Code works locally but breaks in production due to version mismatches&rdquo;</div>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Environment consistency issues:
+                  </strong>{" "}
+                  &ldquo;Code works locally but breaks in production due to
+                  version mismatches&rdquo;
+                </div>
               </li>
             </ul>
           </div>
 
           <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Customer profiles and decision drivers</h3>
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Customer profiles and decision drivers
+            </h3>
             <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <strong className="text-slate-700 dark:text-gray-300">Series A-B startups</strong> with 5-50 engineers prioritizing rapid feature development over operational efficiency
+                <strong className="text-slate-700 dark:text-gray-300">
+                  Series A-B startups
+                </strong>{" "}
+                with 5-50 engineers prioritizing rapid feature development over
+                operational efficiency
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <strong className="text-slate-700 dark:text-gray-300">Digital agencies</strong> building custom solutions with 3-6 month project timelines requiring quick iteration
+                <strong className="text-slate-700 dark:text-gray-300">
+                  Digital agencies
+                </strong>{" "}
+                building custom solutions with 3-6 month project timelines
+                requiring quick iteration
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <strong className="text-slate-700 dark:text-gray-300">Data science organizations</strong> requiring interactive development and frequent algorithm experimentation
+                <strong className="text-slate-700 dark:text-gray-300">
+                  Data science organizations
+                </strong>{" "}
+                requiring interactive development and frequent algorithm
+                experimentation
               </li>
             </ul>
           </div>
@@ -670,35 +869,52 @@ function InterpretedLanguagesContent() {
         <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
           Cursor Implementation Considerations
         </h2>
-        
+
         <div className="space-y-6">
           <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">AI-assisted development acceleration</h3>
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              AI-assisted development acceleration
+            </h3>
             <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Interpreted languages benefit significantly from Cursor&apos;s rapid iteration capabilities since immediate execution allows instant validation of AI-generated code suggestions, creating faster feedback loops than compiled language workflows
+              Interpreted languages benefit significantly from Cursor&apos;s
+              rapid iteration capabilities since immediate execution allows
+              instant validation of AI-generated code suggestions, creating
+              faster feedback loops than compiled language workflows
             </p>
           </div>
 
           <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Environment complexity management</h3>
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Environment complexity management
+            </h3>
             <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Teams using interpreted languages often struggle with dependency management and environment consistency - Cursor&apos;s context awareness can help generate proper environment configurations and catch version compatibility issues during development rather than deployment
+              Teams using interpreted languages often struggle with dependency
+              management and environment consistency - Cursor&apos;s context
+              awareness can help generate proper environment configurations and
+              catch version compatibility issues during development rather than
+              deployment
             </p>
           </div>
 
           <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Legacy modernization opportunities</h3>
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Legacy modernization opportunities
+            </h3>
             <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Organizations with large interpreted language codebases can leverage Cursor&apos;s codebase understanding to accelerate refactoring projects and technical debt reduction while maintaining the rapid development advantages that initially drove language adoption
+              Organizations with large interpreted language codebases can
+              leverage Cursor&apos;s codebase understanding to accelerate
+              refactoring projects and technical debt reduction while
+              maintaining the rapid development advantages that initially drove
+              language adoption
             </p>
           </div>
         </div>
       </section>
     </article>
-  )
+  );
 }
 
-// Component for the hybrid languages article content  
+// Component for the hybrid languages article content
 function HybridLanguagesContent() {
   return (
     <article className="space-y-10">
@@ -707,50 +923,70 @@ function HybridLanguagesContent() {
         <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
           Key Concepts
         </h2>
-        
+
         <div className="space-y-6">
           <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Two-stage execution model</h3>
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Two-stage execution model
+            </h3>
             <p className="text-slate-700 dark:text-gray-300 mb-3">
               Provides optimal balance for enterprise needs
             </p>
             <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Source code compiles to platform-independent bytecode (Java .class files, C# assemblies)
+                Source code compiles to platform-independent bytecode (Java
+                .class files, C# assemblies)
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Virtual machine handles final translation to machine code with runtime optimization
+                Virtual machine handles final translation to machine code with
+                runtime optimization
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <div><strong className="text-slate-700 dark:text-gray-300">Java Virtual Machine (JVM):</strong> Runs Java, Scala, Kotlin, Clojure with shared libraries and tooling</div>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Java Virtual Machine (JVM):
+                  </strong>{" "}
+                  Runs Java, Scala, Kotlin, Clojure with shared libraries and
+                  tooling
+                </div>
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <div><strong className="text-slate-700 dark:text-gray-300">Microsoft .NET runtime:</strong> Supports C#, F#, VB.NET with enterprise integration features</div>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Microsoft .NET runtime:
+                  </strong>{" "}
+                  Supports C#, F#, VB.NET with enterprise integration features
+                </div>
               </li>
             </ul>
           </div>
 
           <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Enterprise operational advantages</h3>
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Enterprise operational advantages
+            </h3>
             <p className="text-slate-700 dark:text-gray-300 mb-3">
               Over pure compilation or interpretation
             </p>
             <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Single runtime installation supports hundreds of applications without dependency conflicts
+                Single runtime installation supports hundreds of applications
+                without dependency conflicts
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Eliminates platform-specific builds while maintaining better performance than interpreted languages
+                Eliminates platform-specific builds while maintaining better
+                performance than interpreted languages
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Advanced virtual machine features: automatic memory management, security sandboxing, adaptive optimization
+                Advanced virtual machine features: automatic memory management,
+                security sandboxing, adaptive optimization
               </li>
             </ul>
           </div>
@@ -765,26 +1001,26 @@ function HybridLanguagesContent() {
                 label: "Java Global Ranking",
                 value: "Top 3",
                 description: "Most-used programming languages globally",
-                color: "blue"
+                color: "blue",
               },
               {
                 label: "Enterprise Applications",
                 value: "73%",
                 description: "Use either Java or C# as primary platform",
-                color: "green"
+                color: "green",
               },
               {
                 label: "JVM Ecosystem Value",
                 value: "Billions",
                 description: "Annual enterprise software development",
-                color: "purple"
+                color: "purple",
               },
               {
                 label: ".NET Growth Rate",
                 value: "Rapid",
                 description: "Cross-platform support and cloud integration",
-                color: "orange"
-              }
+                color: "orange",
+              },
             ]}
           />
         </div>
@@ -796,66 +1032,127 @@ function HybridLanguagesContent() {
           <TrendingUp className="w-6 h-6 text-green-500" />
           Business &amp; Team Impact
         </h2>
-        
+
         <div className="space-y-6">
           <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Enterprise dominance with quantified operational benefits</h3>
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Enterprise dominance with quantified operational benefits
+            </h3>
             <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <div><strong className="text-slate-700 dark:text-gray-300">Netflix:</strong> Entire streaming platform runs on JVM, handling billions of requests daily</div>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Netflix:
+                  </strong>{" "}
+                  Entire streaming platform runs on JVM, handling billions of
+                  requests daily
+                </div>
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <div><strong className="text-slate-700 dark:text-gray-300">LinkedIn:</strong> Built on Java, scaled to 800+ million users with real-time features</div>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    LinkedIn:
+                  </strong>{" "}
+                  Built on Java, scaled to 800+ million users with real-time
+                  features
+                </div>
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <div><strong className="text-slate-700 dark:text-gray-300">Stack Overflow:</strong> Runs on C#/.NET, serves millions of developers with minimal infrastructure</div>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Stack Overflow:
+                  </strong>{" "}
+                  Runs on C#/.NET, serves millions of developers with minimal
+                  infrastructure
+                </div>
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <div><strong className="text-slate-700 dark:text-gray-300">Goldman Sachs:</strong> Uses Java extensively for trading systems processing $2+ trillion daily</div>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Goldman Sachs:
+                  </strong>{" "}
+                  Uses Java extensively for trading systems processing $2+
+                  trillion daily
+                </div>
               </li>
             </ul>
           </div>
 
           <div className="border-l-4 border-yellow-500 bg-yellow-50/50 dark:bg-yellow-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Common customer scenarios driving hybrid language adoption</h3>
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Common customer scenarios driving hybrid language adoption
+            </h3>
             <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <div><strong className="text-slate-700 dark:text-gray-300">Modernization crisis:</strong> &ldquo;Our mainframe costs are exploding but we can&apos;t rewrite everything overnight&rdquo;</div>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Modernization crisis:
+                  </strong>{" "}
+                  &ldquo;Our mainframe costs are exploding but we can&apos;t
+                  rewrite everything overnight&rdquo;
+                </div>
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <div><strong className="text-slate-700 dark:text-gray-300">Cross-platform requirements:</strong> &ldquo;We need to support Windows, Linux, and cloud simultaneously&rdquo;</div>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Cross-platform requirements:
+                  </strong>{" "}
+                  &ldquo;We need to support Windows, Linux, and cloud
+                  simultaneously&rdquo;
+                </div>
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <div><strong className="text-slate-700 dark:text-gray-300">Scalability bottleneck:</strong> &ldquo;Our current system can&apos;t handle 10x growth in the next two years&rdquo;</div>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Scalability bottleneck:
+                  </strong>{" "}
+                  &ldquo;Our current system can&apos;t handle 10x growth in the
+                  next two years&rdquo;
+                </div>
               </li>
             </ul>
           </div>
 
           <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Customer profiles who typically evaluate hybrid languages</h3>
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Customer profiles who typically evaluate hybrid languages
+            </h3>
             <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <strong className="text-slate-700 dark:text-gray-300">Series B+ startups</strong> building enterprise products requiring long-term maintainability
+                <strong className="text-slate-700 dark:text-gray-300">
+                  Series B+ startups
+                </strong>{" "}
+                building enterprise products requiring long-term maintainability
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <strong className="text-slate-700 dark:text-gray-300">Fortune 500 companies</strong> modernizing legacy systems while maintaining integration capabilities
+                <strong className="text-slate-700 dark:text-gray-300">
+                  Fortune 500 companies
+                </strong>{" "}
+                modernizing legacy systems while maintaining integration
+                capabilities
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <strong className="text-slate-700 dark:text-gray-300">Financial services firms</strong> needing robust, auditable systems with regulatory compliance
+                <strong className="text-slate-700 dark:text-gray-300">
+                  Financial services firms
+                </strong>{" "}
+                needing robust, auditable systems with regulatory compliance
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <strong className="text-slate-700 dark:text-gray-300">Government contractors</strong> requiring security certifications and multi-platform deployment
+                <strong className="text-slate-700 dark:text-gray-300">
+                  Government contractors
+                </strong>{" "}
+                requiring security certifications and multi-platform deployment
               </li>
             </ul>
           </div>
@@ -867,25 +1164,36 @@ function HybridLanguagesContent() {
         <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
           Cursor Implementation Considerations
         </h2>
-        
+
         <div className="space-y-6">
           <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">AI-assisted development acceleration</h3>
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              AI-assisted development acceleration
+            </h3>
             <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Particularly effective with hybrid languages - Cursor excels at generating boilerplate-heavy enterprise patterns common in Java/C#, with large training datasets providing high-quality code suggestions and framework knowledge
+              Particularly effective with hybrid languages - Cursor excels at
+              generating boilerplate-heavy enterprise patterns common in
+              Java/C#, with large training datasets providing high-quality code
+              suggestions and framework knowledge
             </p>
           </div>
 
           <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Enterprise team adoption scenarios</h3>
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Enterprise team adoption scenarios
+            </h3>
             <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Where hybrid languages intersect with Cursor value: Legacy system modernization projects benefit from AI assistance in translating old patterns to modern frameworks, and cross-platform migration efforts can leverage AI to maintain consistency across different deployment targets while preserving business logic
+              Where hybrid languages intersect with Cursor value: Legacy system
+              modernization projects benefit from AI assistance in translating
+              old patterns to modern frameworks, and cross-platform migration
+              efforts can leverage AI to maintain consistency across different
+              deployment targets while preserving business logic
             </p>
           </div>
         </div>
       </section>
     </article>
-  )
+  );
 }
 
 // Component for the object-oriented programming article content
@@ -897,62 +1205,97 @@ function ObjectOrientedProgrammingContent() {
         <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
           Key Concepts
         </h2>
-        
+
         <div className="space-y-6">
           <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Objects combine data and behavior</h3>
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Objects combine data and behavior
+            </h3>
             <p className="text-slate-700 dark:text-gray-300 mb-3">
               Like digital representations of real-world things
             </p>
             <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Customer object: contains name/email data plus &ldquo;place order&rdquo; behaviors
+                Customer object: contains name/email data plus &ldquo;place
+                order&rdquo; behaviors
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Eliminates &ldquo;spaghetti code&rdquo; where functions and data are scattered everywhere
+                Eliminates &ldquo;spaghetti code&rdquo; where functions and data
+                are scattered everywhere
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Makes code more intuitive since humans naturally think in terms of interacting objects
+                Makes code more intuitive since humans naturally think in terms
+                of interacting objects
               </li>
             </ul>
           </div>
 
           <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Four foundational principles</h3>
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Four foundational principles
+            </h3>
             <p className="text-slate-700 dark:text-gray-300 mb-3">
               That developers constantly reference in architectural decisions
             </p>
             <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <div><strong className="text-slate-700 dark:text-gray-300">Encapsulation:</strong> Hide internal complexity (car steering wheel vs engine internals)</div>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Encapsulation:
+                  </strong>{" "}
+                  Hide internal complexity (car steering wheel vs engine
+                  internals)
+                </div>
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <div><strong className="text-slate-700 dark:text-gray-300">Inheritance:</strong> Build new classes from existing ones (SalesCustomer inherits from Customer)</div>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Inheritance:
+                  </strong>{" "}
+                  Build new classes from existing ones (SalesCustomer inherits
+                  from Customer)
+                </div>
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <div><strong className="text-slate-700 dark:text-gray-300">Polymorphism:</strong> Different objects respond to same message differently (Dog.makeSound() vs Cat.makeSound())</div>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Polymorphism:
+                  </strong>{" "}
+                  Different objects respond to same message differently
+                  (Dog.makeSound() vs Cat.makeSound())
+                </div>
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <div><strong className="text-slate-700 dark:text-gray-300">Abstraction:</strong> Focus on essential features while hiding unnecessary complexity</div>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Abstraction:
+                  </strong>{" "}
+                  Focus on essential features while hiding unnecessary
+                  complexity
+                </div>
               </li>
             </ul>
           </div>
 
           <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Critical enterprise decision framework</h3>
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Critical enterprise decision framework
+            </h3>
             <p className="text-slate-700 dark:text-gray-300 mb-3">
               Object vs Function choice
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
               <div className="bg-white/50 dark:bg-gray-800/50 p-4 rounded-lg">
-                <h4 className="font-medium text-slate-900 dark:text-white mb-2">Create Objects When:</h4>
+                <h4 className="font-medium text-slate-900 dark:text-white mb-2">
+                  Create Objects When:
+                </h4>
                 <ul className="text-sm text-slate-600 dark:text-gray-400 space-y-1">
                   <li>• Business concept with multiple data pieces</li>
                   <li>• Complex persistent state</li>
@@ -960,7 +1303,9 @@ function ObjectOrientedProgrammingContent() {
                 </ul>
               </div>
               <div className="bg-white/50 dark:bg-gray-800/50 p-4 rounded-lg">
-                <h4 className="font-medium text-slate-900 dark:text-white mb-2">Use Functions When:</h4>
+                <h4 className="font-medium text-slate-900 dark:text-white mb-2">
+                  Use Functions When:
+                </h4>
                 <ul className="text-sm text-slate-600 dark:text-gray-400 space-y-1">
                   <li>• Pure calculations</li>
                   <li>• Data transformations</li>
@@ -978,66 +1323,123 @@ function ObjectOrientedProgrammingContent() {
           <TrendingUp className="w-6 h-6 text-green-500" />
           Business &amp; Team Impact
         </h2>
-        
+
         <div className="space-y-6">
           <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Mixed-paradigm reality dominates enterprise development</h3>
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Mixed-paradigm reality dominates enterprise development
+            </h3>
             <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <div><strong className="text-slate-700 dark:text-gray-300">Business logic:</strong> Heavy OOP (Customer, Order, Payment objects)</div>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Business logic:
+                  </strong>{" "}
+                  Heavy OOP (Customer, Order, Payment objects)
+                </div>
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <div><strong className="text-slate-700 dark:text-gray-300">Data processing:</strong> Functional style for transformations and analytics</div>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Data processing:
+                  </strong>{" "}
+                  Functional style for transformations and analytics
+                </div>
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <div><strong className="text-slate-700 dark:text-gray-300">Utilities:</strong> Simple functions for formatting and validation</div>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Utilities:
+                  </strong>{" "}
+                  Simple functions for formatting and validation
+                </div>
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <div><strong className="text-slate-700 dark:text-gray-300">Database queries:</strong> Declarative SQL approaches</div>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Database queries:
+                  </strong>{" "}
+                  Declarative SQL approaches
+                </div>
               </li>
             </ul>
           </div>
 
           <div className="border-l-4 border-yellow-500 bg-yellow-50/50 dark:bg-yellow-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Common customer triggers driving architectural discussions</h3>
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Common customer triggers driving architectural discussions
+            </h3>
             <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <div><strong className="text-slate-700 dark:text-gray-300">Over-architecture paralysis:</strong> &ldquo;We&apos;ve spent 3 months designing perfect object hierarchies instead of shipping features&rdquo;</div>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Over-architecture paralysis:
+                  </strong>{" "}
+                  &ldquo;We&apos;ve spent 3 months designing perfect object
+                  hierarchies instead of shipping features&rdquo;
+                </div>
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <div><strong className="text-slate-700 dark:text-gray-300">Legacy complexity crisis:</strong> &ldquo;Our OOP system is so layered that nobody fully understands it anymore&rdquo;</div>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Legacy complexity crisis:
+                  </strong>{" "}
+                  &ldquo;Our OOP system is so layered that nobody fully
+                  understands it anymore&rdquo;
+                </div>
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <div><strong className="text-slate-700 dark:text-gray-300">Performance vs maintainability trade-offs:</strong> &ldquo;Object overhead is killing our high-throughput scenarios&rdquo;</div>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Performance vs maintainability trade-offs:
+                  </strong>{" "}
+                  &ldquo;Object overhead is killing our high-throughput
+                  scenarios&rdquo;
+                </div>
               </li>
             </ul>
           </div>
 
           <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Customer profiles most likely to engage on OOP topics</h3>
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Customer profiles most likely to engage on OOP topics
+            </h3>
             <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <strong className="text-slate-700 dark:text-gray-300">Fortune 500 companies:</strong> Traditional business applications with complex workflows
+                <strong className="text-slate-700 dark:text-gray-300">
+                  Fortune 500 companies:
+                </strong>{" "}
+                Traditional business applications with complex workflows
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <strong className="text-slate-700 dark:text-gray-300">Financial services:</strong> Heavily regulated systems requiring long-term maintainability
+                <strong className="text-slate-700 dark:text-gray-300">
+                  Financial services:
+                </strong>{" "}
+                Heavily regulated systems requiring long-term maintainability
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <strong className="text-slate-700 dark:text-gray-300">Series B+ startups:</strong> Growing from simple scripts to complex multi-team codebases
+                <strong className="text-slate-700 dark:text-gray-300">
+                  Series B+ startups:
+                </strong>{" "}
+                Growing from simple scripts to complex multi-team codebases
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <strong className="text-slate-700 dark:text-gray-300">Healthcare systems:</strong> Complex business domain modeling with strict compliance requirements
+                <strong className="text-slate-700 dark:text-gray-300">
+                  Healthcare systems:
+                </strong>{" "}
+                Complex business domain modeling with strict compliance
+                requirements
               </li>
             </ul>
           </div>
@@ -1049,32 +1451,49 @@ function ObjectOrientedProgrammingContent() {
         <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
           Cursor Implementation Considerations
         </h2>
-        
+
         <div className="space-y-6">
           <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Architectural decision support</h3>
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Architectural decision support
+            </h3>
             <p className="text-slate-700 dark:text-gray-300 mb-3">
-              AI assistance for the critical &ldquo;object vs function&rdquo; choices that teams debate daily in code reviews - intelligent suggestions based on team patterns and codebase context, with guidance on when business concepts warrant full object treatment vs simple functional approaches
+              AI assistance for the critical &ldquo;object vs function&rdquo;
+              choices that teams debate daily in code reviews - intelligent
+              suggestions based on team patterns and codebase context, with
+              guidance on when business concepts warrant full object treatment
+              vs simple functional approaches
             </p>
           </div>
 
           <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Mixed-paradigm workflow optimization</h3>
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Mixed-paradigm workflow optimization
+            </h3>
             <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Modern enterprise teams need AI that understands their polyglot reality - context-aware code completion that recognizes when to suggest OOP patterns vs functional approaches, with seamless transitions between paradigms within the same codebase
+              Modern enterprise teams need AI that understands their polyglot
+              reality - context-aware code completion that recognizes when to
+              suggest OOP patterns vs functional approaches, with seamless
+              transitions between paradigms within the same codebase
             </p>
           </div>
 
           <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Legacy system navigation</h3>
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Legacy system navigation
+            </h3>
             <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Enterprise teams often maintain large OOP codebases with complex inheritance hierarchies - visual relationship mapping and intelligent code exploration for understanding object dependencies, with refactoring assistance that safely evolves object models as business requirements change
+              Enterprise teams often maintain large OOP codebases with complex
+              inheritance hierarchies - visual relationship mapping and
+              intelligent code exploration for understanding object
+              dependencies, with refactoring assistance that safely evolves
+              object models as business requirements change
             </p>
           </div>
         </div>
       </section>
     </article>
-  )
+  );
 }
 
 // Component for the procedural programming article content
@@ -1086,66 +1505,127 @@ function ProceduralProgrammingContent() {
         <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
           Key Concepts
         </h2>
-        
+
         <div className="space-y-6">
           <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Function-first approach with clear data separation</h3>
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Function-first approach with clear data separation
+            </h3>
             <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Functions take inputs, perform operations, return outputs with no hidden state
+                Functions take inputs, perform operations, return outputs with
+                no hidden state
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Data structures store information separately from the functions that manipulate them
+                Data structures store information separately from the functions
+                that manipulate them
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <div><strong className="text-slate-700 dark:text-gray-300">Go:</strong> Dominates cloud infrastructure and microservices for performance and simplicity</div>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Go:
+                  </strong>{" "}
+                  Dominates cloud infrastructure and microservices for
+                  performance and simplicity
+                </div>
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <div><strong className="text-slate-700 dark:text-gray-300">Python:</strong> Standard for data processing pipelines, DevOps automation, and scientific computing</div>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Python:
+                  </strong>{" "}
+                  Standard for data processing pipelines, DevOps automation, and
+                  scientific computing
+                </div>
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <div><strong className="text-slate-700 dark:text-gray-300">C:</strong> Essential for system-level programming, embedded systems, and performance-critical components</div>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    C:
+                  </strong>{" "}
+                  Essential for system-level programming, embedded systems, and
+                  performance-critical components
+                </div>
               </li>
             </ul>
           </div>
 
           <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">The daily reality: mixed-paradigm development within single codebases</h3>
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              The daily reality: mixed-paradigm development within single
+              codebases
+            </h3>
             <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <div><strong className="text-slate-700 dark:text-gray-300">Morning scenario:</strong> Developer creates User objects (OOP) while writing validateEmail() utility functions (procedural)</div>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Morning scenario:
+                  </strong>{" "}
+                  Developer creates User objects (OOP) while writing
+                  validateEmail() utility functions (procedural)
+                </div>
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <div><strong className="text-slate-700 dark:text-gray-300">Data processing workflows:</strong> ETL pipelines built as function sequences while business logic uses objects</div>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Data processing workflows:
+                  </strong>{" "}
+                  ETL pipelines built as function sequences while business logic
+                  uses objects
+                </div>
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <div><strong className="text-slate-700 dark:text-gray-300">Performance optimization:</strong> Converting object-oriented bottlenecks back to procedural functions for speed</div>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Performance optimization:
+                  </strong>{" "}
+                  Converting object-oriented bottlenecks back to procedural
+                  functions for speed
+                </div>
               </li>
             </ul>
           </div>
 
           <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Strategic application patterns across enterprise systems</h3>
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Strategic application patterns across enterprise systems
+            </h3>
             <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <div><strong className="text-slate-700 dark:text-gray-300">Financial calculations:</strong> Pure functions for pricing, tax computations, risk analysis</div>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Financial calculations:
+                  </strong>{" "}
+                  Pure functions for pricing, tax computations, risk analysis
+                </div>
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <div><strong className="text-slate-700 dark:text-gray-300">System utilities:</strong> File handling, network operations, configuration management</div>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    System utilities:
+                  </strong>{" "}
+                  File handling, network operations, configuration management
+                </div>
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <div><strong className="text-slate-700 dark:text-gray-300">DevOps automation:</strong> Deployment scripts, monitoring tools, infrastructure management</div>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    DevOps automation:
+                  </strong>{" "}
+                  Deployment scripts, monitoring tools, infrastructure
+                  management
+                </div>
               </li>
             </ul>
           </div>
@@ -1158,58 +1638,113 @@ function ProceduralProgrammingContent() {
           <TrendingUp className="w-6 h-6 text-green-500" />
           Business &amp; Team Impact
         </h2>
-        
+
         <div className="space-y-6">
           <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Performance and cost advantages with concrete enterprise outcomes</h3>
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Performance and cost advantages with concrete enterprise outcomes
+            </h3>
             <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <div><strong className="text-slate-700 dark:text-gray-300">Netflix:</strong> Data processing pipelines use procedural approaches for ETL while maintaining OOP for business logic, achieving both performance and maintainability</div>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Netflix:
+                  </strong>{" "}
+                  Data processing pipelines use procedural approaches for ETL
+                  while maintaining OOP for business logic, achieving both
+                  performance and maintainability
+                </div>
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <div><strong className="text-slate-700 dark:text-gray-300">High-frequency trading firms:</strong> Procedural algorithms for maximum performance with risk calculations as pure functions</div>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    High-frequency trading firms:
+                  </strong>{" "}
+                  Procedural algorithms for maximum performance with risk
+                  calculations as pure functions
+                </div>
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <div><strong className="text-slate-700 dark:text-gray-300">Financial services:</strong> 40% faster execution on pricing calculations after strategic procedural refactoring</div>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Financial services:
+                  </strong>{" "}
+                  40% faster execution on pricing calculations after strategic
+                  procedural refactoring
+                </div>
               </li>
             </ul>
           </div>
 
           <div className="border-l-4 border-yellow-500 bg-yellow-50/50 dark:bg-yellow-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Common customer triggers driving procedural adoption</h3>
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Common customer triggers driving procedural adoption
+            </h3>
             <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <div><strong className="text-slate-700 dark:text-gray-300">Performance crisis:</strong> &ldquo;Our cloud bills doubled but traffic only increased 20% - we need faster data processing&rdquo;</div>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Performance crisis:
+                  </strong>{" "}
+                  &ldquo;Our cloud bills doubled but traffic only increased 20%
+                  - we need faster data processing&rdquo;
+                </div>
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <div><strong className="text-slate-700 dark:text-gray-300">System integration complexity:</strong> &ldquo;We&apos;re spending too much time on object overhead for simple data transformations&rdquo;</div>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    System integration complexity:
+                  </strong>{" "}
+                  &ldquo;We&apos;re spending too much time on object overhead
+                  for simple data transformations&rdquo;
+                </div>
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <div><strong className="text-slate-700 dark:text-gray-300">DevOps scalability:</strong> &ldquo;Our deployment scripts are getting unwieldy - we need cleaner automation workflows&rdquo;</div>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    DevOps scalability:
+                  </strong>{" "}
+                  &ldquo;Our deployment scripts are getting unwieldy - we need
+                  cleaner automation workflows&rdquo;
+                </div>
               </li>
             </ul>
           </div>
 
           <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Customer profiles actively using procedural approaches</h3>
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Customer profiles actively using procedural approaches
+            </h3>
             <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <strong className="text-slate-700 dark:text-gray-300">Series B+ startups:</strong> With significant data processing needs and performance requirements
+                <strong className="text-slate-700 dark:text-gray-300">
+                  Series B+ startups:
+                </strong>{" "}
+                With significant data processing needs and performance
+                requirements
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <strong className="text-slate-700 dark:text-gray-300">Enterprise teams:</strong> Managing large-scale system integrations and legacy modernization projects
+                <strong className="text-slate-700 dark:text-gray-300">
+                  Enterprise teams:
+                </strong>{" "}
+                Managing large-scale system integrations and legacy
+                modernization projects
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <strong className="text-slate-700 dark:text-gray-300">Financial services organizations:</strong> Requiring maximum performance for trading systems and calculations
+                <strong className="text-slate-700 dark:text-gray-300">
+                  Financial services organizations:
+                </strong>{" "}
+                Requiring maximum performance for trading systems and
+                calculations
               </li>
             </ul>
           </div>
@@ -1221,25 +1756,38 @@ function ProceduralProgrammingContent() {
         <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
           Cursor Implementation Considerations
         </h2>
-        
+
         <div className="space-y-6">
           <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Mixed-paradigm development support enhances daily workflow efficiency</h3>
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Mixed-paradigm development support enhances daily workflow
+              efficiency
+            </h3>
             <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Cursor&apos;s context awareness helps developers seamlessly switch between procedural functions and OOP objects within the same file - AI assistance particularly valuable for generating data transformation functions and utility code that teams use constantly
+              Cursor&apos;s context awareness helps developers seamlessly switch
+              between procedural functions and OOP objects within the same file
+              - AI assistance particularly valuable for generating data
+              transformation functions and utility code that teams use
+              constantly
             </p>
           </div>
 
           <div className="border-l-4 border-orange-500 bg-orange-50/50 dark:bg-orange-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Performance-critical code generation requires careful human oversight</h3>
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Performance-critical code generation requires careful human
+              oversight
+            </h3>
             <p className="text-slate-700 dark:text-gray-300 mb-3">
-              While Cursor excels at generating procedural boilerplate and standard algorithms, teams should review AI-generated performance-critical functions for optimization opportunities and ensure they meet enterprise performance requirements
+              While Cursor excels at generating procedural boilerplate and
+              standard algorithms, teams should review AI-generated
+              performance-critical functions for optimization opportunities and
+              ensure they meet enterprise performance requirements
             </p>
           </div>
         </div>
       </section>
     </article>
-  )
+  );
 }
 
 // Component for the functional programming article content
@@ -1251,71 +1799,132 @@ function FunctionalProgrammingContent() {
         <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
           Key Concepts
         </h2>
-        
+
         <div className="space-y-6">
           <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Core paradigm shift</h3>
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Core paradigm shift
+            </h3>
             <p className="text-slate-700 dark:text-gray-300 mb-3">
-              From &ldquo;modify data step-by-step&rdquo; to &ldquo;transform data through pipelines&rdquo;
+              From &ldquo;modify data step-by-step&rdquo; to &ldquo;transform
+              data through pipelines&rdquo;
             </p>
             <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <div><strong className="text-slate-700 dark:text-gray-300">Immutability:</strong> Data never changes after creation, eliminating race conditions and threading issues</div>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Immutability:
+                  </strong>{" "}
+                  Data never changes after creation, eliminating race conditions
+                  and threading issues
+                </div>
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <div><strong className="text-slate-700 dark:text-gray-300">Pure functions:</strong> Same input always produces same output with no side effects</div>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Pure functions:
+                  </strong>{" "}
+                  Same input always produces same output with no side effects
+                </div>
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <div><strong className="text-slate-700 dark:text-gray-300">Function composition:</strong> Chain simple functions into complex operations like data pipelines</div>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Function composition:
+                  </strong>{" "}
+                  Chain simple functions into complex operations like data
+                  pipelines
+                </div>
               </li>
             </ul>
           </div>
 
           <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Developer decision patterns</h3>
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Developer decision patterns
+            </h3>
             <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Teams intuitively choose functional approaches based on problem type
+              Teams intuitively choose functional approaches based on problem
+              type
             </p>
             <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <div><strong className="text-slate-700 dark:text-gray-300">Collections and data processing:</strong> JavaScript .map(), .filter(), .reduce() chains feel natural</div>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Collections and data processing:
+                  </strong>{" "}
+                  JavaScript .map(), .filter(), .reduce() chains feel natural
+                </div>
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <div><strong className="text-slate-700 dark:text-gray-300">Single entity operations:</strong> Traditional step-by-step processing remains preferred</div>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Single entity operations:
+                  </strong>{" "}
+                  Traditional step-by-step processing remains preferred
+                </div>
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <div><strong className="text-slate-700 dark:text-gray-300">Mixed reality:</strong> Most enterprise teams use functional patterns for data operations, OOP for business modeling</div>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Mixed reality:
+                  </strong>{" "}
+                  Most enterprise teams use functional patterns for data
+                  operations, OOP for business modeling
+                </div>
               </li>
             </ul>
           </div>
 
           <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Universal adoption without awareness</h3>
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Universal adoption without awareness
+            </h3>
             <p className="text-slate-700 dark:text-gray-300 mb-3">
               Functional concepts are mainstream across all modern languages
             </p>
             <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <div><strong className="text-slate-700 dark:text-gray-300">JavaScript:</strong> Promise chains, array methods, React patterns</div>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    JavaScript:
+                  </strong>{" "}
+                  Promise chains, array methods, React patterns
+                </div>
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <div><strong className="text-slate-700 dark:text-gray-300">Python:</strong> List comprehensions, pandas transformations</div>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Python:
+                  </strong>{" "}
+                  List comprehensions, pandas transformations
+                </div>
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <div><strong className="text-slate-700 dark:text-gray-300">Java/C#:</strong> Stream processing, LINQ patterns</div>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Java/C#:
+                  </strong>{" "}
+                  Stream processing, LINQ patterns
+                </div>
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <div><strong className="text-slate-700 dark:text-gray-300">Scala/Clojure:</strong> Full functional languages for data-intensive systems</div>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Scala/Clojure:
+                  </strong>{" "}
+                  Full functional languages for data-intensive systems
+                </div>
               </li>
             </ul>
           </div>
@@ -1330,26 +1939,27 @@ function FunctionalProgrammingContent() {
                 label: "Debugging Time Reduction",
                 value: "40-60%",
                 description: "Pure functions easier to test and reason about",
-                color: "green"
+                color: "green",
               },
               {
                 label: "Parallel Development",
                 value: "Faster",
                 description: "Multiple developers work without conflicts",
-                color: "blue"
+                color: "blue",
               },
               {
                 label: "Code Review Speed",
                 value: "30% faster",
-                description: "Functional chains more readable than nested loops",
-                color: "purple"
+                description:
+                  "Functional chains more readable than nested loops",
+                color: "purple",
               },
               {
                 label: "Testing Coverage",
                 value: "Better",
                 description: "Pure functions naturally more testable",
-                color: "orange"
-              }
+                color: "orange",
+              },
             ]}
           />
         </div>
@@ -1361,69 +1971,127 @@ function FunctionalProgrammingContent() {
           <TrendingUp className="w-6 h-6 text-green-500" />
           Business &amp; Team Impact
         </h2>
-        
+
         <div className="space-y-6">
           <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Concurrency safety drives adoption</h3>
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Concurrency safety drives adoption
+            </h3>
             <p className="text-slate-700 dark:text-gray-300 mb-3">
               Eliminates entire categories of threading bugs
             </p>
             <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <div><strong className="text-slate-700 dark:text-gray-300">Netflix:</strong> Functional recommendation algorithms prevent data corruption across distributed systems</div>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Netflix:
+                  </strong>{" "}
+                  Functional recommendation algorithms prevent data corruption
+                  across distributed systems
+                </div>
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <div><strong className="text-slate-700 dark:text-gray-300">Goldman Sachs:</strong> Scala functional programming for risk calculations—reproducible results and audit trails</div>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Goldman Sachs:
+                  </strong>{" "}
+                  Scala functional programming for risk
+                  calculations—reproducible results and audit trails
+                </div>
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <div><strong className="text-slate-700 dark:text-gray-300">LinkedIn:</strong> 10x performance improvement converting data processing to functional patterns with Scala/Spark</div>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    LinkedIn:
+                  </strong>{" "}
+                  10x performance improvement converting data processing to
+                  functional patterns with Scala/Spark
+                </div>
               </li>
             </ul>
           </div>
 
           <div className="border-l-4 border-yellow-500 bg-yellow-50/50 dark:bg-yellow-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Customer pain points that trigger functional adoption</h3>
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Customer pain points that trigger functional adoption
+            </h3>
             <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <div><strong className="text-slate-700 dark:text-gray-300">&ldquo;Our data pipeline keeps crashing under load&rdquo;:</strong> Race conditions in concurrent processing</div>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    &ldquo;Our data pipeline keeps crashing under load&rdquo;:
+                  </strong>{" "}
+                  Race conditions in concurrent processing
+                </div>
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <div><strong className="text-slate-700 dark:text-gray-300">&ldquo;We can&apos;t reproduce this calculation error&rdquo;:</strong> Side effects making debugging impossible</div>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    &ldquo;We can&apos;t reproduce this calculation
+                    error&rdquo;:
+                  </strong>{" "}
+                  Side effects making debugging impossible
+                </div>
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <div><strong className="text-slate-700 dark:text-gray-300">&ldquo;Code reviews take forever on complex data transformations&rdquo;:</strong> Nested loops and scattered error handling</div>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    &ldquo;Code reviews take forever on complex data
+                    transformations&rdquo;:
+                  </strong>{" "}
+                  Nested loops and scattered error handling
+                </div>
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <div><strong className="text-slate-700 dark:text-gray-300">&ldquo;Our ETL jobs fail randomly&rdquo;:</strong> Shared mutable state causing unpredictable failures</div>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    &ldquo;Our ETL jobs fail randomly&rdquo;:
+                  </strong>{" "}
+                  Shared mutable state causing unpredictable failures
+                </div>
               </li>
             </ul>
           </div>
 
           <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Customer profiles most likely to benefit</h3>
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Customer profiles most likely to benefit
+            </h3>
             <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <strong className="text-slate-700 dark:text-gray-300">Series B+ startups</strong> with growing data volumes ($10M+ ARR, 50+ engineers)
+                <strong className="text-slate-700 dark:text-gray-300">
+                  Series B+ startups
+                </strong>{" "}
+                with growing data volumes ($10M+ ARR, 50+ engineers)
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <strong className="text-slate-700 dark:text-gray-300">Financial services</strong> requiring audit trails and reproducible calculations
+                <strong className="text-slate-700 dark:text-gray-300">
+                  Financial services
+                </strong>{" "}
+                requiring audit trails and reproducible calculations
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <strong className="text-slate-700 dark:text-gray-300">E-commerce platforms</strong> processing high-volume transactions and recommendations
+                <strong className="text-slate-700 dark:text-gray-300">
+                  E-commerce platforms
+                </strong>{" "}
+                processing high-volume transactions and recommendations
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <strong className="text-slate-700 dark:text-gray-300">Healthcare/biotech</strong> companies needing reliable data transformations for compliance
+                <strong className="text-slate-700 dark:text-gray-300">
+                  Healthcare/biotech
+                </strong>{" "}
+                companies needing reliable data transformations for compliance
               </li>
             </ul>
           </div>
@@ -1435,25 +2103,458 @@ function FunctionalProgrammingContent() {
         <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
           Cursor Implementation Considerations
         </h2>
-        
+
         <div className="space-y-6">
           <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">AI-assisted functional pattern adoption</h3>
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              AI-assisted functional pattern adoption
+            </h3>
             <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Cursor can accelerate teams learning functional programming by suggesting idiomatic transformations - natural language prompts like &ldquo;convert this loop to functional style&rdquo; help teams modernize legacy code, with context-aware suggestions helping developers choose between functional and imperative approaches appropriately
+              Cursor can accelerate teams learning functional programming by
+              suggesting idiomatic transformations - natural language prompts
+              like &ldquo;convert this loop to functional style&rdquo; help
+              teams modernize legacy code, with context-aware suggestions
+              helping developers choose between functional and imperative
+              approaches appropriately
             </p>
           </div>
 
           <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Data pipeline development acceleration</h3>
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Data pipeline development acceleration
+            </h3>
             <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Teams building ETL systems benefit from Cursor&apos;s ability to generate functional transformation chains - reduces learning curve for teams transitioning from imperative to functional data processing patterns, and helps maintain consistency across team members with varying functional programming experience
+              Teams building ETL systems benefit from Cursor&apos;s ability to
+              generate functional transformation chains - reduces learning curve
+              for teams transitioning from imperative to functional data
+              processing patterns, and helps maintain consistency across team
+              members with varying functional programming experience
             </p>
           </div>
         </div>
       </section>
     </article>
-  )
+  );
+}
+
+// Component for the variables, data types, memory concepts article content
+function VariablesDataTypesContent() {
+  return (
+    <article className="space-y-10">
+      {/* Key Concepts Section */}
+      <section id="key-concepts">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Key Concepts
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Variables and data storage fundamentals
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Variables are named containers that store information temporarily
+              while programs run, similar to labeled filing cabinets in an
+              office environment
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Purpose and function:
+                  </strong>{" "}
+                  Store and retrieve information during program execution,
+                  enabling dynamic data processing
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Naming conventions:
+                  </strong>{" "}
+                  Descriptive names improve code readability and team
+                  collaboration (customerName vs. cn)
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Scope considerations:
+                  </strong>{" "}
+                  Variable accessibility affects debugging complexity and team
+                  development workflows
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Data type selection and business impact
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Choosing appropriate data types affects application performance,
+              memory consumption, and maintenance costs
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Numbers (integers, decimals):
+                  </strong>{" "}
+                  Financial calculations, user IDs, measurement data - precision
+                  requirements vary by use case
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Text (strings):
+                  </strong>{" "}
+                  User names, descriptions, configuration settings -
+                  internationalization and encoding considerations
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Boolean (true/false):
+                  </strong>{" "}
+                  Feature flags, user permissions, status indicators - decision
+                  logic and conditional behavior
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Memory management approaches
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Different programming languages handle memory allocation and
+              cleanup automatically (garbage collection) or require manual
+              management
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Automatic management:
+                  </strong>{" "}
+                  Java, C#, Python handle cleanup automatically, reducing
+                  development complexity but adding runtime overhead
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Manual management:
+                  </strong>{" "}
+                  C, C++ require explicit memory allocation/deallocation,
+                  offering performance control with increased development
+                  complexity
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Stack vs heap allocation:
+                  </strong>{" "}
+                  Temporary data (stack) vs long-term storage (heap) affects
+                  performance and application responsiveness
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-orange-500 bg-orange-50/50 dark:bg-orange-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Type safety and development productivity
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Static typing (compile-time checks) vs dynamic typing (runtime
+              flexibility) represents different trade-offs between safety and
+              development speed
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Static typing benefits:
+                  </strong>{" "}
+                  TypeScript, Java catch errors before deployment, improving
+                  code reliability and IDE developer experience
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Dynamic typing advantages:
+                  </strong>{" "}
+                  Python, JavaScript enable rapid prototyping and flexible data
+                  handling for evolving requirements
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Team considerations:
+                  </strong>{" "}
+                  Static typing becomes more valuable as team size increases and
+                  codebase complexity grows
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Business & Team Impact Section */}
+      <section id="business-team-impact">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Business & Team Impact
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-emerald-500 bg-emerald-50/50 dark:bg-emerald-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Development velocity and code quality considerations
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Variable and type management decisions directly impact team
+              productivity, debugging time, and feature delivery speed
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Debugging complexity:
+                  </strong>{" "}
+                  Poor variable naming and type choices increase investigation
+                  time during bug fixes - clear data structure decisions reduce
+                  time-to-resolution for customer-facing issues
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Onboarding efficiency:
+                  </strong>{" "}
+                  Consistent patterns and type safety reduce ramp-up time for
+                  new team members and enable faster knowledge transfer
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Refactoring confidence:
+                  </strong>{" "}
+                  Type systems provide safety nets when modifying existing
+                  functionality, enabling larger architectural changes without
+                  fear of breaking features
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Performance and infrastructure cost implications
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Memory usage patterns and data type efficiency directly affect
+              hosting costs and application responsiveness
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Memory efficiency gains:
+                  </strong>{" "}
+                  Appropriate data sizing reduces server memory requirements and
+                  cloud infrastructure costs (optimizing integer sizes can
+                  reduce memory footprint by 20-40% in data-heavy applications)
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Response time improvements:
+                  </strong>{" "}
+                  Efficient memory allocation patterns contribute to consistent
+                  application performance and better user experience
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Scaling considerations:
+                  </strong>{" "}
+                  Memory management approaches affect how applications handle
+                  increased user load - garbage collection pauses can impact
+                  user experience during high-traffic periods
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Technology decision factors for different project types
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Variable and memory management requirements vary significantly
+              based on application characteristics and business requirements
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Rapid development projects:
+                  </strong>{" "}
+                  Dynamic typing and automatic memory management prioritize
+                  development speed - suitable for prototypes, MVPs, and
+                  projects with evolving requirements
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Performance-critical applications:
+                  </strong>{" "}
+                  Manual memory management and static typing optimize for
+                  execution efficiency in financial systems, real-time
+                  applications, and high-throughput scenarios
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Large team projects:
+                  </strong>{" "}
+                  Strong typing systems improve collaboration and reduce
+                  integration issues in enterprise applications where multiple
+                  teams contribute to shared codebases
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Cursor Implementation Section */}
+      <section id="cursor-implementation">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Cursor Implementation Considerations
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-cyan-500 bg-cyan-50/50 dark:bg-cyan-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              AI-assisted code quality and type safety
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Cursor provides intelligent suggestions for variable naming, type
+              selection, and memory usage patterns
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Automatic type inference recommendations based on usage context
+                and best practices
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Variable naming suggestions that improve code readability and
+                team collaboration
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Memory usage optimization suggestions for performance-sensitive
+                applications
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Development workflow acceleration
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              AI tools help teams implement consistent data handling patterns
+              and reduce debugging time
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Consistent code style enforcement across team members and
+                project modules
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Quick identification and resolution of type-related issues
+                during development
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Context-aware refactoring support when modifying variable types
+                or scope
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-orange-500 bg-orange-50/50 dark:bg-orange-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Knowledge transfer and learning support
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              AI coding assistance helps teams understand complex memory
+              management concepts and implement best practices
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Real-time explanations of memory allocation patterns and
+                performance implications
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Guidance on language-specific best practices for variable and
+                type management
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Educational context for design decisions that affect long-term
+                maintainability
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </article>
+  );
 }
 
 // Default article content for other articles
@@ -1461,8 +2562,10 @@ function DefaultArticleContent({ article }: { article: Article }) {
   return (
     <article className="space-y-8">
       <section id="learning-objectives">
-        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Learning Objectives</h2>
-        
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Learning Objectives
+        </h2>
+
         <div className="bg-blue-50/80 dark:bg-blue-950/30 border border-blue-200/60 dark:border-blue-800/50 rounded-xl p-6 mb-8">
           <p className="text-blue-800 dark:text-blue-300 mb-4">
             By the end of this article, you will understand:
@@ -1479,8 +2582,10 @@ function DefaultArticleContent({ article }: { article: Article }) {
       </section>
 
       <section id="overview">
-        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Overview</h2>
-        
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Overview
+        </h2>
+
         <p className="text-slate-700 dark:text-gray-300 text-lg leading-relaxed mb-8">
           {article.description}
         </p>
@@ -1488,10 +2593,12 @@ function DefaultArticleContent({ article }: { article: Article }) {
 
       <section id="related-topics">
         <div className="border-t border-slate-200 dark:border-gray-700 pt-8">
-          <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">Related Topics</h3>
+          <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">
+            Related Topics
+          </h3>
           <div className="flex flex-wrap gap-2">
             {article.topics.map((topicName, index) => (
-              <span 
+              <span
                 key={index}
                 className="px-3 py-1 bg-slate-100 dark:bg-gray-700 text-slate-700 dark:text-gray-300 rounded-full text-sm font-medium"
               >
@@ -1502,18 +2609,18 @@ function DefaultArticleContent({ article }: { article: Article }) {
         </div>
       </section>
     </article>
-  )
+  );
 }
 
 // Mobile Bottom Navigation Component
 interface MobileBottomNavigationProps {
-  article: Article
-  topic: Topic | null
-  previousArticle: Article | null
-  nextArticle: Article | null
-  topicLink: string
-  articlePosition: number
-  totalArticles: number
+  article: Article;
+  topic: Topic | null;
+  previousArticle: Article | null;
+  nextArticle: Article | null;
+  topicLink: string;
+  articlePosition: number;
+  totalArticles: number;
 }
 
 function MobileBottomNavigation({
@@ -1523,28 +2630,29 @@ function MobileBottomNavigation({
   nextArticle,
   topicLink,
   articlePosition,
-  totalArticles
-}: Omit<MobileBottomNavigationProps, 'article'>) {
-  const [scrollProgress, setScrollProgress] = useState(0)
+  totalArticles,
+}: Omit<MobileBottomNavigationProps, "article">) {
+  const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
     const updateScrollProgress = () => {
-      const scrollTop = window.scrollY
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight
-      const progress = (scrollTop / docHeight) * 100
-      setScrollProgress(Math.min(progress, 100))
-    }
+      const scrollTop = window.scrollY;
+      const docHeight =
+        document.documentElement.scrollHeight - window.innerHeight;
+      const progress = (scrollTop / docHeight) * 100;
+      setScrollProgress(Math.min(progress, 100));
+    };
 
-    window.addEventListener('scroll', updateScrollProgress)
-    return () => window.removeEventListener('scroll', updateScrollProgress)
-  }, [])
+    window.addEventListener("scroll", updateScrollProgress);
+    return () => window.removeEventListener("scroll", updateScrollProgress);
+  }, []);
 
   return (
     <>
       {/* Reading Progress Bar */}
       <div className="fixed top-0 left-0 right-0 z-50 lg:hidden">
         <div className="h-1 bg-slate-200 dark:bg-gray-700">
-          <div 
+          <div
             className="h-full bg-blue-500 transition-all duration-150 ease-out"
             style={{ width: `${scrollProgress}%` }}
           />
@@ -1573,13 +2681,17 @@ function MobileBottomNavigation({
                 className="flex-1 flex items-center justify-center gap-2 py-3 px-4 bg-slate-50 dark:bg-gray-800 rounded-xl hover:bg-slate-100 dark:hover:bg-gray-700 transition-colors"
               >
                 <ChevronLeft className="w-4 h-4 text-slate-600 dark:text-gray-400" />
-                <span className="text-sm font-medium text-slate-700 dark:text-gray-300">Previous</span>
+                <span className="text-sm font-medium text-slate-700 dark:text-gray-300">
+                  Previous
+                </span>
               </Link>
             ) : (
               <div className="flex-1 opacity-50">
                 <div className="flex items-center justify-center gap-2 py-3 px-4 bg-slate-50 dark:bg-gray-800 rounded-xl">
                   <ChevronLeft className="w-4 h-4 text-slate-400 dark:text-gray-600" />
-                  <span className="text-sm text-slate-400 dark:text-gray-600">Previous</span>
+                  <span className="text-sm text-slate-400 dark:text-gray-600">
+                    Previous
+                  </span>
                 </div>
               </div>
             )}
@@ -1598,13 +2710,17 @@ function MobileBottomNavigation({
                 href={`/article/${nextArticle.id}`}
                 className="flex-1 flex items-center justify-center gap-2 py-3 px-4 bg-slate-50 dark:bg-gray-800 rounded-xl hover:bg-slate-100 dark:hover:bg-gray-700 transition-colors"
               >
-                <span className="text-sm font-medium text-slate-700 dark:text-gray-300">Next</span>
+                <span className="text-sm font-medium text-slate-700 dark:text-gray-300">
+                  Next
+                </span>
                 <ChevronRight className="w-4 h-4 text-slate-600 dark:text-gray-400" />
               </Link>
             ) : (
               <div className="flex-1 opacity-50">
                 <div className="flex items-center justify-center gap-2 py-3 px-4 bg-slate-50 dark:bg-gray-800 rounded-xl">
-                  <span className="text-sm text-slate-400 dark:text-gray-600">Next</span>
+                  <span className="text-sm text-slate-400 dark:text-gray-600">
+                    Next
+                  </span>
                   <ChevronRight className="w-4 h-4 text-slate-400 dark:text-gray-600" />
                 </div>
               </div>
@@ -1613,32 +2729,32 @@ function MobileBottomNavigation({
         </div>
       </div>
     </>
-  )
+  );
 }
 
 // Enhanced navigation component
 interface ArticleNavigationProps {
-  topicLink: string
-  topicName?: string
-  categoryName?: string
-  previousArticle: Article | null
-  nextArticle: Article | null
+  topicLink: string;
+  topicName?: string;
+  categoryName?: string;
+  previousArticle: Article | null;
+  nextArticle: Article | null;
 }
 
-function ArticleNavigation({ 
-  topicLink, 
-  // topicName: _topicName, // Unused parameter  
+function ArticleNavigation({
+  topicLink,
+  // topicName: _topicName, // Unused parameter
   // categoryName: _categoryName, // Unused parameter
-  previousArticle, 
-  nextArticle 
-}: Omit<ArticleNavigationProps, 'topicName' | 'categoryName'>) {
+  previousArticle,
+  nextArticle,
+}: Omit<ArticleNavigationProps, "topicName" | "categoryName">) {
   return (
     <div className="mt-12 space-y-6">
       {/* Previous/Next Article Navigation */}
       {(previousArticle || nextArticle) && (
         <div className="flex justify-between items-center gap-4">
           {previousArticle ? (
-            <Link 
+            <Link
               href={`/article/${previousArticle.id}`}
               className="group flex-1 max-w-sm p-4 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-xl border border-slate-200/50 dark:border-gray-700/50 hover:bg-white dark:hover:bg-gray-800 transition-all duration-200 shadow-sm hover:shadow-md"
             >
@@ -1647,7 +2763,9 @@ function ArticleNavigation({
                   <ChevronLeft className="w-4 h-4 text-slate-600 dark:text-gray-400" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <div className="text-xs text-slate-500 dark:text-gray-500 mb-1">Previous</div>
+                  <div className="text-xs text-slate-500 dark:text-gray-500 mb-1">
+                    Previous
+                  </div>
                   <div className="font-medium text-slate-900 dark:text-white text-sm truncate">
                     {previousArticle.name}
                   </div>
@@ -1669,13 +2787,15 @@ function ArticleNavigation({
           </Link>
 
           {nextArticle ? (
-            <Link 
+            <Link
               href={`/article/${nextArticle.id}`}
               className="group flex-1 max-w-sm p-4 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-xl border border-slate-200/50 dark:border-gray-700/50 hover:bg-white dark:hover:bg-gray-800 transition-all duration-200 shadow-sm hover:shadow-md text-right"
             >
               <div className="flex items-center gap-3 justify-end">
                 <div className="flex-1 min-w-0">
-                  <div className="text-xs text-slate-500 dark:text-gray-500 mb-1">Next</div>
+                  <div className="text-xs text-slate-500 dark:text-gray-500 mb-1">
+                    Next
+                  </div>
                   <div className="font-medium text-slate-900 dark:text-white text-sm truncate">
                     {nextArticle.name}
                   </div>
@@ -1691,5 +2811,5 @@ function ArticleNavigation({
         </div>
       )}
     </div>
-  )
+  );
 }
