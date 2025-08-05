@@ -47,6 +47,19 @@ learning-app-v2/           # 👈 WORK HERE ONLY
 - **DON'T** create new versions - only work with `learning-app-v2/`
 - **DON'T** modify files outside `learning-app-v2/`
 
+## 📝 **JSX Content Guidelines**
+- **ALWAYS escape quotes in JSX content** to prevent build failures
+- **Use HTML entities** for quotes in text content:
+  - Double quotes: `&ldquo;` and `&rdquo;` instead of `"`
+  - Single quotes/apostrophes: `&rsquo;` instead of `'`
+  - Example: `Netflix&rsquo;s` not `Netflix's`
+  - Example: `&ldquo;Error message&rdquo;` not `"Error message"`
+- **Test build before pushing**: Run `npm run build` to catch quote issues
+- **Common problematic patterns**:
+  - Customer quotes: `"Dashboard is slow"` → `&ldquo;Dashboard is slow&rdquo;`
+  - Company names: `Amazon's` → `Amazon&rsquo;s`
+  - Contractions: `won't`, `can't`, `isn't` → `won&rsquo;t`, `can&rsquo;t`, `isn&rsquo;t`
+
 ## 🐛 **Current Issues**
 - SSR hydration issues with client/server components
 - Need to properly separate client and server logic
