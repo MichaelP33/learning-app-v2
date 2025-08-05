@@ -1,11 +1,13 @@
 # Cursor Rules for Learning App V2
 
 ## 🎯 **Focus Directory**
+
 - **ONLY work with files in the `learning-app-v2/` directory**
 - **IGNORE** all other directories: `learning-app/`, `learning-app-OLD-BROKEN/`, `planning docs/`
 - **Default to** `learning-app-v2/` for all file operations
 
 ## 📁 **Project Structure**
+
 ```
 learning-app-v2/           # 👈 WORK HERE ONLY
 ├── src/
@@ -25,6 +27,7 @@ learning-app-v2/           # 👈 WORK HERE ONLY
 ```
 
 ## 🚀 **Tech Stack**
+
 - **Next.js 15** with App Router
 - **TypeScript** for type safety
 - **Tailwind CSS** for styling
@@ -32,10 +35,12 @@ learning-app-v2/           # 👈 WORK HERE ONLY
 - **Lucide React** for icons
 
 ## ⚡ **Development Commands**
+
 - `cd learning-app-v2 && npm run dev` (runs on http://localhost:3001)
 - Always run commands from `learning-app-v2/` directory
 
 ## 🎨 **Current Features**
+
 - ✅ Dark mode toggle with theme persistence
 - ✅ Responsive design with glass morphism
 - ✅ Framer Motion animations and transitions
@@ -43,11 +48,13 @@ learning-app-v2/           # 👈 WORK HERE ONLY
 - 🔄 Working on: Cursor-inspired gradient hover effects
 
 ## 🚫 **What to Avoid**
+
 - **DON'T** reference files from `learning-app/` or `learning-app-OLD-BROKEN/`
 - **DON'T** create new versions - only work with `learning-app-v2/`
 - **DON'T** modify files outside `learning-app-v2/`
 
 ## 📝 **JSX Content Guidelines**
+
 - **ALWAYS escape quotes in JSX content** to prevent build failures
 - **Use HTML entities** for quotes in text content:
   - Double quotes: `&ldquo;` and `&rdquo;` instead of `"`
@@ -61,17 +68,163 @@ learning-app-v2/           # 👈 WORK HERE ONLY
   - Contractions: `won't`, `can't`, `isn't` → `won&rsquo;t`, `can&rsquo;t`, `isn&rsquo;t`
 
 ## 🐛 **Current Issues**
+
 - SSR hydration issues with client/server components
 - Need to properly separate client and server logic
 - Focus on `learning-app-v2/` exclusively
 
 ## 📝 **File Naming Convention**
+
 - Use kebab-case for file names
 - Client components: `component-name.tsx`
 - Server components: No special suffix needed
 - Add 'use client' directive when needed for interactivity
 
+## 📋 **Cursor Rules Organization**
+
+### **Current Specialized Rules Structure**
+
+```
+learning-app-v2/
+├── .cursorrules                    # 👈 MAIN RULES (this file)
+├── .cursorrules-articles          # Article writing framework
+├── .cursorrules-quiz              # Quiz generation guidelines
+├── .cursorrules-gradients         # Visual design & styling
+├── .cursorrules-test              # Testing utilities
+└── .cursor/rules/                 # Legacy Cursor IDE rules (auto-applied)
+    ├── gradients.mdc              # Visual design patterns
+    ├── test-helper.mdc            # Test utilities
+    └── learning-app-v2.mdc        # Project overview
+```
+
+**ACTIVE RULES (Root Level):**
+
+- All `.cursorrules-*` files at root level are manually activated
+- Use `@.cursorrules-[domain]` to reference in prompts
+
+**LEGACY RULES (.cursor/rules/):**
+
+- Auto-applied by Cursor IDE based on file patterns
+- Kept for IDE integration, but root-level rules take precedence
+
+### **Rule Types & Naming Convention**
+
+**PRIMARY RULES (Root Level):**
+
+- **`.cursorrules`** - Main project rules, always active
+- **`.cursorrules-[domain]`** - Specialized rules for specific domains
+
+**DOMAIN-SPECIFIC NAMING:**
+
+- **Content Creation**: `.cursorrules-articles`, `.cursorrules-quiz`
+- **Visual Design**: `.cursorrules-gradients`, `.cursorrules-styling`
+- **Technical**: `.cursorrules-components`, `.cursorrules-api`
+- **Testing**: `.cursorrules-test`, `.cursorrules-e2e`
+
+### **Creating New Specialized Rules**
+
+**WHEN TO CREATE NEW RULES:**
+
+- ✅ **Distinct functional domain** with unique patterns/requirements
+- ✅ **Reusable across multiple features** in that domain
+- ✅ **Complex enough** to warrant dedicated guidelines (>50 lines)
+- ✅ **Stable patterns** that won't change frequently
+
+**WHEN NOT TO CREATE NEW RULES:**
+
+- ❌ **One-off features** or temporary guidelines
+- ❌ **Simple formatting** that fits in main rules
+- ❌ **Experimental patterns** still being refined
+- ❌ **Duplicating existing** rule functionality
+
+### **New Rule File Template**
+
+```markdown
+USE WHEN [specific trigger condition - e.g., "working with API endpoints"]
+
+# [Domain Name] Framework for Learning App V2
+
+## 🎯 **Core Purpose**
+
+[Clear statement of what this rule set accomplishes]
+
+## 📋 **When to Apply These Rules**
+
+- [Specific file patterns]
+- [Specific task types]
+- [Specific feature areas]
+
+## ✅ **Requirements**
+
+[Mandatory patterns and standards]
+
+## 🚫 **Avoid**
+
+[Anti-patterns and what not to do]
+
+## 📝 **Examples**
+
+[Code examples showing proper implementation]
+
+## ✅ **Validation Checklist**
+
+- [ ] [Key requirement 1]
+- [ ] [Key requirement 2]
+- [ ] [Key requirement 3]
+```
+
+### **Rule Activation Patterns**
+
+**MANUAL ACTIVATION:**
+
+- Use `@.cursorrules-[domain]` in prompts
+- Example: `@.cursorrules-articles` for content creation
+
+**AUTO-ACTIVATION TRIGGERS:**
+
+- Mention specific domain keywords in conversation
+- Work with files in specific directories
+- Request specific types of tasks
+
+### **Rule Maintenance Guidelines**
+
+**REGULAR REVIEW:**
+
+- **Monthly**: Check for duplicate patterns across rule files
+- **After major features**: Update rules with new learnings
+- **Before new releases**: Validate all rules are current
+
+**UPDATE TRIGGERS:**
+
+- New patterns established and proven effective
+- Build failures or quality issues traced to missing guidelines
+- User feedback indicating confusion or inconsistency
+
+**DEPRECATION CRITERIA:**
+
+- Domain no longer relevant to project
+- Patterns merged into main rules
+- Replaced by newer, better approaches
+
+### **Example: Content Creation Rules Integration**
+
+```markdown
+# For Article Writing:
+
+@.cursorrules-articles # Comprehensive writing framework
+@.cursorrules-quiz # Quiz generation standards
+
+# For Visual Design:
+
+@.cursorrules-gradients # Color schemes and visual patterns
+
+# For Testing:
+
+@.cursorrules-test # Test utility patterns
+```
+
 ## 🎯 **Goals**
+
 - Beautiful, modern UI inspired by Cursor's design
 - Smooth animations and micro-interactions
 - Full dark mode support

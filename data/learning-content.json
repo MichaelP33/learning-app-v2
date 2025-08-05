@@ -1973,7 +1973,188 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Fundamental data organization patterns",
-              "topics": ["Arrays", "Linked Lists", "LIFO/FIFO"]
+              "topics": ["Arrays", "Linked Lists", "LIFO/FIFO"],
+              "quiz": {
+                "title": "Basic Data Structures Knowledge Quiz",
+                "totalQuestions": 10,
+                "totalPoints": 25,
+                "questions": [
+                  {
+                    "id": "basic-structures-q1",
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "What is the primary advantage of arrays for enterprise data processing?",
+                    "options": [
+                      "O(1) constant time access to any element via indexing",
+                      "Dynamic memory allocation without size limits",
+                      "Automatic sorting of stored elements",
+                      "Built-in data compression for large datasets"
+                    ],
+                    "correctAnswer": 0,
+                    "additionalContext": "Arrays provide direct memory access through indexing, making data retrieval incredibly fast. For enterprise dashboards processing millions of records, array[1000000] takes the same time as array[0]. This predictable performance is crucial for real-time analytics and reporting systems.",
+                    "keyConcepts": [
+                      "Random Access",
+                      "O(1) Time Complexity",
+                      "Memory Efficiency",
+                      "Performance Predictability"
+                    ]
+                  },
+                  {
+                    "id": "basic-structures-q2",
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Which scenario benefits most from linked list implementation?",
+                    "options": [
+                      "Random access to million records for reporting",
+                      "Frequent insertions and deletions in large datasets",
+                      "Mathematical calculations requiring fast indexing",
+                      "Static data that rarely changes"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Linked lists excel when data changes frequently. Unlike arrays that require shifting elements, linked lists insert/delete by simply adjusting pointers. For systems like real-time chat applications or dynamic inventory management, this flexibility prevents performance bottlenecks during data modifications.",
+                    "keyConcepts": [
+                      "Dynamic Memory",
+                      "Pointer Operations",
+                      "Insertion Efficiency",
+                      "Memory Allocation"
+                    ]
+                  },
+                  {
+                    "id": "basic-structures-q3",
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "LIFO (Last-In-First-Out) ordering in stacks is essential for:",
+                    "options": [
+                      "Database query optimization",
+                      "Network packet routing algorithms",
+                      "Function call management and undo operations",
+                      "Alphabetical data sorting procedures"
+                    ],
+                    "correctAnswer": 2,
+                    "additionalContext": "Stacks naturally manage nested operations where the most recent action must be handled first. In programming, function calls use a call stack - when function A calls function B, B must complete before A can continue. Similarly, undo operations in applications need to reverse the most recent action first.",
+                    "keyConcepts": [
+                      "LIFO Pattern",
+                      "Call Stack",
+                      "Undo Operations",
+                      "Nested Processing"
+                    ]
+                  },
+                  {
+                    "id": "basic-structures-q4",
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Enterprise message queues use FIFO ordering to ensure:",
+                    "options": [
+                      "Maximum processing speed for all transactions",
+                      "Ordered processing for transaction workflows",
+                      "Automatic data backup and recovery",
+                      "Reduced memory usage in distributed systems"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "FIFO ensures fairness and maintains business logic order. For payment processing, orders submitted first should be processed first. This prevents newer transactions from jumping ahead of older ones, ensuring customer fairness and maintaining audit trails that follow chronological business rules.",
+                    "keyConcepts": [
+                      "FIFO Pattern",
+                      "Order Preservation",
+                      "Business Logic",
+                      "Transaction Fairness"
+                    ]
+                  },
+                  {
+                    "id": "basic-structures-q5",
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "What makes arrays particularly cache-efficient for enterprise applications?",
+                    "options": [
+                      "Automatic data compression reduces memory usage",
+                      "Elements stored in random memory locations",
+                      "Sequential memory layout maximizes CPU cache utilization",
+                      "Dynamic resizing prevents memory fragmentation"
+                    ],
+                    "correctAnswer": 2,
+                    "additionalContext": "Arrays store elements in contiguous memory, allowing CPUs to load multiple elements into cache with a single memory fetch. This spatial locality dramatically improves performance for operations like processing transaction records or generating reports, as subsequent elements are already in fast cache memory.",
+                    "keyConcepts": [
+                      "Cache Locality",
+                      "Sequential Memory",
+                      "Performance Optimization",
+                      "Spatial Locality"
+                    ]
+                  },
+                  {
+                    "id": "basic-structures-q6",
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "The main memory overhead of linked lists compared to arrays is:",
+                    "options": [
+                      "50-100% additional space for data storage",
+                      "8-16 bytes per element for pointer storage",
+                      "Double memory usage for all operations",
+                      "No significant memory overhead difference"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Each linked list node requires additional memory to store pointers to the next element. On 64-bit systems, this typically adds 8 bytes per element. For large datasets with millions of records, this pointer overhead can significantly impact memory usage and should be factored into capacity planning.",
+                    "keyConcepts": [
+                      "Memory Overhead",
+                      "Pointer Storage",
+                      "Capacity Planning",
+                      "Memory Efficiency"
+                    ]
+                  },
+                  {
+                    "id": "basic-structures-q7",
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Which data structure choice should handle &ldquo;We need fast lookups in our 50M user database&rdquo;?",
+                    "options": [
+                      "Linked lists for dynamic memory allocation",
+                      "Stacks for ordered data processing",
+                      "Arrays with binary search for O(log n) lookups",
+                      "Queues for fair resource allocation"
+                    ],
+                    "correctAnswer": 2,
+                    "additionalContext": "For massive datasets requiring fast lookups, sorted arrays with binary search provide O(log n) performance. With 50 million users, this means approximately 26 comparisons maximum vs potentially millions for linear search. Combined with database indexing, this approach enables sub-millisecond user lookups at enterprise scale.",
+                    "keyConcepts": [
+                      "Database Indexing",
+                      "Binary Search",
+                      "Large-Scale Lookups",
+                      "Query Optimization"
+                    ]
+                  },
+                  {
+                    "id": "basic-structures-q8",
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "What is the key selection criterion between arrays and linked lists for enterprise systems?",
+                    "options": [
+                      "Programming language compatibility",
+                      "Access patterns and memory efficiency requirements",
+                      "Developer team experience and preferences",
+                      "Database vendor recommendations"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "The decision should be data-driven, based on how the application actually uses the data. If you need random access and cache efficiency (like analytics dashboards), choose arrays. If you need frequent insertions/deletions (like real-time messaging), choose linked lists. Business requirements and performance characteristics should drive architectural decisions.",
+                    "keyConcepts": [
+                      "Access Patterns",
+                      "Performance Requirements",
+                      "Architecture Decisions",
+                      "Data-Driven Design"
+                    ]
+                  },
+                  {
+                    "id": "basic-structures-q9",
+                    "type": "freeform",
+                    "points": 4,
+                    "question": "Describe the three main customer scenarios that trigger enterprises to optimize their data structure choices. For each scenario, include the key performance impact mentioned in the article.",
+                    "sampleStrongResponse": "The three main triggers are: (1) Performance crisis - shopping cart operations taking 2-3 seconds causing user abandonment, (2) Latency issues - trade execution averaging 50ms but spiking to 200ms during volatility, and (3) Scalability problems - patient record lookups taking 5-8 seconds in large databases. These represent situations where poor data structure choices become business impediments requiring immediate optimization."
+                  },
+                  {
+                    "id": "basic-structures-q10",
+                    "type": "freeform",
+                    "points": 5,
+                    "question": "List the core performance characteristics of arrays, linked lists, stacks, and queues, and explain what types of enterprise applications would benefit most from each structure&rsquo;s strengths.",
+                    "sampleStrongResponse": "Arrays: O(1) access time and cache efficiency, ideal for real-time systems and analytics requiring random access. Linked Lists: O(1) insertion/deletion and dynamic sizing, perfect for frequently changing datasets. Stacks: LIFO ordering for function call management and undo operations in enterprise applications. Queues: FIFO ordering for task scheduling, message processing, and load balancing in distributed systems. Each optimizes for specific access patterns and enterprise requirements."
+                  }
+                ]
+              }
             },
             {
               "id": "complex-structures",
@@ -1981,7 +2162,188 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Advanced data structures for complex relationships",
-              "topics": ["Binary Trees", "Graph Traversal", "Hash Functions"]
+              "topics": ["Binary Trees", "Graph Traversal", "Hash Functions"],
+              "quiz": {
+                "title": "Complex Data Structures Knowledge Quiz",
+                "totalQuestions": 10,
+                "totalPoints": 25,
+                "questions": [
+                  {
+                    "id": "complex-structures-q1",
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "What is the primary advantage of binary search trees for enterprise applications?",
+                    "options": [
+                      "O(log n) search operations with maintained sort order",
+                      "Constant O(1) access time for all elements",
+                      "Automatic data compression and storage optimization",
+                      "Built-in multi-threading and parallel processing"
+                    ],
+                    "correctAnswer": 0,
+                    "additionalContext": "Binary search trees combine the efficiency of binary search with the flexibility of dynamic insertion and deletion. Each operation maintains O(log n) time complexity while preserving sorted order, making them ideal for applications like real-time leaderboards or dynamically updating price lists where both search speed and order matter.",
+                    "keyConcepts": [
+                      "Logarithmic Complexity",
+                      "Dynamic Ordering",
+                      "Search Efficiency",
+                      "Tree Traversal"
+                    ]
+                  },
+                  {
+                    "id": "complex-structures-q2",
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Which graph traversal algorithm would be most appropriate for finding shortest paths in enterprise routing systems?",
+                    "options": [
+                      "Depth-first search for maximum coverage",
+                      "Breadth-first search for unweighted shortest paths",
+                      "Random traversal for load distribution",
+                      "Sequential linear search through all nodes"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "BFS explores nodes level by level, guaranteeing it finds the shortest path first in unweighted graphs. For network routing, delivery optimization, or social network connections, BFS ensures the minimum number of hops. For weighted graphs (like traffic costs), more advanced algorithms like Dijkstra's build on BFS principles.",
+                    "keyConcepts": [
+                      "Breadth-First Search",
+                      "Shortest Path",
+                      "Graph Traversal",
+                      "Network Routing"
+                    ]
+                  },
+                  {
+                    "id": "complex-structures-q3",
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Hash tables achieve O(1) average-case performance by:",
+                    "options": [
+                      "Storing all data in sequential memory locations",
+                      "Using binary search trees for collision resolution",
+                      "Mapping keys directly to storage locations via hash functions",
+                      "Maintaining sorted order of all stored elements"
+                    ],
+                    "correctAnswer": 2,
+                    "additionalContext": "Hash functions transform keys into array indices, enabling direct access without searching. A good hash function distributes keys uniformly across the table, making most operations require just one memory access. This makes hash tables ideal for caches, databases, and any application requiring fast key-value lookups.",
+                    "keyConcepts": [
+                      "Hash Functions",
+                      "Direct Access",
+                      "Key-Value Mapping",
+                      "Uniform Distribution"
+                    ]
+                  },
+                  {
+                    "id": "complex-structures-q4",
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "What is the recommended load factor threshold for enterprise hash table implementations?",
+                    "options": [
+                      "90-95% for maximum space efficiency",
+                      "Below 75% to maintain optimal performance",
+                      "100% to eliminate wasted memory",
+                      "50% to minimize any collision possibility"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Load factor above 75% significantly increases collision probability, degrading performance from O(1) toward O(n). Enterprise systems prioritize predictable performance over memory savings. Keeping load factor below 75% ensures consistent response times, which is crucial for user-facing applications and real-time systems.",
+                    "keyConcepts": [
+                      "Load Factor",
+                      "Collision Probability",
+                      "Performance Degradation",
+                      "Predictable Performance"
+                    ]
+                  },
+                  {
+                    "id": "complex-structures-q5",
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "B-trees are specifically optimized for:",
+                    "options": [
+                      "In-memory data processing with minimal overhead",
+                      "Network communication and distributed systems",
+                      "Disk storage with large branching factors for database systems",
+                      "Real-time processing with guaranteed response times"
+                    ],
+                    "correctAnswer": 2,
+                    "additionalContext": "B-trees minimize disk I/O by storing many keys per node, reducing tree height and required disk reads. Each node matches disk block size, making every disk access retrieve maximum useful data. This design is fundamental to database indexes, file systems, and any storage system where disk access time dominates performance.",
+                    "keyConcepts": [
+                      "Disk Optimization",
+                      "Block Size Matching",
+                      "I/O Minimization",
+                      "Database Indexes"
+                    ]
+                  },
+                  {
+                    "id": "complex-structures-q6",
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "The main advantage of balanced trees (AVL, Red-Black) over simple binary search trees is:",
+                    "options": [
+                      "Faster insertion operations in all scenarios",
+                      "Lower memory usage per node stored",
+                      "Guaranteed O(log n) performance through height balancing",
+                      "Automatic data sorting and duplicate elimination"
+                    ],
+                    "correctAnswer": 2,
+                    "additionalContext": "Simple BSTs can degrade to O(n) performance with skewed data (like inserting sorted data). Balanced trees maintain O(log n) guarantees through automatic rebalancing, ensuring consistent performance regardless of input patterns. This predictability is essential for enterprise applications with SLA requirements.",
+                    "keyConcepts": [
+                      "Tree Balancing",
+                      "Performance Guarantees",
+                      "Worst-Case Prevention",
+                      "SLA Compliance"
+                    ]
+                  },
+                  {
+                    "id": "complex-structures-q7",
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Which collision resolution strategy is generally preferred for enterprise hash table implementations?",
+                    "options": [
+                      "Linear probing for maximum cache efficiency",
+                      "Quadratic probing to reduce clustering effects",
+                      "Chaining with linked lists for predictable behavior",
+                      "Double hashing for optimal distribution patterns"
+                    ],
+                    "correctAnswer": 2,
+                    "additionalContext": "Chaining provides predictable O(1) average performance and graceful degradation under high load. Unlike open addressing methods that can fail when tables fill up, chaining always allows insertions. The consistent behavior is crucial for enterprise systems where performance predictability matters more than optimal cache usage.",
+                    "keyConcepts": [
+                      "Collision Resolution",
+                      "Chaining",
+                      "Graceful Degradation",
+                      "Performance Predictability"
+                    ]
+                  },
+                  {
+                    "id": "complex-structures-q8",
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Graph data structures are most valuable for enterprise applications requiring:",
+                    "options": [
+                      "Sequential data processing with fixed order",
+                      "Complex relationship modeling and network analysis",
+                      "Simple key-value storage with fast lookups",
+                      "Mathematical calculations with numeric data"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Graphs excel at representing many-to-many relationships like social networks, supply chains, or organizational hierarchies. They enable sophisticated analysis like finding shortest paths, detecting communities, or identifying influencers. No other data structure can naturally represent complex interconnected relationships this effectively.",
+                    "keyConcepts": [
+                      "Relationship Modeling",
+                      "Network Analysis",
+                      "Many-to-Many Relationships",
+                      "Complex Interconnections"
+                    ]
+                  },
+                  {
+                    "id": "complex-structures-q9",
+                    "type": "freeform",
+                    "points": 4,
+                    "question": "Describe the three main enterprise scenarios mentioned in the article where companies needed to optimize their complex data structures. Include the specific performance improvement achieved in each case.",
+                    "sampleStrongResponse": "The three scenarios are: (1) Social media platform with friend recommendations taking 30+ seconds, improved by 95% to 1.5s average using graph-based algorithms, (2) Financial risk management with 12+ hour Monte Carlo simulations, reduced by 90% to 20 minutes using segment trees, and (3) E-commerce search with 8-12 second response times, improved by 90% to 800ms using trie-based autocomplete and B+ tree indices. Each represents performance optimization becoming a business imperative."
+                  },
+                  {
+                    "id": "complex-structures-q10",
+                    "type": "freeform",
+                    "points": 5,
+                    "question": "Analyze the core performance characteristics of trees, graphs, and hash tables. For each structure, explain what types of enterprise applications would benefit most from their specific strengths and operational complexities.",
+                    "sampleStrongResponse": "Trees excel at hierarchical data with O(log n) balanced operations, ideal for databases, file systems, and decision trees. Graphs handle complex relationships with O(V + E) traversal complexity, perfect for social networks, routing systems, and dependency analysis. Hash tables provide O(1) average access with 20-50% memory overhead, optimal for caches, lookup systems, and real-time applications. Selection depends on data relationships, access patterns, and performance requirements - trees for sorted access, graphs for relationship analysis, hash tables for fast lookups."
+                  }
+                ]
+              }
             },
             {
               "id": "algorithm-design",
@@ -1993,7 +2355,188 @@
                 "Big O Notation",
                 "Time/Space Complexity",
                 "Optimization"
-              ]
+              ],
+              "quiz": {
+                "title": "Algorithm Design & Complexity Knowledge Quiz",
+                "totalQuestions": 10,
+                "totalPoints": 25,
+                "questions": [
+                  {
+                    "id": "algorithm-design-q1",
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "What does Big O notation primarily measure in algorithm analysis?",
+                    "options": [
+                      "How algorithm performance scales as input size grows",
+                      "The exact execution time in milliseconds",
+                      "The amount of code required to implement",
+                      "The number of programming languages supported"
+                    ],
+                    "correctAnswer": 0,
+                    "additionalContext": "Big O describes asymptotic behavior - how performance changes as data grows. An O(n²) algorithm might be fast with 100 records but unusable with 10 million. This scaling analysis helps predict whether solutions will work at enterprise scale, regardless of hardware differences or implementation details.",
+                    "keyConcepts": [
+                      "Scalability Analysis",
+                      "Asymptotic Behavior",
+                      "Performance Prediction",
+                      "Enterprise Scale"
+                    ]
+                  },
+                  {
+                    "id": "algorithm-design-q2",
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Which complexity improvement represents the most significant performance gain?",
+                    "options": [
+                      "O(n) to O(n log n) for sorting algorithms",
+                      "O(2ⁿ) to O(n) through dynamic programming",
+                      "O(log n) to O(1) for data access",
+                      "O(n²) to O(n log n) for search operations"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Exponential to polynomial represents a transformational improvement. With 20 inputs, O(2²⁰) requires over 1 million operations while O(n) needs just 20. Problems that were computationally infeasible become practical through techniques like memoization and optimal substructure identification.",
+                    "keyConcepts": [
+                      "Exponential vs Polynomial",
+                      "Dynamic Programming",
+                      "Memoization",
+                      "Computational Feasibility"
+                    ]
+                  },
+                  {
+                    "id": "algorithm-design-q3",
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Dynamic programming optimization works by:",
+                    "options": [
+                      "Automatically parallelizing all computations",
+                      "Storing intermediate results to avoid recalculation",
+                      "Using faster hardware for computation",
+                      "Simplifying the problem to reduce complexity"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Dynamic programming leverages memoization to cache previously computed results. Instead of recalculating the same subproblems repeatedly, it stores solutions in memory for instant retrieval. This transforms exponential algorithms into polynomial ones, making complex optimizations like route planning or resource allocation computationally feasible.",
+                    "keyConcepts": [
+                      "Memoization",
+                      "Subproblem Caching",
+                      "Exponential to Polynomial",
+                      "Optimization Algorithms"
+                    ]
+                  },
+                  {
+                    "id": "algorithm-design-q4",
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Divide and conquer algorithms achieve efficiency by:",
+                    "options": [
+                      "Processing all data elements simultaneously",
+                      "Breaking problems into smaller, manageable subproblems",
+                      "Using specialized hardware for calculations",
+                      "Eliminating unnecessary data validation steps"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Divide and conquer recursively breaks large problems into smaller, independent subproblems. This enables parallel processing and often reduces complexity from O(n²) to O(n log n). Classic examples include merge sort and quick sort, where dividing arrays enables efficient sorting at scale.",
+                    "keyConcepts": [
+                      "Recursive Decomposition",
+                      "Parallel Processing",
+                      "Subproblem Independence",
+                      "Complexity Reduction"
+                    ]
+                  },
+                  {
+                    "id": "algorithm-design-q5",
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Greedy algorithms typically achieve what percentage of optimal solutions?",
+                    "options": [
+                      "50-70% optimality with faster execution",
+                      "100% optimality with slower execution",
+                      "80-95% optimality while running in polynomial time",
+                      "Variable optimality depending on input size"
+                    ],
+                    "correctAnswer": 2,
+                    "additionalContext": "Greedy algorithms make locally optimal choices at each step, often achieving near-optimal solutions very efficiently. For enterprise applications like load balancing or resource allocation, 80-95% optimality with fast execution is often preferable to perfect solutions that take too long to compute.",
+                    "keyConcepts": [
+                      "Local Optimization",
+                      "Near-Optimal Solutions",
+                      "Efficiency Trade-offs",
+                      "Real-time Constraints"
+                    ]
+                  },
+                  {
+                    "id": "algorithm-design-q6",
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "For enterprise capacity planning, which complexity case is most important?",
+                    "options": [
+                      "Best case scenario for optimal performance",
+                      "Worst case scenario for system reliability",
+                      "Average case scenario for typical workloads",
+                      "All cases equally for comprehensive analysis"
+                    ],
+                    "correctAnswer": 2,
+                    "additionalContext": "While worst-case analysis prevents catastrophic failures, average-case analysis guides day-to-day capacity planning. Enterprise systems must handle typical workloads efficiently. Planning for worst-case scenarios for everything would be prohibitively expensive, while best-case planning would lead to frequent overloads.",
+                    "keyConcepts": [
+                      "Capacity Planning",
+                      "Average-Case Analysis",
+                      "Resource Allocation",
+                      "Cost-Performance Balance"
+                    ]
+                  },
+                  {
+                    "id": "algorithm-design-q7",
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Space complexity becomes critical in enterprise systems when:",
+                    "options": [
+                      "Processing large datasets with limited memory",
+                      "All algorithms require the same memory usage",
+                      "Time complexity is already optimized",
+                      "Using cloud infrastructure with unlimited resources"
+                    ],
+                    "correctAnswer": 0,
+                    "additionalContext": "Memory constraints become critical when processing large datasets, especially in mobile applications, embedded systems, or when working with massive datasets that approach system memory limits. Even cloud infrastructure has cost implications for memory usage, making space-efficient algorithms valuable.",
+                    "keyConcepts": [
+                      "Memory Constraints",
+                      "Large Dataset Processing",
+                      "Resource Optimization",
+                      "Cost Efficiency"
+                    ]
+                  },
+                  {
+                    "id": "algorithm-design-q8",
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "The most appropriate algorithmic approach for real-time enterprise systems is:",
+                    "options": [
+                      "Complex optimal algorithms regardless of execution time",
+                      "Simple algorithms with predictable performance characteristics",
+                      "Machine learning algorithms for all decision making",
+                      "Exhaustive search algorithms for complete accuracy"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Real-time systems prioritize predictability over perfection. A simple algorithm that consistently executes in 10ms is preferable to a complex one that might take 5ms or 50ms. Predictable performance enables reliable system design and SLA compliance.",
+                    "keyConcepts": [
+                      "Real-time Constraints",
+                      "Predictable Performance",
+                      "SLA Compliance",
+                      "Reliability over Optimality"
+                    ]
+                  },
+                  {
+                    "id": "algorithm-design-q9",
+                    "type": "freeform",
+                    "points": 4,
+                    "question": "Describe the three main customer scenarios from the article where algorithmic optimization provided significant business value. Include the specific performance improvements achieved.",
+                    "sampleStrongResponse": "The three scenarios are: (1) Logistics optimization with route calculations taking 8 hours reduced by 95% to 20 minutes, saving $600K monthly in fuel costs, (2) Financial risk analytics with 12+ hour Monte Carlo simulations reduced by 90% to 75 minutes, avoiding $15M in losses through faster risk detection, and (3) Video streaming with 6-hour recommendation processing reduced by 98% to 7 minutes, achieving 45% user engagement increase. Each demonstrates algorithmic optimization becoming a competitive advantage."
+                  },
+                  {
+                    "id": "algorithm-design-q10",
+                    "type": "freeform",
+                    "points": 5,
+                    "question": "Analyze the trade-offs between different algorithm design approaches. Compare dynamic programming, greedy algorithms, and divide-and-conquer strategies in terms of optimality, complexity, and appropriate enterprise use cases.",
+                    "sampleStrongResponse": "Dynamic programming provides optimal solutions by avoiding recalculation but requires memory for memoization - ideal for optimization problems like resource allocation. Greedy algorithms offer 80-95% optimality with polynomial time complexity, suitable for real-time systems where good-enough solutions suffice. Divide-and-conquer enables parallel processing and handles large datasets efficiently, perfect for sorting and distributed computing. Selection depends on accuracy requirements, performance constraints, and system resources - optimal solutions for critical decisions, greedy for real-time responses, divide-and-conquer for scalable processing."
+                  }
+                ]
+              }
             },
             {
               "id": "common-patterns",
@@ -2001,7 +2544,188 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Frequently used algorithmic patterns",
-              "topics": ["Binary Search", "Quick Sort", "Recursive Thinking"]
+              "topics": ["Binary Search", "Quick Sort", "Recursive Thinking"],
+              "quiz": {
+                "title": "Common Algorithm Patterns Knowledge Quiz",
+                "totalQuestions": 10,
+                "totalPoints": 25,
+                "questions": [
+                  {
+                    "id": "common-patterns-q1",
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Binary search requires data to be:",
+                    "options": [
+                      "Sorted in ascending or descending order",
+                      "Stored in linked list format",
+                      "Distributed across multiple servers",
+                      "Cached in high-speed memory"
+                    ],
+                    "correctAnswer": 0,
+                    "additionalContext": "Binary search works by repeatedly dividing the search space in half. This divide-and-conquer approach only works when we can make assumptions about which half contains our target value. This is only possible when the data is sorted, allowing us to compare the target with the middle element and eliminate half the remaining possibilities.",
+                    "keyConcepts": [
+                      "Divide and Conquer",
+                      "Sorted Data",
+                      "O(log n) Complexity",
+                      "Search Algorithms"
+                    ]
+                  },
+                  {
+                    "id": "common-patterns-q2",
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Quick sort&rsquo;s average-case time complexity is:",
+                    "options": [
+                      "O(n) linear time for all datasets",
+                      "O(n log n) for typical data distributions",
+                      "O(n²) quadratic time consistently",
+                      "O(log n) logarithmic for sorted data"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Quick sort&rsquo;s performance depends on partition quality. With random data, partitions are typically balanced, leading to O(n log n) average case. However, worst-case scenarios (like already sorted data with poor pivot selection) can degrade to O(n²). This is why modern implementations use techniques like median-of-three pivot selection.",
+                    "keyConcepts": [
+                      "Time Complexity",
+                      "Pivot Selection",
+                      "Divide and Conquer",
+                      "Average vs Worst Case"
+                    ]
+                  },
+                  {
+                    "id": "common-patterns-q3",
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "The critical requirement for safe recursion is:",
+                    "options": [
+                      "Using only global variables for data storage",
+                      "Having a clear base case to prevent infinite loops",
+                      "Processing data in sequential order only",
+                      "Avoiding any function parameter passing"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Recursion works by having a function call itself with modified parameters. Without a base case (a condition that stops the recursion), the function would call itself infinitely, leading to stack overflow. The base case defines the simplest version of the problem that can be solved directly.",
+                    "keyConcepts": [
+                      "Base Case",
+                      "Stack Overflow",
+                      "Recursive Design",
+                      "Termination Condition"
+                    ]
+                  },
+                  {
+                    "id": "common-patterns-q4",
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Binary search on 1 million records requires approximately how many comparisons?",
+                    "options": [
+                      "500,000 comparisons on average",
+                      "1,000,000 comparisons in worst case",
+                      "~20 comparisons using divide-and-conquer",
+                      "10,000 comparisons with optimization"
+                    ],
+                    "correctAnswer": 2,
+                    "additionalContext": "Binary search has O(log n) complexity. For 1 million records: log₂(1,000,000) ≈ 20. Each comparison eliminates half the remaining possibilities, making it extremely efficient even for massive datasets. This demonstrates the power of divide-and-conquer algorithms.",
+                    "keyConcepts": [
+                      "Logarithmic Growth",
+                      "Big O Notation",
+                      "Scalability",
+                      "Algorithmic Efficiency"
+                    ]
+                  },
+                  {
+                    "id": "common-patterns-q5",
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Merge sort is preferred over quick sort when:",
+                    "options": [
+                      "Memory usage is not a concern",
+                      "Guaranteed O(n log n) performance is required",
+                      "Processing small datasets efficiently",
+                      "Working with numeric data exclusively"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Merge sort always performs at O(n log n) regardless of input data, while quick sort can degrade to O(n²) in worst cases. For mission-critical systems where predictable performance is essential (like real-time processing), merge sort&rsquo;s stability is worth the extra memory overhead.",
+                    "keyConcepts": [
+                      "Performance Guarantee",
+                      "Worst-Case Analysis",
+                      "Stability",
+                      "Real-time Systems"
+                    ]
+                  },
+                  {
+                    "id": "common-patterns-q6",
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Deep recursion (&gt;1000 levels) may require:",
+                    "options": [
+                      "Faster processors with more CPU cores",
+                      "Additional memory allocation for variables",
+                      "Iterative alternatives to prevent stack overflow",
+                      "Specialized programming languages only"
+                    ],
+                    "correctAnswer": 2,
+                    "additionalContext": "Each recursive call adds a frame to the call stack. Deep recursion can exhaust stack memory, causing overflow errors. Converting to iterative approaches using explicit stacks or queues provides the same logic without stack limitations, essential for processing large datasets or deep tree structures.",
+                    "keyConcepts": [
+                      "Call Stack",
+                      "Stack Overflow",
+                      "Tail Recursion",
+                      "Iterative Conversion"
+                    ]
+                  },
+                  {
+                    "id": "common-patterns-q7",
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "String matching algorithms like KMP achieve efficiency by:",
+                    "options": [
+                      "Preprocessing patterns to avoid redundant comparisons",
+                      "Using parallel processing for all text analysis",
+                      "Storing all possible text combinations in memory",
+                      "Converting text to numeric values for faster processing"
+                    ],
+                    "correctAnswer": 0,
+                    "additionalContext": "KMP (Knuth-Morris-Pratt) builds a failure function that remembers partial matches. When a mismatch occurs, instead of starting over, it uses this preprocessing to skip characters we know won&rsquo;t match. This transforms naive O(nm) string matching into efficient O(n+m) performance.",
+                    "keyConcepts": [
+                      "Preprocessing",
+                      "Failure Function",
+                      "Pattern Matching",
+                      "Linear Time Complexity"
+                    ]
+                  },
+                  {
+                    "id": "common-patterns-q8",
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "The best algorithmic pattern for real-time enterprise search systems is:",
+                    "options": [
+                      "Linear search through all available data",
+                      "Binary search on indexed, sorted datasets",
+                      "Recursive traversal of unstructured data",
+                      "Random sampling for approximate results"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Enterprise search systems need sub-second response times. Binary search on properly indexed data provides O(log n) performance, scaling efficiently even with millions of records. Combined with smart indexing strategies, this allows real-time search that feels instantaneous to users while maintaining accuracy.",
+                    "keyConcepts": [
+                      "Real-time Performance",
+                      "Database Indexing",
+                      "Search Optimization",
+                      "User Experience"
+                    ]
+                  },
+                  {
+                    "id": "common-patterns-q9",
+                    "type": "freeform",
+                    "points": 4,
+                    "question": "Describe the two main customer scenarios mentioned in the article where optimized search and sorting patterns provided significant business impact. Include the specific improvements achieved.",
+                    "sampleStrongResponse": "The two scenarios are: (1) E-commerce search platform with product search taking 3-8 seconds plus 2-4 seconds for sorting, improved by 85% to sub-500ms responses through binary search and optimized merge sort, resulting in 95% user retention improvement and $18M additional revenue, and (2) Log analytics platform processing 100GB daily logs taking 12+ hours for security pattern detection, reduced by 90% to 75 minutes using Boyer-Moore string matching, achieving 99.8% threat response improvement."
+                  },
+                  {
+                    "id": "common-patterns-q10",
+                    "type": "freeform",
+                    "points": 5,
+                    "question": "Compare binary search, sorting algorithms, and recursion patterns in terms of their complexity characteristics and most appropriate enterprise use cases. Explain when each pattern provides the most value.",
+                    "sampleStrongResponse": "Binary search provides O(log n) efficiency for sorted data, ideal for database indices and real-time lookups requiring fast access. Sorting algorithms (Quick sort O(n log n), Merge sort stable O(n log n)) organize data for efficient processing, essential for report generation and data analysis. Recursion elegantly handles hierarchical problems like file systems and organizational structures but requires careful memory management. Selection depends on data characteristics: binary search for frequent lookups, sorting for data preparation, recursion for naturally hierarchical problems. Enterprise value comes from matching algorithmic strengths to specific business requirements and access patterns."
+                  }
+                ]
+              }
             }
           ]
         },
@@ -2017,7 +2741,192 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Building blocks for code organization",
-              "topics": ["Module Systems", "Class Design", "Function Libraries"]
+              "topics": [
+                "Module Systems",
+                "Class Design",
+                "Function Libraries"
+              ],
+              "quiz": {
+                "title": "Functions, Classes & Modules Knowledge Quiz",
+                "totalQuestions": 10,
+                "totalPoints": 25,
+                "questions": [
+                  {
+                    "id": "functions-classes-modules-q1",
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Pure functions provide which key benefit for enterprise development?",
+                    "options": [
+                      "Same inputs always produce same outputs with no side effects",
+                      "Automatic optimization for faster execution speed",
+                      "Built-in error handling for all possible inputs",
+                      "Direct access to database and external systems"
+                    ],
+                    "correctAnswer": 0,
+                    "additionalContext": "Pure functions are predictable and testable because they have no hidden dependencies or side effects. This makes enterprise systems more reliable, easier to debug, and safer to modify. Pure functions enable parallel processing and make code easier to reason about during code reviews.",
+                    "keyConcepts": [
+                      "Predictability",
+                      "Testability",
+                      "No Side Effects",
+                      "Parallel Processing"
+                    ]
+                  },
+                  {
+                    "id": "functions-classes-modules-q2",
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Encapsulation in object-oriented programming enables:",
+                    "options": [
+                      "Faster execution of all class methods",
+                      "Private data with controlled access through methods",
+                      "Automatic memory management for all objects",
+                      "Direct modification of internal state from anywhere"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Encapsulation protects internal object state by exposing only controlled interfaces. This prevents external code from breaking object invariants and enables safe refactoring. For enterprise systems, encapsulation reduces bugs and makes complex systems more maintainable.",
+                    "keyConcepts": [
+                      "Data Protection",
+                      "Controlled Access",
+                      "Object Invariants",
+                      "Safe Refactoring"
+                    ]
+                  },
+                  {
+                    "id": "functions-classes-modules-q3",
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Module systems provide namespace organization by:",
+                    "options": [
+                      "Automatically generating documentation for all functions",
+                      "Combining all code into a single large file",
+                      "Preventing naming conflicts and improving code discoverability",
+                      "Optimizing performance through code compilation"
+                    ],
+                    "correctAnswer": 2,
+                    "additionalContext": "Module systems create logical namespaces that prevent function and variable name collisions. In large enterprise codebases with multiple teams, modules ensure that 'UserService' in the authentication module doesn't conflict with 'UserService' in the reporting module. This organization also makes code more discoverable and maintainable.",
+                    "keyConcepts": [
+                      "Namespace Organization",
+                      "Naming Conflicts",
+                      "Code Discoverability",
+                      "Team Collaboration"
+                    ]
+                  },
+                  {
+                    "id": "functions-classes-modules-q4",
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Interface contracts in enterprise applications enable:",
+                    "options": [
+                      "Automatic testing of all code functionality",
+                      "Parallel development with clear API specifications",
+                      "Faster execution through hardware optimization",
+                      "Direct database access without abstraction layers"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Interface contracts define clear API specifications that enable teams to work in parallel. Frontend teams can develop against mock implementations while backend teams build the actual services. This approach reduces integration issues and accelerates development timelines in large enterprise projects.",
+                    "keyConcepts": [
+                      "API Contracts",
+                      "Parallel Development",
+                      "Mock Implementations",
+                      "Integration Efficiency"
+                    ]
+                  },
+                  {
+                    "id": "functions-classes-modules-q5",
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "The main advantage of dependency injection patterns is:",
+                    "options": [
+                      "Eliminating all external service dependencies",
+                      "Providing shared services through interfaces rather than tight coupling",
+                      "Automatic performance optimization for all components",
+                      "Direct access to internal implementation details"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Dependency injection provides loose coupling by injecting dependencies through interfaces rather than hard-coding them. This enables easier testing (inject mocks), configuration flexibility (swap implementations), and better maintainability. Critical for enterprise systems that need to adapt to changing requirements.",
+                    "keyConcepts": [
+                      "Loose Coupling",
+                      "Interface Injection",
+                      "Testability",
+                      "Configuration Flexibility"
+                    ]
+                  },
+                  {
+                    "id": "functions-classes-modules-q6",
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Well-designed inheritance hierarchies benefit enterprise systems by:",
+                    "options": [
+                      "Eliminating the need for any interface definitions",
+                      "Base classes providing common functionality while derived classes implement specific behaviors",
+                      "Automatic optimization of memory usage patterns",
+                      "Direct access to all parent class private members"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Good inheritance hierarchies promote code reuse by centralizing common functionality in base classes while allowing specialized behavior in derived classes. This reduces duplication and ensures consistent behavior across related components, crucial for maintainable enterprise applications.",
+                    "keyConcepts": [
+                      "Code Reuse",
+                      "Common Functionality",
+                      "Specialized Behavior",
+                      "Consistent Behavior"
+                    ]
+                  },
+                  {
+                    "id": "functions-classes-modules-q7",
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Export strategies in module design should prioritize:",
+                    "options": [
+                      "Exporting all internal functions for maximum flexibility",
+                      "Named exports for specific functionality, default exports for primary purpose",
+                      "Hiding all functionality to prevent external access",
+                      "Automatic generation of all export declarations"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Strategic exports balance usability with maintainability. Named exports make specific functions discoverable while default exports provide the main module interface. This approach gives consumers clear guidance on primary vs utility functions while maintaining encapsulation of internal implementation details.",
+                    "keyConcepts": [
+                      "Export Strategy",
+                      "Interface Design",
+                      "Encapsulation",
+                      "Module Usability"
+                    ]
+                  },
+                  {
+                    "id": "functions-classes-modules-q8",
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "The customer success story mentioned achieved what improvement from modular refactoring?",
+                    "options": [
+                      "25% code complexity reduction with faster deployment",
+                      "70% code duplication reduction with 50% faster development",
+                      "90% performance improvement with lower memory usage",
+                      "100% bug elimination with automated testing"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Modular refactoring dramatically reduces code duplication by extracting common functionality into reusable modules. This leads to faster development because teams write less code, fewer bugs because shared code is tested once, and easier maintenance because changes need to be made in only one place.",
+                    "keyConcepts": [
+                      "Code Duplication Reduction",
+                      "Development Speed",
+                      "Shared Components",
+                      "Maintenance Efficiency"
+                    ]
+                  },
+                  {
+                    "id": "functions-classes-modules-q9",
+                    "type": "freeform",
+                    "points": 4,
+                    "question": "Explain the three main organizational benefits mentioned in the article that result from proper function, class, and module design in enterprise environments.",
+                    "sampleStrongResponse": "The three main benefits are: (1) Code reusability through shared function libraries and well-designed classes, reducing duplication and ensuring consistency, (2) Team collaboration enhancement through clear interfaces and modular boundaries that minimize conflicts and enable parallel development, and (3) Maintenance efficiency through encapsulation and single-purpose components that make debugging and updates faster and more predictable. These benefits compound in large enterprise teams where coordination and code quality directly impact delivery speed."
+                  },
+                  {
+                    "id": "functions-classes-modules-q10",
+                    "type": "freeform",
+                    "points": 5,
+                    "question": "Compare functions, classes, and modules in terms of their organizational strengths and appropriate use cases in enterprise development. Explain how they work together to create maintainable systems.",
+                    "sampleStrongResponse": "Functions excel at encapsulating specific operations with clear inputs/outputs, ideal for business logic and data transformations. Classes organize related data and behavior together, perfect for modeling business entities and system components with state management. Modules provide namespace organization and dependency management, essential for large-scale application structure and team coordination. They work together hierarchically: functions handle specific tasks, classes group related functions and data, modules organize classes and functions into logical units. This layered approach enables enterprise systems to scale by providing clear boundaries, reusable components, and maintainable architecture that teams can understand and modify safely."
+                  }
+                ]
+              }
             },
             {
               "id": "separation-of-concerns",
@@ -2025,7 +2934,153 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Principles for clean, maintainable code",
-              "topics": ["SRP", "Modularity", "Clean Code"]
+              "topics": ["SRP", "Modularity", "Clean Code"],
+              "quiz": {
+                "title": "Separation of Concerns Knowledge Quiz",
+                "totalQuestions": 10,
+                "totalPoints": 25,
+                "questions": [
+                  {
+                    "id": "separation-of-concerns-q1",
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "The Single Responsibility Principle states that each module should:",
+                    "options": [
+                      "Handle as many different tasks as possible for efficiency",
+                      "Have only one reason to change, focusing on a single responsibility",
+                      "Process all types of data within the same component",
+                      "Manage both user interface and database operations together"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "SRP reduces complexity by ensuring each component has a clear, focused purpose. When business rules change, you modify business logic modules. When UI requirements change, you modify presentation modules. This separation makes changes safer and more predictable in enterprise systems.",
+                    "keyConcepts": [
+                      "Single Purpose",
+                      "Change Isolation",
+                      "Clear Boundaries",
+                      "Predictable Modifications"
+                    ]
+                  },
+                  {
+                    "id": "separation-of-concerns-q2",
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Layered architecture benefits enterprise applications by:",
+                    "options": [
+                      "Combining all functionality into a single comprehensive layer",
+                      "Separating presentation, business logic, and data access concerns",
+                      "Eliminating the need for any interfaces between components",
+                      "Automatically optimizing performance across all operations"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Layered architecture isolates different types of concerns, making each layer replaceable and testable independently. You can change database technology without affecting business logic, or redesign the UI without touching data access code. This flexibility is crucial for long-term enterprise system maintenance.",
+                    "keyConcepts": [
+                      "Layer Isolation",
+                      "Independent Testing",
+                      "Technology Flexibility",
+                      "Maintainability"
+                    ]
+                  },
+                  {
+                    "id": "separation-of-concerns-q3",
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Cross-cutting concerns like logging and security should be handled through:",
+                    "options": [
+                      "Duplicating the same code in every business component",
+                      "Aspect-oriented programming and dependency injection patterns",
+                      "Embedding all functionality directly in the database",
+                      "Requiring manual implementation in each module"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Cross-cutting concerns affect multiple modules but shouldn't be duplicated everywhere. AOP and dependency injection centralize these concerns, ensuring consistent implementation and easier maintenance. Security policies or logging formats can be updated in one place rather than scattered across hundreds of files.",
+                    "keyConcepts": [
+                      "Cross-cutting Concerns",
+                      "Aspect-Oriented Programming",
+                      "Centralized Implementation",
+                      "Consistency"
+                    ]
+                  },
+                  {
+                    "id": "separation-of-concerns-q4",
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Interface-based design enables enterprise teams to:",
+                    "options": [
+                      "Eliminate all testing requirements for components",
+                      "Develop components in parallel with clear API contracts",
+                      "Combine all business logic into single large functions",
+                      "Access internal implementation details directly"
+                    ],
+                    "correctAnswer": 1
+                  },
+                  {
+                    "id": "separation-of-concerns-q5",
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Proper separation of concerns typically reduces development complexity by:",
+                    "options": [
+                      "10-20% through minor organizational improvements",
+                      "40-60% by enabling independent development and testing",
+                      "80-90% by eliminating all architectural decisions",
+                      "25-30% through automatic code generation"
+                    ],
+                    "correctAnswer": 1
+                  },
+                  {
+                    "id": "separation-of-concerns-q6",
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "The main benefit of separating business logic from data access layers is:",
+                    "options": [
+                      "Automatic performance optimization for all database queries",
+                      "Business rules operate independently of data storage implementation",
+                      "Elimination of all potential security vulnerabilities",
+                      "Direct manipulation of database structures from user interfaces"
+                    ],
+                    "correctAnswer": 1
+                  },
+                  {
+                    "id": "separation-of-concerns-q7",
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Dependency injection helps maintain separation of concerns by:",
+                    "options": [
+                      "Eliminating all external service dependencies completely",
+                      "Providing shared services through interfaces rather than tight coupling",
+                      "Automatically generating all required implementation code",
+                      "Combining all dependencies into a single central service"
+                    ],
+                    "correctAnswer": 1
+                  },
+                  {
+                    "id": "separation-of-concerns-q8",
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Teams benefit from separation of concerns through:",
+                    "options": [
+                      "Automatic coordination of all development activities",
+                      "Reduced merge conflicts and specialized expertise development",
+                      "Elimination of all communication requirements",
+                      "Shared responsibility for all system components"
+                    ],
+                    "correctAnswer": 1
+                  },
+                  {
+                    "id": "separation-of-concerns-q9",
+                    "type": "freeform",
+                    "points": 4,
+                    "question": "Describe the two main customer scenarios mentioned in the article where poor separation of concerns created business problems, and explain how proper separation resolved these issues.",
+                    "sampleStrongResponse": "The two scenarios are: (1) E-commerce platform with intertwined UI, business logic, and database code causing 4-6 week feature development times and frequent production issues, resolved through layered architecture achieving 75% development time reduction and 90% fewer conflicts, and (2) Financial services platform where regulatory changes required modifying 40+ files due to complex interdependencies, solved by single responsibility principle and interface-based design achieving 85% change impact reduction and 70% faster compliance updates."
+                  },
+                  {
+                    "id": "separation-of-concerns-q10",
+                    "type": "freeform",
+                    "points": 5,
+                    "question": "Analyze the relationship between separation of concerns and team scalability in enterprise environments. Explain how architectural decisions impact development team efficiency and coordination.",
+                    "sampleStrongResponse": "Separation of concerns enables team scalability by creating clear boundaries that reduce coordination overhead and conflicts. When presentation, business logic, and data layers are properly separated, teams can work independently on their specialized areas without stepping on each other&rsquo;s work. This architectural approach supports linear team growth where adding developers increases capacity proportionally rather than creating communication bottlenecks. Clear interfaces between layers enable parallel development, specialized expertise, and independent deployment cycles. The result is enterprise teams that can scale from small groups to large organizations while maintaining development velocity and code quality."
+                  }
+                ]
+              }
             },
             {
               "id": "code-reusability",
@@ -2037,7 +3092,132 @@
                 "DRY Principle",
                 "Abstraction Layers",
                 "Component Design"
-              ]
+              ],
+              "quiz": {
+                "title": "Code Reusability & Abstraction Knowledge Quiz",
+                "totalQuestions": 10,
+                "totalPoints": 25,
+                "questions": [
+                  {
+                    "id": "code-reusability-q1",
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "The DRY Principle (Don&rsquo;t Repeat Yourself) helps enterprise development by:",
+                    "options": [
+                      "Eliminating code duplication through shared libraries and components",
+                      "Automatically optimizing performance for all applications",
+                      "Requiring separate implementation for each use case",
+                      "Focusing only on user interface design patterns"
+                    ],
+                    "correctAnswer": 0
+                  },
+                  {
+                    "id": "code-reusability-q2",
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Abstraction layers benefit enterprise systems by:",
+                    "options": [
+                      "Exposing all implementation details for maximum transparency",
+                      "Hiding implementation complexity while providing clean interfaces",
+                      "Eliminating the need for any system documentation",
+                      "Requiring direct access to underlying data structures"
+                    ],
+                    "correctAnswer": 1
+                  },
+                  {
+                    "id": "code-reusability-q3",
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Code reusability strategies typically reduce development time by:",
+                    "options": [
+                      "10-20% through minor efficiency improvements",
+                      "30-50% through shared, well-tested components",
+                      "80-90% by eliminating all custom development",
+                      "5-10% through better documentation practices"
+                    ],
+                    "correctAnswer": 1
+                  },
+                  {
+                    "id": "code-reusability-q4",
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Well-designed abstraction layers enable:",
+                    "options": [
+                      "Direct manipulation of all underlying system components",
+                      "Implementation changes without affecting dependent systems",
+                      "Elimination of all interface definitions and contracts",
+                      "Automatic performance optimization for all operations"
+                    ],
+                    "correctAnswer": 1
+                  },
+                  {
+                    "id": "code-reusability-q5",
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Component design for reusability should prioritize:",
+                    "options": [
+                      "Maximum functionality in single large components",
+                      "Single-purpose components with clear interfaces",
+                      "Direct database access from all components",
+                      "Complex inheritance hierarchies for flexibility"
+                    ],
+                    "correctAnswer": 1
+                  },
+                  {
+                    "id": "code-reusability-q6",
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Shared component libraries benefit enterprise teams through:",
+                    "options": [
+                      "Eliminating all testing requirements for applications",
+                      "Consistent behavior and reduced maintenance overhead",
+                      "Automatic scaling of all system performance",
+                      "Direct access to proprietary business algorithms"
+                    ],
+                    "correctAnswer": 1
+                  },
+                  {
+                    "id": "code-reusability-q7",
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Code reusability reduces bug rates by approximately:",
+                    "options": [
+                      "10-20% through minor improvements",
+                      "40% through shared, well-tested components",
+                      "80-90% by eliminating all potential errors",
+                      "5% through better naming conventions"
+                    ],
+                    "correctAnswer": 1
+                  },
+                  {
+                    "id": "code-reusability-q8",
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "The main challenge in implementing code reusability is:",
+                    "options": [
+                      "Performance penalties from abstraction layers",
+                      "Balancing generalization with specific use case requirements",
+                      "Increased memory usage for all applications",
+                      "Compatibility issues with modern development tools"
+                    ],
+                    "correctAnswer": 1
+                  },
+                  {
+                    "id": "code-reusability-q9",
+                    "type": "freeform",
+                    "points": 4,
+                    "question": "Explain the relationship between the DRY Principle and abstraction layers in enterprise development. How do they work together to improve code maintainability?",
+                    "sampleStrongResponse": "The DRY Principle and abstraction layers work synergistically to improve enterprise code maintainability. DRY eliminates code duplication by creating shared libraries and components, ensuring that common functionality is implemented once and reused across applications. Abstraction layers hide implementation complexity behind clean interfaces, allowing the shared components to evolve without affecting dependent systems. Together, they create a maintainable architecture where changes to business logic or system implementations only need to be made in one place, automatically propagating benefits to all consumers. This combination reduces maintenance overhead, ensures consistency, and enables teams to focus on business value rather than repetitive implementation details."
+                  },
+                  {
+                    "id": "code-reusability-q10",
+                    "type": "freeform",
+                    "points": 5,
+                    "question": "Analyze the trade-offs between code reusability and performance in enterprise systems. Explain when abstraction layers provide net benefits and when they might be counterproductive.",
+                    "sampleStrongResponse": "Code reusability and abstraction layers provide net benefits when the cost of maintenance and development outweighs minor performance overhead. In enterprise systems, abstraction layers typically add 5-15% performance overhead but reduce development time by 30-50% and maintenance costs by similar amounts. They&rsquo;re most beneficial for business logic, data access patterns, and common utilities where consistency and maintainability matter more than raw performance. However, abstraction can be counterproductive in performance-critical paths like real-time processing, mathematical computations, or high-frequency trading where millisecond improvements provide significant business value. The key is strategic application: use abstraction for business logic and system integration, optimize directly for performance-critical algorithms and data processing pipelines."
+                  }
+                ]
+              }
             },
             {
               "id": "documentation-naming",
@@ -2049,7 +3229,132 @@
                 "Code Comments",
                 "Naming Standards",
                 "API Documentation"
-              ]
+              ],
+              "quiz": {
+                "title": "Documentation & Naming Conventions Knowledge Quiz",
+                "totalQuestions": 10,
+                "totalPoints": 25,
+                "questions": [
+                  {
+                    "id": "documentation-naming-q1",
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Consistent naming conventions improve enterprise development by:",
+                    "options": [
+                      "Improving code readability and reducing onboarding time",
+                      "Automatically optimizing application performance",
+                      "Eliminating all potential security vulnerabilities",
+                      "Reducing memory usage across all applications"
+                    ],
+                    "correctAnswer": 0
+                  },
+                  {
+                    "id": "documentation-naming-q2",
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Comprehensive API documentation should include:",
+                    "options": [
+                      "Only the function names and return types",
+                      "Clear specifications, usage examples, and error handling",
+                      "Internal implementation details and algorithms",
+                      "Performance benchmarks for all methods"
+                    ],
+                    "correctAnswer": 1
+                  },
+                  {
+                    "id": "documentation-naming-q3",
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Proper documentation and naming typically reduce developer onboarding time by:",
+                    "options": [
+                      "10-20% through minor improvements",
+                      "50-70% through clear knowledge transfer",
+                      "90-95% by eliminating all learning requirements",
+                      "25-30% through automated tutorials"
+                    ],
+                    "correctAnswer": 1
+                  },
+                  {
+                    "id": "documentation-naming-q4",
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Code comments should focus on:",
+                    "options": [
+                      "Repeating exactly what the code does line by line",
+                      "Explaining the why and business context behind decisions",
+                      "Listing all possible alternative implementations",
+                      "Documenting the complete development history"
+                    ],
+                    "correctAnswer": 1
+                  },
+                  {
+                    "id": "documentation-naming-q5",
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Descriptive variable names benefit large enterprise teams through:",
+                    "options": [
+                      "Faster execution of all business logic",
+                      "Automatic error detection and correction",
+                      "Improved code understanding and collaboration",
+                      "Reduced memory usage for variable storage"
+                    ],
+                    "correctAnswer": 2
+                  },
+                  {
+                    "id": "documentation-naming-q6",
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Documentation standards help enterprise teams by:",
+                    "options": [
+                      "Eliminating all communication requirements",
+                      "Enabling effective knowledge transfer and system maintenance",
+                      "Automatically generating all required code",
+                      "Providing direct access to external APIs"
+                    ],
+                    "correctAnswer": 1
+                  },
+                  {
+                    "id": "documentation-naming-q7",
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Proper naming and documentation reduce debugging time by approximately:",
+                    "options": [
+                      "10-15% through minor readability improvements",
+                      "35% by making code intent and behavior clear",
+                      "80-90% by eliminating all possible bugs",
+                      "5% through better file organization"
+                    ],
+                    "correctAnswer": 1
+                  },
+                  {
+                    "id": "documentation-naming-q8",
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "The most important characteristic of enterprise naming conventions is:",
+                    "options": [
+                      "Using the shortest possible names for efficiency",
+                      "Consistency across teams and projects for maintainability",
+                      "Including version numbers in all identifiers",
+                      "Using only technical terminology without business context"
+                    ],
+                    "correctAnswer": 1
+                  },
+                  {
+                    "id": "documentation-naming-q9",
+                    "type": "freeform",
+                    "points": 4,
+                    "question": "Explain the relationship between naming conventions and team productivity in enterprise environments. How do consistent standards impact development velocity and code quality?",
+                    "sampleStrongResponse": "Naming conventions directly impact team productivity by reducing cognitive overhead and enabling faster code comprehension. Consistent standards allow developers to quickly understand code purpose without extensive investigation, reducing onboarding time by 50-70% and debugging time by 35%. When teams use descriptive, predictable naming patterns, code reviews become more efficient, knowledge transfer improves, and new team members can contribute faster. The result is higher development velocity because less time is spent deciphering code intent and more time is spent on business value creation. Consistent naming also improves code quality by making errors more obvious and design patterns more apparent."
+                  },
+                  {
+                    "id": "documentation-naming-q10",
+                    "type": "freeform",
+                    "points": 5,
+                    "question": "Analyze the trade-offs between comprehensive documentation and development speed in agile enterprise environments. Explain when detailed documentation provides net benefits and when it might slow development.",
+                    "sampleStrongResponse": "Comprehensive documentation provides net benefits when the cost of knowledge loss exceeds documentation overhead, typically in enterprise environments with team turnover, complex business logic, or long-lived systems. Documentation is most valuable for API contracts, business rule explanations, and architectural decisions that affect multiple teams. However, excessive documentation can slow development when it duplicates information easily gleaned from well-written code, becomes outdated quickly, or focuses on implementation details rather than intent. The optimal approach is strategic documentation: comprehensive for interfaces and business logic, minimal for self-explanatory code. In agile environments, focus on documenting decisions and context rather than implementation details, enabling teams to maintain velocity while preserving essential knowledge for long-term maintainability."
+                  }
+                ]
+              }
             }
           ]
         }

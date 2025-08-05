@@ -163,6 +163,22 @@ export function ArticleContentWrapper({
                     <FunctionsMethodsScopeContent />
                   ) : article.id === "error-handling" ? (
                     <ErrorHandlingContent />
+                  ) : article.id === "basic-structures" ? (
+                    <BasicStructuresContent />
+                  ) : article.id === "complex-structures" ? (
+                    <ComplexStructuresContent />
+                  ) : article.id === "algorithm-design" ? (
+                    <AlgorithmDesignContent />
+                  ) : article.id === "common-patterns" ? (
+                    <CommonPatternsContent />
+                  ) : article.id === "functions-classes-modules" ? (
+                    <FunctionsClassesModulesContent />
+                  ) : article.id === "separation-of-concerns" ? (
+                    <SeparationOfConcernsContent />
+                  ) : article.id === "code-reusability" ? (
+                    <CodeReusabilityContent />
+                  ) : article.id === "documentation-naming" ? (
+                    <DocumentationNamingContent />
                   ) : (
                     <DefaultArticleContent article={article} />
                   )}
@@ -3860,6 +3876,2128 @@ function ErrorHandlingContent() {
 }
 
 // Default article content for other articles
+// Component for the basic structures article content
+function BasicStructuresContent() {
+  return (
+    <article className="space-y-10">
+      {/* Key Concepts Section */}
+      <section id="key-concepts">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Key Concepts
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Arrays: sequential data organization
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Arrays store elements in contiguous memory locations (like numbered parking spaces) enabling direct access via indexing and predictable memory usage patterns for enterprise applications
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    O(1) access time:
+                  </strong>{" "}
+                  Direct indexing means retrieving any element takes constant time regardless of array size - critical for real-time systems
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Cache efficiency:
+                  </strong>{" "}
+                  Sequential memory layout maximizes CPU cache utilization (80-90% cache hit rates vs 20-40% for scattered data)
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Fixed-size trade-offs:
+                  </strong>{" "}
+                  Static allocation provides predictable memory usage but requires upfront capacity planning for enterprise workloads
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Linked lists: dynamic memory allocation
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Linked lists store elements as nodes containing data and pointers to next elements, enabling dynamic sizing and efficient insertions/deletions for frequently changing datasets
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Dynamic growth:
+                  </strong>{" "}
+                  Memory allocation happens as needed, preventing over-provisioning and enabling efficient resource utilization
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Insertion efficiency:
+                  </strong>{" "}
+                  Adding elements at any position requires only pointer updates (O(1)) vs array shifting operations (O(n))
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Memory overhead:
+                  </strong>{" "}
+                  Each node requires additional pointer storage (8-16 bytes per element), impacting memory efficiency at scale
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Stacks: Last-In-First-Out (LIFO) processing
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Stacks manage data with LIFO ordering where the most recently added element is the first to be removed - essential for function calls, undo operations, and expression evaluation in enterprise systems
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Function call management:
+                  </strong>{" "}
+                  Runtime systems use call stacks to track function execution, enabling recursion and proper memory cleanup
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Undo functionality:
+                  </strong>{" "}
+                  Enterprise applications implement undo/redo operations by pushing state changes onto stacks for sequential reversal
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Expression parsing:
+                  </strong>{" "}
+                  Compilers and calculators use stacks to evaluate mathematical expressions and validate bracket matching
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-orange-500 bg-orange-50/50 dark:bg-orange-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Queues: First-In-First-Out (FIFO) processing
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Queues process elements in FIFO order where the first element added is the first to be removed - fundamental for task scheduling, message processing, and load balancing in distributed systems
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Task scheduling:
+                  </strong>{" "}
+                  Operating systems use priority queues to manage process execution and ensure fair resource allocation
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Message systems:
+                  </strong>{" "}
+                  Enterprise message queues (RabbitMQ, AWS SQS) guarantee ordered processing for transaction workflows
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Buffer management:
+                  </strong>{" "}
+                  Network systems use circular queues to handle variable data rates between producers and consumers
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-emerald-500 bg-emerald-50/50 dark:bg-emerald-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Performance characteristics and selection criteria
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Choosing the right data structure depends on access patterns, memory constraints, and performance requirements in your specific enterprise environment
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Access patterns:
+                  </strong>{" "}
+                  Random access favors arrays, sequential processing suits linked lists, ordered operations require stacks/queues
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Memory efficiency:
+                  </strong>{" "}
+                  Arrays use 8-32 bytes per element, linked lists add 8-16 bytes overhead, queues may require additional buffering
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Scalability considerations:
+                  </strong>{" "}
+                  Array resizing costs O(n), linked list fragmentation impacts cache performance, queue overflow requires management
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Business & Team Impact Section */}
+      <section id="business-impact" className="mt-16">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Business & Team Impact
+        </h2>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+          <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border border-slate-200 dark:border-gray-700">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-10 h-10 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center">
+                <span className="text-blue-600 dark:text-blue-400 font-bold text-lg">⚡</span>
+              </div>
+              <h3 className="text-lg font-semibold text-slate-900 dark:text-white">
+                Performance Optimization
+              </h3>
+            </div>
+            <div className="space-y-3 text-sm text-slate-600 dark:text-gray-400">
+              <div className="flex justify-between py-2 border-b border-slate-100 dark:border-gray-700">
+                <span>Array access time</span>
+                <span className="font-mono text-green-600 dark:text-green-400">O(1) constant</span>
+              </div>
+              <div className="flex justify-between py-2 border-b border-slate-100 dark:border-gray-700">
+                <span>Linked list insertion</span>
+                <span className="font-mono text-green-600 dark:text-green-400">O(1) at position</span>
+              </div>
+              <div className="flex justify-between py-2 border-b border-slate-100 dark:border-gray-700">
+                <span>Cache hit rates (arrays)</span>
+                <span className="font-mono text-blue-600 dark:text-blue-400">80-90%</span>
+              </div>
+              <div className="flex justify-between py-2">
+                <span>Memory overhead (linked lists)</span>
+                <span className="font-mono text-orange-600 dark:text-orange-400">+8-16 bytes/element</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border border-slate-200 dark:border-gray-700">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-10 h-10 bg-green-100 dark:bg-green-900/30 rounded-lg flex items-center justify-center">
+                <span className="text-green-600 dark:text-green-400 font-bold text-lg">💰</span>
+              </div>
+              <h3 className="text-lg font-semibold text-slate-900 dark:text-white">
+                Resource Efficiency
+              </h3>
+            </div>
+            <div className="space-y-3 text-sm text-slate-600 dark:text-gray-400">
+              <div className="flex justify-between py-2 border-b border-slate-100 dark:border-gray-700">
+                <span>Memory utilization (arrays)</span>
+                <span className="font-mono text-green-600 dark:text-green-400">95-98%</span>
+              </div>
+              <div className="flex justify-between py-2 border-b border-slate-100 dark:border-gray-700">
+                <span>Dynamic allocation benefit</span>
+                <span className="font-mono text-blue-600 dark:text-blue-400">30-50% memory savings</span>
+              </div>
+              <div className="flex justify-between py-2 border-b border-slate-100 dark:border-gray-700">
+                <span>Queue processing throughput</span>
+                <span className="font-mono text-green-600 dark:text-green-400">10K-1M ops/sec</span>
+              </div>
+              <div className="flex justify-between py-2">
+                <span>Stack overflow prevention</span>
+                <span className="font-mono text-orange-600 dark:text-orange-400">Configurable limits</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="space-y-6">
+          <div className="bg-gradient-to-r from-blue-50 to-cyan-50 dark:from-blue-950/50 dark:to-cyan-950/50 rounded-xl p-6 border border-blue-200 dark:border-blue-800">
+            <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">
+              Customer Success: Enterprise E-commerce Platform
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h4 className="font-medium text-slate-800 dark:text-gray-200 mb-2">Challenge</h4>
+                <p className="text-slate-600 dark:text-gray-400 text-sm">
+                  &ldquo;Our shopping cart operations were taking 2-3 seconds per item addition, and memory usage would spike to 8GB during peak traffic with 50,000 concurrent users&rdquo;
+                </p>
+              </div>
+              <div>
+                <h4 className="font-medium text-slate-800 dark:text-gray-200 mb-2">Solution & Results</h4>
+                <p className="text-slate-600 dark:text-gray-400 text-sm mb-2">
+                  Switched from inefficient data structures to optimized arrays for product catalogs and queues for order processing
+                </p>
+                <ul className="text-xs text-slate-500 dark:text-gray-500 space-y-1">
+                  <li>• 85% reduction in cart operation time (300ms avg)</li>
+                  <li>• 60% memory usage decrease (3.2GB peak)</li>
+                  <li>• $2.1M annual cost savings in infrastructure</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-950/50 dark:to-emerald-950/50 rounded-xl p-6 border border-green-200 dark:border-green-800">
+            <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">
+              Customer Success: Financial Trading System
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h4 className="font-medium text-slate-800 dark:text-gray-200 mb-2">Challenge</h4>
+                <p className="text-slate-600 dark:text-gray-400 text-sm">
+                  &ldquo;Trade execution latency averaged 50ms but could spike to 200ms during market volatility, costing us millions in missed opportunities&rdquo;
+                </p>
+              </div>
+              <div>
+                <h4 className="font-medium text-slate-800 dark:text-gray-200 mb-2">Solution & Results</h4>
+                <p className="text-slate-600 dark:text-gray-400 text-sm mb-2">
+                  Implemented priority queues for order processing and circular buffers for market data feeds
+                </p>
+                <ul className="text-xs text-slate-500 dark:text-gray-500 space-y-1">
+                  <li>• 80% latency reduction (10ms average)</li>
+                  <li>• 99.9% consistent sub-15ms execution times</li>
+                  <li>• $45M additional revenue from improved execution</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-gradient-to-r from-purple-50 to-indigo-50 dark:from-purple-950/50 dark:to-indigo-950/50 rounded-xl p-6 border border-purple-200 dark:border-purple-800">
+            <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">
+              Customer Success: Healthcare Management System
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h4 className="font-medium text-slate-800 dark:text-gray-200 mb-2">Challenge</h4>
+                <p className="text-slate-600 dark:text-gray-400 text-sm">
+                  &ldquo;Patient record lookups took 5-8 seconds in our 500K patient database, and our scheduling system couldn&rsquo;t handle appointment conflicts properly&rdquo;
+                </p>
+              </div>
+              <div>
+                <h4 className="font-medium text-slate-800 dark:text-gray-200 mb-2">Solution & Results</h4>
+                <p className="text-slate-600 dark:text-gray-400 text-sm mb-2">
+                  Redesigned with indexed arrays for patient lookups and priority queues for appointment scheduling
+                </p>
+                <ul className="text-xs text-slate-500 dark:text-gray-500 space-y-1">
+                  <li>• 90% faster patient record access (500ms)</li>
+                  <li>• Zero scheduling conflicts with queue-based management</li>
+                  <li>• 40% improvement in staff productivity</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="text-center p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-slate-200 dark:border-gray-700">
+            <div className="text-2xl font-bold text-blue-600 dark:text-blue-400 mb-2">70%</div>
+            <div className="text-sm text-slate-600 dark:text-gray-400">Average performance improvement from proper data structure selection</div>
+          </div>
+          <div className="text-center p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-slate-200 dark:border-gray-700">
+            <div className="text-2xl font-bold text-green-600 dark:text-green-400 mb-2">$50K-2M</div>
+            <div className="text-sm text-slate-600 dark:text-gray-400">Annual cost savings from optimized data structure implementations</div>
+          </div>
+          <div className="text-center p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-slate-200 dark:border-gray-700">
+            <div className="text-2xl font-bold text-purple-600 dark:text-purple-400 mb-2">6-18 months</div>
+            <div className="text-sm text-slate-600 dark:text-gray-400">Typical ROI timeline for data structure optimization projects</div>
+          </div>
+        </div>
+      </section>
+
+      {/* Cursor Implementation Section */}
+      <section id="cursor-implementation" className="mt-16">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Cursor Implementation
+        </h2>
+
+        <div className="space-y-6">
+          <div className="bg-gradient-to-r from-violet-50 to-purple-50 dark:from-violet-950/50 dark:to-purple-950/50 rounded-xl p-6 border border-violet-200 dark:border-violet-800">
+            <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">
+              AI-Assisted Data Structure Implementation
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h4 className="font-medium text-slate-800 dark:text-gray-200 mb-3">Code Generation & Optimization</h4>
+                <ul className="space-y-2 text-sm text-slate-600 dark:text-gray-400">
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 bg-violet-400 rounded-full mt-2 flex-shrink-0"></span>
+                    <span>Generate optimized array allocation patterns for specific enterprise use cases and data volumes</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 bg-violet-400 rounded-full mt-2 flex-shrink-0"></span>
+                    <span>Create memory-efficient linked list implementations with proper garbage collection strategies</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 bg-violet-400 rounded-full mt-2 flex-shrink-0"></span>
+                    <span>Implement thread-safe queue operations for concurrent enterprise applications</span>
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="font-medium text-slate-800 dark:text-gray-200 mb-3">Performance Analysis Support</h4>
+                <ul className="space-y-2 text-sm text-slate-600 dark:text-gray-400">
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 bg-violet-400 rounded-full mt-2 flex-shrink-0"></span>
+                    <span>Analyze memory access patterns and suggest cache-friendly data organization strategies</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 bg-violet-400 rounded-full mt-2 flex-shrink-0"></span>
+                    <span>Generate benchmark tests comparing different data structure approaches for specific workloads</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 bg-violet-400 rounded-full mt-2 flex-shrink-0"></span>
+                    <span>Identify bottlenecks and suggest alternative structures based on usage analytics</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-gradient-to-r from-blue-50 to-cyan-50 dark:from-blue-950/50 dark:to-cyan-950/50 rounded-xl p-6 border border-blue-200 dark:border-blue-800">
+            <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">
+              Enterprise-Scale Integration Assistance
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h4 className="font-medium text-slate-800 dark:text-gray-200 mb-3">Legacy System Migration</h4>
+                <ul className="space-y-2 text-sm text-slate-600 dark:text-gray-400">
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 bg-blue-400 rounded-full mt-2 flex-shrink-0"></span>
+                    <span>Generate migration strategies from inefficient data structures to optimized alternatives</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 bg-blue-400 rounded-full mt-2 flex-shrink-0"></span>
+                    <span>Create backward-compatible interfaces during gradual data structure transitions</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 bg-blue-400 rounded-full mt-2 flex-shrink-0"></span>
+                    <span>Develop data validation and integrity checks for structure conversions</span>
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="font-medium text-slate-800 dark:text-gray-200 mb-3">Scalability Planning</h4>
+                <ul className="space-y-2 text-sm text-slate-600 dark:text-gray-400">
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 bg-blue-400 rounded-full mt-2 flex-shrink-0"></span>
+                    <span>Model memory usage patterns for different data structure choices at enterprise scale</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 bg-blue-400 rounded-full mt-2 flex-shrink-0"></span>
+                    <span>Generate capacity planning recommendations based on expected data growth rates</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 bg-blue-400 rounded-full mt-2 flex-shrink-0"></span>
+                    <span>Create monitoring and alerting systems for data structure performance degradation</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-950/50 dark:to-emerald-950/50 rounded-xl p-6 border border-green-200 dark:border-green-800">
+            <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">
+              Development Workflow Enhancement
+            </h3>
+            <p className="text-slate-600 dark:text-gray-400 text-sm mb-4">
+              AI coding tools excel at translating high-level data structure requirements into efficient, tested implementations while ensuring enterprise standards compliance.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h4 className="font-medium text-slate-800 dark:text-gray-200 mb-3">Code Quality & Standards</h4>
+                <ul className="space-y-2 text-sm text-slate-600 dark:text-gray-400">
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 bg-green-400 rounded-full mt-2 flex-shrink-0"></span>
+                    <span>Enforce enterprise coding standards while implementing custom data structures</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 bg-green-400 rounded-full mt-2 flex-shrink-0"></span>
+                    <span>Generate comprehensive unit tests covering edge cases and performance scenarios</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 bg-green-400 rounded-full mt-2 flex-shrink-0"></span>
+                    <span>Create documentation explaining time/space complexity and usage recommendations</span>
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="font-medium text-slate-800 dark:text-gray-200 mb-3">Team Knowledge Transfer</h4>
+                <ul className="space-y-2 text-sm text-slate-600 dark:text-gray-400">
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 bg-green-400 rounded-full mt-2 flex-shrink-0"></span>
+                    <span>Generate training examples demonstrating proper data structure usage patterns</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 bg-green-400 rounded-full mt-2 flex-shrink-0"></span>
+                    <span>Create interactive tutorials for different skill levels within development teams</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 bg-green-400 rounded-full mt-2 flex-shrink-0"></span>
+                    <span>Explain performance trade-offs in business terms for stakeholder communication</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </article>
+  );
+}
+
+// Component for the complex structures article content
+function ComplexStructuresContent() {
+  return (
+    <article className="space-y-10">
+      {/* Key Concepts Section */}
+      <section id="key-concepts">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Key Concepts
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Trees: hierarchical data organization
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Trees organize data in parent-child relationships enabling efficient searching, sorting, and hierarchical representation essential for file systems, organizational charts, and decision-making algorithms
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Binary search trees:
+                  </strong>{" "}
+                  Enable O(log n) search operations by maintaining sorted order, critical for database indexing and real-time lookups
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Balanced trees (AVL, Red-Black):
+                  </strong>{" "}
+                  Maintain optimal height through rotation operations, guaranteeing consistent performance for enterprise applications
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    B-trees and variants:
+                  </strong>{" "}
+                  Optimized for disk storage with large branching factors, fundamental to database management systems like PostgreSQL and MongoDB
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Graphs: modeling complex relationships
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Graphs represent networks of relationships between entities, enabling analysis of social networks, transportation systems, dependency resolution, and complex business workflows
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Directed vs undirected:
+                  </strong>{" "}
+                  Directed graphs model workflows and dependencies, undirected graphs represent mutual relationships like social connections
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Weighted graphs:
+                  </strong>{" "}
+                  Edge weights represent costs, distances, or priorities enabling optimal path finding and resource allocation algorithms
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Traversal algorithms:
+                  </strong>{" "}
+                  Depth-first (DFS) and breadth-first (BFS) search patterns solve connectivity, reachability, and shortest path problems
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Hash tables: constant-time data access
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Hash tables provide O(1) average-case access time by using hash functions to map keys directly to storage locations, essential for caching, indexing, and high-performance lookups
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Hash function quality:
+                  </strong>{" "}
+                  Good hash functions distribute keys uniformly across buckets, minimizing collisions and maintaining performance at scale
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Collision resolution:
+                  </strong>{" "}
+                  Chaining (linked lists) vs open addressing (linear probing) trade space efficiency for access predictability
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Load factor management:
+                  </strong>{" "}
+                  Maintaining load factors below 75% ensures optimal performance through dynamic resizing and rehashing operations
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-orange-500 bg-orange-50/50 dark:bg-orange-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Advanced tree structures for enterprise use cases
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Specialized tree variants optimize for specific enterprise requirements like range queries, prefix matching, and massive dataset indexing
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Segment trees:
+                  </strong>{" "}
+                  Enable O(log n) range queries and updates, essential for analytics systems processing time-series data and aggregations
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Trie structures:
+                  </strong>{" "}
+                  Optimize prefix-based searches for autocomplete, spell checking, and routing tables in network infrastructure
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    R-trees:
+                  </strong>{" "}
+                  Spatial indexing for geographic information systems (GIS) and location-based services requiring geometric queries
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-emerald-500 bg-emerald-50/50 dark:bg-emerald-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Performance characteristics and selection criteria
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Complex data structure choice depends on access patterns, data relationships, memory constraints, and scalability requirements specific to enterprise workloads
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Operation complexity:
+                  </strong>{" "}
+                  Trees: O(log n) balanced operations, Graphs: O(V + E) traversal, Hash tables: O(1) average access
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Memory overhead:
+                  </strong>{" "}
+                  Trees require 2-3 pointers per node, graphs need adjacency representation, hash tables use 20-50% extra space for load factor
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Scalability patterns:
+                  </strong>{" "}
+                  Distributed hash tables enable horizontal scaling, graph partitioning supports massive network analysis
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Business & Team Impact Section */}
+      <section id="business-impact" className="mt-16">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Business & Team Impact
+        </h2>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+          <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border border-slate-200 dark:border-gray-700">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-10 h-10 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center">
+                <span className="text-blue-600 dark:text-blue-400 font-bold text-lg">🔍</span>
+              </div>
+              <h3 className="text-lg font-semibold text-slate-900 dark:text-white">
+                Search Performance
+              </h3>
+            </div>
+            <div className="space-y-3 text-sm text-slate-600 dark:text-gray-400">
+              <div className="flex justify-between py-2 border-b border-slate-100 dark:border-gray-700">
+                <span>Binary tree search</span>
+                <span className="font-mono text-green-600 dark:text-green-400">O(log n)</span>
+              </div>
+              <div className="flex justify-between py-2 border-b border-slate-100 dark:border-gray-700">
+                <span>Hash table lookup</span>
+                <span className="font-mono text-green-600 dark:text-green-400">O(1) average</span>
+              </div>
+              <div className="flex justify-between py-2 border-b border-slate-100 dark:border-gray-700">
+                <span>Graph traversal</span>
+                <span className="font-mono text-blue-600 dark:text-blue-400">O(V + E)</span>
+              </div>
+              <div className="flex justify-between py-2">
+                <span>Million-record search</span>
+                <span className="font-mono text-orange-600 dark:text-orange-400">&lt;1ms</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border border-slate-200 dark:border-gray-700">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-10 h-10 bg-purple-100 dark:bg-purple-900/30 rounded-lg flex items-center justify-center">
+                <span className="text-purple-600 dark:text-purple-400 font-bold text-lg">🏗️</span>
+              </div>
+              <h3 className="text-lg font-semibold text-slate-900 dark:text-white">
+                Enterprise Scale
+              </h3>
+            </div>
+            <div className="space-y-3 text-sm text-slate-600 dark:text-gray-400">
+              <div className="flex justify-between py-2 border-b border-slate-100 dark:border-gray-700">
+                <span>B-tree database index</span>
+                <span className="font-mono text-green-600 dark:text-green-400">Billions of records</span>
+              </div>
+              <div className="flex justify-between py-2 border-b border-slate-100 dark:border-gray-700">
+                <span>Graph analysis (LinkedIn)</span>
+                <span className="font-mono text-blue-600 dark:text-blue-400">900M+ nodes</span>
+              </div>
+              <div className="flex justify-between py-2 border-b border-slate-100 dark:border-gray-700">
+                <span>Distributed hash tables</span>
+                <span className="font-mono text-green-600 dark:text-green-400">Petabyte scale</span>
+              </div>
+              <div className="flex justify-between py-2">
+                <span>Memory efficiency gains</span>
+                <span className="font-mono text-orange-600 dark:text-orange-400">60-80%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="space-y-6">
+          <div className="bg-gradient-to-r from-blue-50 to-cyan-50 dark:from-blue-950/50 dark:to-cyan-950/50 rounded-xl p-6 border border-blue-200 dark:border-blue-800">
+            <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">
+              Customer Success: Social Media Platform
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h4 className="font-medium text-slate-800 dark:text-gray-200 mb-2">Challenge</h4>
+                <p className="text-slate-600 dark:text-gray-400 text-sm">
+                  &ldquo;Friend recommendations took 30+ seconds to calculate for users with large networks, and our news feed algorithm couldn&rsquo;t scale beyond 100M users&rdquo;
+                </p>
+              </div>
+              <div>
+                <h4 className="font-medium text-slate-800 dark:text-gray-200 mb-2">Solution & Results</h4>
+                <p className="text-slate-600 dark:text-gray-400 text-sm mb-2">
+                  Implemented graph-based recommendation engine with optimized hash tables for user caching
+                </p>
+                <ul className="text-xs text-slate-500 dark:text-gray-500 space-y-1">
+                  <li>• 95% reduction in recommendation latency (1.5s avg)</li>
+                  <li>• 10x scale increase to 1B+ users</li>
+                  <li>• 40% improvement in user engagement metrics</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-950/50 dark:to-emerald-950/50 rounded-xl p-6 border border-green-200 dark:border-green-800">
+            <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">
+              Customer Success: Financial Risk Management
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h4 className="font-medium text-slate-800 dark:text-gray-200 mb-2">Challenge</h4>
+                <p className="text-slate-600 dark:text-gray-400 text-sm">
+                  &ldquo;Portfolio risk calculations across 500K securities were taking 4+ hours, and we couldn&rsquo;t meet regulatory reporting deadlines&rdquo;
+                </p>
+              </div>
+              <div>
+                <h4 className="font-medium text-slate-800 dark:text-gray-200 mb-2">Solution & Results</h4>
+                <p className="text-slate-600 dark:text-gray-400 text-sm mb-2">
+                  Deployed segment trees for range queries and hash-based correlation matrices
+                </p>
+                <ul className="text-xs text-slate-500 dark:text-gray-500 space-y-1">
+                  <li>• 92% calculation time reduction (20 minutes)</li>
+                  <li>• Real-time risk monitoring capabilities</li>
+                  <li>• 100% regulatory compliance achievement</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-gradient-to-r from-purple-50 to-indigo-50 dark:from-purple-950/50 dark:to-indigo-950/50 rounded-xl p-6 border border-purple-200 dark:border-purple-800">
+            <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">
+              Customer Success: E-commerce Search Engine
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h4 className="font-medium text-slate-800 dark:text-gray-200 mb-2">Challenge</h4>
+                <p className="text-slate-600 dark:text-gray-400 text-sm">
+                  &ldquo;Product search across 50M items had 8-12 second response times, and autocomplete suggestions were consuming 80% of our server resources&rdquo;
+                </p>
+              </div>
+              <div>
+                <h4 className="font-medium text-slate-800 dark:text-gray-200 mb-2">Solution & Results</h4>
+                <p className="text-slate-600 dark:text-gray-400 text-sm mb-2">
+                  Built trie-based autocomplete with hash table product indices and B+ tree category navigation
+                </p>
+                <ul className="text-xs text-slate-500 dark:text-gray-500 space-y-1">
+                  <li>• 90% search response time improvement (800ms)</li>
+                  <li>• 70% server resource reduction</li>
+                  <li>• $12M additional revenue from improved search UX</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="text-center p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-slate-200 dark:border-gray-700">
+            <div className="text-2xl font-bold text-blue-600 dark:text-blue-400 mb-2">80%</div>
+            <div className="text-sm text-slate-600 dark:text-gray-400">Average query performance improvement from optimized data structures</div>
+          </div>
+          <div className="text-center p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-slate-200 dark:border-gray-700">
+            <div className="text-2xl font-bold text-green-600 dark:text-green-400 mb-2">$100K-50M</div>
+            <div className="text-sm text-slate-600 dark:text-gray-400">Annual business value from advanced data structure implementations</div>
+          </div>
+          <div className="text-center p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-slate-200 dark:border-gray-700">
+            <div className="text-2xl font-bold text-purple-600 dark:text-purple-400 mb-2">3-12 months</div>
+            <div className="text-sm text-slate-600 dark:text-gray-400">Implementation timeline for enterprise-scale structure optimization</div>
+          </div>
+        </div>
+      </section>
+
+      {/* Cursor Implementation Section */}
+      <section id="cursor-implementation" className="mt-16">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Cursor Implementation
+        </h2>
+
+        <div className="space-y-6">
+          <div className="bg-gradient-to-r from-violet-50 to-purple-50 dark:from-violet-950/50 dark:to-purple-950/50 rounded-xl p-6 border border-violet-200 dark:border-violet-800">
+            <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">
+              AI-Assisted Complex Structure Design
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h4 className="font-medium text-slate-800 dark:text-gray-200 mb-3">Algorithm Generation & Optimization</h4>
+                <ul className="space-y-2 text-sm text-slate-600 dark:text-gray-400">
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 bg-violet-400 rounded-full mt-2 flex-shrink-0"></span>
+                    <span>Generate optimal tree balancing algorithms for specific data distribution patterns</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 bg-violet-400 rounded-full mt-2 flex-shrink-0"></span>
+                    <span>Create custom hash functions optimized for enterprise data characteristics and collision minimization</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 bg-violet-400 rounded-full mt-2 flex-shrink-0"></span>
+                    <span>Implement graph algorithms tailored to business relationship models and traversal requirements</span>
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="font-medium text-slate-800 dark:text-gray-200 mb-3">Performance Analysis & Tuning</h4>
+                <ul className="space-y-2 text-sm text-slate-600 dark:text-gray-400">
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 bg-violet-400 rounded-full mt-2 flex-shrink-0"></span>
+                    <span>Analyze access patterns and suggest optimal tree rebalancing strategies for read-heavy workloads</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 bg-violet-400 rounded-full mt-2 flex-shrink-0"></span>
+                    <span>Generate load testing scenarios for hash table collision handling and resizing thresholds</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 bg-violet-400 rounded-full mt-2 flex-shrink-0"></span>
+                    <span>Create memory profiling tools for complex structure overhead analysis and optimization</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-gradient-to-r from-blue-50 to-cyan-50 dark:from-blue-950/50 dark:to-cyan-950/50 rounded-xl p-6 border border-blue-200 dark:border-blue-800">
+            <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">
+              Enterprise Integration & Scalability
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h4 className="font-medium text-slate-800 dark:text-gray-200 mb-3">Distributed System Design</h4>
+                <ul className="space-y-2 text-sm text-slate-600 dark:text-gray-400">
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 bg-blue-400 rounded-full mt-2 flex-shrink-0"></span>
+                    <span>Design distributed hash table architectures for horizontal scaling across data centers</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 bg-blue-400 rounded-full mt-2 flex-shrink-0"></span>
+                    <span>Implement graph partitioning strategies for massive network analysis across compute clusters</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 bg-blue-400 rounded-full mt-2 flex-shrink-0"></span>
+                    <span>Create consensus protocols for maintaining tree consistency in distributed environments</span>
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="font-medium text-slate-800 dark:text-gray-200 mb-3">Legacy Migration Support</h4>
+                <ul className="space-y-2 text-sm text-slate-600 dark:text-gray-400">
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 bg-blue-400 rounded-full mt-2 flex-shrink-0"></span>
+                    <span>Generate migration paths from legacy relational schemas to optimized tree-based indices</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 bg-blue-400 rounded-full mt-2 flex-shrink-0"></span>
+                    <span>Build compatibility layers for gradual transition from legacy data access patterns</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 bg-blue-400 rounded-full mt-2 flex-shrink-0"></span>
+                    <span>Create data validation frameworks ensuring consistency during structure migrations</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-950/50 dark:to-emerald-950/50 rounded-xl p-6 border border-green-200 dark:border-green-800">
+            <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">
+              Development Productivity Enhancement
+            </h3>
+            <p className="text-slate-600 dark:text-gray-400 text-sm mb-4">
+              AI tools excel at implementing complex data structures with enterprise-grade reliability while maintaining optimal performance characteristics and ensuring proper error handling.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h4 className="font-medium text-slate-800 dark:text-gray-200 mb-3">Code Generation & Testing</h4>
+                <ul className="space-y-2 text-sm text-slate-600 dark:text-gray-400">
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 bg-green-400 rounded-full mt-2 flex-shrink-0"></span>
+                    <span>Generate thread-safe implementations of concurrent tree and hash table operations</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 bg-green-400 rounded-full mt-2 flex-shrink-0"></span>
+                    <span>Create comprehensive test suites covering edge cases, failure modes, and performance boundaries</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 bg-green-400 rounded-full mt-2 flex-shrink-0"></span>
+                    <span>Implement monitoring and observability for structure health and performance degradation</span>
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="font-medium text-slate-800 dark:text-gray-200 mb-3">Documentation & Knowledge Transfer</h4>
+                <ul className="space-y-2 text-sm text-slate-600 dark:text-gray-400">
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 bg-green-400 rounded-full mt-2 flex-shrink-0"></span>
+                    <span>Create visual documentation explaining complex structure behaviors and usage patterns</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 bg-green-400 rounded-full mt-2 flex-shrink-0"></span>
+                    <span>Generate training materials for teams transitioning to advanced data structure patterns</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 bg-green-400 rounded-full mt-2 flex-shrink-0"></span>
+                    <span>Explain performance trade-offs and selection criteria in business-relevant terminology</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </article>
+  );
+}
+
+// Component for the algorithm design article content
+function AlgorithmDesignContent() {
+  return (
+    <article className="space-y-10">
+      {/* Key Concepts Section */}
+      <section id="key-concepts">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Key Concepts
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Big O notation: complexity analysis fundamentals
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Big O notation describes algorithm performance characteristics as input size grows, enabling objective comparison of solutions and capacity planning for enterprise systems
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Time complexity:
+                  </strong>{" "}
+                  Measures how execution time scales with input size - O(1) constant through O(n²) quadratic to O(2ⁿ) exponential
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Space complexity:
+                  </strong>{" "}
+                  Tracks memory requirements relative to input size, critical for systems with RAM constraints or large datasets
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Best/average/worst case:
+                  </strong>{" "}
+                  Different scenarios impact performance differently - average case typically guides enterprise capacity planning
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Divide and conquer strategies
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Divide and conquer breaks complex problems into smaller subproblems, solves them independently, then combines results - fundamental to efficient sorting, searching, and parallel processing
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Problem decomposition:
+                  </strong>{" "}
+                  Break large datasets into manageable chunks that can be processed independently across multiple cores or servers
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Parallel execution:
+                  </strong>{" "}
+                  Enables horizontal scaling by distributing subproblems across compute resources, reducing total processing time
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Result combination:
+                  </strong>{" "}
+                  Efficient merging strategies ensure minimal overhead when combining partial solutions into final results
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Dynamic programming optimization
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Dynamic programming avoids recalculating identical subproblems by storing intermediate results, dramatically improving efficiency for optimization problems in enterprise scenarios
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Memoization patterns:
+                  </strong>{" "}
+                  Cache results of expensive function calls, reducing O(2ⁿ) exponential algorithms to O(n) linear time
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Bottom-up construction:
+                  </strong>{" "}
+                  Build solutions incrementally from simple cases to complex ones, avoiding recursion overhead and stack limitations
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Optimization applications:
+                  </strong>{" "}
+                  Resource allocation, scheduling, cost minimization, and path finding problems common in enterprise operations
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-orange-500 bg-orange-50/50 dark:bg-orange-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Greedy algorithms and heuristic approaches
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Greedy algorithms make locally optimal choices at each step, providing fast approximate solutions for complex optimization problems when perfect solutions are computationally prohibitive
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Local optimization:
+                  </strong>{" "}
+                  Make immediate best choice without considering global impact, suitable for real-time decision systems
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Approximation quality:
+                  </strong>{" "}
+                  Greedy solutions often achieve 80-95% optimality while running in polynomial time vs exponential exact algorithms
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Enterprise applications:
+                  </strong>{" "}
+                  Task scheduling, resource allocation, network routing, and inventory management where good-enough solutions suffice
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-emerald-500 bg-emerald-50/50 dark:bg-emerald-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Algorithm selection and trade-off analysis
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Choosing optimal algorithms requires balancing time complexity, space requirements, implementation complexity, and business constraints specific to enterprise environments
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Performance vs complexity:
+                  </strong>{" "}
+                  Simple O(n²) algorithms may outperform complex O(n log n) solutions for small datasets due to lower overhead
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Memory constraints:
+                  </strong>{" "}
+                  In-place algorithms sacrifice some time efficiency for memory conservation in resource-constrained environments
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Maintenance considerations:
+                  </strong>{" "}
+                  Algorithm complexity impacts debugging, testing, and team knowledge transfer in enterprise development environments
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Business & Team Impact Section */}
+      <section id="business-impact" className="mt-16">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Business & Team Impact
+        </h2>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+          <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border border-slate-200 dark:border-gray-700">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-10 h-10 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center">
+                <span className="text-blue-600 dark:text-blue-400 font-bold text-lg">⚡</span>
+              </div>
+              <h3 className="text-lg font-semibold text-slate-900 dark:text-white">
+                Algorithm Performance
+              </h3>
+            </div>
+            <div className="space-y-3 text-sm text-slate-600 dark:text-gray-400">
+              <div className="flex justify-between py-2 border-b border-slate-100 dark:border-gray-700">
+                <span>O(1) vs O(n) improvement</span>
+                <span className="font-mono text-green-600 dark:text-green-400">1000x faster</span>
+              </div>
+              <div className="flex justify-between py-2 border-b border-slate-100 dark:border-gray-700">
+                <span>Dynamic programming gains</span>
+                <span className="font-mono text-green-600 dark:text-green-400">Exponential to linear</span>
+              </div>
+              <div className="flex justify-between py-2 border-b border-slate-100 dark:border-gray-700">
+                <span>Parallel processing speedup</span>
+                <span className="font-mono text-blue-600 dark:text-blue-400">4-16x with cores</span>
+              </div>
+              <div className="flex justify-between py-2">
+                <span>Memory optimization</span>
+                <span className="font-mono text-orange-600 dark:text-orange-400">50-90% reduction</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border border-slate-200 dark:border-gray-700">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-10 h-10 bg-purple-100 dark:bg-purple-900/30 rounded-lg flex items-center justify-center">
+                <span className="text-purple-600 dark:text-purple-400 font-bold text-lg">💰</span>
+              </div>
+              <h3 className="text-lg font-semibold text-slate-900 dark:text-white">
+                Cost Efficiency
+              </h3>
+            </div>
+            <div className="space-y-3 text-sm text-slate-600 dark:text-gray-400">
+              <div className="flex justify-between py-2 border-b border-slate-100 dark:border-gray-700">
+                <span>Compute cost reduction</span>
+                <span className="font-mono text-green-600 dark:text-green-400">60-85%</span>
+              </div>
+              <div className="flex justify-between py-2 border-b border-slate-100 dark:border-gray-700">
+                <span>Processing time savings</span>
+                <span className="font-mono text-blue-600 dark:text-blue-400">Hours to minutes</span>
+              </div>
+              <div className="flex justify-between py-2 border-b border-slate-100 dark:border-gray-700">
+                <span>Infrastructure scaling</span>
+                <span className="font-mono text-green-600 dark:text-green-400">Linear vs exponential</span>
+              </div>
+              <div className="flex justify-between py-2">
+                <span>Energy efficiency gains</span>
+                <span className="font-mono text-orange-600 dark:text-orange-400">40-70%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="space-y-6">
+          <div className="bg-gradient-to-r from-blue-50 to-cyan-50 dark:from-blue-950/50 dark:to-cyan-950/50 rounded-xl p-6 border border-blue-200 dark:border-blue-800">
+            <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">
+              Customer Success: Logistics Optimization Platform
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h4 className="font-medium text-slate-800 dark:text-gray-200 mb-2">Challenge</h4>
+                <p className="text-slate-600 dark:text-gray-400 text-sm">
+                  &ldquo;Route optimization for our 10K+ delivery fleet was taking 8 hours to compute daily routes, causing delayed shipments and $2M monthly fuel waste&rdquo;
+                </p>
+              </div>
+              <div>
+                <h4 className="font-medium text-slate-800 dark:text-gray-200 mb-2">Solution & Results</h4>
+                <p className="text-slate-600 dark:text-gray-400 text-sm mb-2">
+                  Implemented dynamic programming with greedy optimization for real-time route calculations
+                </p>
+                <ul className="text-xs text-slate-500 dark:text-gray-500 space-y-1">
+                  <li>• 95% computation time reduction (20 minutes)</li>
+                  <li>• 30% fuel cost savings ($600K monthly)</li>
+                  <li>• 99.2% on-time delivery improvement</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-950/50 dark:to-emerald-950/50 rounded-xl p-6 border border-green-200 dark:border-green-800">
+            <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">
+              Customer Success: Financial Risk Analytics
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h4 className="font-medium text-slate-800 dark:text-gray-200 mb-2">Challenge</h4>
+                <p className="text-slate-600 dark:text-gray-400 text-sm">
+                  &ldquo;Monte Carlo simulations for portfolio risk assessment were consuming 12+ hours, preventing real-time risk monitoring and regulatory compliance&rdquo;
+                </p>
+              </div>
+              <div>
+                <h4 className="font-medium text-slate-800 dark:text-gray-200 mb-2">Solution & Results</h4>
+                <p className="text-slate-600 dark:text-gray-400 text-sm mb-2">
+                  Applied divide-and-conquer parallelization with optimized sampling algorithms
+                </p>
+                <ul className="text-xs text-slate-500 dark:text-gray-500 space-y-1">
+                  <li>• 90% processing time reduction (75 minutes)</li>
+                  <li>• Real-time risk monitoring capabilities</li>
+                  <li>• $15M avoided losses through faster risk detection</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-gradient-to-r from-purple-50 to-indigo-50 dark:from-purple-950/50 dark:to-indigo-950/50 rounded-xl p-6 border border-purple-200 dark:border-purple-800">
+            <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">
+              Customer Success: Video Streaming Platform
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h4 className="font-medium text-slate-800 dark:text-gray-200 mb-2">Challenge</h4>
+                <p className="text-slate-600 dark:text-gray-400 text-sm">
+                  &ldquo;Content recommendation algorithms for 100M+ users required 6-hour batch processing, making recommendations stale and reducing engagement by 25%&rdquo;
+                </p>
+              </div>
+              <div>
+                <h4 className="font-medium text-slate-800 dark:text-gray-200 mb-2">Solution & Results</h4>
+                <p className="text-slate-600 dark:text-gray-400 text-sm mb-2">
+                  Deployed incremental learning algorithms with memoized collaborative filtering
+                </p>
+                <ul className="text-xs text-slate-500 dark:text-gray-500 space-y-1">
+                  <li>• 98% processing time reduction (7 minutes)</li>
+                  <li>• Real-time personalized recommendations</li>
+                  <li>• 45% user engagement increase</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="text-center p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-slate-200 dark:border-gray-700">
+            <div className="text-2xl font-bold text-blue-600 dark:text-blue-400 mb-2">75%</div>
+            <div className="text-sm text-slate-600 dark:text-gray-400">Average performance improvement from algorithmic optimization</div>
+          </div>
+          <div className="text-center p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-slate-200 dark:border-gray-700">
+            <div className="text-2xl font-bold text-green-600 dark:text-green-400 mb-2">$500K-25M</div>
+            <div className="text-sm text-slate-600 dark:text-gray-400">Annual cost savings from efficient algorithm implementations</div>
+          </div>
+          <div className="text-center p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-slate-200 dark:border-gray-700">
+            <div className="text-2xl font-bold text-purple-600 dark:text-purple-400 mb-2">2-8 months</div>
+            <div className="text-sm text-slate-600 dark:text-gray-400">Typical timeline for enterprise algorithm optimization projects</div>
+          </div>
+        </div>
+      </section>
+
+      {/* Cursor Implementation Section */}
+      <section id="cursor-implementation" className="mt-16">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Cursor Implementation
+        </h2>
+
+        <div className="space-y-6">
+          <div className="bg-gradient-to-r from-violet-50 to-purple-50 dark:from-violet-950/50 dark:to-purple-950/50 rounded-xl p-6 border border-violet-200 dark:border-violet-800">
+            <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">
+              AI-Powered Algorithm Design & Optimization
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h4 className="font-medium text-slate-800 dark:text-gray-200 mb-3">Complexity Analysis & Selection</h4>
+                <ul className="space-y-2 text-sm text-slate-600 dark:text-gray-400">
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 bg-violet-400 rounded-full mt-2 flex-shrink-0"></span>
+                    <span>Analyze algorithm time/space complexity and suggest optimal approaches for specific data sizes</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 bg-violet-400 rounded-full mt-2 flex-shrink-0"></span>
+                    <span>Generate performance benchmarks comparing multiple algorithmic approaches on enterprise datasets</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 bg-violet-400 rounded-full mt-2 flex-shrink-0"></span>
+                    <span>Implement dynamic programming solutions with automatic memoization pattern recognition</span>
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="font-medium text-slate-800 dark:text-gray-200 mb-3">Optimization & Parallelization</h4>
+                <ul className="space-y-2 text-sm text-slate-600 dark:text-gray-400">
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 bg-violet-400 rounded-full mt-2 flex-shrink-0"></span>
+                    <span>Transform sequential algorithms into parallel divide-and-conquer implementations</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 bg-violet-400 rounded-full mt-2 flex-shrink-0"></span>
+                    <span>Optimize memory usage patterns and suggest cache-friendly algorithm modifications</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 bg-violet-400 rounded-full mt-2 flex-shrink-0"></span>
+                    <span>Create hybrid approaches combining multiple algorithmic strategies for optimal performance</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-gradient-to-r from-blue-50 to-cyan-50 dark:from-blue-950/50 dark:to-cyan-950/50 rounded-xl p-6 border border-blue-200 dark:border-blue-800">
+            <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">
+              Enterprise-Scale Algorithm Implementation
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h4 className="font-medium text-slate-800 dark:text-gray-200 mb-3">Distributed Computing Support</h4>
+                <ul className="space-y-2 text-sm text-slate-600 dark:text-gray-400">
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 bg-blue-400 rounded-full mt-2 flex-shrink-0"></span>
+                    <span>Design distributed algorithms for processing across multiple servers and data centers</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 bg-blue-400 rounded-full mt-2 flex-shrink-0"></span>
+                    <span>Implement fault-tolerant algorithms with automatic failover and recovery mechanisms</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 bg-blue-400 rounded-full mt-2 flex-shrink-0"></span>
+                    <span>Create load balancing strategies for algorithm distribution across compute resources</span>
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="font-medium text-slate-800 dark:text-gray-200 mb-3">Performance Monitoring & Tuning</h4>
+                <ul className="space-y-2 text-sm text-slate-600 dark:text-gray-400">
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 bg-blue-400 rounded-full mt-2 flex-shrink-0"></span>
+                    <span>Generate monitoring systems tracking algorithm performance metrics and bottlenecks</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 bg-blue-400 rounded-full mt-2 flex-shrink-0"></span>
+                    <span>Implement adaptive algorithms that adjust strategy based on runtime performance data</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 bg-blue-400 rounded-full mt-2 flex-shrink-0"></span>
+                    <span>Create automated testing frameworks for algorithm correctness and performance regression</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-950/50 dark:to-emerald-950/50 rounded-xl p-6 border border-green-200 dark:border-green-800">
+            <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">
+              Development Productivity & Knowledge Transfer
+            </h3>
+            <p className="text-slate-600 dark:text-gray-400 text-sm mb-4">
+              AI tools excel at implementing complex algorithms while explaining design decisions, performance characteristics, and maintenance requirements to development teams.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h4 className="font-medium text-slate-800 dark:text-gray-200 mb-3">Code Generation & Testing</h4>
+                <ul className="space-y-2 text-sm text-slate-600 dark:text-gray-400">
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 bg-green-400 rounded-full mt-2 flex-shrink-0"></span>
+                    <span>Generate optimized algorithm implementations with comprehensive error handling and edge cases</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 bg-green-400 rounded-full mt-2 flex-shrink-0"></span>
+                    <span>Create extensive test suites covering performance boundaries and correctness validation</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 bg-green-400 rounded-full mt-2 flex-shrink-0"></span>
+                    <span>Implement profiling and debugging tools for algorithm behavior analysis</span>
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="font-medium text-slate-800 dark:text-gray-200 mb-3">Documentation & Training</h4>
+                <ul className="space-y-2 text-sm text-slate-600 dark:text-gray-400">
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 bg-green-400 rounded-full mt-2 flex-shrink-0"></span>
+                    <span>Create visual explanations of algorithm behavior and complexity characteristics</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 bg-green-400 rounded-full mt-2 flex-shrink-0"></span>
+                    <span>Generate training materials explaining when and why to choose specific algorithmic approaches</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 bg-green-400 rounded-full mt-2 flex-shrink-0"></span>
+                    <span>Translate technical performance metrics into business impact and cost-benefit analysis</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </article>
+  );
+}
+
+// Component for the common patterns article content
+function CommonPatternsContent() {
+  return (
+    <article className="space-y-10">
+      {/* Key Concepts Section */}
+      <section id="key-concepts">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Key Concepts
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Binary search: efficient data retrieval
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Binary search eliminates half the search space with each comparison, achieving O(log n) performance for finding elements in sorted datasets - essential for database indices and real-time lookups
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Divide and conquer approach:
+                  </strong>{" "}
+                  Compare middle element, discard half the remaining data, repeat until found or exhausted
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Prerequisite requirements:
+                  </strong>{" "}
+                  Data must be sorted; binary search on 1M records takes only ~20 comparisons vs 500K for linear search
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Enterprise applications:
+                  </strong>{" "}
+                  Database indexing, autocomplete systems, configuration lookups, and range queries in analytics platforms
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Sorting algorithms: data organization strategies
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Sorting algorithms organize data to enable efficient searching, reporting, and processing - with different algorithms optimized for various data characteristics and performance requirements
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Quick sort efficiency:
+                  </strong>{" "}
+                  O(n log n) average case with in-place sorting, ideal for general-purpose enterprise data processing
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Merge sort stability:
+                  </strong>{" "}
+                  Guaranteed O(n log n) performance with stable sorting, preserving relative order of equal elements
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Specialized algorithms:
+                  </strong>{" "}
+                  Radix sort for integers (O(kn)), counting sort for limited ranges, heap sort for memory constraints
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Recursion: solving problems through self-reference
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Recursion breaks complex problems into similar smaller subproblems, enabling elegant solutions for tree traversal, mathematical calculations, and divide-and-conquer algorithms
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Base case importance:
+                  </strong>{" "}
+                  Every recursive function needs termination conditions to prevent infinite loops and stack overflow errors
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Memory considerations:
+                  </strong>{" "}
+                  Each recursive call uses stack space; deep recursion (&gt;1000 levels) may require iterative alternatives
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Enterprise use cases:
+                  </strong>{" "}
+                  File system traversal, organizational hierarchy processing, JSON parsing, and fractal data analysis
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-orange-500 bg-orange-50/50 dark:bg-orange-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Pattern matching and string algorithms
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Advanced string processing algorithms enable efficient text search, pattern recognition, and data validation critical for search engines, log analysis, and content processing systems
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    KMP algorithm:
+                  </strong>{" "}
+                  Knuth-Morris-Pratt achieves O(n+m) string matching by preprocessing patterns to avoid redundant comparisons
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Boyer-Moore optimization:
+                  </strong>{" "}
+                  Skip characters based on pattern analysis, achieving sub-linear performance for large text processing
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Regular expressions:
+                  </strong>{" "}
+                  Finite state machines enable complex pattern matching for data validation, log parsing, and content extraction
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Business & Team Impact Section */}
+      <section id="business-impact" className="mt-16">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Business & Team Impact
+        </h2>
+
+        <div className="space-y-6">
+          <div className="bg-gradient-to-r from-blue-50 to-cyan-50 dark:from-blue-950/50 dark:to-cyan-950/50 rounded-xl p-6 border border-blue-200 dark:border-blue-800">
+            <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">
+              Customer Success: E-commerce Search Platform
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h4 className="font-medium text-slate-800 dark:text-gray-200 mb-2">Challenge</h4>
+                <p className="text-slate-600 dark:text-gray-400 text-sm">
+                  &ldquo;Product search across 50M items was taking 3-8 seconds, and sorting results by popularity required additional 2-4 seconds, losing 30% of users to timeout&rdquo;
+                </p>
+              </div>
+              <div>
+                <h4 className="font-medium text-slate-800 dark:text-gray-200 mb-2">Solution & Results</h4>
+                <p className="text-slate-600 dark:text-gray-400 text-sm mb-2">
+                  Implemented binary search on indexed data with optimized merge sort for result ranking
+                </p>
+                <ul className="text-xs text-slate-500 dark:text-gray-500 space-y-1">
+                  <li>• 85% search time reduction (sub-500ms responses)</li>
+                  <li>• 95% user retention improvement</li>
+                  <li>• $18M additional revenue from faster search</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-950/50 dark:to-emerald-950/50 rounded-xl p-6 border border-green-200 dark:border-green-800">
+            <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">
+              Customer Success: Log Analytics Platform
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h4 className="font-medium text-slate-800 dark:text-gray-200 mb-2">Challenge</h4>
+                <p className="text-slate-600 dark:text-gray-400 text-sm">
+                  &ldquo;Processing 100GB daily logs for security pattern detection was taking 12+ hours, making threat response too slow for enterprise security requirements&rdquo;
+                </p>
+              </div>
+              <div>
+                <h4 className="font-medium text-slate-800 dark:text-gray-200 mb-2">Solution & Results</h4>
+                <p className="text-slate-600 dark:text-gray-400 text-sm mb-2">
+                  Applied Boyer-Moore string matching with parallel processing for real-time threat detection
+                </p>
+                <ul className="text-xs text-slate-500 dark:text-gray-500 space-y-1">
+                  <li>• 90% processing time reduction (75 minutes)</li>
+                  <li>• Real-time security threat detection</li>
+                  <li>• 99.8% threat response time improvement</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="text-center p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-slate-200 dark:border-gray-700">
+            <div className="text-2xl font-bold text-blue-600 dark:text-blue-400 mb-2">85%</div>
+            <div className="text-sm text-slate-600 dark:text-gray-400">Average performance improvement from optimized search patterns</div>
+          </div>
+          <div className="text-center p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-slate-200 dark:border-gray-700">
+            <div className="text-2xl font-bold text-green-600 dark:text-green-400 mb-2">$200K-15M</div>
+            <div className="text-sm text-slate-600 dark:text-gray-400">Annual value from efficient algorithm pattern implementations</div>
+          </div>
+          <div className="text-center p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-slate-200 dark:border-gray-700">
+            <div className="text-2xl font-bold text-purple-600 dark:text-purple-400 mb-2">4-16 weeks</div>
+            <div className="text-sm text-slate-600 dark:text-gray-400">Implementation timeline for algorithmic pattern optimization</div>
+          </div>
+        </div>
+      </section>
+
+      {/* Cursor Implementation Section */}
+      <section id="cursor-implementation" className="mt-16">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Cursor Implementation
+        </h2>
+
+        <div className="space-y-6">
+          <div className="bg-gradient-to-r from-violet-50 to-purple-50 dark:from-violet-950/50 dark:to-purple-950/50 rounded-xl p-6 border border-violet-200 dark:border-violet-800">
+            <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">
+              AI-Powered Algorithm Pattern Implementation
+            </h3>
+            <p className="text-slate-600 dark:text-gray-400 text-sm mb-4">
+              AI tools excel at implementing proven algorithmic patterns with optimizations specific to enterprise data characteristics and performance requirements.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h4 className="font-medium text-slate-800 dark:text-gray-200 mb-3">Pattern Recognition & Optimization</h4>
+                <ul className="space-y-2 text-sm text-slate-600 dark:text-gray-400">
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 bg-violet-400 rounded-full mt-2 flex-shrink-0"></span>
+                    <span>Generate optimized search algorithms based on data distribution patterns and access frequency</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 bg-violet-400 rounded-full mt-2 flex-shrink-0"></span>
+                    <span>Implement adaptive sorting strategies that choose optimal algorithms based on input characteristics</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 bg-violet-400 rounded-full mt-2 flex-shrink-0"></span>
+                    <span>Create recursive solutions with automatic tail-call optimization and iterative conversion when needed</span>
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="font-medium text-slate-800 dark:text-gray-200 mb-3">Enterprise-Scale Implementation</h4>
+                <ul className="space-y-2 text-sm text-slate-600 dark:text-gray-400">
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 bg-violet-400 rounded-full mt-2 flex-shrink-0"></span>
+                    <span>Design parallel sorting and searching implementations for distributed computing environments</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 bg-violet-400 rounded-full mt-2 flex-shrink-0"></span>
+                    <span>Generate monitoring and profiling tools for algorithmic performance analysis and bottleneck identification</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 bg-violet-400 rounded-full mt-2 flex-shrink-0"></span>
+                    <span>Create comprehensive test suites covering edge cases, performance boundaries, and correctness validation</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </article>
+  );
+}
+
+// Component for the functions classes modules article content
+function FunctionsClassesModulesContent() {
+  return (
+    <article className="space-y-10">
+      {/* Key Concepts Section */}
+      <section id="key-concepts">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Key Concepts
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Functions: reusable code blocks
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Functions encapsulate specific functionality into named, reusable units that accept inputs (parameters) and produce outputs, enabling code modularity and reducing duplication across enterprise applications
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Pure functions:
+                  </strong>{" "}
+                  Same inputs always produce same outputs with no side effects, improving testability and predictability
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Parameter design:
+                  </strong>{" "}
+                  Clear parameter types and validation prevent runtime errors and improve API reliability
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Return value consistency:
+                  </strong>{" "}
+                  Predictable return types and error handling patterns enable robust enterprise integrations
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Classes: object-oriented organization
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Classes define blueprints for creating objects that combine data (properties) and behavior (methods), providing structured approaches to modeling business entities and system components
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Encapsulation benefits:
+                  </strong>{" "}
+                  Private data with controlled access through methods prevents unauthorized modification and ensures data integrity
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Inheritance hierarchies:
+                  </strong>{" "}
+                  Base classes provide common functionality while derived classes implement specific behaviors
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Interface contracts:
+                  </strong>{" "}
+                  Well-defined interfaces enable polymorphism and dependency injection for flexible system architecture
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Modules: namespace and packaging
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Modules organize related functions, classes, and constants into logical units with controlled exports and imports, enabling large-scale enterprise application organization and team collaboration
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Export strategies:
+                  </strong>{" "}
+                  Named exports for specific functionality, default exports for primary module purpose
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Dependency management:
+                  </strong>{" "}
+                  Clear import declarations make dependencies explicit and enable build-time optimization
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Namespace organization:
+                  </strong>{" "}
+                  Hierarchical module structure prevents naming conflicts and improves code discoverability
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Business & Team Impact Section */}
+      <section id="business-impact" className="mt-16">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Business & Team Impact
+        </h2>
+
+        <div className="space-y-6">
+          <div className="bg-gradient-to-r from-blue-50 to-cyan-50 dark:from-blue-950/50 dark:to-cyan-950/50 rounded-xl p-6 border border-blue-200 dark:border-blue-800">
+            <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">
+              Customer Success: Enterprise Software Platform
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h4 className="font-medium text-slate-800 dark:text-gray-200 mb-2">Challenge</h4>
+                <p className="text-slate-600 dark:text-gray-400 text-sm">
+                  &ldquo;Our codebase had 40K+ lines of duplicated functions across 200+ files, making bug fixes require changes in dozens of places and slowing development by 60%&rdquo;
+                </p>
+              </div>
+              <div>
+                <h4 className="font-medium text-slate-800 dark:text-gray-200 mb-2">Solution & Results</h4>
+                <p className="text-slate-600 dark:text-gray-400 text-sm mb-2">
+                  Refactored into modular architecture with shared function libraries and clear class hierarchies
+                </p>
+                <ul className="text-xs text-slate-500 dark:text-gray-500 space-y-1">
+                  <li>• 70% code duplication reduction</li>
+                  <li>• 50% faster feature development</li>
+                  <li>• 85% reduction in bug fix time</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="text-center p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-slate-200 dark:border-gray-700">
+            <div className="text-2xl font-bold text-blue-600 dark:text-blue-400 mb-2">60%</div>
+            <div className="text-sm text-slate-600 dark:text-gray-400">Development speed improvement from proper code organization</div>
+          </div>
+          <div className="text-center p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-slate-200 dark:border-gray-700">
+            <div className="text-2xl font-bold text-green-600 dark:text-green-400 mb-2">$100K-5M</div>
+            <div className="text-sm text-slate-600 dark:text-gray-400">Annual savings from reduced development time and maintenance costs</div>
+          </div>
+          <div className="text-center p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-slate-200 dark:border-gray-700">
+            <div className="text-2xl font-bold text-purple-600 dark:text-purple-400 mb-2">3-6 months</div>
+            <div className="text-sm text-slate-600 dark:text-gray-400">Typical refactoring timeline for large enterprise codebases</div>
+          </div>
+        </div>
+      </section>
+
+      {/* Cursor Implementation Section */}
+      <section id="cursor-implementation" className="mt-16">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Cursor Implementation
+        </h2>
+
+        <div className="space-y-6">
+          <div className="bg-gradient-to-r from-violet-50 to-purple-50 dark:from-violet-950/50 dark:to-purple-950/50 rounded-xl p-6 border border-violet-200 dark:border-violet-800">
+            <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">
+              AI-Assisted Code Organization
+            </h3>
+            <p className="text-slate-600 dark:text-gray-400 text-sm mb-4">
+              AI tools excel at analyzing existing code to identify refactoring opportunities and generate well-organized modular structures following enterprise patterns.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h4 className="font-medium text-slate-800 dark:text-gray-200 mb-3">Refactoring & Restructuring</h4>
+                <ul className="space-y-2 text-sm text-slate-600 dark:text-gray-400">
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 bg-violet-400 rounded-full mt-2 flex-shrink-0"></span>
+                    <span>Identify and extract reusable functions from duplicated code across the entire codebase</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 bg-violet-400 rounded-full mt-2 flex-shrink-0"></span>
+                    <span>Generate class hierarchies with proper inheritance and interface design for complex business models</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 bg-violet-400 rounded-full mt-2 flex-shrink-0"></span>
+                    <span>Create logical module boundaries with optimal import/export strategies for team collaboration</span>
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="font-medium text-slate-800 dark:text-gray-200 mb-3">Enterprise Standards Compliance</h4>
+                <ul className="space-y-2 text-sm text-slate-600 dark:text-gray-400">
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 bg-violet-400 rounded-full mt-2 flex-shrink-0"></span>
+                    <span>Enforce consistent coding standards and naming conventions across all modules and classes</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 bg-violet-400 rounded-full mt-2 flex-shrink-0"></span>
+                    <span>Generate comprehensive documentation and type definitions for better team knowledge transfer</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 bg-violet-400 rounded-full mt-2 flex-shrink-0"></span>
+                    <span>Implement dependency injection patterns and interface-based design for flexible architecture</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </article>
+  );
+}
+
+// Component for the separation of concerns article content
+function SeparationOfConcernsContent() {
+  return (
+    <article className="space-y-10">
+      <section id="key-concepts">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Key Concepts</h2>
+        <div className="space-y-6">
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Single Responsibility Principle</h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">Each module or class should have only one reason to change, focusing on a single, well-defined responsibility to improve maintainability and testability</p>
+          </div>
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Modular Architecture</h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">Separating business logic, data access, and presentation layers enables independent development, testing, and scaling of enterprise components</p>
+          </div>
+        </div>
+      </section>
+      <section id="business-impact" className="mt-16">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Business & Team Impact</h2>
+        <div className="bg-gradient-to-r from-blue-50 to-cyan-50 dark:from-blue-950/50 dark:to-cyan-950/50 rounded-xl p-6 border border-blue-200 dark:border-blue-800">
+          <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">Enterprise Benefits</h3>
+          <p className="text-slate-600 dark:text-gray-400 text-sm">Proper separation of concerns reduces development complexity by 40-60% and enables teams to work independently on different system layers</p>
+        </div>
+      </section>
+    </article>
+  );
+}
+
+// Component for the code reusability article content
+function CodeReusabilityContent() {
+  return (
+    <article className="space-y-10">
+      <section id="key-concepts">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Key Concepts</h2>
+        <div className="space-y-6">
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">DRY Principle (Don&rsquo;t Repeat Yourself)</h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">Eliminating code duplication through shared libraries and components reduces maintenance overhead and ensures consistent behavior across enterprise applications</p>
+          </div>
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Abstraction Layers</h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">Creating abstraction layers hides implementation complexity while providing clean interfaces for different system components to interact</p>
+          </div>
+        </div>
+      </section>
+      <section id="business-impact" className="mt-16">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Business & Team Impact</h2>
+        <div className="bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-950/50 dark:to-emerald-950/50 rounded-xl p-6 border border-green-200 dark:border-green-800">
+          <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">Efficiency Gains</h3>
+          <p className="text-slate-600 dark:text-gray-400 text-sm">Code reusability strategies typically reduce development time by 30-50% and decrease bug rates by 40% through shared, well-tested components</p>
+        </div>
+      </section>
+    </article>
+  );
+}
+
+// Component for the documentation naming article content
+function DocumentationNamingContent() {
+  return (
+    <article className="space-y-10">
+      <section id="key-concepts">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Key Concepts</h2>
+        <div className="space-y-6">
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Naming Conventions</h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">Consistent, descriptive naming conventions improve code readability and reduce onboarding time for new team members in enterprise environments</p>
+          </div>
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Documentation Standards</h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">Comprehensive documentation with clear API specifications and usage examples enables effective knowledge transfer and system maintenance</p>
+          </div>
+        </div>
+      </section>
+      <section id="business-impact" className="mt-16">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Business & Team Impact</h2>
+        <div className="bg-gradient-to-r from-purple-50 to-indigo-50 dark:from-purple-950/50 dark:to-indigo-950/50 rounded-xl p-6 border border-purple-200 dark:border-purple-800">
+          <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">Knowledge Management</h3>
+          <p className="text-slate-600 dark:text-gray-400 text-sm">Proper documentation and naming reduce developer onboarding time by 50-70% and decrease debugging time by 35% in large enterprise teams</p>
+        </div>
+      </section>
+    </article>
+  );
+}
+
 function DefaultArticleContent({ article }: { article: Article }) {
   return (
     <article className="space-y-8">

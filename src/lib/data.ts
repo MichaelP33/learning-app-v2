@@ -15,8 +15,8 @@ const data: LearningContent = learningData as LearningContent;
 // High Score Tracking Types
 export interface QuizHighScores {
   articleId: string;
-  questionScores: { [questionId: number]: number }; // Highest points ever earned per question
-  bestAttempts: { [questionId: number]: QuizAnswer }; // Best answer ever given per question
+  questionScores: { [questionId: string]: number }; // Highest points ever earned per question
+  bestAttempts: { [questionId: string]: QuizAnswer }; // Best answer ever given per question
   totalAttempts: number;
   bestOverallScore: number;
   bestOverallPercentage: number;
