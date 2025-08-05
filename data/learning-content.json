@@ -3384,7 +3384,203 @@
                 "Single Responsibility",
                 "Open/Closed",
                 "Liskov Substitution"
-              ]
+              ],
+              "quiz": {
+                "title": "SOLID Principles Knowledge Quiz",
+                "totalQuestions": 10,
+                "totalPoints": 25,
+                "questions": [
+                  {
+                    "id": 1,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "What is the Single Responsibility Principle (SRP)?",
+                    "options": [
+                      "Every class should have only one reason to change and a single responsibility",
+                      "Every class should only have one method",
+                      "Every class should only inherit from one parent class",
+                      "Every class should only be used by one other class"
+                    ],
+                    "correctAnswer": 0,
+                    "additionalContext": "The Single Responsibility Principle states that every class should have only one reason to change, meaning it should have only one job or responsibility. This reduces coupling between different parts of the system and makes code easier to test, maintain, and understand in large codebases.",
+                    "keyConcepts": [
+                      "Single Responsibility Principle",
+                      "class design",
+                      "separation of concerns"
+                    ]
+                  },
+                  {
+                    "id": 2,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "The Open/Closed Principle states that classes should be:",
+                    "options": [
+                      "Open for modification and closed for extension",
+                      "Open for extension but closed for modification",
+                      "Open for both modification and extension",
+                      "Closed for both modification and extension"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "The Open/Closed Principle enables adding new functionality without breaking existing tested code. This is achieved through interfaces, abstract classes, and polymorphism, making it essential for plugin architectures and systems that need frequent feature additions.",
+                    "keyConcepts": [
+                      "Open/Closed Principle",
+                      "extensibility",
+                      "code modification safety"
+                    ]
+                  },
+                  {
+                    "id": 3,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "What does the Liskov Substitution Principle ensure?",
+                    "options": [
+                      "All classes must have the same interface",
+                      "Objects of a superclass should be replaceable with objects of its subclasses without breaking functionality",
+                      "Objects can only be substituted with identical objects",
+                      "All methods must return the same data type"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "The Liskov Substitution Principle ensures inheritance hierarchies behave predictably and maintain behavioral contracts. This prevents &ldquo;surprise&rdquo; behavior when using polymorphism in enterprise applications.",
+                    "keyConcepts": [
+                      "Liskov Substitution Principle",
+                      "inheritance contracts",
+                      "polymorphism reliability"
+                    ]
+                  },
+                  {
+                    "id": 4,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "The Interface Segregation Principle promotes:",
+                    "options": [
+                      "Using as few interfaces as possible",
+                      "Smaller, focused interfaces rather than large monolithic ones",
+                      "Combining all methods into a single interface",
+                      "Avoiding interfaces entirely"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "The Interface Segregation Principle states that no client should be forced to depend on methods it does not use. This promotes smaller, focused interfaces and reduces unnecessary dependencies.",
+                    "keyConcepts": [
+                      "Interface Segregation Principle",
+                      "interface design",
+                      "dependency minimization"
+                    ]
+                  },
+                  {
+                    "id": 5,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "What does the Dependency Inversion Principle enable?",
+                    "options": [
+                      "Dependency injection and easier testing through mock implementations",
+                      "Elimination of all dependencies between modules",
+                      "Direct coupling between high-level and low-level modules",
+                      "Automatic dependency resolution at runtime"
+                    ],
+                    "correctAnswer": 0,
+                    "additionalContext": "The Dependency Inversion Principle states that high-level modules should not depend on low-level modules; both should depend on abstractions. This enables dependency injection and makes testing easier by allowing mock implementations of dependencies.",
+                    "keyConcepts": [
+                      "Dependency Inversion Principle",
+                      "dependency injection",
+                      "testing flexibility"
+                    ]
+                  },
+                  {
+                    "id": 6,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Which company achieved 60% reduction in feature development time through SOLID principles?",
+                    "options": [
+                      "Amazon",
+                      "Microsoft",
+                      "Netflix",
+                      "Google"
+                    ],
+                    "correctAnswer": 2,
+                    "additionalContext": "Netflix achieved 60% reduction in feature development time through modular service architecture following SOLID principles. This demonstrates measurable business impact when design principles are applied systematically across enterprise software development teams.",
+                    "keyConcepts": [
+                      "SOLID business benefits",
+                      "enterprise success metrics",
+                      "development velocity improvement"
+                    ]
+                  },
+                  {
+                    "id": 7,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Teams following SOLID principles typically report what improvement in bug reduction?",
+                    "options": [
+                      "20-30%",
+                      "30-40%",
+                      "40-50%",
+                      "50-70%"
+                    ],
+                    "correctAnswer": 3,
+                    "additionalContext": "Teams following SOLID principles typically report 50-70% reduction in bugs due to isolated responsibilities and predictable interfaces. This significant improvement comes from better separation of concerns and clearer architectural boundaries.",
+                    "keyConcepts": [
+                      "SOLID quality impact",
+                      "bug reduction metrics",
+                      "code reliability improvement"
+                    ]
+                  },
+                  {
+                    "id": 8,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Which customer scenario most commonly drives SOLID principle adoption?",
+                    "options": [
+                      "Maintenance crisis where every bug fix breaks something else",
+                      "Need for more developers on the team",
+                      "Desire to use new programming languages",
+                      "Requirement for mobile application support"
+                    ],
+                    "correctAnswer": 0,
+                    "additionalContext": "The most common trigger is maintenance crisis where &ldquo;every bug fix breaks something else&rdquo; due to tight coupling that makes changes unpredictable. This pain point drives organizations to adopt SOLID principles for better maintainability.",
+                    "keyConcepts": [
+                      "SOLID adoption triggers",
+                      "maintenance crisis patterns",
+                      "tight coupling problems"
+                    ]
+                  },
+                  {
+                    "id": 9,
+                    "type": "freeform",
+                    "points": 4,
+                    "question": "Describe the three main customer scenarios that drive SOLID principle adoption. For each scenario, explain how SOLID principles address the underlying problem.",
+                    "sampleStrongResponse": "The three main scenarios are: (1) Maintenance crisis where every bug fix breaks something else - SOLID principles address this through separation of concerns and reduced coupling; (2) Testing bottleneck where components cannot be tested in isolation - dependency injection and interface segregation enable unit testing; (3) Feature development slowdown where new features take months instead of weeks - open/closed principle enables extension without modification of existing code.",
+                    "additionalContext": "These scenarios represent the most common pain points where organizations realize their current architectural approaches are becoming business impediments. SOLID principles provide systematic solutions to these recurring problems.",
+                    "keyConcepts": [
+                      "SOLID adoption scenarios",
+                      "architectural problems",
+                      "business impact"
+                    ],
+                    "customScoringCriteria": {
+                      "fullPoints": "Identifies all three scenarios (maintenance crisis, testing bottleneck, feature development slowdown) and explains how specific SOLID principles address each underlying problem.",
+                      "partialPoints": "Identifies most scenarios and shows understanding of how SOLID principles help, but may miss specific principle applications.",
+                      "noPoints": "Fails to identify the main scenarios or doesn't explain how SOLID principles provide solutions."
+                    }
+                  },
+                  {
+                    "id": 10,
+                    "type": "freeform",
+                    "points": 5,
+                    "question": "Analyze how SOLID principles impact enterprise development velocity and code quality. Include specific metrics and explain why dependency injection is foundational to modern frameworks.",
+                    "sampleStrongResponse": "SOLID principles impact enterprise development through several measurable improvements: 40-60% faster feature development over time, 50-70% reduction in bugs, and 80%+ improvement in test coverage through dependency injection. Dependency injection is foundational because it enables the Dependency Inversion Principle, allowing high-level modules to depend on abstractions rather than concrete implementations. This makes testing easier through mock implementations, enables flexible architecture changes, and supports frameworks like Spring, Angular, and .NET Core that manage object lifecycle automatically. The business impact includes faster team onboarding, reduced debugging time, and maintained velocity as codebases grow.",
+                    "additionalContext": "This demonstrates how SOLID principles provide measurable business value beyond just code quality, affecting team productivity and architectural flexibility at enterprise scale.",
+                    "keyConcepts": [
+                      "SOLID enterprise impact",
+                      "dependency injection benefits",
+                      "development metrics",
+                      "framework foundations"
+                    ],
+                    "customScoringCriteria": {
+                      "fullPoints": "Provides specific metrics for development velocity and quality improvements, explains dependency injection's role in modern frameworks, and connects to business impact.",
+                      "partialPoints": "Shows understanding of SOLID benefits and dependency injection but may lack specific metrics or framework connections.",
+                      "noPoints": "Provides only general statements about SOLID principles without specific metrics or dependency injection explanation."
+                    }
+                  }
+                ]
+              }
             },
             {
               "id": "design-patterns",
