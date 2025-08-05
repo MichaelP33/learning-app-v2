@@ -2814,8 +2814,8 @@ function ControlFlowContent() {
                   <strong className="text-slate-700 dark:text-gray-300">
                     Common performance complaints:
                   </strong>{" "}
-                  "Dashboard takes 30 seconds to load customer data" and "Search 
-                  results appear slowly when filtering large product catalogs" - 
+                  &ldquo;Dashboard takes 30 seconds to load customer data&rdquo; and &ldquo;Search 
+                  results appear slowly when filtering large product catalogs&rdquo; - 
                   often caused by inefficient nested loops
                 </div>
               </li>
@@ -2858,7 +2858,7 @@ function ControlFlowContent() {
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
                 <div>
                   <strong className="text-slate-700 dark:text-gray-300">
-                    Netflix's optimization approach:
+                    Netflix&rsquo;s optimization approach:
                   </strong>{" "}
                   Implemented intelligent break conditions in recommendation 
                   algorithms, reducing compute costs by 35% while improving 
@@ -3124,7 +3124,7 @@ function FunctionsMethodsScopeContent() {
                   <strong className="text-slate-700 dark:text-gray-300">
                     Default parameters:
                   </strong>{" "}
-                  Provide fallback values when arguments aren't specified, 
+                  Provide fallback values when arguments aren&rsquo;t specified, 
                   improving function usability and reducing the need for 
                   defensive programming
                 </div>
@@ -3291,7 +3291,7 @@ function FunctionsMethodsScopeContent() {
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
                 <div>
                   <strong className="text-slate-700 dark:text-gray-300">
-                    Spotify's modular architecture:
+                    Spotify&rsquo;s modular architecture:
                   </strong>{" "}
                   Organized codebase into small, focused functions enabling 
                   1000+ engineers to work independently, reducing deployment 
@@ -3302,7 +3302,7 @@ function FunctionsMethodsScopeContent() {
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
                 <div>
                   <strong className="text-slate-700 dark:text-gray-300">
-                    Amazon's Lambda transformation:
+                    Amazon&rsquo;s Lambda transformation:
                   </strong>{" "}
                   Migrated monolithic functions to purpose-built microservices, 
                   reducing infrastructure costs by 45% while improving system 
@@ -3313,7 +3313,7 @@ function FunctionsMethodsScopeContent() {
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
                 <div>
                   <strong className="text-slate-700 dark:text-gray-300">
-                    Capital One's scope management:
+                    Capital One&rsquo;s scope management:
                   </strong>{" "}
                   Implemented strict scope boundaries for financial functions, 
                   achieving SOX compliance requirements while reducing security 
@@ -3686,8 +3686,8 @@ function ErrorHandlingContent() {
                   <strong className="text-slate-700 dark:text-gray-300">
                     Common customer pain points:
                   </strong>{" "}
-                  "Payment failed with no explanation," "Page crashed during 
-                  checkout," and "Lost all my work when the system went down" - 
+                  &ldquo;Payment failed with no explanation,&rdquo; &ldquo;Page crashed during 
+                  checkout,&rdquo; and &ldquo;Lost all my work when the system went down&rdquo; - 
                   scenarios that drive customers to competitors
                 </div>
               </li>
@@ -3729,7 +3729,7 @@ function ErrorHandlingContent() {
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
                 <div>
                   <strong className="text-slate-700 dark:text-gray-300">
-                    Netflix's resilience engineering:
+                    Netflix&rsquo;s resilience engineering:
                   </strong>{" "}
                   Implemented Chaos Engineering and comprehensive error handling, 
                   achieving 99.99% availability while serving 200M+ users and 
@@ -3740,7 +3740,7 @@ function ErrorHandlingContent() {
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
                 <div>
                   <strong className="text-slate-700 dark:text-gray-300">
-                    Amazon's fault tolerance:
+                    Amazon&rsquo;s fault tolerance:
                   </strong>{" "}
                   Built comprehensive error handling into AWS services, enabling 
                   automatic failover and recovery that saves customers millions 
@@ -3751,7 +3751,7 @@ function ErrorHandlingContent() {
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
                 <div>
                   <strong className="text-slate-700 dark:text-gray-300">
-                    Stripe's payment reliability:
+                    Stripe&rsquo;s payment reliability:
                   </strong>{" "}
                   Developed sophisticated error handling for payment processing, 
                   achieving 99.99% uptime and handling billions in transactions 
