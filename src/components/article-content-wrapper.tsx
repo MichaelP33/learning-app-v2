@@ -157,6 +157,12 @@ export function ArticleContentWrapper({
                     <FunctionalProgrammingContent />
                   ) : article.id === "variables-data-types" ? (
                     <VariablesDataTypesContent />
+                  ) : article.id === "control-flow" ? (
+                    <ControlFlowContent />
+                  ) : article.id === "functions-methods-scope" ? (
+                    <FunctionsMethodsScopeContent />
+                  ) : article.id === "error-handling" ? (
+                    <ErrorHandlingContent />
                   ) : (
                     <DefaultArticleContent article={article} />
                   )}
@@ -2548,6 +2554,1302 @@ function VariablesDataTypesContent() {
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
                 Educational context for design decisions that affect long-term
                 maintainability
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </article>
+  );
+}
+
+function ControlFlowContent() {
+  return (
+    <article className="space-y-10">
+      {/* Key Concepts Section */}
+      <section id="key-concepts">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Key Concepts
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Conditional statements and decision logic
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Conditional statements allow programs to make decisions based on 
+              different situations, similar to how business rules determine 
+              different actions based on customer scenarios
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    If/else statements:
+                  </strong>{" "}
+                  Basic decision making that executes different code paths based on conditions 
+                  (user authentication, payment processing, feature access)
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Switch statements:
+                  </strong>{" "}
+                  Efficient handling of multiple specific conditions, commonly used for 
+                  user role permissions and API endpoint routing
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Logical operators:
+                  </strong>{" "}
+                  AND, OR, NOT operations that combine multiple conditions for complex 
+                  business logic like subscription validation and access control
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Loop structures and repetitive operations
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Loops enable programs to perform repetitive tasks efficiently, 
+              automating operations that would otherwise require manual duplication 
+              across large datasets
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    For loops:
+                  </strong>{" "}
+                  Process known quantities of data like customer lists, transaction 
+                  records, or inventory items with predictable iteration counts
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    While loops:
+                  </strong>{" "}
+                  Continue operations until conditions change, useful for real-time 
+                  monitoring, data synchronization, and user session management
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Nested loops:
+                  </strong>{" "}
+                  Handle complex data relationships like order items within orders, 
+                  permissions within user roles, and multi-dimensional analysis
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Flow control patterns and program structure
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Control flow determines how programs execute instructions in sequence, 
+              creating predictable behavior patterns that ensure reliable 
+              application functionality
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Sequential execution:
+                  </strong>{" "}
+                  Default top-to-bottom code execution that ensures operations 
+                  happen in the correct order for data processing workflows
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Breaking and continuing:
+                  </strong>{" "}
+                  Early exit mechanisms that optimize performance by stopping 
+                  unnecessary processing when desired results are found
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Guard clauses:
+                  </strong>{" "}
+                  Early validation patterns that improve code readability and 
+                  prevent complex nested conditions in business logic
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-orange-500 bg-orange-50/50 dark:bg-orange-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Performance implications and algorithmic complexity
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Different control flow patterns impact application performance and 
+              resource consumption, especially when processing large amounts 
+              of business data
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Linear vs nested complexity:
+                  </strong>{" "}
+                  Single loops process data linearly while nested loops can create 
+                  exponential performance impacts as data sizes increase
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Early termination benefits:
+                  </strong>{" "}
+                  Strategic use of break statements can reduce processing time 
+                  by 60-80% in search operations and validation workflows
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Memory efficiency:
+                  </strong>{" "}
+                  Proper loop design prevents memory accumulation issues that 
+                  can cause applications to slow down during peak usage periods
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Business & Team Impact Section */}
+      <section id="business-team-impact">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Business & Team Impact
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-emerald-500 bg-emerald-50/50 dark:bg-emerald-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Automation efficiency and operational cost reduction
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Control flow patterns enable automation of repetitive business 
+              processes, reducing manual effort and improving operational efficiency
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Data processing automation:
+                  </strong>{" "}
+                  Loops eliminate manual data entry and processing, reducing 
+                  operational costs by 40-70% for routine tasks like invoice 
+                  generation, report creation, and customer communication
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Decision consistency:
+                  </strong>{" "}
+                  Conditional logic ensures business rules apply consistently 
+                  across all customer interactions, reducing compliance risk 
+                  and support ticket volume
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Scalability advantages:
+                  </strong>{" "}
+                  Efficient control flow patterns handle increased transaction 
+                  volumes without proportional increases in processing time 
+                  or infrastructure costs
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Customer pain points and performance challenges
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Poor control flow design leads to application slowdowns and 
+              customer experience issues that directly impact business metrics
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Common performance complaints:
+                  </strong>{" "}
+                  "Dashboard takes 30 seconds to load customer data" and "Search 
+                  results appear slowly when filtering large product catalogs" - 
+                  often caused by inefficient nested loops
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Revenue impact scenarios:
+                  </strong>{" "}
+                  E-commerce sites lose 10-15% conversion rate for every second 
+                  of page load delay caused by inefficient product filtering 
+                  and recommendation algorithms
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Support cost increases:
+                  </strong>{" "}
+                  Poor conditional logic creates inconsistent user experiences, 
+                  leading to 25-40% more support tickets for feature confusion 
+                  and unexpected behavior
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Enterprise adoption patterns and success factors
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Large organizations achieve significant efficiency gains by 
+              standardizing control flow patterns across development teams 
+              and business processes
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Netflix's optimization approach:
+                  </strong>{" "}
+                  Implemented intelligent break conditions in recommendation 
+                  algorithms, reducing compute costs by 35% while improving 
+                  response times from 800ms to 200ms for personalized content
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Financial services transformation:
+                  </strong>{" "}
+                  JPMorgan Chase automated trade processing workflows using 
+                  optimized control flow, reducing processing time from hours 
+                  to minutes and cutting operational costs by $200M annually
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Retail inventory optimization:
+                  </strong>{" "}
+                  Walmart uses efficient loop structures for real-time inventory 
+                  tracking across 10,000+ stores, enabling same-day restocking 
+                  decisions and reducing out-of-stock incidents by 20%
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Cursor Implementation Section */}
+      <section id="cursor-implementation">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Cursor Implementation Considerations
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-cyan-500 bg-cyan-50/50 dark:bg-cyan-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              AI-assisted control flow optimization
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Cursor provides intelligent suggestions for optimizing conditional 
+              logic and loop structures based on performance best practices
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Automatic detection of inefficient nested loops and suggestions 
+                for performance improvements
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Smart conditional simplification that reduces complex if/else 
+                chains into more readable patterns
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Early termination recommendations for loops processing large 
+                datasets in enterprise applications
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Business logic automation support
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              AI tools help teams implement complex business rules through 
+              well-structured control flow patterns that scale with 
+              organizational growth
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Automated generation of switch statements for role-based access 
+                control and feature flagging systems
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Context-aware loop structure suggestions for data processing 
+                workflows and batch operations
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Validation pattern recommendations that ensure business rules 
+                apply consistently across different application modules
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-orange-500 bg-orange-50/50 dark:bg-orange-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Code review and maintenance acceleration
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              AI assistance helps teams identify control flow issues during 
+              development and suggests improvements for long-term maintainability
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Proactive identification of infinite loop risks and performance 
+                bottlenecks in complex conditional logic
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Readability improvements through guard clause suggestions and 
+                conditional restructuring for team collaboration
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Educational context for algorithmic complexity implications 
+                when implementing enterprise-scale data processing workflows
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </article>
+  );
+}
+
+function FunctionsMethodsScopeContent() {
+  return (
+    <article className="space-y-10">
+      {/* Key Concepts Section */}
+      <section id="key-concepts">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Key Concepts
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Function fundamentals and code organization
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Functions are reusable blocks of code that perform specific tasks, 
+              similar to standardized business processes that can be applied 
+              consistently across different situations
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Purpose and reusability:
+                  </strong>{" "}
+                  Encapsulate business logic into modular components that can be 
+                  called multiple times, reducing code duplication and improving 
+                  maintenance efficiency
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Parameters and arguments:
+                  </strong>{" "}
+                  Input mechanisms that make functions flexible, allowing the same 
+                  business logic to work with different data (customer IDs, 
+                  product categories, date ranges)
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Return values:
+                  </strong>{" "}
+                  Output mechanisms that provide results from calculations, 
+                  validations, or data transformations back to the calling code
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Scope management and variable accessibility
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Scope determines where variables can be accessed within an 
+              application, creating controlled boundaries similar to 
+              departmental access levels in business organizations
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Global scope:
+                  </strong>{" "}
+                  Variables accessible throughout the entire application, useful for 
+                  configuration settings and shared resources but requiring careful 
+                  management to prevent conflicts
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Function scope:
+                  </strong>{" "}
+                  Variables that exist only within specific functions, providing 
+                  isolation and preventing unintended modifications from other 
+                  parts of the application
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Block scope:
+                  </strong>{" "}
+                  Variables limited to specific code blocks (loops, conditionals), 
+                  offering fine-grained control over data access and lifecycle
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Parameter passing and data flow patterns
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Different approaches to passing data between functions affect how 
+              information flows through applications and how changes propagate 
+              across business processes
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Pass by value:
+                  </strong>{" "}
+                  Functions receive copies of data, ensuring original values remain 
+                  unchanged - important for maintaining data integrity in 
+                  financial calculations and audit trails
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Pass by reference:
+                  </strong>{" "}
+                  Functions can modify original data structures, enabling efficient 
+                  processing of large datasets but requiring careful coordination 
+                  to prevent unintended side effects
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Default parameters:
+                  </strong>{" "}
+                  Provide fallback values when arguments aren't specified, 
+                  improving function usability and reducing the need for 
+                  defensive programming
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-orange-500 bg-orange-50/50 dark:bg-orange-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Higher-order functions and advanced patterns
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Functions that operate on other functions enable powerful 
+              abstraction patterns and flexible business logic composition 
+              for complex enterprise workflows
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Callback functions:
+                  </strong>{" "}
+                  Functions passed as arguments to customize behavior, commonly 
+                  used in event handling, data processing pipelines, and 
+                  asynchronous operations
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Closures:
+                  </strong>{" "}
+                  Functions that remember variables from their creation context, 
+                  enabling private data storage and factory patterns for creating 
+                  customized business logic
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Recursion:
+                  </strong>{" "}
+                  Functions that call themselves to solve problems with 
+                  hierarchical structures like organizational charts, nested 
+                  categories, or tree-like data relationships
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Business & Team Impact Section */}
+      <section id="business-team-impact">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Business & Team Impact
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-emerald-500 bg-emerald-50/50 dark:bg-emerald-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Development efficiency and code maintenance
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Well-structured functions significantly reduce development time 
+              and maintenance costs by promoting code reuse and organized 
+              business logic implementation
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Code reusability benefits:
+                  </strong>{" "}
+                  Functions reduce duplicate code by 40-60%, enabling teams to 
+                  implement common business operations (payment processing, 
+                  user validation, data formatting) once and reuse everywhere
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Testing and debugging efficiency:
+                  </strong>{" "}
+                  Isolated functions are easier to test and debug, reducing 
+                  bug investigation time by 50-70% and enabling more reliable 
+                  unit testing for business logic validation
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Team collaboration improvement:
+                  </strong>{" "}
+                  Clear function interfaces enable parallel development where 
+                  different team members can work on separate functions 
+                  simultaneously without integration conflicts
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Enterprise scalability and architectural benefits
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Proper function design and scope management create scalable 
+              architectures that support business growth and changing requirements
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Microservices foundation:
+                  </strong>{" "}
+                  Well-designed functions naturally evolve into microservices, 
+                  enabling organizations to scale different business capabilities 
+                  independently based on demand patterns
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Performance optimization:
+                  </strong>{" "}
+                  Function-level optimization and caching can improve application 
+                  response times by 30-50%, particularly important for customer-facing 
+                  operations and real-time business processes
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Business logic flexibility:
+                  </strong>{" "}
+                  Parameterized functions adapt to changing business rules without 
+                  code rewrites, reducing the cost of implementing new features 
+                  and regulatory compliance requirements
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Real-world implementation success stories
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Major organizations demonstrate significant business value through 
+              strategic function design and scope management practices
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Spotify's modular architecture:
+                  </strong>{" "}
+                  Organized codebase into small, focused functions enabling 
+                  1000+ engineers to work independently, reducing deployment 
+                  conflicts by 80% and accelerating feature delivery times
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Amazon's Lambda transformation:
+                  </strong>{" "}
+                  Migrated monolithic functions to purpose-built microservices, 
+                  reducing infrastructure costs by 45% while improving system 
+                  reliability and enabling independent scaling of business units
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Capital One's scope management:
+                  </strong>{" "}
+                  Implemented strict scope boundaries for financial functions, 
+                  achieving SOX compliance requirements while reducing security 
+                  audit time by 60% through isolated, traceable business logic
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Cursor Implementation Section */}
+      <section id="cursor-implementation">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Cursor Implementation Considerations
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-cyan-500 bg-cyan-50/50 dark:bg-cyan-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              AI-assisted function design and optimization
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Cursor provides intelligent suggestions for function structure, 
+              parameter design, and scope management based on best practices 
+              and usage patterns
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Automatic function extraction suggestions when code blocks become 
+                too complex or repetitive across modules
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Parameter type inference and validation recommendations based on 
+                business logic requirements and data flow analysis
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Scope optimization suggestions to prevent variable conflicts and 
+                improve code organization for team development
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Enterprise code organization support
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              AI tools help teams structure functions and manage scope for 
+              large-scale business applications with complex requirements 
+              and multiple stakeholders
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Business logic abstraction recommendations that separate concerns 
+                and create reusable components for common enterprise operations
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Interface design assistance for creating clean APIs between 
+                different business domains and system components
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Error handling pattern suggestions that ensure consistent 
+                behavior across enterprise applications and compliance requirements
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-orange-500 bg-orange-50/50 dark:bg-orange-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Code quality and collaboration enhancement
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              AI assistance accelerates function development while maintaining 
+              quality standards and improving team coordination on shared 
+              business logic components
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Documentation generation for function interfaces and business 
+                logic, improving team understanding and reducing onboarding time
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Test case generation for business functions, ensuring reliable 
+                operation and facilitating confident refactoring when requirements change
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Refactoring support for legacy function optimization and 
+                modernization efforts in enterprise transformation projects
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </article>
+  );
+}
+
+function ErrorHandlingContent() {
+  return (
+    <article className="space-y-10">
+      {/* Key Concepts Section */}
+      <section id="key-concepts">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Key Concepts
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Exception handling fundamentals
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Exception handling enables applications to gracefully manage 
+              unexpected situations and runtime errors, preventing complete 
+              system failures and providing meaningful feedback to users
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Try/catch blocks:
+                  </strong>{" "}
+                  Structured approach to handling potential errors by attempting 
+                  operations and catching failures, enabling graceful degradation 
+                  rather than application crashes
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Error types and classification:
+                  </strong>{" "}
+                  Different categories of errors (syntax, runtime, logic) require 
+                  different handling strategies for business applications and 
+                  user experience optimization
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Exception propagation:
+                  </strong>{" "}
+                  How errors bubble up through application layers, allowing 
+                  centralized error handling and consistent user messaging 
+                  across business processes
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Error recovery strategies and resilience patterns
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Robust error handling includes recovery mechanisms that maintain 
+              business continuity when unexpected situations occur, minimizing 
+              impact on user experience and operations
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Retry mechanisms:
+                  </strong>{" "}
+                  Automatic retry logic for transient failures like network 
+                  timeouts, payment processing delays, or temporary service 
+                  unavailability in distributed systems
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Fallback strategies:
+                  </strong>{" "}
+                  Alternative approaches when primary operations fail, such as 
+                  using cached data, default values, or simplified functionality 
+                  to maintain user access
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Circuit breaker patterns:
+                  </strong>{" "}
+                  Prevent cascading failures by temporarily disabling failed 
+                  services, protecting system stability while allowing recovery 
+                  time for dependent services
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Logging and monitoring for error tracking
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Comprehensive error logging and monitoring enable proactive 
+              issue detection and rapid resolution, supporting business 
+              operations and customer satisfaction
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Structured logging:
+                  </strong>{" "}
+                  Consistent error format and context information that enables 
+                  automated analysis, alerting, and efficient debugging for 
+                  business-critical applications
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Error correlation:
+                  </strong>{" "}
+                  Tracking related errors across distributed systems and user 
+                  sessions to understand the full impact of issues on business 
+                  processes and customer journeys
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Alerting thresholds:
+                  </strong>{" "}
+                  Intelligent notification systems that escalate issues based on 
+                  severity, frequency, and business impact to ensure appropriate 
+                  response times
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-orange-500 bg-orange-50/50 dark:bg-orange-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              User experience and error communication
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Effective error handling includes thoughtful user communication 
+              that maintains trust and provides actionable guidance when 
+              problems occur
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    User-friendly messaging:
+                  </strong>{" "}
+                  Clear, non-technical error messages that explain what happened 
+                  and what users can do next, avoiding confusion and frustration 
+                  with business applications
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Progressive error disclosure:
+                  </strong>{" "}
+                  Layered error information that provides basic explanations to 
+                  users while offering detailed technical information to 
+                  support teams when needed
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Graceful degradation:
+                  </strong>{" "}
+                  Maintaining partial functionality when components fail, allowing 
+                  users to continue working with reduced capabilities rather 
+                  than complete service interruption
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Business & Team Impact Section */}
+      <section id="business-team-impact">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Business & Team Impact
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-emerald-500 bg-emerald-50/50 dark:bg-emerald-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              System reliability and uptime improvements
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Robust error handling directly impacts business metrics by 
+              reducing system downtime and maintaining service availability 
+              during unexpected conditions
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Uptime improvements:
+                  </strong>{" "}
+                  Proper error handling can improve system availability from 
+                  95% to 99%+, preventing revenue loss and maintaining customer 
+                  confidence during peak business periods
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Cascading failure prevention:
+                  </strong>{" "}
+                  Circuit breakers and isolation patterns prevent single 
+                  component failures from affecting entire business processes, 
+                  reducing the blast radius of incidents
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Faster recovery times:
+                  </strong>{" "}
+                  Automated retry mechanisms and fallback strategies reduce 
+                  mean time to recovery (MTTR) from hours to minutes for 
+                  common failure scenarios
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Customer experience and revenue protection
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Poor error handling creates immediate customer frustration and 
+              can result in significant revenue impact through abandoned 
+              transactions and reduced user satisfaction
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Common customer pain points:
+                  </strong>{" "}
+                  "Payment failed with no explanation," "Page crashed during 
+                  checkout," and "Lost all my work when the system went down" - 
+                  scenarios that drive customers to competitors
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Revenue impact quantification:
+                  </strong>{" "}
+                  Each minute of system downtime can cost e-commerce sites 
+                  $5,000-$25,000 in lost revenue, while poor error experiences 
+                  reduce customer lifetime value by 15-30%
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Trust and reputation preservation:
+                  </strong>{" "}
+                  Graceful error handling maintains customer trust during 
+                  problems, while poor handling can damage brand reputation 
+                  through negative reviews and social media complaints
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Enterprise transformation success stories
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Major organizations demonstrate significant business value through 
+              strategic error handling and resilience engineering investments
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Netflix's resilience engineering:
+                  </strong>{" "}
+                  Implemented Chaos Engineering and comprehensive error handling, 
+                  achieving 99.99% availability while serving 200M+ users and 
+                  preventing revenue losses during peak streaming periods
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Amazon's fault tolerance:
+                  </strong>{" "}
+                  Built comprehensive error handling into AWS services, enabling 
+                  automatic failover and recovery that saves customers millions 
+                  in downtime costs and supports mission-critical applications
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Stripe's payment reliability:
+                  </strong>{" "}
+                  Developed sophisticated error handling for payment processing, 
+                  achieving 99.99% uptime and handling billions in transactions 
+                  by gracefully managing network failures and bank integrations
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Cursor Implementation Section */}
+      <section id="cursor-implementation">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Cursor Implementation Considerations
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-cyan-500 bg-cyan-50/50 dark:bg-cyan-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              AI-assisted error handling pattern generation
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Cursor provides intelligent suggestions for implementing robust 
+              error handling patterns based on enterprise best practices and 
+              specific business requirements
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Automatic try/catch block generation with appropriate error 
+                types and recovery strategies for business-critical operations
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Context-aware error message suggestions that provide meaningful 
+                guidance to users while maintaining professional communication
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Retry logic recommendations with exponential backoff and circuit 
+                breaker patterns for external service integrations
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Enterprise monitoring and observability support
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              AI tools help teams implement comprehensive error tracking and 
+              monitoring systems that provide visibility into application 
+              health and business impact
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Structured logging implementation that captures relevant context 
+                for business operations and debugging scenarios
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Metrics and alerting configuration that aligns with business 
+                SLAs and customer experience requirements
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Error correlation analysis that helps identify patterns across 
+                distributed systems and user workflows
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-orange-500 bg-orange-50/50 dark:bg-orange-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Resilience testing and validation automation
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              AI assistance enables teams to implement comprehensive testing 
+              strategies that validate error handling effectiveness and 
+              business continuity under failure conditions
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Chaos engineering experiment generation that tests system 
+                resilience under realistic failure scenarios for enterprise applications
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Error scenario test case creation that validates business logic 
+                continues to function correctly during various failure modes
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Recovery time validation tools that ensure business continuity 
+                requirements are met during system restoration processes
               </li>
             </ul>
           </div>
