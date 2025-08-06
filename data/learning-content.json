@@ -3785,7 +3785,180 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Approach for developing software based on business domain",
-              "topics": ["Bounded Context", "Entities", "Value Objects"]
+              "topics": ["Bounded Context", "Entities", "Value Objects", "Domain Events", "Aggregates"],
+              "quiz": {
+                "title": "Domain-driven Design Knowledge Quiz",
+                "totalQuestions": 10,
+                "totalPoints": 25,
+                "questions": [
+                  {
+                    "id": 1,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "What is the primary purpose of Bounded Context in Domain-Driven Design?",
+                    "options": [
+                      "Defines explicit boundaries around business domains ensuring domain models remain consistent within specific contexts",
+                      "Automatically generates microservices from domain models",
+                      "Provides database schema optimization for large enterprises",
+                      "Enables real-time synchronization between different business systems"
+                    ],
+                    "correctAnswer": 0,
+                    "additionalContext": "Bounded Context is a strategic design pattern that defines explicit boundaries around business domains, ensuring that domain models remain consistent and focused within specific contexts while preventing coupling between different business areas. Each bounded context maintains its own ubiquitous language and model integrity, preventing confusion when the same concept means different things in different business areas.",
+                    "keyConcepts": [
+                      "Bounded Context",
+                      "domain boundaries",
+                      "strategic design"
+                    ]
+                  },
+                  {
+                    "id": 2,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "According to the article, what percentage reduction in cross-team coordination overhead do organizations see when bounded contexts align with team ownership?",
+                    "options": [
+                      "20-30%",
+                      "40-60%",
+                      "70-80%",
+                      "80-90%"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Organizations see 40-60% reduction in cross-team coordination overhead when bounded contexts align with team ownership, enabling faster feature delivery and reduced merge conflicts. This alignment creates natural ownership boundaries that reduce dependencies between teams and accelerate development cycles.",
+                    "keyConcepts": [
+                      "Team autonomy",
+                      "coordination overhead",
+                      "bounded context alignment"
+                    ]
+                  },
+                  {
+                    "id": 3,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "What distinguishes Entities from Value Objects in Domain-Driven Design?",
+                    "options": [
+                      "Entities are stored in databases while Value Objects exist only in memory",
+                      "Entities are immutable while Value Objects can be modified after creation",
+                      "Entities have unique identity and lifecycle management while Value Objects are immutable and represent concepts without identity",
+                      "Entities handle business rules while Value Objects only contain data"
+                    ],
+                    "correctAnswer": 2,
+                    "additionalContext": "Entities are business objects with unique identity and lifecycle management that represent core domain concepts with behavior, state transitions, and business rules enforcement. Value Objects are immutable objects that represent concepts without identity, focusing on attributes and behavior while providing type safety and domain expression through the type system.",
+                    "keyConcepts": [
+                      "Entities vs Value Objects",
+                      "identity management",
+                      "immutability"
+                    ]
+                  },
+                  {
+                    "id": 4,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "How do Domain Events enable loose coupling between bounded contexts?",
+                    "options": [
+                      "By automatically generating API documentation for all services",
+                      "By providing shared database access across different domains",
+                      "By implementing synchronous communication protocols between services",
+                      "By enabling bounded contexts to communicate through events rather than direct calls, reducing coupling by 50-70%"
+                    ],
+                    "correctAnswer": 3,
+                    "additionalContext": "Domain Events enable temporal decoupling where bounded contexts communicate through events rather than direct calls, reducing coupling by 50-70% and enabling systems to evolve independently while maintaining integration. Events capture business language making system behavior traceable and enabling business stakeholders to understand system operations.",
+                    "keyConcepts": [
+                      "Domain Events",
+                      "temporal decoupling",
+                      "loose coupling"
+                    ]
+                  },
+                  {
+                    "id": 5,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "What is the primary function of Aggregates in ensuring data consistency?",
+                    "options": [
+                      "Aggregates define consistency boundaries that group entities and value objects into transactional units",
+                      "Aggregates automatically synchronize data across multiple databases",
+                      "Aggregates provide real-time backup and recovery capabilities",
+                      "Aggregates enable automatic conflict resolution in distributed systems"
+                    ],
+                    "correctAnswer": 0,
+                    "additionalContext": "Aggregates are consistency boundaries that group entities and value objects into transactional units, ensuring data integrity while defining the scope of business operations and concurrency control. They define what can be modified in a single transaction, preventing distributed transaction complexity while maintaining business rule consistency across related objects.",
+                    "keyConcepts": [
+                      "Aggregates",
+                      "consistency boundaries",
+                      "transactional units"
+                    ]
+                  },
+                  {
+                    "id": 6,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "According to the article, which enterprise success story demonstrates bounded contexts organizing autonomous teams around specific domains?",
+                    "options": [
+                      "Netflix with 1000+ microservices supporting global streaming",
+                      "Amazon with deployment every 11.7 seconds across services",
+                      "Spotify organizing 100+ autonomous squads around music discovery, playlist management, and artist relations domains",
+                      "Uber processing 18+ million trips daily with real-time pricing"
+                    ],
+                    "correctAnswer": 2,
+                    "additionalContext": "Spotify uses bounded contexts to organize 100+ autonomous squads around music discovery, playlist management, and artist relations domains, enabling independent deployment of 1000+ releases per day. This demonstrates how domain boundaries can align with organizational structure to enable team autonomy and rapid delivery.",
+                    "keyConcepts": [
+                      "Spotify case study",
+                      "autonomous squads",
+                      "domain alignment"
+                    ]
+                  },
+                  {
+                    "id": 7,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "What customer trigger scenario reflects business-developer communication breakdown driving DDD adoption?",
+                    "options": [
+                      "Complex domain confusion where the same concept means different things in different system parts",
+                      "Legacy system rigidity requiring changes across 15 different services",
+                      "Team coordination overhead with engineers spending more time coordinating than building",
+                      "Product managers and engineers using completely different vocabulary with business requirements getting lost in translation"
+                    ],
+                    "correctAnswer": 3,
+                    "additionalContext": "The business-developer communication breakdown is captured in the customer quote: 'Product managers and engineers use completely different vocabulary - business requirements get lost in translation.' This scenario drives DDD adoption to establish ubiquitous language and bridge the communication gap between business stakeholders and development teams.",
+                    "keyConcepts": [
+                      "Business-developer communication",
+                      "ubiquitous language",
+                      "requirements translation"
+                    ]
+                  },
+                  {
+                    "id": 8,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "How can Cursor assist teams in implementing Domain-Driven Design patterns?",
+                    "options": [
+                      "By analyzing existing codebases to identify natural domain boundaries and suggest bounded context extraction strategies",
+                      "By automatically deploying microservices without manual configuration",
+                      "By generating complete business requirements from existing code",
+                      "By providing real-time monitoring of domain model performance"
+                    ],
+                    "correctAnswer": 0,
+                    "additionalContext": "Cursor excels at analyzing existing codebases to identify natural domain boundaries and suggest bounded context extraction strategies. The AI can examine data relationships, business logic patterns, and team communication to recommend optimal domain model structure. Teams leverage Cursor to generate value objects from primitive types, identify entity candidates, and design aggregate boundaries based on transactional consistency requirements.",
+                    "keyConcepts": [
+                      "Cursor AI assistance",
+                      "domain boundary identification",
+                      "codebase analysis"
+                    ]
+                  },
+                  {
+                    "id": 9,
+                    "type": "freeform",
+                    "points": 4,
+                    "question": "Describe the three customer trigger scenarios that drive Domain-Driven Design adoption according to the article. For each scenario, include the specific quoted pain point mentioned.",
+                    "sampleStrongResponse": "The three customer trigger scenarios are: (1) Complex domain confusion - 'Our developers spend more time understanding the business logic than implementing it - the same concept means different things in different parts of our system', (2) Legacy system rigidity - 'Every new feature requires changes across 15 different services because we never properly defined domain boundaries', and (3) Business-developer communication breakdown - 'Product managers and engineers use completely different vocabulary - business requirements get lost in translation'. These scenarios reflect the core problems that DDD addresses: domain complexity management, proper boundary definition, and establishing shared business language."
+                  },
+                  {
+                    "id": 10,
+                    "type": "freeform",
+                    "points": 5,
+                    "question": "List the five core Domain-Driven Design concepts covered in the article and explain how each one addresses enterprise domain complexity challenges in large organizations (500+ developers).",
+                    "sampleStrongResponse": "The five core DDD concepts are: (1) Bounded Context - defines explicit boundaries around business domains to prevent coupling and enable team autonomy with 40-60% reduction in coordination overhead, (2) Entities - provide unique identity and lifecycle management with business behavior encapsulation, reducing procedural code by 30-50%, (3) Value Objects - offer immutability and domain expression, reducing debugging time by 25-40% while preventing invalid data combinations, (4) Domain Events - enable temporal decoupling between contexts, reducing coupling by 50-70% while providing audit trails for compliance, and (5) Aggregates - establish consistency boundaries for transactional units, preventing distributed transaction complexity while managing concurrency in high-throughput systems. Each concept addresses specific aspects of enterprise complexity: organizational alignment, code maintainability, data integrity, system integration, and transaction management."
+                  }
+                ]
+              }
             },
             {
               "id": "clean-architecture",
