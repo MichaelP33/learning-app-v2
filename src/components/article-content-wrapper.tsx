@@ -193,6 +193,8 @@ export function ArticleContentWrapper({
                     <CleanArchitectureContent />
                   ) : article.id === "restful-apis" ? (
                     <RESTfulApisContent />
+                  ) : article.id === "acid-vs-eventual-consistency" ? (
+                    <AcidPropertiesVsEventualConsistencyContent />
                   ) : (
                     <DefaultArticleContent article={article} />
                   )}
@@ -11027,6 +11029,407 @@ function RESTfulApisContent() {
               implement proper status code selection based on operation
               outcomes, and generate client-friendly error messages that enable
               effective debugging and user experience design.
+            </p>
+          </div>
+        </div>
+      </section>
+    </article>
+  );
+}
+
+// ACID Properties vs Eventual Consistency Content
+function AcidPropertiesVsEventualConsistencyContent() {
+  return (
+    <article className="prose prose-lg max-w-none prose-slate dark:prose-invert">
+      {/* Key Concepts Section */}
+      <section id="key-concepts">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
+          <span className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center text-white text-sm font-bold">1</span>
+          Key Concepts
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              ACID Properties: Database Transaction Guarantees
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              ACID (Atomicity, Consistency, Isolation, Durability) provides strong transactional guarantees 
+              that ensure data integrity in database operations (like maintaining accurate financial records 
+              where every transaction must be precisely tracked). These properties guarantee that database 
+              transactions are processed reliably and maintain data accuracy even under system failures.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+              <div className="bg-white/50 dark:bg-gray-800/50 p-4 rounded-lg">
+                <h4 className="font-medium text-slate-900 dark:text-white mb-2">Atomicity & Consistency</h4>
+                <ul className="text-sm text-slate-600 dark:text-gray-400 space-y-1">
+                  <li>• All-or-nothing transaction execution</li>
+                  <li>• Data integrity constraints enforced</li>
+                  <li>• Rollback on any operation failure</li>
+                </ul>
+              </div>
+              <div className="bg-white/50 dark:bg-gray-800/50 p-4 rounded-lg">
+                <h4 className="font-medium text-slate-900 dark:text-white mb-2">Isolation & Durability</h4>
+                <ul className="text-sm text-slate-600 dark:text-gray-400 space-y-1">
+                  <li>• Concurrent transaction protection</li>
+                  <li>• Permanent data persistence</li>
+                  <li>• Recovery from system failures</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Eventual Consistency: Distributed System Trade-offs
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Eventual consistency allows distributed systems to remain available during network partitions 
+              by accepting temporary data inconsistencies that resolve over time (like social media updates 
+              that may appear at different times across global users). This approach prioritizes system 
+              availability and partition tolerance over immediate consistency, as defined by the CAP theorem.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+              <div className="bg-white/50 dark:bg-gray-800/50 p-4 rounded-lg">
+                <h4 className="font-medium text-slate-900 dark:text-white mb-2">Availability Benefits</h4>
+                <ul className="text-sm text-slate-600 dark:text-gray-400 space-y-1">
+                  <li>• System remains operational during failures</li>
+                  <li>• Global distribution with local responsiveness</li>
+                  <li>• Improved write scalability</li>
+                </ul>
+              </div>
+              <div className="bg-white/50 dark:bg-gray-800/50 p-4 rounded-lg">
+                <h4 className="font-medium text-slate-900 dark:text-white mb-2">Consistency Challenges</h4>
+                <ul className="text-sm text-slate-600 dark:text-gray-400 space-y-1">
+                  <li>• Temporary data conflicts</li>
+                  <li>• Complex conflict resolution</li>
+                  <li>• Application-level handling required</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              CAP Theorem: The Fundamental Trade-off
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              The CAP theorem states that distributed systems can only guarantee two of three properties: 
+              Consistency, Availability, and Partition tolerance (like choosing between immediate accuracy 
+              versus continuous operation when network connections fail). Understanding this trade-off is 
+              crucial for making informed architectural decisions in distributed system design.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Business Impact Section */}
+      <section id="business-team-impact">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
+          <TrendingUp className="w-6 h-6 text-green-500" />
+          Business &amp; Team Impact
+        </h2>
+
+        <div className="space-y-6">
+          {/* Performance Metrics Card - Aligned with Quiz Data */}
+          <MetricsCard
+            title="Performance &amp; Scalability Impact"
+            metrics={[
+              {
+                label: "Write Scalability Improvement",
+                value: "40-70%",
+                description: "Enhanced throughput with eventual consistency",
+                trend: "up",
+                color: "green",
+              },
+              {
+                label: "System Availability",
+                value: "99.9%+",
+                description: "Maintained during network partitions",
+                trend: "up",
+                color: "blue",
+              },
+              {
+                label: "Data Consistency Issues",
+                value: "45-60%",
+                description: "Organizations experience challenges initially",
+                trend: "down",
+                color: "orange",
+              },
+              {
+                label: "Enterprise ACID Adoption",
+                value: "65%",
+                description: "Driven by regulatory compliance needs",
+                trend: "stable",
+                color: "purple",
+              },
+            ]}
+            className="bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-blue-950 dark:to-indigo-900"
+          />
+
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Enterprise Decision Framework
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Strategic guidelines for choosing consistency models based on business requirements
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+              <div className="bg-white/50 dark:bg-gray-800/50 p-4 rounded-lg">
+                <h4 className="font-medium text-slate-900 dark:text-white mb-2">
+                  Choose ACID When:
+                </h4>
+                <ul className="text-sm text-slate-600 dark:text-gray-400 space-y-1">
+                  <li>• Financial transactions or payments</li>
+                  <li>• Inventory management during sales</li>
+                  <li>• Regulatory compliance required</li>
+                  <li>• Data accuracy is critical</li>
+                </ul>
+              </div>
+              <div className="bg-white/50 dark:bg-gray-800/50 p-4 rounded-lg">
+                <h4 className="font-medium text-slate-900 dark:text-white mb-2">
+                  Choose Eventual Consistency When:
+                </h4>
+                <ul className="text-sm text-slate-600 dark:text-gray-400 space-y-1">
+                  <li>• Global content distribution</li>
+                  <li>• Social media and collaboration</li>
+                  <li>• High write volume scenarios</li>
+                  <li>• Availability over immediate accuracy</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          {/* Customer Pain Points - Aligned with Quiz Scenarios */}
+          <div className="border-l-4 border-orange-500 bg-orange-50/50 dark:bg-orange-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Common Customer Challenges
+            </h3>
+            <div className="space-y-4">
+              <div>
+                <strong className="text-slate-700 dark:text-gray-300">
+                  E-commerce overselling crisis:
+                </strong>{" "}
+                &ldquo;During our Black Friday sale, we oversold 300 units because our eventually consistent 
+                inventory system allowed multiple customers to purchase the same items simultaneously.&rdquo;
+              </div>
+              <div>
+                <strong className="text-slate-700 dark:text-gray-300">
+                  Financial compliance violation:
+                </strong>{" "}
+                &ldquo;Our audit failed because we couldn&rsquo;t provide consistent transaction trails - 
+                our eventually consistent system had temporary inconsistencies in account balances.&rdquo;
+              </div>
+              <div>
+                <strong className="text-slate-700 dark:text-gray-300">
+                  Performance scaling bottleneck:
+                </strong>{" "}
+                &ldquo;Our ACID-compliant system hits a wall at 10,000 TPS during peak hours, but we need 
+                50,000 TPS to handle global demand growth.&rdquo;
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Implementation Patterns Section */}
+      <section id="implementation-patterns">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
+          <span className="w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center text-white text-sm font-bold">2</span>
+          Implementation Patterns
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Hybrid Consistency Models
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Modern applications often implement hybrid approaches, using ACID properties for critical 
+              operations (like payment processing) while applying eventual consistency to less critical 
+              data (like user preferences or content recommendations). This pattern maximizes both data 
+              integrity and system performance where each is most needed.
+            </p>
+            <div className="bg-slate-100 dark:bg-gray-800 p-4 rounded-lg font-mono text-sm">
+              <div className="text-green-600 dark:text-green-400 mb-2">// Hybrid Pattern Example</div>
+              <div className="text-slate-700 dark:text-gray-300">
+                <div>Payment Service: ACID transactions</div>
+                <div>User Profile: Eventual consistency</div>
+                <div>Product Catalog: Eventually consistent</div>
+                <div>Inventory Management: ACID for stock</div>
+              </div>
+            </div>
+          </div>
+
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Conflict Resolution Strategies
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Eventual consistency requires sophisticated conflict resolution mechanisms when concurrent 
+              updates occur. Common strategies include last-writer-wins (simple but lossy), vector clocks 
+              (precise but complex), and semantic merge functions (business-logic aware resolution).
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+              <div className="bg-white/50 dark:bg-gray-800/50 p-4 rounded-lg">
+                <h4 className="font-medium text-slate-900 dark:text-white mb-2">Last-Writer-Wins</h4>
+                <ul className="text-sm text-slate-600 dark:text-gray-400 space-y-1">
+                  <li>• Simple timestamp-based</li>
+                  <li>• Data loss possible</li>
+                  <li>• Good for user preferences</li>
+                </ul>
+              </div>
+              <div className="bg-white/50 dark:bg-gray-800/50 p-4 rounded-lg">
+                <h4 className="font-medium text-slate-900 dark:text-white mb-2">Vector Clocks</h4>
+                <ul className="text-sm text-slate-600 dark:text-gray-400 space-y-1">
+                  <li>• Precise causality tracking</li>
+                  <li>• Complex implementation</li>
+                  <li>• No data loss</li>
+                </ul>
+              </div>
+              <div className="bg-white/50 dark:bg-gray-800/50 p-4 rounded-lg">
+                <h4 className="font-medium text-slate-900 dark:text-white mb-2">Semantic Merge</h4>
+                <ul className="text-sm text-slate-600 dark:text-gray-400 space-y-1">
+                  <li>• Business logic aware</li>
+                  <li>• Application-specific</li>
+                  <li>• Preserves intent</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Session Consistency: The Middle Ground
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Session consistency provides per-user strong consistency while maintaining eventual consistency 
+              globally (meaning each user sees their own actions immediately but may see others&rsquo; updates 
+              with delay). This model works exceptionally well for collaborative applications where users 
+              need immediate feedback on their own actions.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Customer Scenarios Section */}
+      <section id="customer-scenarios">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
+          <span className="w-6 h-6 bg-orange-500 rounded-full flex items-center justify-center text-white text-sm font-bold">3</span>
+          Customer Scenarios
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Global E-commerce Platform Scaling Challenge
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              <strong>Challenge:</strong> A global e-commerce platform needs to scale from 10,000 to 50,000 
+              transactions per second during peak shopping periods while maintaining data integrity for 
+              payments and inventory.
+            </p>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              <strong>Solution:</strong> Implement hybrid consistency - ACID for payment processing and 
+              inventory management, eventual consistency for product catalog, user reviews, and 
+              recommendation engines. This approach achieves the required scalability while protecting 
+              critical business operations.
+            </p>
+            <div className="bg-slate-100 dark:bg-gray-800 p-4 rounded-lg">
+              <div className="font-medium text-slate-900 dark:text-white mb-2">Key Implementation Points:</div>
+              <ul className="text-sm text-slate-600 dark:text-gray-400 space-y-1">
+                <li>• ACID transactions for payment and inventory operations</li>
+                <li>• Eventually consistent product catalog with conflict resolution</li>
+                <li>• Session consistency for user shopping cart state</li>
+                <li>• Monitoring for consistency lag and conflict rates</li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Financial Trading Platform Requirements
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              <strong>Challenge:</strong> A real-time trading platform must handle 100,000 concurrent users 
+              with microsecond latency while ensuring no trader sees stale pricing data that could lead to 
+              failed trades.
+            </p>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              <strong>Solution:</strong> Strong consistency for trade execution and price data, with 
+              careful partitioning to maintain availability. Regional failover strategies ensure global 
+              availability while meeting regulatory compliance requirements for audit trails.
+            </p>
+            <div className="bg-slate-100 dark:bg-gray-800 p-4 rounded-lg">
+              <div className="font-medium text-slate-900 dark:text-white mb-2">Regulatory Considerations:</div>
+              <ul className="text-sm text-slate-600 dark:text-gray-400 space-y-1">
+                <li>• Complete audit trail requirements</li>
+                <li>• Transaction ordering guarantees</li>
+                <li>• Data integrity for compliance reporting</li>
+                <li>• Regional data sovereignty constraints</li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="border-l-4 border-orange-500 bg-orange-50/50 dark:bg-orange-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Social Media Platform Global Distribution
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              <strong>Challenge:</strong> A social media platform needs to serve globally distributed users 
+              with low latency while handling billions of posts, likes, and comments daily.
+            </p>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              <strong>Solution:</strong> Eventual consistency with sophisticated conflict resolution for 
+              user-generated content. Like counts and comment threads use last-writer-wins with eventual 
+              reconciliation, while user authentication and payment operations maintain ACID properties.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Cursor Implementation Considerations */}
+      <section id="cursor-implementation">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
+          <span className="w-6 h-6 bg-indigo-500 rounded-round flex items-center justify-center text-white text-sm font-bold">AI</span>
+          Cursor Implementation Considerations
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-indigo-500 bg-indigo-50/50 dark:bg-indigo-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Consistency Model Analysis and Architecture Generation
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Cursor can analyze application requirements and automatically suggest appropriate consistency 
+              models for different data types and operations. The AI assists in identifying which components 
+              require ACID properties versus eventual consistency, generating hybrid architecture patterns 
+              that optimize both performance and data integrity based on business requirements.
+            </p>
+          </div>
+
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Conflict Resolution Strategy Implementation
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              AI-assisted development of sophisticated conflict resolution mechanisms for eventually consistent 
+              systems. Cursor helps implement vector clocks, semantic merge functions, and business-logic-aware 
+              conflict resolution strategies. The AI can generate test scenarios for concurrent updates and 
+              validate resolution behavior under various network partition conditions.
+            </p>
+          </div>
+
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Transaction Boundary Optimization and Monitoring
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Intelligent identification and optimization of transaction boundaries in ACID systems to 
+              minimize coordination overhead while maintaining data integrity. Cursor assists in designing 
+              monitoring systems that track consistency lag, conflict rates, and system availability, 
+              providing insights for capacity planning and performance optimization in distributed data 
+              architectures.
             </p>
           </div>
         </div>
