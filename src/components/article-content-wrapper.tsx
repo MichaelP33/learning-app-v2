@@ -193,6 +193,8 @@ export function ArticleContentWrapper({
                     <CleanArchitectureContent />
                   ) : article.id === "restful-apis" ? (
                     <RESTfulApisContent />
+                  ) : article.id === "sql-vs-nosql" ? (
+                    <SQLVsNoSQLContent />
                   ) : (
                     <DefaultArticleContent article={article} />
                   )}
@@ -11027,6 +11029,322 @@ function RESTfulApisContent() {
               implement proper status code selection based on operation
               outcomes, and generate client-friendly error messages that enable
               effective debugging and user experience design.
+            </p>
+          </div>
+        </div>
+      </section>
+    </article>
+  );
+}
+
+// Component for the SQL vs NoSQL article content
+function SQLVsNoSQLContent() {
+  return (
+    <article className="space-y-10">
+      {/* Key Concepts Section */}
+      <section id="key-concepts">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Key Concepts
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Structured vs flexible data modeling approaches
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              The fundamental architectural choice between enforced structure and 
+              development flexibility (like choosing between departmental hierarchy 
+              vs cross-functional teams in an organization)
+            </p>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">SQL databases:</strong>{" "}
+                  Enforce predefined schemas with fixed table structures, relationships, 
+                  and data types for complex business logic with strict data integrity
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">NoSQL databases:</strong>{" "}
+                  Allow flexible document structures within collections, enabling rapid 
+                  development but requiring careful application-level validation
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              ACID transactions vs horizontal scaling capabilities
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Core architectural trade-off between guaranteed consistency and 
+              performance scalability
+            </p>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                ACID transactions provide atomicity, consistency, isolation, and 
+                durability guarantees essential for financial transactions and inventory management
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                NoSQL horizontal scaling enables 3-10x better read performance through 
+                denormalization and native distribution capabilities
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Polyglot persistence architectures leverage both approaches strategically 
+                for different workload types
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Enterprise adoption patterns and practical implementation
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Strategic database selection based on business requirements rather than technology trends
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">SQL dominance:</strong>{" "}
+                  80-95% of Fortune 500 companies use SQL as primary transactional system 
+                  due to regulatory requirements and business logic complexity
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">NoSQL specialization:</strong>{" "}
+                  Document databases excel in content management, user profiles, and 
+                  applications with evolving data models
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">Hybrid architectures:</strong>{" "}
+                  SQL for transactional data and core business logic, NoSQL for 
+                  analytics and high-volume reads
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Database Selection Decision Framework */}
+        <div className="mt-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="bg-white/50 dark:bg-gray-800/50 p-6 rounded-lg border border-slate-200 dark:border-gray-700">
+              <h4 className="font-semibold text-slate-900 dark:text-white mb-4">
+                Choose SQL When:
+              </h4>
+              <ul className="space-y-2 text-sm text-slate-600 dark:text-gray-400">
+                <li>• Complex business logic with multi-table relationships</li>
+                <li>• ACID transaction requirements for financial operations</li>
+                <li>• Mature ecosystem and regulatory compliance needs</li>
+                <li>• Structured reporting and complex analytical queries</li>
+              </ul>
+            </div>
+            <div className="bg-white/50 dark:bg-gray-800/50 p-6 rounded-lg border border-slate-200 dark:border-gray-700">
+              <h4 className="font-semibold text-slate-900 dark:text-white mb-4">
+                Choose NoSQL When:
+              </h4>
+              <ul className="space-y-2 text-sm text-slate-600 dark:text-gray-400">
+                <li>• Rapid development with evolving data models</li>
+                <li>• High-volume reads requiring horizontal scaling</li>
+                <li>• Content management and user activity tracking</li>
+                <li>• Massive data volumes (10x-100x growth scenarios)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Business & Team Impact Section */}
+      <section id="business-team-impact">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
+          <TrendingUp className="w-6 h-6 text-green-500" />
+          Business &amp; Team Impact
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Performance and scaling outcomes with quantified business impact
+            </h3>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">Netflix:</strong>{" "}
+                  Achieves millisecond response times for recommendation queries using NoSQL 
+                  denormalization while maintaining transactional data in SQL systems
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">E-commerce platforms:</strong>{" "}
+                  Product catalog queries achieve 3-10x performance improvements through 
+                  NoSQL horizontal scaling and data denormalization
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">Financial services:</strong>{" "}
+                  Banks maintain SQL for core transactions while using NoSQL for real-time 
+                  fraud detection and customer analytics
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-yellow-500 bg-yellow-50/50 dark:bg-yellow-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Common customer triggers driving database architecture decisions
+            </h3>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">Explosive data growth:</strong>{" "}
+                  &ldquo;Our database can&rsquo;t handle the 50x increase in user data from our mobile app launch&rdquo;
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">Schema evolution bottleneck:</strong>{" "}
+                  &ldquo;Every new feature requires 3-week database migrations that slow our development velocity&rdquo;
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">Read performance crisis:</strong>{" "}
+                  &ldquo;Our product catalog queries slow to 3+ seconds during peak traffic&rdquo;
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Customer profiles and strategic decision drivers
+            </h3>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <strong className="text-slate-700 dark:text-gray-300">Series B+ startups</strong>{" "}
+                with growing data volumes ($10M+ ARR, 50+ engineers) facing horizontal scaling decisions
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <strong className="text-slate-700 dark:text-gray-300">Enterprise modernization teams</strong>{" "}
+                evaluating polyglot persistence for legacy system transformation
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <strong className="text-slate-700 dark:text-gray-300">E-commerce platforms</strong>{" "}
+                processing high-volume transactions while requiring flexible product catalogs
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <strong className="text-slate-700 dark:text-gray-300">Financial services firms</strong>{" "}
+                balancing regulatory compliance with real-time analytics requirements
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Database Architecture Metrics */}
+        <div className="mt-8">
+          <MetricsCard
+            title="Database Architecture Performance Impact"
+            metrics={[
+              {
+                label: "NoSQL Read Performance Advantage",
+                value: "3-10x",
+                description: "Better performance through denormalization and horizontal scaling",
+                trend: "up",
+                color: "green",
+              },
+              {
+                label: "Enterprise SQL Adoption",
+                value: "80-95%",
+                description: "Fortune 500 companies using SQL as primary transactional system",
+                color: "blue",
+              },
+              {
+                label: "Polyglot Persistence Cost",
+                value: "$100K-$500K",
+                description: "Annual cost for mid-size companies maintaining both systems",
+                color: "orange",
+              },
+              {
+                label: "Schema Migration Impact",
+                value: "3 weeks",
+                description: "Typical time for complex database schema changes",
+                color: "purple",
+              },
+            ]}
+            className="bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-blue-950 dark:to-indigo-900"
+          />
+        </div>
+      </section>
+
+      {/* Cursor Implementation Section */}
+      <section id="cursor-implementation">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Cursor Implementation Considerations
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Database architecture decision support
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              AI assistance for critical SQL vs NoSQL architectural decisions that teams 
+              debate during system design - intelligent analysis of workload characteristics, 
+              data volume projections, and consistency requirements to recommend appropriate 
+              database technologies based on specific business requirements and scaling patterns
+            </p>
+          </div>
+
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Polyglot persistence implementation guidance
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Enterprise teams implementing hybrid SQL/NoSQL architectures benefit from 
+              context-aware code generation for data access patterns - AI assistance in 
+              generating appropriate ORMs for SQL operations and document queries for NoSQL, 
+              with intelligent suggestions for maintaining data consistency across different 
+              database technologies
+            </p>
+          </div>
+
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Migration strategy acceleration
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Organizations migrating between database architectures can leverage AI for 
+              data model transformation guidance - automated analysis of existing SQL schemas 
+              to suggest optimal NoSQL document structures, or reverse guidance for 
+              normalizing NoSQL data into relational models, with migration scripts and 
+              data validation assistance to ensure business continuity during transitions
             </p>
           </div>
         </div>
