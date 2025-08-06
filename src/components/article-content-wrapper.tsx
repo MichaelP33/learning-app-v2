@@ -187,6 +187,10 @@ export function ArticleContentWrapper({
                     <MicroservicesArchitectureContent />
                   ) : article.id === "monolithic-architecture" ? (
                     <MonolithicArchitectureContent />
+                  ) : article.id === "domain-driven-design" ? (
+                    <DomainDrivenDesignContent />
+                  ) : article.id === "clean-architecture" ? (
+                    <CleanArchitectureContent />
                   ) : (
                     <DefaultArticleContent article={article} />
                   )}
@@ -9527,15 +9531,18 @@ function MonolithicArchitectureContent() {
             <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                User interface, business logic, data access, and background jobs in one deployable artifact
+                User interface, business logic, data access, and background jobs
+                in one deployable artifact
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Eliminates complex orchestration between multiple services during deployments
+                Eliminates complex orchestration between multiple services
+                during deployments
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Single startup sequence, single shutdown process, unified logging and monitoring
+                Single startup sequence, single shutdown process, unified
+                logging and monitoring
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
@@ -9549,24 +9556,29 @@ function MonolithicArchitectureContent() {
               Shared database enables consistent data access patterns
             </h3>
             <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Centralized data store accessed directly by all application modules
+              Centralized data store accessed directly by all application
+              modules
             </p>
             <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                ACID transactions span multiple business operations without distributed transaction complexity
+                ACID transactions span multiple business operations without
+                distributed transaction complexity
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Foreign key relationships enforce data integrity at the database level
+                Foreign key relationships enforce data integrity at the database
+                level
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Simple backup and recovery strategies for entire application state
+                Simple backup and recovery strategies for entire application
+                state
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Reporting and analytics queries access complete dataset without cross-service aggregation
+                Reporting and analytics queries access complete dataset without
+                cross-service aggregation
               </li>
             </ul>
           </div>
@@ -9576,24 +9588,29 @@ function MonolithicArchitectureContent() {
               Internal communication through direct method calls
             </h3>
             <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Modules interact via in-process function calls rather than network protocols
+              Modules interact via in-process function calls rather than network
+              protocols
             </p>
             <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Eliminates network latency, serialization overhead, and protocol complexity
+                Eliminates network latency, serialization overhead, and protocol
+                complexity
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Shared memory enables efficient data transfer between application layers
+                Shared memory enables efficient data transfer between
+                application layers
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Stack traces show complete request flow without service boundary gaps
+                Stack traces show complete request flow without service boundary
+                gaps
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Function signatures enforce compile-time contracts between modules
+                Function signatures enforce compile-time contracts between
+                modules
               </li>
             </ul>
           </div>
@@ -9603,7 +9620,8 @@ function MonolithicArchitectureContent() {
               Technology consistency across the entire application
             </h3>
             <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Single technology stack minimizes complexity and specialization requirements
+              Single technology stack minimizes complexity and specialization
+              requirements
             </p>
             <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
               <li className="flex items-start gap-2">
@@ -9612,7 +9630,8 @@ function MonolithicArchitectureContent() {
                   <strong className="text-slate-700 dark:text-gray-300">
                     Unified dependency management:
                   </strong>{" "}
-                  Single package.json, requirements.txt, or equivalent for entire application
+                  Single package.json, requirements.txt, or equivalent for
+                  entire application
                 </div>
               </li>
               <li className="flex items-start gap-2">
@@ -9621,7 +9640,8 @@ function MonolithicArchitectureContent() {
                   <strong className="text-slate-700 dark:text-gray-300">
                     Consistent development environment:
                   </strong>{" "}
-                  Same IDE, debugging tools, and testing framework across all features
+                  Same IDE, debugging tools, and testing framework across all
+                  features
                 </div>
               </li>
               <li className="flex items-start gap-2">
@@ -9639,7 +9659,8 @@ function MonolithicArchitectureContent() {
                   <strong className="text-slate-700 dark:text-gray-300">
                     Centralized security and compliance:
                   </strong>{" "}
-                  Security patches and compliance updates applied once across entire application
+                  Security patches and compliance updates applied once across
+                  entire application
                 </div>
               </li>
             </ul>
@@ -9659,15 +9680,18 @@ function MonolithicArchitectureContent() {
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Simplified observability with unified metrics, logs, and tracing within single process
+                Simplified observability with unified metrics, logs, and tracing
+                within single process
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Lower infrastructure costs due to reduced coordination and communication overhead
+                Lower infrastructure costs due to reduced coordination and
+                communication overhead
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Faster troubleshooting with complete application context in single deployment
+                Faster troubleshooting with complete application context in
+                single deployment
               </li>
             </ul>
           </div>
@@ -9681,7 +9705,8 @@ function MonolithicArchitectureContent() {
               {
                 label: "Initial Development Speed",
                 value: "3-5x Faster",
-                description: "Compared to distributed architectures for new features",
+                description:
+                  "Compared to distributed architectures for new features",
                 color: "green",
               },
               {
@@ -9726,7 +9751,9 @@ function MonolithicArchitectureContent() {
                   <strong className="text-slate-700 dark:text-gray-300">
                     GitHub:
                   </strong>{" "}
-                  Started as Ruby monolith, scaled to millions of developers and repositories while maintaining core monolithic architecture for 80% of application functionality
+                  Started as Ruby monolith, scaled to millions of developers and
+                  repositories while maintaining core monolithic architecture
+                  for 80% of application functionality
                 </div>
               </li>
               <li className="flex items-start gap-2">
@@ -9735,7 +9762,9 @@ function MonolithicArchitectureContent() {
                   <strong className="text-slate-700 dark:text-gray-300">
                     Shopify:
                   </strong>{" "}
-                  Maintained monolithic Rails application handling $200B+ in merchant sales annually, with selective service extraction only for performance bottlenecks
+                  Maintained monolithic Rails application handling $200B+ in
+                  merchant sales annually, with selective service extraction
+                  only for performance bottlenecks
                 </div>
               </li>
               <li className="flex items-start gap-2">
@@ -9744,7 +9773,9 @@ function MonolithicArchitectureContent() {
                   <strong className="text-slate-700 dark:text-gray-300">
                     Stack Overflow:
                   </strong>{" "}
-                  Serves 100+ million monthly users with monolithic ASP.NET application running on minimal infrastructure (9 web servers total)
+                  Serves 100+ million monthly users with monolithic ASP.NET
+                  application running on minimal infrastructure (9 web servers
+                  total)
                 </div>
               </li>
               <li className="flex items-start gap-2">
@@ -9753,7 +9784,9 @@ function MonolithicArchitectureContent() {
                   <strong className="text-slate-700 dark:text-gray-300">
                     Etsy:
                   </strong>{" "}
-                  Maintains core monolithic PHP application despite 50+ million active buyers, deploying 50+ times daily with unified application architecture
+                  Maintains core monolithic PHP application despite 50+ million
+                  active buyers, deploying 50+ times daily with unified
+                  application architecture
                 </div>
               </li>
             </ul>
@@ -9770,7 +9803,8 @@ function MonolithicArchitectureContent() {
                   <strong className="text-slate-700 dark:text-gray-300">
                     Team velocity crisis:
                   </strong>{" "}
-                  &ldquo;We&rsquo;re spending 70% of engineering time on service coordination instead of building features&rdquo;
+                  &ldquo;We&rsquo;re spending 70% of engineering time on service
+                  coordination instead of building features&rdquo;
                 </div>
               </li>
               <li className="flex items-start gap-2">
@@ -9779,7 +9813,8 @@ function MonolithicArchitectureContent() {
                   <strong className="text-slate-700 dark:text-gray-300">
                     Operational complexity overload:
                   </strong>{" "}
-                  &ldquo;Our deployment pipeline has 15+ services that must be orchestrated perfectly or everything breaks&rdquo;
+                  &ldquo;Our deployment pipeline has 15+ services that must be
+                  orchestrated perfectly or everything breaks&rdquo;
                 </div>
               </li>
               <li className="flex items-start gap-2">
@@ -9788,7 +9823,8 @@ function MonolithicArchitectureContent() {
                   <strong className="text-slate-700 dark:text-gray-300">
                     Performance degradation:
                   </strong>{" "}
-                  &ldquo;Network overhead between microservices is adding 200-500ms latency to every user request&rdquo;
+                  &ldquo;Network overhead between microservices is adding
+                  200-500ms latency to every user request&rdquo;
                 </div>
               </li>
               <li className="flex items-start gap-2">
@@ -9797,7 +9833,8 @@ function MonolithicArchitectureContent() {
                   <strong className="text-slate-700 dark:text-gray-300">
                     Resource constraints:
                   </strong>{" "}
-                  &ldquo;We have a 10-person engineering team but need DevOps specialists for 20+ different services&rdquo;
+                  &ldquo;We have a 10-person engineering team but need DevOps
+                  specialists for 20+ different services&rdquo;
                 </div>
               </li>
               <li className="flex items-start gap-2">
@@ -9806,7 +9843,8 @@ function MonolithicArchitectureContent() {
                   <strong className="text-slate-700 dark:text-gray-300">
                     Debugging nightmare:
                   </strong>{" "}
-                  &ldquo;When something breaks, we need to check logs across 12 different services to understand what happened&rdquo;
+                  &ldquo;When something breaks, we need to check logs across 12
+                  different services to understand what happened&rdquo;
                 </div>
               </li>
             </ul>
@@ -9823,7 +9861,8 @@ function MonolithicArchitectureContent() {
                   <strong className="text-slate-700 dark:text-gray-300">
                     Rapid feature development:
                   </strong>{" "}
-                  Cross-functional features implement faster without service boundary negotiations
+                  Cross-functional features implement faster without service
+                  boundary negotiations
                 </div>
               </li>
               <li className="flex items-start gap-2">
@@ -9832,7 +9871,8 @@ function MonolithicArchitectureContent() {
                   <strong className="text-slate-700 dark:text-gray-300">
                     Consistent user experience:
                   </strong>{" "}
-                  Single deployment ensures UI components and backend logic stay synchronized
+                  Single deployment ensures UI components and backend logic stay
+                  synchronized
                 </div>
               </li>
               <li className="flex items-start gap-2">
@@ -9841,7 +9881,8 @@ function MonolithicArchitectureContent() {
                   <strong className="text-slate-700 dark:text-gray-300">
                     Data consistency guarantees:
                   </strong>{" "}
-                  ACID transactions prevent revenue-impacting data corruption scenarios
+                  ACID transactions prevent revenue-impacting data corruption
+                  scenarios
                 </div>
               </li>
               <li className="flex items-start gap-2">
@@ -9850,7 +9891,8 @@ function MonolithicArchitectureContent() {
                   <strong className="text-slate-700 dark:text-gray-300">
                     Lower total cost of ownership:
                   </strong>{" "}
-                  Reduced infrastructure, monitoring, and operational tooling requirements
+                  Reduced infrastructure, monitoring, and operational tooling
+                  requirements
                 </div>
               </li>
               <li className="flex items-start gap-2">
@@ -9859,7 +9901,8 @@ function MonolithicArchitectureContent() {
                   <strong className="text-slate-700 dark:text-gray-300">
                     Simplified compliance and security:
                   </strong>{" "}
-                  Single security boundary, unified audit trails, centralized access control
+                  Single security boundary, unified audit trails, centralized
+                  access control
                 </div>
               </li>
             </ul>
@@ -9875,35 +9918,40 @@ function MonolithicArchitectureContent() {
                 <strong className="text-slate-700 dark:text-gray-300">
                   Series A-B startups
                 </strong>{" "}
-                with 5-50 engineers prioritizing rapid product iteration over infrastructure complexity
+                with 5-50 engineers prioritizing rapid product iteration over
+                infrastructure complexity
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
                 <strong className="text-slate-700 dark:text-gray-300">
                   Mid-market companies
                 </strong>{" "}
-                ($10M-100M revenue) building custom business applications with tightly integrated workflows
+                ($10M-100M revenue) building custom business applications with
+                tightly integrated workflows
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
                 <strong className="text-slate-700 dark:text-gray-300">
                   Performance-critical applications
                 </strong>{" "}
-                requiring low latency and high throughput where network overhead is unacceptable
+                requiring low latency and high throughput where network overhead
+                is unacceptable
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
                 <strong className="text-slate-700 dark:text-gray-300">
                   Resource-constrained teams
                 </strong>{" "}
-                lacking dedicated DevOps/infrastructure engineers for complex distributed systems
+                lacking dedicated DevOps/infrastructure engineers for complex
+                distributed systems
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
                 <strong className="text-slate-700 dark:text-gray-300">
                   Regulatory-heavy industries
                 </strong>{" "}
-                (healthcare, finance) where audit trails and data consistency are compliance requirements
+                (healthcare, finance) where audit trails and data consistency
+                are compliance requirements
               </li>
             </ul>
           </div>
@@ -9922,7 +9970,12 @@ function MonolithicArchitectureContent() {
               Monolithic codebase organization and module boundary intelligence
             </h3>
             <p className="text-slate-700 dark:text-gray-300 mb-3">
-              AI assistance becomes crucial for maintaining clean architecture within large monolithic codebases - Cursor&rsquo;s context awareness can suggest proper module boundaries, identify coupling issues, and recommend refactoring opportunities that preserve monolithic benefits while improving code organization and maintainability across team boundaries
+              AI assistance becomes crucial for maintaining clean architecture
+              within large monolithic codebases - Cursor&rsquo;s context
+              awareness can suggest proper module boundaries, identify coupling
+              issues, and recommend refactoring opportunities that preserve
+              monolithic benefits while improving code organization and
+              maintainability across team boundaries
             </p>
           </div>
 
@@ -9931,7 +9984,12 @@ function MonolithicArchitectureContent() {
               Enterprise refactoring acceleration for monolithic evolution
             </h3>
             <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Large monolithic applications require careful refactoring to prevent technical debt accumulation - AI-powered analysis can identify areas where selective service extraction makes sense while preserving the operational simplicity that drove initial monolithic adoption, helping teams evolve their architecture gradually based on actual performance and team scaling needs
+              Large monolithic applications require careful refactoring to
+              prevent technical debt accumulation - AI-powered analysis can
+              identify areas where selective service extraction makes sense
+              while preserving the operational simplicity that drove initial
+              monolithic adoption, helping teams evolve their architecture
+              gradually based on actual performance and team scaling needs
             </p>
           </div>
 
@@ -9940,7 +9998,693 @@ function MonolithicArchitectureContent() {
               Performance optimization within unified application contexts
             </h3>
             <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Monolithic applications can leverage AI assistance for identifying performance bottlenecks that benefit from the shared memory and direct function call advantages - intelligent suggestions for caching strategies, database query optimization, and algorithm improvements that take advantage of monolithic architecture&rsquo;s unified data access patterns
+              Monolithic applications can leverage AI assistance for identifying
+              performance bottlenecks that benefit from the shared memory and
+              direct function call advantages - intelligent suggestions for
+              caching strategies, database query optimization, and algorithm
+              improvements that take advantage of monolithic
+              architecture&rsquo;s unified data access patterns
+            </p>
+          </div>
+        </div>
+      </section>
+    </article>
+  );
+}
+
+// Component for the domain-driven design article content
+function DomainDrivenDesignContent() {
+  return (
+    <article className="space-y-10">
+      {/* Key Concepts Section */}
+      <section id="key-concepts">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Key Concepts
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Bounded Context
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Clear boundaries around related business concepts that define
+              where specific models apply
+            </p>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Customer means different things in Sales vs Support vs Billing
+                contexts
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Prevents terminology conflicts and model pollution across
+                domains
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Each context can evolve independently with clear integration
+                contracts
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Entities vs Value Objects
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Fundamental building blocks that reflect business domain identity
+              concepts
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Entities:
+                  </strong>{" "}
+                  Have unique identity that persists over time (Customer, Order,
+                  User Account)
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Value Objects:
+                  </strong>{" "}
+                  Defined by their attributes, immutable and replaceable (Money,
+                  Address, Email)
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                This distinction reflects how business experts naturally think
+                about domain concepts
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Domain Events and Aggregates
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Capture business-significant occurrences and maintain data
+              consistency
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Domain Events:
+                  </strong>{" "}
+                  OrderPlaced, PaymentProcessed, UserRegistered - business facts
+                  that trigger workflows
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Aggregates:
+                  </strong>{" "}
+                  Consistency boundaries that ensure business rules are enforced
+                  (Order + LineItems)
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Enable loose coupling between domains while maintaining data
+                integrity
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Business Impact Section */}
+      <section id="business-impact">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Business Impact
+        </h2>
+
+        <div className="grid md:grid-cols-2 gap-6 mb-8">
+          <MetricsCard
+            title="Domain Model Clarity"
+            metrics={[
+              {
+                label: "Miscommunication Reduction",
+                value: "85-95%",
+                description:
+                  "Reduction in business-technical miscommunication when using ubiquitous language",
+                trend: "up",
+                color: "blue",
+              },
+            ]}
+            className="bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-blue-950 dark:to-indigo-900"
+          />
+          <MetricsCard
+            title="Feature Development Speed"
+            metrics={[
+              {
+                label: "Development Speed",
+                value: "40-60%",
+                description:
+                  "Faster feature delivery through clearer domain boundaries and reduced coupling",
+                trend: "up",
+                color: "green",
+              },
+            ]}
+            className="bg-gradient-to-br from-green-50 to-emerald-100 dark:from-green-950 dark:to-emerald-900"
+          />
+        </div>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-amber-500 bg-amber-50/50 dark:bg-amber-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Common customer triggers
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Organizations typically consider DDD when facing domain complexity
+              challenges
+            </p>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                &ldquo;Our business logic is scattered across multiple
+                services&rdquo;
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                &ldquo;Different teams have conflicting definitions of the same
+                business concepts&rdquo;
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                &ldquo;Adding new features breaks existing functionality in
+                unexpected ways&rdquo;
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Implementation Patterns Section */}
+      <section id="implementation-patterns">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Implementation Patterns
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-emerald-500 bg-emerald-50/50 dark:bg-emerald-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Ubiquitous Language Development
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Shared vocabulary between business experts and development teams
+            </p>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Code uses exact business terminology - no technical translations
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Business rules are expressed in domain language, not database
+                constraints
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Reduces 85-95% of business-technical miscommunication issues
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Strategic vs Tactical Patterns
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              DDD provides both high-level modeling guidance and implementation
+              tactics
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Strategic:
+                  </strong>{" "}
+                  Bounded Contexts, Context Maps, Domain/Subdomain
+                  identification
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Tactical:
+                  </strong>{" "}
+                  Entities, Value Objects, Aggregates, Repositories, Domain
+                  Services
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Start with strategic patterns to establish boundaries, then
+                apply tactical patterns within contexts
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Customer Scenarios Section */}
+      <section id="customer-scenarios">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          When Organizations Adopt DDD
+        </h2>
+
+        <div className="space-y-6">
+          <div className="bg-slate-50/80 dark:bg-slate-900/50 border border-slate-200/60 dark:border-slate-700/50 rounded-xl p-6">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-4">
+              Enterprise organizations (500+ developers) typically adopt DDD
+              when:
+            </h3>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <strong className="text-slate-700 dark:text-gray-300">
+                  Complex business domains:
+                </strong>{" "}
+                Financial services, healthcare, e-commerce platforms with
+                intricate business rules
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <strong className="text-slate-700 dark:text-gray-300">
+                  Multi-team coordination:
+                </strong>{" "}
+                Large codebases where team boundaries need clear domain
+                ownership
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <strong className="text-slate-700 dark:text-gray-300">
+                  Business-critical accuracy:
+                </strong>{" "}
+                Systems where business rule violations have significant
+                real-world consequences
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Cursor Implementation Section */}
+      <section id="cursor-implementation">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Cursor Implementation Considerations
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Domain modeling assistance
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              AI assistance for identifying domain boundaries and modeling
+              business concepts - intelligent suggestions for entity vs value
+              object decisions, aggregate boundary identification, and
+              ubiquitous language consistency across codebase contexts
+            </p>
+          </div>
+
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Business rule implementation patterns
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Context-aware code generation that recognizes domain patterns and
+              suggests appropriate DDD tactical patterns - automated generation
+              of domain events, aggregate methods, and repository interfaces
+              that maintain business rule integrity while following established
+              domain conventions
+            </p>
+          </div>
+        </div>
+      </section>
+    </article>
+  );
+}
+
+// Component for the clean architecture article content
+function CleanArchitectureContent() {
+  return (
+    <article className="space-y-10">
+      {/* Key Concepts Section */}
+      <section id="key-concepts">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Key Concepts
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              The Dependency Rule
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Dependencies point inward toward business logic, never outward
+            </p>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Outer layers (frameworks, databases, UI) depend on inner layers
+                (business rules, entities)
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Business logic never imports framework or database code
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Enables technology independence and comprehensive testing
+                isolation
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Dependency Inversion
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              High-level modules define interfaces that low-level modules
+              implement
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Interface-driven design:
+                  </strong>{" "}
+                  Business logic defines what it needs, not how it&rsquo;s
+                  implemented
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Technology flexibility:
+                  </strong>{" "}
+                  Swap databases, frameworks, or UI without changing business
+                  rules
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Enables comprehensive testing through mock implementations
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Clean Boundaries and Layered Architecture
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Clear separation between different concerns and responsibilities
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Entities:
+                  </strong>{" "}
+                  Core business objects and rules that define organizational
+                  behavior
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Use Cases:
+                  </strong>{" "}
+                  Application-specific business rules that orchestrate entities
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Adapters:
+                  </strong>{" "}
+                  Interface implementations that connect to external systems
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Frameworks:
+                  </strong>{" "}
+                  External tools (databases, web frameworks, UI libraries)
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Business Impact Section */}
+      <section id="business-impact">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Business Impact
+        </h2>
+
+        <div className="grid md:grid-cols-2 gap-6 mb-8">
+          <MetricsCard
+            title="Test Coverage"
+            metrics={[
+              {
+                label: "Business Logic Coverage",
+                value: "85-95%",
+                description:
+                  "Business logic testing without external dependencies",
+                trend: "up",
+                color: "blue",
+              },
+            ]}
+            className="bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-blue-950 dark:to-indigo-900"
+          />
+          <MetricsCard
+            title="Technology Migration"
+            metrics={[
+              {
+                label: "Migration Speed",
+                value: "60-80%",
+                description:
+                  "Faster platform changes due to decoupled architecture",
+                trend: "up",
+                color: "green",
+              },
+            ]}
+            className="bg-gradient-to-br from-green-50 to-emerald-100 dark:from-green-950 dark:to-emerald-900"
+          />
+        </div>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-amber-500 bg-amber-50/50 dark:bg-amber-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Common customer triggers
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Organizations typically adopt Clean Architecture when facing
+              maintainability crises
+            </p>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                &ldquo;Framework upgrades break our entire application&rdquo;
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                &ldquo;We can&rsquo;t test business logic without spinning up
+                databases&rdquo;
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                &ldquo;Technology decisions made years ago are preventing new
+                feature development&rdquo;
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Implementation Patterns Section */}
+      <section id="implementation-patterns">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Implementation Patterns
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-emerald-500 bg-emerald-50/50 dark:bg-emerald-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Multiple User Interface Support
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Business logic isolation enables serving multiple user interfaces
+              simultaneously
+            </p>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Web application, mobile app, and API endpoints share identical
+                business rules
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Interface changes don&rsquo;t require business logic
+                modifications
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Enables 40-60% code reuse across different user interaction
+                patterns
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Independence Principles
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Multiple types of independence that provide flexibility and
+              maintainability
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Framework Independence:
+                  </strong>{" "}
+                  Business logic doesn&rsquo;t depend on specific frameworks
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Database Independence:
+                  </strong>{" "}
+                  Can switch data storage solutions without affecting business
+                  rules
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    UI Independence:
+                  </strong>{" "}
+                  User interfaces can change without touching business logic
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Testing Independence:
+                  </strong>{" "}
+                  Business rules are testable without any external dependencies
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Customer Scenarios Section */}
+      <section id="customer-scenarios">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          When Organizations Adopt Clean Architecture
+        </h2>
+
+        <div className="space-y-6">
+          <div className="bg-slate-50/80 dark:bg-slate-900/50 border border-slate-200/60 dark:border-slate-700/50 rounded-xl p-6">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-4">
+              Organizations typically adopt Clean Architecture when facing:
+            </h3>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <strong className="text-slate-700 dark:text-gray-300">
+                  Technology inflexibility:
+                </strong>{" "}
+                Framework or database changes require extensive refactoring
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <strong className="text-slate-700 dark:text-gray-300">
+                  Testing dependency:
+                </strong>{" "}
+                Cannot test business logic without complex setup of external
+                systems
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <strong className="text-slate-700 dark:text-gray-300">
+                  Platform evolution requirements:
+                </strong>{" "}
+                Need to support multiple interfaces or migrate between
+                technologies
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Cursor Implementation Section */}
+      <section id="cursor-implementation">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Cursor Implementation Considerations
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Dependency flow analysis
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              AI assistance for maintaining clean architecture within large
+              monolithic codebases - Cursor&rsquo;s context awareness can
+              suggest proper module boundaries, identify coupling issues, and
+              recommend refactoring opportunities that preserve dependency
+              inversion principles
+            </p>
+          </div>
+
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Interface-driven development workflow
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Context-aware code generation that recognizes clean architecture
+              patterns and suggests appropriate interface definitions -
+              automated creation of use case implementations, adapter patterns,
+              and dependency injection configurations that maintain clean
+              boundaries while following established architectural conventions
             </p>
           </div>
         </div>
