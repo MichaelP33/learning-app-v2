@@ -4540,7 +4540,180 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Architectural style for designing web services",
-              "topics": ["HTTP Methods", "Resource-Based", "Stateless"]
+              "topics": ["HTTP Methods", "Resource-Based", "Stateless"],
+              "quiz": {
+                "title": "RESTful APIs Knowledge Quiz",
+                "totalQuestions": 10,
+                "totalPoints": 25,
+                "questions": [
+                  {
+                    "id": 1,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "What makes RESTful APIs particularly effective for cross-platform integration compared to proprietary protocols?",
+                    "options": [
+                      "They automatically handle all security requirements",
+                      "Standardized HTTP methods and resource-based URLs create predictable interfaces",
+                      "They require less server resources to operate",
+                      "They only work with specific programming languages"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "RESTful APIs achieve 90%+ cross-platform integration success rates because they use standard HTTP methods (GET, POST, PUT, DELETE) and resource-based URLs that developers across different technology stacks can understand and implement consistently, reducing integration complexity and miscommunication.",
+                    "keyConcepts": [
+                      "Cross-platform integration",
+                      "HTTP methods standardization",
+                      "resource-based design"
+                    ]
+                  },
+                  {
+                    "id": 2,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Why do organizations see 65-80% faster developer integration with well-designed RESTful APIs?",
+                    "options": [
+                      "REST APIs automatically generate documentation",
+                      "Uniform interface patterns and stateless communication reduce learning curve",
+                      "RESTful APIs don&rsquo;t require authentication",
+                      "They can only be used with modern programming languages"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Well-designed RESTful APIs enable 65-80% faster integration because developers can apply familiar HTTP method patterns (GET for retrieval, POST for creation) across any API, and stateless communication means each request is self-contained without requiring complex session management or API-specific protocols.",
+                    "keyConcepts": [
+                      "Developer integration speed",
+                      "uniform interface",
+                      "stateless communication"
+                    ]
+                  },
+                  {
+                    "id": 3,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "What is the primary benefit of stateless communication in RESTful API design?",
+                    "options": [
+                      "It makes APIs run faster than other architectures",
+                      "Each request contains all necessary information, eliminating server-side session dependencies",
+                      "It automatically handles database transactions",
+                      "Stateless APIs require less memory to operate"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Stateless communication means each API request includes all the information needed for processing (authentication tokens, parameters, context), eliminating the need for servers to maintain session state between requests. This enables better scalability, simpler load balancing, and more reliable distributed systems.",
+                    "keyConcepts": [
+                      "Stateless design",
+                      "server independence",
+                      "scalability benefits"
+                    ]
+                  },
+                  {
+                    "id": 4,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "How do proper HTTP status codes reduce debugging time in distributed architectures?",
+                    "options": [
+                      "Status codes automatically fix errors in client applications",
+                      "They provide standardized communication about operation results for predictable error handling",
+                      "HTTP status codes prevent all server errors from occurring",
+                      "They eliminate the need for application logging"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "HTTP status codes (2xx success, 4xx client errors, 5xx server errors) provide standardized communication about operation results, enabling client applications to handle success and failure scenarios predictably. This reduces debugging time because developers know exactly what went wrong and where to investigate.",
+                    "keyConcepts": [
+                      "HTTP status codes",
+                      "error handling patterns",
+                      "debugging efficiency"
+                    ]
+                  },
+                  {
+                    "id": 5,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "A company experiencing &ldquo;Every new partner integration takes 6+ months because our APIs are inconsistent and poorly documented&rdquo; would benefit most from:",
+                    "options": [
+                      "Migrating to microservices architecture immediately",
+                      "Implementing RESTful API design patterns with OpenAPI documentation",
+                      "Hiring more integration specialists",
+                      "Building custom protocols for each partner"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "RESTful API design patterns with OpenAPI documentation solve integration complexity by providing consistent HTTP method usage, predictable resource-based URLs, and machine-readable API specifications that enable automatic client generation and interactive documentation, dramatically reducing integration timelines.",
+                    "keyConcepts": [
+                      "API consistency",
+                      "OpenAPI documentation",
+                      "integration acceleration"
+                    ]
+                  },
+                  {
+                    "id": 6,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "What distinguishes resource-based URLs from action-based API design?",
+                    "options": [
+                      "Resource-based URLs are faster to process",
+                      "URLs represent business entities (users, orders) rather than actions, with HTTP methods defining operations",
+                      "Resource-based URLs require fewer server resources",
+                      "They can only be used with specific database technologies"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Resource-based URLs represent business entities like `/users/123` or `/orders/456` rather than actions like `/getUser` or `/createOrder`. The HTTP methods (GET, POST, PUT, DELETE) define what operation to perform on the resource, creating intuitive APIs that developers can understand without extensive documentation.",
+                    "keyConcepts": [
+                      "Resource-based design",
+                      "business entity modeling",
+                      "HTTP method semantics"
+                    ]
+                  },
+                  {
+                    "id": 7,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Why is API versioning critical for maintaining business continuity in enterprise environments?",
+                    "options": [
+                      "Versioning makes APIs process requests faster",
+                      "It enables API evolution without breaking existing client integrations",
+                      "Versioned APIs automatically handle security updates",
+                      "API versions reduce server costs"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "API versioning (URL versioning like `/api/v1/users` vs header versioning) enables organizations to add new features and improve APIs without breaking existing client integrations. This maintains business continuity while allowing innovation, as partners and internal systems can migrate to newer versions on their own timeline.",
+                    "keyConcepts": [
+                      "API versioning strategies",
+                      "backward compatibility",
+                      "business continuity"
+                    ]
+                  },
+                  {
+                    "id": 8,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "What makes comprehensive API documentation essential for developer adoption and reduced support burden?",
+                    "options": [
+                      "Documentation automatically generates working code",
+                      "Interactive documentation enables developers to test APIs during integration, reducing time-to-market",
+                      "API documentation eliminates the need for customer support",
+                      "Documented APIs run faster than undocumented ones"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Comprehensive API documentation, especially interactive formats like Swagger UI and Postman collections, enables developers to test APIs during integration and understand expected request/response patterns. This reduces time-to-market for new features and partnerships while minimizing support burden through self-service exploration.",
+                    "keyConcepts": [
+                      "API documentation",
+                      "developer experience",
+                      "self-service integration"
+                    ]
+                  },
+                  {
+                    "id": 9,
+                    "type": "freeform",
+                    "points": 4,
+                    "question": "Describe the three main customer scenarios that trigger RESTful API adoption discussions. For each scenario, include the specific quoted pain point from the article.",
+                    "sampleStrongResponse": "Organizations typically adopt RESTful APIs when facing three critical scenarios: 1) Integration complexity crisis where &ldquo;Every new partner integration takes 6+ months because our APIs are inconsistent and poorly documented&rdquo; - solved by REST&rsquo;s standardized patterns and OpenAPI documentation; 2) Developer productivity bottleneck where &ldquo;Our frontend teams are blocked waiting for backend changes because our API contract keeps changing&rdquo; - addressed by REST&rsquo;s stable resource-based contracts and proper versioning; 3) Multi-platform scaling requirements where &ldquo;We need the same business logic available on web, mobile, and partner systems without duplicating code&rdquo; - enabled by REST&rsquo;s uniform interface that works across technology stacks."
+                  },
+                  {
+                    "id": 10,
+                    "type": "freeform",
+                    "points": 5,
+                    "question": "List the core REST architectural constraints and explain what types of enterprise systems would benefit most from each constraint&rsquo;s characteristics.",
+                    "sampleStrongResponse": "The core REST constraints serve different enterprise needs: 1) Stateless communication benefits high-scale distributed systems (like e-commerce platforms) because each request is self-contained, enabling better load balancing and reliability across multiple servers; 2) Resource-based URLs benefit complex business domains (like financial services) because they map naturally to business entities and make APIs intuitive for integration teams; 3) Uniform interface benefits multi-team organizations because consistent HTTP method usage reduces learning curves and enables teams to integrate with any internal API using familiar patterns; 4) Client-server separation benefits organizations with multiple frontend applications (web, mobile, partners) because business logic remains centralized while presentation layers can evolve independently."
+                  }
+                ]
+              }
             },
             {
               "id": "graphql",

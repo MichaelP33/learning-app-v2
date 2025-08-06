@@ -191,6 +191,8 @@ export function ArticleContentWrapper({
                     <DomainDrivenDesignContent />
                   ) : article.id === "clean-architecture" ? (
                     <CleanArchitectureContent />
+                  ) : article.id === "restful-apis" ? (
+                    <RESTfulApisContent />
                   ) : (
                     <DefaultArticleContent article={article} />
                   )}
@@ -10685,6 +10687,346 @@ function CleanArchitectureContent() {
               automated creation of use case implementations, adapter patterns,
               and dependency injection configurations that maintain clean
               boundaries while following established architectural conventions
+            </p>
+          </div>
+        </div>
+      </section>
+    </article>
+  );
+}
+
+// RESTful APIs Content Implementation
+function RESTfulApisContent() {
+  return (
+    <article className="prose prose-slate dark:prose-invert max-w-none">
+      {/* Key Concepts Section */}
+      <section id="key-concepts" className="mb-12">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Key Concepts
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              REST Architectural Principles
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              REST (Representational State Transfer) defines a set of
+              constraints that create a uniform interface for distributed
+              systems. These principles enable systems to communicate
+              predictably across different technologies and platforms (like
+              different departments following standard procedures to collaborate
+              effectively, regardless of their internal processes).
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Stateless Communication:
+                  </strong>{" "}
+                  Each request contains all information needed for processing,
+                  eliminating server-side session dependencies
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Resource-Based URLs:
+                  </strong>{" "}
+                  URLs represent business entities (users, orders, products)
+                  rather than actions
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Uniform Interface:
+                  </strong>{" "}
+                  Consistent HTTP methods (GET, POST, PUT, DELETE) for all
+                  resource operations
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              HTTP Methods and Resource Operations
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              HTTP methods map to standard business operations on resources,
+              creating intuitive APIs that developers can understand without
+              extensive documentation. This standardization reduces integration
+              time and prevents miscommunication between teams.
+            </p>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-purple-500 rounded-full mt-2 flex-shrink-0"></span>
+                <strong className="text-slate-700 dark:text-gray-300">
+                  GET:
+                </strong>{" "}
+                Retrieve resource data without side effects (safe and
+                idempotent)
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-purple-500 rounded-full mt-2 flex-shrink-0"></span>
+                <strong className="text-slate-700 dark:text-gray-300">
+                  POST:
+                </strong>{" "}
+                Create new resources or trigger complex operations
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-purple-500 rounded-full mt-2 flex-shrink-0"></span>
+                <strong className="text-slate-700 dark:text-gray-300">
+                  PUT/PATCH:
+                </strong>{" "}
+                Update existing resources (PUT for complete replacement, PATCH
+                for partial updates)
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-purple-500 rounded-full mt-2 flex-shrink-0"></span>
+                <strong className="text-slate-700 dark:text-gray-300">
+                  DELETE:
+                </strong>{" "}
+                Remove resources from the system
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Status Codes and Error Handling
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              HTTP status codes provide standardized communication about
+              operation results, enabling client applications to handle success
+              and failure scenarios predictably. This reduces debugging time and
+              improves system reliability across distributed architectures.
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-green-500 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    2xx Success:
+                  </strong>{" "}
+                  Operation completed successfully (200 OK, 201 Created, 204 No
+                  Content)
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-green-500 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    4xx Client Errors:
+                  </strong>{" "}
+                  Invalid requests or authorization issues (400 Bad Request, 401
+                  Unauthorized, 404 Not Found)
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-green-500 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    5xx Server Errors:
+                  </strong>{" "}
+                  Internal server issues that require investigation (500
+                  Internal Server Error, 503 Service Unavailable)
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Business Impact Section */}
+      <section id="business-impact">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Business Impact
+        </h2>
+
+        <div className="grid md:grid-cols-2 gap-6 mb-8">
+          <MetricsCard
+            title="API Adoption Rate"
+            metrics={[
+              {
+                label: "Developer Integration Speed",
+                value: "65-80%",
+                description:
+                  "Faster integration with well-designed RESTful APIs compared to proprietary protocols",
+                trend: "up",
+                color: "blue",
+              },
+            ]}
+            className="bg-gradient-to-br from-blue-50 to-cyan-100 dark:from-blue-950 dark:to-cyan-900"
+          />
+
+          <MetricsCard
+            title="System Interoperability"
+            metrics={[
+              {
+                label: "Cross-Platform Integration",
+                value: "90%+",
+                description:
+                  "Success rate for integrating REST APIs across different technology stacks",
+                trend: "up",
+                color: "green",
+              },
+            ]}
+            className="bg-gradient-to-br from-green-50 to-emerald-100 dark:from-green-950 dark:to-emerald-900"
+          />
+        </div>
+
+        <div className="space-y-6">
+          <div className="bg-slate-50/80 dark:bg-slate-900/50 border border-slate-200/60 dark:border-slate-700/50 rounded-xl p-6">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-4">
+              Enterprise Success Metrics
+            </h3>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Spotify:
+                  </strong>{" "}
+                  RESTful APIs enable 100+ million tracks delivery across web,
+                  mobile, and partner platforms with 99.9% uptime
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Stripe:
+                  </strong>{" "}
+                  RESTful payment APIs process $640+ billion annually with
+                  developer integration times of 7 days vs 30+ days for
+                  traditional payment systems
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    GitHub:
+                  </strong>{" "}
+                  REST API serves 40+ million developers with consistent
+                  interface across version control, issue tracking, and project
+                  management features
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Customer Scenarios Section */}
+      <section id="customer-scenarios" className="mb-12">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          When Organizations Adopt RESTful APIs
+        </h2>
+
+        <div className="space-y-6">
+          <div className="bg-slate-50/80 dark:bg-slate-900/50 border border-slate-200/60 dark:border-slate-700/50 rounded-xl p-6">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-4">
+              Organizations typically adopt RESTful APIs when facing:
+            </h3>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Integration complexity crisis:
+                  </strong>{" "}
+                  &ldquo;Every new partner integration takes 6+ months because
+                  our APIs are inconsistent and poorly documented&rdquo;
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Multi-platform scaling requirements:
+                  </strong>{" "}
+                  &ldquo;We need the same business logic available on web,
+                  mobile, and partner systems without duplicating code&rdquo;
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Developer productivity bottleneck:
+                  </strong>{" "}
+                  &ldquo;Our frontend teams are blocked waiting for backend
+                  changes because our API contract keeps changing&rdquo;
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Microservices architecture adoption:
+                  </strong>{" "}
+                  &ldquo;We&rsquo;re breaking apart our monolith and need
+                  consistent communication patterns between services&rdquo;
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Cursor Implementation Section */}
+      <section id="cursor-implementation">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Cursor Implementation Considerations
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              API Design and OpenAPI Generation
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              AI assistance for designing RESTful API contracts and generating
+              OpenAPI specifications from existing code or requirements. Cursor
+              can analyze business requirements and suggest appropriate resource
+              modeling, HTTP method usage, and status code patterns that follow
+              REST conventions while meeting enterprise security and scalability
+              needs.
+            </p>
+          </div>
+
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Documentation Generation and Client SDK Creation
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Automated generation of comprehensive API documentation,
+              interactive examples, and client SDKs in multiple programming
+              languages. Cursor can analyze API implementations to generate
+              accurate documentation, create usage examples, and maintain
+              consistency between API changes and documentation updates,
+              reducing manual documentation overhead while improving developer
+              experience.
+            </p>
+          </div>
+
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Error Handling and Status Code Standardization
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              AI-guided implementation of consistent error handling patterns and
+              appropriate HTTP status code usage across API endpoints. Teams
+              leverage Cursor to establish standard error response formats,
+              implement proper status code selection based on operation
+              outcomes, and generate client-friendly error messages that enable
+              effective debugging and user experience design.
             </p>
           </div>
         </div>
