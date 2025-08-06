@@ -193,6 +193,8 @@ export function ArticleContentWrapper({
                     <CleanArchitectureContent />
                   ) : article.id === "restful-apis" ? (
                     <RESTfulApisContent />
+                  ) : article.id === "read-replicas-write-scaling" ? (
+                    <ReadReplicasWriteScalingContent />
                   ) : (
                     <DefaultArticleContent article={article} />
                   )}
@@ -11027,6 +11029,359 @@ function RESTfulApisContent() {
               implement proper status code selection based on operation
               outcomes, and generate client-friendly error messages that enable
               effective debugging and user experience design.
+            </p>
+          </div>
+        </div>
+      </section>
+    </article>
+  );
+}
+
+// Component for the read replicas and write scaling article content
+function ReadReplicasWriteScalingContent() {
+  return (
+    <article className="space-y-10">
+      {/* Key Concepts Section */}
+      <section id="key-concepts">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Key Concepts
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Read replicas distribute database traffic for optimal performance
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Like having multiple service desks to handle customer inquiries instead of overwhelming a single point of contact
+            </p>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Master database handles all write operations to maintain data consistency
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Read replicas serve as dedicated instances for query operations, preventing master database bottlenecks
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Geographic distribution places replicas closer to users, reducing latency across regions
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Master-slave replication architecture provides scalable read operations
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              The foundation pattern for distributing database load while maintaining data integrity
+            </p>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Single master accepts writes, ensuring consistent data updates across the system
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Multiple slave replicas handle read traffic, providing 3-5x more concurrent read capacity
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Load balancers intelligently route read queries to optimal replica based on geographic proximity and current load
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-orange-500 bg-orange-50/50 dark:bg-orange-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Replication lag and eventual consistency trade-offs
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Understanding timing delays between master writes and replica availability
+            </p>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Replication lag ranges from milliseconds to several seconds depending on network conditions and replica load
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Applications must handle eventual consistency patterns for non-critical read operations
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Read-your-writes consistency techniques ensure users see their own updates immediately
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Write scaling strategies beyond read optimization
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Advanced techniques when master database becomes the write bottleneck
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Database sharding:
+                  </strong>{" "}
+                  Horizontal partitioning distributes writes across multiple databases based on data patterns
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Master-master replication:
+                  </strong>{" "}
+                  Multiple write endpoints with conflict resolution mechanisms
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    CQRS architecture:
+                  </strong>{" "}
+                  Command Query Responsibility Segregation separates read and write data models completely
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Business & Team Impact Section */}
+      <section id="business-team-impact">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
+          <TrendingUp className="w-6 h-6 text-green-500" />
+          Business &amp; Team Impact
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Performance improvements with quantified business impact
+            </h3>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Response time optimization:
+                  </strong>{" "}
+                  Read operations improve from 3-5+ seconds to sub-second response times under load
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Capacity scaling:
+                  </strong>{" "}
+                  Organizations typically achieve 3-5x more concurrent read requests with strategic replica placement
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Geographic distribution benefits:
+                  </strong>{" "}
+                  Regional replicas reduce latency for global user bases while providing disaster recovery capabilities
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-yellow-500 bg-yellow-50/50 dark:bg-yellow-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Common customer triggers driving read replica adoption
+            </h3>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Performance degradation crisis:
+                  </strong>{" "}
+                  &ldquo;Database response times slowing from sub-second to 3-5+ seconds as concurrent users increase&rdquo;
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Business growth scaling challenges:
+                  </strong>{" "}
+                  &ldquo;User traffic increased 2-5x during our growth phase and our database can&rsquo;t keep up&rdquo;
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Geographic expansion requirements:
+                  </strong>{" "}
+                  &ldquo;Our international users experience unacceptable latency from our single US database&rdquo;
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Enterprise success patterns with real-world outcomes
+            </h3>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    E-commerce platforms:
+                  </strong>{" "}
+                  Product catalog reads distributed across regional replicas, supporting global customer bases with local performance
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Content management systems:
+                  </strong>{" "}
+                  Article and media content served from read replicas while editorial writes maintain consistency through master
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Reporting platforms:
+                  </strong>{" "}
+                  Analytics queries processed on dedicated read replicas without impacting operational write performance
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Customer profiles most likely to benefit from read replica strategies
+            </h3>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <strong className="text-slate-700 dark:text-gray-300">
+                  Series B+ startups:
+                </strong>{" "}
+                Experiencing rapid user growth with read-heavy application patterns
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <strong className="text-slate-700 dark:text-gray-300">
+                  E-commerce companies:
+                </strong>{" "}
+                Supporting global customer bases with product catalogs and inventory systems
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <strong className="text-slate-700 dark:text-gray-300">
+                  Content platforms:
+                </strong>{" "}
+                Serving articles, media, and user-generated content across multiple regions
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <strong className="text-slate-700 dark:text-gray-300">
+                  Enterprise SaaS providers:
+                </strong>{" "}
+                Managing reporting and analytics workloads separate from operational data
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Performance Metrics Card */}
+        <div className="mt-8">
+          <MetricsCard
+            title="Read Replica Performance Impact"
+            metrics={[
+              {
+                label: "Read Performance Improvement",
+                value: "60-80%",
+                description: "Response time optimization under load",
+                color: "green",
+              },
+              {
+                label: "Concurrent Read Capacity",
+                value: "3-5x",
+                description: "More concurrent read requests supported",
+                color: "blue",
+              },
+              {
+                label: "Response Time Improvement",
+                value: "Sub-second",
+                description: "From 3-5+ seconds to sub-second performance",
+                color: "purple",
+              },
+              {
+                label: "Traffic Growth Support",
+                value: "2-5x",
+                description: "Business growth phases handled effectively",
+                color: "orange",
+              },
+            ]}
+            className="bg-gradient-to-br from-green-50 to-emerald-100 dark:from-green-950 dark:to-emerald-900"
+          />
+        </div>
+      </section>
+
+      {/* Cursor Implementation Section */}
+      <section id="cursor-implementation">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Cursor Implementation Considerations
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              AI-assisted database architecture planning
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Cursor can accelerate read replica implementation by generating optimal database configuration files, connection pooling setups, and load balancer configurations. AI assistance helps teams avoid common pitfalls like improper replication lag handling and inefficient routing logic, reducing implementation time from weeks to days.
+            </p>
+          </div>
+
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Application logic for eventual consistency
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Teams implementing read replicas need sophisticated application logic to handle eventual consistency patterns. Cursor&rsquo;s context awareness helps generate read-your-writes consistency mechanisms, intelligent retry logic for stale reads, and graceful degradation patterns when replicas lag behind master databases.
+            </p>
+          </div>
+
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Monitoring and observability automation
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Read replica architectures require comprehensive monitoring of replication lag, read/write traffic distribution, and geographic performance metrics. AI assistance can generate monitoring dashboards, alerting configurations, and automated scaling policies that help teams proactively manage performance before customer impact occurs.
+            </p>
+          </div>
+
+          <div className="border-l-4 border-orange-500 bg-orange-50/50 dark:bg-orange-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Migration planning and testing frameworks
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Organizations often struggle with migrating existing applications to read replica architectures without service disruption. Cursor can help generate comprehensive testing strategies that validate application behavior under various replication lag scenarios, ensuring smooth production deployments with minimal risk to business operations.
             </p>
           </div>
         </div>
