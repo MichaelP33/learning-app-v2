@@ -4741,7 +4741,203 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Comparison of Remote Procedure Call and REST architectures",
-              "topics": ["Performance", "Coupling", "Protocol Design"]
+              "topics": ["Performance", "Coupling", "Protocol Design"],
+              "quiz": {
+                "title": "RPC vs REST Knowledge Quiz",
+                "totalQuestions": 10,
+                "totalPoints": 25,
+                "questions": [
+                  {
+                    "id": 1,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "What is the fundamental architectural difference between RPC and REST?",
+                    "options": [
+                      "RPC uses HTTP while REST uses TCP",
+                      "RPC treats remote calls like local function calls, REST treats resources as stateless entities",
+                      "RPC is faster in all scenarios compared to REST",
+                      "RPC only works with databases while REST works with files"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "This fundamental difference affects how developers think about and design distributed systems. RPC abstracts away the network, making remote calls feel like local function calls, while REST embraces the network's stateless nature and treats everything as resources with standard operations (GET, POST, PUT, DELETE). This difference impacts system coupling, debugging, and scalability patterns.",
+                    "keyConcepts": [
+                      "Architectural paradigms",
+                      "network abstraction",
+                      "resource-oriented design"
+                    ]
+                  },
+                  {
+                    "id": 2,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "In high-performance scenarios, what advantage does RPC typically provide over REST?",
+                    "options": [
+                      "Better security and authentication capabilities", 
+                      "40-60% lower latency due to binary protocols and direct method invocation",
+                      "Automatic load balancing across multiple servers",
+                      "Built-in caching that REST cannot provide"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "RPC frameworks like gRPC use binary protocols (Protocol Buffers) instead of text-based JSON, and enable direct method invocation without the overhead of HTTP verb mapping and resource parsing. This results in 40-60% lower latency in high-throughput scenarios, making RPC ideal for microservices communication, financial trading systems, and real-time applications where every millisecond matters.",
+                    "keyConcepts": [
+                      "Performance optimization",
+                      "binary vs text protocols",
+                      "latency reduction"
+                    ]
+                  },
+                  {
+                    "id": 3,
+                    "type": "multiple-choice", 
+                    "points": 2,
+                    "question": "Which statement best describes the coupling differences between RPC and REST?",
+                    "options": [
+                      "REST creates tighter coupling due to resource dependencies",
+                      "RPC and REST have identical coupling characteristics",
+                      "RPC creates tighter coupling through shared interfaces and direct method calls",
+                      "Both architectures eliminate coupling entirely"
+                    ],
+                    "correctAnswer": 2,
+                    "additionalContext": "RPC creates tighter coupling because clients must know specific method signatures and share interface definitions with servers. Changes to method signatures require coordinated updates across all clients. REST promotes looser coupling by using standard HTTP verbs and self-describing resources, allowing clients to discover capabilities dynamically and evolve independently.",
+                    "keyConcepts": [
+                      "System coupling",
+                      "interface dependencies", 
+                      "evolutionary design"
+                    ]
+                  },
+                  {
+                    "id": 4,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "What is the typical performance difference in network overhead between RPC and REST?",
+                    "options": [
+                      "REST uses 60-80% less bandwidth than RPC",
+                      "RPC uses 30-50% less bandwidth due to binary encoding and efficient protocols",
+                      "Both protocols use identical bandwidth",
+                      "Performance depends only on server hardware, not protocol choice"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "RPC protocols like gRPC use binary encoding (Protocol Buffers) that is significantly more compact than JSON used in REST APIs. Additionally, RPC can use HTTP/2 features like multiplexing and header compression more efficiently. This 30-50% bandwidth reduction becomes crucial in mobile applications, IoT systems, and high-volume microservices architectures where network costs directly impact operational expenses.",
+                    "keyConcepts": [
+                      "Network efficiency",
+                      "bandwidth optimization", 
+                      "operational costs"
+                    ]
+                  },
+                  {
+                    "id": 5,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Why do companies typically choose REST for public APIs over RPC?",
+                    "options": [
+                      "REST provides better performance for external consumers",
+                      "REST offers better discoverability, caching, and developer familiarity through standard HTTP",
+                      "RPC cannot work across different programming languages",
+                      "REST automatically generates documentation for API consumers"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "REST's use of standard HTTP makes it more discoverable and debuggable with common tools (browsers, curl, Postman), enables better caching through HTTP headers, and leverages developers' existing HTTP knowledge. Public APIs benefit from REST's self-describing nature and the ability for developers to explore and understand the API without specialized tooling or documentation.",
+                    "keyConcepts": [
+                      "Public API design",
+                      "developer experience",
+                      "tooling ecosystem"
+                    ]
+                  },
+                  {
+                    "id": 6,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "In microservices architectures, when does RPC become the preferred choice over REST?",
+                    "options": [
+                      "When services need to store data in databases",
+                      "When high-frequency, low-latency inter-service communication is critical",
+                      "When services are deployed in different geographic regions",
+                      "When teams prefer object-oriented programming languages"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Microservices that communicate frequently (like order processing calling inventory, payment, and shipping services) benefit from RPC's lower latency and reduced overhead. High-frequency trading platforms, real-time gaming backends, and IoT data processing systems use RPC internally while maintaining REST APIs for external consumers. The 40-60% latency improvement compounds across multiple service calls in complex workflows.",
+                    "keyConcepts": [
+                      "Microservices communication",
+                      "latency-sensitive systems",
+                      "internal vs external APIs"
+                    ]
+                  },
+                  {
+                    "id": 7,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "What is the primary debugging and monitoring difference between RPC and REST?",
+                    "options": [
+                      "RPC provides better error messages than REST in all cases",
+                      "REST enables easier debugging through standard HTTP tools and status codes",
+                      "Both architectures provide identical debugging capabilities",
+                      "RPC automatically logs all method calls while REST does not"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "REST's use of standard HTTP status codes, headers, and text-based payloads makes it easier to debug with universal tools like browser developer tools, curl, and network analyzers. RPC often requires specialized tools to decode binary protocols and understand custom error formats, though it can provide more detailed error context when properly implemented.",
+                    "keyConcepts": [
+                      "Debugging and monitoring",
+                      "tooling support",
+                      "operational visibility"
+                    ]
+                  },
+                  {
+                    "id": 8,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Which scenario most commonly triggers companies to evaluate RPC vs REST architectural decisions?",
+                    "options": [
+                      "Choosing between different database systems",
+                      "Performance bottlenecks where API latency impacts user experience or operational costs",
+                      "Deciding on frontend JavaScript frameworks",
+                      "Selecting cloud infrastructure providers"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Performance crises where API response times affect user experience (like slow mobile app responses) or operational costs (like cloud bills increasing due to inefficient service communication) drive RPC vs REST evaluations. Companies often start with REST for simplicity and switch to RPC for internal high-frequency communication while maintaining REST for public APIs.",
+                    "keyConcepts": [
+                      "Performance triggers",
+                      "architectural decisions",
+                      "cost optimization"
+                    ]
+                  },
+                  {
+                    "id": 9,
+                    "type": "freeform",
+                    "points": 4,
+                    "question": "Describe three specific customer scenarios where companies typically experience pain points that lead them to reconsider their RPC vs REST architectural choices. Include the quoted pain point for each scenario.",
+                    "sampleStrongResponse": "The three main customer scenarios are: (1) Mobile application performance crisis - 'Our mobile app response times increased by 50% as we added more microservices, affecting user engagement', (2) High-frequency microservices communication overhead - 'Our internal service calls are consuming 40% more bandwidth than expected, driving up cloud costs', and (3) External API discoverability challenges - 'Third-party developers struggle to integrate with our RPC APIs without extensive documentation and custom tooling'. These scenarios represent the key decision points where architectural trade-offs between performance and developer experience become business-critical.",
+                    "additionalContext": "These scenarios help identify when companies need to evaluate their architectural choices based on business impact rather than just technical preferences.",
+                    "keyConcepts": [
+                      "Performance pain points",
+                      "cost drivers",
+                      "developer experience issues"
+                    ],
+                    "customScoringCriteria": {
+                      "fullPoints": "Identifies all three distinct scenarios (mobile performance, microservices overhead, API discoverability) with appropriate quoted pain points that reflect real business challenges. Shows understanding of how technical choices create business impact.",
+                      "partialPoints": "Covers most scenarios with some quoted examples but may lack specificity in business impact or use generic rather than specific pain points.",
+                      "noPoints": "Fails to identify distinct scenarios or provides unclear pain points that don't connect technical choices to business outcomes."
+                    }
+                  },
+                  {
+                    "id": 10,
+                    "type": "freeform",
+                    "points": 5,
+                    "question": "Analyze when organizations should choose RPC vs REST for different use cases. Explain the decision criteria for internal microservices communication, public APIs, and hybrid architectures, including specific performance and business considerations.",
+                    "sampleStrongResponse": "Architectural decisions should align with use case requirements: RPC excels for internal microservices communication requiring high-performance and low-latency (40-60% latency reduction, 30-50% bandwidth savings), making it ideal for financial trading systems, real-time gaming, and high-frequency service coordination where performance directly impacts business outcomes; REST dominates public APIs due to better discoverability, standard HTTP tooling, caching capabilities, and developer familiarity, reducing integration friction and support overhead; Hybrid architectures optimize for both worlds - using RPC internally for performance-critical paths while exposing REST APIs externally for developer experience. Decision criteria include: latency requirements (RPC for <10ms responses), bandwidth constraints (RPC for mobile/IoT), developer ecosystem needs (REST for third-party integration), and operational complexity tolerance (REST for simpler monitoring and debugging).",
+                    "additionalContext": "Understanding these trade-offs helps organizations make informed architectural decisions that balance technical requirements with business objectives and team capabilities.",
+                    "keyConcepts": [
+                      "Architectural decision criteria",
+                      "use case optimization",
+                      "hybrid approaches",
+                      "business alignment"
+                    ],
+                    "customScoringCriteria": {
+                      "fullPoints": "Clearly explains decision criteria for all three scenarios (internal microservices, public APIs, hybrid) with specific performance metrics and business considerations. Demonstrates understanding of when to optimize for performance vs developer experience.",
+                      "partialPoints": "Covers most scenarios with appropriate criteria but may lack depth in performance metrics OR business considerations, or may not address all three architectural approaches clearly.",
+                      "noPoints": "Provides unclear decision criteria or fails to distinguish between different use cases and their optimal architectural approaches."
+                    }
+                  }
+                ]
+              }
             }
           ]
         },
