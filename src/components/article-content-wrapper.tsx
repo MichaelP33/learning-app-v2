@@ -183,6 +183,8 @@ export function ArticleContentWrapper({
                     <SOLIDPrinciplesContent />
                   ) : article.id === "design-patterns" ? (
                     <DesignPatternsContent />
+                  ) : article.id === "domain-driven-design" ? (
+                    <DomainDrivenDesignContent />
                   ) : article.id === "microservices-architecture" ? (
                     <MicroservicesArchitectureContent />
                   ) : (
@@ -9086,6 +9088,399 @@ function DesignPatternsContent() {
               systems, replace hardcoded object creation with Factory patterns,
               and extract MVC separation from monolithic structures while
               maintaining backward compatibility.
+            </p>
+          </div>
+        </div>
+      </section>
+    </article>
+  );
+}
+
+function DomainDrivenDesignContent() {
+  return (
+    <article className="space-y-10">
+      {/* Key Concepts Section */}
+      <section id="key-concepts">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Key Concepts
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Bounded Context
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              A strategic design pattern that defines explicit boundaries around business domains, ensuring that domain models remain consistent and focused within specific contexts while preventing coupling between different business areas
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Domain isolation:
+                  </strong>{" "}
+                  Each bounded context maintains its own ubiquitous language (domain-specific vocabulary) and model integrity, preventing the confusion that arises when the same concept means different things in different business areas
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Team autonomy enablement:
+                  </strong>{" "}
+                  Organizations see 40-60% reduction in cross-team coordination overhead when bounded contexts align with team ownership, enabling faster feature delivery and reduced merge conflicts
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Microservices alignment:
+                  </strong>{" "}
+                  Bounded contexts naturally evolve into microservice boundaries, with each context becoming an independently deployable service that owns its domain logic and data
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Entities
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Business objects with unique identity and lifecycle management that represent core domain concepts with behavior, state transitions, and business rules enforcement
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Identity management:
+                  </strong>{" "}
+                  Entities maintain unique identifiers that persist throughout their lifecycle, enabling tracking and referencing across different system interactions and state changes
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Business behavior encapsulation:
+                  </strong>{" "}
+                  Instead of anemic data models, entities contain domain logic and business rules, reducing procedural code by 30-50% and improving code maintainability through object-oriented encapsulation
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    State consistency:
+                  </strong>{" "}
+                  Entities enforce invariants and business rules through their methods, ensuring that domain objects cannot enter invalid states and maintaining data integrity across operations
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-orange-500 bg-orange-50/50 dark:bg-orange-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Value Objects
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Immutable objects that represent concepts without identity, focusing on attributes and behavior while providing type safety and domain expression through the type system
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Immutability benefits:
+                  </strong>{" "}
+                  Value objects prevent unexpected mutations and side effects, reducing debugging time by 25-40% while improving thread safety in concurrent applications
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Domain expression:
+                  </strong>{" "}
+                  Converting primitive types (strings, numbers) into domain-specific value objects (EmailAddress, Money, OrderStatus) makes business logic more explicit and prevents invalid data combinations
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Equality semantics:
+                  </strong>{" "}
+                  Value objects compare by attributes rather than identity, enabling natural equality checking and simplifying business logic that involves comparing domain concepts
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Domain Events
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Business-significant occurrences that represent something important happening in the domain, enabling loose coupling between bounded contexts and supporting event-driven architectures
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Business communication:
+                  </strong>{" "}
+                  Events capture business language (&ldquo;OrderPlaced&rdquo;, &ldquo;PaymentProcessed&rdquo;) making system behavior traceable and enabling business stakeholders to understand system operations
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Temporal decoupling:
+                  </strong>{" "}
+                  Bounded contexts communicate through events rather than direct calls, reducing coupling by 50-70% and enabling systems to evolve independently while maintaining integration
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Audit and replay capabilities:
+                  </strong>{" "}
+                  Event streams provide natural audit trails and enable event sourcing patterns, supporting regulatory compliance and system recovery through event replay
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-red-500 bg-red-50/50 dark:bg-red-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Aggregates
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Consistency boundaries that group entities and value objects into transactional units, ensuring data integrity while defining the scope of business operations and concurrency control
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Transaction boundaries:
+                  </strong>{" "}
+                  Aggregates define what can be modified in a single transaction, preventing distributed transaction complexity while maintaining business rule consistency across related objects
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Concurrency management:
+                  </strong>{" "}
+                  Aggregate roots control access to internal entities, implementing optimistic locking and version control to handle concurrent updates in high-throughput systems processing thousands of operations per second
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Repository interface design:
+                  </strong>{" "}
+                  Aggregates work with repositories that load and persist entire aggregate instances, simplifying data access patterns and ensuring consistent state management
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Domain-Driven Design Implementation Impact Metrics */}
+        <div className="mt-8">
+          <MetricsCard
+            title="Domain-Driven Design Impact on Enterprise Development"
+            metrics={[
+              {
+                label: "Code Maintainability",
+                value: "40-60%",
+                description:
+                  "Improvement in code readability and business logic clarity",
+                color: "green",
+              },
+              {
+                label: "Team Communication",
+                value: "3-5x",
+                description:
+                  "Faster business-developer alignment through ubiquitous language",
+                color: "blue",
+              },
+              {
+                label: "Feature Development",
+                value: "25-40%",
+                description:
+                  "Faster delivery through domain-aligned team boundaries",
+                color: "purple",
+              },
+              {
+                label: "Technical Debt",
+                value: "50-70%",
+                description:
+                  "Reduction through explicit domain modeling and boundaries",
+                color: "orange",
+              },
+            ]}
+          />
+        </div>
+      </section>
+
+      {/* Business & Team Impact Section */}
+      <section id="business-team-impact">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
+          <TrendingUp className="w-6 h-6 text-green-500" />
+          Business &amp; Team Impact
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Enterprise adoption patterns with measurable outcomes
+            </h3>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Spotify:
+                  </strong>{" "}
+                  Uses bounded contexts to organize 100+ autonomous squads around music discovery, playlist management, and artist relations domains, enabling independent deployment of 1000+ releases per day
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Shopify:
+                  </strong>{" "}
+                  Domain modeling around merchant, customer, and fulfillment contexts enables 2+ million merchants to operate independently while maintaining platform coherence and 99.9% uptime
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Klarna:
+                  </strong>{" "}
+                  Rebuilt payment processing using DDD principles across fraud detection, risk assessment, and settlement domains, reducing payment failures by 40% while processing $80+ billion annually
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-yellow-500 bg-yellow-50/50 dark:bg-yellow-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Common customer triggers driving Domain-Driven Design adoption
+            </h3>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Complex domain confusion:
+                  </strong>{" "}
+                  &ldquo;Our developers spend more time understanding the business logic than implementing it - the same concept means different things in different parts of our system&rdquo;
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Legacy system rigidity:
+                  </strong>{" "}
+                  &ldquo;Every new feature requires changes across 15 different services because we never properly defined domain boundaries&rdquo;
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Business-developer communication breakdown:
+                  </strong>{" "}
+                  &ldquo;Product managers and engineers use completely different vocabulary - business requirements get lost in translation&rdquo;
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Customer profiles and strategic implementation patterns
+            </h3>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Enterprise modernization teams
+                  </strong>{" "}
+                  managing complex business domains with 500+ developers needing clear ownership boundaries and domain expertise distribution across autonomous teams
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Financial services organizations
+                  </strong>{" "}
+                  requiring domain-specific expertise in payments, risk management, and compliance with strict regulatory requirements and audit trails
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    E-commerce platform builders
+                  </strong>{" "}
+                  supporting multiple business models requiring clear separation between catalog management, order processing, inventory, and customer relationship domains
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Cursor Implementation Section */}
+      <section id="cursor-implementation">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Cursor Implementation Considerations
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              AI-assisted domain modeling and boundary identification
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Cursor excels at analyzing existing codebases to identify natural domain boundaries and suggest bounded context extraction strategies. The AI can examine data relationships, business logic patterns, and team communication to recommend optimal domain model structure. Teams leverage Cursor to generate value objects from primitive types, identify entity candidates, and design aggregate boundaries based on transactional consistency requirements.
+            </p>
+          </div>
+
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Enterprise domain event architecture and implementation
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Organizations implementing event-driven DDD architectures can use Cursor to generate consistent event patterns, design event schemas, and implement event sourcing with proper aggregate versioning. The AI understands domain event naming conventions and can suggest event choreography vs orchestration patterns based on business requirements. Cursor helps generate event handlers, projection logic, and integration patterns that maintain bounded context independence.
+            </p>
+          </div>
+
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Legacy domain extraction and ubiquitous language development
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Teams modernizing legacy systems can leverage Cursor&rsquo;s contextual understanding to extract domain concepts from procedural code, identify hidden domain models within data access layers, and refactor anemic domain models into rich entities with behavior. The AI assists in establishing ubiquitous language by analyzing business documentation, code comments, and existing terminology to ensure consistent domain vocabulary across development teams and business stakeholders.
             </p>
           </div>
         </div>
