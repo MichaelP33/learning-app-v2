@@ -4769,7 +4769,192 @@
                 "CAP Theorem",
                 "Consistency Models",
                 "Distributed Systems"
-              ]
+              ],
+              "quiz": {
+                "title": "ACID Properties vs Eventual Consistency Knowledge Quiz",
+                "totalQuestions": 10,
+                "totalPoints": 25,
+                "questions": [
+                  {
+                    "id": 1,
+                    "type": "multiple-choice",
+                    "points": 3,
+                    "question": "What does the 'A' in ACID stand for, and why is it critical for financial applications?",
+                    "options": [
+                      "Availability - ensuring system remains operational",
+                      "Atomicity - ensuring transactions complete fully or not at all",
+                      "Accessibility - ensuring all users can access the system",
+                      "Abstraction - hiding complex implementation details"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Atomicity ensures that database transactions are treated as single, indivisible units - either all operations in a transaction succeed, or all fail and are rolled back. This is crucial for financial systems where partial transactions could create inconsistent account balances or lost funds. For example, transferring money between accounts must either complete both the debit and credit operations, or neither.",
+                    "keyConcepts": [
+                      "ACID Atomicity",
+                      "Transaction integrity",
+                      "Financial system requirements"
+                    ]
+                  },
+                  {
+                    "id": 2,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "According to enterprise surveys, what percentage of organizations experience data inconsistency issues when implementing eventual consistency?",
+                    "options": [
+                      "15-20%",
+                      "25-35%", 
+                      "45-60%",
+                      "70-85%"
+                    ],
+                    "correctAnswer": 2,
+                    "additionalContext": "Studies show that 45-60% of organizations implementing eventual consistency models experience data inconsistency challenges, particularly during the initial transition period. Common issues include temporary data conflicts, race conditions, and complex conflict resolution scenarios that require sophisticated handling mechanisms.",
+                    "keyConcepts": [
+                      "Eventual consistency challenges",
+                      "Enterprise adoption statistics",
+                      "Data consistency trade-offs"
+                    ]
+                  },
+                  {
+                    "id": 3,
+                    "type": "multiple-choice",
+                    "points": 3,
+                    "question": "What is the primary advantage of eventual consistency over ACID transactions in distributed systems?",
+                    "options": [
+                      "Guaranteed data accuracy at all times",
+                      "Higher availability and partition tolerance under CAP theorem",
+                      "Simpler application logic and error handling",
+                      "Lower infrastructure costs and complexity"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Eventual consistency enables distributed systems to maintain availability even during network partitions, as specified by the CAP theorem. While ACID systems may become unavailable during network splits to maintain consistency, eventually consistent systems continue operating, accepting temporary inconsistencies that resolve over time through conflict resolution mechanisms.",
+                    "keyConcepts": [
+                      "CAP theorem implications",
+                      "Distributed system availability",
+                      "Network partition tolerance"
+                    ]
+                  },
+                  {
+                    "id": 4,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Which business scenario best demonstrates when ACID properties are essential over eventual consistency?",
+                    "options": [
+                      "Social media post updates and user timelines",
+                      "E-commerce inventory management during flash sales",
+                      "Customer preference settings and profile updates",
+                      "System monitoring and logging data collection"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "E-commerce inventory during flash sales requires ACID properties to prevent overselling - multiple customers cannot purchase the same limited inventory item. The strong consistency ensures accurate stock counts and prevents the business losses and customer disappointment that would result from overselling scenarios.",
+                    "keyConcepts": [
+                      "Business scenario analysis",
+                      "Inventory management",
+                      "Consistency requirements"
+                    ]
+                  },
+                  {
+                    "id": 5,
+                    "type": "multiple-choice",
+                    "points": 3,
+                    "question": "What performance improvement do organizations typically see when switching from ACID to eventual consistency models?",
+                    "options": [
+                      "5-15% improvement in read operations",
+                      "20-30% improvement in overall throughput", 
+                      "40-70% improvement in write scalability",
+                      "80-95% improvement in query response time"
+                    ],
+                    "correctAnswer": 2,
+                    "additionalContext": "Organizations implementing eventual consistency typically see 40-70% improvement in write scalability due to reduced coordination overhead and elimination of distributed locking mechanisms. This dramatic improvement comes from the ability to accept writes locally without waiting for global consensus, though it requires sophisticated conflict resolution strategies.",
+                    "keyConcepts": [
+                      "Performance metrics",
+                      "Write scalability",
+                      "Coordination overhead"
+                    ]
+                  },
+                  {
+                    "id": 6,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Which consistency model represents the middle ground between ACID and eventual consistency?",
+                    "options": [
+                      "Strong consistency with global transactions",
+                      "Session consistency with user-scoped guarantees",
+                      "Weak consistency with no ordering guarantees",
+                      "Monotonic read consistency with version vectors"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Session consistency provides guarantees within a user's session - ensuring users see their own writes and consistent ordering of operations they perform, while allowing other users to have eventual consistency. This model works well for applications like social media where users need to see their own actions immediately but can tolerate delays in seeing others' updates.",
+                    "keyConcepts": [
+                      "Consistency models spectrum",
+                      "Session-level guarantees",
+                      "Hybrid approaches"
+                    ]
+                  },
+                  {
+                    "id": 7,
+                    "type": "multiple-choice",
+                    "points": 3,
+                    "question": "What is the biggest operational challenge when implementing eventual consistency?",
+                    "options": [
+                      "Higher hardware costs and infrastructure complexity",
+                      "Conflict resolution and data reconciliation complexity",
+                      "Increased network bandwidth and latency requirements",
+                      "Reduced system security and access control capabilities"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Conflict resolution becomes the primary operational challenge with eventual consistency - determining how to merge conflicting updates when they occur simultaneously across different nodes. Organizations must design sophisticated resolution strategies considering business logic, timestamps, vector clocks, and user intent to handle these scenarios gracefully.",
+                    "keyConcepts": [
+                      "Operational challenges",
+                      "Conflict resolution strategies",
+                      "Data reconciliation"
+                    ]
+                  },
+                  {
+                    "id": 8,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "In enterprise environments, what drives 65% of organizations to choose ACID over eventual consistency?",
+                    "options": [
+                      "Lower implementation costs and faster time-to-market",
+                      "Regulatory compliance and audit trail requirements",
+                      "Better performance characteristics under high load",
+                      "Simpler scaling strategies for global deployments"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Regulatory compliance drives 65% of enterprise ACID adoption decisions, particularly in financial services, healthcare, and government sectors. These industries require strong auditability, guaranteed data integrity, and the ability to provide precise transaction histories for compliance reporting and legal requirements.",
+                    "keyConcepts": [
+                      "Regulatory compliance",
+                      "Enterprise decision factors",
+                      "Audit requirements"
+                    ]
+                  },
+                  {
+                    "id": 9,
+                    "type": "freeform",
+                    "points": 6,
+                    "question": "A global e-commerce platform is experiencing performance bottlenecks during peak shopping periods. Their current ACID-compliant system processes 10,000 transactions per second but needs to scale to 50,000 TPS. They're considering eventual consistency for product catalog and user reviews while maintaining ACID for payments and inventory. Analyze this hybrid approach: What are the key implementation challenges, potential business risks, and recommended conflict resolution strategies for the eventually consistent components?",
+                    "rubric": "Comprehensive analysis covering implementation complexity, business impact assessment, and practical resolution strategies",
+                    "keyConcepts": [
+                      "Hybrid consistency models",
+                      "Scalability requirements",
+                      "Business risk assessment",
+                      "Implementation strategy"
+                    ]
+                  },
+                  {
+                    "id": 10,
+                    "type": "freeform", 
+                    "points": 5,
+                    "question": "A financial technology startup is building a real-time trading platform that needs to handle 100,000 concurrent users with microsecond latency requirements. They must ensure no trader sees stale pricing data that could lead to failed trades, but also need global availability during network partitions. Evaluate whether ACID or eventual consistency better serves their requirements, considering the CAP theorem constraints and regulatory compliance needs for financial trading systems.",
+                    "rubric": "Technical evaluation demonstrating understanding of CAP theorem implications, regulatory requirements, and performance trade-offs",
+                    "keyConcepts": [
+                      "Real-time system requirements",
+                      "CAP theorem application",
+                      "Financial compliance",
+                      "Performance constraints"
+                    ]
+                  }
+                ]
+              }
             },
             {
               "id": "read-replicas-write-scaling",
