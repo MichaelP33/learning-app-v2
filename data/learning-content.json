@@ -4777,7 +4777,203 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Strategies for scaling database read and write operations",
-              "topics": ["Master-Slave", "Load Distribution", "Replication Lag"]
+              "topics": ["Master-Slave", "Load Distribution", "Replication Lag"],
+              "quiz": {
+                "title": "Read Replicas and Write Scaling Knowledge Quiz",
+                "totalQuestions": 10,
+                "totalPoints": 25,
+                "questions": [
+                  {
+                    "id": 1,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "What is the primary purpose of read replicas in database architecture?",
+                    "options": [
+                      "To provide automatic failover for write operations",
+                      "To distribute read queries across multiple database instances",
+                      "To encrypt data at rest for security compliance",
+                      "To compress database storage for cost optimization"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Read replicas are copies of the primary database that handle read-only operations, allowing the system to distribute read traffic across multiple instances. This reduces load on the primary database, improves read performance, and enables geographic distribution of data for faster local access.",
+                    "keyConcepts": [
+                      "Read replica purpose",
+                      "Load distribution",
+                      "Performance optimization"
+                    ]
+                  },
+                  {
+                    "id": 2,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "What percentage improvement in read performance do organizations typically see when implementing read replicas?",
+                    "options": [
+                      "20-40%",
+                      "50-80%",
+                      "90-120%",
+                      "150-200%"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Organizations typically see 50-80% improvement in read performance when implementing read replicas effectively. This improvement comes from distributing read load across multiple instances, reducing contention on the primary database, and placing replicas geographically closer to users for reduced latency.",
+                    "keyConcepts": [
+                      "Performance metrics",
+                      "Read optimization",
+                      "Business impact"
+                    ]
+                  },
+                  {
+                    "id": 3,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Which strategy is most effective for write scaling in high-transaction environments?",
+                    "options": [
+                      "Adding more read replicas to handle write load",
+                      "Database sharding with appropriate partition keys",
+                      "Increasing CPU and memory on a single database server",
+                      "Using eventual consistency for all write operations"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Database sharding with appropriate partition keys is the most effective strategy for write scaling because it distributes write operations across multiple database instances. Unlike read replicas which only help with read operations, sharding allows parallel processing of writes by partitioning data based on logical boundaries.",
+                    "keyConcepts": [
+                      "Write scaling strategies",
+                      "Database sharding",
+                      "Parallel processing"
+                    ]
+                  },
+                  {
+                    "id": 4,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "What is replication lag and why does it matter for business applications?",
+                    "options": [
+                      "The time between write operations and their replication to read replicas",
+                      "The delay in network communication between database servers",
+                      "The processing time required for database query optimization",
+                      "The interval between database backup operations"
+                    ],
+                    "correctAnswer": 0,
+                    "additionalContext": "Replication lag is the delay between when data is written to the primary database and when it becomes available on read replicas. This matters for business applications because users might read stale data, leading to inconsistent user experiences, especially in real-time scenarios like e-commerce inventory or financial transactions.",
+                    "keyConcepts": [
+                      "Replication lag definition",
+                      "Data consistency",
+                      "Business impact"
+                    ]
+                  },
+                  {
+                    "id": 5,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Master-slave replication differs from master-master replication primarily in:",
+                    "options": [
+                      "The number of database instances required for deployment",
+                      "Whether multiple nodes can accept write operations simultaneously",
+                      "The storage capacity available on each database server",
+                      "The encryption protocols used for data transmission"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Master-slave replication has one primary node that accepts writes while slaves handle reads only. Master-master replication allows multiple nodes to accept writes simultaneously, which can improve write availability but introduces complexity in conflict resolution and consistency management.",
+                    "keyConcepts": [
+                      "Replication architectures",
+                      "Write operation handling",
+                      "System complexity"
+                    ]
+                  },
+                  {
+                    "id": 6,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "What cost reduction can organizations achieve through effective read replica implementation?",
+                    "options": [
+                      "10-25% in database infrastructure costs",
+                      "30-50% in database infrastructure costs",
+                      "60-75% in database infrastructure costs",
+                      "80-90% in database infrastructure costs"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Organizations can achieve 30-50% reduction in database infrastructure costs through effective read replica implementation by using smaller, cheaper instances for read operations while reserving expensive high-performance instances for write operations. Geographic distribution also reduces bandwidth costs.",
+                    "keyConcepts": [
+                      "Cost optimization",
+                      "Infrastructure efficiency",
+                      "Resource allocation"
+                    ]
+                  },
+                  {
+                    "id": 7,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "In load distribution for database scaling, what is the most critical factor for optimal performance?",
+                    "options": [
+                      "Having identical hardware specifications across all database instances",
+                      "Intelligent routing of read and write operations based on query patterns",
+                      "Using the same database software version on all instances",
+                      "Implementing round-robin distribution for all database operations"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Intelligent routing based on query patterns is critical because different types of queries have different performance characteristics and requirements. Analytics queries might be routed to specialized read replicas, while transactional reads go to low-latency replicas, and writes always go to the primary instance.",
+                    "keyConcepts": [
+                      "Load distribution",
+                      "Query routing",
+                      "Performance optimization"
+                    ]
+                  },
+                  {
+                    "id": 8,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Which customer scenario most commonly triggers discussions about read replica implementation?",
+                    "options": [
+                      "&ldquo;Our application response times are getting slower as our user base grows&rdquo;",
+                      "&ldquo;We need to implement blockchain technology for data security&rdquo;",
+                      "&ldquo;Our mobile app needs offline functionality for all features&rdquo;",
+                      "&ldquo;We want to migrate from SQL to NoSQL databases completely&rdquo;"
+                    ],
+                    "correctAnswer": 0,
+                    "additionalContext": "Performance degradation with growing user base is the most common trigger because read operations typically scale linearly with user growth. As more users perform reads simultaneously, the primary database becomes a bottleneck, leading to slower response times and poor user experience.",
+                    "keyConcepts": [
+                      "Customer triggers",
+                      "Performance scaling",
+                      "User growth impact"
+                    ]
+                  },
+                  {
+                    "id": 9,
+                    "type": "freeform",
+                    "points": 4,
+                    "question": "Describe the three main customer scenarios that trigger read replica and write scaling discussions. For each scenario, include one specific quoted pain point from the article.",
+                    "sampleStrongResponse": "The three main customer scenarios are: (1) Performance degradation with user growth - &ldquo;Our application response times are getting slower as our user base grows&rdquo;, (2) Geographic expansion challenges - &ldquo;Our European users are experiencing 3-second page load times due to database latency&rdquo;, and (3) Cost optimization pressure - &ldquo;Our database bills are growing faster than our revenue - we need 40% cost reduction&rdquo;. These represent the key pain points where customers realize their database architecture needs strategic scaling solutions.",
+                    "additionalContext": "These scenarios represent the most common trigger points where organizations need to implement database scaling strategies to maintain performance and control costs as they grow.",
+                    "keyConcepts": [
+                      "Customer triggers",
+                      "Scaling pain points",
+                      "Business drivers"
+                    ],
+                    "customScoringCriteria": {
+                      "fullPoints": "Identifies all three trigger scenarios (performance degradation, geographic expansion, cost optimization) and includes exact quoted pain points from the article for each one. Demonstrates understanding that these represent strategic scaling decision points.",
+                      "partialPoints": "Identifies most trigger scenarios and includes some quoted pain points, but may miss one scenario or use paraphrased rather than exact quotes.",
+                      "noPoints": "Fails to identify the three distinct scenarios or doesn't include specific quoted pain points from the article."
+                    }
+                  },
+                  {
+                    "id": 10,
+                    "type": "freeform",
+                    "points": 5,
+                    "question": "Analyze the core architectural decisions for read replicas versus write scaling strategies. Describe the technical specializations of read replicas, database sharding, and master-master replication, and explain what types of applications would benefit most from each approach.",
+                    "sampleStrongResponse": "Technical requirements should drive architecture selection based on each approach's core strengths: Read replicas excel at scaling read-heavy applications through geographic distribution and load sharing, ideal for content management systems, e-commerce catalogs, and analytics dashboards where read-to-write ratios are high; Database sharding specializes in write scaling by partitioning data across multiple instances, optimal for high-transaction systems like payment processing, social media platforms, and gaming leaderboards where write volume is the primary constraint; Master-master replication provides high availability for write operations through multi-region deployment, making it suitable for global applications requiring local write access like collaborative tools and distributed inventory systems. Application selection should match these strengths - content-heavy applications benefit from read replicas, transaction-heavy systems from sharding, and globally distributed applications from master-master architectures.",
+                    "additionalContext": "Understanding these architectural specializations helps explain why different scaling strategies are chosen for different application types and what technical challenges each approach optimizes for.",
+                    "keyConcepts": [
+                      "Architectural decisions",
+                      "Technical specializations",
+                      "Application matching",
+                      "Scaling strategies"
+                    ],
+                    "customScoringCriteria": {
+                      "fullPoints": "Clearly describes all three approaches' technical specializations (read replicas for read scaling, sharding for write scaling, master-master for availability) and explains how technical requirements should drive selection decisions with appropriate application type matches.",
+                      "partialPoints": "Covers most approaches and their specializations but may lack depth in explaining how technical requirements drive selection OR misses clear application type matching for each approach.",
+                      "noPoints": "Provides superficial descriptions without demonstrating understanding of their technical specializations or fails to connect scaling strategies to appropriate application types."
+                    }
+                  }
+                ]
+              }
             },
             {
               "id": "database-sharding-partitioning",
