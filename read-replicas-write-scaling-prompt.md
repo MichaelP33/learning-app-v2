@@ -8,7 +8,7 @@
 
 ## 📋 **Generation Request**
 
-Generate a complete article implementation for **[TOPIC_NAME]** including:
+Generate a complete article implementation for **Read replicas and write scaling** including:
 
 ### **Required Deliverables**
 
@@ -20,17 +20,17 @@ Generate a complete article implementation for **[TOPIC_NAME]** including:
 
 ### **Article Topic Details**
 
-- **Article ID**: `[article-id]` (from learning-content.json)
-- **Article Name**: `[Article Name]` (as it appears in data)
+- **Article ID**: `read-replicas-write-scaling` (from learning-content.json)
+- **Article Name**: `Read replicas and write scaling` (as it appears in data)
 - **Quiz Status**: ⚠️ **Quiz must be generated FIRST** - following @.cursorrules-quiz workflow
-- **Focus**: Software Architecture & Design / [CATEGORY]
+- **Focus**: Software Architecture & Design / Database Architecture Decisions
 
 ## ✅ **Implementation Requirements**
 
 ### **Layer 1: Rendering Implementation (ArticleContentWrapper.tsx)**
 
-- [ ] Add `article.id === "[article-id]"` to conditional rendering chain
-- [ ] Create `[TopicName]Content()` function with full implementation
+- [ ] Add `article.id === "read-replicas-write-scaling"` to conditional rendering chain
+- [ ] Create `ReadReplicasWriteScalingContent()` function with full implementation
 - [ ] Include all required sections:
   - [ ] **Key Concepts** (3-4 core principles with accessibility context)
   - [ ] **Business Impact** (MetricsCard components with quantified benefits)

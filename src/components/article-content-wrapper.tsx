@@ -193,6 +193,8 @@ export function ArticleContentWrapper({
                     <CleanArchitectureContent />
                   ) : article.id === "restful-apis" ? (
                     <RESTfulApisContent />
+                  ) : article.id === "event-driven-architecture" ? (
+                    <EventDrivenArchitectureContent />
                   ) : (
                     <DefaultArticleContent article={article} />
                   )}
@@ -11027,6 +11029,319 @@ function RESTfulApisContent() {
               implement proper status code selection based on operation
               outcomes, and generate client-friendly error messages that enable
               effective debugging and user experience design.
+            </p>
+          </div>
+        </div>
+      </section>
+    </article>
+  );
+}
+
+// Component for the event-driven architecture article content
+function EventDrivenArchitectureContent() {
+  return (
+    <article className="space-y-10">
+      {/* Key Concepts Section */}
+      <section id="key-concepts">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Key Concepts
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Asynchronous event communication
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Systems react to events asynchronously rather than through direct requests
+            </p>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Components communicate through events rather than direct function calls (like office departments using announcements instead of direct phone calls)
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Events represent something that has happened in the system and can trigger actions across multiple services
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Decouples systems enabling better scalability and resilience compared to synchronous request-response patterns
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Event sourcing and audit trails
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Complete audit trail and ability to reconstruct any historical state
+            </p>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Stores all changes as a sequence of events rather than just current state
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Particularly valuable for financial services, healthcare, and other industries requiring compliance and auditability
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Preserves the entire history of what happened and when, enabling time travel debugging
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Message queues and reliable delivery
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Buffer events and ensure reliable delivery between services
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Apache Kafka:
+                  </strong>{" "}
+                  High-throughput event streaming with 99.9% uptime guarantees, handling millions of events per second
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    RabbitMQ:
+                  </strong>{" "}
+                  Reliable message delivery with complex routing patterns and multiple messaging protocols
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Amazon SQS:
+                  </strong>{" "}
+                  Managed message queuing with built-in AWS integration and automatic scaling
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-orange-500 bg-orange-50/50 dark:bg-orange-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Operational considerations and distributed debugging
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Managing distributed debugging and event flow tracing across services
+            </p>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Requires sophisticated observability tools to track events across multiple services
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Distributed tracing, event correlation IDs, and comprehensive logging essential for troubleshooting
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Unlike monoliths where execution traces in single codebase, events flow across service boundaries
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Business & Team Impact Section */}
+      <section id="business-team-impact">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
+          <TrendingUp className="w-6 h-6 text-green-500" />
+          Business &amp; Team Impact
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Performance and scalability improvements with quantified outcomes
+            </h3>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Netflix:
+                  </strong>{" "}
+                  Processes billions of events daily for recommendations and content delivery, improving recommendation system performance by 45% through event-driven patterns
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Uber:
+                  </strong>{" "}
+                  Trip processing and real-time location tracking rely heavily on event-driven patterns, achieving 50% better resource efficiency
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    LinkedIn:
+                  </strong>{" "}
+                  Uses Kafka to process trillions of events daily, scaling to support hundreds of millions of users while enabling rapid feature development
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          {/* Performance Metrics */}
+          <div className="mt-8">
+            <MetricsCard
+              title="Event-Driven Architecture Performance Benefits"
+              metrics={[
+                {
+                  label: "System Throughput Improvement",
+                  value: "40-60%",
+                  description: "Better resource utilization and async processing",
+                  trend: "up",
+                  color: "green",
+                },
+                {
+                  label: "Uptime Guarantees",
+                  value: "99.9%",
+                  description: "Enterprise-grade reliability with Kafka",
+                  trend: "up", 
+                  color: "blue",
+                },
+                {
+                  label: "Resource Efficiency Gain",
+                  value: "50%",
+                  description: "Reduced coupling and async event processing",
+                  trend: "up",
+                  color: "purple",
+                },
+                {
+                  label: "Recommendation Performance",
+                  value: "45%",
+                  description: "Netflix improvement through event patterns",
+                  trend: "up",
+                  color: "orange",
+                },
+              ]}
+              className="bg-gradient-to-br from-green-50 to-emerald-100 dark:from-green-950 dark:to-emerald-900"
+            />
+          </div>
+
+          <div className="border-l-4 border-yellow-500 bg-yellow-50/50 dark:bg-yellow-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Common customer triggers driving event-driven architecture adoption
+            </h3>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Monolithic bottlenecks:
+                  </strong>{" "}
+                  &ldquo;Our system slows down by 30% during peak hours due to tight coupling between services&rdquo;
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Cascading failure crisis:
+                  </strong>{" "}
+                  &ldquo;When our payment service goes down, it brings down our entire order processing system&rdquo;
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Integration complexity:
+                  </strong>{" "}
+                  &ldquo;Adding a simple feature now requires changes across 8 different services that all call each other directly&rdquo;
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Customer profiles most likely to benefit from event-driven architecture
+            </h3>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <strong className="text-slate-700 dark:text-gray-300">
+                  Series B+ startups
+                </strong>{" "}
+                with microservices architectures experiencing tight coupling and cascading failure issues
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <strong className="text-slate-700 dark:text-gray-300">
+                  E-commerce platforms
+                </strong>{" "}
+                requiring real-time inventory updates, order processing, and recommendation systems
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <strong className="text-slate-700 dark:text-gray-300">
+                  Financial services
+                </strong>{" "}
+                needing audit trails, compliance tracking, and high-throughput transaction processing
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <strong className="text-slate-700 dark:text-gray-300">
+                  IoT and streaming platforms
+                </strong>{" "}
+                processing high-volume real-time data from sensors, devices, or user interactions
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Cursor Implementation Section */}
+      <section id="cursor-implementation">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Cursor Implementation Considerations
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Event flow visualization and architecture design
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Event-driven systems benefit significantly from AI-assisted architecture visualization - Cursor can help generate event flow diagrams, identify potential bottlenecks in event processing chains, and suggest optimal message queue configurations based on throughput requirements and system constraints
+            </p>
+          </div>
+
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Distributed debugging and observability enhancement
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              The primary operational challenge of event-driven architectures—managing distributed debugging and event flow tracing—can be addressed through AI-assisted code generation for correlation IDs, distributed tracing setup, and comprehensive logging patterns that make event flows visible across service boundaries
+            </p>
+          </div>
+
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Event schema evolution and backward compatibility
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Teams migrating to event-driven patterns often struggle with event schema evolution and maintaining backward compatibility - Cursor&apos;s context awareness can help generate robust event schemas, validate compatibility across service boundaries, and suggest migration strategies for evolving event structures without breaking existing consumers
             </p>
           </div>
         </div>
