@@ -193,6 +193,8 @@ export function ArticleContentWrapper({
                     <CleanArchitectureContent />
                   ) : article.id === "restful-apis" ? (
                     <RESTfulApisContent />
+                  ) : article.id === "rpc-vs-rest" ? (
+                    <RPCvsRESTContent />
                   ) : (
                     <DefaultArticleContent article={article} />
                   )}
@@ -7983,6 +7985,453 @@ function DocumentationNamingContent() {
                 documentation freshness and accuracy in CI/CD pipelines.
               </p>
             </div>
+          </div>
+        </div>
+      </section>
+    </article>
+  );
+}
+
+// Component for the RPC vs REST article content
+function RPCvsRESTContent() {
+  return (
+    <article className="space-y-10">
+      {/* Key Concepts Section */}
+      <section id="key-concepts">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Key Concepts
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Fundamental architectural paradigms
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              RPC and REST represent different approaches to distributed system communication (like different languages for conversations between services - each optimized for specific scenarios)
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    RPC (Remote Procedure Call):
+                  </strong>{" "}
+                  Treats remote calls like local function calls, abstracting network complexity
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    REST (Representational State Transfer):
+                  </strong>{" "}
+                  Treats resources as stateless entities with standard HTTP operations
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Performance and efficiency characteristics
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Performance differences become critical in high-volume systems
+            </p>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                RPC: 40-60% lower latency through binary protocols and direct method invocation
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                RPC: 30-50% bandwidth reduction via binary encoding (Protocol Buffers vs JSON)
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                REST: Better caching, discoverability, and debugging through standard HTTP
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Coupling and evolutionary design implications
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              System coupling affects long-term maintainability and team independence (like organizational structures - tighter coupling requires more coordination but can enable faster execution)
+            </p>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                RPC creates tighter coupling through shared interfaces and method signatures
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                REST promotes looser coupling via standard HTTP verbs and self-describing resources
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-orange-500 bg-orange-50/50 dark:bg-orange-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Hybrid architectural patterns in practice
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Most organizations use both paradigms strategically rather than choosing exclusively
+            </p>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Internal microservices: RPC for high-frequency, low-latency communication
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Public APIs: REST for developer experience and ecosystem compatibility
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Performance Comparison */}
+        <div className="mt-8">
+          <ComparisonTable
+            title="RPC vs REST Performance Characteristics"
+            headers={["Metric", "RPC (gRPC)", "REST (HTTP/JSON)"]}
+            rows={[
+              {
+                metric: "Latency",
+                "RPC (gRPC)": "40-60% lower than REST",
+                "REST (HTTP/JSON)": "Baseline performance",
+              },
+              {
+                metric: "Bandwidth Usage",
+                "RPC (gRPC)": "30-50% less bandwidth",
+                "REST (HTTP/JSON)": "Higher due to JSON overhead",
+              },
+              {
+                metric: "Coupling Level",
+                "RPC (gRPC)": "Higher (shared interfaces)",
+                "REST (HTTP/JSON)": "Lower (standard HTTP)",
+              },
+              {
+                metric: "Debugging Tools",
+                "RPC (gRPC)": "Specialized tools required",
+                "REST (HTTP/JSON)": "Universal HTTP tools",
+              },
+            ]}
+          />
+        </div>
+      </section>
+
+      {/* Business & Team Impact Section */}
+      <section id="business-team-impact">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
+          <TrendingUp className="w-6 h-6 text-green-500" />
+          Business &amp; Team Impact
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Performance impact on user experience and operational costs
+            </h3>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Financial trading systems:
+                  </strong>{" "}
+                  Use RPC for millisecond-critical operations where latency directly impacts profitability
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    High-frequency microservices:
+                  </strong>{" "}
+                  Order processing systems benefit from RPC's compound latency improvements across service chains
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Public API ecosystems:
+                  </strong>{" "}
+                  REST's HTTP compatibility reduces integration friction and developer support overhead
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-yellow-500 bg-yellow-50/50 dark:bg-yellow-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Common customer pain points driving architectural reevaluations
+            </h3>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Mobile application performance crisis:
+                  </strong>{" "}
+                  &ldquo;Our mobile app response times increased by 50% as we added more microservices, affecting user engagement&rdquo;
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Infrastructure cost escalation:
+                  </strong>{" "}
+                  &ldquo;Our internal service calls are consuming 40% more bandwidth than expected, driving up cloud costs&rdquo;
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Developer integration challenges:
+                  </strong>{" "}
+                  &ldquo;Third-party developers struggle to integrate with our RPC APIs without extensive documentation and custom tooling&rdquo;
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Strategic adoption patterns across industry segments
+            </h3>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Netflix:
+                  </strong>{" "}
+                  Uses RPC (gRPC) for internal service communication while maintaining REST APIs for device integration
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Google:
+                  </strong>{" "}
+                  Developed gRPC for internal systems, offers REST APIs for external developers
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Uber:
+                  </strong>{" "}
+                  Hybrid approach with RPC for real-time location services, REST for driver/rider applications
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Performance and Business Metrics */}
+        <div className="mt-8">
+          <MetricsCard
+            title="Performance & Business Impact"
+            metrics={[
+              {
+                label: "Latency Reduction",
+                value: "40-60%",
+                description: "RPC advantage in high-throughput scenarios",
+                trend: "up",
+                color: "green",
+              },
+              {
+                label: "Bandwidth Savings",
+                value: "30-50%",
+                description: "Binary encoding vs JSON overhead",
+                trend: "up", 
+                color: "blue",
+              },
+              {
+                label: "Integration Complexity",
+                value: "Lower",
+                description: "REST APIs reduce developer friction",
+                color: "purple",
+              },
+              {
+                label: "Debugging Efficiency",
+                value: "Higher",
+                description: "HTTP tools universally available",
+                color: "orange",
+              },
+            ]}
+            className="bg-gradient-to-br from-green-50 to-emerald-100 dark:from-green-950 dark:to-emerald-900"
+          />
+        </div>
+
+        <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+          <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+            Customer profiles and decision drivers
+          </h3>
+          <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+            <li className="flex items-start gap-2">
+              <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+              <strong className="text-slate-700 dark:text-gray-300">
+                High-frequency trading firms:
+              </strong>{" "}
+              Require sub-millisecond latency for competitive advantage
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+              <strong className="text-slate-700 dark:text-gray-300">
+                Gaming and real-time applications:
+              </strong>{" "}
+              Need low-latency communication for user experience
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+              <strong className="text-slate-700 dark:text-gray-300">
+                Platform companies:
+              </strong>{" "}
+              Balance internal performance with external developer experience
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+              <strong className="text-slate-700 dark:text-gray-300">
+                IoT and mobile-first organizations:
+              </strong>{" "}
+              Optimize for bandwidth efficiency and battery life
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      {/* Implementation Patterns Section */}
+      <section id="implementation-patterns">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Implementation Patterns
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Internal microservices communication (RPC optimal)
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              High-frequency, latency-sensitive service-to-service calls
+            </p>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Order processing workflows calling inventory, payment, and shipping services
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Real-time data processing pipelines with sub-10ms response requirements
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Mobile backend services optimizing for battery life and data usage
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Public API design (REST optimal)
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              External developer integration and ecosystem building
+            </p>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Third-party developer platforms requiring self-discoverable APIs
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Web applications leveraging HTTP caching and standard tooling
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Mobile apps requiring debugging with standard HTTP monitoring tools
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Hybrid architecture decision framework
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Strategic use of both paradigms based on specific requirements
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+              <div className="bg-white/50 dark:bg-gray-800/50 p-4 rounded-lg">
+                <h4 className="font-medium text-slate-900 dark:text-white mb-2">
+                  Choose RPC When:
+                </h4>
+                <ul className="text-sm text-slate-600 dark:text-gray-400 space-y-1">
+                  <li>• Latency requirements &lt;10ms</li>
+                  <li>• High-frequency service calls</li>
+                  <li>• Bandwidth constraints critical</li>
+                  <li>• Type safety requirements</li>
+                </ul>
+              </div>
+              <div className="bg-white/50 dark:bg-gray-800/50 p-4 rounded-lg">
+                <h4 className="font-medium text-slate-900 dark:text-white mb-2">
+                  Choose REST When:
+                </h4>
+                <ul className="text-sm text-slate-600 dark:text-gray-400 space-y-1">
+                  <li>• Public API exposure</li>
+                  <li>• Developer ecosystem building</li>
+                  <li>• HTTP caching important</li>
+                  <li>• Standard tooling preferred</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Cursor Implementation Section */}
+      <section id="cursor-implementation">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Cursor Implementation Considerations
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Architectural decision support
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              AI assistance for the critical &ldquo;RPC vs REST&rdquo; choices that impact system performance and developer experience - intelligent recommendations based on latency requirements, bandwidth constraints, and team capabilities, with context-aware guidance on when to optimize for performance versus developer ecosystem compatibility
+            </p>
+          </div>
+
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Protocol and schema generation acceleration
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Teams implementing RPC systems benefit from AI-generated Protocol Buffer schemas and service definitions, while REST implementations leverage automated OpenAPI specification generation - reducing the setup overhead that often delays architectural transitions and ensuring consistent interface design patterns
+            </p>
+          </div>
+
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Migration strategy optimization
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Organizations transitioning between RPC and REST (or implementing hybrid approaches) can leverage Cursor&apos;s codebase understanding to identify high-impact migration candidates, generate adapter layers for gradual transitions, and maintain consistency across different communication patterns within the same system
+            </p>
           </div>
         </div>
       </section>
