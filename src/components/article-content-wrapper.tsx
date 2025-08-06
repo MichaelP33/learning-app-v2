@@ -193,6 +193,8 @@ export function ArticleContentWrapper({
                     <CleanArchitectureContent />
                   ) : article.id === "restful-apis" ? (
                     <RESTfulApisContent />
+                  ) : article.id === "rpc-vs-rest" ? (
+                    <RPCvsRESTContent />
                   ) : article.id === "event-driven-architecture" ? (
                     <EventDrivenArchitectureContent />
                   ) : (
@@ -7992,6 +7994,400 @@ function DocumentationNamingContent() {
   );
 }
 
+// Component for the RPC vs REST article content
+function RPCvsRESTContent() {
+  return (
+    <article className="space-y-10">
+      {/* Key Concepts Section */}
+      <section id="key-concepts">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Key Concepts
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Fundamental architectural paradigms
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              RPC and REST represent different approaches to distributed system
+              communication (like different languages for conversations between
+              services - each optimized for specific scenarios)
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    RPC (Remote Procedure Call):
+                  </strong>{" "}
+                  Treats remote calls like local function calls, abstracting
+                  network complexity
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    REST (Representational State Transfer):
+                  </strong>{" "}
+                  Treats resources as stateless entities with standard HTTP
+                  operations
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Performance and efficiency characteristics
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Performance differences become critical in high-volume systems
+            </p>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                RPC: 40-60% lower latency through binary protocols and direct
+                method invocation
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                RPC: 30-50% bandwidth reduction via binary encoding (Protocol
+                Buffers vs JSON)
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                REST: Better caching, discoverability, and debugging through
+                standard HTTP
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Coupling and evolutionary design implications
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              System coupling affects long-term maintainability and team
+              independence (like organizational structures - tighter coupling
+              requires more coordination but can enable faster execution)
+            </p>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                RPC creates tighter coupling through shared interfaces and
+                method signatures
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                REST promotes looser coupling via standard HTTP verbs and
+                self-describing resources
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-orange-500 bg-orange-50/50 dark:bg-orange-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Hybrid architectural patterns in practice
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Most organizations use both paradigms strategically rather than
+              choosing exclusively
+            </p>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Internal microservices: RPC for high-frequency, low-latency
+                communication
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Public APIs: REST for developer experience and ecosystem
+                compatibility
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Performance Comparison */}
+        <div className="mt-8">
+          <ComparisonTable
+            title="RPC vs REST Performance Characteristics"
+            headers={["Metric", "RPC (gRPC)", "REST (HTTP/JSON)"]}
+            rows={[
+              {
+                metric: "Latency",
+                "RPC (gRPC)": "40-60% lower than REST",
+                "REST (HTTP/JSON)": "Baseline performance",
+              },
+              {
+                metric: "Bandwidth Usage",
+                "RPC (gRPC)": "30-50% less bandwidth",
+                "REST (HTTP/JSON)": "Higher due to JSON overhead",
+              },
+              {
+                metric: "Coupling Level",
+                "RPC (gRPC)": "Higher (shared interfaces)",
+                "REST (HTTP/JSON)": "Lower (standard HTTP)",
+              },
+              {
+                metric: "Debugging Tools",
+                "RPC (gRPC)": "Specialized tools required",
+                "REST (HTTP/JSON)": "Universal HTTP tools",
+              },
+            ]}
+          />
+        </div>
+      </section>
+
+      {/* Business & Team Impact Section */}
+      <section id="business-team-impact">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
+          <TrendingUp className="w-6 h-6 text-green-500" />
+          Business &amp; Team Impact
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Performance impact on user experience and operational costs
+            </h3>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Financial trading systems:
+                  </strong>{" "}
+                  Use RPC for millisecond-critical operations where latency
+                  directly impacts profitability
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    High-frequency microservices:
+                  </strong>{" "}
+                  Order processing systems benefit from RPC&rsquo;s compound
+                  latency improvements across service chains
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Public API ecosystems:
+                  </strong>{" "}
+                  REST&rsquo;s HTTP compatibility reduces integration friction
+                  and developer support overhead
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-yellow-500 bg-yellow-50/50 dark:bg-yellow-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Common customer pain points driving architectural reevaluations
+            </h3>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Mobile application performance crisis:
+                  </strong>{" "}
+                  &ldquo;Our mobile app response times increased by 50% as we
+                  added more microservices, affecting user engagement&rdquo;
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Infrastructure cost escalation:
+                  </strong>{" "}
+                  &ldquo;Our internal service calls are consuming 40% more
+                  bandwidth than expected, driving up cloud costs&rdquo;
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Developer integration challenges:
+                  </strong>{" "}
+                  &ldquo;Third-party developers struggle to integrate with our
+                  RPC APIs without extensive documentation and custom
+                  tooling&rdquo;
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Strategic adoption patterns across industry segments
+            </h3>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Netflix:
+                  </strong>{" "}
+                  Uses RPC (gRPC) for internal service communication while
+                  maintaining REST APIs for device integration
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Google:
+                  </strong>{" "}
+                  Developed gRPC for internal systems, offers REST APIs for
+                  external developers
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Uber:
+                  </strong>{" "}
+                  Hybrid approach with RPC for real-time location services, REST
+                  for driver/rider applications
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Performance and Business Metrics */}
+        <div className="mt-8">
+          <MetricsCard
+            title="Performance & Business Impact"
+            metrics={[
+              {
+                label: "Latency Reduction",
+                value: "40-60%",
+                description: "RPC advantage in high-throughput scenarios",
+                color: "green",
+              },
+              {
+                label: "Bandwidth Savings",
+                value: "30-50%",
+                description: "Binary encoding vs JSON overhead",
+                color: "blue",
+              },
+              {
+                label: "Integration Complexity",
+                value: "Lower",
+                description: "REST APIs reduce developer friction",
+                color: "purple",
+              },
+              {
+                label: "Debugging Efficiency",
+                value: "Higher",
+                description: "HTTP tools universally available",
+                color: "orange",
+              },
+            ]}
+          />
+        </div>
+
+        <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+          <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+            Customer profiles and decision drivers
+          </h3>
+          <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+            <li className="flex items-start gap-2">
+              <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+              <strong className="text-slate-700 dark:text-gray-300">
+                High-frequency trading firms:
+              </strong>{" "}
+              Require sub-millisecond latency for competitive advantage
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+              <strong className="text-slate-700 dark:text-gray-300">
+                Gaming and real-time applications:
+              </strong>{" "}
+              Need low-latency communication for user experience
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+              <strong className="text-slate-700 dark:text-gray-300">
+                Platform companies:
+              </strong>{" "}
+              Balance internal performance with external developer experience
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+              <strong className="text-slate-700 dark:text-gray-300">
+                IoT and mobile-first organizations:
+              </strong>{" "}
+              Optimize for bandwidth efficiency and battery life
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      {/* Cursor Implementation Section */}
+      <section id="cursor-implementation">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Cursor Implementation Considerations
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Architectural decision support
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              AI assistance for the critical &ldquo;RPC vs REST&rdquo; choices
+              that impact system performance and developer experience -
+              intelligent recommendations based on latency requirements,
+              bandwidth constraints, and team capabilities, with context-aware
+              guidance on when to optimize for performance versus developer
+              ecosystem compatibility
+            </p>
+          </div>
+
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Protocol and schema generation acceleration
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Teams implementing RPC systems benefit from AI-generated Protocol
+              Buffer schemas and service definitions, while REST implementations
+              leverage automated OpenAPI specification generation - reducing the
+              setup overhead that often delays architectural transitions and
+              ensuring consistent interface design patterns
+            </p>
+          </div>
+
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Migration strategy optimization
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Organizations transitioning between RPC and REST (or implementing
+              hybrid approaches) can leverage Cursor&apos;s codebase
+              understanding to identify high-impact migration candidates,
+              generate adapter layers for gradual transitions, and maintain
+              consistency across different communication patterns within the
+              same system
+            </p>
+          </div>
+        </div>
+      </section>
+    </article>
+  );
+}
+
 function DefaultArticleContent({ article }: { article: Article }) {
   return (
     <article className="space-y-8">
@@ -11053,20 +11449,25 @@ function EventDrivenArchitectureContent() {
               Asynchronous event communication
             </h3>
             <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Systems react to events asynchronously rather than through direct requests
+              Systems react to events asynchronously rather than through direct
+              requests
             </p>
             <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Components communicate through events rather than direct function calls (like office departments using announcements instead of direct phone calls)
+                Components communicate through events rather than direct
+                function calls (like office departments using announcements
+                instead of direct phone calls)
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Events represent something that has happened in the system and can trigger actions across multiple services
+                Events represent something that has happened in the system and
+                can trigger actions across multiple services
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Decouples systems enabling better scalability and resilience compared to synchronous request-response patterns
+                Decouples systems enabling better scalability and resilience
+                compared to synchronous request-response patterns
               </li>
             </ul>
           </div>
@@ -11076,20 +11477,24 @@ function EventDrivenArchitectureContent() {
               Event sourcing and audit trails
             </h3>
             <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Complete audit trail and ability to reconstruct any historical state
+              Complete audit trail and ability to reconstruct any historical
+              state
             </p>
             <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Stores all changes as a sequence of events rather than just current state
+                Stores all changes as a sequence of events rather than just
+                current state
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Particularly valuable for financial services, healthcare, and other industries requiring compliance and auditability
+                Particularly valuable for financial services, healthcare, and
+                other industries requiring compliance and auditability
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Preserves the entire history of what happened and when, enabling time travel debugging
+                Preserves the entire history of what happened and when, enabling
+                time travel debugging
               </li>
             </ul>
           </div>
@@ -11108,7 +11513,8 @@ function EventDrivenArchitectureContent() {
                   <strong className="text-slate-700 dark:text-gray-300">
                     Apache Kafka:
                   </strong>{" "}
-                  High-throughput event streaming with 99.9% uptime guarantees, handling millions of events per second
+                  High-throughput event streaming with 99.9% uptime guarantees,
+                  handling millions of events per second
                 </div>
               </li>
               <li className="flex items-start gap-2">
@@ -11117,7 +11523,8 @@ function EventDrivenArchitectureContent() {
                   <strong className="text-slate-700 dark:text-gray-300">
                     RabbitMQ:
                   </strong>{" "}
-                  Reliable message delivery with complex routing patterns and multiple messaging protocols
+                  Reliable message delivery with complex routing patterns and
+                  multiple messaging protocols
                 </div>
               </li>
               <li className="flex items-start gap-2">
@@ -11126,7 +11533,8 @@ function EventDrivenArchitectureContent() {
                   <strong className="text-slate-700 dark:text-gray-300">
                     Amazon SQS:
                   </strong>{" "}
-                  Managed message queuing with built-in AWS integration and automatic scaling
+                  Managed message queuing with built-in AWS integration and
+                  automatic scaling
                 </div>
               </li>
             </ul>
@@ -11137,20 +11545,24 @@ function EventDrivenArchitectureContent() {
               Operational considerations and distributed debugging
             </h3>
             <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Managing distributed debugging and event flow tracing across services
+              Managing distributed debugging and event flow tracing across
+              services
             </p>
             <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Requires sophisticated observability tools to track events across multiple services
+                Requires sophisticated observability tools to track events
+                across multiple services
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Distributed tracing, event correlation IDs, and comprehensive logging essential for troubleshooting
+                Distributed tracing, event correlation IDs, and comprehensive
+                logging essential for troubleshooting
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Unlike monoliths where execution traces in single codebase, events flow across service boundaries
+                Unlike monoliths where execution traces in single codebase,
+                events flow across service boundaries
               </li>
             </ul>
           </div>
@@ -11176,7 +11588,9 @@ function EventDrivenArchitectureContent() {
                   <strong className="text-slate-700 dark:text-gray-300">
                     Netflix:
                   </strong>{" "}
-                  Processes billions of events daily for recommendations and content delivery, improving recommendation system performance by 45% through event-driven patterns
+                  Processes billions of events daily for recommendations and
+                  content delivery, improving recommendation system performance
+                  by 45% through event-driven patterns
                 </div>
               </li>
               <li className="flex items-start gap-2">
@@ -11185,7 +11599,9 @@ function EventDrivenArchitectureContent() {
                   <strong className="text-slate-700 dark:text-gray-300">
                     Uber:
                   </strong>{" "}
-                  Trip processing and real-time location tracking rely heavily on event-driven patterns, achieving 50% better resource efficiency
+                  Trip processing and real-time location tracking rely heavily
+                  on event-driven patterns, achieving 50% better resource
+                  efficiency
                 </div>
               </li>
               <li className="flex items-start gap-2">
@@ -11194,7 +11610,9 @@ function EventDrivenArchitectureContent() {
                   <strong className="text-slate-700 dark:text-gray-300">
                     LinkedIn:
                   </strong>{" "}
-                  Uses Kafka to process trillions of events daily, scaling to support hundreds of millions of users while enabling rapid feature development
+                  Uses Kafka to process trillions of events daily, scaling to
+                  support hundreds of millions of users while enabling rapid
+                  feature development
                 </div>
               </li>
             </ul>
@@ -11208,7 +11626,8 @@ function EventDrivenArchitectureContent() {
                 {
                   label: "System Throughput Improvement",
                   value: "40-60%",
-                  description: "Better resource utilization and async processing",
+                  description:
+                    "Better resource utilization and async processing",
                   trend: "up",
                   color: "green",
                 },
@@ -11216,7 +11635,7 @@ function EventDrivenArchitectureContent() {
                   label: "Uptime Guarantees",
                   value: "99.9%",
                   description: "Enterprise-grade reliability with Kafka",
-                  trend: "up", 
+                  trend: "up",
                   color: "blue",
                 },
                 {
@@ -11240,7 +11659,8 @@ function EventDrivenArchitectureContent() {
 
           <div className="border-l-4 border-yellow-500 bg-yellow-50/50 dark:bg-yellow-950/30 pl-6 py-4 rounded-r-lg">
             <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              Common customer triggers driving event-driven architecture adoption
+              Common customer triggers driving event-driven architecture
+              adoption
             </h3>
             <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
               <li className="flex items-start gap-2">
@@ -11249,7 +11669,8 @@ function EventDrivenArchitectureContent() {
                   <strong className="text-slate-700 dark:text-gray-300">
                     Monolithic bottlenecks:
                   </strong>{" "}
-                  &ldquo;Our system slows down by 30% during peak hours due to tight coupling between services&rdquo;
+                  &ldquo;Our system slows down by 30% during peak hours due to
+                  tight coupling between services&rdquo;
                 </div>
               </li>
               <li className="flex items-start gap-2">
@@ -11258,7 +11679,8 @@ function EventDrivenArchitectureContent() {
                   <strong className="text-slate-700 dark:text-gray-300">
                     Cascading failure crisis:
                   </strong>{" "}
-                  &ldquo;When our payment service goes down, it brings down our entire order processing system&rdquo;
+                  &ldquo;When our payment service goes down, it brings down our
+                  entire order processing system&rdquo;
                 </div>
               </li>
               <li className="flex items-start gap-2">
@@ -11267,7 +11689,8 @@ function EventDrivenArchitectureContent() {
                   <strong className="text-slate-700 dark:text-gray-300">
                     Integration complexity:
                   </strong>{" "}
-                  &ldquo;Adding a simple feature now requires changes across 8 different services that all call each other directly&rdquo;
+                  &ldquo;Adding a simple feature now requires changes across 8
+                  different services that all call each other directly&rdquo;
                 </div>
               </li>
             </ul>
@@ -11275,7 +11698,8 @@ function EventDrivenArchitectureContent() {
 
           <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
             <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              Customer profiles most likely to benefit from event-driven architecture
+              Customer profiles most likely to benefit from event-driven
+              architecture
             </h3>
             <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
               <li className="flex items-start gap-2">
@@ -11283,28 +11707,32 @@ function EventDrivenArchitectureContent() {
                 <strong className="text-slate-700 dark:text-gray-300">
                   Series B+ startups
                 </strong>{" "}
-                with microservices architectures experiencing tight coupling and cascading failure issues
+                with microservices architectures experiencing tight coupling and
+                cascading failure issues
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
                 <strong className="text-slate-700 dark:text-gray-300">
                   E-commerce platforms
                 </strong>{" "}
-                requiring real-time inventory updates, order processing, and recommendation systems
+                requiring real-time inventory updates, order processing, and
+                recommendation systems
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
                 <strong className="text-slate-700 dark:text-gray-300">
                   Financial services
                 </strong>{" "}
-                needing audit trails, compliance tracking, and high-throughput transaction processing
+                needing audit trails, compliance tracking, and high-throughput
+                transaction processing
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
                 <strong className="text-slate-700 dark:text-gray-300">
                   IoT and streaming platforms
                 </strong>{" "}
-                processing high-volume real-time data from sensors, devices, or user interactions
+                processing high-volume real-time data from sensors, devices, or
+                user interactions
               </li>
             </ul>
           </div>
@@ -11323,7 +11751,11 @@ function EventDrivenArchitectureContent() {
               Event flow visualization and architecture design
             </h3>
             <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Event-driven systems benefit significantly from AI-assisted architecture visualization - Cursor can help generate event flow diagrams, identify potential bottlenecks in event processing chains, and suggest optimal message queue configurations based on throughput requirements and system constraints
+              Event-driven systems benefit significantly from AI-assisted
+              architecture visualization - Cursor can help generate event flow
+              diagrams, identify potential bottlenecks in event processing
+              chains, and suggest optimal message queue configurations based on
+              throughput requirements and system constraints
             </p>
           </div>
 
@@ -11332,7 +11764,12 @@ function EventDrivenArchitectureContent() {
               Distributed debugging and observability enhancement
             </h3>
             <p className="text-slate-700 dark:text-gray-300 mb-3">
-              The primary operational challenge of event-driven architectures—managing distributed debugging and event flow tracing—can be addressed through AI-assisted code generation for correlation IDs, distributed tracing setup, and comprehensive logging patterns that make event flows visible across service boundaries
+              The primary operational challenge of event-driven
+              architectures—managing distributed debugging and event flow
+              tracing—can be addressed through AI-assisted code generation for
+              correlation IDs, distributed tracing setup, and comprehensive
+              logging patterns that make event flows visible across service
+              boundaries
             </p>
           </div>
 
@@ -11341,7 +11778,12 @@ function EventDrivenArchitectureContent() {
               Event schema evolution and backward compatibility
             </h3>
             <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Teams migrating to event-driven patterns often struggle with event schema evolution and maintaining backward compatibility - Cursor&apos;s context awareness can help generate robust event schemas, validate compatibility across service boundaries, and suggest migration strategies for evolving event structures without breaking existing consumers
+              Teams migrating to event-driven patterns often struggle with event
+              schema evolution and maintaining backward compatibility -
+              Cursor&apos;s context awareness can help generate robust event
+              schemas, validate compatibility across service boundaries, and
+              suggest migration strategies for evolving event structures without
+              breaking existing consumers
             </p>
           </div>
         </div>
