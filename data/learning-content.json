@@ -3785,7 +3785,13 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Approach for developing software based on business domain",
-              "topics": ["Bounded Context", "Entities", "Value Objects", "Domain Events", "Aggregates"],
+              "topics": [
+                "Bounded Context",
+                "Entities",
+                "Value Objects",
+                "Domain Events",
+                "Aggregates"
+              ],
               "quiz": {
                 "title": "Domain-driven Design Knowledge Quiz",
                 "totalQuestions": 10,
@@ -3815,12 +3821,7 @@
                     "type": "multiple-choice",
                     "points": 2,
                     "question": "According to the article, what percentage reduction in cross-team coordination overhead do organizations see when bounded contexts align with team ownership?",
-                    "options": [
-                      "20-30%",
-                      "40-60%",
-                      "70-80%",
-                      "80-90%"
-                    ],
+                    "options": ["20-30%", "40-60%", "70-80%", "80-90%"],
                     "correctAnswer": 1,
                     "additionalContext": "Organizations see 40-60% reduction in cross-team coordination overhead when bounded contexts align with team ownership, enabling faster feature delivery and reduced merge conflicts. This alignment creates natural ownership boundaries that reduce dependencies between teams and accelerate development cycles.",
                     "keyConcepts": [
@@ -3966,7 +3967,146 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Architecture that separates concerns and dependencies",
-              "topics": ["Dependency Inversion", "Clean Boundaries", "Testing"]
+              "topics": [
+                "Dependency Inversion",
+                "Clean Boundaries",
+                "Testing",
+                "Layered Architecture",
+                "Independence Principles"
+              ],
+              "quiz": {
+                "title": "Clean Architecture Principles Knowledge Quiz",
+                "totalQuestions": 10,
+                "totalPoints": 25,
+                "questions": [
+                  {
+                    "id": 1,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "What is the core principle governing Clean Architecture dependency flow?",
+                    "options": [
+                      "Dependencies point inward toward business logic, with outer layers depending on inner layers",
+                      "Dependencies point outward from business logic to external systems",
+                      "Dependencies can flow in any direction as long as they are documented",
+                      "Dependencies should be eliminated entirely through static methods"
+                    ],
+                    "correctAnswer": 0,
+                    "additionalContext": "The Dependency Rule is fundamental to Clean Architecture - dependencies point inward toward business logic. Outer layers (frameworks, databases, UI) depend on inner layers (business rules, entities), never the reverse. This enables technology independence and comprehensive testing through interface-driven design."
+                  },
+                  {
+                    "id": 2,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "How do clean boundaries enable framework independence?",
+                    "options": [
+                      "By requiring all code to use the same web framework",
+                      "Business logic remains unaware of whether it's running in Spring Boot, Express.js, or AWS Lambda",
+                      "By automatically converting between different framework types",
+                      "By eliminating the need for web frameworks entirely"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Clean boundaries ensure business logic is completely unaware of the external framework hosting it. Whether running in a Spring Boot application, Express.js server, or AWS Lambda function, the business logic remains identical through interface-driven design and dependency inversion."
+                  },
+                  {
+                    "id": 3,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "What testing coverage do organizations typically achieve with Clean Architecture?",
+                    "options": [
+                      "50-65% due to complex dependency management",
+                      "70-80% with significant integration testing overhead",
+                      "85-95% with 3-5x faster test execution through dependency isolation",
+                      "100% through automated test generation"
+                    ],
+                    "correctAnswer": 2,
+                    "additionalContext": "Clean Architecture enables 85-95% test coverage with dramatically faster execution because business entities and use cases can be tested in isolation from databases, web frameworks, and external dependencies through interface-driven design and mock implementations."
+                  },
+                  {
+                    "id": 4,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Which layer contains core business objects like User, Order, and Payment?",
+                    "options": [
+                      "Interface Adapters layer that handles HTTP requests",
+                      "Use Cases layer that orchestrates business operations",
+                      "Frameworks and Drivers layer for external systems",
+                      "Entities layer representing fundamental business concepts"
+                    ],
+                    "correctAnswer": 3,
+                    "additionalContext": "The Entities layer (innermost layer) contains core business objects like User, Order, Payment with business rules that apply regardless of application context. This layer represents fundamental business concepts that remain stable even when technology choices change."
+                  },
+                  {
+                    "id": 5,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "How did PayPal benefit from following dependency inversion principles?",
+                    "options": [
+                      "Successfully migrated from C++ to Java without changing business logic",
+                      "Eliminated the need for database systems entirely",
+                      "Reduced their engineering team size by 50%",
+                      "Achieved 100% automated deployment processes"
+                    ],
+                    "correctAnswer": 0,
+                    "additionalContext": "PayPal's adherence to dependency inversion enabled technology migration from C++ to Java without rewriting business logic. This demonstrates how Clean Architecture principles provide technology flexibility for organizations requiring platform evolution while preserving core business functionality."
+                  },
+                  {
+                    "id": 6,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "What enables Clean Architecture to support multiple user interfaces simultaneously?",
+                    "options": [
+                      "Automatic code generation for different platforms",
+                      "Built-in responsive design frameworks",
+                      "UI independence where same business logic serves web, mobile, and CLI tools",
+                      "Platform-specific business logic implementations"
+                    ],
+                    "correctAnswer": 2,
+                    "additionalContext": "UI independence is achieved through clean separation where the same business logic serves web applications, mobile apps, and CLI tools without modification. This enables omnichannel customer experiences while maintaining consistent business rules across all interfaces."
+                  },
+                  {
+                    "id": 7,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Which customer scenario most commonly drives Clean Architecture adoption?",
+                    "options": [
+                      "Need for faster application startup times",
+                      "Desire to reduce cloud infrastructure costs",
+                      "Requirement for mobile application development",
+                      "Legacy modernization complexity where framework upgrades require rewriting business logic"
+                    ],
+                    "correctAnswer": 3,
+                    "additionalContext": "The most common trigger is legacy modernization complexity where organizations discover they \"can't upgrade frameworks without rewriting entire business logic\" due to tight coupling. This pain point drives adoption of Clean Architecture for technology independence and maintainability."
+                  },
+                  {
+                    "id": 8,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "How much development time reduction did Airbnb achieve through dependency inversion principles?",
+                    "options": [
+                      "40% reduction by supporting web, mobile, and partner APIs with identical business logic",
+                      "25% reduction through automated testing improvements",
+                      "60% reduction by eliminating database dependencies",
+                      "80% reduction through AI-assisted code generation"
+                    ],
+                    "correctAnswer": 0,
+                    "additionalContext": "Airbnb achieved 40% development time reduction by using dependency inversion principles to support web, mobile, and partner APIs with identical business logic. This demonstrates measurable business impact when Clean Architecture enables code reuse across multiple interfaces."
+                  },
+                  {
+                    "id": 9,
+                    "type": "freeform",
+                    "points": 4,
+                    "question": "Describe the three main customer scenarios that trigger Clean Architecture adoption discussions. For each scenario, include one specific quoted pain point from the article.",
+                    "sampleStrongResponse": "The three main customer scenarios are: (1) Legacy modernization complexity - \"We can't upgrade our framework without rewriting our entire business logic - it's all tightly coupled\", (2) Testing bottlenecks - \"Our test suite requires running the entire application with a database - it takes 45 minutes and still misses business logic bugs\", and (3) Technology lock-in concerns - \"We're completely dependent on this specific database and web framework - switching would mean starting over\". These scenarios highlight how tight coupling between business logic and infrastructure creates maintenance complexity, testing inefficiency, and technology inflexibility that Clean Architecture addresses through dependency inversion and clean boundaries."
+                  },
+                  {
+                    "id": 10,
+                    "type": "freeform",
+                    "points": 5,
+                    "question": "List the core Clean Architecture principles covered in the article and explain how each one enables enterprise organizations to maintain system flexibility and testing capability.",
+                    "sampleStrongResponse": "The core Clean Architecture principles are: (1) Dependency Inversion - dependencies point inward toward business logic, enabling technology independence and comprehensive testing through interface-driven design where business rules can be tested without external systems, (2) Clean Boundaries - clear separation between frameworks, databases, UI, and business logic enables independent evolution of each layer and supports comprehensive testing strategies, (3) Layered Architecture - four distinct layers (Entities, Use Cases, Interface Adapters, Frameworks) separate technical concerns from business logic enabling focused testing and independent development, (4) Independence Principles - framework, database, UI, and external agency independence enables technology migration without business logic rewrites and comprehensive testing through mock implementations. These principles enable enterprise organizations to achieve 85-95% test coverage, 70-80% technology migration risk reduction, and 50-75% team development velocity improvement while maintaining business logic stability during technology evolution."
+                  }
+                ]
+              }
             }
           ]
         },

@@ -187,6 +187,8 @@ export function ArticleContentWrapper({
                     <DomainDrivenDesignContent />
                   ) : article.id === "microservices-architecture" ? (
                     <MicroservicesArchitectureContent />
+                  ) : article.id === "clean-architecture" ? (
+                    <CleanArchitectureContent />
                   ) : (
                     <DefaultArticleContent article={article} />
                   )}
@@ -8242,6 +8244,519 @@ function ArticleNavigation({
 
 // Software Architecture & Design Content Components
 
+function CleanArchitectureContent() {
+  return (
+    <article className="space-y-10">
+      {/* Key Concepts Section */}
+      <section id="key-concepts">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Key Concepts
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Dependency Inversion and the Dependency Rule
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              The core principle governing Clean Architecture where dependencies
+              point inward toward business logic
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Inward-pointing dependencies:
+                  </strong>{" "}
+                  Outer layers (frameworks, databases, UI) depend on inner
+                  layers (business rules, entities), never the reverse
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Interface-driven design:
+                  </strong>{" "}
+                  Business logic defines interfaces that external systems must
+                  implement, enabling technology independence
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Enterprise impact:
+                  </strong>{" "}
+                  Critical for organizations requiring technology flexibility -
+                  PayPal successfully migrated from C++ to Java without changing
+                  business logic by following dependency inversion
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Testing enablement:
+                  </strong>{" "}
+                  Business rules can be tested in isolation from databases, web
+                  frameworks, and external services through mock implementations
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Clean Boundaries and Separation of Concerns
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Clear separation between different architectural concerns through
+              well-defined interfaces
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Framework independence:
+                  </strong>{" "}
+                  Business logic remains unaware of whether it&rsquo;s running
+                  in a Spring Boot application, Express.js server, or AWS Lambda
+                  function
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Database independence:
+                  </strong>{" "}
+                  Core business rules work identically whether data comes from
+                  PostgreSQL, MongoDB, or external APIs through consistent
+                  repository interfaces
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    UI independence:
+                  </strong>{" "}
+                  Same business logic serves web applications, mobile apps, and
+                  CLI tools without modification
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Microservices alignment:
+                  </strong>{" "}
+                  Clean boundaries naturally define service boundaries in
+                  distributed architectures, enabling independent deployment and
+                  scaling
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Comprehensive Testing Strategy
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Architecture that enables testing at every level from unit to
+              integration to acceptance
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Unit testing isolation:
+                  </strong>{" "}
+                  Business entities and use cases (business logic that
+                  orchestrates entities and services) can be tested without
+                  databases, web frameworks, or external dependencies
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Integration testing flexibility:
+                  </strong>{" "}
+                  Interface adapters (components that convert between business
+                  logic and external systems) enable testing database
+                  interactions and API integrations independently
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Acceptance testing support:
+                  </strong>{" "}
+                  Clean boundaries enable full end-to-end testing while
+                  maintaining fast feedback loops through strategic mock
+                  implementation
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Enterprise outcomes:
+                  </strong>{" "}
+                  Organizations typically achieve 85-95% test coverage with 3-5x
+                  faster test execution when following Clean Architecture
+                  principles
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-orange-500 bg-orange-50/50 dark:bg-orange-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Layered Architecture with Clear Responsibilities
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Four distinct layers that separate technical concerns from
+              business logic
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Entities (innermost layer):
+                  </strong>{" "}
+                  Core business objects representing fundamental concepts like
+                  User, Order, Payment with business rules that apply regardless
+                  of application context
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Use Cases (application layer):
+                  </strong>{" "}
+                  Application-specific business logic that orchestrates entities
+                  - ProcessPayment, CreateUser, GenerateReport functions
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Interface Adapters:
+                  </strong>{" "}
+                  Convert data between use cases and external systems -
+                  controllers, repositories, presenters that handle HTTP
+                  requests, database queries, and response formatting
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Frameworks and Drivers (outermost layer):
+                  </strong>{" "}
+                  External tools like databases, web frameworks, logging systems
+                  that change frequently but don&rsquo;t affect business logic
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-red-500 bg-red-50/50 dark:bg-red-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Independence Principles for Enterprise Flexibility
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Four key independence characteristics that enable long-term
+              maintainability
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Framework Independence:
+                  </strong>{" "}
+                  Business logic survives technology migrations - Netflix
+                  evolved from Perl to Java to microservices without rewriting
+                  core recommendation algorithms
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Database Independence:
+                  </strong>{" "}
+                  Organizations can optimize storage for specific use cases -
+                  analytical workloads use data warehouses while transactional
+                  workloads use RDBMS without changing business rules
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    UI Independence:
+                  </strong>{" "}
+                  Same business logic powers web dashboards, mobile
+                  applications, and API endpoints - critical for omnichannel
+                  customer experiences
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    External Agency Independence:
+                  </strong>{" "}
+                  Business logic remains stable when switching payment
+                  processors, email providers, or third-party APIs through
+                  consistent interface implementation
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Clean Architecture Implementation Impact Metrics */}
+        <div className="mt-8">
+          <MetricsCard
+            title="Clean Architecture Implementation Impact on Enterprise Development"
+            metrics={[
+              {
+                label: "Test Coverage Improvement",
+                value: "85-95%",
+                description:
+                  "Comprehensive testing enabled through dependency isolation and interface-driven design",
+                color: "green",
+              },
+              {
+                label: "Technology Migration Risk Reduction",
+                value: "70-80%",
+                description:
+                  "Business logic preservation during framework and infrastructure changes",
+                color: "blue",
+              },
+              {
+                label: "Team Development Velocity",
+                value: "50-75%",
+                description:
+                  "Independent development across layers and consistent architecture patterns",
+                color: "purple",
+              },
+              {
+                label: "Deployment Risk Reduction",
+                value: "60-75%",
+                description:
+                  "Isolated changes and comprehensive testing strategies minimize production issues",
+                color: "orange",
+              },
+            ]}
+          />
+        </div>
+      </section>
+
+      {/* Business & Team Impact Section */}
+      <section id="business-team-impact">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
+          <TrendingUp className="w-6 h-6 text-green-500" />
+          Business &amp; Team Impact
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Enterprise adoption patterns with quantified outcomes
+            </h3>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Uber:
+                  </strong>{" "}
+                  Clean Architecture principles enabled migration from monolith
+                  to 1000+ microservices while maintaining 99.99% uptime for
+                  core business logic
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Airbnb:
+                  </strong>{" "}
+                  Dependency inversion principles allowed simultaneous support
+                  of web, mobile, and partner APIs using identical business
+                  logic, reducing development time by 40%
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Square:
+                  </strong>{" "}
+                  Clean boundaries enabled independent scaling of payment
+                  processing, analytics, and customer management while achieving
+                  95%+ test coverage
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-yellow-500 bg-yellow-50/50 dark:bg-yellow-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Common customer triggers driving Clean Architecture adoption
+              decisions
+            </h3>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Legacy modernization complexity:
+                  </strong>{" "}
+                  &ldquo;We can&rsquo;t upgrade our framework without rewriting
+                  our entire business logic - it&rsquo;s all tightly
+                  coupled&rdquo;
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Testing bottlenecks:
+                  </strong>{" "}
+                  &ldquo;Our test suite requires running the entire application
+                  with a database - it takes 45 minutes and still misses
+                  business logic bugs&rdquo;
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Technology lock-in concerns:
+                  </strong>{" "}
+                  &ldquo;We&rsquo;re completely dependent on this specific
+                  database and web framework - switching would mean starting
+                  over&rdquo;
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Customer profiles and implementation drivers
+            </h3>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Enterprise modernization teams
+                  </strong>{" "}
+                  with 100-500 engineers migrating from legacy monoliths to
+                  cloud-native architectures while maintaining business
+                  continuity
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    High-compliance organizations
+                  </strong>{" "}
+                  in finance, healthcare, and government requiring extensive
+                  testing, audit trails, and clear separation between business
+                  logic and infrastructure
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Rapid-growth companies
+                  </strong>{" "}
+                  with 50-200 engineers needing architecture that supports
+                  independent team development and frequent technology evolution
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Cursor Implementation Section */}
+      <section id="cursor-implementation">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Cursor Implementation Considerations
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              AI-assisted identification of clean boundaries
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Cursor excels at analyzing existing codebases to identify
+              architectural boundaries and dependency violations in Clean
+              Architecture implementations. Teams can leverage AI context
+              understanding to automatically detect when business logic depends
+              on external frameworks, suggest interface extractions for
+              dependency inversion, and recommend use case separations that
+              align with Clean Architecture layering principles.
+            </p>
+          </div>
+
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Enterprise dependency inversion pattern recognition
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Organizations implementing Clean Architecture can train Cursor on
+              their dependency injection patterns to generate code that
+              automatically follows the dependency rule. The AI can suggest
+              repository interfaces for data access, create use case
+              implementations that depend on abstractions, and generate
+              interface adapter implementations that maintain clean boundaries
+              between business logic and external systems.
+            </p>
+          </div>
+
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Legacy modernization and architecture refactoring
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Teams with tightly-coupled legacy applications can use
+              Cursor&rsquo;s codebase understanding to identify refactoring
+              opportunities toward Clean Architecture. The AI can help extract
+              business entities from framework-dependent code, suggest use case
+              separations that isolate business logic, and recommend interface
+              adapter patterns that enable independent testing and technology
+              migration while maintaining existing functionality.
+            </p>
+          </div>
+        </div>
+      </section>
+    </article>
+  );
+}
+
 function SOLIDPrinciplesContent() {
   return (
     <article className="space-y-10">
@@ -9111,7 +9626,10 @@ function DomainDrivenDesignContent() {
               Bounded Context
             </h3>
             <p className="text-slate-700 dark:text-gray-300 mb-3">
-              A strategic design pattern that defines explicit boundaries around business domains, ensuring that domain models remain consistent and focused within specific contexts while preventing coupling between different business areas
+              A strategic design pattern that defines explicit boundaries around
+              business domains, ensuring that domain models remain consistent
+              and focused within specific contexts while preventing coupling
+              between different business areas
             </p>
             <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
               <li className="flex items-start gap-2">
@@ -9120,7 +9638,10 @@ function DomainDrivenDesignContent() {
                   <strong className="text-slate-700 dark:text-gray-300">
                     Domain isolation:
                   </strong>{" "}
-                  Each bounded context maintains its own ubiquitous language (domain-specific vocabulary) and model integrity, preventing the confusion that arises when the same concept means different things in different business areas
+                  Each bounded context maintains its own ubiquitous language
+                  (domain-specific vocabulary) and model integrity, preventing
+                  the confusion that arises when the same concept means
+                  different things in different business areas
                 </div>
               </li>
               <li className="flex items-start gap-2">
@@ -9129,7 +9650,9 @@ function DomainDrivenDesignContent() {
                   <strong className="text-slate-700 dark:text-gray-300">
                     Team autonomy enablement:
                   </strong>{" "}
-                  Organizations see 40-60% reduction in cross-team coordination overhead when bounded contexts align with team ownership, enabling faster feature delivery and reduced merge conflicts
+                  Organizations see 40-60% reduction in cross-team coordination
+                  overhead when bounded contexts align with team ownership,
+                  enabling faster feature delivery and reduced merge conflicts
                 </div>
               </li>
               <li className="flex items-start gap-2">
@@ -9138,7 +9661,9 @@ function DomainDrivenDesignContent() {
                   <strong className="text-slate-700 dark:text-gray-300">
                     Microservices alignment:
                   </strong>{" "}
-                  Bounded contexts naturally evolve into microservice boundaries, with each context becoming an independently deployable service that owns its domain logic and data
+                  Bounded contexts naturally evolve into microservice
+                  boundaries, with each context becoming an independently
+                  deployable service that owns its domain logic and data
                 </div>
               </li>
             </ul>
@@ -9149,7 +9674,9 @@ function DomainDrivenDesignContent() {
               Entities
             </h3>
             <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Business objects with unique identity and lifecycle management that represent core domain concepts with behavior, state transitions, and business rules enforcement
+              Business objects with unique identity and lifecycle management
+              that represent core domain concepts with behavior, state
+              transitions, and business rules enforcement
             </p>
             <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
               <li className="flex items-start gap-2">
@@ -9158,7 +9685,9 @@ function DomainDrivenDesignContent() {
                   <strong className="text-slate-700 dark:text-gray-300">
                     Identity management:
                   </strong>{" "}
-                  Entities maintain unique identifiers that persist throughout their lifecycle, enabling tracking and referencing across different system interactions and state changes
+                  Entities maintain unique identifiers that persist throughout
+                  their lifecycle, enabling tracking and referencing across
+                  different system interactions and state changes
                 </div>
               </li>
               <li className="flex items-start gap-2">
@@ -9167,7 +9696,10 @@ function DomainDrivenDesignContent() {
                   <strong className="text-slate-700 dark:text-gray-300">
                     Business behavior encapsulation:
                   </strong>{" "}
-                  Instead of anemic data models, entities contain domain logic and business rules, reducing procedural code by 30-50% and improving code maintainability through object-oriented encapsulation
+                  Instead of anemic data models, entities contain domain logic
+                  and business rules, reducing procedural code by 30-50% and
+                  improving code maintainability through object-oriented
+                  encapsulation
                 </div>
               </li>
               <li className="flex items-start gap-2">
@@ -9176,7 +9708,9 @@ function DomainDrivenDesignContent() {
                   <strong className="text-slate-700 dark:text-gray-300">
                     State consistency:
                   </strong>{" "}
-                  Entities enforce invariants and business rules through their methods, ensuring that domain objects cannot enter invalid states and maintaining data integrity across operations
+                  Entities enforce invariants and business rules through their
+                  methods, ensuring that domain objects cannot enter invalid
+                  states and maintaining data integrity across operations
                 </div>
               </li>
             </ul>
@@ -9187,7 +9721,9 @@ function DomainDrivenDesignContent() {
               Value Objects
             </h3>
             <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Immutable objects that represent concepts without identity, focusing on attributes and behavior while providing type safety and domain expression through the type system
+              Immutable objects that represent concepts without identity,
+              focusing on attributes and behavior while providing type safety
+              and domain expression through the type system
             </p>
             <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
               <li className="flex items-start gap-2">
@@ -9196,7 +9732,9 @@ function DomainDrivenDesignContent() {
                   <strong className="text-slate-700 dark:text-gray-300">
                     Immutability benefits:
                   </strong>{" "}
-                  Value objects prevent unexpected mutations and side effects, reducing debugging time by 25-40% while improving thread safety in concurrent applications
+                  Value objects prevent unexpected mutations and side effects,
+                  reducing debugging time by 25-40% while improving thread
+                  safety in concurrent applications
                 </div>
               </li>
               <li className="flex items-start gap-2">
@@ -9205,7 +9743,10 @@ function DomainDrivenDesignContent() {
                   <strong className="text-slate-700 dark:text-gray-300">
                     Domain expression:
                   </strong>{" "}
-                  Converting primitive types (strings, numbers) into domain-specific value objects (EmailAddress, Money, OrderStatus) makes business logic more explicit and prevents invalid data combinations
+                  Converting primitive types (strings, numbers) into
+                  domain-specific value objects (EmailAddress, Money,
+                  OrderStatus) makes business logic more explicit and prevents
+                  invalid data combinations
                 </div>
               </li>
               <li className="flex items-start gap-2">
@@ -9214,7 +9755,9 @@ function DomainDrivenDesignContent() {
                   <strong className="text-slate-700 dark:text-gray-300">
                     Equality semantics:
                   </strong>{" "}
-                  Value objects compare by attributes rather than identity, enabling natural equality checking and simplifying business logic that involves comparing domain concepts
+                  Value objects compare by attributes rather than identity,
+                  enabling natural equality checking and simplifying business
+                  logic that involves comparing domain concepts
                 </div>
               </li>
             </ul>
@@ -9225,7 +9768,9 @@ function DomainDrivenDesignContent() {
               Domain Events
             </h3>
             <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Business-significant occurrences that represent something important happening in the domain, enabling loose coupling between bounded contexts and supporting event-driven architectures
+              Business-significant occurrences that represent something
+              important happening in the domain, enabling loose coupling between
+              bounded contexts and supporting event-driven architectures
             </p>
             <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
               <li className="flex items-start gap-2">
@@ -9234,7 +9779,10 @@ function DomainDrivenDesignContent() {
                   <strong className="text-slate-700 dark:text-gray-300">
                     Business communication:
                   </strong>{" "}
-                  Events capture business language (&ldquo;OrderPlaced&rdquo;, &ldquo;PaymentProcessed&rdquo;) making system behavior traceable and enabling business stakeholders to understand system operations
+                  Events capture business language (&ldquo;OrderPlaced&rdquo;,
+                  &ldquo;PaymentProcessed&rdquo;) making system behavior
+                  traceable and enabling business stakeholders to understand
+                  system operations
                 </div>
               </li>
               <li className="flex items-start gap-2">
@@ -9243,7 +9791,9 @@ function DomainDrivenDesignContent() {
                   <strong className="text-slate-700 dark:text-gray-300">
                     Temporal decoupling:
                   </strong>{" "}
-                  Bounded contexts communicate through events rather than direct calls, reducing coupling by 50-70% and enabling systems to evolve independently while maintaining integration
+                  Bounded contexts communicate through events rather than direct
+                  calls, reducing coupling by 50-70% and enabling systems to
+                  evolve independently while maintaining integration
                 </div>
               </li>
               <li className="flex items-start gap-2">
@@ -9252,7 +9802,9 @@ function DomainDrivenDesignContent() {
                   <strong className="text-slate-700 dark:text-gray-300">
                     Audit and replay capabilities:
                   </strong>{" "}
-                  Event streams provide natural audit trails and enable event sourcing patterns, supporting regulatory compliance and system recovery through event replay
+                  Event streams provide natural audit trails and enable event
+                  sourcing patterns, supporting regulatory compliance and system
+                  recovery through event replay
                 </div>
               </li>
             </ul>
@@ -9263,7 +9815,9 @@ function DomainDrivenDesignContent() {
               Aggregates
             </h3>
             <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Consistency boundaries that group entities and value objects into transactional units, ensuring data integrity while defining the scope of business operations and concurrency control
+              Consistency boundaries that group entities and value objects into
+              transactional units, ensuring data integrity while defining the
+              scope of business operations and concurrency control
             </p>
             <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
               <li className="flex items-start gap-2">
@@ -9272,7 +9826,10 @@ function DomainDrivenDesignContent() {
                   <strong className="text-slate-700 dark:text-gray-300">
                     Transaction boundaries:
                   </strong>{" "}
-                  Aggregates define what can be modified in a single transaction, preventing distributed transaction complexity while maintaining business rule consistency across related objects
+                  Aggregates define what can be modified in a single
+                  transaction, preventing distributed transaction complexity
+                  while maintaining business rule consistency across related
+                  objects
                 </div>
               </li>
               <li className="flex items-start gap-2">
@@ -9281,7 +9838,10 @@ function DomainDrivenDesignContent() {
                   <strong className="text-slate-700 dark:text-gray-300">
                     Concurrency management:
                   </strong>{" "}
-                  Aggregate roots control access to internal entities, implementing optimistic locking and version control to handle concurrent updates in high-throughput systems processing thousands of operations per second
+                  Aggregate roots control access to internal entities,
+                  implementing optimistic locking and version control to handle
+                  concurrent updates in high-throughput systems processing
+                  thousands of operations per second
                 </div>
               </li>
               <li className="flex items-start gap-2">
@@ -9290,7 +9850,9 @@ function DomainDrivenDesignContent() {
                   <strong className="text-slate-700 dark:text-gray-300">
                     Repository interface design:
                   </strong>{" "}
-                  Aggregates work with repositories that load and persist entire aggregate instances, simplifying data access patterns and ensuring consistent state management
+                  Aggregates work with repositories that load and persist entire
+                  aggregate instances, simplifying data access patterns and
+                  ensuring consistent state management
                 </div>
               </li>
             </ul>
@@ -9354,7 +9916,10 @@ function DomainDrivenDesignContent() {
                   <strong className="text-slate-700 dark:text-gray-300">
                     Spotify:
                   </strong>{" "}
-                  Uses bounded contexts to organize 100+ autonomous squads around music discovery, playlist management, and artist relations domains, enabling independent deployment of 1000+ releases per day
+                  Uses bounded contexts to organize 100+ autonomous squads
+                  around music discovery, playlist management, and artist
+                  relations domains, enabling independent deployment of 1000+
+                  releases per day
                 </div>
               </li>
               <li className="flex items-start gap-2">
@@ -9363,7 +9928,9 @@ function DomainDrivenDesignContent() {
                   <strong className="text-slate-700 dark:text-gray-300">
                     Shopify:
                   </strong>{" "}
-                  Domain modeling around merchant, customer, and fulfillment contexts enables 2+ million merchants to operate independently while maintaining platform coherence and 99.9% uptime
+                  Domain modeling around merchant, customer, and fulfillment
+                  contexts enables 2+ million merchants to operate independently
+                  while maintaining platform coherence and 99.9% uptime
                 </div>
               </li>
               <li className="flex items-start gap-2">
@@ -9372,7 +9939,9 @@ function DomainDrivenDesignContent() {
                   <strong className="text-slate-700 dark:text-gray-300">
                     Klarna:
                   </strong>{" "}
-                  Rebuilt payment processing using DDD principles across fraud detection, risk assessment, and settlement domains, reducing payment failures by 40% while processing $80+ billion annually
+                  Rebuilt payment processing using DDD principles across fraud
+                  detection, risk assessment, and settlement domains, reducing
+                  payment failures by 40% while processing $80+ billion annually
                 </div>
               </li>
             </ul>
@@ -9389,7 +9958,9 @@ function DomainDrivenDesignContent() {
                   <strong className="text-slate-700 dark:text-gray-300">
                     Complex domain confusion:
                   </strong>{" "}
-                  &ldquo;Our developers spend more time understanding the business logic than implementing it - the same concept means different things in different parts of our system&rdquo;
+                  &ldquo;Our developers spend more time understanding the
+                  business logic than implementing it - the same concept means
+                  different things in different parts of our system&rdquo;
                 </div>
               </li>
               <li className="flex items-start gap-2">
@@ -9398,7 +9969,9 @@ function DomainDrivenDesignContent() {
                   <strong className="text-slate-700 dark:text-gray-300">
                     Legacy system rigidity:
                   </strong>{" "}
-                  &ldquo;Every new feature requires changes across 15 different services because we never properly defined domain boundaries&rdquo;
+                  &ldquo;Every new feature requires changes across 15 different
+                  services because we never properly defined domain
+                  boundaries&rdquo;
                 </div>
               </li>
               <li className="flex items-start gap-2">
@@ -9407,7 +9980,9 @@ function DomainDrivenDesignContent() {
                   <strong className="text-slate-700 dark:text-gray-300">
                     Business-developer communication breakdown:
                   </strong>{" "}
-                  &ldquo;Product managers and engineers use completely different vocabulary - business requirements get lost in translation&rdquo;
+                  &ldquo;Product managers and engineers use completely different
+                  vocabulary - business requirements get lost in
+                  translation&rdquo;
                 </div>
               </li>
             </ul>
@@ -9424,7 +9999,9 @@ function DomainDrivenDesignContent() {
                   <strong className="text-slate-700 dark:text-gray-300">
                     Enterprise modernization teams
                   </strong>{" "}
-                  managing complex business domains with 500+ developers needing clear ownership boundaries and domain expertise distribution across autonomous teams
+                  managing complex business domains with 500+ developers needing
+                  clear ownership boundaries and domain expertise distribution
+                  across autonomous teams
                 </div>
               </li>
               <li className="flex items-start gap-2">
@@ -9433,7 +10010,9 @@ function DomainDrivenDesignContent() {
                   <strong className="text-slate-700 dark:text-gray-300">
                     Financial services organizations
                   </strong>{" "}
-                  requiring domain-specific expertise in payments, risk management, and compliance with strict regulatory requirements and audit trails
+                  requiring domain-specific expertise in payments, risk
+                  management, and compliance with strict regulatory requirements
+                  and audit trails
                 </div>
               </li>
               <li className="flex items-start gap-2">
@@ -9442,7 +10021,9 @@ function DomainDrivenDesignContent() {
                   <strong className="text-slate-700 dark:text-gray-300">
                     E-commerce platform builders
                   </strong>{" "}
-                  supporting multiple business models requiring clear separation between catalog management, order processing, inventory, and customer relationship domains
+                  supporting multiple business models requiring clear separation
+                  between catalog management, order processing, inventory, and
+                  customer relationship domains
                 </div>
               </li>
             </ul>
@@ -9462,7 +10043,13 @@ function DomainDrivenDesignContent() {
               AI-assisted domain modeling and boundary identification
             </h3>
             <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Cursor excels at analyzing existing codebases to identify natural domain boundaries and suggest bounded context extraction strategies. The AI can examine data relationships, business logic patterns, and team communication to recommend optimal domain model structure. Teams leverage Cursor to generate value objects from primitive types, identify entity candidates, and design aggregate boundaries based on transactional consistency requirements.
+              Cursor excels at analyzing existing codebases to identify natural
+              domain boundaries and suggest bounded context extraction
+              strategies. The AI can examine data relationships, business logic
+              patterns, and team communication to recommend optimal domain model
+              structure. Teams leverage Cursor to generate value objects from
+              primitive types, identify entity candidates, and design aggregate
+              boundaries based on transactional consistency requirements.
             </p>
           </div>
 
@@ -9471,7 +10058,14 @@ function DomainDrivenDesignContent() {
               Enterprise domain event architecture and implementation
             </h3>
             <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Organizations implementing event-driven DDD architectures can use Cursor to generate consistent event patterns, design event schemas, and implement event sourcing with proper aggregate versioning. The AI understands domain event naming conventions and can suggest event choreography vs orchestration patterns based on business requirements. Cursor helps generate event handlers, projection logic, and integration patterns that maintain bounded context independence.
+              Organizations implementing event-driven DDD architectures can use
+              Cursor to generate consistent event patterns, design event
+              schemas, and implement event sourcing with proper aggregate
+              versioning. The AI understands domain event naming conventions and
+              can suggest event choreography vs orchestration patterns based on
+              business requirements. Cursor helps generate event handlers,
+              projection logic, and integration patterns that maintain bounded
+              context independence.
             </p>
           </div>
 
@@ -9480,7 +10074,14 @@ function DomainDrivenDesignContent() {
               Legacy domain extraction and ubiquitous language development
             </h3>
             <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Teams modernizing legacy systems can leverage Cursor&rsquo;s contextual understanding to extract domain concepts from procedural code, identify hidden domain models within data access layers, and refactor anemic domain models into rich entities with behavior. The AI assists in establishing ubiquitous language by analyzing business documentation, code comments, and existing terminology to ensure consistent domain vocabulary across development teams and business stakeholders.
+              Teams modernizing legacy systems can leverage Cursor&rsquo;s
+              contextual understanding to extract domain concepts from
+              procedural code, identify hidden domain models within data access
+              layers, and refactor anemic domain models into rich entities with
+              behavior. The AI assists in establishing ubiquitous language by
+              analyzing business documentation, code comments, and existing
+              terminology to ensure consistent domain vocabulary across
+              development teams and business stakeholders.
             </p>
           </div>
         </div>

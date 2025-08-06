@@ -33,9 +33,11 @@ export default function TopicPage({ params }: TopicPageProps) {
 
   useEffect(() => {
     // Get topicId from params
-    params.then(({ topicId }) => {
+    async function getParams() {
+      const { topicId } = await params;
       setTopicId(topicId);
-    });
+    }
+    getParams();
   }, [params]);
 
   useEffect(() => {
