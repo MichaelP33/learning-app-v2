@@ -3812,8 +3812,183 @@
               "topics": [
                 "Single Deployment",
                 "Shared Database",
-                "Internal Communication"
-              ]
+                "Internal Communication",
+                "Technology Consistency",
+                "Operational Simplicity"
+              ],
+              "quiz": {
+                "title": "Monolithic Architecture Knowledge Quiz",
+                "totalQuestions": 10,
+                "totalPoints": 25,
+                "questions": [
+                  {
+                    "id": 1,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "What is the primary characteristic that defines a monolithic architecture?",
+                    "options": [
+                      "All application functionality packaged and deployed as a single unit",
+                      "Multiple services communicating over a network",
+                      "Independent scaling of different application components",
+                      "Distributed database management across multiple nodes"
+                    ],
+                    "correctAnswer": 0,
+                    "additionalContext": "A monolithic architecture's defining characteristic is that everything - user interface, business logic, data access, and background jobs - is packaged and deployed together as one cohesive unit. This eliminates complex orchestration between multiple services during deployments and ensures version consistency across all application components.",
+                    "keyConcepts": [
+                      "Single deployment unit",
+                      "unified application",
+                      "architectural definition"
+                    ]
+                  },
+                  {
+                    "id": 2,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "How do modules communicate within a monolithic architecture?",
+                    "options": [
+                      "Through HTTP REST API calls over the network",
+                      "Via direct method calls and in-process function invocation",
+                      "Using message queues and event-driven patterns",
+                      "By writing to shared files on the filesystem"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "In monolithic architectures, modules interact via in-process function calls rather than network protocols. This eliminates network latency, serialization overhead, and protocol complexity while enabling shared memory for efficient data transfer between application layers.",
+                    "keyConcepts": [
+                      "Internal communication",
+                      "direct method calls",
+                      "in-process communication"
+                    ]
+                  },
+                  {
+                    "id": 3,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "What advantage does a shared database provide in monolithic architecture?",
+                    "options": [
+                      "Automatic load balancing across multiple database servers",
+                      "Independent schema evolution for different application modules",
+                      "ACID transactions spanning multiple business operations without distributed complexity",
+                      "Built-in data replication and backup across geographical regions"
+                    ],
+                    "correctAnswer": 2,
+                    "additionalContext": "A shared database in monolithic architecture enables ACID transactions to span multiple business operations without the complexity of distributed transactions. Foreign key relationships enforce data integrity at the database level, and reporting queries can access the complete dataset without cross-service aggregation.",
+                    "keyConcepts": [
+                      "Shared database",
+                      "ACID transactions",
+                      "data consistency"
+                    ]
+                  },
+                  {
+                    "id": 4,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Which enterprise outcome demonstrates monolithic architecture's operational simplicity?",
+                    "options": [
+                      "Requiring specialized DevOps teams for each application module",
+                      "Complex service discovery and load balancing configurations",
+                      "Managing separate deployment pipelines for frontend and backend",
+                      "Stack Overflow serving 100+ million users with minimal infrastructure (9 web servers total)"
+                    ],
+                    "correctAnswer": 3,
+                    "additionalContext": "Stack Overflow demonstrates monolithic architecture's operational simplicity by serving over 100 million monthly users with a monolithic ASP.NET application running on minimal infrastructure. This showcases how monoliths enable simplified observability, unified metrics, and faster troubleshooting with complete application context.",
+                    "keyConcepts": [
+                      "Operational simplicity",
+                      "infrastructure efficiency",
+                      "enterprise success"
+                    ]
+                  },
+                  {
+                    "id": 5,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "What customer scenario commonly drives teams toward monolithic architecture adoption?",
+                    "options": [
+                      "\"We're spending 70% of engineering time on service coordination instead of building features\"",
+                      "\"We need to scale different components independently based on traffic patterns\"",
+                      "\"Our team has grown to 500+ engineers and needs better separation of concerns\"",
+                      "\"We want to use different programming languages for different business domains\""
+                    ],
+                    "correctAnswer": 0,
+                    "additionalContext": "Teams commonly adopt monolithic architecture when they experience velocity crises where engineering time is consumed by service coordination rather than feature development. Monoliths enable rapid feature development since cross-functional features can be implemented faster without service boundary negotiations.",
+                    "keyConcepts": [
+                      "Team velocity crisis",
+                      "service coordination overhead",
+                      "adoption triggers"
+                    ]
+                  },
+                  {
+                    "id": 6,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "How does technology consistency benefit monolithic architecture teams?",
+                    "options": [
+                      "Enables each team to choose their preferred programming language and framework",
+                      "Requires specialized knowledge for different parts of the application",
+                      "Simplified hiring and training since developers can contribute to any part of the application",
+                      "Allows independent technology upgrades for different application modules"
+                    ],
+                    "correctAnswer": 2,
+                    "additionalContext": "Technology consistency in monolithic architecture means using a single technology stack across the entire application, which simplifies hiring and training since developers can contribute to any part of the application. This also enables unified dependency management and consistent development environments.",
+                    "keyConcepts": [
+                      "Technology consistency",
+                      "simplified hiring",
+                      "unified development"
+                    ]
+                  },
+                  {
+                    "id": 7,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Which customer profile is optimally suited for monolithic architecture?",
+                    "options": [
+                      "Fortune 500 companies with 1000+ person engineering teams",
+                      "Startups requiring independent scaling of 20+ different services",
+                      "Organizations needing different technology stacks for different business domains",
+                      "Mid-market companies building custom business applications with tightly integrated workflows"
+                    ],
+                    "correctAnswer": 3,
+                    "additionalContext": "Mid-market companies ($10M-100M revenue) building custom business applications with tightly integrated workflows are optimally suited for monolithic architecture. These organizations benefit from the rapid feature development and operational simplicity that monoliths provide without the complexity overhead of distributed systems.",
+                    "keyConcepts": [
+                      "Customer profiles",
+                      "mid-market companies",
+                      "integrated workflows"
+                    ]
+                  },
+                  {
+                    "id": 8,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "What enterprise development acceleration benefit does monolithic architecture provide?",
+                    "options": [
+                      "Initial development speed 3-5x faster compared to distributed architectures for new features",
+                      "Automatic horizontal scaling without configuration changes",
+                      "Independent deployment cycles for different application components",
+                      "Built-in fault tolerance and circuit breaker patterns"
+                    ],
+                    "correctAnswer": 0,
+                    "additionalContext": "Monolithic architecture provides 3-5x faster initial development speed compared to distributed architectures for new features. This acceleration comes from unified development environments, simplified debugging, and the ability to implement cross-functional features without service boundary negotiations.",
+                    "keyConcepts": [
+                      "Development acceleration",
+                      "initial development speed",
+                      "feature development"
+                    ]
+                  },
+                  {
+                    "id": 9,
+                    "type": "freeform",
+                    "points": 4,
+                    "question": "Describe the three main customer scenarios that favor Monolithic Architecture adoption. For each scenario, include one specific quoted advantage or constraint from the article.",
+                    "sampleStrongResponse": "The three main customer scenarios are: (1) Team velocity crisis - where organizations face the constraint \"We're spending 70% of engineering time on service coordination instead of building features\" rather than developing new functionality, (2) Operational complexity overload - where teams struggle with \"Our deployment pipeline has 15+ services that must be orchestrated perfectly or everything breaks\" leading to deployment fragility, and (3) Resource constraints - where organizations have \"a 10-person engineering team but need DevOps specialists for 20+ different services\" creating staffing challenges. These scenarios demonstrate when monolithic architecture's unified approach provides clear operational and development advantages over distributed systems."
+                  },
+                  {
+                    "id": 10,
+                    "type": "freeform",
+                    "points": 5,
+                    "question": "List the core Monolithic Architecture characteristics covered in the article and explain how each one provides enterprise value for specific organizational contexts.",
+                    "sampleStrongResponse": "The core characteristics are: (1) Single deployment unit - provides enterprise value through version consistency across all components and simplified deployment processes, particularly valuable for resource-constrained teams lacking complex DevOps capabilities, (2) Shared database - enables ACID transactions spanning multiple business operations without distributed transaction complexity, crucial for regulatory-heavy industries requiring data consistency guarantees, (3) Internal communication through direct method calls - eliminates network latency and serialization overhead, essential for performance-critical applications where network overhead is unacceptable, (4) Technology consistency - enables simplified hiring and training since developers can contribute to any part of the application, valuable for mid-market companies building custom business applications, and (5) Operational simplicity - reduces infrastructure overhead with single process monitoring and deployment, providing 70% lower operational overhead compared to multiple services, particularly beneficial for Series A-B startups prioritizing rapid product iteration over infrastructure complexity."
+                  }
+                ]
+              }
             },
             {
               "id": "microservices-architecture",
