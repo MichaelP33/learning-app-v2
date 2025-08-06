@@ -187,6 +187,8 @@ export function ArticleContentWrapper({
                     <DomainDrivenDesignContent />
                   ) : article.id === "microservices-architecture" ? (
                     <MicroservicesArchitectureContent />
+                  ) : article.id === "clean-architecture" ? (
+                    <CleanArchitectureContent />
                   ) : (
                     <DefaultArticleContent article={article} />
                   )}
@@ -8241,6 +8243,444 @@ function ArticleNavigation({
 }
 
 // Software Architecture & Design Content Components
+
+function CleanArchitectureContent() {
+  return (
+    <article className="space-y-10">
+      {/* Key Concepts Section */}
+      <section id="key-concepts">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Key Concepts
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Dependency Inversion and the Dependency Rule
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              The core principle governing Clean Architecture where dependencies point inward toward business logic
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Inward-pointing dependencies:
+                  </strong>{" "}
+                  Outer layers (frameworks, databases, UI) depend on inner layers (business rules, entities), never the reverse
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Interface-driven design:
+                  </strong>{" "}
+                  Business logic defines interfaces that external systems must implement, enabling technology independence
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Enterprise impact:
+                  </strong>{" "}
+                  Critical for organizations requiring technology flexibility - PayPal successfully migrated from C++ to Java without changing business logic by following dependency inversion
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Testing enablement:
+                  </strong>{" "}
+                  Business rules can be tested in isolation from databases, web frameworks, and external services through mock implementations
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Clean Boundaries and Separation of Concerns
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Clear separation between different architectural concerns through well-defined interfaces
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Framework independence:
+                  </strong>{" "}
+                  Business logic remains unaware of whether it&rsquo;s running in a Spring Boot application, Express.js server, or AWS Lambda function
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Database independence:
+                  </strong>{" "}
+                  Core business rules work identically whether data comes from PostgreSQL, MongoDB, or external APIs through consistent repository interfaces
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    UI independence:
+                  </strong>{" "}
+                  Same business logic serves web applications, mobile apps, and CLI tools without modification
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Microservices alignment:
+                  </strong>{" "}
+                  Clean boundaries naturally define service boundaries in distributed architectures, enabling independent deployment and scaling
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Comprehensive Testing Strategy
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Architecture that enables testing at every level from unit to integration to acceptance
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Unit testing isolation:
+                  </strong>{" "}
+                  Business entities and use cases (business logic that orchestrates entities and services) can be tested without databases, web frameworks, or external dependencies
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Integration testing flexibility:
+                  </strong>{" "}
+                  Interface adapters (components that convert between business logic and external systems) enable testing database interactions and API integrations independently
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Acceptance testing support:
+                  </strong>{" "}
+                  Clean boundaries enable full end-to-end testing while maintaining fast feedback loops through strategic mock implementation
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Enterprise outcomes:
+                  </strong>{" "}
+                  Organizations typically achieve 85-95% test coverage with 3-5x faster test execution when following Clean Architecture principles
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-orange-500 bg-orange-50/50 dark:bg-orange-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Layered Architecture with Clear Responsibilities
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Four distinct layers that separate technical concerns from business logic
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Entities (innermost layer):
+                  </strong>{" "}
+                  Core business objects representing fundamental concepts like User, Order, Payment with business rules that apply regardless of application context
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Use Cases (application layer):
+                  </strong>{" "}
+                  Application-specific business logic that orchestrates entities - ProcessPayment, CreateUser, GenerateReport functions
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Interface Adapters:
+                  </strong>{" "}
+                  Convert data between use cases and external systems - controllers, repositories, presenters that handle HTTP requests, database queries, and response formatting
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Frameworks and Drivers (outermost layer):
+                  </strong>{" "}
+                  External tools like databases, web frameworks, logging systems that change frequently but don&rsquo;t affect business logic
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-red-500 bg-red-50/50 dark:bg-red-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Independence Principles for Enterprise Flexibility
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Four key independence characteristics that enable long-term maintainability
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Framework Independence:
+                  </strong>{" "}
+                  Business logic survives technology migrations - Netflix evolved from Perl to Java to microservices without rewriting core recommendation algorithms
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Database Independence:
+                  </strong>{" "}
+                  Organizations can optimize storage for specific use cases - analytical workloads use data warehouses while transactional workloads use RDBMS without changing business rules
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    UI Independence:
+                  </strong>{" "}
+                  Same business logic powers web dashboards, mobile applications, and API endpoints - critical for omnichannel customer experiences
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    External Agency Independence:
+                  </strong>{" "}
+                  Business logic remains stable when switching payment processors, email providers, or third-party APIs through consistent interface implementation
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Clean Architecture Implementation Impact Metrics */}
+        <div className="mt-8">
+          <MetricsCard
+            title="Clean Architecture Implementation Impact on Enterprise Development"
+            metrics={[
+              {
+                label: "Test Coverage Improvement",
+                value: "85-95%",
+                description:
+                  "Comprehensive testing enabled through dependency isolation and interface-driven design",
+                color: "green",
+              },
+              {
+                label: "Technology Migration Risk Reduction",
+                value: "70-80%",
+                description:
+                  "Business logic preservation during framework and infrastructure changes",
+                color: "blue",
+              },
+              {
+                label: "Team Development Velocity",
+                value: "50-75%",
+                description:
+                  "Independent development across layers and consistent architecture patterns",
+                color: "purple",
+              },
+              {
+                label: "Deployment Risk Reduction",
+                value: "60-75%",
+                description:
+                  "Isolated changes and comprehensive testing strategies minimize production issues",
+                color: "orange",
+              },
+            ]}
+          />
+        </div>
+      </section>
+
+      {/* Business & Team Impact Section */}
+      <section id="business-team-impact">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
+          <TrendingUp className="w-6 h-6 text-green-500" />
+          Business &amp; Team Impact
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Enterprise adoption patterns with quantified outcomes
+            </h3>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Uber:
+                  </strong>{" "}
+                  Clean Architecture principles enabled migration from monolith to 1000+ microservices while maintaining 99.99% uptime for core business logic
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Airbnb:
+                  </strong>{" "}
+                  Dependency inversion principles allowed simultaneous support of web, mobile, and partner APIs using identical business logic, reducing development time by 40%
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Square:
+                  </strong>{" "}
+                  Clean boundaries enabled independent scaling of payment processing, analytics, and customer management while achieving 95%+ test coverage
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-yellow-500 bg-yellow-50/50 dark:bg-yellow-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Common customer triggers driving Clean Architecture adoption decisions
+            </h3>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Legacy modernization complexity:
+                  </strong>{" "}
+                  &ldquo;We can&rsquo;t upgrade our framework without rewriting our entire business logic - it&rsquo;s all tightly coupled&rdquo;
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Testing bottlenecks:
+                  </strong>{" "}
+                  &ldquo;Our test suite requires running the entire application with a database - it takes 45 minutes and still misses business logic bugs&rdquo;
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Technology lock-in concerns:
+                  </strong>{" "}
+                  &ldquo;We&rsquo;re completely dependent on this specific database and web framework - switching would mean starting over&rdquo;
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Customer profiles and implementation drivers
+            </h3>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Enterprise modernization teams
+                  </strong>{" "}
+                  with 100-500 engineers migrating from legacy monoliths to cloud-native architectures while maintaining business continuity
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    High-compliance organizations
+                  </strong>{" "}
+                  in finance, healthcare, and government requiring extensive testing, audit trails, and clear separation between business logic and infrastructure
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Rapid-growth companies
+                  </strong>{" "}
+                  with 50-200 engineers needing architecture that supports independent team development and frequent technology evolution
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Cursor Implementation Section */}
+      <section id="cursor-implementation">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Cursor Implementation Considerations
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              AI-assisted identification of clean boundaries
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Cursor excels at analyzing existing codebases to identify architectural boundaries and dependency violations in Clean Architecture implementations. Teams can leverage AI context understanding to automatically detect when business logic depends on external frameworks, suggest interface extractions for dependency inversion, and recommend use case separations that align with Clean Architecture layering principles.
+            </p>
+          </div>
+
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Enterprise dependency inversion pattern recognition
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Organizations implementing Clean Architecture can train Cursor on their dependency injection patterns to generate code that automatically follows the dependency rule. The AI can suggest repository interfaces for data access, create use case implementations that depend on abstractions, and generate interface adapter implementations that maintain clean boundaries between business logic and external systems.
+            </p>
+          </div>
+
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Legacy modernization and architecture refactoring
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Teams with tightly-coupled legacy applications can use Cursor&rsquo;s codebase understanding to identify refactoring opportunities toward Clean Architecture. The AI can help extract business entities from framework-dependent code, suggest use case separations that isolate business logic, and recommend interface adapter patterns that enable independent testing and technology migration while maintaining existing functionality.
+            </p>
+          </div>
+        </div>
+      </section>
+    </article>
+  );
+}
 
 function SOLIDPrinciplesContent() {
   return (

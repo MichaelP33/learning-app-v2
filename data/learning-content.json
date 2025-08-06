@@ -3966,7 +3966,195 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Architecture that separates concerns and dependencies",
-              "topics": ["Dependency Inversion", "Clean Boundaries", "Testing"]
+              "topics": ["Dependency Inversion", "Clean Boundaries", "Testing", "Layered Architecture", "Independence Principles"],
+              "quiz": {
+                "title": "Clean Architecture Principles Knowledge Quiz",
+                "totalQuestions": 10,
+                "totalPoints": 25,
+                "questions": [
+                  {
+                    "id": 1,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "What is the core principle governing Clean Architecture dependency flow?",
+                    "options": [
+                      "Dependencies point inward toward business logic, with outer layers depending on inner layers",
+                      "Dependencies point outward from business logic to external systems",
+                      "Dependencies can flow in any direction as long as they are documented",
+                      "Dependencies should be eliminated entirely through static methods"
+                    ],
+                    "correctAnswer": 0,
+                    "additionalContext": "The Dependency Rule is fundamental to Clean Architecture - dependencies point inward toward business logic. Outer layers (frameworks, databases, UI) depend on inner layers (business rules, entities), never the reverse. This enables technology independence and comprehensive testing through interface-driven design.",
+                    "keyConcepts": [
+                      "Dependency Rule",
+                      "inward-pointing dependencies",
+                      "technology independence"
+                    ]
+                  },
+                  {
+                    "id": 2,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "How do clean boundaries enable framework independence?",
+                    "options": [
+                      "By requiring all code to use the same web framework",
+                      "Business logic remains unaware of whether it&rsquo;s running in Spring Boot, Express.js, or AWS Lambda",
+                      "By automatically converting between different framework types",
+                      "By eliminating the need for web frameworks entirely"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Clean boundaries ensure business logic is completely unaware of the external framework hosting it. Whether running in a Spring Boot application, Express.js server, or AWS Lambda function, the business logic remains identical through interface-driven design and dependency inversion.",
+                    "keyConcepts": [
+                      "Clean boundaries",
+                      "framework independence",
+                      "business logic isolation"
+                    ]
+                  },
+                  {
+                    "id": 3,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "What testing coverage do organizations typically achieve with Clean Architecture?",
+                    "options": [
+                      "50-65% due to complex dependency management",
+                      "70-80% with significant integration testing overhead",
+                      "85-95% with 3-5x faster test execution through dependency isolation",
+                      "100% through automated test generation"
+                    ],
+                    "correctAnswer": 2,
+                    "additionalContext": "Clean Architecture enables 85-95% test coverage with dramatically faster execution because business entities and use cases can be tested in isolation from databases, web frameworks, and external dependencies through interface-driven design and mock implementations.",
+                    "keyConcepts": [
+                      "Testing strategy",
+                      "test coverage improvement",
+                      "dependency isolation"
+                    ]
+                  },
+                  {
+                    "id": 4,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Which layer contains core business objects like User, Order, and Payment?",
+                    "options": [
+                      "Interface Adapters layer that handles HTTP requests",
+                      "Use Cases layer that orchestrates business operations",
+                      "Frameworks and Drivers layer for external systems",
+                      "Entities layer representing fundamental business concepts"
+                    ],
+                    "correctAnswer": 3,
+                    "additionalContext": "The Entities layer (innermost layer) contains core business objects like User, Order, Payment with business rules that apply regardless of application context. This layer represents fundamental business concepts that remain stable even when technology choices change.",
+                    "keyConcepts": [
+                      "Layered architecture",
+                      "Entities layer",
+                      "business concepts"
+                    ]
+                  },
+                  {
+                    "id": 5,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "How did PayPal benefit from following dependency inversion principles?",
+                    "options": [
+                      "Successfully migrated from C++ to Java without changing business logic",
+                      "Eliminated the need for database systems entirely",
+                      "Reduced their engineering team size by 50%",
+                      "Achieved 100% automated deployment processes"
+                    ],
+                    "correctAnswer": 0,
+                    "additionalContext": "PayPal&rsquo;s adherence to dependency inversion enabled technology migration from C++ to Java without rewriting business logic. This demonstrates how Clean Architecture principles provide technology flexibility for organizations requiring platform evolution while preserving core business functionality.",
+                    "keyConcepts": [
+                      "Enterprise success story",
+                      "technology migration",
+                      "business logic preservation"
+                    ]
+                  },
+                  {
+                    "id": 6,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "What enables Clean Architecture to support multiple user interfaces simultaneously?",
+                    "options": [
+                      "Automatic code generation for different platforms",
+                      "Built-in responsive design frameworks",
+                      "UI independence where same business logic serves web, mobile, and CLI tools",
+                      "Platform-specific business logic implementations"
+                    ],
+                    "correctAnswer": 2,
+                    "additionalContext": "UI independence is achieved through clean separation where the same business logic serves web applications, mobile apps, and CLI tools without modification. This enables omnichannel customer experiences while maintaining consistent business rules across all interfaces.",
+                    "keyConcepts": [
+                      "UI independence",
+                      "omnichannel support",
+                      "business logic consistency"
+                    ]
+                  },
+                  {
+                    "id": 7,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Which customer scenario most commonly drives Clean Architecture adoption?",
+                    "options": [
+                      "Need for faster application startup times",
+                      "Desire to reduce cloud infrastructure costs",
+                      "Requirement for mobile application development",
+                      "Legacy modernization complexity where framework upgrades require rewriting business logic"
+                    ],
+                    "correctAnswer": 3,
+                    "additionalContext": "The most common trigger is legacy modernization complexity where organizations discover they &ldquo;can&rsquo;t upgrade frameworks without rewriting entire business logic&rdquo; due to tight coupling. This pain point drives adoption of Clean Architecture for technology independence and maintainability.",
+                    "keyConcepts": [
+                      "Legacy modernization triggers",
+                      "tight coupling problems",
+                      "technology lock-in"
+                    ]
+                  },
+                  {
+                    "id": 8,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "How much development time reduction did Airbnb achieve through dependency inversion principles?",
+                    "options": [
+                      "40% reduction by supporting web, mobile, and partner APIs with identical business logic",
+                      "25% reduction through automated testing improvements",
+                      "60% reduction by eliminating database dependencies",
+                      "80% reduction through AI-assisted code generation"
+                    ],
+                    "correctAnswer": 0,
+                    "additionalContext": "Airbnb achieved 40% development time reduction by using dependency inversion principles to support web, mobile, and partner APIs with identical business logic. This demonstrates measurable business impact when Clean Architecture enables code reuse across multiple interfaces.",
+                    "keyConcepts": [
+                      "Enterprise benefits",
+                      "development time reduction",
+                      "multi-platform support"
+                    ]
+                  },
+                  {
+                    "id": 9,
+                    "type": "freeform",
+                    "points": 4,
+                    "question": "Describe the three main customer scenarios that trigger Clean Architecture adoption discussions. For each scenario, include one specific quoted pain point from the article.",
+                    "sampleStrongResponse": "The three main customer scenarios are: (1) Legacy modernization complexity - &ldquo;We can&rsquo;t upgrade our framework without rewriting our entire business logic - it&rsquo;s all tightly coupled&rdquo;, (2) Testing bottlenecks - &ldquo;Our test suite requires running the entire application with a database - it takes 45 minutes and still misses business logic bugs&rdquo;, and (3) Technology lock-in concerns - &ldquo;We&rsquo;re completely dependent on this specific database and web framework - switching would mean starting over&rdquo;. These scenarios highlight how tight coupling between business logic and infrastructure creates maintenance complexity, testing inefficiency, and technology inflexibility that Clean Architecture addresses through dependency inversion and clean boundaries.",
+                    "additionalContext": "These trigger scenarios represent the most common pain points where organizations realize their current architectural approaches are becoming business impediments, driving adoption of Clean Architecture principles for better maintainability and technology independence.",
+                    "keyConcepts": [
+                      "Customer trigger scenarios",
+                      "legacy modernization",
+                      "testing challenges",
+                      "technology lock-in"
+                    ]
+                  },
+                  {
+                    "id": 10,
+                    "type": "freeform",
+                    "points": 5,
+                    "question": "List the core Clean Architecture principles covered in the article and explain how each one enables enterprise organizations to maintain system flexibility and testing capability.",
+                    "sampleStrongResponse": "The core Clean Architecture principles are: (1) Dependency Inversion - dependencies point inward toward business logic, enabling technology independence and comprehensive testing through interface-driven design where business rules can be tested without external systems, (2) Clean Boundaries - clear separation between frameworks, databases, UI, and business logic enables independent evolution of each layer and supports comprehensive testing strategies, (3) Layered Architecture - four distinct layers (Entities, Use Cases, Interface Adapters, Frameworks) separate technical concerns from business logic enabling focused testing and independent development, (4) Independence Principles - framework, database, UI, and external agency independence enables technology migration without business logic rewrites and comprehensive testing through mock implementations. These principles enable enterprise organizations to achieve 85-95% test coverage, 70-80% technology migration risk reduction, and 50-75% team development velocity improvement while maintaining business logic stability during technology evolution.",
+                    "additionalContext": "These principles work together to create architecture that enables long-term maintainability, comprehensive testing, and technology flexibility essential for enterprise organizations managing complex systems and frequent technology evolution.",
+                    "keyConcepts": [
+                      "Clean Architecture principles",
+                      "enterprise flexibility",
+                      "testing capability",
+                      "technology independence",
+                      "business impact metrics"
+                    ]
+                  }
+                ]
+              }
             }
           ]
         },
