@@ -193,6 +193,8 @@ export function ArticleContentWrapper({
                     <CleanArchitectureContent />
                   ) : article.id === "restful-apis" ? (
                     <RESTfulApisContent />
+                  ) : article.id === "read-replicas-write-scaling" ? (
+                    <ReadReplicasWriteScalingContent />
                   ) : (
                     <DefaultArticleContent article={article} />
                   )}
@@ -11027,6 +11029,333 @@ function RESTfulApisContent() {
               implement proper status code selection based on operation
               outcomes, and generate client-friendly error messages that enable
               effective debugging and user experience design.
+            </p>
+          </div>
+        </div>
+      </section>
+    </article>
+  );
+}
+
+// Component for the read replicas and write scaling article content
+function ReadReplicasWriteScalingContent() {
+  return (
+    <article className="space-y-10">
+      {/* Key Concepts Section */}
+      <section id="key-concepts">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Key Concepts
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Read replicas for performance scaling
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Database copies that handle read-only operations (like having multiple cashiers for customer questions while one person handles transactions)
+            </p>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Distribute read queries across multiple database instances to reduce primary database load
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Enable geographic distribution for reduced latency - users access data from nearby locations
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Support specialized workloads like analytics without impacting transactional performance
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Write scaling strategies for high-transaction environments
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Approaches for handling increasing write operations (like adding more checkout lanes during busy periods)
+            </p>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Database sharding:
+                  </strong>{" "}
+                  Partition data across multiple instances with logical boundaries for parallel write processing
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Master-master replication:
+                  </strong>{" "}
+                  Multiple nodes accept writes simultaneously for improved availability
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Intelligent load balancing:
+                  </strong>{" "}
+                  Route read and write operations based on query patterns and performance characteristics
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-orange-500 bg-orange-50/50 dark:bg-orange-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Replication lag and consistency considerations
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              The delay between primary writes and replica updates - critical for business logic requiring data consistency
+            </p>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Users might read stale data during the lag period, affecting real-time scenarios like inventory or financial transactions
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Monitoring and alerting on replication lag prevents inconsistent user experiences
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Strategic routing of reads requiring immediate consistency back to primary database
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Master-slave vs master-master architectures
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Different approaches to organizing database write operations based on availability and complexity requirements
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+              <div className="bg-white/50 dark:bg-gray-800/50 p-4 rounded-lg">
+                <h4 className="font-medium text-slate-900 dark:text-white mb-2">
+                  Master-Slave (Single Primary)
+                </h4>
+                <ul className="text-sm text-slate-600 dark:text-gray-400 space-y-1">
+                  <li>• One primary accepts all writes</li>
+                  <li>• Multiple replicas handle reads only</li>
+                  <li>• Simple conflict resolution</li>
+                  <li>• Single point of failure for writes</li>
+                </ul>
+              </div>
+              <div className="bg-white/50 dark:bg-gray-800/50 p-4 rounded-lg">
+                <h4 className="font-medium text-slate-900 dark:text-white mb-2">
+                  Master-Master (Multi-Primary)
+                </h4>
+                <ul className="text-sm text-slate-600 dark:text-gray-400 space-y-1">
+                  <li>• Multiple nodes accept writes</li>
+                  <li>• High availability for write operations</li>
+                  <li>• Complex conflict resolution required</li>
+                  <li>• Better geographic distribution</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Business & Team Impact Section */}
+      <section id="business-team-impact">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
+          <TrendingUp className="w-6 h-6 text-green-500" />
+          Business &amp; Team Impact
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Performance and cost optimization outcomes
+            </h3>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Netflix:
+                  </strong>{" "}
+                  Uses read replicas for their recommendation system serving 200M+ subscribers, achieving millisecond response times for personalized content delivery
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Airbnb:
+                  </strong>{" "}
+                  Implemented geographic read replicas reducing search latency by 60% for international users while maintaining booking consistency
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Shopify:
+                  </strong>{" "}
+                  Uses database sharding for write scaling during peak shopping periods, handling 100K+ transactions per minute
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          {/* Performance Metrics Card */}
+          <div className="mt-8">
+            <MetricsCard
+              title="Database Scaling Performance Benefits"
+              metrics={[
+                {
+                  label: "Read Performance Improvement",
+                  value: "50-80%",
+                  description: "With effective read replica implementation",
+                  color: "green",
+                },
+                {
+                  label: "Infrastructure Cost Reduction",
+                  value: "30-50%",
+                  description: "Through optimized resource allocation",
+                  color: "blue",
+                },
+                {
+                  label: "Geographic Latency Reduction",
+                  value: "60-70%",
+                  description: "With regional read replica deployment",
+                  color: "purple",
+                },
+                {
+                  label: "Write Throughput Increase",
+                  value: "3-10x",
+                  description: "Through effective sharding strategies",
+                  color: "orange",
+                },
+              ]}
+            />
+          </div>
+
+          <div className="border-l-4 border-yellow-500 bg-yellow-50/50 dark:bg-yellow-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Common customer triggers driving scaling discussions
+            </h3>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Performance degradation with user growth:
+                  </strong>{" "}
+                  &ldquo;Our application response times are getting slower as our user base grows&rdquo;
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Geographic expansion challenges:
+                  </strong>{" "}
+                  &ldquo;Our European users are experiencing 3-second page load times due to database latency&rdquo;
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Cost optimization pressure:
+                  </strong>{" "}
+                  &ldquo;Our database bills are growing faster than our revenue - we need 40% cost reduction&rdquo;
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    High-transaction volume spikes:
+                  </strong>{" "}
+                  &ldquo;Our database crashes during flash sales - we need write scaling for peak traffic&rdquo;
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Customer profiles most likely to benefit from database scaling
+            </h3>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <strong className="text-slate-700 dark:text-gray-300">
+                  Series B+ startups:
+                </strong>{" "}
+                With rapid user growth requiring performance optimization and cost management ($10M+ ARR, 100K+ active users)
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <strong className="text-slate-700 dark:text-gray-300">
+                  E-commerce platforms:
+                </strong>{" "}
+                Processing high-volume transactions with seasonal traffic spikes and global customer bases
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <strong className="text-slate-700 dark:text-gray-300">
+                  Content platforms:
+                </strong>{" "}
+                Media, social, and publishing companies with high read-to-write ratios and global content distribution needs
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <strong className="text-slate-700 dark:text-gray-300">
+                  Financial services:
+                </strong>{" "}
+                Organizations requiring high-availability write operations and regulatory compliance for transaction processing
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Cursor Implementation Section */}
+      <section id="cursor-implementation">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Cursor Implementation Considerations
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Database architecture decision support
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              AI assistance helps teams evaluate trade-offs between different scaling approaches - intelligent recommendations based on traffic patterns, consistency requirements, and performance goals, with context-aware suggestions for read replica placement and write scaling strategies
+            </p>
+          </div>
+
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Migration and implementation acceleration
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Cursor can accelerate database scaling implementations by generating appropriate configuration scripts, suggesting optimal sharding keys based on query patterns, and helping teams implement proper monitoring for replication lag and performance metrics
+            </p>
+          </div>
+
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Performance optimization and monitoring
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Teams implementing database scaling benefit from AI-generated monitoring dashboards, automated alerting for replication lag issues, and intelligent query routing logic that adapts based on real-time performance characteristics and consistency requirements
             </p>
           </div>
         </div>
