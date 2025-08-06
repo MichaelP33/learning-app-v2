@@ -4757,7 +4757,203 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Choosing between relational and non-relational databases",
-              "topics": ["ACID vs BASE", "Schema Design", "Scalability"]
+              "topics": ["ACID vs BASE", "Schema Design", "Scalability"],
+              "quiz": {
+                "title": "SQL vs NoSQL Trade-offs Knowledge Quiz",
+                "totalQuestions": 10,
+                "totalPoints": 25,
+                "questions": [
+                  {
+                    "id": 1,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "What is the primary difference between SQL and NoSQL databases in terms of data structure?",
+                    "options": [
+                      "SQL databases use indexes while NoSQL databases don't",
+                      "SQL databases enforce structured schemas while NoSQL databases allow flexible document structures",
+                      "SQL databases only work with small datasets",
+                      "NoSQL databases can only store text data"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "SQL databases require predefined schemas with fixed table structures, relationships, and data types, making them ideal for complex business logic with strict data integrity requirements. NoSQL databases offer schema flexibility, allowing documents with varying structures within the same collection, which enables rapid development but requires careful application-level validation.",
+                    "keyConcepts": [
+                      "Schema flexibility vs structure",
+                      "data modeling approaches",
+                      "development trade-offs"
+                    ]
+                  },
+                  {
+                    "id": 2,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "According to enterprise adoption patterns, what percentage of Fortune 500 companies use SQL databases as their primary transactional system?",
+                    "options": [
+                      "45-60%",
+                      "65-75%",
+                      "80-95%",
+                      "25-40%"
+                    ],
+                    "correctAnswer": 2,
+                    "additionalContext": "The 80-95% adoption rate reflects SQL databases' dominance in enterprise environments due to ACID compliance, mature tooling, and regulatory requirements. Companies like banks, healthcare systems, and ERP vendors rely on SQL's transaction guarantees for business-critical operations, while using NoSQL for specific use cases like analytics and content management.",
+                    "keyConcepts": [
+                      "Enterprise adoption patterns",
+                      "transaction requirements",
+                      "regulatory compliance"
+                    ]
+                  },
+                  {
+                    "id": 3,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "What are the typical performance characteristics of NoSQL databases compared to SQL databases for read-heavy workloads?",
+                    "options": [
+                      "NoSQL is always slower due to lack of optimization",
+                      "Performance is identical regardless of database type",
+                      "NoSQL can achieve 3-10x better read performance through denormalization and horizontal scaling",
+                      "SQL databases scale linearly while NoSQL databases don't scale at all"
+                    ],
+                    "correctAnswer": 2,
+                    "additionalContext": "NoSQL databases excel at read-heavy workloads through data denormalization (storing related data together) and native horizontal scaling capabilities. Companies like Netflix achieve millisecond response times for recommendation queries by pre-computing and storing denormalized data in NoSQL systems, while maintaining transactional data in SQL databases.",
+                    "keyConcepts": [
+                      "Read performance optimization",
+                      "denormalization benefits",
+                      "horizontal scaling advantages"
+                    ]
+                  },
+                  {
+                    "id": 4,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Which scenario most commonly triggers companies to evaluate NoSQL adoption alongside their existing SQL infrastructure?",
+                    "options": [
+                      "Need for stronger data consistency guarantees",
+                      "Explosive data growth requiring rapid horizontal scaling (10x-100x data volume increases)",
+                      "Requirement for more complex SQL joins and relationships",
+                      "Desire to reduce development team size"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Explosive data growth represents the most common NoSQL adoption trigger, particularly when companies face 10x-100x increases in data volume that strain traditional SQL scaling approaches. This scenario forces architectural decisions about horizontal vs vertical scaling, with NoSQL providing native distribution capabilities that SQL databases require complex sharding to achieve.",
+                    "keyConcepts": [
+                      "Scaling triggers",
+                      "data volume growth",
+                      "architectural decisions"
+                    ]
+                  },
+                  {
+                    "id": 5,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "In polyglot persistence architectures, what is the typical cost range for implementing and maintaining both SQL and NoSQL systems?",
+                    "options": [
+                      "$100K-$500K annually for mid-size companies",
+                      "$50K-$200K annually for mid-size companies",
+                      "$1M-$3M annually for mid-size companies",
+                      "$10K-$50K annually for mid-size companies"
+                    ],
+                    "correctAnswer": 0,
+                    "additionalContext": "The $100K-$500K annual cost reflects infrastructure, tooling, and specialized expertise requirements for maintaining multiple database technologies. This includes database administration skills, monitoring tools, backup systems, and the complexity of managing data consistency across different systems. Many companies find this investment worthwhile for performance gains in specific use cases.",
+                    "keyConcepts": [
+                      "Polyglot persistence costs",
+                      "operational complexity",
+                      "expertise requirements"
+                    ]
+                  },
+                  {
+                    "id": 6,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "What is the primary advantage of SQL databases for complex business logic implementation?",
+                    "options": [
+                      "Faster query execution for all types of operations",
+                      "ACID transactions enabling multi-table operations with guaranteed consistency",
+                      "Better integration with machine learning algorithms",
+                      "Automatic horizontal scaling without configuration"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "ACID transactions provide atomicity, consistency, isolation, and durability guarantees essential for complex business operations involving multiple related tables. Financial transactions, inventory management, and order processing require these guarantees to prevent data corruption and maintain business rule integrity across concurrent operations.",
+                    "keyConcepts": [
+                      "ACID transaction benefits",
+                      "business logic complexity",
+                      "data integrity guarantees"
+                    ]
+                  },
+                  {
+                    "id": 7,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Document databases like MongoDB are particularly well-suited for which type of application development pattern?",
+                    "options": [
+                      "Applications requiring complex multi-table joins and strict referential integrity",
+                      "Rapid prototyping and applications with evolving data models that need schema flexibility",
+                      "Applications that only need to store numerical data",
+                      "Systems requiring guaranteed real-time data consistency across all nodes"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Document databases excel in scenarios where data models evolve rapidly during development, such as content management systems, user profiles, and product catalogs. The schema flexibility allows developers to add new fields without database migrations, making them ideal for agile development environments and applications with unpredictable data structure changes.",
+                    "keyConcepts": [
+                      "Schema flexibility",
+                      "rapid prototyping",
+                      "evolving data models"
+                    ]
+                  },
+                  {
+                    "id": 8,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Companies that successfully implement hybrid SQL/NoSQL architectures typically follow which pattern?",
+                    "options": [
+                      "Replace all SQL databases with NoSQL systems immediately",
+                      "Use SQL for transactional data and core business logic, NoSQL for analytics and high-volume reads",
+                      "Use NoSQL only for development environments",
+                      "Alternate between SQL and NoSQL databases monthly"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Successful hybrid implementations leverage each database type's strengths: SQL databases handle transactional workloads requiring ACID guarantees (payments, orders, user accounts), while NoSQL systems manage high-volume reads, analytics, and flexible schema requirements (product catalogs, user activity logs, content management). This pattern maximizes performance while maintaining data integrity.",
+                    "keyConcepts": [
+                      "Hybrid architecture patterns",
+                      "workload optimization",
+                      "system design principles"
+                    ]
+                  },
+                  {
+                    "id": 9,
+                    "type": "freeform",
+                    "points": 4,
+                    "question": "Describe the three main customer scenarios that trigger SQL vs NoSQL evaluation discussions. For each scenario, include the specific business pain point mentioned in the article.",
+                    "sampleStrongResponse": "The three main customer scenarios are: (1) Explosive data growth - 'Our database can't handle the 50x increase in user data from our mobile app launch', requiring horizontal scaling capabilities that traditional SQL struggles with; (2) Schema evolution bottleneck - 'Every new feature requires 3-week database migrations that slow our development velocity', where NoSQL's schema flexibility accelerates development; (3) Read performance crisis - 'Our product catalog queries slow to 3+ seconds during peak traffic', where NoSQL denormalization and horizontal scaling provide the necessary read performance improvements. These represent the key architectural decision points where database choice significantly impacts business outcomes.",
+                    "additionalContext": "These scenarios represent the most common triggers where companies realize their current database architecture is becoming a business bottleneck, forcing strategic decisions about data infrastructure.",
+                    "keyConcepts": [
+                      "Business triggers",
+                      "architectural bottlenecks",
+                      "performance requirements"
+                    ],
+                    "customScoringCriteria": {
+                      "fullPoints": "Identifies all three trigger scenarios (explosive data growth, schema evolution bottleneck, read performance crisis) and includes exact quoted pain points from the article for each one. Demonstrates understanding that these represent business-critical architectural decision points.",
+                      "partialPoints": "Identifies most trigger scenarios and includes some quoted pain points, but may miss one scenario or use paraphrased rather than exact quotes.",
+                      "noPoints": "Fails to identify the three distinct scenarios or doesn't include specific quoted pain points from the article."
+                    }
+                  },
+                  {
+                    "id": 10,
+                    "type": "freeform",
+                    "points": 5,
+                    "question": "Analyze how technical requirements should drive SQL vs NoSQL selection decisions. Explain the core strengths of each approach and describe what types of business applications would benefit most from each database type's characteristics.",
+                    "sampleStrongResponse": "Technical requirements should drive database selection based on workload characteristics and business needs: SQL databases excel at complex transactional workloads requiring ACID guarantees, structured data relationships, and business rule enforcement - making them ideal for financial systems, ERP applications, and inventory management where data consistency is paramount. NoSQL databases specialize in high-volume reads, schema flexibility, and horizontal scaling - optimal for content management systems, user activity tracking, product catalogs, and analytics workloads where performance and adaptability outweigh strict consistency requirements. Successful enterprise architectures often use both: SQL for core business transactions and NoSQL for ancillary high-volume operations, creating polyglot persistence that leverages each technology's strengths for appropriate use cases.",
+                    "additionalContext": "Understanding these technical specializations helps architects make informed decisions about when to use each database type and how to structure hybrid systems effectively.",
+                    "keyConcepts": [
+                      "Technical requirements analysis",
+                      "workload characteristics",
+                      "polyglot persistence",
+                      "business application matching"
+                    ],
+                    "customScoringCriteria": {
+                      "fullPoints": "Clearly explains both SQL and NoSQL core strengths (ACID/transactions vs performance/flexibility) and provides appropriate business application examples for each type. Demonstrates understanding of how technical requirements drive selection decisions and mentions polyglot persistence as a strategic approach.",
+                      "partialPoints": "Covers both database types and their strengths but may lack depth in explaining how technical requirements drive selection OR provides unclear business application matching.",
+                      "noPoints": "Provides superficial explanations without demonstrating understanding of technical trade-offs or fails to connect database characteristics to appropriate business use cases."
+                    }
+                  }
+                ]
+              }
             },
             {
               "id": "acid-vs-eventual-consistency",
