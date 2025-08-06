@@ -4733,7 +4733,203 @@
                 "Event Sourcing",
                 "Message Queues",
                 "Asynchronous Processing"
-              ]
+              ],
+              "quiz": {
+                "title": "Event-Driven Architecture Knowledge Quiz",
+                "totalQuestions": 10,
+                "totalPoints": 25,
+                "questions": [
+                  {
+                    "id": 1,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "What is the primary characteristic that defines event-driven architecture?",
+                    "options": [
+                      "Components communicate through direct function calls",
+                      "Systems react to events asynchronously rather than through direct requests",
+                      "Data is stored only in relational databases",
+                      "All processing happens in a single thread"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Event-driven architecture is based on the production and consumption of events, where components react to events asynchronously. This decouples systems and enables better scalability and resilience compared to synchronous request-response patterns. Events represent something that has happened in the system and can trigger actions across multiple services.",
+                    "keyConcepts": [
+                      "Asynchronous communication",
+                      "Event production and consumption",
+                      "System decoupling"
+                    ]
+                  },
+                  {
+                    "id": 2,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Apache Kafka is primarily chosen for enterprise event streaming because it provides which key advantages?",
+                    "options": [
+                      "Built-in user interface for event monitoring",
+                      "High-throughput, fault-tolerant event streaming with 99.9% uptime guarantees",
+                      "Automatic conversion of all data to JSON format",
+                      "Direct integration with Microsoft Office applications"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Apache Kafka excels at high-throughput, fault-tolerant event streaming with enterprise-grade reliability. It can handle millions of events per second while maintaining durability through replication. Companies like Netflix and LinkedIn use Kafka to process trillions of events daily. The platform provides 99.9% uptime guarantees and horizontal scaling capabilities essential for enterprise event-driven systems.",
+                    "keyConcepts": [
+                      "Kafka specialization",
+                      "high-throughput streaming",
+                      "enterprise reliability"
+                    ]
+                  },
+                  {
+                    "id": 3,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Event sourcing provides which strategic advantage over traditional database approaches?",
+                    "options": [
+                      "Faster query performance for simple read operations",
+                      "Complete audit trail and ability to reconstruct any historical state",
+                      "Smaller storage requirements than relational databases",
+                      "Automatic user interface generation for all data types"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Event sourcing stores all changes as a sequence of events, providing complete audit trails and the ability to reconstruct any historical state of the system. This is particularly valuable for financial services, healthcare, and other industries requiring compliance and auditability. Unlike traditional approaches that only store current state, event sourcing preserves the entire history of what happened and when.",
+                    "keyConcepts": [
+                      "Event sourcing benefits",
+                      "audit trails",
+                      "historical state reconstruction"
+                    ]
+                  },
+                  {
+                    "id": 4,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "What are the typical performance improvements organizations achieve when migrating from synchronous to event-driven architectures?",
+                    "options": [
+                      "10-20% improvement in response times",
+                      "40-60% improvement in system throughput and scalability",
+                      "5-10% reduction in server costs",
+                      "100% elimination of all system failures"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Organizations typically see 40-60% improvement in system throughput and scalability when migrating to event-driven architectures. This comes from better resource utilization, reduced coupling between services, and the ability to process events asynchronously. Companies like Uber achieved 50% better resource efficiency, while Netflix improved recommendation system performance by 45% through event-driven patterns.",
+                    "keyConcepts": [
+                      "Performance improvements",
+                      "throughput gains",
+                      "scalability benefits"
+                    ]
+                  },
+                  {
+                    "id": 5,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Message queues in event-driven systems primarily help with:",
+                    "options": [
+                      "Storing user passwords securely",
+                      "Converting data between different programming languages",
+                      "Buffering events and ensuring reliable delivery between services",
+                      "Automatically generating user documentation"
+                    ],
+                    "correctAnswer": 2,
+                    "additionalContext": "Message queues buffer events and ensure reliable delivery between services, providing durability and retry mechanisms when services are temporarily unavailable. This buffering capability is crucial for handling traffic spikes and maintaining system resilience. Enterprise message queues like RabbitMQ and Amazon SQS provide guaranteed delivery, dead letter queues, and load balancing across consumers.",
+                    "keyConcepts": [
+                      "Message queue functionality",
+                      "reliable delivery",
+                      "system resilience"
+                    ]
+                  },
+                  {
+                    "id": 6,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Which scenario most commonly triggers companies to consider migrating to event-driven architecture?",
+                    "options": [
+                      "Need to support mobile applications",
+                      "Monolithic systems becoming bottlenecks with tight coupling causing cascading failures",
+                      "Requirement to use the latest JavaScript frameworks",
+                      "Plans to reduce the engineering team size"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Monolithic bottlenecks with tight coupling causing cascading failures represent the most common trigger for event-driven architecture adoption. When one service failure brings down entire systems, organizations realize they need better isolation and resilience. Other triggers include scaling challenges where synchronous calls create performance bottlenecks, and integration complexity where adding new features requires changes across multiple tightly-coupled services.",
+                    "keyConcepts": [
+                      "Migration triggers",
+                      "tight coupling problems",
+                      "cascading failures"
+                    ]
+                  },
+                  {
+                    "id": 7,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "The main operational challenge of event-driven architectures in production is:",
+                    "options": [
+                      "Events consume too much network bandwidth",
+                      "Managing distributed debugging and event flow tracing across services",
+                      "Event-driven systems cannot handle high user loads",
+                      "Message queues require manual configuration for every event type"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Managing distributed debugging and event flow tracing across services is the primary operational challenge. Unlike monoliths where you can trace execution in a single codebase, event-driven systems require sophisticated observability tools to track events across multiple services. This includes distributed tracing, event correlation IDs, and comprehensive logging to understand system behavior and troubleshoot issues.",
+                    "keyConcepts": [
+                      "Operational challenges",
+                      "distributed debugging",
+                      "event flow tracing"
+                    ]
+                  },
+                  {
+                    "id": 8,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Companies like Netflix and Uber demonstrate that event-driven architectures:",
+                    "options": [
+                      "Can handle massive scale while maintaining system resilience and enabling rapid feature development",
+                      "Are only suitable for small prototype applications",
+                      "Require complete system rewrites every few years",
+                      "Must be combined with blockchain technology to be effective"
+                    ],
+                    "correctAnswer": 0,
+                    "additionalContext": "Netflix and Uber demonstrate that event-driven architectures can handle massive scale while maintaining resilience and enabling rapid development. Netflix processes billions of events daily for recommendations and content delivery, while Uber's trip processing and real-time location tracking rely heavily on event-driven patterns. These companies show that event-driven systems can scale to support hundreds of millions of users while enabling teams to deploy features independently.",
+                    "keyConcepts": [
+                      "Enterprise scale examples",
+                      "system resilience",
+                      "rapid development"
+                    ]
+                  },
+                  {
+                    "id": 9,
+                    "type": "freeform",
+                    "points": 4,
+                    "question": "Describe the three main customer scenarios that trigger migration discussions about event-driven architecture. For each scenario, include one specific quoted pain point from the article.",
+                    "sampleStrongResponse": "The three main triggers are: (1) Monolithic bottlenecks - 'Our system slows down by 30% during peak hours due to tight coupling between services', (2) Cascading failure crisis - 'When our payment service goes down, it brings down our entire order processing system', and (3) Integration complexity - 'Adding a simple feature now requires changes across 8 different services that all call each other directly'. These represent the key pain points where customers realize their synchronous, tightly-coupled systems are becoming business impediments.",
+                    "additionalContext": "These scenarios represent the most common trigger points where companies realize their current architectural choices are becoming business impediments. Understanding these patterns helps identify when organizations are ready for event-driven architecture discussions.",
+                    "keyConcepts": [
+                      "Migration triggers",
+                      "customer pain points",
+                      "business drivers"
+                    ],
+                    "customScoringCriteria": {
+                      "fullPoints": "Identifies all three trigger scenarios (monolithic bottlenecks, cascading failures, integration complexity) and includes exact quoted pain points from the article for each one. Demonstrates understanding that these represent business impediment recognition points.",
+                      "partialPoints": "Identifies most trigger scenarios and includes some quoted pain points, but may miss one scenario or use paraphrased rather than exact quotes.",
+                      "noPoints": "Fails to identify the three distinct scenarios or doesn't include specific quoted pain points from the article."
+                    }
+                  },
+                  {
+                    "id": 10,
+                    "type": "freeform",
+                    "points": 5,
+                    "question": "Analyze how technical requirements drive event-driven architecture adoption. Describe the core advantages of Apache Kafka, RabbitMQ, and Amazon SQS, and explain what types of enterprise projects would benefit most from each platform's strengths.",
+                    "sampleStrongResponse": "Technical requirements should drive platform selection based on each system's core strengths: Apache Kafka excels at high-throughput event streaming and real-time analytics due to its distributed architecture and ability to handle millions of events per second, making it ideal for real-time recommendation systems and large-scale data pipelines; RabbitMQ specializes in reliable message delivery with complex routing patterns and supports multiple messaging protocols, making it optimal for enterprise integration scenarios requiring guaranteed delivery and sophisticated message routing; Amazon SQS provides managed message queuing with built-in AWS integration and automatic scaling, making it best for cloud-native applications requiring operational simplicity and seamless AWS ecosystem integration. Project selection should match these strengths - real-time analytics benefit from Kafka's streaming capabilities, complex enterprise integrations benefit from RabbitMQ's routing features, and cloud-native applications benefit from SQS's managed service approach.",
+                    "additionalContext": "Understanding these technical specializations helps contextualize why development teams choose specific event streaming platforms and what challenges they're optimizing for in their architecture decisions.",
+                    "keyConcepts": [
+                      "Platform specialization",
+                      "technical requirements",
+                      "project matching",
+                      "architecture decisions"
+                    ],
+                    "customScoringCriteria": {
+                      "fullPoints": "Clearly describes all three platforms' core strengths (Kafka for high-throughput streaming, RabbitMQ for reliable delivery with routing, SQS for managed AWS integration) and explains how technical requirements should drive selection decisions with appropriate project type matches.",
+                      "partialPoints": "Covers most platforms and their strengths but may lack depth in explaining how technical requirements drive selection OR misses clear project type matching for each platform.",
+                      "noPoints": "Provides superficial platform descriptions without demonstrating understanding of their technical specializations or fails to connect platform strengths to appropriate project types."
+                    }
+                  }
+                ]
+              }
             },
             {
               "id": "rpc-vs-rest",
