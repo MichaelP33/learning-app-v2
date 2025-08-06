@@ -187,6 +187,8 @@ export function ArticleContentWrapper({
                     <MicroservicesArchitectureContent />
                   ) : article.id === "monolithic-architecture" ? (
                     <MonolithicArchitectureContent />
+                  ) : article.id === "client-server-patterns" ? (
+                    <ClientServerPatternsContent />
                   ) : (
                     <DefaultArticleContent article={article} />
                   )}
@@ -9941,6 +9943,530 @@ function MonolithicArchitectureContent() {
             </h3>
             <p className="text-slate-700 dark:text-gray-300 mb-3">
               Monolithic applications can leverage AI assistance for identifying performance bottlenecks that benefit from the shared memory and direct function call advantages - intelligent suggestions for caching strategies, database query optimization, and algorithm improvements that take advantage of monolithic architecture&rsquo;s unified data access patterns
+            </p>
+          </div>
+        </div>
+      </section>
+    </article>
+  );
+}
+
+function ClientServerPatternsContent() {
+  return (
+    <article className="space-y-10">
+      {/* Key Concepts Section */}
+      <section id="key-concepts">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Key Concepts
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Request-Response Communication Architecture
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              The fundamental pattern where clients initiate requests and servers provide responses, forming the backbone of distributed systems communication
+            </p>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                HTTP-based protocols (REST APIs) enable stateless communication across distributed systems
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Synchronous requests provide immediate responses, critical for user-facing operations
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Asynchronous patterns (message queues, webhooks) handle high-volume background processing
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Enables horizontal scaling where multiple servers can handle identical request types
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Thin vs Thick Client Architecture
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Strategic distribution of processing responsibilities between client applications and server infrastructure
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Thin clients:
+                  </strong>{" "}
+                  Minimal processing power, rely heavily on server resources (web browsers, terminal applications)
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Thick clients:
+                  </strong>{" "}
+                  Substantial local processing, reduced server dependency (desktop applications, mobile apps with offline capabilities)
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Network bandwidth considerations become critical in high-latency or limited connectivity environments
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Security implications vary dramatically - thin clients centralize security on servers, thick clients require endpoint protection
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Load Distribution and Balancing Strategies
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Sophisticated patterns for distributing client requests across multiple server instances to achieve high availability and performance
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Round-robin distribution:
+                  </strong>{" "}
+                  Sequential request routing across available servers for even load distribution
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Weighted algorithms:
+                  </strong>{" "}
+                  Route requests based on server capacity, performance metrics, or geographic proximity
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Health-aware routing:
+                  </strong>{" "}
+                  Automatic failover mechanisms that redirect traffic from unhealthy instances
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Session affinity and sticky sessions for stateful applications requiring consistent server connections
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-orange-500 bg-orange-50/50 dark:bg-orange-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              API Communication Models and Protocols
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Modern approaches to structuring communication between clients and servers for optimal performance and developer experience
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    RESTful APIs:
+                  </strong>{" "}
+                  Resource-based URLs with standard HTTP methods (GET, POST, PUT, DELETE) for predictable interactions
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    GraphQL APIs:
+                  </strong>{" "}
+                  Query-based approach allowing clients to request exactly the data they need, reducing over-fetching
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    gRPC protocols:
+                  </strong>{" "}
+                  High-performance binary protocols for service-to-service communication in microservices architectures
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Content negotiation and versioning strategies for backwards compatibility as APIs evolve
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-indigo-500 bg-indigo-50/50 dark:bg-indigo-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Session Management and State Handling
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Strategies for maintaining user context and application state across distributed client-server interactions
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Stateless design:
+                  </strong>{" "}
+                  Each request contains all necessary information, enabling horizontal scaling and fault tolerance
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    JWT tokens:
+                  </strong>{" "}
+                  Self-contained authentication tokens that eliminate server-side session storage requirements
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Distributed caching:
+                  </strong>{" "}
+                  Redis or Memcached for shared session state across multiple server instances
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Client-side state management for offline capabilities and reduced server dependency
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Performance Comparison Table */}
+        <div className="mt-8">
+          <ComparisonTable
+            title="Client-Server Architecture Performance Comparison"
+            headers={["Metric", "Thin Client", "Thick Client"]}
+            rows={[
+              {
+                metric: "Network Dependency",
+                thin_client: "High - continuous server communication",
+                thick_client: "Low - periodic synchronization",
+              },
+              {
+                metric: "Processing Distribution",
+                thin_client: "Server-heavy, minimal client processing",
+                thick_client: "Balanced processing, significant client work",
+              },
+              {
+                metric: "Offline Capability",
+                thin_client: "Limited to cached content",
+                thick_client: "Full functionality with sync later",
+              },
+              {
+                metric: "Deployment Complexity",
+                thin_client: "Simple - browser or terminal",
+                thick_client: "Complex - application installation",
+              },
+              {
+                metric: "Security Model",
+                thin_client: "Centralized server security",
+                thick_client: "Distributed endpoint security",
+              },
+            ]}
+          />
+        </div>
+
+        {/* Enterprise Metrics */}
+        <div className="mt-8">
+          <MetricsCard
+            title="Enterprise Client-Server Performance Benchmarks"
+            metrics={[
+              {
+                label: "Typical API Response Time",
+                value: "< 100ms",
+                description: "95th percentile for production systems",
+                color: "green",
+              },
+              {
+                label: "Concurrent Connections",
+                value: "10K-100K",
+                description: "Per server instance with load balancing",
+                color: "blue",
+              },
+              {
+                label: "Load Balancer Overhead",
+                value: "< 1ms",
+                description: "Additional latency from traffic distribution",
+                color: "purple",
+              },
+              {
+                label: "Cache Hit Ratio",
+                value: "85-95%",
+                description: "For well-optimized client-server systems",
+                color: "orange",
+              },
+            ]}
+          />
+        </div>
+      </section>
+
+      {/* Business & Team Impact Section */}
+      <section id="business-team-impact">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
+          <TrendingUp className="w-6 h-6 text-green-500" />
+          Business &amp; Team Impact
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Multi-platform strategy and unified architecture
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Organizations serving diverse client types achieve significant development efficiency through well-designed server architectures
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Shopify:
+                  </strong>{" "}
+                  Unified API serving web, mobile, and POS clients - supporting 2+ million merchants with consistent data access patterns across all touchpoints
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Slack:
+                  </strong>{" "}
+                  Single backend architecture handles desktop, web, and mobile clients simultaneously - processing 10+ billion messages daily with consistent real-time delivery
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Spotify:
+                  </strong>{" "}
+                  Client-server architecture serves 400+ million users across web, desktop, mobile, smart speakers, and cars with synchronized playback state
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Common migration triggers and customer scenarios
+            </h3>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Performance bottlenecks:
+                  </strong>{" "}
+                  &ldquo;Our API response times degraded from 50ms to 2+ seconds under load&rdquo; (monolithic → distributed client-server)
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Multi-platform requirements:
+                  </strong>{" "}
+                  &ldquo;We need to support web, mobile, and IoT from the same backend without duplicating business logic&rdquo; (platform-specific → unified API)
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Scalability challenges:
+                  </strong>{" "}
+                  &ldquo;Adding servers doesn&rsquo;t improve performance because our architecture can&rsquo;t distribute load effectively&rdquo; (stateful → stateless design)
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Real-time communication needs:
+                  </strong>{" "}
+                  &ldquo;Users expect instant updates but our request-response model creates delays&rdquo; (polling → WebSocket/SSE implementation)
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Real-world success patterns and quantified outcomes
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Enterprise implementations demonstrate measurable improvements in performance, scalability, and operational efficiency
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Netflix:
+                  </strong>{" "}
+                  API gateway architecture handles 200+ billion requests daily, serving 240+ million subscribers globally with 99.9% uptime through sophisticated load distribution
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    GitHub:
+                  </strong>{" "}
+                  API-first architecture serves 100+ million developers through web, desktop, mobile, and CLI clients - processing 85+ million repositories with consistent performance
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Discord:
+                  </strong>{" "}
+                  Real-time client-server architecture supports 150+ million monthly active users with sub-100ms message delivery across voice, text, and video
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Zoom:
+                  </strong>{" "}
+                  Hybrid thin/thick client model enables 300+ million daily meeting participants with intelligent bandwidth adaptation and local processing optimization
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Client-Server Success Metrics */}
+        <div className="mt-8">
+          <MetricsCard
+            title="Client-Server Implementation Success Patterns"
+            metrics={[
+              {
+                label: "API-First Architecture Success Rate",
+                value: "85%",
+                description: "Organizations adopting unified backend design",
+                color: "green",
+              },
+              {
+                label: "Load Balancing Implementation Time",
+                value: "2-6 weeks",
+                description: "From single server to distributed architecture",
+                color: "blue",
+              },
+              {
+                label: "Performance Improvement",
+                value: "60-80%",
+                description: "Response time reduction with proper load distribution",
+                color: "purple",
+              },
+              {
+                label: "Development Velocity Increase",
+                value: "40-60%",
+                description: "Multi-platform development with unified APIs",
+                color: "orange",
+              },
+            ]}
+          />
+        </div>
+
+        <div className="border-l-4 border-yellow-500 bg-yellow-50/50 dark:bg-yellow-950/30 pl-6 py-4 rounded-r-lg">
+          <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+            Typical customer profiles driving client-server architecture adoption
+          </h3>
+          <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+            <li className="flex items-start gap-2">
+              <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+              <strong className="text-slate-700 dark:text-gray-300">
+                API-first companies:
+              </strong>{" "}
+              Organizations building products that serve multiple client types (web, mobile, IoT, partner integrations)
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+              <strong className="text-slate-700 dark:text-gray-300">
+                High-traffic applications:
+              </strong>{" "}
+              Systems processing millions of requests daily requiring sophisticated load distribution strategies
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+              <strong className="text-slate-700 dark:text-gray-300">
+                Real-time communication platforms:
+              </strong>{" "}
+              Applications requiring instant updates, live collaboration, or streaming capabilities
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+              <strong className="text-slate-700 dark:text-gray-300">
+                Global scale organizations:
+              </strong>{" "}
+              Companies serving users across multiple geographic regions requiring edge computing and CDN integration
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+              <strong className="text-slate-700 dark:text-gray-300">
+                Regulated industries:
+              </strong>{" "}
+              Financial services, healthcare, and government organizations requiring centralized security and audit trails
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      {/* Cursor Implementation Section */}
+      <section id="cursor-implementation">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Cursor Implementation Considerations
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              API design and optimization intelligence
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              AI assistance for architecting client-server communication patterns - intelligent suggestions for REST endpoint design, GraphQL schema optimization, and load balancing configuration based on traffic patterns and performance requirements, helping teams build scalable APIs that serve multiple client types efficiently
+            </p>
+          </div>
+
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Real-time communication implementation guidance
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Enterprise teams implementing WebSocket connections, Server-Sent Events, or polling strategies benefit from AI-powered architecture recommendations - context-aware suggestions for connection management, message routing, and fallback mechanisms that ensure reliable real-time communication across diverse client platforms and network conditions
+            </p>
+          </div>
+
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Performance optimization across client-server boundaries
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Complex client-server architectures require careful optimization of data transfer, caching strategies, and connection pooling - AI assistance can identify bottlenecks, suggest caching layer implementations, and recommend client-side optimization techniques that reduce server load while maintaining responsive user experiences across multiple platform types
             </p>
           </div>
         </div>
