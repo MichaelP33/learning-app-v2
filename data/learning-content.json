@@ -3490,12 +3490,7 @@
                     "type": "multiple-choice",
                     "points": 2,
                     "question": "Which company achieved 60% reduction in feature development time through SOLID principles?",
-                    "options": [
-                      "Amazon",
-                      "Microsoft",
-                      "Netflix",
-                      "Google"
-                    ],
+                    "options": ["Amazon", "Microsoft", "Netflix", "Google"],
                     "correctAnswer": 2,
                     "additionalContext": "Netflix achieved 60% reduction in feature development time through modular service architecture following SOLID principles. This demonstrates measurable business impact when design principles are applied systematically across enterprise software development teams.",
                     "keyConcepts": [
@@ -3509,12 +3504,7 @@
                     "type": "multiple-choice",
                     "points": 2,
                     "question": "Teams following SOLID principles typically report what improvement in bug reduction?",
-                    "options": [
-                      "20-30%",
-                      "30-40%",
-                      "40-50%",
-                      "50-70%"
-                    ],
+                    "options": ["20-30%", "30-40%", "40-50%", "50-70%"],
                     "correctAnswer": 3,
                     "additionalContext": "Teams following SOLID principles typically report 50-70% reduction in bugs due to isolated responsibilities and predictable interfaces. This significant improvement comes from better separation of concerns and clearer architectural boundaries.",
                     "keyConcepts": [
@@ -3588,7 +3578,206 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Common solutions to recurring design problems",
-              "topics": ["Creational", "Structural", "Behavioral"]
+              "topics": ["Creational", "Structural", "Behavioral"],
+              "quiz": {
+                "title": "Design Patterns Knowledge Quiz",
+                "totalQuestions": 10,
+                "totalPoints": 25,
+                "questions": [
+                  {
+                    "id": 1,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "What is the primary purpose of the Observer pattern?",
+                    "options": [
+                      "Define a one-to-many dependency between objects so when one changes state, all dependents are notified",
+                      "Create objects without specifying their exact class",
+                      "Ensure a class has only one instance",
+                      "Separate application logic into three components"
+                    ],
+                    "correctAnswer": 0,
+                    "additionalContext": "The Observer pattern establishes a subscription mechanism to notify multiple objects about events happening to the object they&rsquo;re observing. It&rsquo;s fundamental to event-driven architectures and reactive programming, enabling loose coupling between components.",
+                    "keyConcepts": [
+                      "Observer pattern",
+                      "event-driven architecture",
+                      "loose coupling"
+                    ]
+                  },
+                  {
+                    "id": 2,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "The Factory pattern is most beneficial when:",
+                    "options": [
+                      "You need to ensure thread safety",
+                      "You need to create objects without knowing their exact types until runtime",
+                      "You want to limit access to a shared resource",
+                      "You need to separate presentation from business logic"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Factory patterns excel when object creation logic is complex or when the specific type of object to create is determined at runtime. This is crucial for plugin architectures and extensible systems where new types can be added without modifying existing code.",
+                    "keyConcepts": [
+                      "Factory pattern",
+                      "runtime object creation",
+                      "extensible systems"
+                    ]
+                  },
+                  {
+                    "id": 3,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "What is the main risk of implementing the Singleton pattern incorrectly?",
+                    "options": [
+                      "Memory leaks from unused objects",
+                      "Difficulty in unit testing",
+                      "Threading issues and race conditions",
+                      "Increased coupling between components"
+                    ],
+                    "correctAnswer": 2,
+                    "additionalContext": "Singleton pattern implementation must carefully handle thread safety to prevent race conditions where multiple threads could create multiple instances. This is especially critical in distributed systems and multi-threaded applications common in enterprise environments.",
+                    "keyConcepts": [
+                      "Singleton pattern",
+                      "thread safety",
+                      "race conditions"
+                    ]
+                  },
+                  {
+                    "id": 4,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "In the MVC pattern, which component handles user input and coordinates between Model and View?",
+                    "options": [
+                      "Model - manages data and business logic",
+                      "View - handles presentation and user interface",
+                      "Service - manages external communications",
+                      "Controller - processes user input and coordinates responses"
+                    ],
+                    "correctAnswer": 3,
+                    "additionalContext": "The Controller acts as an intermediary between Model and View, processing user input, updating the Model when necessary, and selecting the appropriate View for response. This separation enables parallel development of different application layers.",
+                    "keyConcepts": [
+                      "MVC pattern",
+                      "Controller component",
+                      "separation of concerns"
+                    ]
+                  },
+                  {
+                    "id": 5,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "How does the Observer pattern contribute to system scalability?",
+                    "options": [
+                      "By reducing memory usage through shared instances",
+                      "By enabling asynchronous event processing and loose coupling between components",
+                      "By centralizing object creation in a single location",
+                      "By providing a single point of access to shared resources"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Observer pattern enables asynchronous event processing where observers can handle notifications independently, reducing system bottlenecks. The loose coupling means new observers can be added without modifying existing code, supporting system growth and evolution.",
+                    "keyConcepts": [
+                      "Observer pattern",
+                      "asynchronous processing",
+                      "system scalability"
+                    ]
+                  },
+                  {
+                    "id": 6,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "What advantage does the Factory pattern provide for testing?",
+                    "options": [
+                      "Eliminates the need for mock objects",
+                      "Reduces test execution time",
+                      "Enables injection of test doubles and mock implementations",
+                      "Automatically generates test cases"
+                    ],
+                    "correctAnswer": 2,
+                    "additionalContext": "Factory patterns facilitate testing by allowing injection of test doubles or mock implementations instead of real objects. This is essential for unit testing where external dependencies need to be isolated and controlled.",
+                    "keyConcepts": [
+                      "Factory pattern",
+                      "test doubles",
+                      "dependency injection"
+                    ]
+                  },
+                  {
+                    "id": 7,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Why is the MVC pattern particularly valuable in enterprise applications?",
+                    "options": [
+                      "It reduces server memory requirements",
+                      "It automatically handles database transactions",
+                      "It improves application security",
+                      "It enables parallel development and maintains clear separation of concerns"
+                    ],
+                    "correctAnswer": 3,
+                    "additionalContext": "MVC enables different teams to work on Model (data/business logic), View (UI), and Controller (request handling) components simultaneously. This parallel development capability is crucial for large enterprise teams and accelerates delivery timelines.",
+                    "keyConcepts": [
+                      "MVC pattern",
+                      "parallel development",
+                      "enterprise applications"
+                    ]
+                  },
+                  {
+                    "id": 8,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "In enterprise systems, design patterns primarily help with:",
+                    "options": [
+                      "Reducing application startup time and improving performance",
+                      "Providing proven solutions to recurring design problems and improving code maintainability",
+                      "Automatically generating documentation",
+                      "Eliminating the need for code reviews"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Design patterns provide battle-tested solutions to common design challenges, making code more maintainable, understandable, and extensible. This is particularly valuable in enterprise environments where code longevity and team collaboration are critical.",
+                    "keyConcepts": [
+                      "design patterns",
+                      "code maintainability",
+                      "enterprise systems"
+                    ]
+                  },
+                  {
+                    "id": 9,
+                    "type": "freeform",
+                    "points": 4,
+                    "question": "Explain how Slack&rsquo;s implementation of the Observer pattern enables real-time messaging for 12+ million daily active users. Describe the specific benefits this pattern provides for maintaining consistent state synchronization across distributed clients.",
+                    "additionalContext": "Slack processes millions of real-time messages daily across distributed clients. The Observer pattern is crucial for maintaining consistent state across all connected clients when messages, presence updates, or channel changes occur.",
+                    "keyConcepts": [
+                      "Observer pattern implementation",
+                      "real-time messaging architecture",
+                      "distributed state synchronization",
+                      "enterprise scale systems"
+                    ],
+                    "sampleStrongResponse": "Slack implements the Observer pattern through a distributed event system where message channels act as subjects and connected clients act as observers. When a user sends a message, the channel notifies all subscribed clients simultaneously, ensuring consistent state across all users. The pattern&rsquo;s loose coupling allows clients to handle notifications asynchronously, preventing slow clients from blocking others. This architecture supports horizontal scaling by allowing multiple server instances to manage different observer groups, enabling Slack to handle 12+ million daily active users. The pattern also facilitates real-time features like typing indicators, presence updates, and file sharing notifications without requiring complex point-to-point communication between all clients.",
+                    "customScoringCriteria": {
+                      "excellent": "Explains distributed Observer implementation, describes loose coupling benefits, mentions asynchronous processing, discusses horizontal scaling capabilities, and connects to real-time features (4 points)",
+                      "good": "Describes Observer pattern application, mentions distributed clients, explains state synchronization, and discusses scaling benefits (3 points)",
+                      "satisfactory": "Identifies Observer pattern usage, mentions real-time messaging, and describes basic synchronization (2 points)",
+                      "needsImprovement": "Shows basic understanding of pattern but lacks enterprise context or implementation details (1 point)"
+                    }
+                  },
+                  {
+                    "id": 10,
+                    "type": "freeform",
+                    "points": 5,
+                    "question": "Analyze how Airbnb uses the Factory pattern to manage diverse property types across 220+ countries. Explain how this pattern enables the platform to handle different accommodation types, booking workflows, and localization requirements while maintaining code maintainability for a large engineering organization.",
+                    "additionalContext": "Airbnb manages millions of properties ranging from apartments and houses to unique stays like treehouses and castles, each with different booking rules, pricing models, and local regulations across 220+ countries and regions.",
+                    "keyConcepts": [
+                      "Factory pattern at enterprise scale",
+                      "polymorphic object creation",
+                      "international business requirements",
+                      "code maintainability in large organizations"
+                    ],
+                    "sampleStrongResponse": "Airbnb implements Factory patterns to create property objects dynamically based on type, location, and local requirements. The PropertyFactory creates different property implementations (StandardProperty, UniqueStay, Experience) each with specialized booking workflows, pricing algorithms, and compliance rules. Country-specific factories handle localization requirements like currency, legal terms, tax calculations, and regulatory compliance without duplicating core business logic. This pattern enables Airbnb&rsquo;s engineering teams to add new property types or expand to new countries by implementing new factory methods rather than modifying existing code. The abstraction allows independent development of property-specific features while maintaining consistent interfaces for search, booking, and payment systems. For enterprise maintainability, the pattern provides clear extension points where teams can add functionality without impacting existing code paths, supporting Airbnb&rsquo;s rapid global expansion and diverse accommodation portfolio.",
+                    "customScoringCriteria": {
+                      "excellent": "Describes dynamic object creation, explains property type diversity, discusses localization handling, mentions team collaboration benefits, and addresses enterprise maintainability (5 points)",
+                      "good": "Explains Factory implementation, describes property variations, mentions location-specific requirements, and discusses code organization (4 points)",
+                      "satisfactory": "Identifies Factory pattern usage, mentions different property types, and describes basic extensibility (3 points)",
+                      "needsImprovement": "Shows basic pattern understanding but lacks enterprise context or specific implementation details (1-2 points)"
+                    }
+                  }
+                ]
+              }
             },
             {
               "id": "domain-driven-design",
@@ -3636,7 +3825,206 @@
                 "Service Boundaries",
                 "Independent Deployment",
                 "Distributed Systems"
-              ]
+              ],
+              "quiz": {
+                "title": "Microservices Architecture Knowledge Quiz",
+                "totalQuestions": 10,
+                "totalPoints": 25,
+                "questions": [
+                  {
+                    "id": 1,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "What is the primary advantage of microservices over monolithic architecture?",
+                    "options": [
+                      "Independent development, deployment, and scaling of services by autonomous teams",
+                      "Reduced network latency between components",
+                      "Simplified debugging and monitoring",
+                      "Lower infrastructure costs"
+                    ],
+                    "correctAnswer": 0,
+                    "additionalContext": "Microservices enable teams to work independently on different services, deploy them separately, and scale them based on individual demand. This autonomy is crucial for large organizations with multiple engineering teams working on different business capabilities.",
+                    "keyConcepts": [
+                      "microservices architecture",
+                      "independent deployment",
+                      "team autonomy"
+                    ]
+                  },
+                  {
+                    "id": 2,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "How should service boundaries be defined in microservices architecture?",
+                    "options": [
+                      "Based on technical layers (database, API, UI)",
+                      "Around business capabilities and domain expertise",
+                      "According to team size and organization chart",
+                      "By programming language or technology stack"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Service boundaries should align with business capabilities and domain expertise, following Domain-Driven Design principles. This ensures that each service owns a complete business function and can evolve independently based on business needs rather than technical constraints.",
+                    "keyConcepts": [
+                      "service boundaries",
+                      "business capabilities",
+                      "domain-driven design"
+                    ]
+                  },
+                  {
+                    "id": 3,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "What is the biggest challenge when implementing microservices architecture?",
+                    "options": [
+                      "Increased memory usage per service",
+                      "Difficulty in choosing programming languages",
+                      "Managing distributed system complexity, networking, and data consistency",
+                      "Higher licensing costs for development tools"
+                    ],
+                    "correctAnswer": 2,
+                    "additionalContext": "Microservices introduce distributed system complexities including network failures, eventual consistency, distributed transactions, and monitoring across multiple services. These operational challenges require sophisticated tooling and expertise to manage effectively.",
+                    "keyConcepts": [
+                      "distributed systems",
+                      "operational complexity",
+                      "data consistency"
+                    ]
+                  },
+                  {
+                    "id": 4,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Why do microservices typically use separate databases per service?",
+                    "options": [
+                      "To reduce database licensing costs",
+                      "To improve database performance",
+                      "To enable service autonomy and avoid shared database anti-patterns",
+                      "To simplify backup and recovery procedures"
+                    ],
+                    "correctAnswer": 2,
+                    "additionalContext": "Each service should own its data to maintain autonomy and avoid coupling through shared databases. This enables services to choose appropriate data storage technologies for their specific needs and allows independent schema evolution without affecting other services.",
+                    "keyConcepts": [
+                      "data ownership",
+                      "service autonomy",
+                      "database per service"
+                    ]
+                  },
+                  {
+                    "id": 5,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Which communication pattern is most suitable for microservices that need to maintain loose coupling?",
+                    "options": [
+                      "Synchronous HTTP API calls for all communication",
+                      "Asynchronous messaging and event-driven communication where appropriate",
+                      "Direct database connections between services",
+                      "Shared memory for high-performance communication"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Asynchronous messaging and event-driven communication help maintain loose coupling by allowing services to communicate without being directly dependent on each other&rsquo;s availability. This improves system resilience and enables independent service evolution.",
+                    "keyConcepts": [
+                      "asynchronous messaging",
+                      "event-driven architecture",
+                      "loose coupling"
+                    ]
+                  },
+                  {
+                    "id": 6,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "What role does containerization play in microservices deployment?",
+                    "options": [
+                      "It eliminates the need for load balancing",
+                      "It automatically handles service discovery",
+                      "It provides consistent deployment environments and enables easy scaling",
+                      "It reduces the number of services needed"
+                    ],
+                    "correctAnswer": 2,
+                    "additionalContext": "Containerization ensures consistent environments across development, testing, and production while enabling easy scaling and deployment of individual services. Technologies like Docker and Kubernetes are essential for managing microservices at scale.",
+                    "keyConcepts": [
+                      "containerization",
+                      "deployment consistency",
+                      "service scaling"
+                    ]
+                  },
+                  {
+                    "id": 7,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "How do microservices impact team organization and development velocity?",
+                    "options": [
+                      "Teams must work more closely together on shared codebases",
+                      "Development velocity decreases due to coordination overhead",
+                      "Teams can work more independently and deploy faster once architecture matures",
+                      "All teams must use the same programming languages and frameworks"
+                    ],
+                    "correctAnswer": 2,
+                    "additionalContext": "Microservices enable team autonomy where each team can own end-to-end responsibility for their services. While initial setup requires coordination, mature microservices architectures allow teams to develop and deploy independently, significantly increasing overall development velocity.",
+                    "keyConcepts": [
+                      "team autonomy",
+                      "development velocity",
+                      "independent deployment"
+                    ]
+                  },
+                  {
+                    "id": 8,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "What is essential for monitoring and observability in microservices architectures?",
+                    "options": [
+                      "Distributed tracing, centralized logging, and comprehensive metrics across all services",
+                      "Traditional server monitoring tools only",
+                      "Manual testing of each service individually",
+                      "Database performance monitoring exclusively"
+                    ],
+                    "correctAnswer": 0,
+                    "additionalContext": "Microservices require sophisticated observability including distributed tracing to follow requests across services, centralized logging for debugging, and comprehensive metrics to understand system health. This visibility is crucial for maintaining complex distributed systems.",
+                    "keyConcepts": [
+                      "distributed tracing",
+                      "observability",
+                      "system monitoring"
+                    ]
+                  },
+                  {
+                    "id": 9,
+                    "type": "freeform",
+                    "points": 4,
+                    "question": "Analyze how Netflix&rsquo;s microservices architecture enables them to operate 1000+ services supporting 230+ million subscribers with 99.97% uptime. Describe the specific architectural decisions and operational practices that make this scale and reliability possible.",
+                    "additionalContext": "Netflix operates one of the world&rsquo;s largest microservices architectures, serving billions of requests daily across global infrastructure. Their architecture must handle massive scale, ensure high availability, and support rapid feature development by hundreds of engineering teams.",
+                    "keyConcepts": [
+                      "enterprise microservices scale",
+                      "high availability architecture",
+                      "operational excellence",
+                      "distributed system reliability"
+                    ],
+                    "sampleStrongResponse": "Netflix achieves this scale through several key architectural decisions: service isolation using containers and Kubernetes for independent scaling, circuit breakers and fallback mechanisms to prevent cascade failures, eventual consistency patterns to handle distributed data, and comprehensive observability with distributed tracing across all services. They implement chaos engineering to proactively test system resilience, use blue-green deployments for zero-downtime releases, and maintain service ownership where each team is responsible for their service&rsquo;s entire lifecycle. Their content delivery network and regional isolation ensure global performance, while automated rollback capabilities and progressive deployment strategies minimize blast radius during releases. The 99.97% uptime is achieved through redundancy, graceful degradation, and sophisticated monitoring that enables rapid incident response.",
+                    "customScoringCriteria": {
+                      "excellent": "Describes service isolation, discusses failure handling mechanisms, mentions observability and monitoring, explains deployment strategies, and addresses global scale challenges (4 points)",
+                      "good": "Explains microservices benefits, mentions resilience patterns, discusses scaling approaches, and describes operational practices (3 points)",
+                      "satisfactory": "Identifies key microservices concepts, mentions Netflix&rsquo;s scale, and describes basic reliability approaches (2 points)",
+                      "needsImprovement": "Shows basic understanding but lacks specific architectural details or operational context (1 point)"
+                    }
+                  },
+                  {
+                    "id": 10,
+                    "type": "freeform",
+                    "points": 5,
+                    "question": "Examine how Amazon&rsquo;s microservices architecture enables teams to deploy every 11.7 seconds across thousands of services. Explain the organizational, technical, and operational changes required to achieve this deployment frequency while maintaining system reliability and business continuity.",
+                    "additionalContext": "Amazon&rsquo;s deployment frequency represents one of the highest in the industry, requiring sophisticated automation, organizational alignment, and technical practices. This capability directly supports their business agility and competitive advantage in multiple markets.",
+                    "keyConcepts": [
+                      "continuous deployment at scale",
+                      "organizational alignment",
+                      "deployment automation",
+                      "business agility through architecture"
+                    ],
+                    "sampleStrongResponse": "Amazon&rsquo;s deployment frequency is enabled by several integrated practices: complete automation of build, test, and deployment pipelines with comprehensive automated testing at multiple levels, service ownership where teams have full responsibility for their service lifecycle including on-call duties, immutable infrastructure using containers and infrastructure-as-code, feature flags for safe progressive rollouts, and sophisticated monitoring with automatic rollback capabilities. Organizationally, they implement small autonomous teams (two-pizza teams) with clear service boundaries aligned to business capabilities. Technical practices include canary deployments, blue-green deployments, circuit breakers for fault isolation, and comprehensive observability for rapid issue detection. The architecture supports independent deployments through well-defined APIs and eventual consistency patterns. This deployment capability enables rapid experimentation, quick response to market changes, and continuous feature delivery that directly supports Amazon&rsquo;s competitive advantage across their diverse business portfolio.",
+                    "customScoringCriteria": {
+                      "excellent": "Describes automation infrastructure, explains organizational structure, discusses technical practices, mentions business impact, and addresses reliability mechanisms (5 points)",
+                      "good": "Explains deployment automation, describes team organization, mentions technical practices, and discusses scaling benefits (4 points)",
+                      "satisfactory": "Identifies key deployment concepts, mentions Amazon&rsquo;s practices, and describes basic automation approaches (3 points)",
+                      "needsImprovement": "Shows basic understanding but lacks integration of organizational, technical, and business aspects (1-2 points)"
+                    }
+                  }
+                ]
+              }
             },
             {
               "id": "client-server-patterns",

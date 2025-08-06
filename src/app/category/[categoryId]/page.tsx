@@ -1,9 +1,6 @@
-"use client";
-
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, BookOpen } from "lucide-react";
-import { useState, useEffect } from "react";
 import {
   getCategoryById,
   calculateTopicProgress,
@@ -20,36 +17,15 @@ interface CategoryPageProps {
   }>;
 }
 
-export default function CategoryPage({ params }: CategoryPageProps) {
-  const [categoryId, setCategoryId] = useState<string>("");
-  const [isHydrated, setIsHydrated] = useState(false);
-  const [categoryProficiency, setCategoryProficiency] = useState(0);
+export default async function CategoryPage({ params }: CategoryPageProps) {
+  const { categoryId } = await params;
+  const category = getCategoryById(categoryId);
 
-  useEffect(() => {
-    // Get categoryId from params
-    params.then(({ categoryId }) => {
-      setCategoryId(categoryId);
-    });
-  }, [params]);
-
-  useEffect(() => {
-    if (!categoryId) return;
-
-    // Calculate proficiency on client side after hydration
-    const proficiency = calculateCategoryProficiency(categoryId);
-    setCategoryProficiency(proficiency);
-    setIsHydrated(true);
-  }, [categoryId]);
-
-  const category = categoryId ? getCategoryById(categoryId) : null;
-
-  if (categoryId && !category) {
+  if (!category) {
     notFound();
   }
 
-  if (!category) {
-    return <div>Loading...</div>;
-  }
+  const categoryProficiency = calculateCategoryProficiency(categoryId);
 
   const categoryProgress = category.topics.reduce(
     (acc, topic) => {
@@ -94,7 +70,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
               </div>
               <div className="text-center">
                 <div className="text-2xl font-bold text-purple-600 dark:text-purple-400">
-                  {completedPercentage}%
+                  {Math.round(categoryProficiency)}%
                 </div>
                 <div className="text-sm text-gray-600 dark:text-gray-400">
                   Proficiency
@@ -135,13 +111,13 @@ export default function CategoryPage({ params }: CategoryPageProps) {
             <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3 overflow-hidden mb-2">
               <div
                 className={`h-full bg-gradient-to-r ${category.color} transition-all duration-500 ease-out`}
-                style={{ width: `${isHydrated ? categoryProficiency : 0}%` }}
+                style={{ width: `${categoryProficiency}%` }}
               />
             </div>
 
             <div className="text-center">
               <div className="text-lg font-bold text-gray-900 dark:text-white mb-1">
-                {isHydrated ? `${categoryProficiency}%` : "0%"}
+                {Math.round(categoryProficiency)}%
               </div>
               <div className="text-sm text-gray-600 dark:text-gray-400">
                 Proficiency Rating

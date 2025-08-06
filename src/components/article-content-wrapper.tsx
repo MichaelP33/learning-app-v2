@@ -179,6 +179,12 @@ export function ArticleContentWrapper({
                     <CodeReusabilityContent />
                   ) : article.id === "documentation-naming" ? (
                     <DocumentationNamingContent />
+                  ) : article.id === "solid-principles" ? (
+                    <SOLIDPrinciplesContent />
+                  ) : article.id === "design-patterns" ? (
+                    <DesignPatternsContent />
+                  ) : article.id === "microservices-architecture" ? (
+                    <MicroservicesArchitectureContent />
                   ) : (
                     <DefaultArticleContent article={article} />
                   )}
@@ -8229,5 +8235,1271 @@ function ArticleNavigation({
         </div>
       )}
     </div>
+  );
+}
+
+// Software Architecture & Design Content Components
+
+function SOLIDPrinciplesContent() {
+  return (
+    <article className="space-y-10">
+      {/* Key Concepts Section */}
+      <section id="key-concepts">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Key Concepts
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Single Responsibility Principle (SRP)
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Each class should have exactly one reason to change, focusing on a
+              single concern or responsibility
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Microservices alignment:
+                  </strong>{" "}
+                  Critical for service boundaries where each service owns a
+                  complete business capability (user management, payment
+                  processing, inventory tracking)
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Testing efficiency:
+                  </strong>{" "}
+                  Reduces test complexity by 40-60% since each class has clearly
+                  defined inputs, outputs, and behaviors
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Change isolation:
+                  </strong>{" "}
+                  Database schema changes only affect data access classes, UI
+                  changes only affect presentation layers
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Open/Closed Principle (OCP)
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Software entities should be open for extension but closed for
+              modification through polymorphism and abstraction
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Plugin architectures:
+                  </strong>{" "}
+                  Enables adding payment providers, authentication methods, or
+                  notification channels without touching core business logic
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Strategy pattern implementation:
+                  </strong>{" "}
+                  Different algorithms (pricing strategies, recommendation
+                  engines, fraud detection) can be swapped without system
+                  changes
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Deployment risk reduction:
+                  </strong>{" "}
+                  New features extend existing functionality rather than
+                  modifying tested code paths
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Liskov Substitution Principle (LSP)
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Objects of a superclass must be replaceable with objects of any
+              subclass without breaking application functionality
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Database abstraction layers:
+                  </strong>{" "}
+                  MySQL, PostgreSQL, or MongoDB implementations must honor the
+                  same contracts for data operations
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Service interface consistency:
+                  </strong>{" "}
+                  REST API, GraphQL, or gRPC implementations of the same service
+                  interface must provide identical behavior
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Testing confidence:
+                  </strong>{" "}
+                  Mock objects in tests behave identically to production
+                  implementations, ensuring test reliability
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-orange-500 bg-orange-50/50 dark:bg-orange-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Interface Segregation Principle (ISP)
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Clients should depend only on interfaces they actually use,
+              avoiding forced dependencies on unused functionality
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    API design optimization:
+                  </strong>{" "}
+                  Mobile apps use lightweight user interfaces while admin
+                  dashboards access comprehensive management interfaces
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Team boundaries:
+                  </strong>{" "}
+                  Frontend teams depend on display-focused interfaces while
+                  backend teams use data-processing interfaces
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Deployment independence:
+                  </strong>{" "}
+                  Changes to admin functionality don&rsquo;t require redeploying
+                  customer-facing services
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-red-500 bg-red-50/50 dark:bg-red-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Dependency Inversion Principle (DIP)
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              High-level modules define interfaces that low-level modules
+              implement, inverting traditional dependency flows
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Framework architecture foundation:
+                  </strong>{" "}
+                  Spring, Angular, and .NET Core use dependency injection
+                  containers to manage object lifecycles and dependencies
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Testing enablement:
+                  </strong>{" "}
+                  Business logic depends on database interfaces, allowing mock
+                  databases in tests without changing application code
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Infrastructure flexibility:
+                  </strong>{" "}
+                  Applications can switch between cloud providers, databases, or
+                  messaging systems through configuration changes
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {/* SOLID Implementation Impact Metrics */}
+        <div className="mt-8">
+          <MetricsCard
+            title="SOLID Implementation Impact on Enterprise Development"
+            metrics={[
+              {
+                label: "Code Review Efficiency",
+                value: "50-70%",
+                description:
+                  "Faster reviews due to predictable structure and clear responsibilities",
+                color: "green",
+              },
+              {
+                label: "Bug Reduction",
+                value: "30-45%",
+                description:
+                  "Fewer defects from isolated changes and dependency clarity",
+                color: "blue",
+              },
+              {
+                label: "Team Velocity Increase",
+                value: "40-60%",
+                description:
+                  "Parallel development enabled by loosely coupled components",
+                color: "purple",
+              },
+              {
+                label: "Technical Debt Decrease",
+                value: "35-50%",
+                description:
+                  "Extensible architecture reduces need for refactoring",
+                color: "orange",
+              },
+            ]}
+          />
+        </div>
+      </section>
+
+      {/* Business & Team Impact Section */}
+      <section id="business-team-impact">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
+          <TrendingUp className="w-6 h-6 text-green-500" />
+          Business &amp; Team Impact
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Enterprise adoption patterns with quantified outcomes
+            </h3>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Netflix:
+                  </strong>{" "}
+                  Microservices architecture following SOLID principles enabled
+                  60% reduction in feature development time across 1000+
+                  services
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Spotify:
+                  </strong>{" "}
+                  Interface segregation and dependency inversion principles
+                  enable parallel development across 200+ autonomous squads
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Amazon:
+                  </strong>{" "}
+                  SOLID-based service architecture supports independent
+                  deployment of thousands of services with 99.95% uptime
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-yellow-500 bg-yellow-50/50 dark:bg-yellow-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Common customer triggers driving SOLID adoption decisions
+            </h3>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Code maintenance crisis:
+                  </strong>{" "}
+                  &ldquo;Every small change breaks something unexpected - our
+                  deployment confidence is near zero&rdquo;
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Team scaling bottlenecks:
+                  </strong>{" "}
+                  &ldquo;We doubled our engineering team but our feature
+                  delivery actually slowed down&rdquo;
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Testing inefficiency:
+                  </strong>{" "}
+                  &ldquo;Our test suite takes 4 hours to run and still
+                  doesn&rsquo;t catch integration issues&rdquo;
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Customer profiles and implementation drivers
+            </h3>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Series B-C startups
+                  </strong>{" "}
+                  with 50-200 engineers facing architecture scalability
+                  challenges as codebases exceed manageable complexity
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Enterprise software vendors
+                  </strong>{" "}
+                  needing plugin architectures and customization capabilities
+                  for diverse customer requirements
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Financial services organizations
+                  </strong>{" "}
+                  requiring audit trails, compliance verification, and risk
+                  isolation through clear architectural boundaries
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Cursor Implementation Section */}
+      <section id="cursor-implementation">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Cursor Implementation Considerations
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              AI-assisted architectural refactoring
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Cursor excels at identifying SOLID principle violations in
+              existing codebases and suggesting refactoring patterns. Teams can
+              leverage AI context understanding to automatically detect single
+              responsibility violations, suggest interface segregation
+              opportunities, and recommend dependency injection patterns that
+              align with enterprise architectural standards.
+            </p>
+          </div>
+
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Enterprise code generation with architectural consistency
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Organizations implementing SOLID principles can train Cursor on
+              their architectural patterns to generate code that automatically
+              follows dependency inversion, interface segregation, and single
+              responsibility patterns. This ensures new features maintain
+              architectural consistency while accelerating development velocity
+              across large engineering teams.
+            </p>
+          </div>
+
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Legacy modernization and technical debt reduction
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Teams with large codebases violating SOLID principles can use
+              Cursor&rsquo;s codebase understanding to identify refactoring
+              opportunities, suggest interface extractions, and recommend
+              dependency injection implementations. The AI can help prioritize
+              refactoring efforts based on code change frequency and business
+              impact, enabling systematic technical debt reduction.
+            </p>
+          </div>
+        </div>
+      </section>
+    </article>
+  );
+}
+
+function DesignPatternsContent() {
+  return (
+    <article className="space-y-10">
+      {/* Key Concepts Section */}
+      <section id="key-concepts">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Key Concepts
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Observer Pattern
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Establishes a one-to-many dependency relationship where state
+              changes in one object automatically notify all dependent objects
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Real-time systems foundation:
+                  </strong>{" "}
+                  Enables live updates in chat applications, collaborative
+                  editing tools (Google Docs), and stock trading platforms where
+                  multiple UI components must reflect state changes instantly
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Event-driven architecture:
+                  </strong>{" "}
+                  Critical for microservices communication where services
+                  publish events and multiple subscribers react without tight
+                  coupling
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Performance optimization:
+                  </strong>{" "}
+                  Reduces polling by 80-90% since components receive
+                  notifications only when changes occur, not on scheduled
+                  intervals
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Factory Pattern
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Provides an interface for creating objects without specifying
+              their concrete classes, enabling runtime flexibility in object
+              instantiation
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Multi-tenant architectures:
+                  </strong>{" "}
+                  Creates different database connection types, logging
+                  strategies, or payment processors based on customer tier or
+                  geographic region
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Plugin systems:
+                  </strong>{" "}
+                  Enables runtime loading of third-party integrations (payment
+                  gateways, authentication providers, notification services)
+                  without code changes
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Testing facilitation:
+                  </strong>{" "}
+                  Centralizes object creation logic, making it 60% easier to
+                  inject mock objects during testing without modifying client
+                  code
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-orange-500 bg-orange-50/50 dark:bg-orange-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Singleton Pattern
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Restricts class instantiation to a single object while providing
+              global access, ensuring shared resources have controlled access
+              points
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Resource management:
+                  </strong>{" "}
+                  Controls access to expensive resources like database
+                  connection pools, cache managers, and configuration registries
+                  across application lifetime
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Cross-cutting concerns:
+                  </strong>{" "}
+                  Manages application-wide services like logging, metrics
+                  collection, and feature flag systems that need consistent
+                  behavior
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Concurrency considerations:
+                  </strong>{" "}
+                  Requires careful implementation in multithreaded environments
+                  using double-checked locking or enum-based patterns for thread
+                  safety
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Model-View-Controller (MVC)
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Separates application logic into three interconnected components:
+              data handling (Model), user interface (View), and business logic
+              coordination (Controller)
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Team specialization enablement:
+                  </strong>{" "}
+                  Frontend teams work on Views, backend teams focus on Models
+                  and Controllers, allowing parallel development with clear
+                  boundaries
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Platform flexibility:
+                  </strong>{" "}
+                  Same Model and Controller logic supports web interfaces,
+                  mobile apps, and API endpoints without duplication
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Framework foundation:
+                  </strong>{" "}
+                  Underlies Spring MVC, ASP.NET MVC, Ruby on Rails, and Django,
+                  providing proven architectural patterns for enterprise
+                  applications
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Design Pattern Usage Impact Metrics */}
+        <div className="mt-8">
+          <MetricsCard
+            title="Design Pattern Implementation Benefits in Enterprise Teams"
+            metrics={[
+              {
+                label: "Code Review Velocity",
+                value: "45-65%",
+                description:
+                  "Faster reviews due to recognized patterns and standardized solutions",
+                color: "green",
+              },
+              {
+                label: "Onboarding Time Reduction",
+                value: "30-50%",
+                description:
+                  "New developers understand codebase faster with familiar patterns",
+                color: "blue",
+              },
+              {
+                label: "Bug Prevention",
+                value: "25-40%",
+                description:
+                  "Proven patterns reduce common architectural mistakes",
+                color: "purple",
+              },
+              {
+                label: "Refactoring Safety",
+                value: "60-80%",
+                description:
+                  "Pattern-based code is more predictable to modify and extend",
+                color: "orange",
+              },
+            ]}
+          />
+        </div>
+      </section>
+
+      {/* Business & Team Impact Section */}
+      <section id="business-team-impact">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
+          <TrendingUp className="w-6 h-6 text-green-500" />
+          Business &amp; Team Impact
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Enterprise adoption patterns with quantified outcomes
+            </h3>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Slack:
+                  </strong>{" "}
+                  Observer pattern enables real-time messaging synchronization
+                  across 12+ million daily active users with 99.99% message
+                  delivery consistency
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Airbnb:
+                  </strong>{" "}
+                  Factory pattern manages 150+ property types and booking
+                  workflows across 220+ countries, reducing code duplication by
+                  70%
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Meta (Facebook):
+                  </strong>{" "}
+                  MVC architecture supports 3+ billion users through clear
+                  separation enabling independent scaling of data, logic, and
+                  presentation layers
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-yellow-500 bg-yellow-50/50 dark:bg-yellow-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Common customer triggers driving design pattern adoption
+            </h3>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Code duplication explosion:
+                  </strong>{" "}
+                  &ldquo;We&rsquo;re copying the same object creation logic
+                  everywhere and bugs multiply across the codebase&rdquo;
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Team coordination breakdown:
+                  </strong>{" "}
+                  &ldquo;Frontend and backend teams keep stepping on each other
+                  - we need clear separation&rdquo;
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    State synchronization chaos:
+                  </strong>{" "}
+                  &ldquo;Users see different data in different parts of the
+                  application - our state management is broken&rdquo;
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Customer profiles and implementation drivers
+            </h3>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    High-growth SaaS companies
+                  </strong>{" "}
+                  with 100-500 engineers needing architectural consistency as
+                  multiple teams build interconnected features rapidly
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Enterprise platform providers
+                  </strong>{" "}
+                  requiring extensible architectures that support customer
+                  customizations and third-party integrations
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Real-time application developers
+                  </strong>{" "}
+                  building collaborative tools, gaming platforms, or financial
+                  trading systems requiring instant state synchronization
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Cursor Implementation Section */}
+      <section id="cursor-implementation">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Cursor Implementation Considerations
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              AI-assisted pattern recognition and implementation
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Cursor excels at identifying opportunities to apply design
+              patterns in existing code and generating pattern-compliant
+              implementations. Teams can leverage AI understanding to
+              automatically suggest Observer pattern implementations for state
+              management, Factory patterns for object creation consolidation,
+              and MVC separation in monolithic codebases.
+            </p>
+          </div>
+
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Enterprise pattern standardization
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Organizations can establish design pattern standards and train
+              Cursor on their preferred implementations. This ensures new code
+              follows established patterns while helping teams identify when
+              existing code violates architectural principles. AI assistance
+              accelerates pattern adoption across large engineering teams by
+              generating compliant boilerplate and suggesting pattern-based
+              refactoring approaches.
+            </p>
+          </div>
+
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Legacy pattern modernization
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Teams working with legacy codebases can use Cursor&rsquo;s
+              contextual understanding to identify anti-patterns and suggest
+              modern design pattern implementations. The AI can help migrate
+              from tightly coupled architectures to Observer-based event
+              systems, replace hardcoded object creation with Factory patterns,
+              and extract MVC separation from monolithic structures while
+              maintaining backward compatibility.
+            </p>
+          </div>
+        </div>
+      </section>
+    </article>
+  );
+}
+
+function MicroservicesArchitectureContent() {
+  return (
+    <article className="space-y-10">
+      {/* Key Concepts Section */}
+      <section id="key-concepts">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Key Concepts
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Independent Service Deployment
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Each service operates as an autonomous unit with its own
+              development lifecycle, enabling continuous deployment without
+              affecting other services
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Deployment isolation:
+                  </strong>{" "}
+                  Teams can release updates 50x more frequently (from monthly to
+                  multiple times daily) without coordinating with other teams or
+                  risking system-wide outages
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Technology diversity:
+                  </strong>{" "}
+                  Different services can use optimal technology stacks (Python
+                  for ML services, Go for API gateways, Java for business logic)
+                  based on specific requirements
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Failure isolation:
+                  </strong>{" "}
+                  Service failures are contained with circuit breakers and
+                  bulkhead patterns, preventing cascading failures across the
+                  system
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Service Boundaries and Business Capabilities
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Services align with business domains following Domain-Driven
+              Design principles, creating natural ownership boundaries
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Domain ownership:
+                  </strong>{" "}
+                  Teams own complete business capabilities (user management,
+                  payment processing, inventory) rather than technical layers
+                  (UI, business logic, database)
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Conway&rsquo;s Law optimization:
+                  </strong>{" "}
+                  Service boundaries mirror organizational structure, reducing
+                  cross-team dependencies by 60-80% and accelerating feature
+                  delivery
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Business agility enablement:
+                  </strong>{" "}
+                  Product teams can iterate rapidly on specific business
+                  capabilities without navigating complex monolithic codebases
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-orange-500 bg-orange-50/50 dark:bg-orange-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Distributed Communication Patterns
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Services interact through well-defined contracts using synchronous
+              APIs, asynchronous messaging, and event-driven patterns
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    API-first design:
+                  </strong>{" "}
+                  RESTful APIs, GraphQL, and gRPC provide versioned interfaces
+                  enabling backward compatibility and service evolution
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Event-driven architecture:
+                  </strong>{" "}
+                  Message brokers (Apache Kafka, RabbitMQ, AWS SQS) enable loose
+                  coupling and eventual consistency across service boundaries
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Network resilience patterns:
+                  </strong>{" "}
+                  Circuit breakers, retry logic, timeouts, and service mesh
+                  infrastructure handle network failures gracefully
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Data Ownership and Persistence
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Each service maintains its own data store, eliminating shared
+              database bottlenecks while ensuring data consistency through
+              distributed patterns
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Polyglot persistence:
+                  </strong>{" "}
+                  Services choose optimal databases (PostgreSQL for
+                  transactions, MongoDB for documents, Redis for caching,
+                  Elasticsearch for search) based on data patterns
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Distributed transactions:
+                  </strong>{" "}
+                  Saga patterns and event sourcing handle cross-service data
+                  consistency without two-phase commit complexity
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Data synchronization:
+                  </strong>{" "}
+                  Change Data Capture (CDC) and event streaming maintain data
+                  consistency while preserving service autonomy
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Microservices Implementation Impact Metrics */}
+        <div className="mt-8">
+          <MetricsCard
+            title="Microservices Architecture Impact on Enterprise Operations"
+            metrics={[
+              {
+                label: "Deployment Frequency",
+                value: "50-100x",
+                description:
+                  "Increase from monthly to multiple daily deployments per team",
+                color: "green",
+              },
+              {
+                label: "Service Availability",
+                value: "99.9-99.99%",
+                description:
+                  "Improved uptime through failure isolation and redundancy",
+                color: "blue",
+              },
+              {
+                label: "Team Autonomy",
+                value: "70-90%",
+                description:
+                  "Reduction in cross-team dependencies and coordination overhead",
+                color: "purple",
+              },
+              {
+                label: "Feature Velocity",
+                value: "2-5x",
+                description:
+                  "Faster time-to-market for new capabilities and experiments",
+                color: "orange",
+              },
+            ]}
+          />
+        </div>
+      </section>
+
+      {/* Business & Team Impact Section */}
+      <section id="business-team-impact">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
+          <TrendingUp className="w-6 h-6 text-green-500" />
+          Business &amp; Team Impact
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Enterprise adoption patterns with quantified outcomes
+            </h3>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Netflix:
+                  </strong>{" "}
+                  Operates 1000+ microservices supporting 260+ million
+                  subscribers with 99.97% uptime, enabling rapid global
+                  expansion and A/B testing at scale
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Amazon:
+                  </strong>{" "}
+                  Teams deploy every 11.7 seconds on average across thousands of
+                  microservices, processing millions of transactions with 99.95%
+                  availability
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Uber:
+                  </strong>{" "}
+                  2,200+ microservices enable rapid expansion to 900+ cities
+                  worldwide, processing 18+ million trips daily with real-time
+                  pricing and matching
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-yellow-500 bg-yellow-50/50 dark:bg-yellow-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Common customer triggers driving microservices adoption
+            </h3>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Monolithic deployment bottlenecks:
+                  </strong>{" "}
+                  &ldquo;Our deployment pipeline takes 3 hours and one failed
+                  test blocks all teams from releasing&rdquo;
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Scaling constraints:
+                  </strong>{" "}
+                  &ldquo;We need to scale our payment service 10x but our user
+                  service only needs 2x - the monolith forces us to
+                  over-provision everything&rdquo;
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Team coordination overhead:
+                  </strong>{" "}
+                  &ldquo;Our 50 engineers spend more time coordinating
+                  deployments than building features&rdquo;
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Customer profiles and implementation drivers
+            </h3>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Hypergrowth technology companies
+                  </strong>{" "}
+                  with 200+ engineers experiencing deployment bottlenecks and
+                  coordination overhead as team size exceeds monolithic
+                  architecture capacity
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Global platform operators
+                  </strong>{" "}
+                  requiring independent scaling of different system components
+                  and geographic distribution of services for latency
+                  optimization
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Digital transformation enterprises
+                  </strong>{" "}
+                  modernizing legacy systems while maintaining business
+                  continuity and enabling cloud-native operations
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Cursor Implementation Section */}
+      <section id="cursor-implementation">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Cursor Implementation Considerations
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              AI-assisted service decomposition and boundary identification
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Cursor excels at analyzing monolithic codebases to identify
+              natural service boundaries based on domain coupling, data
+              relationships, and change patterns. Teams can leverage AI
+              understanding to suggest optimal microservice decomposition
+              strategies, identify shared dependencies that need extraction, and
+              recommend communication patterns between services.
+            </p>
+          </div>
+
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Enterprise infrastructure and deployment automation
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Organizations implementing microservices can use Cursor to
+              generate consistent service templates, Docker configurations,
+              Kubernetes manifests, and CI/CD pipelines. The AI helps
+              standardize deployment patterns across teams while generating
+              monitoring, logging, and observability code that follows
+              enterprise best practices for distributed systems.
+            </p>
+          </div>
+
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Legacy modernization and gradual migration strategies
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Teams migrating from monoliths can use Cursor&rsquo;s contextual
+              understanding to implement the Strangler Fig pattern, identify
+              APIs for extraction, and generate adapter layers for gradual
+              migration. The AI can help design event-driven integration
+              patterns, suggest data synchronization strategies, and generate
+              resilience patterns like circuit breakers and bulkheads for smooth
+              transitions.
+            </p>
+          </div>
+        </div>
+      </section>
+    </article>
   );
 }
