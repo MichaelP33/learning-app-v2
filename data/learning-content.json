@@ -5748,7 +5748,202 @@
                 "Horizontal Partitioning",
                 "Shard Keys",
                 "Cross-Shard Queries"
-              ]
+              ],
+              "quiz": {
+                "title": "Database Sharding and Partitioning Knowledge Quiz",
+                "totalQuestions": 10,
+                "totalPoints": 25,
+                "questions": [
+                  {
+                    "id": 1,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "What is the primary difference between horizontal and vertical partitioning in database design?",
+                    "options": [
+                      "Horizontal splits tables by columns, vertical splits by rows",
+                      "Horizontal splits rows across multiple databases, vertical splits columns across tables",
+                      "Horizontal requires more complex queries, vertical requires simpler queries",
+                      "Horizontal improves write performance, vertical improves read performance only"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Horizontal partitioning (sharding) distributes rows of the same table across multiple database instances based on a shard key, enabling load distribution and independent scaling. Vertical partitioning splits columns into separate tables or databases, often separating frequently accessed from rarely accessed data. Understanding this distinction is crucial for choosing the right strategy based on access patterns and scaling requirements.",
+                    "keyConcepts": [
+                      "Horizontal vs vertical partitioning",
+                      "Data distribution strategies",
+                      "Scaling approaches"
+                    ]
+                  },
+                  {
+                    "id": 2,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Which factor makes a good shard key for distributing data across multiple databases?",
+                    "options": [
+                      "High cardinality with even distribution and stable values",
+                      "Low cardinality with predictable access patterns",
+                      "Frequently changing values that ensure dynamic rebalancing",
+                      "Sequential values that guarantee consistent ordering"
+                    ],
+                    "correctAnswer": 0,
+                    "additionalContext": "An effective shard key should have high cardinality (many unique values) to enable distribution across multiple shards, even distribution to avoid hotspots, and stable values to prevent costly data migrations. Common examples include user IDs, tenant IDs, or geographic regions. Poor shard keys like timestamps or auto-incrementing IDs can create hotspots where one shard receives disproportionate traffic.",
+                    "keyConcepts": [
+                      "Shard key selection criteria",
+                      "Data distribution patterns",
+                      "Hotspot avoidance"
+                    ]
+                  },
+                  {
+                    "id": 3,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "A company experiencing &ldquo;Database response times increased 300% when we hit 10 million users&rdquo; would benefit most from:",
+                    "options": [
+                      "Adding more CPU cores to the existing database server",
+                      "Implementing horizontal sharding to distribute load across multiple databases",
+                      "Increasing the database connection pool size",
+                      "Switching to a different database management system"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "When response times degrade dramatically with user growth, it typically indicates that the database has become a bottleneck that cannot be solved by simply adding more resources to a single server. Horizontal sharding distributes the load across multiple database instances, allowing each shard to handle a subset of users and their data, dramatically improving response times and enabling linear scaling with user growth.",
+                    "keyConcepts": [
+                      "Performance bottleneck identification",
+                      "Horizontal scaling benefits",
+                      "User growth scaling strategies"
+                    ]
+                  },
+                                     {
+                     "id": 4,
+                     "type": "multiple-choice",
+                     "points": 2,
+                     "question": "What distinguishes consistent hashing's approach to data distribution in sharded systems?",
+                     "options": [
+                       "It requires manual rebalancing when adding new shards",
+                       "It guarantees perfect load distribution across all shards", 
+                       "It minimizes data movement when shards are added or removed",
+                       "It eliminates the need for cross-shard queries entirely"
+                     ],
+                     "correctAnswer": 2,
+                    "additionalContext": "Consistent hashing is a distributed hashing technique that minimizes the amount of data that needs to be moved when the number of shards changes. In traditional hashing, adding or removing a server would require redistributing most of the data. Consistent hashing ensures that only a small fraction of keys need to be moved, making dynamic scaling much more efficient and reducing the operational overhead of shard management.",
+                    "keyConcepts": [
+                      "Consistent hashing principles",
+                      "Dynamic scaling efficiency",
+                      "Data movement minimization"
+                    ]
+                  },
+                  {
+                    "id": 5,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "In distributed database architectures, cross-shard queries are challenging because they require:",
+                    "options": [
+                      "Coordination across multiple database instances with potential consistency trade-offs",
+                      "Converting all data to a standardized format before querying",
+                      "Temporarily shutting down write operations during query execution",
+                      "Using specialized hardware for network optimization"
+                    ],
+                    "correctAnswer": 0,
+                    "additionalContext": "Cross-shard queries must coordinate across multiple independent database instances, each potentially in different states of consistency. This requires sophisticated coordination mechanisms to aggregate results, handle partial failures, and maintain data consistency across shards. The challenge becomes more complex with distributed transactions, where operations must succeed or fail atomically across multiple shards, often requiring two-phase commit protocols or eventual consistency patterns.",
+                    "keyConcepts": [
+                      "Cross-shard coordination challenges",
+                      "Distributed consistency models",
+                      "Multi-database query complexity"
+                    ]
+                  },
+                  {
+                    "id": 6,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Which scenario most commonly triggers companies to implement database sharding?",
+                    "options": [
+                      "Wanting to use the latest database features and tools",
+                      "Read and write performance degrading beyond acceptable business thresholds",
+                      "Needing to comply with new data privacy regulations",
+                      "Planning to migrate to cloud infrastructure"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Performance degradation beyond business thresholds represents the most common trigger for sharding implementations. When database response times impact user experience or business operations, companies often realize that vertical scaling (adding more resources to a single server) has reached its limits. Common indicators include response times exceeding SLA requirements, database CPU consistently above 80%, or write throughput plateauing despite business growth.",
+                    "keyConcepts": [
+                      "Sharding implementation triggers",
+                      "Performance threshold management",
+                      "Business impact assessment"
+                    ]
+                  },
+                  {
+                    "id": 7,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "What are the typical performance improvements organizations see after implementing effective database sharding?",
+                    "options": [
+                      "20-40% improvement in query response times",
+                      "60-80% reduction in database response times with linear scalability",
+                      "10-25% improvement in overall system performance",
+                      "50-70% reduction in database maintenance overhead"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Well-implemented sharding typically delivers 60-80% reduction in database response times because each shard handles only a fraction of the total load. The linear scalability aspect means that performance can be maintained as load increases by adding more shards. Organizations often report query times dropping from seconds to milliseconds, and the ability to maintain consistent performance even as user bases grow from millions to hundreds of millions.",
+                    "keyConcepts": [
+                      "Sharding performance benefits",
+                      "Linear scalability characteristics",
+                      "Response time improvements"
+                    ]
+                  },
+                                     {
+                     "id": 8,
+                     "type": "multiple-choice",
+                     "points": 2,
+                     "question": "Complete this statement: Database sharding enables _______ scalability by distributing _______ across multiple independent database instances.",
+                     "options": [
+                       "vertical, computational load",
+                       "elastic, backup operations",
+                       "dynamic, user sessions",
+                       "horizontal, data and query load"
+                     ],
+                     "correctAnswer": 3,
+                    "additionalContext": "Horizontal scalability through sharding means adding more database instances (scaling out) rather than upgrading existing hardware (scaling up). By distributing both data and query load across multiple independent instances, each shard can operate efficiently within its resource constraints while the overall system can handle virtually unlimited growth by adding more shards. This contrasts with vertical scaling, which eventually hits hardware limitations.",
+                    "keyConcepts": [
+                      "Horizontal vs vertical scalability",
+                      "Load distribution principles",
+                      "Shard independence"
+                    ]
+                  },
+                  {
+                    "id": 9,
+                    "type": "freeform",
+                    "points": 4,
+                    "question": "Describe the three main customer scenarios that trigger database sharding discussions. For each scenario, include one specific quoted pain point and explain why sharding addresses that particular challenge.",
+                    "sampleStrongResponse": "The three main triggers are: (1) Performance degradation - 'Database response times increased 300% when we hit 10 million users' - sharding distributes load across multiple instances, reducing response times by 60-80%, (2) Scaling limitations - 'We can't handle Black Friday traffic even with our largest database server' - horizontal sharding enables linear scalability by adding more database instances, and (3) Operational bottlenecks - 'Database maintenance windows now require 8-hour downtime due to table size' - smaller shards enable faster maintenance with rolling updates across independent instances.",
+                    "additionalContext": "These scenarios represent the most common trigger points where companies realize single-database architectures have reached their limits. Understanding these patterns helps identify when sharding discussions become relevant for customer architectures.",
+                    "keyConcepts": [
+                      "Sharding implementation triggers",
+                      "Customer pain point recognition",
+                      "Performance threshold management"
+                    ],
+                    "customScoringCriteria": {
+                      "fullPoints": "Identifies all three trigger scenarios (performance degradation, scaling limitations, operational bottlenecks) and includes specific quoted pain points for each. Explains how sharding specifically addresses each challenge with technical reasoning.",
+                      "partialPoints": "Identifies most trigger scenarios and includes some quoted pain points, but may miss one scenario or lack detailed technical explanations of how sharding addresses each challenge.",
+                      "noPoints": "Fails to identify the three distinct scenarios or doesn't include specific quoted pain points with technical explanations."
+                    }
+                  },
+                  {
+                    "id": 10,
+                    "type": "freeform",
+                    "points": 5,
+                    "question": "List the core technical requirements for successful database sharding implementation and explain what types of applications would benefit most from each sharding strategy (range-based, hash-based, directory-based).",
+                    "sampleStrongResponse": "Core requirements include: (1) Proper shard key selection with high cardinality and even distribution, (2) Application-level awareness for routing queries to correct shards, (3) Cross-shard query coordination mechanisms, (4) Data rebalancing capabilities for dynamic scaling. Range-based sharding benefits applications with natural data ranges (time-series, geographic data), hash-based sharding suits applications needing even distribution (user data, session management), and directory-based sharding works for applications requiring complex routing logic (multi-tenant systems, hierarchical data organization).",
+                    "additionalContext": "Understanding the technical foundation and appropriate application patterns for each sharding strategy is essential for architectural decision-making and successful implementation.",
+                    "keyConcepts": [
+                      "Sharding technical requirements",
+                      "Sharding strategy selection",
+                      "Application architecture patterns"
+                    ],
+                    "customScoringCriteria": {
+                      "fullPoints": "Lists comprehensive technical requirements for sharding implementation and correctly explains which applications benefit from each sharding strategy with specific use case examples.",
+                      "partialPoints": "Covers most technical requirements and explains some sharding strategies, but may lack detail in application matching or miss key implementation requirements.",
+                      "noPoints": "Provides superficial overview without demonstrating understanding of technical requirements or appropriate strategy selection for different application types."
+                    }
+                  }
+                ]
+              }
             }
           ]
         },
