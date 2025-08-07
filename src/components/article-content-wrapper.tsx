@@ -193,10 +193,10 @@ export function ArticleContentWrapper({
                     <CleanArchitectureContent />
                   ) : article.id === "restful-apis" ? (
                     <RESTfulApisContent />
-                  ) : article.id === "rpc-vs-rest" ? (
-                    <RPCvsRESTContent />
-                  ) : article.id === "event-driven-architecture" ? (
-                    <EventDrivenArchitectureContent />
+                  ) : article.id === "acid-vs-eventual-consistency" ? (
+                    <AcidPropertiesVsEventualConsistencyContent />
+                  ) : article.id === "sql-vs-nosql" ? (
+                    <SQLVsNoSQLContent />
                   ) : (
                     <DefaultArticleContent article={article} />
                   )}
@@ -7994,400 +7994,6 @@ function DocumentationNamingContent() {
   );
 }
 
-// Component for the RPC vs REST article content
-function RPCvsRESTContent() {
-  return (
-    <article className="space-y-10">
-      {/* Key Concepts Section */}
-      <section id="key-concepts">
-        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
-          Key Concepts
-        </h2>
-
-        <div className="space-y-6">
-          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              Fundamental architectural paradigms
-            </h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-3">
-              RPC and REST represent different approaches to distributed system
-              communication (like different languages for conversations between
-              services - each optimized for specific scenarios)
-            </p>
-            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
-              <li className="flex items-start gap-2">
-                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <div>
-                  <strong className="text-slate-700 dark:text-gray-300">
-                    RPC (Remote Procedure Call):
-                  </strong>{" "}
-                  Treats remote calls like local function calls, abstracting
-                  network complexity
-                </div>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <div>
-                  <strong className="text-slate-700 dark:text-gray-300">
-                    REST (Representational State Transfer):
-                  </strong>{" "}
-                  Treats resources as stateless entities with standard HTTP
-                  operations
-                </div>
-              </li>
-            </ul>
-          </div>
-
-          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              Performance and efficiency characteristics
-            </h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Performance differences become critical in high-volume systems
-            </p>
-            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
-              <li className="flex items-start gap-2">
-                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                RPC: 40-60% lower latency through binary protocols and direct
-                method invocation
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                RPC: 30-50% bandwidth reduction via binary encoding (Protocol
-                Buffers vs JSON)
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                REST: Better caching, discoverability, and debugging through
-                standard HTTP
-              </li>
-            </ul>
-          </div>
-
-          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              Coupling and evolutionary design implications
-            </h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-3">
-              System coupling affects long-term maintainability and team
-              independence (like organizational structures - tighter coupling
-              requires more coordination but can enable faster execution)
-            </p>
-            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
-              <li className="flex items-start gap-2">
-                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                RPC creates tighter coupling through shared interfaces and
-                method signatures
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                REST promotes looser coupling via standard HTTP verbs and
-                self-describing resources
-              </li>
-            </ul>
-          </div>
-
-          <div className="border-l-4 border-orange-500 bg-orange-50/50 dark:bg-orange-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              Hybrid architectural patterns in practice
-            </h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Most organizations use both paradigms strategically rather than
-              choosing exclusively
-            </p>
-            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
-              <li className="flex items-start gap-2">
-                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Internal microservices: RPC for high-frequency, low-latency
-                communication
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Public APIs: REST for developer experience and ecosystem
-                compatibility
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        {/* Performance Comparison */}
-        <div className="mt-8">
-          <ComparisonTable
-            title="RPC vs REST Performance Characteristics"
-            headers={["Metric", "RPC (gRPC)", "REST (HTTP/JSON)"]}
-            rows={[
-              {
-                metric: "Latency",
-                "RPC (gRPC)": "40-60% lower than REST",
-                "REST (HTTP/JSON)": "Baseline performance",
-              },
-              {
-                metric: "Bandwidth Usage",
-                "RPC (gRPC)": "30-50% less bandwidth",
-                "REST (HTTP/JSON)": "Higher due to JSON overhead",
-              },
-              {
-                metric: "Coupling Level",
-                "RPC (gRPC)": "Higher (shared interfaces)",
-                "REST (HTTP/JSON)": "Lower (standard HTTP)",
-              },
-              {
-                metric: "Debugging Tools",
-                "RPC (gRPC)": "Specialized tools required",
-                "REST (HTTP/JSON)": "Universal HTTP tools",
-              },
-            ]}
-          />
-        </div>
-      </section>
-
-      {/* Business & Team Impact Section */}
-      <section id="business-team-impact">
-        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
-          <TrendingUp className="w-6 h-6 text-green-500" />
-          Business &amp; Team Impact
-        </h2>
-
-        <div className="space-y-6">
-          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              Performance impact on user experience and operational costs
-            </h3>
-            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
-              <li className="flex items-start gap-2">
-                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <div>
-                  <strong className="text-slate-700 dark:text-gray-300">
-                    Financial trading systems:
-                  </strong>{" "}
-                  Use RPC for millisecond-critical operations where latency
-                  directly impacts profitability
-                </div>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <div>
-                  <strong className="text-slate-700 dark:text-gray-300">
-                    High-frequency microservices:
-                  </strong>{" "}
-                  Order processing systems benefit from RPC&rsquo;s compound
-                  latency improvements across service chains
-                </div>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <div>
-                  <strong className="text-slate-700 dark:text-gray-300">
-                    Public API ecosystems:
-                  </strong>{" "}
-                  REST&rsquo;s HTTP compatibility reduces integration friction
-                  and developer support overhead
-                </div>
-              </li>
-            </ul>
-          </div>
-
-          <div className="border-l-4 border-yellow-500 bg-yellow-50/50 dark:bg-yellow-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              Common customer pain points driving architectural reevaluations
-            </h3>
-            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
-              <li className="flex items-start gap-2">
-                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <div>
-                  <strong className="text-slate-700 dark:text-gray-300">
-                    Mobile application performance crisis:
-                  </strong>{" "}
-                  &ldquo;Our mobile app response times increased by 50% as we
-                  added more microservices, affecting user engagement&rdquo;
-                </div>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <div>
-                  <strong className="text-slate-700 dark:text-gray-300">
-                    Infrastructure cost escalation:
-                  </strong>{" "}
-                  &ldquo;Our internal service calls are consuming 40% more
-                  bandwidth than expected, driving up cloud costs&rdquo;
-                </div>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <div>
-                  <strong className="text-slate-700 dark:text-gray-300">
-                    Developer integration challenges:
-                  </strong>{" "}
-                  &ldquo;Third-party developers struggle to integrate with our
-                  RPC APIs without extensive documentation and custom
-                  tooling&rdquo;
-                </div>
-              </li>
-            </ul>
-          </div>
-
-          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              Strategic adoption patterns across industry segments
-            </h3>
-            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
-              <li className="flex items-start gap-2">
-                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <div>
-                  <strong className="text-slate-700 dark:text-gray-300">
-                    Netflix:
-                  </strong>{" "}
-                  Uses RPC (gRPC) for internal service communication while
-                  maintaining REST APIs for device integration
-                </div>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <div>
-                  <strong className="text-slate-700 dark:text-gray-300">
-                    Google:
-                  </strong>{" "}
-                  Developed gRPC for internal systems, offers REST APIs for
-                  external developers
-                </div>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <div>
-                  <strong className="text-slate-700 dark:text-gray-300">
-                    Uber:
-                  </strong>{" "}
-                  Hybrid approach with RPC for real-time location services, REST
-                  for driver/rider applications
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        {/* Performance and Business Metrics */}
-        <div className="mt-8">
-          <MetricsCard
-            title="Performance & Business Impact"
-            metrics={[
-              {
-                label: "Latency Reduction",
-                value: "40-60%",
-                description: "RPC advantage in high-throughput scenarios",
-                color: "green",
-              },
-              {
-                label: "Bandwidth Savings",
-                value: "30-50%",
-                description: "Binary encoding vs JSON overhead",
-                color: "blue",
-              },
-              {
-                label: "Integration Complexity",
-                value: "Lower",
-                description: "REST APIs reduce developer friction",
-                color: "purple",
-              },
-              {
-                label: "Debugging Efficiency",
-                value: "Higher",
-                description: "HTTP tools universally available",
-                color: "orange",
-              },
-            ]}
-          />
-        </div>
-
-        <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
-          <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-            Customer profiles and decision drivers
-          </h3>
-          <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
-            <li className="flex items-start gap-2">
-              <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-              <strong className="text-slate-700 dark:text-gray-300">
-                High-frequency trading firms:
-              </strong>{" "}
-              Require sub-millisecond latency for competitive advantage
-            </li>
-            <li className="flex items-start gap-2">
-              <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-              <strong className="text-slate-700 dark:text-gray-300">
-                Gaming and real-time applications:
-              </strong>{" "}
-              Need low-latency communication for user experience
-            </li>
-            <li className="flex items-start gap-2">
-              <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-              <strong className="text-slate-700 dark:text-gray-300">
-                Platform companies:
-              </strong>{" "}
-              Balance internal performance with external developer experience
-            </li>
-            <li className="flex items-start gap-2">
-              <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-              <strong className="text-slate-700 dark:text-gray-300">
-                IoT and mobile-first organizations:
-              </strong>{" "}
-              Optimize for bandwidth efficiency and battery life
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      {/* Cursor Implementation Section */}
-      <section id="cursor-implementation">
-        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
-          Cursor Implementation Considerations
-        </h2>
-
-        <div className="space-y-6">
-          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              Architectural decision support
-            </h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-3">
-              AI assistance for the critical &ldquo;RPC vs REST&rdquo; choices
-              that impact system performance and developer experience -
-              intelligent recommendations based on latency requirements,
-              bandwidth constraints, and team capabilities, with context-aware
-              guidance on when to optimize for performance versus developer
-              ecosystem compatibility
-            </p>
-          </div>
-
-          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              Protocol and schema generation acceleration
-            </h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Teams implementing RPC systems benefit from AI-generated Protocol
-              Buffer schemas and service definitions, while REST implementations
-              leverage automated OpenAPI specification generation - reducing the
-              setup overhead that often delays architectural transitions and
-              ensuring consistent interface design patterns
-            </p>
-          </div>
-
-          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              Migration strategy optimization
-            </h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Organizations transitioning between RPC and REST (or implementing
-              hybrid approaches) can leverage Cursor&apos;s codebase
-              understanding to identify high-impact migration candidates,
-              generate adapter layers for gradual transitions, and maintain
-              consistency across different communication patterns within the
-              same system
-            </p>
-          </div>
-        </div>
-      </section>
-    </article>
-  );
-}
-
 function DefaultArticleContent({ article }: { article: Article }) {
   return (
     <article className="space-y-8">
@@ -11433,8 +11039,8 @@ function RESTfulApisContent() {
   );
 }
 
-// Component for the event-driven architecture article content
-function EventDrivenArchitectureContent() {
+// Component for the SQL vs NoSQL article content
+function SQLVsNoSQLContent() {
   return (
     <article className="space-y-10">
       {/* Key Concepts Section */}
@@ -11446,125 +11052,138 @@ function EventDrivenArchitectureContent() {
         <div className="space-y-6">
           <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
             <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              Asynchronous event communication
+              Structured vs flexible data modeling approaches
             </h3>
             <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Systems react to events asynchronously rather than through direct
-              requests
+              The fundamental architectural choice between enforced structure
+              and development flexibility (like choosing between departmental
+              hierarchy vs cross-functional teams in an organization)
             </p>
             <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Components communicate through events rather than direct
-                function calls (like office departments using announcements
-                instead of direct phone calls)
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    SQL databases:
+                  </strong>{" "}
+                  Enforce predefined schemas with fixed table structures,
+                  relationships, and data types for complex business logic with
+                  strict data integrity
+                </div>
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Events represent something that has happened in the system and
-                can trigger actions across multiple services
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Decouples systems enabling better scalability and resilience
-                compared to synchronous request-response patterns
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    NoSQL databases:
+                  </strong>{" "}
+                  Allow flexible document structures within collections,
+                  enabling rapid development but requiring careful
+                  application-level validation
+                </div>
               </li>
             </ul>
           </div>
 
           <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
             <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              Event sourcing and audit trails
+              ACID transactions vs horizontal scaling capabilities
             </h3>
             <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Complete audit trail and ability to reconstruct any historical
-              state
+              Core architectural trade-off between guaranteed consistency and
+              performance scalability
             </p>
             <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Stores all changes as a sequence of events rather than just
-                current state
+                ACID transactions provide atomicity, consistency, isolation, and
+                durability guarantees essential for financial transactions and
+                inventory management
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Particularly valuable for financial services, healthcare, and
-                other industries requiring compliance and auditability
+                NoSQL horizontal scaling enables 3-10x better read performance
+                through denormalization and native distribution capabilities
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Preserves the entire history of what happened and when, enabling
-                time travel debugging
+                Polyglot persistence architectures leverage both approaches
+                strategically for different workload types
               </li>
             </ul>
           </div>
 
           <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
             <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              Message queues and reliable delivery
+              Enterprise adoption patterns and practical implementation
             </h3>
             <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Buffer events and ensure reliable delivery between services
+              Strategic database selection based on business requirements rather
+              than technology trends
             </p>
             <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
                 <div>
                   <strong className="text-slate-700 dark:text-gray-300">
-                    Apache Kafka:
+                    SQL dominance:
                   </strong>{" "}
-                  High-throughput event streaming with 99.9% uptime guarantees,
-                  handling millions of events per second
+                  80-95% of Fortune 500 companies use SQL as primary
+                  transactional system due to regulatory requirements and
+                  business logic complexity
                 </div>
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
                 <div>
                   <strong className="text-slate-700 dark:text-gray-300">
-                    RabbitMQ:
+                    NoSQL specialization:
                   </strong>{" "}
-                  Reliable message delivery with complex routing patterns and
-                  multiple messaging protocols
+                  Document databases excel in content management, user profiles,
+                  and applications with evolving data models
                 </div>
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
                 <div>
                   <strong className="text-slate-700 dark:text-gray-300">
-                    Amazon SQS:
+                    Hybrid architectures:
                   </strong>{" "}
-                  Managed message queuing with built-in AWS integration and
-                  automatic scaling
+                  SQL for transactional data and core business logic, NoSQL for
+                  analytics and high-volume reads
                 </div>
               </li>
             </ul>
           </div>
+        </div>
 
-          <div className="border-l-4 border-orange-500 bg-orange-50/50 dark:bg-orange-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              Operational considerations and distributed debugging
-            </h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Managing distributed debugging and event flow tracing across
-              services
-            </p>
-            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
-              <li className="flex items-start gap-2">
-                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Requires sophisticated observability tools to track events
-                across multiple services
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Distributed tracing, event correlation IDs, and comprehensive
-                logging essential for troubleshooting
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Unlike monoliths where execution traces in single codebase,
-                events flow across service boundaries
-              </li>
-            </ul>
+        {/* Database Selection Decision Framework */}
+        <div className="mt-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="bg-white/50 dark:bg-gray-800/50 p-6 rounded-lg border border-slate-200 dark:border-gray-700">
+              <h4 className="font-semibold text-slate-900 dark:text-white mb-4">
+                Choose SQL When:
+              </h4>
+              <ul className="space-y-2 text-sm text-slate-600 dark:text-gray-400">
+                <li>• Complex business logic with multi-table relationships</li>
+                <li>
+                  • ACID transaction requirements for financial operations
+                </li>
+                <li>• Mature ecosystem and regulatory compliance needs</li>
+                <li>• Structured reporting and complex analytical queries</li>
+              </ul>
+            </div>
+            <div className="bg-white/50 dark:bg-gray-800/50 p-6 rounded-lg border border-slate-200 dark:border-gray-700">
+              <h4 className="font-semibold text-slate-900 dark:text-white mb-4">
+                Choose NoSQL When:
+              </h4>
+              <ul className="space-y-2 text-sm text-slate-600 dark:text-gray-400">
+                <li>• Rapid development with evolving data models</li>
+                <li>• High-volume reads requiring horizontal scaling</li>
+                <li>• Content management and user activity tracking</li>
+                <li>• Massive data volumes (10x-100x growth scenarios)</li>
+              </ul>
+            </div>
           </div>
         </div>
       </section>
@@ -11579,7 +11198,7 @@ function EventDrivenArchitectureContent() {
         <div className="space-y-6">
           <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
             <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              Performance and scalability improvements with quantified outcomes
+              Performance and scaling outcomes with quantified business impact
             </h3>
             <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
               <li className="flex items-start gap-2">
@@ -11588,109 +11207,67 @@ function EventDrivenArchitectureContent() {
                   <strong className="text-slate-700 dark:text-gray-300">
                     Netflix:
                   </strong>{" "}
-                  Processes billions of events daily for recommendations and
-                  content delivery, improving recommendation system performance
-                  by 45% through event-driven patterns
+                  Achieves millisecond response times for recommendation queries
+                  using NoSQL denormalization while maintaining transactional
+                  data in SQL systems
                 </div>
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
                 <div>
                   <strong className="text-slate-700 dark:text-gray-300">
-                    Uber:
+                    E-commerce platforms:
                   </strong>{" "}
-                  Trip processing and real-time location tracking rely heavily
-                  on event-driven patterns, achieving 50% better resource
-                  efficiency
+                  Product catalog queries achieve 3-10x performance improvements
+                  through NoSQL horizontal scaling and data denormalization
                 </div>
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
                 <div>
                   <strong className="text-slate-700 dark:text-gray-300">
-                    LinkedIn:
+                    Financial services:
                   </strong>{" "}
-                  Uses Kafka to process trillions of events daily, scaling to
-                  support hundreds of millions of users while enabling rapid
-                  feature development
+                  Banks maintain SQL for core transactions while using NoSQL for
+                  real-time fraud detection and customer analytics
                 </div>
               </li>
             </ul>
           </div>
 
-          {/* Performance Metrics */}
-          <div className="mt-8">
-            <MetricsCard
-              title="Event-Driven Architecture Performance Benefits"
-              metrics={[
-                {
-                  label: "System Throughput Improvement",
-                  value: "40-60%",
-                  description:
-                    "Better resource utilization and async processing",
-                  trend: "up",
-                  color: "green",
-                },
-                {
-                  label: "Uptime Guarantees",
-                  value: "99.9%",
-                  description: "Enterprise-grade reliability with Kafka",
-                  trend: "up",
-                  color: "blue",
-                },
-                {
-                  label: "Resource Efficiency Gain",
-                  value: "50%",
-                  description: "Reduced coupling and async event processing",
-                  trend: "up",
-                  color: "purple",
-                },
-                {
-                  label: "Recommendation Performance",
-                  value: "45%",
-                  description: "Netflix improvement through event patterns",
-                  trend: "up",
-                  color: "orange",
-                },
-              ]}
-              className="bg-gradient-to-br from-green-50 to-emerald-100 dark:from-green-950 dark:to-emerald-900"
-            />
-          </div>
-
           <div className="border-l-4 border-yellow-500 bg-yellow-50/50 dark:bg-yellow-950/30 pl-6 py-4 rounded-r-lg">
             <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              Common customer triggers driving event-driven architecture
-              adoption
+              Common customer triggers driving database architecture decisions
             </h3>
             <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
                 <div>
                   <strong className="text-slate-700 dark:text-gray-300">
-                    Monolithic bottlenecks:
+                    Explosive data growth:
                   </strong>{" "}
-                  &ldquo;Our system slows down by 30% during peak hours due to
-                  tight coupling between services&rdquo;
+                  &ldquo;Our database can&rsquo;t handle the 50x increase in
+                  user data from our mobile app launch&rdquo;
                 </div>
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
                 <div>
                   <strong className="text-slate-700 dark:text-gray-300">
-                    Cascading failure crisis:
+                    Schema evolution bottleneck:
                   </strong>{" "}
-                  &ldquo;When our payment service goes down, it brings down our
-                  entire order processing system&rdquo;
+                  &ldquo;Every new feature requires 3-week database migrations
+                  that slow our development velocity&rdquo;
                 </div>
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
                 <div>
                   <strong className="text-slate-700 dark:text-gray-300">
-                    Integration complexity:
+                    Read performance crisis:
                   </strong>{" "}
-                  &ldquo;Adding a simple feature now requires changes across 8
-                  different services that all call each other directly&rdquo;
+                  &ldquo;Our product catalog queries slow to 3+ seconds during
+                  peak traffic&rdquo;
                 </div>
               </li>
             </ul>
@@ -11698,8 +11275,7 @@ function EventDrivenArchitectureContent() {
 
           <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
             <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              Customer profiles most likely to benefit from event-driven
-              architecture
+              Customer profiles and strategic decision drivers
             </h3>
             <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
               <li className="flex items-start gap-2">
@@ -11707,35 +11283,72 @@ function EventDrivenArchitectureContent() {
                 <strong className="text-slate-700 dark:text-gray-300">
                   Series B+ startups
                 </strong>{" "}
-                with microservices architectures experiencing tight coupling and
-                cascading failure issues
+                with growing data volumes ($10M+ ARR, 50+ engineers) facing
+                horizontal scaling decisions
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <strong className="text-slate-700 dark:text-gray-300">
+                  Enterprise modernization teams
+                </strong>{" "}
+                evaluating polyglot persistence for legacy system transformation
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
                 <strong className="text-slate-700 dark:text-gray-300">
                   E-commerce platforms
                 </strong>{" "}
-                requiring real-time inventory updates, order processing, and
-                recommendation systems
+                processing high-volume transactions while requiring flexible
+                product catalogs
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
                 <strong className="text-slate-700 dark:text-gray-300">
-                  Financial services
+                  Financial services firms
                 </strong>{" "}
-                needing audit trails, compliance tracking, and high-throughput
-                transaction processing
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <strong className="text-slate-700 dark:text-gray-300">
-                  IoT and streaming platforms
-                </strong>{" "}
-                processing high-volume real-time data from sensors, devices, or
-                user interactions
+                balancing regulatory compliance with real-time analytics
+                requirements
               </li>
             </ul>
           </div>
+        </div>
+
+        {/* Database Architecture Metrics */}
+        <div className="mt-8">
+          <MetricsCard
+            title="Database Architecture Performance Impact"
+            metrics={[
+              {
+                label: "NoSQL Read Performance Advantage",
+                value: "3-10x",
+                description:
+                  "Better performance through denormalization and horizontal scaling",
+                trend: "up",
+                color: "green",
+              },
+              {
+                label: "Enterprise SQL Adoption",
+                value: "80-95%",
+                description:
+                  "Fortune 500 companies using SQL as primary transactional system",
+                color: "blue",
+              },
+              {
+                label: "Polyglot Persistence Cost",
+                value: "$100K-$500K",
+                description:
+                  "Annual cost for mid-size companies maintaining both systems",
+                color: "orange",
+              },
+              {
+                label: "Schema Migration Impact",
+                value: "3 weeks",
+                description: "Typical time for complex database schema changes",
+                color: "purple",
+              },
+            ]}
+            className="bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-blue-950 dark:to-indigo-900"
+          />
         </div>
       </section>
 
@@ -11748,42 +11361,493 @@ function EventDrivenArchitectureContent() {
         <div className="space-y-6">
           <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
             <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              Event flow visualization and architecture design
+              Database architecture decision support
             </h3>
             <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Event-driven systems benefit significantly from AI-assisted
-              architecture visualization - Cursor can help generate event flow
-              diagrams, identify potential bottlenecks in event processing
-              chains, and suggest optimal message queue configurations based on
-              throughput requirements and system constraints
+              AI assistance for critical SQL vs NoSQL architectural decisions
+              that teams debate during system design - intelligent analysis of
+              workload characteristics, data volume projections, and consistency
+              requirements to recommend appropriate database technologies based
+              on specific business requirements and scaling patterns
             </p>
           </div>
 
           <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
             <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              Distributed debugging and observability enhancement
+              Polyglot persistence implementation guidance
             </h3>
             <p className="text-slate-700 dark:text-gray-300 mb-3">
-              The primary operational challenge of event-driven
-              architectures—managing distributed debugging and event flow
-              tracing—can be addressed through AI-assisted code generation for
-              correlation IDs, distributed tracing setup, and comprehensive
-              logging patterns that make event flows visible across service
-              boundaries
+              Enterprise teams implementing hybrid SQL/NoSQL architectures
+              benefit from context-aware code generation for data access
+              patterns - AI assistance in generating appropriate ORMs for SQL
+              operations and document queries for NoSQL, with intelligent
+              suggestions for maintaining data consistency across different
+              database technologies
             </p>
           </div>
 
           <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
             <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              Event schema evolution and backward compatibility
+              Migration strategy acceleration
             </h3>
             <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Teams migrating to event-driven patterns often struggle with event
-              schema evolution and maintaining backward compatibility -
-              Cursor&apos;s context awareness can help generate robust event
-              schemas, validate compatibility across service boundaries, and
-              suggest migration strategies for evolving event structures without
-              breaking existing consumers
+              Organizations migrating between database architectures can
+              leverage AI for data model transformation guidance - automated
+              analysis of existing SQL schemas to suggest optimal NoSQL document
+              structures, or reverse guidance for normalizing NoSQL data into
+              relational models, with migration scripts and data validation
+              assistance to ensure business continuity during transitions
+            </p>
+          </div>
+        </div>
+      </section>
+    </article>
+  );
+}
+// ACID Properties vs Eventual Consistency Content
+function AcidPropertiesVsEventualConsistencyContent() {
+  return (
+    <article className="prose prose-lg max-w-none prose-slate dark:prose-invert">
+      {/* Key Concepts Section */}
+      <section id="key-concepts" className="mb-12">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-8">
+          Key Concepts
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              ACID Properties: Database Transaction Guarantees
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              ACID (Atomicity, Consistency, Isolation, Durability) provides
+              strong transactional guarantees that ensure data integrity in
+              database operations (like maintaining accurate financial records
+              where every transaction must be precisely tracked). These
+              properties guarantee that database transactions are processed
+              reliably and maintain data accuracy even under system failures.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+              <div className="bg-white/50 dark:bg-gray-800/50 p-4 rounded-lg">
+                <h4 className="font-medium text-slate-900 dark:text-white mb-2">
+                  Atomicity & Consistency
+                </h4>
+                <ul className="text-sm text-slate-600 dark:text-gray-400 space-y-1">
+                  <li>• All-or-nothing transaction execution</li>
+                  <li>• Data integrity constraints enforced</li>
+                  <li>• Rollback on any operation failure</li>
+                </ul>
+              </div>
+              <div className="bg-white/50 dark:bg-gray-800/50 p-4 rounded-lg">
+                <h4 className="font-medium text-slate-900 dark:text-white mb-2">
+                  Isolation & Durability
+                </h4>
+                <ul className="text-sm text-slate-600 dark:text-gray-400 space-y-1">
+                  <li>• Concurrent transaction protection</li>
+                  <li>• Permanent data persistence</li>
+                  <li>• Recovery from system failures</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Eventual Consistency: Distributed System Trade-offs
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Eventual consistency allows distributed systems to remain
+              available during network partitions by accepting temporary data
+              inconsistencies that resolve over time (like social media updates
+              that may appear at different times across global users). This
+              approach prioritizes system availability and partition tolerance
+              over immediate consistency, as defined by the CAP theorem.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+              <div className="bg-white/50 dark:bg-gray-800/50 p-4 rounded-lg">
+                <h4 className="font-medium text-slate-900 dark:text-white mb-2">
+                  Availability Benefits
+                </h4>
+                <ul className="text-sm text-slate-600 dark:text-gray-400 space-y-1">
+                  <li>• System remains operational during failures</li>
+                  <li>• Global distribution with local responsiveness</li>
+                  <li>• Improved write scalability</li>
+                </ul>
+              </div>
+              <div className="bg-white/50 dark:bg-gray-800/50 p-4 rounded-lg">
+                <h4 className="font-medium text-slate-900 dark:text-white mb-2">
+                  Consistency Challenges
+                </h4>
+                <ul className="text-sm text-slate-600 dark:text-gray-400 space-y-1">
+                  <li>• Temporary data conflicts</li>
+                  <li>• Complex conflict resolution</li>
+                  <li>• Application-level handling required</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              CAP Theorem: The Fundamental Trade-off
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              The CAP theorem states that distributed systems can only guarantee
+              two of three properties: Consistency, Availability, and Partition
+              tolerance (like choosing between immediate accuracy versus
+              continuous operation when network connections fail). Understanding
+              this trade-off is crucial for making informed architectural
+              decisions in distributed system design.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Business Impact Section */}
+      <section id="business-team-impact" className="mb-12">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-8 flex items-center gap-2">
+          <TrendingUp className="w-6 h-6 text-green-500" />
+          Business &amp; Team Impact
+        </h2>
+
+        <div className="space-y-6">
+          {/* Performance Metrics Card - Aligned with Quiz Data */}
+          <MetricsCard
+            title="Performance &amp; Scalability Impact"
+            metrics={[
+              {
+                label: "Write Scalability Improvement",
+                value: "40-70%",
+                description: "Enhanced throughput with eventual consistency",
+                trend: "up",
+                color: "green",
+              },
+              {
+                label: "System Availability",
+                value: "99.9%+",
+                description: "Maintained during network partitions",
+                trend: "up",
+                color: "blue",
+              },
+              {
+                label: "Data Consistency Issues",
+                value: "45-60%",
+                description: "Organizations experience challenges initially",
+                trend: "down",
+                color: "orange",
+              },
+              {
+                label: "Enterprise ACID Adoption",
+                value: "65%",
+                description: "Driven by regulatory compliance needs",
+                trend: "stable",
+                color: "purple",
+              },
+            ]}
+            className="bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-blue-950 dark:to-indigo-900"
+          />
+
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Enterprise Decision Framework
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Strategic guidelines for choosing consistency models based on
+              business requirements
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+              <div className="bg-white/50 dark:bg-gray-800/50 p-4 rounded-lg">
+                <h4 className="font-medium text-slate-900 dark:text-white mb-2">
+                  Choose ACID When:
+                </h4>
+                <ul className="text-sm text-slate-600 dark:text-gray-400 space-y-1">
+                  <li>• Financial transactions or payments</li>
+                  <li>• Inventory management during sales</li>
+                  <li>• Regulatory compliance required</li>
+                  <li>• Data accuracy is critical</li>
+                </ul>
+              </div>
+              <div className="bg-white/50 dark:bg-gray-800/50 p-4 rounded-lg">
+                <h4 className="font-medium text-slate-900 dark:text-white mb-2">
+                  Choose Eventual Consistency When:
+                </h4>
+                <ul className="text-sm text-slate-600 dark:text-gray-400 space-y-1">
+                  <li>• Global content distribution</li>
+                  <li>• Social media and collaboration</li>
+                  <li>• High write volume scenarios</li>
+                  <li>• Availability over immediate accuracy</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          {/* Customer Pain Points - Aligned with Quiz Scenarios */}
+          <div className="border-l-4 border-orange-500 bg-orange-50/50 dark:bg-orange-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Common Customer Challenges
+            </h3>
+            <div className="space-y-4">
+              <div>
+                <strong className="text-slate-700 dark:text-gray-300">
+                  E-commerce overselling crisis:
+                </strong>{" "}
+                &ldquo;During our Black Friday sale, we oversold 300 units
+                because our eventually consistent inventory system allowed
+                multiple customers to purchase the same items
+                simultaneously.&rdquo;
+              </div>
+              <div>
+                <strong className="text-slate-700 dark:text-gray-300">
+                  Financial compliance violation:
+                </strong>{" "}
+                &ldquo;Our audit failed because we couldn&rsquo;t provide
+                consistent transaction trails - our eventually consistent system
+                had temporary inconsistencies in account balances.&rdquo;
+              </div>
+              <div>
+                <strong className="text-slate-700 dark:text-gray-300">
+                  Performance scaling bottleneck:
+                </strong>{" "}
+                &ldquo;Our ACID-compliant system hits a wall at 10,000 TPS
+                during peak hours, but we need 50,000 TPS to handle global
+                demand growth.&rdquo;
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Implementation Patterns Section */}
+      <section id="implementation-patterns" className="mb-12">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-8">
+          Implementation Patterns
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Hybrid Consistency Models
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Modern applications often implement hybrid approaches, using ACID
+              properties for critical operations (like payment processing) while
+              applying eventual consistency to less critical data (like user
+              preferences or content recommendations). This pattern maximizes
+              both data integrity and system performance where each is most
+              needed.
+            </p>
+            <div className="bg-slate-100 dark:bg-gray-800 p-4 rounded-lg font-mono text-sm">
+              <div className="text-green-600 dark:text-green-400 mb-2">
+                // Hybrid Pattern Example
+              </div>
+              <div className="text-slate-700 dark:text-gray-300">
+                <div>Payment Service: ACID transactions</div>
+                <div>User Profile: Eventual consistency</div>
+                <div>Product Catalog: Eventually consistent</div>
+                <div>Inventory Management: ACID for stock</div>
+              </div>
+            </div>
+          </div>
+
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Conflict Resolution Strategies
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Eventual consistency requires sophisticated conflict resolution
+              mechanisms when concurrent updates occur. Common strategies
+              include last-writer-wins (simple but lossy), vector clocks
+              (precise but complex), and semantic merge functions
+              (business-logic aware resolution).
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+              <div className="bg-white/50 dark:bg-gray-800/50 p-4 rounded-lg">
+                <h4 className="font-medium text-slate-900 dark:text-white mb-2">
+                  Last-Writer-Wins
+                </h4>
+                <ul className="text-sm text-slate-600 dark:text-gray-400 space-y-1">
+                  <li>• Simple timestamp-based</li>
+                  <li>• Data loss possible</li>
+                  <li>• Good for user preferences</li>
+                </ul>
+              </div>
+              <div className="bg-white/50 dark:bg-gray-800/50 p-4 rounded-lg">
+                <h4 className="font-medium text-slate-900 dark:text-white mb-2">
+                  Vector Clocks
+                </h4>
+                <ul className="text-sm text-slate-600 dark:text-gray-400 space-y-1">
+                  <li>• Precise causality tracking</li>
+                  <li>• Complex implementation</li>
+                  <li>• No data loss</li>
+                </ul>
+              </div>
+              <div className="bg-white/50 dark:bg-gray-800/50 p-4 rounded-lg">
+                <h4 className="font-medium text-slate-900 dark:text-white mb-2">
+                  Semantic Merge
+                </h4>
+                <ul className="text-sm text-slate-600 dark:text-gray-400 space-y-1">
+                  <li>• Business logic aware</li>
+                  <li>• Application-specific</li>
+                  <li>• Preserves intent</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Session Consistency: The Middle Ground
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Session consistency provides per-user strong consistency while
+              maintaining eventual consistency globally (meaning each user sees
+              their own actions immediately but may see others&rsquo; updates
+              with delay). This model works exceptionally well for collaborative
+              applications where users need immediate feedback on their own
+              actions.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Customer Scenarios Section */}
+      <section id="customer-scenarios" className="mb-12">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-8">
+          Customer Scenarios
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Global E-commerce Platform Scaling Challenge
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              <strong>Challenge:</strong> A global e-commerce platform needs to
+              scale from 10,000 to 50,000 transactions per second during peak
+              shopping periods while maintaining data integrity for payments and
+              inventory.
+            </p>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              <strong>Solution:</strong> Implement hybrid consistency - ACID for
+              payment processing and inventory management, eventual consistency
+              for product catalog, user reviews, and recommendation engines.
+              This approach achieves the required scalability while protecting
+              critical business operations.
+            </p>
+            <div className="bg-slate-100 dark:bg-gray-800 p-4 rounded-lg">
+              <div className="font-medium text-slate-900 dark:text-white mb-2">
+                Key Implementation Points:
+              </div>
+              <ul className="text-sm text-slate-600 dark:text-gray-400 space-y-1">
+                <li>
+                  • ACID transactions for payment and inventory operations
+                </li>
+                <li>
+                  • Eventually consistent product catalog with conflict
+                  resolution
+                </li>
+                <li>• Session consistency for user shopping cart state</li>
+                <li>• Monitoring for consistency lag and conflict rates</li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Financial Trading Platform Requirements
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              <strong>Challenge:</strong> A real-time trading platform must
+              handle 100,000 concurrent users with microsecond latency while
+              ensuring no trader sees stale pricing data that could lead to
+              failed trades.
+            </p>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              <strong>Solution:</strong> Strong consistency for trade execution
+              and price data, with careful partitioning to maintain
+              availability. Regional failover strategies ensure global
+              availability while meeting regulatory compliance requirements for
+              audit trails.
+            </p>
+            <div className="bg-slate-100 dark:bg-gray-800 p-4 rounded-lg">
+              <div className="font-medium text-slate-900 dark:text-white mb-2">
+                Regulatory Considerations:
+              </div>
+              <ul className="text-sm text-slate-600 dark:text-gray-400 space-y-1">
+                <li>• Complete audit trail requirements</li>
+                <li>• Transaction ordering guarantees</li>
+                <li>• Data integrity for compliance reporting</li>
+                <li>• Regional data sovereignty constraints</li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="border-l-4 border-orange-500 bg-orange-50/50 dark:bg-orange-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Social Media Platform Global Distribution
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              <strong>Challenge:</strong> A social media platform needs to serve
+              globally distributed users with low latency while handling
+              billions of posts, likes, and comments daily.
+            </p>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              <strong>Solution:</strong> Eventual consistency with sophisticated
+              conflict resolution for user-generated content. Like counts and
+              comment threads use last-writer-wins with eventual reconciliation,
+              while user authentication and payment operations maintain ACID
+              properties.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Cursor Implementation Considerations */}
+      <section id="cursor-implementation" className="mb-12">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-8">
+          Cursor Implementation Considerations
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-indigo-500 bg-indigo-50/50 dark:bg-indigo-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Consistency Model Analysis and Architecture Generation
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Cursor can analyze application requirements and automatically
+              suggest appropriate consistency models for different data types
+              and operations. The AI assists in identifying which components
+              require ACID properties versus eventual consistency, generating
+              hybrid architecture patterns that optimize both performance and
+              data integrity based on business requirements.
+            </p>
+          </div>
+
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Conflict Resolution Strategy Implementation
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              AI-assisted development of sophisticated conflict resolution
+              mechanisms for eventually consistent systems. Cursor helps
+              implement vector clocks, semantic merge functions, and
+              business-logic-aware conflict resolution strategies. The AI can
+              generate test scenarios for concurrent updates and validate
+              resolution behavior under various network partition conditions.
+            </p>
+          </div>
+
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Transaction Boundary Optimization and Monitoring
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Intelligent identification and optimization of transaction
+              boundaries in ACID systems to minimize coordination overhead while
+              maintaining data integrity. Cursor assists in designing monitoring
+              systems that track consistency lag, conflict rates, and system
+              availability, providing insights for capacity planning and
+              performance optimization in distributed data architectures.
             </p>
           </div>
         </div>
