@@ -195,6 +195,8 @@ export function ArticleContentWrapper({
                     <RESTfulApisContent />
                   ) : article.id === "read-replicas-write-scaling" ? (
                     <ReadReplicasWriteScalingContent />
+                  ) : article.id === "database-connection-pooling" ? (
+                    <DatabaseConnectionPoolingContent />
                   ) : (
                     <DefaultArticleContent article={article} />
                   )}
@@ -11382,6 +11384,344 @@ function ReadReplicasWriteScalingContent() {
             </h3>
             <p className="text-slate-700 dark:text-gray-300 mb-3">
               Organizations often struggle with migrating existing applications to read replica architectures without service disruption. Cursor can help generate comprehensive testing strategies that validate application behavior under various replication lag scenarios, ensuring smooth production deployments with minimal risk to business operations.
+            </p>
+          </div>
+        </div>
+      </section>
+    </article>
+  );
+}
+
+// Component for the database connection pooling article content
+function DatabaseConnectionPoolingContent() {
+  return (
+    <article className="space-y-10">
+      {/* Key Concepts Section */}
+      <section id="key-concepts">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Key Concepts
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Connection reuse eliminates overhead
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Connection pools maintain a set of established database connections that applications can reuse (like a shared taxi service - vehicles stay ready rather than being summoned for each passenger)
+            </p>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Eliminates expensive connection establishment overhead (TCP handshake, authentication, session setup)
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Reduces connection creation time from 50-200ms to near-zero for subsequent requests
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Dynamic pool sizing for resource optimization
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Pools automatically adjust between minimum and maximum sizes based on application demand - meaning systems adapt to traffic patterns without manual intervention
+            </p>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Minimum pool size ensures immediate connection availability during low traffic
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Maximum size prevents database resource exhaustion under high load
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Connection lifecycle management
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Pools handle the complete connection lifecycle from initialization through validation to cleanup
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Pool Initialization:
+                  </strong>{" "}
+                  Creates minimum connections at application startup
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Connection Validation:
+                  </strong>{" "}
+                  Tests connections with lightweight queries like &ldquo;SELECT 1&rdquo;
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Connection Cleanup:
+                  </strong>{" "}
+                  Returns connections to available state and handles timeouts
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-orange-500 bg-orange-50/50 dark:bg-orange-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Queue management for graceful degradation
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              When pools reach capacity, new requests wait in queues rather than failing immediately
+            </p>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Prevents database connection exhaustion that would crash the database
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Configurable timeout settings ensure requests don&rsquo;t wait indefinitely
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Business & Team Impact Section */}
+      <section id="business-team-impact">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Business & Team Impact
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Performance and capacity improvements
+            </h3>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                60-80% application performance improvement through connection reuse
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                3-5x better concurrent user capacity compared to per-request connections
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Reduced database resource consumption by 40% through elimination of connection thrashing
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Startup time reduced from seconds to milliseconds for connection-dependent operations
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Common migration triggers and customer scenarios
+            </h3>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Performance degradation:
+                  </strong>{" "}
+                  &ldquo;Our application response time goes from 200ms to 3 seconds when we hit 50 concurrent users because every request waits for a new database connection&rdquo;
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Resource waste:
+                  </strong>{" "}
+                  &ldquo;We&rsquo;re spending 40% of our database resources just opening and closing connections instead of processing business logic&rdquo;
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Scalability limits:
+                  </strong>{" "}
+                  &ldquo;Our app crashes when we hit 100 concurrent users because we exceed the database&rsquo;s 150 connection limit, even though the database hardware can handle much more load&rdquo;
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Timeout crisis:
+                  </strong>{" "}
+                  &ldquo;90% of database requests are timing out during peak hours&rdquo; due to connection pool starvation
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Implementation patterns by database platform
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Different databases require different connection pool configurations
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    PostgreSQL:
+                  </strong>{" "}
+                  Default 100 connections, ~8-10MB per connection, HikariCP recommended
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    MySQL:
+                  </strong>{" "}
+                  Default 151 connections, C3P0 or HikariCP for Java applications
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Oracle:
+                  </strong>{" "}
+                  Enterprise-grade UCP (Universal Connection Pool) with advanced features
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    MongoDB:
+                  </strong>{" "}
+                  Built-in connection pooling with driver-specific configurations
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Performance Metrics */}
+        <div className="mt-8">
+          <MetricsCard
+            title="Connection Pooling Performance Impact"
+            metrics={[
+              {
+                label: "Application Performance Improvement",
+                value: "60-80%",
+                description: "Response time improvement through connection reuse",
+                color: "green",
+              },
+              {
+                label: "Concurrent User Capacity",
+                value: "3-5x",
+                description: "Better capacity vs. per-request connections",
+                color: "blue",
+              },
+              {
+                label: "Database Resource Reduction",
+                value: "40%",
+                description: "Less overhead from connection management",
+                color: "purple",
+              },
+              {
+                label: "Connection Establishment Time",
+                value: "50-200ms",
+                description: "Eliminated per-request with pooling",
+                color: "orange",
+              },
+            ]}
+            className="bg-gradient-to-br from-green-50 to-emerald-100 dark:from-green-950 dark:to-emerald-900"
+          />
+        </div>
+
+        <div className="border-l-4 border-yellow-500 bg-yellow-50/50 dark:bg-yellow-950/30 pl-6 py-4 rounded-r-lg">
+          <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+            Typical customer profiles implementing connection pooling
+          </h3>
+          <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+            <li className="flex items-start gap-2">
+              <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+              High-traffic web applications experiencing database timeout issues under load
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+              Microservices architectures with hundreds of services requiring database access
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+              Enterprise applications where database licensing costs scale with connection count
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+              SaaS platforms where tenant isolation requires dedicated connection management
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      {/* Cursor Implementation Section */}
+      <section id="cursor-implementation">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Cursor Implementation Considerations
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              AI-assisted pool configuration optimization
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Cursor can analyze application traffic patterns and generate optimal connection pool configurations for specific database platforms. AI assistance helps teams avoid common misconfiguration issues like pool sizing based on CPU cores rather than concurrent request patterns, reducing implementation time from weeks of trial-and-error to optimized configuration in hours.
+            </p>
+          </div>
+
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Connection lifecycle management code generation
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Teams implementing connection pooling need robust error handling, connection validation, and cleanup logic. Cursor&rsquo;s context awareness helps generate comprehensive connection lifecycle management code, including retry mechanisms for stale connections, graceful degradation patterns when pools are exhausted, and proper resource cleanup to prevent connection leaks.
+            </p>
+          </div>
+
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Monitoring and alerting automation
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Connection pool implementations require comprehensive monitoring of pool utilization, queue wait times, and connection health metrics. AI assistance can generate monitoring dashboards, alerting configurations, and automated scaling policies that help teams proactively manage pool performance before timeout crises impact customer experience.
+            </p>
+          </div>
+
+          <div className="border-l-4 border-orange-500 bg-orange-50/50 dark:bg-orange-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Multi-tenant and microservice pooling strategies
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Organizations with complex architectures often struggle with connection pool design across multiple services or tenant isolation requirements. Cursor can help generate sophisticated pooling strategies that balance resource efficiency with isolation requirements, ensuring optimal performance while maintaining security and resource boundaries between different application contexts.
             </p>
           </div>
         </div>
