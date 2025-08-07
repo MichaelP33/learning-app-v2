@@ -195,6 +195,8 @@ export function ArticleContentWrapper({
                     <RESTfulApisContent />
                   ) : article.id === "read-replicas-write-scaling" ? (
                     <ReadReplicasWriteScalingContent />
+                  ) : article.id === "horizontal-vs-vertical-scaling" ? (
+                    <HorizontalVsVerticalScalingContent />
                   ) : (
                     <DefaultArticleContent article={article} />
                   )}
@@ -11382,6 +11384,388 @@ function ReadReplicasWriteScalingContent() {
             </h3>
             <p className="text-slate-700 dark:text-gray-300 mb-3">
               Organizations often struggle with migrating existing applications to read replica architectures without service disruption. Cursor can help generate comprehensive testing strategies that validate application behavior under various replication lag scenarios, ensuring smooth production deployments with minimal risk to business operations.
+            </p>
+          </div>
+        </div>
+      </section>
+    </article>
+  );
+}
+
+// Component for the horizontal vs vertical scaling article content
+function HorizontalVsVerticalScalingContent() {
+  return (
+    <article className="space-y-10">
+      {/* Key Concepts Section */}
+      <section id="key-concepts">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Key Concepts
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Horizontal scaling (scale out) vs Vertical scaling (scale up)
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Two fundamentally different approaches to increasing system capacity (like expanding a business by opening more locations vs making each location bigger)
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+              <div className="bg-white/50 dark:bg-gray-800/50 p-4 rounded-lg">
+                <h4 className="font-medium text-slate-900 dark:text-white mb-2">
+                  Horizontal Scaling (Scale Out)
+                </h4>
+                <ul className="text-sm text-slate-600 dark:text-gray-400 space-y-1">
+                  <li>• Add more servers to resource pool</li>
+                  <li>• Distribute load across multiple machines</li>
+                  <li>• Better fault tolerance (distributed systems)</li>
+                  <li>• Unlimited theoretical scaling potential</li>
+                </ul>
+              </div>
+              <div className="bg-white/50 dark:bg-gray-800/50 p-4 rounded-lg">
+                <h4 className="font-medium text-slate-900 dark:text-white mb-2">
+                  Vertical Scaling (Scale Up)
+                </h4>
+                <ul className="text-sm text-slate-600 dark:text-gray-400 space-y-1">
+                  <li>• Increase individual server capacity</li>
+                  <li>• Add more CPU, RAM, or storage</li>
+                  <li>• Simpler operational management</li>
+                  <li>• Hardware limits cap maximum capacity</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Fault tolerance and resilience differences
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Critical distinction for mission-critical applications
+            </p>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Horizontal scaling:
+                  </strong>{" "}
+                  Individual server failures only affect portion of traffic, other nodes continue serving requests
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Vertical scaling:
+                  </strong>{" "}
+                  Single point of failure where entire application goes down if the one server fails
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Enterprise impact:
+                  </strong>{" "}
+                  Distributed systems provide inherent redundancy that vertical scaling cannot match
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Elastic scaling capabilities and cloud integration
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              How each approach handles dynamic demand patterns
+            </p>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Horizontal scaling excels at elastic scaling with fast, cost-effective server addition/removal
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Cloud platforms can automatically scale horizontally based on demand patterns
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Vertical scaling has hardware limits and slower adjustment capabilities
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-orange-500 bg-orange-50/50 dark:bg-orange-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Operational complexity and management considerations
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Different skill sets and tooling requirements
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Horizontal scaling complexity:
+                  </strong>{" "}
+                  Load balancing, data partitioning, distributed system monitoring, consistency management
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Vertical scaling simplicity:
+                  </strong>{" "}
+                  Traditional single-server management with familiar tooling and monitoring
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Database considerations:
+                  </strong>{" "}
+                  Vertical scaling avoids data sharding complexity, while horizontal scaling requires careful partitioning strategies
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Implementation Timeline Comparison */}
+        <div className="mt-8">
+          <MetricsCard
+            title="Implementation Timeline Comparison"
+            metrics={[
+              {
+                label: "Horizontal Scaling Implementation",
+                value: "3-6 months",
+                description: "Architectural changes for distributed systems",
+                color: "blue",
+              },
+              {
+                label: "Vertical Scaling Implementation", 
+                value: "1-2 weeks",
+                description: "Hardware upgrades and configuration",
+                color: "green",
+              },
+              {
+                label: "Cost Reduction Potential",
+                value: "50-70%",
+                description: "Long-term savings from commodity hardware",
+                color: "purple",
+              },
+              {
+                label: "Scalability Ceiling",
+                value: "Unlimited vs Limited",
+                description: "Horizontal infinite, vertical hardware-bound",
+                color: "orange",
+              },
+            ]}
+            className="bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-blue-950 dark:to-indigo-900"
+          />
+        </div>
+      </section>
+
+      {/* Business & Team Impact Section */}
+      <section id="business-team-impact">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
+          <TrendingUp className="w-6 h-6 text-green-500" />
+          Business &amp; Team Impact
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Real-world success patterns at internet scale
+            </h3>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Netflix:
+                  </strong>{" "}
+                  Handles billions of streaming requests through horizontal scaling across thousands of servers, demonstrating massive scale with fault tolerance
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Amazon:
+                  </strong>{" "}
+                  Processes millions of transactions by distributing load across distributed infrastructure where individual server failures don&rsquo;t impact availability
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Enterprise pattern:
+                  </strong>{" "}
+                  Modern internet-scale applications rely on horizontal scaling as the foundation for handling growth without single points of failure
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-yellow-500 bg-yellow-50/50 dark:bg-yellow-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Common customer triggers driving scaling architecture discussions
+            </h3>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Performance degradation under load:
+                  </strong>{" "}
+                  &ldquo;Our response times triple during peak hours and customers are complaining about slow checkout&rdquo;
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Cost optimization pressure:
+                  </strong>{" "}
+                  &ldquo;Our server costs doubled but revenue only increased 30% - the economics don&rsquo;t work&rdquo;
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    High availability requirements:
+                  </strong>{" "}
+                  &ldquo;We can&rsquo;t afford any downtime because every hour offline costs us $50K in lost sales&rdquo;
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Strategic decision framework for enterprise teams
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Key factors that should drive scaling architecture choices
+            </p>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <strong className="text-slate-700 dark:text-gray-300">
+                  Current application architecture:
+                </strong>{" "}
+                Whether systems can be distributed or require refactoring
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <strong className="text-slate-700 dark:text-gray-300">
+                  Growth projections:
+                </strong>{" "}
+                Vertical scaling has hardware limits, horizontal scaling grows indefinitely
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <strong className="text-slate-700 dark:text-gray-300">
+                  Operational capabilities:
+                </strong>{" "}
+                Team expertise in distributed systems vs single-server management
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <strong className="text-slate-700 dark:text-gray-300">
+                  Fault tolerance requirements:
+                </strong>{" "}
+                Horizontal scaling provides better resilience with increased complexity
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Customer profiles and typical scaling patterns
+            </h3>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <strong className="text-slate-700 dark:text-gray-300">
+                  Early-stage startups:
+                </strong>{" "}
+                Start with vertical scaling for immediate needs, plan horizontal for growth
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <strong className="text-slate-700 dark:text-gray-300">
+                  High-growth companies:
+                </strong>{" "}
+                Require horizontal scaling to handle unpredictable traffic spikes
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <strong className="text-slate-700 dark:text-gray-300">
+                  Enterprise organizations:
+                </strong>{" "}
+                Use hybrid approaches - vertical for databases, horizontal for application layers
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <strong className="text-slate-700 dark:text-gray-300">
+                  Global platforms:
+                </strong>{" "}
+                Require horizontal scaling for geographic distribution and fault tolerance
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Cursor Implementation Section */}
+      <section id="cursor-implementation">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Cursor Implementation Considerations
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Architecture decision support and planning assistance
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              AI assistance for the critical scaling architecture decisions that enterprises face when choosing between horizontal and vertical approaches. Cursor can help evaluate trade-offs between implementation complexity and long-term benefits, providing context-aware recommendations based on application characteristics, growth projections, and team capabilities.
+            </p>
+          </div>
+
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Distributed systems implementation guidance
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Teams implementing horizontal scaling need sophisticated distributed systems patterns. Cursor&rsquo;s codebase understanding can help generate load balancing configurations, data partitioning strategies, and consistency management patterns that address the operational complexity of managing multiple servers while maintaining application performance and reliability.
+            </p>
+          </div>
+
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Migration strategy development and risk mitigation
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Organizations often struggle with migrating from vertical to horizontal scaling architectures without service disruption. AI assistance can help develop comprehensive migration strategies that minimize business risk, generate testing frameworks for validating distributed system behavior, and create rollback plans that ensure smooth transitions during the typical 3-6 month implementation timeline.
+            </p>
+          </div>
+
+          <div className="border-l-4 border-orange-500 bg-orange-50/50 dark:bg-orange-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Cost optimization and resource planning automation
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Enterprises seeking the 50-70% cost reduction benefits of horizontal scaling need sophisticated resource planning and cost modeling. Cursor can help generate elastic scaling policies, capacity planning calculations, and automated resource management scripts that maximize the economic advantages of distributed systems while maintaining performance and availability requirements.
             </p>
           </div>
         </div>
