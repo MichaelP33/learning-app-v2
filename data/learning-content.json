@@ -5788,7 +5788,203 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Using caches to improve system performance",
-              "topics": ["Cache Strategies", "CDN", "In-Memory Caching"]
+              "topics": ["Cache Strategies", "CDN", "In-Memory Caching"],
+              "quiz": {
+                "title": "Caching Layers Knowledge Quiz",
+                "totalQuestions": 10,
+                "totalPoints": 25,
+                "questions": [
+                  {
+                    "id": 1,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "What is the primary business benefit of implementing caching layers in enterprise systems?",
+                    "options": [
+                      "Caching makes applications look more professional",
+                      "Response time improvements and infrastructure cost reduction",
+                      "Caching automatically fixes all security vulnerabilities",
+                      "Applications can run without any servers when cached"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Caching layers provide measurable business value through faster response times (improving user experience) and reduced infrastructure costs (fewer database queries and server resources needed). Companies typically see 40-60% performance improvement and 25-35% cost reduction when implementing effective caching strategies across multiple layers.",
+                    "keyConcepts": [
+                      "Business value of caching",
+                      "performance improvement",
+                      "cost optimization"
+                    ]
+                  },
+                  {
+                    "id": 2,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Which caching layer provides the greatest performance impact for global applications?",
+                    "options": [
+                      "Database query caching",
+                      "Content Delivery Network (CDN) caching",
+                      "Application-level memory caching",
+                      "Browser caching only"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "CDN caching provides the most dramatic performance improvement for global applications by serving content from geographically distributed edge servers. This can reduce page load times from seconds to milliseconds for users worldwide, while also reducing bandwidth costs by 60-80%. Companies like Netflix rely heavily on CDN caching to deliver content globally.",
+                    "keyConcepts": [
+                      "CDN performance impact",
+                      "global content delivery",
+                      "edge server optimization"
+                    ]
+                  },
+                  {
+                    "id": 3,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "What is the typical performance improvement range when implementing multi-layer caching strategies?",
+                    "options": [
+                      "10-20% improvement",
+                      "25-35% improvement", 
+                      "40-60% improvement",
+                      "70-90% improvement"
+                    ],
+                    "correctAnswer": 2,
+                    "additionalContext": "Multi-layer caching strategies typically deliver 40-60% performance improvements when properly implemented across browser, CDN, application, and database layers. This significant improvement occurs because each layer handles different types of requests, creating a compounding effect that dramatically reduces the load on backend systems.",
+                    "keyConcepts": [
+                      "Multi-layer caching benefits",
+                      "performance metrics",
+                      "cumulative optimization effects"
+                    ]
+                  },
+                  {
+                    "id": 4,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "In-memory caching solutions like Redis provide which key advantage for enterprise applications?",
+                    "options": [
+                      "They replace the need for databases entirely",
+                      "Microsecond access times for frequently used data",
+                      "Automatic data backup and recovery features",
+                      "Built-in user authentication and authorization"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "In-memory caching solutions like Redis provide microsecond access times compared to millisecond access times for database queries. This speed advantage becomes critical for high-traffic applications where even small delays can impact user experience and business metrics. Redis can handle millions of operations per second, making it ideal for session storage, leaderboards, and real-time analytics.",
+                    "keyConcepts": [
+                      "In-memory caching speed",
+                      "Redis performance characteristics",
+                      "high-traffic optimization"
+                    ]
+                  },
+                  {
+                    "id": 5,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "What is cache invalidation and why is it considered one of the hardest problems in computer science?",
+                    "options": [
+                      "Cache invalidation is easy - just delete everything when data changes",
+                      "Deciding when cached data is stale while maintaining performance and consistency",
+                      "Cache invalidation only applies to browser caching",
+                      "It's only difficult for small applications with simple data"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Cache invalidation requires balancing data freshness with performance benefits. The challenge is determining when cached data becomes stale and needs updating without defeating the performance benefits of caching. Different strategies (TTL, write-through, write-behind) have different trade-offs, and the wrong choice can lead to inconsistent data or performance degradation.",
+                    "keyConcepts": [
+                      "Cache invalidation complexity",
+                      "data consistency challenges",
+                      "invalidation strategies"
+                    ]
+                  },
+                  {
+                    "id": 6,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Which customer scenario most commonly triggers discussions about implementing caching layers?",
+                    "options": [
+                      "Wanting to learn new technologies for fun",
+                      "Database becoming the bottleneck as traffic grows 5-10x",
+                      "Needing to support mobile applications",
+                      "Planning to hire more developers"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "The most common trigger is database bottlenecks during rapid growth phases. When traffic increases 5-10x, database query response times often degrade exponentially, causing application slowdowns and timeouts. Caching layers provide immediate relief by reducing database load by 70-90% for read-heavy workloads.",
+                    "keyConcepts": [
+                      "Database bottleneck scenarios",
+                      "traffic growth challenges",
+                      "scaling triggers"
+                    ]
+                  },
+                  {
+                    "id": 7,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "What percentage of database load can effective caching strategies typically reduce?",
+                    "options": [
+                      "20-30% reduction",
+                      "40-50% reduction",
+                      "70-90% reduction",
+                      "95-99% reduction"
+                    ],
+                    "correctAnswer": 2,
+                    "additionalContext": "Well-implemented caching strategies can reduce database load by 70-90% for read-heavy applications. This dramatic reduction occurs because most applications follow the 80/20 rule - 80% of requests access 20% of the data. By caching this frequently accessed data, the vast majority of requests never reach the database.",
+                    "keyConcepts": [
+                      "Database load reduction",
+                      "80/20 data access patterns",
+                      "read-heavy optimization"
+                    ]
+                  },
+                  {
+                    "id": 8,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Organizations typically see which cost benefit range when implementing comprehensive caching strategies?",
+                    "options": [
+                      "5-15% cost reduction",
+                      "25-35% cost reduction", 
+                      "50-70% cost reduction",
+                      "80-95% cost reduction"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Organizations typically achieve 25-35% infrastructure cost reduction through comprehensive caching strategies. This comes from reduced database server load (allowing smaller database instances), decreased bandwidth usage (CDN caching), and improved resource utilization across the application stack. The cost savings compound as traffic grows.",
+                    "keyConcepts": [
+                      "Infrastructure cost savings",
+                      "resource optimization",
+                      "bandwidth reduction"
+                    ]
+                  },
+                  {
+                    "id": 9,
+                    "type": "freeform",
+                    "points": 4,
+                    "question": "Describe the four main layers of caching in modern applications and explain how each layer addresses different performance bottlenecks. Include specific use cases for each layer.",
+                    "sampleStrongResponse": "The four main caching layers are: (1) Browser caching - stores static assets (images, CSS, JavaScript) locally to eliminate repeated downloads and reduce page load times, (2) CDN caching - distributes content globally at edge servers to reduce latency for users worldwide and handle traffic spikes, (3) Application-level caching - stores frequently accessed data in memory (like user sessions, computed results) to avoid repeated database queries, and (4) Database caching - caches query results and execution plans to speed up database operations. Each layer targets different bottlenecks: browser caching reduces network requests, CDN caching reduces geographic latency, application caching reduces database load, and database caching optimizes query performance.",
+                    "additionalContext": "Understanding the distinct role of each caching layer helps architects design comprehensive caching strategies that address multiple performance bottlenecks simultaneously.",
+                    "keyConcepts": [
+                      "Multi-layer caching architecture",
+                      "performance bottleneck identification",
+                      "layer-specific optimization"
+                    ],
+                    "customScoringCriteria": {
+                      "fullPoints": "Identifies all four caching layers (browser, CDN, application, database) with clear explanations of their specific performance benefits and appropriate use cases for each layer.",
+                      "partialPoints": "Covers most caching layers with good explanations but may miss one layer or lack detail in use case descriptions.",
+                      "noPoints": "Provides unclear explanations or fails to demonstrate understanding of how different caching layers address specific performance bottlenecks."
+                    }
+                  },
+                  {
+                    "id": 10,
+                    "type": "freeform",
+                    "points": 5,
+                    "question": "Analyze the business impact of caching implementation failures. Describe three common customer pain points that lead to caching discussions, including specific quoted scenarios, and explain how proper caching strategies address each challenge.",
+                    "sampleStrongResponse": "Three common customer pain points that trigger caching discussions are: (1) Performance degradation during growth - 'Our page load times went from 2 seconds to 15 seconds as we scaled from 10K to 100K users' - solved by implementing CDN and application-level caching to handle increased traffic without proportional infrastructure increases; (2) Database bottlenecks causing timeouts - 'Our database is maxed out and users are getting timeout errors during peak hours' - addressed through strategic application caching and read replicas to reduce database load by 70-90%; (3) High infrastructure costs during scaling - 'Our AWS bills doubled but traffic only increased 30%' - resolved through comprehensive caching strategies that reduce server resource requirements and bandwidth usage by 25-35%. Proper caching strategies address these challenges by creating performance buffers that allow applications to handle traffic spikes gracefully while maintaining cost efficiency.",
+                    "additionalContext": "These scenarios represent the most common trigger points where organizations realize that caching is essential for sustainable growth and cost management.",
+                    "keyConcepts": [
+                      "Customer pain point analysis",
+                      "business impact quantification",
+                      "caching strategy benefits",
+                      "growth scalability challenges"
+                    ],
+                    "customScoringCriteria": {
+                      "fullPoints": "Identifies three distinct customer pain points with specific quoted scenarios, clearly explains the business impact of each challenge, and demonstrates understanding of how caching strategies provide comprehensive solutions.",
+                      "partialPoints": "Covers most pain points with good business context but may lack specific quoted scenarios or miss some aspects of how caching addresses the challenges.",
+                      "noPoints": "Provides generic explanations without demonstrating understanding of specific business contexts or fails to connect caching strategies to real customer challenges."
+                    }
+                  }
+                ]
+              }
             },
             {
               "id": "database-connection-pooling",
