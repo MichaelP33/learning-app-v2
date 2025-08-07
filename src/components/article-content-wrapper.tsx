@@ -195,6 +195,8 @@ export function ArticleContentWrapper({
                     <RESTfulApisContent />
                   ) : article.id === "read-replicas-write-scaling" ? (
                     <ReadReplicasWriteScalingContent />
+                  ) : article.id === "documentation-standards" ? (
+                    <DocumentationStandardsContent />
                   ) : (
                     <DefaultArticleContent article={article} />
                   )}
@@ -11382,6 +11384,456 @@ function ReadReplicasWriteScalingContent() {
             </h3>
             <p className="text-slate-700 dark:text-gray-300 mb-3">
               Organizations often struggle with migrating existing applications to read replica architectures without service disruption. Cursor can help generate comprehensive testing strategies that validate application behavior under various replication lag scenarios, ensuring smooth production deployments with minimal risk to business operations.
+            </p>
+          </div>
+        </div>
+      </section>
+    </article>
+  );
+}
+
+// Component for the documentation standards article content
+function DocumentationStandardsContent() {
+  return (
+    <article className="space-y-10">
+      {/* Key Concepts Section */}
+      <section id="key-concepts">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Key Concepts
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Living documentation that evolves with systems
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Documentation that automatically stays current through integration with development workflows (like business processes that update themselves as the organization changes)
+            </p>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                API documentation generated from code annotations prevents documentation drift
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Architecture diagrams updated from infrastructure-as-code configurations
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Runbooks that reflect actual deployment procedures through CI/CD integration
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Architecture Decision Records (ADRs) for institutional memory
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Structured documentation capturing not just technical decisions, but the context and reasoning behind them
+            </p>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Documents why certain architectural choices were made and alternatives considered
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Prevents teams from repeatedly debating the same architectural decisions
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Becomes invaluable when revisiting decisions months or years later during system evolution
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Comprehensive API documentation for self-service integration
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Documentation that enables teams to integrate services independently without constant communication
+            </p>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Reduces integration timelines from weeks to days in microservices architectures
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Enables parallel development rather than sequential dependencies
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Well-documented APIs achieve 3-5x higher adoption rates across enterprise teams
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-orange-500 bg-orange-50/50 dark:bg-orange-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Workflow-integrated documentation enforcement
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Standards that become part of the natural development process rather than an afterthought
+            </p>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Pull request templates that require documentation updates for new features
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                CI/CD pipeline gates that prevent deployment without proper documentation
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Automated checks that verify documentation completeness and accuracy
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Business & Team Impact Section */}
+      <section id="business-team-impact">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
+          <TrendingUp className="w-6 h-6 text-green-500" />
+          Business &amp; Team Impact
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Measurable productivity improvements through documentation standards
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Quantified business value across team scaling and operational efficiency
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Developer onboarding acceleration:
+                  </strong>{" "}
+                  40-60% reduction in ramp-up time (from 2-3 months to 3-6 weeks)
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Support ticket reduction:
+                  </strong>{" "}
+                  30-50% decrease in repetitive questions and knowledge-seeking interruptions
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Feature delivery velocity:
+                  </strong>{" "}
+                  25-40% faster delivery once initial documentation investment is made
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Incident response efficiency:
+                  </strong>{" "}
+                  40-60% improvement in resolution time through comprehensive runbooks
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          {/* Documentation Impact Metrics */}
+          <div className="mt-8">
+            <MetricsCard
+              title="Documentation Standards Impact"
+              metrics={[
+                {
+                  label: "Developer Onboarding Time",
+                  value: "40-60%",
+                  description: "Reduction in time to productivity",
+                  trend: "down",
+                  color: "green",
+                },
+                {
+                  label: "Support Ticket Volume", 
+                  value: "30-50%",
+                  description: "Decrease in repetitive questions",
+                  trend: "down",
+                  color: "blue",
+                },
+                {
+                  label: "Feature Delivery Speed",
+                  value: "25-40%",
+                  description: "Faster delivery with proper documentation",
+                  trend: "up", 
+                  color: "purple",
+                },
+                {
+                  label: "Teams with Documentation Debt",
+                  value: "65-80%",
+                  description: "Report significant productivity barriers",
+                  trend: "up",
+                  color: "orange",
+                },
+              ]}
+              className="bg-gradient-to-br from-green-50 to-emerald-100 dark:from-green-950 dark:to-emerald-900"
+            />
+          </div>
+
+          <div className="border-l-4 border-yellow-500 bg-yellow-50/50 dark:bg-yellow-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Common customer triggers driving documentation standardization
+            </h3>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Extended onboarding crisis:
+                  </strong>{" "}
+                  &ldquo;Our new developers take 3 months to be productive instead of 3 weeks&rdquo;
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Knowledge retention failure:
+                  </strong>{" "}
+                  &ldquo;We keep repeating the same mistakes because institutional knowledge leaves with departing employees&rdquo;
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Production incident patterns:
+                  </strong>{" "}
+                  &ldquo;Production incidents happen because critical system knowledge exists only in people&apos;s heads&rdquo;
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Cross-team integration bottlenecks:
+                  </strong>{" "}
+                  &ldquo;Every API integration requires weeks of back-and-forth communication&rdquo;
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Customer profiles most likely to invest in documentation standards
+            </h3>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <strong className="text-slate-700 dark:text-gray-300">
+                  Series B+ startups
+                </strong>{" "}
+                transitioning from rapid prototyping to sustainable engineering practices
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <strong className="text-slate-700 dark:text-gray-300">
+                  Enterprise teams
+                </strong>{" "}
+                with distributed development across multiple locations and time zones
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <strong className="text-slate-700 dark:text-gray-300">
+                  Regulated industries
+                </strong>{" "}
+                requiring comprehensive audit trails and compliance documentation
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <strong className="text-slate-700 dark:text-gray-300">
+                  High-growth organizations
+                </strong>{" "}
+                experiencing rapid team expansion and knowledge fragmentation
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Operational Excellence Metrics */}
+        <div className="mt-8">
+          <MetricsCard
+            title="Operational Excellence Through Documentation"
+            metrics={[
+              {
+                label: "Incident Response Time",
+                value: "40-60%",
+                description: "Faster resolution with comprehensive runbooks",
+                trend: "down",
+                color: "green",
+              },
+              {
+                label: "API Adoption Rate",
+                value: "3-5x",
+                description: "Higher adoption with proper documentation",
+                trend: "up",
+                color: "blue",
+              },
+              {
+                label: "Team Search Time",
+                value: "20-30%",
+                description: "Time spent searching for information",
+                trend: "down",
+                color: "purple",
+              },
+              {
+                label: "Documentation Currency",
+                value: "Weeks",
+                description: "Time for documentation to become outdated",
+                trend: "down",
+                color: "orange",
+              },
+            ]}
+            className="bg-gradient-to-br from-blue-50 to-cyan-100 dark:from-blue-950 dark:to-cyan-900"
+          />
+        </div>
+      </section>
+
+      {/* Implementation Patterns Section */}
+      <section id="implementation-patterns">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Implementation Patterns
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Tiered documentation strategy for scaling teams
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Balance comprehensive coverage with development velocity through structured priorities
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Tier 1 - Critical systems:
+                  </strong>{" "}
+                  Architecture Decision Records, API documentation, incident runbooks
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Tier 2 - Team processes:
+                  </strong>{" "}
+                  Onboarding guides, deployment procedures, troubleshooting workflows
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Tier 3 - Implementation details:
+                  </strong>{" "}
+                  Code comments, feature specifications, testing procedures
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Automation-first approach to documentation maintenance
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Integrate documentation generation and validation into existing development workflows
+            </p>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                API documentation generated from OpenAPI specifications and code annotations
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Architecture diagrams updated automatically from infrastructure-as-code definitions
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Documentation freshness metrics tracked through CI/CD pipeline integration
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Team adoption and change management strategies
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Practical approaches for implementing documentation standards without disrupting development velocity
+            </p>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Start with high-impact, low-effort documentation that provides immediate value
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Implement documentation review as part of existing code review processes
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Celebrate documentation wins and measure success through concrete metrics
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Cursor Implementation Section */}
+      <section id="cursor-implementation">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Cursor Implementation Considerations
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              AI-powered documentation generation and maintenance
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Cursor can accelerate documentation creation and maintenance by generating comprehensive API documentation from code annotations, creating ADR templates with suggested content based on codebase analysis, and automatically identifying documentation gaps through intelligent code scanning (like a documentation quality auditor that never sleeps)
+            </p>
+          </div>
+
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Context-aware documentation assistance for enterprise teams
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Enterprise teams benefit from Cursor&apos;s ability to understand existing documentation patterns and suggest consistent formats across large codebases - helping maintain documentation standards without manual oversight while reducing the cognitive load of remembering specific formatting requirements
+            </p>
+          </div>
+
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Legacy system documentation and migration support
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Organizations with large legacy codebases can leverage Cursor to analyze undocumented systems and generate initial documentation frameworks, create migration documentation that captures business logic during modernization efforts, and maintain consistency between old and new system documentation during transition periods
             </p>
           </div>
         </div>
