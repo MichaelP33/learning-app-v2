@@ -5780,7 +5780,140 @@
                 "Round Robin",
                 "Weighted Distribution",
                 "Health Checks"
-              ]
+              ],
+              "quiz": {
+                "title": "Load Balancing Strategies Knowledge Quiz",
+                "totalQuestions": 10,
+                "totalPoints": 25,
+                "questions": [
+                  {
+                    "id": 1,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "What distinguishes load balancing from simple request forwarding in distributed systems?",
+                    "options": [
+                      "Load balancing only works with HTTP requests",
+                      "Load balancing intelligently distributes traffic across multiple servers to optimize performance and reliability",
+                      "Load balancing requires manual configuration for each request",
+                      "Load balancing can only handle static content delivery"
+                    ],
+                    "correctAnswer": 1,
+                    "explanation": "Load balancing involves intelligent traffic distribution algorithms that consider server capacity, health, and performance characteristics - not just simple forwarding. This includes health monitoring, session persistence, and dynamic adaptation to server conditions."
+                  },
+                  {
+                    "id": 2,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "A company experiencing &ldquo;Our response times spike to 8 seconds during peak hours even though individual servers show 40% CPU usage&rdquo; would benefit most from:",
+                    "options": [
+                      "Implementing weighted round-robin load balancing to better distribute traffic based on server capacity",
+                      "Adding more CPU cores to existing servers",
+                      "Switching to a NoSQL database",
+                      "Implementing caching layers only"
+                    ],
+                    "correctAnswer": 0,
+                    "explanation": "This scenario indicates inefficient traffic distribution where some servers are overloaded while others are underutilized. Weighted round-robin considers server capacity and can distribute traffic more intelligently than simple round-robin."
+                  },
+                  {
+                    "id": 3,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Which load balancing algorithm is most appropriate for servers with significantly different processing capabilities?",
+                    "options": [
+                      "Round-robin - treats all servers equally",
+                      "Random distribution - provides natural load spreading",
+                      "Least connections - considers active session count",
+                      "Weighted algorithms - accounts for different server capacities and performance characteristics"
+                    ],
+                    "correctAnswer": 3,
+                    "explanation": "When servers have different capabilities (CPU, memory, processing power), weighted algorithms allow you to assign higher weights to more powerful servers, ensuring optimal resource utilization across heterogeneous infrastructure."
+                  },
+                  {
+                    "id": 4,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "What is the primary benefit of implementing health checks in load balancing strategies?",
+                    "options": [
+                      "Health checks reduce server costs by 50-70%",
+                      "Health checks prevent traffic from being routed to failed or degraded servers, maintaining system reliability",
+                      "Health checks automatically scale server capacity",
+                      "Health checks only monitor network latency"
+                    ],
+                    "correctAnswer": 1,
+                    "explanation": "Health checks continuously monitor server status and automatically remove unhealthy servers from the load balancing pool, preventing users from experiencing failed requests and maintaining overall system reliability."
+                  },
+                  {
+                    "id": 5,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "A development team reports &ldquo;Users are getting logged out randomly during peak traffic&rdquo; - this most likely indicates a need for:",
+                    "options": [
+                      "Session persistence (sticky sessions) configuration in the load balancer",
+                      "Increasing server memory allocation",
+                      "Implementing database sharding",
+                      "Adding more load balancer instances"
+                    ],
+                    "correctAnswer": 0,
+                    "explanation": "Random logouts during traffic distribution typically occur when user sessions are tied to specific servers but the load balancer routes subsequent requests to different servers. Session persistence ensures users stay connected to the same server."
+                  },
+                  {
+                    "id": 6,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Which factor makes Layer 7 (application layer) load balancing particularly valuable for modern web applications?",
+                    "options": [
+                      "Layer 7 load balancing costs less than Layer 4",
+                      "Layer 7 can make routing decisions based on HTTP content, URLs, and headers for intelligent traffic management",
+                      "Layer 7 only works with SSL/TLS connections",
+                      "Layer 7 automatically prevents DDoS attacks"
+                    ],
+                    "correctAnswer": 1,
+                    "explanation": "Layer 7 load balancing can inspect HTTP content, allowing for sophisticated routing based on URL paths, request headers, cookies, and content types. This enables advanced patterns like API versioning, A/B testing, and content-based routing."
+                  },
+                  {
+                    "id": 7,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Organizations implementing load balancing strategies typically see what improvement in system availability?",
+                    "options": [
+                      "15-25% improvement in availability",
+                      "30-40% improvement in availability", 
+                      "50-70% reduction in downtime and improved fault tolerance",
+                      "85-95% cost reduction in infrastructure"
+                    ],
+                    "correctAnswer": 2,
+                    "explanation": "Proper load balancing with health checks and failover mechanisms typically reduces downtime by 50-70% by eliminating single points of failure and automatically routing traffic away from failed components."
+                  },
+                  {
+                    "id": 8,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "What distinguishes least connection load balancing from round-robin distribution?",
+                    "options": [
+                      "Least connection only works with database servers",
+                      "Least connection routes traffic to the server with the fewest active connections, optimizing for current load",
+                      "Least connection requires more expensive hardware",
+                      "Least connection can only handle HTTP traffic"
+                    ],
+                    "correctAnswer": 1,
+                    "explanation": "Least connection algorithms track active connections per server and route new requests to the server currently handling the fewest connections, making it more responsive to actual server load than simple round-robin rotation."
+                  },
+                  {
+                    "id": 9,
+                    "type": "freeform",
+                    "points": 4,
+                    "question": "Describe the three main customer scenarios that trigger load balancing strategy discussions. For each scenario, include one specific quoted pain point from the article.",
+                    "sampleStrongResponse": "1. **Performance Crisis During Peak Traffic**: &ldquo;Our response times spike to 8 seconds during peak hours even though individual servers show 40% CPU usage&rdquo; - indicates inefficient traffic distribution where some servers are overloaded while others are underutilized. 2. **Session Management Issues**: &ldquo;Users are getting logged out randomly during peak traffic&rdquo; - occurs when load balancers don't maintain session persistence, routing users to different servers that don't have their session data. 3. **Reliability and Downtime Concerns**: &ldquo;When our main server goes down, our entire application becomes unavailable&rdquo; - highlights the need for failover mechanisms and health checks to maintain system availability during component failures."
+                  },
+                  {
+                    "id": 10,
+                    "type": "freeform",
+                    "points": 5,
+                    "question": "List the core load balancing algorithms and explain what types of infrastructure scenarios would benefit most from each algorithm's strengths.",
+                    "sampleStrongResponse": "1. **Round-Robin**: Best for homogeneous server environments where all servers have identical capabilities - provides even distribution across uniform infrastructure. 2. **Weighted Round-Robin**: Ideal for heterogeneous environments with servers of different capacities - allows assigning higher weights to more powerful servers for optimal resource utilization. 3. **Least Connections**: Most effective for long-running requests or applications with variable processing times - ensures servers aren't overwhelmed by active connection buildup. 4. **IP Hash/Session Persistence**: Critical for stateful applications requiring user sessions to remain on the same server - maintains session continuity for applications that store user state locally. 5. **Geographic/Latency-Based**: Essential for global applications where users need to connect to the nearest server location for optimal performance and compliance with data locality requirements."
+                  }
+                ]
+              }
             },
             {
               "id": "caching-layers",

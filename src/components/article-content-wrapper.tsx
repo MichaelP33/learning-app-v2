@@ -195,6 +195,8 @@ export function ArticleContentWrapper({
                     <RESTfulApisContent />
                   ) : article.id === "read-replicas-write-scaling" ? (
                     <ReadReplicasWriteScalingContent />
+                  ) : article.id === "load-balancing-strategies" ? (
+                    <LoadBalancingStrategiesContent />
                   ) : (
                     <DefaultArticleContent article={article} />
                   )}
@@ -11382,6 +11384,447 @@ function ReadReplicasWriteScalingContent() {
             </h3>
             <p className="text-slate-700 dark:text-gray-300 mb-3">
               Organizations often struggle with migrating existing applications to read replica architectures without service disruption. Cursor can help generate comprehensive testing strategies that validate application behavior under various replication lag scenarios, ensuring smooth production deployments with minimal risk to business operations.
+            </p>
+          </div>
+        </div>
+      </section>
+    </article>
+  );
+}
+
+// Component for the load balancing strategies article content
+function LoadBalancingStrategiesContent() {
+  return (
+    <article className="space-y-10">
+      {/* Key Concepts Section */}
+      <section id="key-concepts">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Key Concepts
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Intelligent traffic distribution across multiple servers
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Load balancing involves sophisticated algorithms that distribute incoming requests across multiple servers based on capacity, health, and performance characteristics (rather than simple forwarding to a single destination)
+            </p>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Continuously monitors server health and automatically removes failed servers from rotation
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Adapts dynamically to changing server conditions and traffic patterns
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Core algorithm families for different infrastructure needs
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Different load balancing algorithms serve distinct enterprise scenarios based on server capabilities and application requirements
+            </p>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Round-robin for homogeneous environments with identical server capabilities
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Weighted algorithms for heterogeneous infrastructure with varying server capacities
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Least connections for applications with variable processing times
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Layer 4 vs Layer 7 load balancing capabilities
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Different OSI layers provide distinct routing capabilities for modern web applications
+            </p>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Layer 4 operates on transport layer for high-performance, protocol-agnostic routing
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Layer 7 inspects HTTP content for intelligent routing based on URLs, headers, and content types
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-orange-500 bg-orange-50/50 dark:bg-orange-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Session persistence and state management
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Managing user sessions across distributed server environments requires careful consideration of stateful application requirements
+            </p>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Sticky sessions ensure users remain connected to the same server throughout their session
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                IP hash algorithms provide deterministic server assignment based on client characteristics
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Business & Team Impact Section */}
+      <section id="business-team-impact">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Business & Team Impact
+        </h2>
+
+        <div className="space-y-8">
+          {/* System Reliability Metrics */}
+          <div>
+            <MetricsCard
+              title="System Reliability Improvements"
+              metrics={[
+                {
+                  label: "Downtime Reduction",
+                  value: "50-70%",
+                  description: "Improved fault tolerance through health checks and failover",
+                  trend: "up",
+                  color: "green",
+                },
+                {
+                  label: "Single Point of Failure Elimination",
+                  value: "95%",
+                  description: "Automatic traffic routing away from failed components",
+                  trend: "up",
+                  color: "blue",
+                },
+                {
+                  label: "Service Availability",
+                  value: "99.9%+",
+                  description: "Continuous operation during server maintenance",
+                  color: "purple",
+                },
+                {
+                  label: "Recovery Time",
+                  value: "<30s",
+                  description: "Automatic failover to healthy servers",
+                  color: "green",
+                },
+              ]}
+              className="bg-gradient-to-br from-green-50 to-emerald-100 dark:from-green-950 dark:to-emerald-900"
+            />
+          </div>
+
+          {/* Performance Optimization Metrics */}
+          <div>
+            <MetricsCard
+              title="Performance Optimization"
+              metrics={[
+                {
+                  label: "Response Time Improvement",
+                  value: "40-60%",
+                  description: "Better traffic distribution across server capacity",
+                  trend: "up",
+                  color: "blue",
+                },
+                {
+                  label: "Server Utilization Efficiency",
+                  value: "80%+",
+                  description: "Optimal resource allocation through weighted algorithms",
+                  trend: "up",
+                  color: "purple",
+                },
+                {
+                  label: "Peak Traffic Handling",
+                  value: "3x",
+                  description: "Improved capacity during high-demand periods",
+                  color: "orange",
+                },
+                {
+                  label: "Session Continuity",
+                  value: "99.8%",
+                  description: "Successful user session persistence",
+                  color: "green",
+                },
+              ]}
+              className="bg-gradient-to-br from-blue-50 to-cyan-100 dark:from-blue-950 dark:to-cyan-900"
+            />
+          </div>
+
+          {/* Customer Impact Analysis */}
+          <div className="space-y-6">
+            <h3 className="text-xl font-semibold text-slate-900 dark:text-white">
+              Customer Scenarios Driving Load Balancing Strategy Adoption
+            </h3>
+
+            <div className="grid gap-6">
+              <div className="border border-slate-200 dark:border-gray-700 rounded-lg p-6 bg-white/50 dark:bg-gray-800/50">
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-full bg-red-100 dark:bg-red-900/30 flex items-center justify-center flex-shrink-0">
+                    <span className="text-red-600 dark:text-red-400 font-bold">1</span>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-slate-900 dark:text-white mb-2">
+                      Performance Crisis During Peak Traffic
+                    </h4>
+                    <div className="space-y-2">
+                      <div>
+                        <strong className="text-slate-700 dark:text-gray-300">
+                          Performance crisis:
+                        </strong>{" "}
+                        &ldquo;Our response times spike to 8 seconds during peak hours even though individual servers show 40% CPU usage&rdquo;
+                      </div>
+                      <p className="text-slate-600 dark:text-gray-400">
+                        <strong>Root cause:</strong> Inefficient traffic distribution where some servers are overloaded while others are underutilized. Weighted round-robin algorithms can better distribute traffic based on server capacity and current load.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="border border-slate-200 dark:border-gray-700 rounded-lg p-6 bg-white/50 dark:bg-gray-800/50">
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-full bg-orange-100 dark:bg-orange-900/30 flex items-center justify-center flex-shrink-0">
+                    <span className="text-orange-600 dark:text-orange-400 font-bold">2</span>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-slate-900 dark:text-white mb-2">
+                      Session Management Issues
+                    </h4>
+                    <div className="space-y-2">
+                      <div>
+                        <strong className="text-slate-700 dark:text-gray-300">
+                          User experience degradation:
+                        </strong>{" "}
+                        &ldquo;Users are getting logged out randomly during peak traffic&rdquo;
+                      </div>
+                      <p className="text-slate-600 dark:text-gray-400">
+                        <strong>Root cause:</strong> Load balancers routing subsequent requests to different servers that don't have session data. Session persistence (sticky sessions) configuration ensures users stay connected to the same server throughout their session.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="border border-slate-200 dark:border-gray-700 rounded-lg p-6 bg-white/50 dark:bg-gray-800/50">
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-full bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center flex-shrink-0">
+                    <span className="text-purple-600 dark:text-purple-400 font-bold">3</span>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-slate-900 dark:text-white mb-2">
+                      Reliability and Downtime Concerns
+                    </h4>
+                    <div className="space-y-2">
+                      <div>
+                        <strong className="text-slate-700 dark:text-gray-300">
+                          Business continuity risk:
+                        </strong>{" "}
+                        &ldquo;When our main server goes down, our entire application becomes unavailable&rdquo;
+                      </div>
+                      <p className="text-slate-600 dark:text-gray-400">
+                        <strong>Root cause:</strong> Single point of failure architecture. Health checks and failover mechanisms automatically remove unhealthy servers from the load balancing pool and maintain system availability during component failures.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Implementation Patterns Section */}
+      <section id="implementation-patterns">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Implementation Patterns
+        </h2>
+
+        <div className="space-y-8">
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Algorithm Selection Framework
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-4">
+              Choose load balancing algorithms based on infrastructure characteristics and application requirements
+            </p>
+            
+            <div className="space-y-4">
+              <div className="bg-white/70 dark:bg-gray-800/70 p-4 rounded-lg">
+                <h4 className="font-medium text-slate-900 dark:text-white mb-2">Round-Robin Distribution</h4>
+                <p className="text-sm text-slate-600 dark:text-gray-400 mb-2">
+                  <strong>Best for:</strong> Homogeneous server environments where all servers have identical capabilities
+                </p>
+                <p className="text-sm text-slate-600 dark:text-gray-400">
+                  Provides even distribution across uniform infrastructure, ensuring each server receives an equal share of requests in sequence.
+                </p>
+              </div>
+
+              <div className="bg-white/70 dark:bg-gray-800/70 p-4 rounded-lg">
+                <h4 className="font-medium text-slate-900 dark:text-white mb-2">Weighted Round-Robin</h4>
+                <p className="text-sm text-slate-600 dark:text-gray-400 mb-2">
+                  <strong>Best for:</strong> Heterogeneous environments with servers of different capacities
+                </p>
+                <p className="text-sm text-slate-600 dark:text-gray-400">
+                  Allows assigning higher weights to more powerful servers for optimal resource utilization across mixed infrastructure.
+                </p>
+              </div>
+
+              <div className="bg-white/70 dark:bg-gray-800/70 p-4 rounded-lg">
+                <h4 className="font-medium text-slate-900 dark:text-white mb-2">Least Connections Algorithm</h4>
+                <p className="text-sm text-slate-600 dark:text-gray-400 mb-2">
+                  <strong>Best for:</strong> Long-running requests or applications with variable processing times
+                </p>
+                <p className="text-sm text-slate-600 dark:text-gray-400">
+                  Routes traffic to servers with fewest active connections, preventing servers from being overwhelmed by connection buildup.
+                </p>
+              </div>
+
+              <div className="bg-white/70 dark:bg-gray-800/70 p-4 rounded-lg">
+                <h4 className="font-medium text-slate-900 dark:text-white mb-2">IP Hash/Session Persistence</h4>
+                <p className="text-sm text-slate-600 dark:text-gray-400 mb-2">
+                  <strong>Best for:</strong> Stateful applications requiring user sessions on the same server
+                </p>
+                <p className="text-sm text-slate-600 dark:text-gray-400">
+                  Maintains session continuity for applications that store user state locally, ensuring consistent user experience.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Health Check Implementation Strategy
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-4">
+              Implement comprehensive health monitoring to maintain system reliability
+            </p>
+            
+            <div className="space-y-3">
+              <div className="flex items-start gap-3">
+                <span className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-900 dark:text-white">Active health checks:</strong>
+                  <span className="text-slate-600 dark:text-gray-400 ml-2">
+                    Proactively monitor server status through periodic requests to health endpoints
+                  </span>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-900 dark:text-white">Passive health checks:</strong>
+                  <span className="text-slate-600 dark:text-gray-400 ml-2">
+                    Monitor response patterns from actual user requests to detect degraded performance
+                  </span>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-900 dark:text-white">Graceful server removal:</strong>
+                  <span className="text-slate-600 dark:text-gray-400 ml-2">
+                    Automatically exclude unhealthy servers while allowing existing connections to complete
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Layer 7 routing capabilities for modern applications
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-4">
+              Leverage application-layer intelligence for sophisticated traffic management
+            </p>
+            
+            <div className="space-y-3">
+              <div className="flex items-start gap-3">
+                <span className="w-2 h-2 bg-purple-500 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-900 dark:text-white">Content-based routing:</strong>
+                  <span className="text-slate-600 dark:text-gray-400 ml-2">
+                    Route API requests to specialized servers based on URL paths and request content
+                  </span>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="w-2 h-2 bg-purple-500 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-900 dark:text-white">Header-based distribution:</strong>
+                  <span className="text-slate-600 dark:text-gray-400 ml-2">
+                    Direct traffic based on HTTP headers for A/B testing and feature flagging
+                  </span>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="w-2 h-2 bg-purple-500 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-900 dark:text-white">SSL termination and inspection:</strong>
+                  <span className="text-slate-600 dark:text-gray-400 ml-2">
+                    Handle encryption/decryption at the load balancer for optimized backend communication
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Cursor Implementation Section */}
+      <section id="cursor-implementation">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Cursor Implementation Considerations
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              AI-assisted load balancer configuration generation
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Cursor can accelerate load balancing implementation by generating optimal configuration files for popular load balancers like NGINX, HAProxy, and cloud-native solutions. AI assistance helps teams avoid common configuration pitfalls like improper health check intervals, suboptimal algorithm selection, and missing failover rules, reducing setup time from days to hours.
+            </p>
+          </div>
+
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Session management and state synchronization logic
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Teams implementing stateful applications need sophisticated session handling mechanisms. Cursor&rsquo;s context awareness helps generate session store integrations (Redis, Memcached), sticky session configurations, and graceful session migration patterns that ensure user continuity during server maintenance and scaling operations.
+            </p>
+          </div>
+
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Health check endpoint implementation
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Load balancing strategies require comprehensive application health endpoints that accurately reflect service status. AI assistance can generate health check routes that validate database connectivity, external service dependencies, and resource availability, ensuring load balancers make intelligent routing decisions based on actual application health rather than just network connectivity.
+            </p>
+          </div>
+
+          <div className="border-l-4 border-orange-500 bg-orange-50/50 dark:bg-orange-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Monitoring and observability automation for distributed traffic
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Load-balanced architectures require detailed monitoring of traffic distribution, server performance metrics, and user session flows. Cursor can help generate comprehensive monitoring dashboards, alerting configurations for uneven traffic distribution, and automated reporting systems that help teams proactively optimize load balancing performance before customer impact occurs.
             </p>
           </div>
         </div>
