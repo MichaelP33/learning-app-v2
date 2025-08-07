@@ -5866,7 +5866,203 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Systematic examination of code by team members",
-              "topics": ["Review Process", "Quality Gates", "Knowledge Sharing"]
+              "topics": ["Review Process", "Quality Gates", "Knowledge Sharing"],
+              "quiz": {
+                "title": "Code Reviews Knowledge Quiz",
+                "totalQuestions": 10,
+                "totalPoints": 25,
+                "questions": [
+                  {
+                    "id": 1,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "What is the primary objective of code reviews in software development?",
+                    "options": [
+                      "To find bugs before they reach production",
+                      "To enforce coding standards and style guidelines",
+                      "To systematically improve code quality while enabling knowledge transfer across the team",
+                      "To ensure only senior developers can approve changes"
+                    ],
+                    "correctAnswer": 2,
+                    "additionalContext": "While bug detection and standards enforcement are important, the primary objective encompasses systematic quality improvement and knowledge transfer. Effective code reviews create a collaborative learning environment where team members share expertise, catch issues early, and maintain consistent code quality standards - transforming individual contributions into collective team knowledge.",
+                    "keyConcepts": [
+                      "Code review purpose",
+                      "quality improvement",
+                      "knowledge transfer"
+                    ]
+                  },
+                  {
+                    "id": 2,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Organizations implementing structured code review processes typically see what improvement in defect detection rates?",
+                    "options": [
+                      "20-30% improvement",
+                      "40-60% improvement", 
+                      "70-85% improvement",
+                      "90-95% improvement"
+                    ],
+                    "correctAnswer": 2,
+                    "additionalContext": "Research consistently shows that structured code reviews catch 70-85% of defects before they reach production, making them one of the most effective quality assurance practices. This high detection rate occurs because human reviewers can identify logical errors, architectural issues, and edge cases that automated testing might miss. The collaborative nature also means multiple perspectives examine the code, increasing the likelihood of finding subtle issues.",
+                    "keyConcepts": [
+                      "Defect detection rates",
+                      "quality metrics",
+                      "review effectiveness"
+                    ]
+                  },
+                  {
+                    "id": 3,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Which approach to code review feedback creates the most effective learning environment for development teams?",
+                    "options": [
+                      "Direct criticism pointing out everything wrong with the code",
+                      "Constructive feedback that explains the reasoning behind suggestions and alternatives",
+                      "Minimal comments to avoid discouraging developers",
+                      "Only approving changes after they meet perfect standards"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Constructive feedback that explains reasoning creates psychological safety and learning opportunities - essential for effective team collaboration. This approach helps developers understand not just what to change, but why changes are needed, building their skills for future work. Teams using explanatory feedback see better knowledge transfer and higher developer satisfaction compared to purely critical or minimal approaches.",
+                    "keyConcepts": [
+                      "Feedback effectiveness",
+                      "team learning",
+                      "psychological safety"
+                    ]
+                  },
+                  {
+                    "id": 4,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "What percentage reduction in production issues do teams typically achieve when implementing comprehensive code review workflows?",
+                    "options": [
+                      "15-25% reduction",
+                      "30-45% reduction",
+                      "50-70% reduction",
+                      "80-90% reduction"
+                    ],
+                    "correctAnswer": 2,
+                    "additionalContext": "Teams implementing comprehensive code review workflows typically see 50-70% reduction in production issues because reviews catch not just syntax errors, but logical flaws, security vulnerabilities, and architectural inconsistencies. This dramatic improvement reflects the compound effect of better code quality, shared knowledge, and consistent standards enforcement across the development process.",
+                    "keyConcepts": [
+                      "Production issue reduction",
+                      "workflow impact",
+                      "quality outcomes"
+                    ]
+                  },
+                  {
+                    "id": 5,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "In agile development environments, what is the optimal timing for conducting code reviews?",
+                    "options": [
+                      "At the end of each sprint during retrospectives",
+                      "Before merging each pull request or feature branch",
+                      "Only when bugs are discovered in production",
+                      "During dedicated weekly review sessions"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Pre-merge reviews integrated into the development workflow provide immediate feedback when context is fresh and changes are easier to implement. This timing prevents defective code from entering the main branch, maintains development velocity, and creates natural learning opportunities. Weekly or post-sprint reviews lose context and create friction in agile workflows.",
+                    "keyConcepts": [
+                      "Review timing",
+                      "agile integration",
+                      "workflow optimization"
+                    ]
+                  },
+                  {
+                    "id": 6,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "What is the most significant factor that distinguishes effective code review practices from ineffective ones?",
+                    "options": [
+                      "Using automated tools to check code formatting",
+                      "Having senior developers review all junior developer code",
+                      "Establishing clear criteria and consistent process standards that all team members follow",
+                      "Conducting reviews only for critical system components"
+                    ],
+                    "correctAnswer": 2,
+                    "additionalContext": "Clear criteria and consistent processes ensure reviews are thorough, fair, and educational rather than arbitrary or inconsistent. This includes defining what reviewers should check (logic, security, performance, maintainability), establishing approval requirements, and creating templates or checklists. Inconsistent practices lead to gaps in coverage and developer frustration.",
+                    "keyConcepts": [
+                      "Review standards",
+                      "process consistency",
+                      "effectiveness criteria"
+                    ]
+                  },
+                  {
+                    "id": 7,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "How do modern AI-assisted development tools like Cursor impact traditional code review processes?",
+                    "options": [
+                      "They eliminate the need for human code reviews entirely",
+                      "They supplement human reviews by catching syntax issues, allowing reviewers to focus on architecture and business logic",
+                      "They slow down development by adding another layer of checking",
+                      "They only help with formatting and have no impact on review quality"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "AI tools like Cursor handle routine checks (syntax, common patterns, basic security issues), freeing human reviewers to focus on higher-level concerns like architectural decisions, business logic correctness, and maintainability. This division of labor makes reviews more efficient and valuable, with AI catching mechanical issues while humans provide strategic oversight and knowledge transfer.",
+                    "keyConcepts": [
+                      "AI-assisted development",
+                      "human-AI collaboration",
+                      "review efficiency"
+                    ]
+                  },
+                  {
+                    "id": 8,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Which metric best indicates that a team's code review process is contributing effectively to long-term code maintainability?",
+                    "options": [
+                      "Number of comments per review",
+                      "Time spent on each review session",
+                      "Consistent decrease in technical debt and increased code reusability over time",
+                      "Percentage of reviews that result in no changes"
+                    ],
+                    "correctAnswer": 2,
+                    "additionalContext": "Decreasing technical debt and increasing code reusability demonstrate that reviews are successfully preventing poor design choices and encouraging good architectural patterns. This long-term trend indicates the process is building sustainable code quality rather than just catching immediate issues. Other metrics like comment count or time spent don't directly correlate with quality outcomes.",
+                    "keyConcepts": [
+                      "Maintainability metrics",
+                      "technical debt reduction",
+                      "long-term quality"
+                    ]
+                  },
+                  {
+                    "id": 9,
+                    "type": "freeform",
+                    "points": 4,
+                    "question": "Describe the three main organizational challenges that drive teams to formalize their code review processes. For each challenge, include one specific quoted pain point that demonstrates the business impact.",
+                    "sampleStrongResponse": "The three main challenges are: (1) Quality control breakdown - &ldquo;We&rsquo;re spending 60% of our development time fixing production bugs that should have been caught earlier&rdquo;, (2) Knowledge silos - &ldquo;Only two developers understand our core payment system, and they&rsquo;re overwhelmed&rdquo;, and (3) Inconsistent standards - &ldquo;Each developer writes code differently, making maintenance a nightmare for the whole team&rdquo;. These represent the critical points where teams realize systematic review processes are essential for sustainable development.",
+                    "additionalContext": "These challenges represent the most common trigger points where organizations realize ad-hoc development practices are becoming business impediments. Understanding these patterns helps teams recognize when to invest in structured review processes.",
+                    "keyConcepts": [
+                      "Organizational challenges",
+                      "business impact",
+                      "process formalization"
+                    ],
+                    "customScoringCriteria": {
+                      "fullPoints": "Identifies all three challenges (quality control breakdown, knowledge silos, inconsistent standards) and includes specific quoted pain points that demonstrate business impact. Shows understanding of organizational triggers for process improvement.",
+                      "partialPoints": "Identifies most challenges and includes some business impact examples, but may miss one challenge or use less specific examples.",
+                      "noPoints": "Fails to identify the three distinct challenges or doesn't include specific quoted pain points showing business impact."
+                    }
+                  },
+                  {
+                    "id": 10,
+                    "type": "freeform",
+                    "points": 5,
+                    "question": "Analyze the key components of an effective code review workflow. List the five essential elements that ensure reviews contribute to both immediate quality improvements and long-term team knowledge sharing, explaining how each element supports sustainable development practices.",
+                    "sampleStrongResponse": "The five essential elements are: (1) Clear review criteria that define what reviewers should check (security, logic, maintainability, performance), (2) Consistent timing integrated into the development workflow (pre-merge reviews), (3) Constructive feedback practices that explain reasoning and alternatives, (4) Balanced reviewer assignment that distributes knowledge across team members, and (5) Follow-up processes that ensure feedback is addressed and learning is captured. These elements work together to create systematic quality improvement while building team expertise and preventing knowledge silos.",
+                    "additionalContext": "Effective code review workflows balance immediate quality control with long-term team development, creating sustainable practices that scale with team growth and project complexity.",
+                    "keyConcepts": [
+                      "Workflow components",
+                      "sustainable practices",
+                      "team knowledge sharing",
+                      "systematic quality improvement"
+                    ],
+                    "customScoringCriteria": {
+                      "fullPoints": "Identifies five essential workflow elements and explains how each supports both immediate quality and long-term knowledge sharing. Demonstrates understanding of systematic approaches to sustainable development.",
+                      "partialPoints": "Identifies most workflow elements and explains their benefits, but may miss some elements or not fully connect them to sustainability goals.",
+                      "noPoints": "Fails to identify comprehensive workflow elements or doesn't explain how they support sustainable development practices."
+                    }
+                  }
+                ]
+              }
             },
             {
               "id": "pair-programming",
