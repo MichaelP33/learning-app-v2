@@ -5886,7 +5886,203 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Whole team working together on the same thing",
-              "topics": ["Collective Ownership", "Mob Roles", "Facilitation"]
+              "topics": ["Collective Ownership", "Mob Roles", "Facilitation"],
+              "quiz": {
+                "title": "Mob Programming Knowledge Quiz",
+                "totalQuestions": 10,
+                "totalPoints": 25,
+                "questions": [
+                  {
+                    "id": 1,
+                    "type": "multiple-choice",
+                    "points": 3,
+                    "question": "What is the core principle that defines mob programming as distinct from other collaborative development practices?",
+                    "options": [
+                      "Multiple teams working on different features simultaneously",
+                      "All team members working on the same thing, at the same time, in the same space, at the same computer",
+                      "Developers taking turns to code while others review",
+                      "Senior developers mentoring junior developers one-on-one"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Mob programming extends beyond pair programming by involving the entire team in active collaboration on a single task. This 'all hands on deck' approach creates collective ownership, shared understanding, and eliminates knowledge silos that often plague development teams. The practice originated from the concept that 'All the brilliant minds working on the same thing, in the same space, at the same time, on the same computer.'",
+                    "keyConcepts": [
+                      "Core mob programming definition",
+                      "collective collaboration",
+                      "knowledge sharing"
+                    ]
+                  },
+                  {
+                    "id": 2,
+                    "type": "multiple-choice",
+                    "points": 3,
+                    "question": "According to enterprise adoption studies, what improvement in code quality do organizations typically see when implementing mob programming?",
+                    "options": [
+                      "15-25% reduction in bugs",
+                      "30-40% reduction in bugs",
+                      "50-70% reduction in bugs",
+                      "80-90% reduction in bugs"
+                    ],
+                    "correctAnswer": 2,
+                    "additionalContext": "Organizations like Hunter Industries and Pivotal Labs have reported significant quality improvements through mob programming, with defect rates dropping by 50-70% due to real-time collaborative review, shared design decisions, and collective code ownership. This improvement stems from having multiple eyes on the code simultaneously rather than catching issues during later review cycles.",
+                    "keyConcepts": [
+                      "Quality improvement metrics",
+                      "defect reduction",
+                      "enterprise adoption results"
+                    ]
+                  },
+                  {
+                    "id": 3,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Which customer scenario best illustrates the primary business pain point that mob programming addresses?",
+                    "options": [
+                      "\"Our junior developers need more training on advanced algorithms\"",
+                      "\"We have too many meetings and not enough coding time\"",
+                      "\"Only Sarah knows how the payment system works, and she's going on vacation\"",
+                      "\"Our cloud infrastructure costs are too high for our startup\""
+                    ],
+                    "correctAnswer": 2,
+                    "additionalContext": "Knowledge silos represent one of the most critical risks in software development teams. When critical system knowledge exists in only one person's head, it creates business continuity risks, deployment bottlenecks, and increased maintenance costs. Mob programming directly addresses this by ensuring shared understanding and collective ownership of all code.",
+                    "keyConcepts": [
+                      "Knowledge silos",
+                      "business continuity risk",
+                      "collective ownership"
+                    ]
+                  },
+                  {
+                    "id": 4,
+                    "type": "multiple-choice",
+                    "points": 3,
+                    "question": "What is the recommended duration for effective mob programming sessions to maintain team focus and productivity?",
+                    "options": [
+                      "30-45 minutes with 5-10 minute breaks",
+                      "60-90 minutes with 10-15 minute breaks",
+                      "2-3 hours with 15-20 minute breaks",
+                      "Full day sessions with lunch breaks only"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Research on mob programming practices shows that 60-90 minute sessions with regular breaks optimize team focus and collaborative effectiveness. This timing allows for meaningful progress on complex problems while preventing cognitive fatigue that can reduce the quality of group decision-making. The break intervals help maintain energy and allow for informal knowledge transfer conversations.",
+                    "keyConcepts": [
+                      "Session duration optimization",
+                      "team focus management",
+                      "productivity best practices"
+                    ]
+                  },
+                  {
+                    "id": 5,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "In mob programming, what is the primary role of the \"Navigator\"?",
+                    "options": [
+                      "Writing code while others observe and provide feedback",
+                      "Managing project timelines and sprint commitments",
+                      "Thinking strategically about the problem and guiding the Driver",
+                      "Taking notes and documenting decisions for later reference"
+                    ],
+                    "correctAnswer": 2,
+                    "additionalContext": "The Navigator role focuses on strategic thinking, problem-solving direction, and communicating intent to the Driver. While the Driver handles tactical implementation at the keyboard, the Navigator thinks about the bigger picture, suggests approaches, and helps the team stay focused on the current objective. This role rotation ensures all team members develop both strategic and tactical skills.",
+                    "keyConcepts": [
+                      "Navigator role definition",
+                      "strategic vs tactical thinking",
+                      "role rotation benefits"
+                    ]
+                  },
+                  {
+                    "id": 6,
+                    "type": "multiple-choice",
+                    "points": 3,
+                    "question": "What productivity improvement do teams typically experience after 3-6 months of consistent mob programming practice?",
+                    "options": [
+                      "10-20% faster feature delivery",
+                      "25-35% faster feature delivery",
+                      "40-60% faster feature delivery",
+                      "70-80% faster feature delivery"
+                    ],
+                    "correctAnswer": 2,
+                    "additionalContext": "Teams like those at Pivotal Labs and Hunter Industries report 40-60% improvements in feature delivery velocity after establishing effective mob programming practices. This acceleration comes from reduced context switching, eliminated code review delays, immediate knowledge transfer, and fewer post-deployment bug fixes. The initial learning curve is offset by sustained productivity gains as teams mature in the practice.",
+                    "keyConcepts": [
+                      "Productivity improvement metrics",
+                      "feature delivery acceleration",
+                      "long-term velocity gains"
+                    ]
+                  },
+                  {
+                    "id": 7,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Which statement best describes the cost-effectiveness of mob programming for enterprise organizations?",
+                    "options": [
+                      "Higher upfront costs but 30-50% reduction in total development lifecycle costs",
+                      "Lower upfront costs and immediate return on investment",
+                      "Similar costs to traditional development with no significant financial impact",
+                      "Higher costs overall but improved team satisfaction"
+                    ],
+                    "correctAnswer": 0,
+                    "additionalContext": "While mob programming appears more expensive upfront due to multiple developers working on the same task, organizations report 30-50% reduction in total development lifecycle costs through decreased bug fixing, reduced rework, eliminated knowledge transfer time, and faster onboarding of new team members. The investment in collaborative development pays dividends in maintenance and support phases.",
+                    "keyConcepts": [
+                      "Total cost of ownership",
+                      "lifecycle cost reduction",
+                      "enterprise ROI"
+                    ]
+                  },
+                  {
+                    "id": 8,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "How does mob programming specifically enhance the effectiveness of AI coding tools like Cursor?",
+                    "options": [
+                      "AI tools work better with individual developers than groups",
+                      "Multiple perspectives improve AI prompt engineering and code review",
+                      "Mob programming prevents teams from using AI tools effectively",
+                      "AI tools eliminate the need for collaborative programming practices"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Mob programming creates an ideal environment for AI-enhanced development because team members can collaboratively craft better prompts, immediately review AI-generated code suggestions, and collectively evaluate the appropriateness of AI recommendations. The diverse perspectives in a mob help identify edge cases and potential issues with AI-generated code that individual developers might miss.",
+                    "keyConcepts": [
+                      "AI coding tool integration",
+                      "collaborative prompt engineering",
+                      "collective code review"
+                    ]
+                  },
+                  {
+                    "id": 9,
+                    "type": "freeform",
+                    "points": 4,
+                    "question": "Describe the three main business benefits organizations achieve through mob programming implementation. For each benefit, explain the specific mechanism that creates this value and provide a quantified example from enterprise adoption.",
+                    "sampleStrongResponse": "The three main business benefits are: (1) Knowledge Distribution - eliminates single points of failure by ensuring all team members understand critical systems, preventing situations like 'Only Sarah knows the payment system' that can halt development when key people are unavailable. Organizations report 70-90% reduction in knowledge silos. (2) Quality Improvement - real-time collaborative review catches defects immediately rather than in later review cycles, leading to 50-70% reduction in production bugs and corresponding decreases in support costs and customer impact. (3) Delivery Acceleration - shared context eliminates handoffs, reduces rework, and enables faster decision-making, resulting in 40-60% improvement in feature delivery velocity after teams establish effective mob practices. These benefits compound over time as teams build collective expertise and organizational resilience.",
+                    "additionalContext": "Understanding these quantified business benefits helps organizations make informed decisions about adopting mob programming and set appropriate expectations for implementation timelines and ROI measurement.",
+                    "keyConcepts": [
+                      "Business value proposition",
+                      "quantified enterprise benefits",
+                      "organizational resilience"
+                    ],
+                    "customScoringCriteria": {
+                      "fullPoints": "Clearly identifies all three benefits (knowledge distribution, quality improvement, delivery acceleration) with specific mechanisms and quantified examples. Shows understanding of how mob programming creates measurable business value.",
+                      "partialPoints": "Covers most benefits with explanations but may lack quantified examples or detailed mechanisms for value creation.",
+                      "noPoints": "Provides generic benefits without specific mechanisms or fails to connect mob programming to measurable business outcomes."
+                    }
+                  },
+                  {
+                    "id": 10,
+                    "type": "freeform",
+                    "points": 5,
+                    "question": "Analyze the key challenges organizations face when implementing mob programming and explain how to structure a successful adoption strategy. Include specific recommendations for team formation, session management, and measuring success in enterprise environments.",
+                    "sampleStrongResponse": "Key implementation challenges include initial productivity concerns (teams feel slower initially), space and equipment requirements (need collaborative workspaces with large screens), and resistance to change from developers accustomed to individual work. Successful adoption strategy: (1) Team Formation - start with volunteer early adopters, ensure diverse skill levels for knowledge transfer, limit initial mob size to 3-5 people. (2) Session Management - begin with 60-90 minute sessions with regular breaks, establish clear role rotation (Driver/Navigator), focus on complex problems that benefit from collaboration rather than routine tasks. (3) Success Measurement - track defect rates (expect 50-70% reduction), knowledge distribution metrics (bus factor improvement), and delivery velocity (40-60% improvement after 3-6 months). Include qualitative measures like team satisfaction and onboarding time for new members. Provide management education about initial productivity dips and long-term ROI to ensure organizational support during the transition period.",
+                    "additionalContext": "Successful mob programming adoption requires understanding both technical implementation details and organizational change management principles to overcome common resistance and measurement challenges.",
+                    "keyConcepts": [
+                      "Implementation challenges",
+                      "adoption strategy",
+                      "success measurement",
+                      "organizational change management"
+                    ],
+                    "customScoringCriteria": {
+                      "fullPoints": "Comprehensive analysis covering implementation challenges, detailed adoption strategy across all three areas (team formation, session management, success measurement), and understanding of organizational change aspects. Includes specific quantified expectations and practical recommendations.",
+                      "partialPoints": "Covers most key areas but may lack detail in some aspects of adoption strategy or miss important implementation considerations.",
+                      "noPoints": "Superficial analysis that doesn't address real implementation challenges or provide actionable adoption guidance."
+                    }
+                  }
+                ]
+              }
             },
             {
               "id": "documentation-standards",

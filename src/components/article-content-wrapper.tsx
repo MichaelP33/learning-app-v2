@@ -195,6 +195,8 @@ export function ArticleContentWrapper({
                     <RESTfulApisContent />
                   ) : article.id === "read-replicas-write-scaling" ? (
                     <ReadReplicasWriteScalingContent />
+                  ) : article.id === "mob-programming" ? (
+                    <MobProgrammingContent />
                   ) : (
                     <DefaultArticleContent article={article} />
                   )}
@@ -11383,6 +11385,406 @@ function ReadReplicasWriteScalingContent() {
             <p className="text-slate-700 dark:text-gray-300 mb-3">
               Organizations often struggle with migrating existing applications to read replica architectures without service disruption. Cursor can help generate comprehensive testing strategies that validate application behavior under various replication lag scenarios, ensuring smooth production deployments with minimal risk to business operations.
             </p>
+          </div>
+        </div>
+      </section>
+    </article>
+  );
+}
+
+function MobProgrammingContent() {
+  return (
+    <article className="space-y-10">
+      {/* Key Concepts Section */}
+      <section id="key-concepts">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Key Concepts
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Collective Ownership Philosophy
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              All team members working on the same thing, at the same time, in the same space, at the same computer - creating shared understanding and eliminating knowledge silos (like having a single source of truth for complex business logic that everyone understands)
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Knowledge distribution:
+                  </strong>{" "}
+                  Every team member understands the codebase architecture, business logic, and system dependencies - preventing the &ldquo;bus factor&rdquo; problem where critical knowledge exists only in one person&rsquo;s head
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Real-time collaboration:
+                  </strong>{" "}
+                  Design decisions, code reviews, and problem-solving happen instantly rather than through asynchronous processes, reducing feedback cycles from days to minutes
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Collective code quality:
+                  </strong>{" "}
+                  Multiple eyes reviewing every line of code as it&rsquo;s written, catching defects immediately rather than during post-development review cycles
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Driver-Navigator Role Dynamic
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Structured role rotation ensuring balanced participation and skill development across all team members
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Driver responsibilities:
+                  </strong>{" "}
+                  Tactical implementation at the keyboard, translating strategic guidance into working code while maintaining focus on current implementation details
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Navigator guidance:
+                  </strong>{" "}
+                  Strategic thinking about problem-solving direction, architectural decisions, and ensuring the team stays focused on the current objective without getting lost in implementation details
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Rotation benefits:
+                  </strong>{" "}
+                  Regular role switching ensures all team members develop both strategic and tactical skills, preventing skill silos and improving overall team capability
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Session Management Best Practices
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Structured timing and facilitation approaches that optimize team focus and collaborative effectiveness
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Optimal duration:
+                  </strong>{" "}
+                  60-90 minute sessions with 10-15 minute breaks maintain cognitive focus while preventing fatigue that reduces collaborative decision-making quality
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Problem selection:
+                  </strong>{" "}
+                  Focus on complex problems requiring design decisions, architectural changes, or knowledge transfer rather than routine implementation tasks that benefit individual focus
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Facilitation approach:
+                  </strong>{" "}
+                  Establish clear objectives, maintain role rotation schedules, and ensure all voices are heard to maximize the collective intelligence benefit
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Business & Team Impact Section */}
+      <section id="business-team-impact">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Business & Team Impact
+        </h2>
+
+        {/* Quality Improvement Metrics */}
+        <div className="mb-8">
+          <MetricsCard
+            title="Quality & Defect Reduction"
+            metrics={[
+              {
+                label: "Production Bug Reduction",
+                value: "50-70%",
+                description: "Real-time collaborative review catches defects immediately",
+                color: "green",
+              },
+              {
+                label: "Knowledge Silo Elimination",
+                value: "70-90%",
+                description: "Shared understanding across all team members",
+                color: "blue",
+              },
+              {
+                label: "Code Review Time Saved",
+                value: "80-95%",
+                description: "Review happens in real-time during development",
+                color: "purple",
+              },
+            ]}
+            className="bg-gradient-to-br from-green-50 to-emerald-100 dark:from-green-950 dark:to-emerald-900"
+          />
+        </div>
+
+        {/* Delivery & Cost Metrics */}
+        <div className="mb-8">
+          <MetricsCard
+            title="Delivery & Cost Impact"
+            metrics={[
+              {
+                label: "Feature Delivery Acceleration",
+                value: "40-60%",
+                description: "Faster development after 3-6 months of practice",
+                color: "green",
+              },
+              {
+                label: "Total Development Cost Reduction",
+                value: "30-50%",
+                description: "Lower lifecycle costs despite higher upfront investment",
+                color: "blue",
+              },
+              {
+                label: "Onboarding Time Reduction",
+                value: "60-80%",
+                description: "New team members learn through direct participation",
+                color: "orange",
+              },
+              {
+                label: "Context Switching Elimination",
+                value: "85-95%",
+                description: "Shared context removes handoff delays",
+                color: "purple",
+              },
+            ]}
+            className="bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-blue-950 dark:to-indigo-900"
+          />
+        </div>
+
+        <div className="border-l-4 border-emerald-500 bg-emerald-50/50 dark:bg-emerald-950/30 pl-6 py-4 rounded-r-lg">
+          <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+            Enterprise adoption success factors
+          </h3>
+          <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+            <li className="flex items-start gap-2">
+              <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+              <strong className="text-slate-700 dark:text-gray-300">
+                Hunter Industries case study:
+              </strong>{" "}
+              Reduced critical system outages by 80% through improved code quality and shared system understanding across all team members
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+              <strong className="text-slate-700 dark:text-gray-300">
+                Pivotal Labs methodology:
+              </strong>{" "}
+              Consistent 40-60% improvement in feature delivery velocity across enterprise client engagements after establishing effective mob practices
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+              <strong className="text-slate-700 dark:text-gray-300">
+                Fortune 500 implementations:
+              </strong>{" "}
+              Organizations report 30-50% reduction in total development lifecycle costs through decreased maintenance, faster debugging, and reduced rework
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      {/* Customer Scenarios Section */}
+      <section id="customer-scenarios">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Customer Pain Points & Solutions
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-red-500 bg-red-50/50 dark:bg-red-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Knowledge Silo Crisis
+            </h3>
+            <div className="space-y-3 text-slate-600 dark:text-gray-400">
+              <div>
+                <strong className="text-slate-700 dark:text-gray-300">
+                  Business continuity risk:
+                </strong>{" "}
+                &ldquo;Only Sarah knows how the payment system works, and she&rsquo;s going on vacation. We can&rsquo;t deploy any payment-related changes until she returns.&rdquo;
+              </div>
+              <div>
+                <strong className="text-slate-700 dark:text-gray-300">
+                  Mob programming solution:
+                </strong>{" "}
+                Collective ownership ensures multiple team members understand critical systems, eliminating single points of failure and enabling continuous development velocity
+              </div>
+            </div>
+          </div>
+
+          <div className="border-l-4 border-orange-500 bg-orange-50/50 dark:bg-orange-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Quality & Debugging Challenges
+            </h3>
+            <div className="space-y-3 text-slate-600 dark:text-gray-400">
+              <div>
+                <strong className="text-slate-700 dark:text-gray-300">
+                  Post-deployment issues:
+                </strong>{" "}
+                &ldquo;We spent three days debugging a production issue that could have been caught during development if more eyes had been on the code from the start.&rdquo;
+              </div>
+              <div>
+                <strong className="text-slate-700 dark:text-gray-300">
+                  Mob programming advantage:
+                </strong>{" "}
+                Real-time collaborative review catches 50-70% more defects during development, reducing post-deployment debugging time and customer impact
+              </div>
+            </div>
+          </div>
+
+          <div className="border-l-4 border-yellow-500 bg-yellow-50/50 dark:bg-yellow-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Onboarding & Knowledge Transfer
+            </h3>
+            <div className="space-y-3 text-slate-600 dark:text-gray-400">
+              <div>
+                <strong className="text-slate-700 dark:text-gray-300">
+                  Slow integration:
+                </strong>{" "}
+                &ldquo;New developers take 3-6 months to become productive because our codebase is complex and documentation doesn&rsquo;t capture the real decision-making context.&rdquo;
+              </div>
+              <div>
+                <strong className="text-slate-700 dark:text-gray-300">
+                  Mob programming acceleration:
+                </strong>{" "}
+                New team members learn through direct participation, reducing onboarding time by 60-80% while gaining deep understanding of both code and business context
+              </div>
+            </div>
+          </div>
+
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Development Velocity Constraints
+            </h3>
+            <div className="space-y-3 text-slate-600 dark:text-gray-400">
+              <div>
+                <strong className="text-slate-700 dark:text-gray-300">
+                  Handoff delays:
+                </strong>{" "}
+                &ldquo;Features get stuck waiting for code reviews, context switching between different tasks slows everyone down, and we keep having to re-explain decisions.&rdquo;
+              </div>
+              <div>
+                <strong className="text-slate-700 dark:text-gray-300">
+                  Mob programming flow:
+                </strong>{" "}
+                Shared context eliminates handoffs and reduces rework, leading to 40-60% improvement in feature delivery velocity after teams establish effective practices
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Cursor Implementation Section */}
+      <section id="cursor-implementation">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Cursor Implementation Considerations
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Collaborative AI prompt engineering
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Mob programming creates an ideal environment for maximizing AI coding tool effectiveness through collective prompt crafting and immediate code evaluation
+            </p>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <strong className="text-slate-700 dark:text-gray-300">
+                  Enhanced prompt quality:
+                </strong>{" "}
+                Multiple perspectives improve prompt precision, leading to more accurate AI-generated code that matches team intentions and architectural patterns
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <strong className="text-slate-700 dark:text-gray-300">
+                  Real-time AI review:
+                </strong>{" "}
+                Team members can immediately evaluate AI suggestions for edge cases, security implications, and integration issues that individual developers might miss
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              AI-enhanced knowledge distribution
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Cursor&rsquo;s code generation capabilities combined with mob programming practices accelerate knowledge sharing and reduce learning curves for complex systems
+            </p>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <strong className="text-slate-700 dark:text-gray-300">
+                  Pattern recognition teaching:
+                </strong>{" "}
+                AI suggestions help teams identify and discuss architectural patterns, design principles, and best practices in real-time during development
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <strong className="text-slate-700 dark:text-gray-300">
+                  Collective AI literacy:
+                </strong>{" "}
+                Mob sessions build team-wide competency in effectively using AI coding tools, ensuring consistent adoption and maximum productivity benefits
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Implementation strategy for AI-enhanced mobs
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Organizations adopting mob programming with AI coding tools should establish clear protocols for AI interaction and ensure all team members understand effective prompt engineering techniques
+            </p>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <strong className="text-slate-700 dark:text-gray-300">
+                  Prompt collaboration workflow:
+                </strong>{" "}
+                Designate prompt crafting as a mob activity where the Navigator guides AI interaction while the team collectively evaluates and refines the generated code
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <strong className="text-slate-700 dark:text-gray-300">
+                  AI review standards:
+                </strong>{" "}
+                Establish team protocols for evaluating AI suggestions, including security review, performance considerations, and maintainability assessment as part of the collaborative process
+              </li>
+            </ul>
           </div>
         </div>
       </section>
