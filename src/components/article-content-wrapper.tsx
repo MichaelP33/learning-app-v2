@@ -197,6 +197,14 @@ export function ArticleContentWrapper({
                     <ReadReplicasWriteScalingContent />
                   ) : article.id === "database-sharding-partitioning" ? (
                     <DatabaseShardingPartitioningContent />
+                  ) : article.id === "event-driven-architecture" ? (
+                    <EventDrivenArchitectureContent />
+                  ) : article.id === "rpc-vs-rest" ? (
+                    <RpcVsRestContent />
+                  ) : article.id === "sql-vs-nosql" ? (
+                    <SqlVsNoSqlContent />
+                  ) : article.id === "acid-vs-eventual-consistency" ? (
+                    <AcidVsEventualConsistencyContent />
                   ) : (
                     <DefaultArticleContent article={article} />
                   )}
@@ -11454,85 +11462,103 @@ function DatabaseShardingPartitioningContent() {
         <div className="space-y-6">
           <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
             <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              Horizontal sharding distributes data across multiple independent databases
+              Horizontal sharding distributes data across multiple independent
+              databases
             </h3>
             <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Like organizing a massive library by splitting books across different buildings 
-              based on subject categories, rather than trying to fit everything in one location
+              Like organizing a massive library by splitting books across
+              different buildings based on subject categories, rather than
+              trying to fit everything in one location
             </p>
             <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Each shard contains a subset of the total data, determined by a shard key
+                Each shard contains a subset of the total data, determined by a
+                shard key
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Shards operate independently, enabling parallel processing and reduced contention
+                Shards operate independently, enabling parallel processing and
+                reduced contention
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Linear scalability achieved by adding more shards as data volume grows
+                Linear scalability achieved by adding more shards as data volume
+                grows
               </li>
             </ul>
           </div>
 
           <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
             <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              Shard key selection determines data distribution and query performance
+              Shard key selection determines data distribution and query
+              performance
             </h3>
             <p className="text-slate-700 dark:text-gray-300 mb-3">
-              The most critical architectural decision that impacts system scalability and maintainability
+              The most critical architectural decision that impacts system
+              scalability and maintainability
             </p>
             <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Ideal shard keys distribute data evenly across shards to prevent hotspots
+                Ideal shard keys distribute data evenly across shards to prevent
+                hotspots
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Query patterns should align with shard key to minimize cross-shard operations
+                Query patterns should align with shard key to minimize
+                cross-shard operations
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Hash-based keys provide uniform distribution; range-based keys enable range queries
+                Hash-based keys provide uniform distribution; range-based keys
+                enable range queries
               </li>
             </ul>
           </div>
 
           <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
             <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              Partitioning strategies optimize query performance within individual databases
+              Partitioning strategies optimize query performance within
+              individual databases
             </h3>
             <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Complementary to sharding, partitioning organizes data within each database instance
+              Complementary to sharding, partitioning organizes data within each
+              database instance
             </p>
             <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Horizontal partitioning splits tables by rows (similar to sharding concept)
+                Horizontal partitioning splits tables by rows (similar to
+                sharding concept)
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Vertical partitioning separates frequently accessed columns from rarely used ones
+                Vertical partitioning separates frequently accessed columns from
+                rarely used ones
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Time-based partitioning enables efficient archival and historical data management
+                Time-based partitioning enables efficient archival and
+                historical data management
               </li>
             </ul>
           </div>
 
           <div className="border-l-4 border-orange-500 bg-orange-50/50 dark:bg-orange-950/30 pl-6 py-4 rounded-r-lg">
             <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              Cross-shard queries require careful coordination and optimization strategies
+              Cross-shard queries require careful coordination and optimization
+              strategies
             </h3>
             <p className="text-slate-700 dark:text-gray-300 mb-3">
-              The primary complexity introduced by sharded architectures that must be managed proactively
+              The primary complexity introduced by sharded architectures that
+              must be managed proactively
             </p>
             <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Applications must scatter queries across relevant shards and gather results
+                Applications must scatter queries across relevant shards and
+                gather results
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
@@ -11540,7 +11566,8 @@ function DatabaseShardingPartitioningContent() {
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Caching and denormalization strategies help minimize cross-shard dependencies
+                Caching and denormalization strategies help minimize cross-shard
+                dependencies
               </li>
             </ul>
           </div>
@@ -11554,6 +11581,7 @@ function DatabaseShardingPartitioningContent() {
         </h2>
 
         <MetricsCard
+          title="Database Sharding Impact"
           metrics={[
             {
               label: "Response Time Improvement",
@@ -11588,10 +11616,11 @@ function DatabaseShardingPartitioningContent() {
               📈 Scalability Benefits
             </h3>
             <p className="text-slate-700 dark:text-gray-300">
-              Organizations implementing sharding report near-linear scaling capabilities, 
-              enabling them to handle 10-100x growth in data volume and user traffic without 
-              proportional infrastructure cost increases. This approach proves especially 
-              valuable for high-growth SaaS platforms and e-commerce systems.
+              Organizations implementing sharding report near-linear scaling
+              capabilities, enabling them to handle 10-100x growth in data
+              volume and user traffic without proportional infrastructure cost
+              increases. This approach proves especially valuable for
+              high-growth SaaS platforms and e-commerce systems.
             </p>
           </div>
 
@@ -11600,10 +11629,11 @@ function DatabaseShardingPartitioningContent() {
               ⚡ Performance Optimization
             </h3>
             <p className="text-slate-700 dark:text-gray-300">
-              Database sharding delivers 60-80% reduction in response times by eliminating 
-              resource contention and enabling parallel query execution. Teams consistently 
-              report improved user experience metrics and reduced infrastructure costs as 
-              workloads become more efficiently distributed.
+              Database sharding delivers 60-80% reduction in response times by
+              eliminating resource contention and enabling parallel query
+              execution. Teams consistently report improved user experience
+              metrics and reduced infrastructure costs as workloads become more
+              efficiently distributed.
             </p>
           </div>
         </div>
@@ -11656,8 +11686,9 @@ function DatabaseShardingPartitioningContent() {
                   Query Router Pattern
                 </h4>
                 <p className="text-slate-600 dark:text-gray-400 text-sm">
-                  Implement a routing layer that determines which shards contain relevant data 
-                  for each query, minimizing unnecessary cross-shard operations and improving performance.
+                  Implement a routing layer that determines which shards contain
+                  relevant data for each query, minimizing unnecessary
+                  cross-shard operations and improving performance.
                 </p>
               </div>
               <div className="border-l-4 border-green-500 pl-4">
@@ -11665,8 +11696,9 @@ function DatabaseShardingPartitioningContent() {
                   Scatter-Gather Optimization
                 </h4>
                 <p className="text-slate-600 dark:text-gray-400 text-sm">
-                  For unavoidable cross-shard queries, implement parallel execution with 
-                  result aggregation, utilizing consistent hashing to minimize data movement.
+                  For unavoidable cross-shard queries, implement parallel
+                  execution with result aggregation, utilizing consistent
+                  hashing to minimize data movement.
                 </p>
               </div>
             </div>
@@ -11680,27 +11712,36 @@ function DatabaseShardingPartitioningContent() {
               <div className="flex items-start gap-3">
                 <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></span>
                 <div>
-                  <h4 className="font-medium text-slate-800 dark:text-gray-200">Shard Health Metrics</h4>
+                  <h4 className="font-medium text-slate-800 dark:text-gray-200">
+                    Shard Health Metrics
+                  </h4>
                   <p className="text-slate-600 dark:text-gray-400 text-sm">
-                    Monitor CPU, memory, and disk usage across shards to identify imbalances
+                    Monitor CPU, memory, and disk usage across shards to
+                    identify imbalances
                   </p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
                 <span className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></span>
                 <div>
-                  <h4 className="font-medium text-slate-800 dark:text-gray-200">Data Distribution Analysis</h4>
+                  <h4 className="font-medium text-slate-800 dark:text-gray-200">
+                    Data Distribution Analysis
+                  </h4>
                   <p className="text-slate-600 dark:text-gray-400 text-sm">
-                    Track data growth patterns and query distribution to optimize shard allocation
+                    Track data growth patterns and query distribution to
+                    optimize shard allocation
                   </p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
                 <span className="w-2 h-2 bg-purple-500 rounded-full mt-2 flex-shrink-0"></span>
                 <div>
-                  <h4 className="font-medium text-slate-800 dark:text-gray-200">Consistent Hashing</h4>
+                  <h4 className="font-medium text-slate-800 dark:text-gray-200">
+                    Consistent Hashing
+                  </h4>
                   <p className="text-slate-600 dark:text-gray-400 text-sm">
-                    Implement consistent hashing to minimize data redistribution when adding shards
+                    Implement consistent hashing to minimize data redistribution
+                    when adding shards
                   </p>
                 </div>
               </div>
@@ -11721,13 +11762,15 @@ function DatabaseShardingPartitioningContent() {
               🚨 E-commerce Platform Crisis
             </h3>
             <blockquote className="text-red-800 dark:text-red-300 italic mb-4">
-              &ldquo;Database response times increased 300% when we hit 10 million users. 
-              Our monolithic database couldn&rsquo;t handle the transaction volume during 
-              Black Friday sales, resulting in $2M in lost revenue.&rdquo;
+              &ldquo;Database response times increased 300% when we hit 10
+              million users. Our monolithic database couldn&rsquo;t handle the
+              transaction volume during Black Friday sales, resulting in $2M in
+              lost revenue.&rdquo;
             </blockquote>
             <p className="text-red-700 dark:text-red-400 text-sm">
-              This scenario demonstrates the critical need for proactive sharding implementation 
-              before hitting scale bottlenecks that impact business operations.
+              This scenario demonstrates the critical need for proactive
+              sharding implementation before hitting scale bottlenecks that
+              impact business operations.
             </p>
           </div>
 
@@ -11736,13 +11779,14 @@ function DatabaseShardingPartitioningContent() {
               📊 SaaS Analytics Platform
             </h3>
             <blockquote className="text-blue-800 dark:text-blue-300 italic mb-4">
-              &ldquo;We needed to process time-series data from millions of IoT devices. 
-              Range-based sharding by timestamp enabled us to achieve linear scaling 
-              and reduce analytical query times by 75%.&rdquo;
+              &ldquo;We needed to process time-series data from millions of IoT
+              devices. Range-based sharding by timestamp enabled us to achieve
+              linear scaling and reduce analytical query times by 75%.&rdquo;
             </blockquote>
             <p className="text-blue-700 dark:text-blue-400 text-sm">
-              Time-series data represents an ideal use case for sharding, where temporal 
-              partitioning aligns perfectly with access patterns and retention policies.
+              Time-series data represents an ideal use case for sharding, where
+              temporal partitioning aligns perfectly with access patterns and
+              retention policies.
             </p>
           </div>
 
@@ -11751,13 +11795,15 @@ function DatabaseShardingPartitioningContent() {
               🌐 Global Social Platform
             </h3>
             <blockquote className="text-green-800 dark:text-green-300 italic mb-4">
-              &ldquo;Geographic sharding reduced cross-continental latency by 60% for our 
-              social media platform. Users in Europe now experience sub-100ms response 
-              times instead of 300ms+ when accessing US-based servers.&rdquo;
+              &ldquo;Geographic sharding reduced cross-continental latency by
+              60% for our social media platform. Users in Europe now experience
+              sub-100ms response times instead of 300ms+ when accessing US-based
+              servers.&rdquo;
             </blockquote>
             <p className="text-green-700 dark:text-green-400 text-sm">
-              Geographic distribution through sharding provides both performance benefits 
-              and compliance advantages for global applications with data residency requirements.
+              Geographic distribution through sharding provides both performance
+              benefits and compliance advantages for global applications with
+              data residency requirements.
             </p>
           </div>
 
@@ -11766,13 +11812,15 @@ function DatabaseShardingPartitioningContent() {
               ⚖️ Multi-Tenant Enterprise SaaS
             </h3>
             <blockquote className="text-orange-800 dark:text-orange-300 italic mb-4">
-              &ldquo;Tenant-based sharding eliminated the noisy neighbor problem. Large 
-              enterprise clients no longer impact performance for smaller customers, 
-              and we can provide dedicated resources based on contract tiers.&rdquo;
+              &ldquo;Tenant-based sharding eliminated the noisy neighbor
+              problem. Large enterprise clients no longer impact performance for
+              smaller customers, and we can provide dedicated resources based on
+              contract tiers.&rdquo;
             </blockquote>
             <p className="text-orange-700 dark:text-orange-400 text-sm">
-              Multi-tenant sharding enables resource isolation and customized performance 
-              guarantees, crucial for enterprise SaaS platforms with diverse client requirements.
+              Multi-tenant sharding enables resource isolation and customized
+              performance guarantees, crucial for enterprise SaaS platforms with
+              diverse client requirements.
             </p>
           </div>
         </div>
@@ -11790,10 +11838,11 @@ function DatabaseShardingPartitioningContent() {
               🎯 AI-Assisted Shard Key Selection
             </h3>
             <p className="text-slate-700 dark:text-gray-300">
-              Cursor can analyze your data access patterns and query logs to recommend 
-              optimal shard key strategies. By examining table schemas, JOIN patterns, 
-              and WHERE clause distributions, it can suggest hash-based vs. range-based 
-              approaches that align with your specific application requirements.
+              Cursor can analyze your data access patterns and query logs to
+              recommend optimal shard key strategies. By examining table
+              schemas, JOIN patterns, and WHERE clause distributions, it can
+              suggest hash-based vs. range-based approaches that align with your
+              specific application requirements.
             </p>
           </div>
 
@@ -11802,10 +11851,11 @@ function DatabaseShardingPartitioningContent() {
               🔧 Query Router Generation
             </h3>
             <p className="text-slate-700 dark:text-gray-300">
-              Use Cursor to generate intelligent query routing logic that automatically 
-              determines which shards to query based on your shard key strategy. The AI 
-              can create optimized routing algorithms that minimize cross-shard queries 
-              and implement efficient scatter-gather patterns for complex operations.
+              Use Cursor to generate intelligent query routing logic that
+              automatically determines which shards to query based on your shard
+              key strategy. The AI can create optimized routing algorithms that
+              minimize cross-shard queries and implement efficient
+              scatter-gather patterns for complex operations.
             </p>
           </div>
 
@@ -11814,10 +11864,11 @@ function DatabaseShardingPartitioningContent() {
               📊 Monitoring Implementation
             </h3>
             <p className="text-slate-700 dark:text-gray-300">
-              Cursor excels at generating comprehensive monitoring solutions for sharded 
-              systems. It can create custom metrics collectors, alerting systems for 
-              shard imbalances, and automated rebalancing scripts that maintain optimal 
-              performance as your data distribution evolves over time.
+              Cursor excels at generating comprehensive monitoring solutions for
+              sharded systems. It can create custom metrics collectors, alerting
+              systems for shard imbalances, and automated rebalancing scripts
+              that maintain optimal performance as your data distribution
+              evolves over time.
             </p>
           </div>
 
@@ -11826,12 +11877,1045 @@ function DatabaseShardingPartitioningContent() {
               🧪 Migration Strategy Development
             </h3>
             <p className="text-slate-700 dark:text-gray-300">
-              Organizations often struggle with migrating existing monolithic databases 
-              to sharded architectures without service disruption. Cursor can help 
-              generate comprehensive migration plans, including data movement scripts, 
-              zero-downtime transition strategies, and rollback procedures that ensure 
-              business continuity throughout the sharding implementation process.
+              Organizations often struggle with migrating existing monolithic
+              databases to sharded architectures without service disruption.
+              Cursor can help generate comprehensive migration plans, including
+              data movement scripts, zero-downtime transition strategies, and
+              rollback procedures that ensure business continuity throughout the
+              sharding implementation process.
             </p>
+          </div>
+        </div>
+      </section>
+    </article>
+  );
+}
+
+// Component for the event-driven architecture article content
+function EventDrivenArchitectureContent() {
+  return (
+    <article className="space-y-10">
+      {/* Key Concepts Section */}
+      <section id="key-concepts">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Key Concepts
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Event Sourcing Foundation
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Systems capture and store every state change as an immutable
+              event, creating a complete audit trail
+            </p>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Complete system state reconstruction from event history
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Natural auditability and compliance for financial systems
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Message Queues &amp; Asynchronous Processing
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Decoupled communication through events enables independent service
+              scaling and fault tolerance
+            </p>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Services communicate through events rather than direct API calls
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Natural resilience to downstream service failures
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Decoupled System Architecture
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Components operate independently while maintaining system
+              coherence through event contracts
+            </p>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Independent deployment and scaling of system components
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Evolutionary architecture that adapts to changing business
+                requirements
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Event Patterns Comparison Table */}
+        <div className="mt-8">
+          <ComparisonTable
+            title="Event Architecture Patterns Comparison"
+            headers={["Pattern", "Use Case", "Complexity"]}
+            rows={[
+              {
+                pattern: "Event Sourcing",
+                use_case: "Financial systems, audit trails",
+                complexity: "High - Complete event modeling",
+              },
+              {
+                pattern: "Event Streaming",
+                use_case: "Real-time analytics, monitoring",
+                complexity: "Medium - Stream processing logic",
+              },
+              {
+                pattern: "Message Queues",
+                use_case: "Service decoupling, async processing",
+                complexity: "Low - Simple pub-sub patterns",
+              },
+              {
+                pattern: "Event Choreography",
+                use_case: "Microservices coordination",
+                complexity: "Medium - Distributed workflows",
+              },
+            ]}
+          />
+        </div>
+      </section>
+
+      {/* Business & Team Impact Section */}
+      <section id="business-team-impact">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
+          <TrendingUp className="w-6 h-6 text-green-500" />
+          Business &amp; Team Impact
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              System Resilience &amp; Scalability
+            </h3>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Netflix processes 1 billion+ events daily for recommendation
+                systems
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Spotify&rsquo;s event-driven architecture handles 5 billion
+                playlist updates monthly
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Uber&rsquo;s event streaming enables real-time driver-rider
+                matching at global scale
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Real-world Adoption Patterns
+            </h3>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    E-commerce:
+                  </strong>{" "}
+                  Order processing, inventory updates, customer notifications
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Financial Services:
+                  </strong>{" "}
+                  Transaction processing, fraud detection, compliance reporting
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    IoT &amp; Monitoring:
+                  </strong>{" "}
+                  Sensor data processing, real-time alerting
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Performance Metrics */}
+        <div className="mt-8">
+          <MetricsCard
+            title="Event-Driven Architecture Performance"
+            metrics={[
+              {
+                label: "Fault Tolerance Improvement",
+                value: "80-95%",
+                description: "Service availability during partial failures",
+                color: "green",
+              },
+              {
+                label: "Scaling Efficiency",
+                value: "3-5x",
+                description: "Independent component scaling capability",
+                color: "blue",
+              },
+              {
+                label: "Development Velocity",
+                value: "40-60%",
+                description: "Faster feature delivery through decoupling",
+                color: "purple",
+              },
+              {
+                label: "Implementation Complexity",
+                value: "2-3x higher",
+                description: "Initial setup and monitoring overhead",
+                color: "orange",
+              },
+            ]}
+          />
+        </div>
+      </section>
+
+      {/* Cursor Implementation Section */}
+      <section id="cursor-implementation">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Cursor Implementation Considerations
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Event Schema Design
+            </h3>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                AI-assisted event schema evolution and versioning strategies
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Automated event contract validation and compatibility checking
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Message Queue Integration
+            </h3>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Smart routing logic generation for event distribution patterns
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Automated dead letter queue handling and retry mechanisms
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </article>
+  );
+}
+
+// Component for the RPC vs REST article content
+function RpcVsRestContent() {
+  return (
+    <article className="space-y-10">
+      {/* Key Concepts Section */}
+      <section id="key-concepts">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Key Concepts
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Remote Procedure Call (RPC) Paradigm
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Function-oriented communication where clients invoke methods on
+              remote servers as if they were local
+            </p>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                gRPC, Apache Thrift, and protocol-specific implementations
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Type-safe interfaces with code generation capabilities
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              REST Architectural Style
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Resource-oriented communication using HTTP verbs and stateless
+              interactions
+            </p>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Universal HTTP support and web ecosystem integration
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Self-descriptive messages and HATEOAS principles
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Performance &amp; Protocol Considerations
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Binary protocols vs. text-based communication trade-offs
+            </p>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                gRPC: 30-40% smaller payloads, 2-3x faster serialization
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                REST: Human-readable, extensive tooling ecosystem
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Performance Comparison Table */}
+        <div className="mt-8">
+          <ComparisonTable
+            title="RPC vs REST Performance Comparison"
+            headers={["Aspect", "RPC (gRPC)", "REST (JSON)"]}
+            rows={[
+              {
+                aspect: "Payload Size",
+                rpc_grpc: "30-40% smaller (Protocol Buffers)",
+                rest_json: "Larger (JSON text encoding)",
+              },
+              {
+                aspect: "Serialization Speed",
+                rpc_grpc: "2-3x faster binary protocol",
+                rest_json: "Slower JSON parsing/generation",
+              },
+              {
+                aspect: "Type Safety",
+                rpc_grpc: "Strong typing with code generation",
+                rest_json: "Runtime validation required",
+              },
+              {
+                aspect: "Browser Support",
+                rpc_grpc: "Limited (requires gRPC-Web)",
+                rest_json: "Universal HTTP support",
+              },
+            ]}
+          />
+        </div>
+      </section>
+
+      {/* Business & Team Impact Section */}
+      <section id="business-team-impact">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
+          <TrendingUp className="w-6 h-6 text-green-500" />
+          Business &amp; Team Impact
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Microservices Communication Patterns
+            </h3>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Google:
+                  </strong>{" "}
+                  gRPC for internal service mesh (~10x performance improvement)
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Netflix:
+                  </strong>{" "}
+                  REST for external APIs, RPC for internal service calls
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Uber:
+                  </strong>{" "}
+                  Mixed approach based on service communication patterns
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Enterprise Adoption Scenarios
+            </h3>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                High-frequency trading: RPC for microsecond latency requirements
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Public APIs: REST for ecosystem integration and developer
+                adoption
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Internal services: gRPC for performance-critical communication
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Adoption Metrics */}
+        <div className="mt-8">
+          <MetricsCard
+            title="API Communication Performance"
+            metrics={[
+              {
+                label: "RPC Latency Advantage",
+                value: "40-60%",
+                description: "Lower latency vs REST",
+                color: "green",
+              },
+              {
+                label: "REST Ecosystem Adoption",
+                value: "85%",
+                description: "Public API market share",
+                color: "blue",
+              },
+              {
+                label: "Development Complexity",
+                value: "2x higher",
+                description: "RPC setup vs REST",
+                color: "orange",
+              },
+              {
+                label: "Type Safety Benefits",
+                value: "70% fewer",
+                description: "Runtime errors with RPC",
+                color: "purple",
+              },
+            ]}
+          />
+        </div>
+      </section>
+
+      {/* Cursor Implementation Section */}
+      <section id="cursor-implementation">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Cursor Implementation Considerations
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Protocol Selection Guidance
+            </h3>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                AI-driven analysis of communication patterns to recommend
+                optimal protocols
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Automated migration paths between REST and gRPC implementations
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Code Generation &amp; Type Safety
+            </h3>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Smart schema definition and client/server code generation
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Cross-language compatibility ensuring and API versioning
+                strategies
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </article>
+  );
+}
+
+// Component for the SQL vs NoSQL article content
+function SqlVsNoSqlContent() {
+  return (
+    <article className="space-y-10">
+      {/* Key Concepts Section */}
+      <section id="key-concepts">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Key Concepts
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              SQL Database Characteristics
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Structured data storage with predefined schemas and ACID
+              transaction guarantees
+            </p>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Strong consistency and referential integrity through foreign
+                keys
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Complex queries with JOIN operations and aggregate functions
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              NoSQL Database Flexibility
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Schema-less design enabling rapid development and horizontal
+              scaling
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Document stores:
+                  </strong>{" "}
+                  MongoDB, CouchDB for JSON-like data
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Key-value:
+                  </strong>{" "}
+                  Redis, DynamoDB for simple lookups
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Graph databases:
+                  </strong>{" "}
+                  Neo4j for relationship-heavy data
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Scalability &amp; Performance Trade-offs
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Vertical vs. horizontal scaling implications for system
+              architecture
+            </p>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                SQL: ACID compliance limits horizontal scaling but ensures
+                consistency
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                NoSQL: Eventual consistency enables massive scale with
+                complexity trade-offs
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Database Comparison Table */}
+        <div className="mt-8">
+          <ComparisonTable
+            title="SQL vs NoSQL Characteristics"
+            headers={["Aspect", "SQL Databases", "NoSQL Databases"]}
+            rows={[
+              {
+                aspect: "Schema",
+                sql_databases: "Fixed, predefined structure",
+                nosql_databases: "Flexible, schema-less design",
+              },
+              {
+                aspect: "Scaling",
+                sql_databases: "Vertical (add CPU/RAM)",
+                nosql_databases: "Horizontal (add servers)",
+              },
+              {
+                aspect: "Consistency",
+                sql_databases: "ACID guarantees",
+                nosql_databases: "Eventual consistency (BASE)",
+              },
+              {
+                aspect: "Query Language",
+                sql_databases: "Standard SQL",
+                nosql_databases: "Database-specific APIs",
+              },
+            ]}
+          />
+        </div>
+      </section>
+
+      {/* Business & Team Impact Section */}
+      <section id="business-team-impact">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
+          <TrendingUp className="w-6 h-6 text-green-500" />
+          Business &amp; Team Impact
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Enterprise Adoption Patterns
+            </h3>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Financial Services:
+                  </strong>{" "}
+                  SQL for transactions, NoSQL for analytics and user data
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    E-commerce:
+                  </strong>{" "}
+                  SQL for inventory/orders, NoSQL for product catalogs and
+                  recommendations
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Social Media:
+                  </strong>{" "}
+                  NoSQL for posts/feeds, SQL for user relationships and billing
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Migration Success Stories
+            </h3>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Facebook: MySQL → Cassandra for timeline data (10x throughput
+                improvement)
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Netflix: Oracle → DynamoDB for viewing history (infinite scale,
+                99.99% availability)
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Airbnb: Hybrid approach - PostgreSQL + Redis for different use
+                cases
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Performance &amp; Cost Metrics */}
+        <div className="mt-8">
+          <MetricsCard
+            title="Database Selection Impact"
+            metrics={[
+              {
+                label: "Development Speed",
+                value: "2-3x faster",
+                description: "NoSQL for rapid prototyping",
+                color: "green",
+              },
+              {
+                label: "Query Complexity",
+                value: "5x more capable",
+                description: "SQL for complex analytics",
+                color: "blue",
+              },
+              {
+                label: "Horizontal Scaling",
+                value: "10-100x easier",
+                description: "NoSQL distributed architecture",
+                color: "purple",
+              },
+              {
+                label: "Data Integrity",
+                value: "99.99%",
+                description: "SQL ACID transaction reliability",
+                color: "orange",
+              },
+            ]}
+          />
+        </div>
+      </section>
+
+      {/* Cursor Implementation Section */}
+      <section id="cursor-implementation">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Cursor Implementation Considerations
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Database Selection Guidance
+            </h3>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                AI analysis of data access patterns to recommend optimal
+                database types
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Schema design assistance for both SQL normalization and NoSQL
+                denormalization
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Migration Strategy Development
+            </h3>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Automated data transformation scripts for SQL to NoSQL
+                migrations
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Performance optimization recommendations based on query patterns
+                and data volume
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </article>
+  );
+}
+
+// Component for the ACID vs Eventual Consistency article content
+function AcidVsEventualConsistencyContent() {
+  return (
+    <article className="space-y-10">
+      {/* Key Concepts Section */}
+      <section id="key-concepts">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Key Concepts
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              ACID Properties Foundation
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Strong consistency guarantees through Atomicity, Consistency,
+              Isolation, and Durability
+            </p>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Transactions either complete fully or fail completely
+                (atomicity)
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Data integrity constraints maintained across all operations
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Eventual Consistency Model
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              System reaches consistent state over time, prioritizing
+              availability and partition tolerance
+            </p>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Immediate availability during network partitions
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Conflict resolution mechanisms for concurrent updates
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              CAP Theorem Trade-offs
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Fundamental trade-offs between Consistency, Availability, and
+              Partition tolerance
+            </p>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                ACID systems choose consistency over availability during
+                partitions
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Eventual consistency prioritizes availability and network
+                resilience
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Consistency Models Comparison */}
+        <div className="mt-8">
+          <ComparisonTable
+            title="Consistency Models Comparison"
+            headers={["Model", "Guarantees", "Performance", "Use Cases"]}
+            rows={[
+              {
+                model: "ACID Strong",
+                guarantees: "Immediate consistency",
+                performance: "Lower throughput, higher latency",
+                use_cases: "Financial transactions, inventory",
+              },
+              {
+                model: "Eventual Consistency",
+                guarantees: "Convergence over time",
+                performance: "High throughput, low latency",
+                use_cases: "Social feeds, content distribution",
+              },
+              {
+                model: "Session Consistency",
+                guarantees: "Read-your-writes",
+                performance: "Balanced performance",
+                use_cases: "User profiles, shopping carts",
+              },
+              {
+                model: "Causal Consistency",
+                guarantees: "Causally related order",
+                performance: "Medium overhead",
+                use_cases: "Collaborative editing, messaging",
+              },
+            ]}
+          />
+        </div>
+      </section>
+
+      {/* Business & Team Impact Section */}
+      <section id="business-team-impact">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
+          <TrendingUp className="w-6 h-6 text-green-500" />
+          Business &amp; Team Impact
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Industry Requirements &amp; Compliance
+            </h3>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Banking &amp; Finance:
+                  </strong>{" "}
+                  ACID required for regulatory compliance (SOX, Basel III)
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    E-commerce:
+                  </strong>{" "}
+                  ACID for payments, eventual consistency for product
+                  recommendations
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Social Media:
+                  </strong>{" "}
+                  Eventual consistency for feeds, ACID for financial
+                  transactions
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Scale &amp; Performance Impact
+            </h3>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Amazon DynamoDB: Eventual consistency enables 20M+ requests per
+                second
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Google Spanner: Strong consistency at global scale (millisecond
+                precision)
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Facebook: Eventual consistency for 3 billion user feeds updated
+                daily
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Business Impact Metrics */}
+        <div className="mt-8">
+          <MetricsCard
+            title="Consistency Model Business Impact"
+            metrics={[
+              {
+                label: "ACID Compliance Value",
+                value: "$100B+",
+                description: "Annual transactions requiring strong consistency",
+                color: "green",
+              },
+              {
+                label: "Eventual Consistency Scale",
+                value: "50,000+ TPS",
+                description: "Throughput improvement over ACID",
+                color: "blue",
+              },
+              {
+                label: "Consistency Conflicts",
+                value: "5-15%",
+                description: "Operational overhead with eventual consistency",
+                color: "orange",
+              },
+              {
+                label: "Regulatory Compliance",
+                value: "65%",
+                description: "Enterprises requiring ACID for critical data",
+                color: "purple",
+              },
+            ]}
+          />
+        </div>
+      </section>
+
+      {/* Cursor Implementation Section */}
+      <section id="cursor-implementation">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Cursor Implementation Considerations
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Consistency Model Selection
+            </h3>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                AI-powered analysis of business requirements to recommend
+                optimal consistency levels
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Hybrid architecture design balancing consistency and performance
+                needs
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Conflict Resolution Implementation
+            </h3>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Automated conflict resolution strategies for eventual
+                consistency systems
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Transaction orchestration patterns for maintaining ACID
+                properties across services
+              </li>
+            </ul>
           </div>
         </div>
       </section>
