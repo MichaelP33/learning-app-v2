@@ -195,6 +195,8 @@ export function ArticleContentWrapper({
                     <RESTfulApisContent />
                   ) : article.id === "read-replicas-write-scaling" ? (
                     <ReadReplicasWriteScalingContent />
+                  ) : article.id === "database-sharding-partitioning" ? (
+                    <DatabaseShardingPartitioningContent />
                   ) : (
                     <DefaultArticleContent article={article} />
                   )}
@@ -11038,6 +11040,404 @@ function RESTfulApisContent() {
 }
 
 // Component for the read replicas and write scaling article content
+// Component for the database sharding and partitioning article content
+function DatabaseShardingPartitioningContent() {
+  return (
+    <article className="space-y-10">
+      {/* Key Concepts Section */}
+      <section id="key-concepts">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Key Concepts
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Horizontal sharding distributes data across multiple independent databases
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Like organizing a massive library by splitting books across multiple buildings instead of cramming everything into one location
+            </p>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Horizontal partitioning splits table rows across multiple database instances based on a shard key (like user ID or geographic region)
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Each shard operates independently, enabling linear scalability as load grows
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Vertical partitioning splits columns across tables or databases, separating frequently from rarely accessed data
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Effective shard key selection determines system performance and scalability
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              The foundation of successful sharding - choosing the right data distribution strategy
+            </p>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                High cardinality ensures many unique values for even distribution across shards
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Stable values prevent costly data migrations when shard keys change
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Even distribution prevents hotspots where one shard receives disproportionate traffic
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-orange-500 bg-orange-50/50 dark:bg-orange-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Cross-shard queries require sophisticated coordination mechanisms
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Managing complexity when data spans multiple independent database instances
+            </p>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Coordination across multiple database instances with potential consistency trade-offs
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Aggregation logic must handle partial failures and varying response times
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Distributed transactions require two-phase commit protocols or eventual consistency patterns
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Consistent hashing minimizes data movement during dynamic scaling
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Advanced distribution technique for efficient shard management and rebalancing
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Ring-based distribution:
+                  </strong>{" "}
+                  Data keys mapped to positions on a hash ring for predictable shard assignment
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Minimal data movement:
+                  </strong>{" "}
+                  Adding or removing shards only requires moving a small fraction of total data
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Dynamic scaling efficiency:
+                  </strong>{" "}
+                  Reduces operational overhead compared to traditional hash-based distribution
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Business & Team Impact Section */}
+      <section id="business-team-impact">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
+          <TrendingUp className="w-6 h-6 text-green-500" />
+          Business &amp; Team Impact
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Dramatic performance improvements with quantified business impact
+            </h3>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Well-implemented sharding delivers 60-80% reduction in database response times by distributing load
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Linear scalability enables maintaining performance as user bases grow from millions to hundreds of millions
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Query response times typically drop from seconds to milliseconds under high load conditions
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Common customer scenarios triggering sharding implementations
+            </h3>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Performance degradation crisis:
+                  </strong>{" "}
+                  &ldquo;Database response times increased 300% when we hit 10 million users&rdquo;
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Scaling limitations:
+                  </strong>{" "}
+                  &ldquo;We can&rsquo;t handle Black Friday traffic even with our largest database server&rdquo;
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Operational bottlenecks:
+                  </strong>{" "}
+                  &ldquo;Database maintenance windows now require 8-hour downtime due to table size&rdquo;
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          {/* Sharding Performance Metrics */}
+          <div className="mt-8">
+            <MetricsCard
+              title="Database Sharding Performance Impact"
+              metrics={[
+                {
+                  label: "Response Time Reduction",
+                  value: "60-80%",
+                  description: "Improvement in database query performance",
+                  trend: "up",
+                  color: "green",
+                },
+                {
+                  label: "Linear Scalability",
+                  value: "Unlimited",
+                  description: "Horizontal scaling by adding more shards",
+                  trend: "up",
+                  color: "blue",
+                },
+                {
+                  label: "Maintenance Window Reduction",
+                  value: "75%",
+                  description: "Smaller shards enable faster operations",
+                  trend: "up",
+                  color: "purple",
+                },
+                                 {
+                   label: "Cross-Shard Query Complexity",
+                   value: "High",
+                   description: "Coordination across multiple databases",
+                   color: "orange",
+                 },
+              ]}
+              className="bg-gradient-to-br from-green-50 to-blue-100 dark:from-green-950 dark:to-blue-900"
+            />
+          </div>
+
+          <div className="border-l-4 border-yellow-500 bg-yellow-50/50 dark:bg-yellow-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Enterprise success patterns with strategic sharding approaches
+            </h3>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Netflix:
+                  </strong>{" "}
+                  Range-based sharding for time-series viewing data, enabling global content delivery at scale
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Spotify:
+                  </strong>{" "}
+                  Hash-based user data distribution across geographic regions for optimal music streaming performance
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Uber:
+                  </strong>{" "}
+                  Geographic-based sharding for ride data, reducing latency for real-time matching algorithms
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          {/* Sharding Strategy Comparison */}
+          <div className="mt-8">
+            <MetricsCard
+              title="Sharding Strategy Implementation Patterns"
+              metrics={[
+                {
+                  label: "Range-Based Sharding",
+                  value: "Time-Series",
+                  description: "Natural data ranges (dates, geographic)",
+                  color: "blue",
+                },
+                {
+                  label: "Hash-Based Sharding", 
+                  value: "Even Distribution",
+                  description: "User data, session management",
+                  color: "green",
+                },
+                {
+                  label: "Directory-Based Sharding",
+                  value: "Complex Routing",
+                  description: "Multi-tenant systems, hierarchical data",
+                  color: "purple",
+                },
+                {
+                  label: "Implementation Complexity",
+                  value: "High",
+                  description: "Application-level awareness required",
+                  color: "orange",
+                },
+              ]}
+              className="bg-gradient-to-br from-blue-50 to-purple-100 dark:from-blue-950 dark:to-purple-900"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Cursor Implementation Section */}
+      <section id="cursor-implementation">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Cursor Implementation Considerations
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              AI-assisted shard key analysis and selection
+            </h3>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Use Cursor to analyze existing data access patterns and identify optimal shard key candidates
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Generate comprehensive data distribution analysis scripts to evaluate shard key effectiveness
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Implement monitoring dashboards to track shard load distribution and identify hotspots
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Cross-shard query optimization with intelligent routing
+            </h3>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Build sophisticated query routers that minimize cross-shard operations through intelligent data locality
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Implement parallel query execution frameworks with timeout and retry mechanisms
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Design result aggregation systems that handle partial failures gracefully
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Data migration and rebalancing automation
+            </h3>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Develop consistent hashing implementations that minimize data movement during shard additions
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Create zero-downtime migration scripts with comprehensive validation and rollback capabilities
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Implement real-time rebalancing monitoring to ensure even load distribution across shards
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-orange-500 bg-orange-50/50 dark:bg-orange-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Sharding strategy implementation patterns for different application types
+            </h3>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Range-based sharding:
+                  </strong>{" "}
+                  Optimal for time-series data and geographic applications with natural data boundaries
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Hash-based sharding:
+                  </strong>{" "}
+                  Best for user data and session management requiring even distribution across shards
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Directory-based sharding:
+                  </strong>{" "}
+                  Suitable for multi-tenant systems and hierarchical data organization with complex routing requirements
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </article>
+  );
+}
+
 function ReadReplicasWriteScalingContent() {
   return (
     <article className="space-y-10">
