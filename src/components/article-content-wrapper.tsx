@@ -195,6 +195,8 @@ export function ArticleContentWrapper({
                     <RESTfulApisContent />
                   ) : article.id === "read-replicas-write-scaling" ? (
                     <ReadReplicasWriteScalingContent />
+                  ) : article.id === "database-sharding-partitioning" ? (
+                    <DatabaseShardingPartitioningContent />
                   ) : (
                     <DefaultArticleContent article={article} />
                   )}
@@ -11053,43 +11055,52 @@ function ReadReplicasWriteScalingContent() {
               Read replicas distribute database traffic for optimal performance
             </h3>
             <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Like having multiple service desks to handle customer inquiries instead of overwhelming a single point of contact
+              Like having multiple service desks to handle customer inquiries
+              instead of overwhelming a single point of contact
             </p>
             <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Master database handles all write operations to maintain data consistency
+                Master database handles all write operations to maintain data
+                consistency
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Read replicas serve as dedicated instances for query operations, preventing master database bottlenecks
+                Read replicas serve as dedicated instances for query operations,
+                preventing master database bottlenecks
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Geographic distribution places replicas closer to users, reducing latency across regions
+                Geographic distribution places replicas closer to users,
+                reducing latency across regions
               </li>
             </ul>
           </div>
 
           <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
             <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              Master-slave replication architecture provides scalable read operations
+              Master-slave replication architecture provides scalable read
+              operations
             </h3>
             <p className="text-slate-700 dark:text-gray-300 mb-3">
-              The foundation pattern for distributing database load while maintaining data integrity
+              The foundation pattern for distributing database load while
+              maintaining data integrity
             </p>
             <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Single master accepts writes, ensuring consistent data updates across the system
+                Single master accepts writes, ensuring consistent data updates
+                across the system
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Multiple slave replicas handle read traffic, providing 3-5x more concurrent read capacity
+                Multiple slave replicas handle read traffic, providing 3-5x more
+                concurrent read capacity
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Load balancers intelligently route read queries to optimal replica based on geographic proximity and current load
+                Load balancers intelligently route read queries to optimal
+                replica based on geographic proximity and current load
               </li>
             </ul>
           </div>
@@ -11099,20 +11110,24 @@ function ReadReplicasWriteScalingContent() {
               Replication lag and eventual consistency trade-offs
             </h3>
             <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Understanding timing delays between master writes and replica availability
+              Understanding timing delays between master writes and replica
+              availability
             </p>
             <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Replication lag ranges from milliseconds to several seconds depending on network conditions and replica load
+                Replication lag ranges from milliseconds to several seconds
+                depending on network conditions and replica load
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Applications must handle eventual consistency patterns for non-critical read operations
+                Applications must handle eventual consistency patterns for
+                non-critical read operations
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Read-your-writes consistency techniques ensure users see their own updates immediately
+                Read-your-writes consistency techniques ensure users see their
+                own updates immediately
               </li>
             </ul>
           </div>
@@ -11122,7 +11137,8 @@ function ReadReplicasWriteScalingContent() {
               Write scaling strategies beyond read optimization
             </h3>
             <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Advanced techniques when master database becomes the write bottleneck
+              Advanced techniques when master database becomes the write
+              bottleneck
             </p>
             <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
               <li className="flex items-start gap-2">
@@ -11131,7 +11147,8 @@ function ReadReplicasWriteScalingContent() {
                   <strong className="text-slate-700 dark:text-gray-300">
                     Database sharding:
                   </strong>{" "}
-                  Horizontal partitioning distributes writes across multiple databases based on data patterns
+                  Horizontal partitioning distributes writes across multiple
+                  databases based on data patterns
                 </div>
               </li>
               <li className="flex items-start gap-2">
@@ -11149,7 +11166,8 @@ function ReadReplicasWriteScalingContent() {
                   <strong className="text-slate-700 dark:text-gray-300">
                     CQRS architecture:
                   </strong>{" "}
-                  Command Query Responsibility Segregation separates read and write data models completely
+                  Command Query Responsibility Segregation separates read and
+                  write data models completely
                 </div>
               </li>
             </ul>
@@ -11176,7 +11194,8 @@ function ReadReplicasWriteScalingContent() {
                   <strong className="text-slate-700 dark:text-gray-300">
                     Response time optimization:
                   </strong>{" "}
-                  Read operations improve from 3-5+ seconds to sub-second response times under load
+                  Read operations improve from 3-5+ seconds to sub-second
+                  response times under load
                 </div>
               </li>
               <li className="flex items-start gap-2">
@@ -11185,7 +11204,8 @@ function ReadReplicasWriteScalingContent() {
                   <strong className="text-slate-700 dark:text-gray-300">
                     Capacity scaling:
                   </strong>{" "}
-                  Organizations typically achieve 3-5x more concurrent read requests with strategic replica placement
+                  Organizations typically achieve 3-5x more concurrent read
+                  requests with strategic replica placement
                 </div>
               </li>
               <li className="flex items-start gap-2">
@@ -11194,7 +11214,8 @@ function ReadReplicasWriteScalingContent() {
                   <strong className="text-slate-700 dark:text-gray-300">
                     Geographic distribution benefits:
                   </strong>{" "}
-                  Regional replicas reduce latency for global user bases while providing disaster recovery capabilities
+                  Regional replicas reduce latency for global user bases while
+                  providing disaster recovery capabilities
                 </div>
               </li>
             </ul>
@@ -11211,7 +11232,8 @@ function ReadReplicasWriteScalingContent() {
                   <strong className="text-slate-700 dark:text-gray-300">
                     Performance degradation crisis:
                   </strong>{" "}
-                  &ldquo;Database response times slowing from sub-second to 3-5+ seconds as concurrent users increase&rdquo;
+                  &ldquo;Database response times slowing from sub-second to 3-5+
+                  seconds as concurrent users increase&rdquo;
                 </div>
               </li>
               <li className="flex items-start gap-2">
@@ -11220,7 +11242,8 @@ function ReadReplicasWriteScalingContent() {
                   <strong className="text-slate-700 dark:text-gray-300">
                     Business growth scaling challenges:
                   </strong>{" "}
-                  &ldquo;User traffic increased 2-5x during our growth phase and our database can&rsquo;t keep up&rdquo;
+                  &ldquo;User traffic increased 2-5x during our growth phase and
+                  our database can&rsquo;t keep up&rdquo;
                 </div>
               </li>
               <li className="flex items-start gap-2">
@@ -11229,7 +11252,8 @@ function ReadReplicasWriteScalingContent() {
                   <strong className="text-slate-700 dark:text-gray-300">
                     Geographic expansion requirements:
                   </strong>{" "}
-                  &ldquo;Our international users experience unacceptable latency from our single US database&rdquo;
+                  &ldquo;Our international users experience unacceptable latency
+                  from our single US database&rdquo;
                 </div>
               </li>
             </ul>
@@ -11246,7 +11270,8 @@ function ReadReplicasWriteScalingContent() {
                   <strong className="text-slate-700 dark:text-gray-300">
                     E-commerce platforms:
                   </strong>{" "}
-                  Product catalog reads distributed across regional replicas, supporting global customer bases with local performance
+                  Product catalog reads distributed across regional replicas,
+                  supporting global customer bases with local performance
                 </div>
               </li>
               <li className="flex items-start gap-2">
@@ -11255,7 +11280,8 @@ function ReadReplicasWriteScalingContent() {
                   <strong className="text-slate-700 dark:text-gray-300">
                     Content management systems:
                   </strong>{" "}
-                  Article and media content served from read replicas while editorial writes maintain consistency through master
+                  Article and media content served from read replicas while
+                  editorial writes maintain consistency through master
                 </div>
               </li>
               <li className="flex items-start gap-2">
@@ -11264,7 +11290,8 @@ function ReadReplicasWriteScalingContent() {
                   <strong className="text-slate-700 dark:text-gray-300">
                     Reporting platforms:
                   </strong>{" "}
-                  Analytics queries processed on dedicated read replicas without impacting operational write performance
+                  Analytics queries processed on dedicated read replicas without
+                  impacting operational write performance
                 </div>
               </li>
             </ul>
@@ -11272,7 +11299,8 @@ function ReadReplicasWriteScalingContent() {
 
           <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
             <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              Customer profiles most likely to benefit from read replica strategies
+              Customer profiles most likely to benefit from read replica
+              strategies
             </h3>
             <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
               <li className="flex items-start gap-2">
@@ -11280,28 +11308,32 @@ function ReadReplicasWriteScalingContent() {
                 <strong className="text-slate-700 dark:text-gray-300">
                   Series B+ startups:
                 </strong>{" "}
-                Experiencing rapid user growth with read-heavy application patterns
+                Experiencing rapid user growth with read-heavy application
+                patterns
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
                 <strong className="text-slate-700 dark:text-gray-300">
                   E-commerce companies:
                 </strong>{" "}
-                Supporting global customer bases with product catalogs and inventory systems
+                Supporting global customer bases with product catalogs and
+                inventory systems
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
                 <strong className="text-slate-700 dark:text-gray-300">
                   Content platforms:
                 </strong>{" "}
-                Serving articles, media, and user-generated content across multiple regions
+                Serving articles, media, and user-generated content across
+                multiple regions
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
                 <strong className="text-slate-700 dark:text-gray-300">
                   Enterprise SaaS providers:
                 </strong>{" "}
-                Managing reporting and analytics workloads separate from operational data
+                Managing reporting and analytics workloads separate from
+                operational data
               </li>
             </ul>
           </div>
@@ -11354,7 +11386,12 @@ function ReadReplicasWriteScalingContent() {
               AI-assisted database architecture planning
             </h3>
             <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Cursor can accelerate read replica implementation by generating optimal database configuration files, connection pooling setups, and load balancer configurations. AI assistance helps teams avoid common pitfalls like improper replication lag handling and inefficient routing logic, reducing implementation time from weeks to days.
+              Cursor can accelerate read replica implementation by generating
+              optimal database configuration files, connection pooling setups,
+              and load balancer configurations. AI assistance helps teams avoid
+              common pitfalls like improper replication lag handling and
+              inefficient routing logic, reducing implementation time from weeks
+              to days.
             </p>
           </div>
 
@@ -11363,7 +11400,11 @@ function ReadReplicasWriteScalingContent() {
               Application logic for eventual consistency
             </h3>
             <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Teams implementing read replicas need sophisticated application logic to handle eventual consistency patterns. Cursor&rsquo;s context awareness helps generate read-your-writes consistency mechanisms, intelligent retry logic for stale reads, and graceful degradation patterns when replicas lag behind master databases.
+              Teams implementing read replicas need sophisticated application
+              logic to handle eventual consistency patterns. Cursor&rsquo;s
+              context awareness helps generate read-your-writes consistency
+              mechanisms, intelligent retry logic for stale reads, and graceful
+              degradation patterns when replicas lag behind master databases.
             </p>
           </div>
 
@@ -11372,7 +11413,12 @@ function ReadReplicasWriteScalingContent() {
               Monitoring and observability automation
             </h3>
             <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Read replica architectures require comprehensive monitoring of replication lag, read/write traffic distribution, and geographic performance metrics. AI assistance can generate monitoring dashboards, alerting configurations, and automated scaling policies that help teams proactively manage performance before customer impact occurs.
+              Read replica architectures require comprehensive monitoring of
+              replication lag, read/write traffic distribution, and geographic
+              performance metrics. AI assistance can generate monitoring
+              dashboards, alerting configurations, and automated scaling
+              policies that help teams proactively manage performance before
+              customer impact occurs.
             </p>
           </div>
 
@@ -11381,7 +11427,410 @@ function ReadReplicasWriteScalingContent() {
               Migration planning and testing frameworks
             </h3>
             <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Organizations often struggle with migrating existing applications to read replica architectures without service disruption. Cursor can help generate comprehensive testing strategies that validate application behavior under various replication lag scenarios, ensuring smooth production deployments with minimal risk to business operations.
+              Organizations often struggle with migrating existing applications
+              to read replica architectures without service disruption. Cursor
+              can help generate comprehensive testing strategies that validate
+              application behavior under various replication lag scenarios,
+              ensuring smooth production deployments with minimal risk to
+              business operations.
+            </p>
+          </div>
+        </div>
+      </section>
+    </article>
+  );
+}
+
+// Component for the database sharding and partitioning article content
+function DatabaseShardingPartitioningContent() {
+  return (
+    <article className="space-y-10">
+      {/* Key Concepts Section */}
+      <section id="key-concepts">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Key Concepts
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Horizontal sharding distributes data across multiple independent databases
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Like organizing a massive library by splitting books across different buildings 
+              based on subject categories, rather than trying to fit everything in one location
+            </p>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Each shard contains a subset of the total data, determined by a shard key
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Shards operate independently, enabling parallel processing and reduced contention
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Linear scalability achieved by adding more shards as data volume grows
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Shard key selection determines data distribution and query performance
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              The most critical architectural decision that impacts system scalability and maintainability
+            </p>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Ideal shard keys distribute data evenly across shards to prevent hotspots
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Query patterns should align with shard key to minimize cross-shard operations
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Hash-based keys provide uniform distribution; range-based keys enable range queries
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Partitioning strategies optimize query performance within individual databases
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Complementary to sharding, partitioning organizes data within each database instance
+            </p>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Horizontal partitioning splits tables by rows (similar to sharding concept)
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Vertical partitioning separates frequently accessed columns from rarely used ones
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Time-based partitioning enables efficient archival and historical data management
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-orange-500 bg-orange-50/50 dark:bg-orange-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Cross-shard queries require careful coordination and optimization strategies
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              The primary complexity introduced by sharded architectures that must be managed proactively
+            </p>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Applications must scatter queries across relevant shards and gather results
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                JOIN operations become complex when data spans multiple shards
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Caching and denormalization strategies help minimize cross-shard dependencies
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Business Impact Section */}
+      <section id="business-impact">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Business Impact
+        </h2>
+
+        <MetricsCard
+          metrics={[
+            {
+              label: "Response Time Improvement",
+              value: "60-80%",
+              description: "Reduction in database response times",
+              color: "blue",
+            },
+            {
+              label: "Scalability Factor",
+              value: "Linear",
+              description: "Near-linear performance scaling with shard count",
+              color: "green",
+            },
+            {
+              label: "Maintenance Window Reduction",
+              value: "75%",
+              description: "Faster maintenance through shard isolation",
+              color: "purple",
+            },
+            {
+              label: "Cross-Shard Query Complexity",
+              value: "High",
+              description: "Coordination across multiple databases",
+              color: "orange",
+            },
+          ]}
+        />
+
+        <div className="mt-8 space-y-6">
+          <div className="bg-gradient-to-r from-green-50 to-blue-50 dark:from-green-950/30 dark:to-blue-950/30 p-6 rounded-lg border border-green-200 dark:border-green-800">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-3">
+              📈 Scalability Benefits
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300">
+              Organizations implementing sharding report near-linear scaling capabilities, 
+              enabling them to handle 10-100x growth in data volume and user traffic without 
+              proportional infrastructure cost increases. This approach proves especially 
+              valuable for high-growth SaaS platforms and e-commerce systems.
+            </p>
+          </div>
+
+          <div className="bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-950/30 dark:to-pink-950/30 p-6 rounded-lg border border-purple-200 dark:border-purple-800">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-3">
+              ⚡ Performance Optimization
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300">
+              Database sharding delivers 60-80% reduction in response times by eliminating 
+              resource contention and enabling parallel query execution. Teams consistently 
+              report improved user experience metrics and reduced infrastructure costs as 
+              workloads become more efficiently distributed.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Implementation Patterns Section */}
+      <section id="implementation-patterns">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Implementation Patterns
+        </h2>
+
+        <div className="space-y-8">
+          <div className="bg-slate-50 dark:bg-slate-900/50 p-6 rounded-lg border border-slate-200 dark:border-slate-700">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-4">
+              🔑 Shard Key Design Strategy
+            </h3>
+            <div className="grid md:grid-cols-2 gap-6">
+              <div>
+                <h4 className="font-medium text-slate-800 dark:text-gray-200 mb-2">
+                  Hash-Based Sharding
+                </h4>
+                <ul className="space-y-1 text-slate-600 dark:text-gray-400 text-sm">
+                  <li>• Uniform data distribution</li>
+                  <li>• Prevents data hotspots</li>
+                  <li>• Good for user ID or UUID keys</li>
+                  <li>• Complex range queries</li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="font-medium text-slate-800 dark:text-gray-200 mb-2">
+                  Range-Based Sharding
+                </h4>
+                <ul className="space-y-1 text-slate-600 dark:text-gray-400 text-sm">
+                  <li>• Efficient range queries</li>
+                  <li>• Time-series data optimization</li>
+                  <li>• Potential hotspot creation</li>
+                  <li>• Geographic distribution support</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-slate-50 dark:bg-slate-900/50 p-6 rounded-lg border border-slate-200 dark:border-slate-700">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-4">
+              🔄 Cross-Shard Query Management
+            </h3>
+            <div className="space-y-4">
+              <div className="border-l-4 border-blue-500 pl-4">
+                <h4 className="font-medium text-slate-800 dark:text-gray-200 mb-2">
+                  Query Router Pattern
+                </h4>
+                <p className="text-slate-600 dark:text-gray-400 text-sm">
+                  Implement a routing layer that determines which shards contain relevant data 
+                  for each query, minimizing unnecessary cross-shard operations and improving performance.
+                </p>
+              </div>
+              <div className="border-l-4 border-green-500 pl-4">
+                <h4 className="font-medium text-slate-800 dark:text-gray-200 mb-2">
+                  Scatter-Gather Optimization
+                </h4>
+                <p className="text-slate-600 dark:text-gray-400 text-sm">
+                  For unavoidable cross-shard queries, implement parallel execution with 
+                  result aggregation, utilizing consistent hashing to minimize data movement.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-slate-50 dark:bg-slate-900/50 p-6 rounded-lg border border-slate-200 dark:border-slate-700">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-4">
+              📊 Monitoring and Rebalancing
+            </h3>
+            <div className="space-y-3">
+              <div className="flex items-start gap-3">
+                <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <h4 className="font-medium text-slate-800 dark:text-gray-200">Shard Health Metrics</h4>
+                  <p className="text-slate-600 dark:text-gray-400 text-sm">
+                    Monitor CPU, memory, and disk usage across shards to identify imbalances
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <h4 className="font-medium text-slate-800 dark:text-gray-200">Data Distribution Analysis</h4>
+                  <p className="text-slate-600 dark:text-gray-400 text-sm">
+                    Track data growth patterns and query distribution to optimize shard allocation
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="w-2 h-2 bg-purple-500 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <h4 className="font-medium text-slate-800 dark:text-gray-200">Consistent Hashing</h4>
+                  <p className="text-slate-600 dark:text-gray-400 text-sm">
+                    Implement consistent hashing to minimize data redistribution when adding shards
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Customer Scenarios Section */}
+      <section id="customer-scenarios">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Customer Scenarios
+        </h2>
+
+        <div className="space-y-8">
+          <div className="bg-red-50 dark:bg-red-950/20 p-6 rounded-lg border border-red-200 dark:border-red-800">
+            <h3 className="font-semibold text-red-900 dark:text-red-200 mb-3">
+              🚨 E-commerce Platform Crisis
+            </h3>
+            <blockquote className="text-red-800 dark:text-red-300 italic mb-4">
+              &ldquo;Database response times increased 300% when we hit 10 million users. 
+              Our monolithic database couldn&rsquo;t handle the transaction volume during 
+              Black Friday sales, resulting in $2M in lost revenue.&rdquo;
+            </blockquote>
+            <p className="text-red-700 dark:text-red-400 text-sm">
+              This scenario demonstrates the critical need for proactive sharding implementation 
+              before hitting scale bottlenecks that impact business operations.
+            </p>
+          </div>
+
+          <div className="bg-blue-50 dark:bg-blue-950/20 p-6 rounded-lg border border-blue-200 dark:border-blue-800">
+            <h3 className="font-semibold text-blue-900 dark:text-blue-200 mb-3">
+              📊 SaaS Analytics Platform
+            </h3>
+            <blockquote className="text-blue-800 dark:text-blue-300 italic mb-4">
+              &ldquo;We needed to process time-series data from millions of IoT devices. 
+              Range-based sharding by timestamp enabled us to achieve linear scaling 
+              and reduce analytical query times by 75%.&rdquo;
+            </blockquote>
+            <p className="text-blue-700 dark:text-blue-400 text-sm">
+              Time-series data represents an ideal use case for sharding, where temporal 
+              partitioning aligns perfectly with access patterns and retention policies.
+            </p>
+          </div>
+
+          <div className="bg-green-50 dark:bg-green-950/20 p-6 rounded-lg border border-green-200 dark:border-green-800">
+            <h3 className="font-semibold text-green-900 dark:text-green-200 mb-3">
+              🌐 Global Social Platform
+            </h3>
+            <blockquote className="text-green-800 dark:text-green-300 italic mb-4">
+              &ldquo;Geographic sharding reduced cross-continental latency by 60% for our 
+              social media platform. Users in Europe now experience sub-100ms response 
+              times instead of 300ms+ when accessing US-based servers.&rdquo;
+            </blockquote>
+            <p className="text-green-700 dark:text-green-400 text-sm">
+              Geographic distribution through sharding provides both performance benefits 
+              and compliance advantages for global applications with data residency requirements.
+            </p>
+          </div>
+
+          <div className="bg-orange-50 dark:bg-orange-950/20 p-6 rounded-lg border border-orange-200 dark:border-orange-800">
+            <h3 className="font-semibold text-orange-900 dark:text-orange-200 mb-3">
+              ⚖️ Multi-Tenant Enterprise SaaS
+            </h3>
+            <blockquote className="text-orange-800 dark:text-orange-300 italic mb-4">
+              &ldquo;Tenant-based sharding eliminated the noisy neighbor problem. Large 
+              enterprise clients no longer impact performance for smaller customers, 
+              and we can provide dedicated resources based on contract tiers.&rdquo;
+            </blockquote>
+            <p className="text-orange-700 dark:text-orange-400 text-sm">
+              Multi-tenant sharding enables resource isolation and customized performance 
+              guarantees, crucial for enterprise SaaS platforms with diverse client requirements.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Cursor Implementation Considerations */}
+      <section id="cursor-implementation">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Cursor Implementation Considerations
+        </h2>
+
+        <div className="space-y-6">
+          <div className="bg-gradient-to-r from-purple-50 to-blue-50 dark:from-purple-950/30 dark:to-blue-950/30 p-6 rounded-lg border border-purple-200 dark:border-purple-800">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-3">
+              🎯 AI-Assisted Shard Key Selection
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300">
+              Cursor can analyze your data access patterns and query logs to recommend 
+              optimal shard key strategies. By examining table schemas, JOIN patterns, 
+              and WHERE clause distributions, it can suggest hash-based vs. range-based 
+              approaches that align with your specific application requirements.
+            </p>
+          </div>
+
+          <div className="bg-gradient-to-r from-green-50 to-teal-50 dark:from-green-950/30 dark:to-teal-950/30 p-6 rounded-lg border border-green-200 dark:border-green-800">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-3">
+              🔧 Query Router Generation
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300">
+              Use Cursor to generate intelligent query routing logic that automatically 
+              determines which shards to query based on your shard key strategy. The AI 
+              can create optimized routing algorithms that minimize cross-shard queries 
+              and implement efficient scatter-gather patterns for complex operations.
+            </p>
+          </div>
+
+          <div className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-950/30 dark:to-indigo-950/30 p-6 rounded-lg border border-blue-200 dark:border-blue-800">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-3">
+              📊 Monitoring Implementation
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300">
+              Cursor excels at generating comprehensive monitoring solutions for sharded 
+              systems. It can create custom metrics collectors, alerting systems for 
+              shard imbalances, and automated rebalancing scripts that maintain optimal 
+              performance as your data distribution evolves over time.
+            </p>
+          </div>
+
+          <div className="bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-950/30 dark:to-orange-950/30 p-6 rounded-lg border border-amber-200 dark:border-amber-800">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-3">
+              🧪 Migration Strategy Development
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300">
+              Organizations often struggle with migrating existing monolithic databases 
+              to sharded architectures without service disruption. Cursor can help 
+              generate comprehensive migration plans, including data movement scripts, 
+              zero-downtime transition strategies, and rollback procedures that ensure 
+              business continuity throughout the sharding implementation process.
             </p>
           </div>
         </div>
