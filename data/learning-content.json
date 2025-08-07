@@ -5894,7 +5894,204 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Standards and practices for maintaining project documentation",
-              "topics": ["Living Documentation", "API Docs", "Decision Records"]
+              "topics": ["Living Documentation", "API Docs", "Decision Records"],
+              "quiz": {
+                "title": "Documentation Standards Knowledge Quiz",
+                "totalQuestions": 10,
+                "totalPoints": 25,
+                "questions": [
+                  {
+                    "id": 1,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "What is the primary business impact of implementing comprehensive documentation standards in enterprise development teams?",
+                    "options": [
+                      "Documentation reduces code execution speed",
+                      "Proper documentation decreases developer onboarding time by 40-60% and reduces support tickets",
+                      "Documentation only benefits marketing teams",
+                      "Documentation standards slow down feature development"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Comprehensive documentation standards provide measurable business value through faster developer onboarding (reducing the typical 2-3 month ramp-up to 3-6 weeks), decreased support ticket volume (30-50% reduction in repetitive questions), and improved knowledge retention when team members leave. Studies show that teams with strong documentation practices deliver features 25-40% faster once initial documentation investment is made.",
+                    "keyConcepts": [
+                      "Business impact quantification",
+                      "developer onboarding efficiency",
+                      "support ticket reduction"
+                    ]
+                  },
+                  {
+                    "id": 2,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Living documentation differs from traditional documentation because it:",
+                    "options": [
+                      "Never needs to be updated manually",
+                      "Automatically stays current with code changes through integration with development workflows",
+                      "Only exists in printed format",
+                      "Is written exclusively by technical writers"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Living documentation automatically reflects current system state by integrating with code repositories, CI/CD pipelines, and deployment processes. Examples include API documentation generated from code annotations, architecture diagrams updated from infrastructure-as-code, and runbooks that reflect actual deployment procedures. This approach prevents the common problem where documentation becomes outdated and unreliable within weeks of creation.",
+                    "keyConcepts": [
+                      "Living documentation automation",
+                      "code-documentation integration",
+                      "documentation currency"
+                    ]
+                  },
+                  {
+                    "id": 3,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "What percentage of enterprise development teams report documentation debt as a significant productivity barrier?",
+                    "options": [
+                      "15-25%",
+                      "30-45%",
+                      "65-80%",
+                      "85-95%"
+                    ],
+                    "correctAnswer": 2,
+                    "additionalContext": "Research consistently shows that 65-80% of enterprise development teams identify outdated, incomplete, or inaccessible documentation as a major productivity impediment. This documentation debt manifests as longer debugging sessions, repeated architecture decisions, and difficulty maintaining complex systems. Teams spend an average of 20-30% of their time searching for or recreating information that should be documented.",
+                    "keyConcepts": [
+                      "Documentation debt statistics",
+                      "productivity impact measurement",
+                      "enterprise team challenges"
+                    ]
+                  },
+                  {
+                    "id": 4,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "API documentation becomes critical for enterprise teams because it:",
+                    "options": [
+                      "Makes APIs run faster",
+                      "Enables self-service integration and reduces cross-team dependencies",
+                      "Automatically generates test cases",
+                      "Prevents security vulnerabilities"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Comprehensive API documentation enables teams to integrate services independently without constant back-and-forth communication with API owners. This self-service approach reduces integration timelines from weeks to days and allows teams to work in parallel rather than sequentially. Well-documented APIs see 3-5x higher adoption rates in microservices architectures.",
+                    "keyConcepts": [
+                      "Self-service integration",
+                      "cross-team dependency reduction",
+                      "API adoption rates"
+                    ]
+                  },
+                  {
+                    "id": 5,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Decision records (ADRs) provide enterprise value by:",
+                    "options": [
+                      "Automatically implementing architectural decisions",
+                      "Capturing the context and reasoning behind technical choices for future reference",
+                      "Preventing all technical debt from accumulating",
+                      "Generating code documentation automatically"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Architecture Decision Records (ADRs) document not just what technical decisions were made, but why they were made and what alternatives were considered. This context becomes invaluable when teams need to revisit decisions months or years later, especially during system evolution or when original team members have moved on. ADRs prevent teams from repeatedly debating the same architectural choices.",
+                    "keyConcepts": [
+                      "Decision context preservation",
+                      "architectural reasoning documentation",
+                      "team knowledge retention"
+                    ]
+                  },
+                  {
+                    "id": 6,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Common customer triggers that drive documentation standardization initiatives include:",
+                    "options": [
+                      "Regulatory compliance requirements only",
+                      "New team members struggling to contribute effectively and frequent production incidents due to knowledge gaps",
+                      "Marketing department requests for better product descriptions",
+                      "Competition from other companies with better documentation"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Enterprise teams typically invest in documentation standards after experiencing specific pain points: 'Our new developers take 3 months to be productive instead of 3 weeks', 'We keep repeating the same mistakes because institutional knowledge leaves with departing employees', and 'Production incidents happen because critical system knowledge exists only in people's heads'. These scenarios drive measurable business impact that justifies documentation investment.",
+                    "keyConcepts": [
+                      "Customer pain point triggers",
+                      "productivity impact scenarios",
+                      "knowledge retention challenges"
+                    ]
+                  },
+                  {
+                    "id": 7,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Documentation standards should be enforced through:",
+                    "options": [
+                      "Manual review processes only",
+                      "Integration with development workflows including automated checks and pull request gates",
+                      "Annual documentation audits",
+                      "Dedicated documentation team oversight"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Effective documentation standards are integrated into daily development workflows through automated checks that verify documentation completeness, pull request templates that require documentation updates, and CI/CD pipeline gates that prevent deployment without proper documentation. This approach makes documentation a natural part of the development process rather than an afterthought.",
+                    "keyConcepts": [
+                      "Workflow integration",
+                      "automated documentation enforcement",
+                      "development process integration"
+                    ]
+                  },
+                  {
+                    "id": 8,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "What percentage improvement in incident response time do teams typically see after implementing comprehensive runbook documentation?",
+                    "options": [
+                      "5-15%",
+                      "20-30%",
+                      "40-60%",
+                      "70-80%"
+                    ],
+                    "correctAnswer": 2,
+                    "additionalContext": "Teams with well-maintained runbook documentation typically resolve incidents 40-60% faster because responders don't need to hunt for tribal knowledge or reverse-engineer system behavior during critical situations. Comprehensive runbooks include troubleshooting steps, system dependencies, escalation procedures, and historical incident patterns. This documentation becomes especially critical for 24/7 operations and distributed teams.",
+                    "keyConcepts": [
+                      "Incident response improvement",
+                      "runbook effectiveness",
+                      "operational efficiency gains"
+                    ]
+                  },
+                  {
+                    "id": 9,
+                    "type": "freeform",
+                    "points": 5,
+                    "question": "Compare the trade-offs between comprehensive upfront documentation and evolutionary documentation approaches. Explain when each approach is most appropriate and describe the business factors that should influence this decision.",
+                    "sampleStrongResponse": "Comprehensive upfront documentation provides immediate clarity and consistency but requires significant initial investment and can become outdated quickly if not maintained. This approach works well for stable, well-understood systems, regulatory environments requiring extensive documentation, and teams with clear long-term requirements. Evolutionary documentation grows with the system and stays more current, but may lack coverage in critical areas and can be inconsistent across teams. This approach suits agile environments, rapidly changing systems, and teams prioritizing speed-to-market. Business factors influencing this choice include regulatory requirements (heavily favoring upfront documentation), team turnover rates (high turnover benefits from comprehensive documentation), system stability (stable systems can invest upfront), development velocity requirements (fast-moving teams prefer evolutionary), and available resources (comprehensive documentation requires dedicated effort). Most successful enterprise teams adopt a hybrid approach: comprehensive documentation for core system architecture and critical processes, with evolutionary documentation for implementation details and emerging features.",
+                    "additionalContext": "Understanding these trade-offs helps teams make appropriate documentation investments based on their specific context rather than following one-size-fits-all approaches.",
+                    "keyConcepts": [
+                      "Documentation strategy trade-offs",
+                      "business context alignment",
+                      "resource allocation decisions",
+                      "hybrid approaches"
+                    ],
+                    "customScoringCriteria": {
+                      "fullPoints": "Clearly explains both comprehensive and evolutionary approaches with their respective trade-offs, identifies appropriate use cases for each, and describes relevant business factors that should influence the decision.",
+                      "partialPoints": "Covers both approaches but may lack depth in explaining trade-offs or business context, or provides unclear guidance on when to use each approach.",
+                      "noPoints": "Provides unclear explanations of the approaches or fails to demonstrate understanding of when each would be appropriate based on business factors."
+                    }
+                  },
+                  {
+                    "id": 10,
+                    "type": "freeform",
+                    "points": 5,
+                    "question": "Design a documentation standard for a growing enterprise team transitioning from startup to scale-up phase. Include specific metrics for measuring documentation effectiveness and describe how you would integrate documentation requirements into existing development workflows.",
+                    "sampleStrongResponse": "For a scaling enterprise team, I would implement a tiered documentation standard that balances thorough coverage with development velocity. Core requirements would include: (1) Architecture Decision Records for all major technical choices with template including context, options considered, decision, and consequences; (2) API documentation auto-generated from code with manual context sections for business logic; (3) Runbooks for all production systems with incident response procedures; (4) Onboarding documentation updated by each new team member during their first month. Effectiveness metrics would include: developer onboarding time (target: reduce from 8-12 weeks to 4-6 weeks), support ticket volume related to documented topics (target: 30% reduction), documentation coverage percentage (target: 80% of critical systems documented), and documentation freshness (target: no documentation older than 6 months without review). Workflow integration would involve: pull request templates requiring documentation updates for new features, automated checks ensuring API documentation stays current with code changes, documentation review as part of code review process, and quarterly documentation debt reduction sprints. Integration with existing tools would include documentation-as-code stored in version control, integration with Slack for documentation notifications, and dashboard showing documentation health metrics.",
+                    "additionalContext": "Effective documentation standards must evolve with team growth and integrate seamlessly with existing development practices to ensure adoption and maintenance.",
+                    "keyConcepts": [
+                      "Scalable documentation standards",
+                      "measurement and metrics",
+                      "workflow integration",
+                      "organizational change management"
+                    ],
+                    "customScoringCriteria": {
+                      "fullPoints": "Provides a comprehensive documentation standard appropriate for scaling teams, includes specific and measurable effectiveness metrics, and describes practical workflow integration approaches.",
+                      "partialPoints": "Covers documentation standards and some metrics or workflow integration, but may lack specificity or practical implementation details.",
+                      "noPoints": "Provides unclear or impractical documentation standards, lacks meaningful metrics, or fails to address workflow integration challenges."
+                    }
+                  }
+                ]
+              }
             }
           ]
         },
