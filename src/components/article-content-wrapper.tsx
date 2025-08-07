@@ -195,6 +195,8 @@ export function ArticleContentWrapper({
                     <RESTfulApisContent />
                   ) : article.id === "read-replicas-write-scaling" ? (
                     <ReadReplicasWriteScalingContent />
+                  ) : article.id === "caching-layers" ? (
+                    <CachingLayersContent />
                   ) : (
                     <DefaultArticleContent article={article} />
                   )}
@@ -11382,6 +11384,392 @@ function ReadReplicasWriteScalingContent() {
             </h3>
             <p className="text-slate-700 dark:text-gray-300 mb-3">
               Organizations often struggle with migrating existing applications to read replica architectures without service disruption. Cursor can help generate comprehensive testing strategies that validate application behavior under various replication lag scenarios, ensuring smooth production deployments with minimal risk to business operations.
+            </p>
+          </div>
+        </div>
+      </section>
+    </article>
+  );
+}
+
+// Component for the caching layers article content
+function CachingLayersContent() {
+  return (
+    <article className="space-y-10">
+      {/* Key Concepts Section */}
+      <section id="key-concepts">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Key Concepts
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Multi-layer caching architecture
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Modern applications use multiple caching layers working together to optimize performance at different levels (like having multiple levels of storage in a well-organized office building)
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Browser caching:
+                  </strong>{" "}
+                  Stores static assets (images, CSS, JavaScript) locally to eliminate repeated downloads
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    CDN caching:
+                  </strong>{" "}
+                  Distributes content globally at edge servers to reduce latency for users worldwide
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Application caching:
+                  </strong>{" "}
+                  Stores frequently accessed data in memory to avoid repeated database queries
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Database caching:
+                  </strong>{" "}
+                  Caches query results and execution plans to speed up database operations
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Cache invalidation strategies
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              The challenge of keeping cached data fresh while maintaining performance benefits (considered one of the hardest problems in computer science)
+            </p>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Time-based expiration (TTL) - data expires after a set time period
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Write-through caching - cache updated immediately when source data changes
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Write-behind caching - cache updated asynchronously after source data changes
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Manual invalidation - explicit cache clearing when specific events occur
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              In-memory caching solutions
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              High-speed data storage for frequently accessed information
+            </p>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Redis:
+                  </strong>{" "}
+                  Microsecond access times, millions of operations per second, ideal for session storage and real-time analytics
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Memcached:
+                  </strong>{" "}
+                  Simple, high-performance distributed memory caching system
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Application-level caches:
+                  </strong>{" "}
+                  Built into application frameworks for storing computed results and session data
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-orange-500 bg-orange-50/50 dark:bg-orange-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Content Delivery Networks (CDN)
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Global network of servers that cache and deliver content from locations closest to users
+            </p>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Reduces page load times from seconds to milliseconds for global users
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Handles traffic spikes by distributing load across edge servers
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Reduces bandwidth costs by 60-80% through edge caching
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Performance Impact Metrics */}
+        <div className="mt-8">
+          <MetricsCard
+            title="Caching Performance Impact"
+            metrics={[
+              {
+                label: "Performance Improvement",
+                value: "40-60%",
+                description: "Multi-layer caching implementation results",
+                trend: "up",
+                color: "green",
+              },
+              {
+                label: "Database Load Reduction",
+                value: "70-90%",
+                description: "For read-heavy workloads with effective caching",
+                trend: "down",
+                color: "blue",
+              },
+              {
+                label: "Infrastructure Cost Savings",
+                value: "25-35%",
+                description: "Through reduced server and bandwidth requirements",
+                trend: "down",
+                color: "purple",
+              },
+              {
+                label: "CDN Bandwidth Savings",
+                value: "60-80%",
+                description: "Reduced origin server bandwidth usage",
+                trend: "down",
+                color: "orange",
+              },
+            ]}
+            className="bg-gradient-to-br from-green-50 to-emerald-100 dark:from-green-950 dark:to-emerald-900"
+          />
+        </div>
+      </section>
+
+      {/* Business & Team Impact Section */}
+      <section id="business-team-impact">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
+          <TrendingUp className="w-6 h-6 text-green-500" />
+          Business &amp; Team Impact
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Enterprise-scale performance transformations
+            </h3>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Netflix:
+                  </strong>{" "}
+                  Serves billions of hours of content globally through comprehensive CDN caching, handling massive traffic spikes during peak viewing
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Reddit:
+                  </strong>{" "}
+                  Handles millions of concurrent users through Redis caching for user sessions and frequently accessed posts
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Stack Overflow:
+                  </strong>{" "}
+                  Serves millions of developers with minimal infrastructure through aggressive multi-layer caching strategies
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    GitHub:
+                  </strong>{" "}
+                  Uses comprehensive caching to serve millions of code repositories with consistent global performance
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-yellow-500 bg-yellow-50/50 dark:bg-yellow-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Common customer scenarios driving caching implementation
+            </h3>
+            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Performance degradation during growth:
+                  </strong>{" "}
+                  &ldquo;Our page load times went from 2 seconds to 15 seconds as we scaled from 10K to 100K users&rdquo;
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Database bottlenecks:
+                  </strong>{" "}
+                  &ldquo;Our database is maxed out and users are getting timeout errors during peak hours&rdquo;
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Infrastructure cost explosion:
+                  </strong>{" "}
+                  &ldquo;Our AWS bills doubled but traffic only increased 30%&rdquo;
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-700 dark:text-gray-300">
+                    Global user experience issues:
+                  </strong>{" "}
+                  &ldquo;Users in Asia are experiencing 10-second page loads while US users get sub-second response times&rdquo;
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Implementation patterns and business impact
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Organizations achieve compound benefits through systematic caching layer implementation
+            </p>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Browser and CDN caching provide immediate global performance improvements
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Application-level caching reduces database load enabling horizontal scaling
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Each layer addresses different bottlenecks, creating multiplicative performance gains
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Proper implementation enables graceful handling of traffic spikes without infrastructure scaling
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Customer profiles most likely to benefit from caching strategies
+            </h3>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <strong className="text-slate-700 dark:text-gray-300">
+                  High-traffic consumer applications:
+                </strong>{" "}
+                E-commerce, social media, content platforms with millions of daily users
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <strong className="text-slate-700 dark:text-gray-300">
+                  Global SaaS companies:
+                </strong>{" "}
+                Platforms serving users across multiple geographic regions requiring consistent performance
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <strong className="text-slate-700 dark:text-gray-300">
+                  Content-heavy platforms:
+                </strong>{" "}
+                Media streaming, documentation sites, educational platforms with large asset libraries
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                <strong className="text-slate-700 dark:text-gray-300">
+                  Rapid-growth startups:
+                </strong>{" "}
+                Companies experiencing 5-10x traffic growth needing cost-effective scaling solutions
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Cursor Implementation Section */}
+      <section id="cursor-implementation">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Cursor Implementation Considerations
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              AI-assisted caching strategy development
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Cursor can accelerate caching implementation by analyzing application patterns and suggesting optimal caching strategies - understanding data access patterns, identifying frequently queried information, and recommending appropriate cache layers based on usage analytics and performance bottlenecks
+            </p>
+          </div>
+
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Cache invalidation logic generation
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              One of the most complex aspects of caching implementation is designing proper invalidation strategies - Cursor can help generate cache invalidation logic based on data relationships and business rules, ensuring cache consistency while maintaining performance benefits across different application layers
+            </p>
+          </div>
+
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Performance monitoring and optimization
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Teams implementing caching layers need comprehensive monitoring to validate performance improvements and identify optimization opportunities - AI assistance for generating cache hit rate monitoring, performance analytics, and alerting systems that help teams measure the 40-60% performance improvements and 25-35% cost reductions that effective caching strategies provide
             </p>
           </div>
         </div>
