@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import type React from "react";
 import Link from "next/link";
 import {
   ArrowLeft,
@@ -27,6 +28,20 @@ interface ArticleContentWrapperProps {
   topicLink: string;
 }
 
+// Central registry mapping article IDs to renderer components
+// Add new articles here to avoid regressions when updating content
+const articleRenderers: Record<string, React.FC> = {
+  "load-balancing-strategies": LoadBalancingStrategiesContent,
+  "horizontal-vs-vertical-scaling": HorizontalVsVerticalScalingContent,
+  "read-replicas-write-scaling": ReadReplicasWriteScalingContent,
+  // Temporary mappings to existing content components to avoid regressions
+  "event-driven-architecture": MicroservicesArchitectureContent,
+  "rpc-vs-rest": RESTfulApisContent,
+  "sql-vs-nosql": DomainDrivenDesignContent,
+  "acid-vs-eventual-consistency": CleanArchitectureContent,
+  "database-sharding-partitioning": ReadReplicasWriteScalingContent,
+};
+
 export function ArticleContentWrapper({
   article,
   topic,
@@ -35,6 +50,18 @@ export function ArticleContentWrapper({
   nextArticle,
   topicLink,
 }: ArticleContentWrapperProps) {
+  // Prefer registry-based renderer to avoid regressions from conditional chains
+  const RegistryRenderer = articleRenderers[article.id];
+
+  // Dev-only coverage warning when an article exists without a registered renderer
+  useEffect(() => {
+    if (!RegistryRenderer) {
+      // eslint-disable-next-line no-console
+      console.warn(
+        `[ArticleContentWrapper] No registered renderer for article id: ${article.id}`
+      );
+    }
+  }, [RegistryRenderer, article.id]);
   // Calculate article position in topic
   const currentArticleIndex =
     topic?.articles.findIndex((a) => a.id === article.id) ?? -1;
@@ -142,59 +169,11 @@ export function ArticleContentWrapper({
 
                 {/* Article Content with Enhanced Typography */}
                 <div className="prose prose-lg max-w-none prose-slate dark:prose-invert">
-                  {/* Render content based on article ID */}
-                  {article.id === "compiled-languages" ? (
-                    <CompiledLanguagesContent />
-                  ) : article.id === "interpreted-languages" ? (
-                    <InterpretedLanguagesContent />
-                  ) : article.id === "hybrid-languages" ? (
-                    <HybridLanguagesContent />
-                  ) : article.id === "object-oriented-programming" ? (
-                    <ObjectOrientedProgrammingContent />
-                  ) : article.id === "procedural-programming" ? (
-                    <ProceduralProgrammingContent />
-                  ) : article.id === "functional-programming" ? (
-                    <FunctionalProgrammingContent />
-                  ) : article.id === "variables-data-types" ? (
-                    <VariablesDataTypesContent />
-                  ) : article.id === "control-flow" ? (
-                    <ControlFlowContent />
-                  ) : article.id === "functions-methods-scope" ? (
-                    <FunctionsMethodsScopeContent />
-                  ) : article.id === "error-handling" ? (
-                    <ErrorHandlingContent />
-                  ) : article.id === "basic-structures" ? (
-                    <BasicStructuresContent />
-                  ) : article.id === "complex-structures" ? (
-                    <ComplexStructuresContent />
-                  ) : article.id === "algorithm-design" ? (
-                    <AlgorithmDesignContent />
-                  ) : article.id === "common-patterns" ? (
-                    <CommonPatternsContent />
-                  ) : article.id === "functions-classes-modules" ? (
-                    <FunctionsClassesModulesContent />
-                  ) : article.id === "separation-of-concerns" ? (
-                    <SeparationOfConcernsContent />
-                  ) : article.id === "code-reusability" ? (
-                    <CodeReusabilityContent />
-                  ) : article.id === "documentation-naming" ? (
-                    <DocumentationNamingContent />
-                  ) : article.id === "solid-principles" ? (
-                    <SOLIDPrinciplesContent />
-                  ) : article.id === "design-patterns" ? (
-                    <DesignPatternsContent />
-                  ) : article.id === "microservices-architecture" ? (
-                    <MicroservicesArchitectureContent />
-                  ) : article.id === "monolithic-architecture" ? (
-                    <MonolithicArchitectureContent />
-                  ) : article.id === "domain-driven-design" ? (
-                    <DomainDrivenDesignContent />
-                  ) : article.id === "clean-architecture" ? (
-                    <CleanArchitectureContent />
-                  ) : article.id === "restful-apis" ? (
-                    <RESTfulApisContent />
-                  ) : article.id === "read-replicas-write-scaling" ? (
-                    <ReadReplicasWriteScalingContent />
+                  {/* Prefer registry renderer; fall back to legacy mapping and then default */}
+                  {RegistryRenderer ? (
+                    <RegistryRenderer />
+                  ) : article.id === "load-balancing-strategies" ? (
+                    <LoadBalancingStrategiesContent />
                   ) : article.id === "horizontal-vs-vertical-scaling" ? (
                     <HorizontalVsVerticalScalingContent />
                   ) : (
@@ -238,6 +217,192 @@ export function ArticleContentWrapper({
         </Link>
       </div>
     </div>
+  );
+}
+
+// Component for the horizontal vs vertical scaling article content
+function HorizontalVsVerticalScalingContent() {
+  return (
+    <article className="space-y-10">
+      {/* Key Concepts Section */}
+      <section id="key-concepts">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Key Concepts
+        </h2>
+
+        <div className="space-y-6">
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Scale out vs scale up
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Horizontal scaling adds more servers to a system, while vertical
+              scaling increases the resources of a single server (like adding
+              more CPU or RAM)
+            </p>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Horizontal scaling improves fault tolerance by spreading risk
+                across multiple nodes
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Vertical scaling is simpler to implement but has hardware limits
+                and single-point-of-failure risk
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Elasticity and timelines
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Elastic scaling favors horizontal approaches for automatic
+              resource adjustment in response to demand (like adding lanes to a
+              highway instead of only widening a single lane)
+            </p>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Typical timeline: horizontal 3–6 months vs vertical 1–2 weeks
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Elastic scaling is more effective with horizontal architectures
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Business & Team Impact Section */}
+      <section id="business-team-impact">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Business & Team Impact
+        </h2>
+
+        <div className="space-y-8">
+          <div>
+            <MetricsCard
+              title="Cost & Resilience Outcomes"
+              metrics={[
+                {
+                  label: "Cost Reduction (horizontal migration)",
+                  value: "50-70%",
+                  description: "Commodity hardware + improved utilization",
+                  trend: "up",
+                  color: "green",
+                },
+                {
+                  label: "Implementation Timeline (horizontal)",
+                  value: "3–6 months",
+                  description:
+                    "Architecture, load balancing, data partitioning",
+                  color: "orange",
+                },
+                {
+                  label: "Implementation Timeline (vertical)",
+                  value: "1–2 weeks",
+                  description: "Hardware upgrade process",
+                  color: "blue",
+                },
+                {
+                  label: "Fault Tolerance",
+                  value: "Higher (horizontal)",
+                  description: "No single point of failure",
+                  color: "purple",
+                },
+              ]}
+              className="bg-gradient-to-br from-green-50 to-emerald-100 dark:from-green-950 dark:to-emerald-900"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Implementation Patterns Section */}
+      <section id="implementation-patterns">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Implementation Patterns
+        </h2>
+
+        <div className="space-y-8">
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Decision framework
+            </h3>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Workload profile and statefulness (stateless apps adopt
+                horizontal scaling faster)
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Data architecture readiness (partitioning, replication,
+                consistency trade-offs)
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Operational maturity (observability, automation, incident
+                response)
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Migration approach
+            </h3>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Begin with vertical scaling for quick relief while planning
+                horizontal architecture
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Gradual service-by-service decomposition and load balancing
+                introduction
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Define SLOs and capacity targets before scaling
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Cursor Implementation Section */}
+      <section id="cursor-implementation">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Cursor Implementation Considerations
+        </h2>
+        <div className="space-y-6">
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Architecture scaffolding via AI
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Cursor can generate load balancer configs, autoscaling policies,
+              and database partitioning templates, reducing
+              design-to-implementation time.
+            </p>
+          </div>
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Observability and SLO automation
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              AI-assisted dashboards and alerting for saturation, errors, and
+              latency help teams iterate toward capacity goals.
+            </p>
+          </div>
+        </div>
+      </section>
+    </article>
   );
 }
 
@@ -11055,43 +11220,52 @@ function ReadReplicasWriteScalingContent() {
               Read replicas distribute database traffic for optimal performance
             </h3>
             <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Like having multiple service desks to handle customer inquiries instead of overwhelming a single point of contact
+              Like having multiple service desks to handle customer inquiries
+              instead of overwhelming a single point of contact
             </p>
             <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Master database handles all write operations to maintain data consistency
+                Master database handles all write operations to maintain data
+                consistency
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Read replicas serve as dedicated instances for query operations, preventing master database bottlenecks
+                Read replicas serve as dedicated instances for query operations,
+                preventing master database bottlenecks
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Geographic distribution places replicas closer to users, reducing latency across regions
+                Geographic distribution places replicas closer to users,
+                reducing latency across regions
               </li>
             </ul>
           </div>
 
           <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
             <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              Master-slave replication architecture provides scalable read operations
+              Master-slave replication architecture provides scalable read
+              operations
             </h3>
             <p className="text-slate-700 dark:text-gray-300 mb-3">
-              The foundation pattern for distributing database load while maintaining data integrity
+              The foundation pattern for distributing database load while
+              maintaining data integrity
             </p>
             <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Single master accepts writes, ensuring consistent data updates across the system
+                Single master accepts writes, ensuring consistent data updates
+                across the system
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Multiple slave replicas handle read traffic, providing 3-5x more concurrent read capacity
+                Multiple slave replicas handle read traffic, providing 3-5x more
+                concurrent read capacity
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Load balancers intelligently route read queries to optimal replica based on geographic proximity and current load
+                Load balancers intelligently route read queries to optimal
+                replica based on geographic proximity and current load
               </li>
             </ul>
           </div>
@@ -11101,20 +11275,24 @@ function ReadReplicasWriteScalingContent() {
               Replication lag and eventual consistency trade-offs
             </h3>
             <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Understanding timing delays between master writes and replica availability
+              Understanding timing delays between master writes and replica
+              availability
             </p>
             <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Replication lag ranges from milliseconds to several seconds depending on network conditions and replica load
+                Replication lag ranges from milliseconds to several seconds
+                depending on network conditions and replica load
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Applications must handle eventual consistency patterns for non-critical read operations
+                Applications must handle eventual consistency patterns for
+                non-critical read operations
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Read-your-writes consistency techniques ensure users see their own updates immediately
+                Read-your-writes consistency techniques ensure users see their
+                own updates immediately
               </li>
             </ul>
           </div>
@@ -11124,7 +11302,8 @@ function ReadReplicasWriteScalingContent() {
               Write scaling strategies beyond read optimization
             </h3>
             <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Advanced techniques when master database becomes the write bottleneck
+              Advanced techniques when master database becomes the write
+              bottleneck
             </p>
             <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
               <li className="flex items-start gap-2">
@@ -11133,7 +11312,8 @@ function ReadReplicasWriteScalingContent() {
                   <strong className="text-slate-700 dark:text-gray-300">
                     Database sharding:
                   </strong>{" "}
-                  Horizontal partitioning distributes writes across multiple databases based on data patterns
+                  Horizontal partitioning distributes writes across multiple
+                  databases based on data patterns
                 </div>
               </li>
               <li className="flex items-start gap-2">
@@ -11151,7 +11331,8 @@ function ReadReplicasWriteScalingContent() {
                   <strong className="text-slate-700 dark:text-gray-300">
                     CQRS architecture:
                   </strong>{" "}
-                  Command Query Responsibility Segregation separates read and write data models completely
+                  Command Query Responsibility Segregation separates read and
+                  write data models completely
                 </div>
               </li>
             </ul>
@@ -11178,7 +11359,8 @@ function ReadReplicasWriteScalingContent() {
                   <strong className="text-slate-700 dark:text-gray-300">
                     Response time optimization:
                   </strong>{" "}
-                  Read operations improve from 3-5+ seconds to sub-second response times under load
+                  Read operations improve from 3-5+ seconds to sub-second
+                  response times under load
                 </div>
               </li>
               <li className="flex items-start gap-2">
@@ -11187,7 +11369,8 @@ function ReadReplicasWriteScalingContent() {
                   <strong className="text-slate-700 dark:text-gray-300">
                     Capacity scaling:
                   </strong>{" "}
-                  Organizations typically achieve 3-5x more concurrent read requests with strategic replica placement
+                  Organizations typically achieve 3-5x more concurrent read
+                  requests with strategic replica placement
                 </div>
               </li>
               <li className="flex items-start gap-2">
@@ -11196,7 +11379,8 @@ function ReadReplicasWriteScalingContent() {
                   <strong className="text-slate-700 dark:text-gray-300">
                     Geographic distribution benefits:
                   </strong>{" "}
-                  Regional replicas reduce latency for global user bases while providing disaster recovery capabilities
+                  Regional replicas reduce latency for global user bases while
+                  providing disaster recovery capabilities
                 </div>
               </li>
             </ul>
@@ -11213,7 +11397,8 @@ function ReadReplicasWriteScalingContent() {
                   <strong className="text-slate-700 dark:text-gray-300">
                     Performance degradation crisis:
                   </strong>{" "}
-                  &ldquo;Database response times slowing from sub-second to 3-5+ seconds as concurrent users increase&rdquo;
+                  &ldquo;Database response times slowing from sub-second to 3-5+
+                  seconds as concurrent users increase&rdquo;
                 </div>
               </li>
               <li className="flex items-start gap-2">
@@ -11222,7 +11407,8 @@ function ReadReplicasWriteScalingContent() {
                   <strong className="text-slate-700 dark:text-gray-300">
                     Business growth scaling challenges:
                   </strong>{" "}
-                  &ldquo;User traffic increased 2-5x during our growth phase and our database can&rsquo;t keep up&rdquo;
+                  &ldquo;User traffic increased 2-5x during our growth phase and
+                  our database can&rsquo;t keep up&rdquo;
                 </div>
               </li>
               <li className="flex items-start gap-2">
@@ -11231,7 +11417,8 @@ function ReadReplicasWriteScalingContent() {
                   <strong className="text-slate-700 dark:text-gray-300">
                     Geographic expansion requirements:
                   </strong>{" "}
-                  &ldquo;Our international users experience unacceptable latency from our single US database&rdquo;
+                  &ldquo;Our international users experience unacceptable latency
+                  from our single US database&rdquo;
                 </div>
               </li>
             </ul>
@@ -11248,7 +11435,8 @@ function ReadReplicasWriteScalingContent() {
                   <strong className="text-slate-700 dark:text-gray-300">
                     E-commerce platforms:
                   </strong>{" "}
-                  Product catalog reads distributed across regional replicas, supporting global customer bases with local performance
+                  Product catalog reads distributed across regional replicas,
+                  supporting global customer bases with local performance
                 </div>
               </li>
               <li className="flex items-start gap-2">
@@ -11257,7 +11445,8 @@ function ReadReplicasWriteScalingContent() {
                   <strong className="text-slate-700 dark:text-gray-300">
                     Content management systems:
                   </strong>{" "}
-                  Article and media content served from read replicas while editorial writes maintain consistency through master
+                  Article and media content served from read replicas while
+                  editorial writes maintain consistency through master
                 </div>
               </li>
               <li className="flex items-start gap-2">
@@ -11266,7 +11455,8 @@ function ReadReplicasWriteScalingContent() {
                   <strong className="text-slate-700 dark:text-gray-300">
                     Reporting platforms:
                   </strong>{" "}
-                  Analytics queries processed on dedicated read replicas without impacting operational write performance
+                  Analytics queries processed on dedicated read replicas without
+                  impacting operational write performance
                 </div>
               </li>
             </ul>
@@ -11274,7 +11464,8 @@ function ReadReplicasWriteScalingContent() {
 
           <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
             <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              Customer profiles most likely to benefit from read replica strategies
+              Customer profiles most likely to benefit from read replica
+              strategies
             </h3>
             <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
               <li className="flex items-start gap-2">
@@ -11282,28 +11473,32 @@ function ReadReplicasWriteScalingContent() {
                 <strong className="text-slate-700 dark:text-gray-300">
                   Series B+ startups:
                 </strong>{" "}
-                Experiencing rapid user growth with read-heavy application patterns
+                Experiencing rapid user growth with read-heavy application
+                patterns
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
                 <strong className="text-slate-700 dark:text-gray-300">
                   E-commerce companies:
                 </strong>{" "}
-                Supporting global customer bases with product catalogs and inventory systems
+                Supporting global customer bases with product catalogs and
+                inventory systems
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
                 <strong className="text-slate-700 dark:text-gray-300">
                   Content platforms:
                 </strong>{" "}
-                Serving articles, media, and user-generated content across multiple regions
+                Serving articles, media, and user-generated content across
+                multiple regions
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
                 <strong className="text-slate-700 dark:text-gray-300">
                   Enterprise SaaS providers:
                 </strong>{" "}
-                Managing reporting and analytics workloads separate from operational data
+                Managing reporting and analytics workloads separate from
+                operational data
               </li>
             </ul>
           </div>
@@ -11356,7 +11551,12 @@ function ReadReplicasWriteScalingContent() {
               AI-assisted database architecture planning
             </h3>
             <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Cursor can accelerate read replica implementation by generating optimal database configuration files, connection pooling setups, and load balancer configurations. AI assistance helps teams avoid common pitfalls like improper replication lag handling and inefficient routing logic, reducing implementation time from weeks to days.
+              Cursor can accelerate read replica implementation by generating
+              optimal database configuration files, connection pooling setups,
+              and load balancer configurations. AI assistance helps teams avoid
+              common pitfalls like improper replication lag handling and
+              inefficient routing logic, reducing implementation time from weeks
+              to days.
             </p>
           </div>
 
@@ -11365,7 +11565,11 @@ function ReadReplicasWriteScalingContent() {
               Application logic for eventual consistency
             </h3>
             <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Teams implementing read replicas need sophisticated application logic to handle eventual consistency patterns. Cursor&rsquo;s context awareness helps generate read-your-writes consistency mechanisms, intelligent retry logic for stale reads, and graceful degradation patterns when replicas lag behind master databases.
+              Teams implementing read replicas need sophisticated application
+              logic to handle eventual consistency patterns. Cursor&rsquo;s
+              context awareness helps generate read-your-writes consistency
+              mechanisms, intelligent retry logic for stale reads, and graceful
+              degradation patterns when replicas lag behind master databases.
             </p>
           </div>
 
@@ -11374,7 +11578,12 @@ function ReadReplicasWriteScalingContent() {
               Monitoring and observability automation
             </h3>
             <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Read replica architectures require comprehensive monitoring of replication lag, read/write traffic distribution, and geographic performance metrics. AI assistance can generate monitoring dashboards, alerting configurations, and automated scaling policies that help teams proactively manage performance before customer impact occurs.
+              Read replica architectures require comprehensive monitoring of
+              replication lag, read/write traffic distribution, and geographic
+              performance metrics. AI assistance can generate monitoring
+              dashboards, alerting configurations, and automated scaling
+              policies that help teams proactively manage performance before
+              customer impact occurs.
             </p>
           </div>
 
@@ -11383,7 +11592,12 @@ function ReadReplicasWriteScalingContent() {
               Migration planning and testing frameworks
             </h3>
             <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Organizations often struggle with migrating existing applications to read replica architectures without service disruption. Cursor can help generate comprehensive testing strategies that validate application behavior under various replication lag scenarios, ensuring smooth production deployments with minimal risk to business operations.
+              Organizations often struggle with migrating existing applications
+              to read replica architectures without service disruption. Cursor
+              can help generate comprehensive testing strategies that validate
+              application behavior under various replication lag scenarios,
+              ensuring smooth production deployments with minimal risk to
+              business operations.
             </p>
           </div>
         </div>
@@ -11392,8 +11606,8 @@ function ReadReplicasWriteScalingContent() {
   );
 }
 
-// Component for the horizontal vs vertical scaling article content
-function HorizontalVsVerticalScalingContent() {
+// Component for the load balancing strategies article content
+function LoadBalancingStrategiesContent() {
   return (
     <article className="space-y-10">
       {/* Key Concepts Section */}
@@ -11405,323 +11619,464 @@ function HorizontalVsVerticalScalingContent() {
         <div className="space-y-6">
           <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
             <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              Horizontal scaling (scale out) vs Vertical scaling (scale up)
+              Intelligent traffic distribution across multiple servers
             </h3>
             <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Two fundamentally different approaches to increasing system capacity (like expanding a business by opening more locations vs making each location bigger)
-            </p>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-              <div className="bg-white/50 dark:bg-gray-800/50 p-4 rounded-lg">
-                <h4 className="font-medium text-slate-900 dark:text-white mb-2">
-                  Horizontal Scaling (Scale Out)
-                </h4>
-                <ul className="text-sm text-slate-600 dark:text-gray-400 space-y-1">
-                  <li>• Add more servers to resource pool</li>
-                  <li>• Distribute load across multiple machines</li>
-                  <li>• Better fault tolerance (distributed systems)</li>
-                  <li>• Unlimited theoretical scaling potential</li>
-                </ul>
-              </div>
-              <div className="bg-white/50 dark:bg-gray-800/50 p-4 rounded-lg">
-                <h4 className="font-medium text-slate-900 dark:text-white mb-2">
-                  Vertical Scaling (Scale Up)
-                </h4>
-                <ul className="text-sm text-slate-600 dark:text-gray-400 space-y-1">
-                  <li>• Increase individual server capacity</li>
-                  <li>• Add more CPU, RAM, or storage</li>
-                  <li>• Simpler operational management</li>
-                  <li>• Hardware limits cap maximum capacity</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              Fault tolerance and resilience differences
-            </h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Critical distinction for mission-critical applications
+              Load balancing involves sophisticated algorithms that distribute
+              incoming requests across multiple servers based on capacity,
+              health, and performance characteristics (rather than simple
+              forwarding to a single destination)
             </p>
             <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <div>
-                  <strong className="text-slate-700 dark:text-gray-300">
-                    Horizontal scaling:
-                  </strong>{" "}
-                  Individual server failures only affect portion of traffic, other nodes continue serving requests
-                </div>
+                Continuously monitors server health and automatically removes
+                failed servers from rotation
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <div>
-                  <strong className="text-slate-700 dark:text-gray-300">
-                    Vertical scaling:
-                  </strong>{" "}
-                  Single point of failure where entire application goes down if the one server fails
-                </div>
+                Adapts dynamically to changing server conditions and traffic
+                patterns
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Core algorithm families for different infrastructure needs
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">
+              Different load balancing algorithms serve distinct enterprise
+              scenarios based on server capabilities and application
+              requirements
+            </p>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Round-robin for homogeneous environments with identical server
+                capabilities
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <div>
-                  <strong className="text-slate-700 dark:text-gray-300">
-                    Enterprise impact:
-                  </strong>{" "}
-                  Distributed systems provide inherent redundancy that vertical scaling cannot match
-                </div>
+                Weighted algorithms for heterogeneous infrastructure with
+                varying server capacities
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                Least connections for applications with variable processing
+                times
               </li>
             </ul>
           </div>
 
           <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
             <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              Elastic scaling capabilities and cloud integration
+              Layer 4 vs Layer 7 load balancing capabilities
             </h3>
             <p className="text-slate-700 dark:text-gray-300 mb-3">
-              How each approach handles dynamic demand patterns
+              Different OSI layers provide distinct routing capabilities for
+              modern web applications
             </p>
             <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Horizontal scaling excels at elastic scaling with fast, cost-effective server addition/removal
+                Layer 4 operates on transport layer for high-performance,
+                protocol-agnostic routing
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Cloud platforms can automatically scale horizontally based on demand patterns
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Vertical scaling has hardware limits and slower adjustment capabilities
+                Layer 7 inspects HTTP content for intelligent routing based on
+                URLs, headers, and content types
               </li>
             </ul>
           </div>
 
           <div className="border-l-4 border-orange-500 bg-orange-50/50 dark:bg-orange-950/30 pl-6 py-4 rounded-r-lg">
             <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              Operational complexity and management considerations
+              Session persistence and state management
             </h3>
             <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Different skill sets and tooling requirements
+              Managing user sessions across distributed server environments
+              requires careful consideration of stateful application
+              requirements
             </p>
-            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
+            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <div>
-                  <strong className="text-slate-700 dark:text-gray-300">
-                    Horizontal scaling complexity:
-                  </strong>{" "}
-                  Load balancing, data partitioning, distributed system monitoring, consistency management
-                </div>
+                Sticky sessions ensure users remain connected to the same server
+                throughout their session
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <div>
-                  <strong className="text-slate-700 dark:text-gray-300">
-                    Vertical scaling simplicity:
-                  </strong>{" "}
-                  Traditional single-server management with familiar tooling and monitoring
-                </div>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <div>
-                  <strong className="text-slate-700 dark:text-gray-300">
-                    Database considerations:
-                  </strong>{" "}
-                  Vertical scaling avoids data sharding complexity, while horizontal scaling requires careful partitioning strategies
-                </div>
+                IP hash algorithms provide deterministic server assignment based
+                on client characteristics
               </li>
             </ul>
           </div>
-        </div>
-
-        {/* Implementation Timeline Comparison */}
-        <div className="mt-8">
-          <MetricsCard
-            title="Implementation Timeline Comparison"
-            metrics={[
-              {
-                label: "Horizontal Scaling Implementation",
-                value: "3-6 months",
-                description: "Architectural changes for distributed systems",
-                color: "blue",
-              },
-              {
-                label: "Vertical Scaling Implementation", 
-                value: "1-2 weeks",
-                description: "Hardware upgrades and configuration",
-                color: "green",
-              },
-              {
-                label: "Cost Reduction Potential",
-                value: "50-70%",
-                description: "Long-term savings from commodity hardware",
-                color: "purple",
-              },
-              {
-                label: "Scalability Ceiling",
-                value: "Unlimited vs Limited",
-                description: "Horizontal infinite, vertical hardware-bound",
-                color: "orange",
-              },
-            ]}
-            className="bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-blue-950 dark:to-indigo-900"
-          />
         </div>
       </section>
 
       {/* Business & Team Impact Section */}
       <section id="business-team-impact">
-        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
-          <TrendingUp className="w-6 h-6 text-green-500" />
-          Business &amp; Team Impact
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Business & Team Impact
         </h2>
 
-        <div className="space-y-6">
-          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              Real-world success patterns at internet scale
-            </h3>
-            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
-              <li className="flex items-start gap-2">
-                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <div>
-                  <strong className="text-slate-700 dark:text-gray-300">
-                    Netflix:
-                  </strong>{" "}
-                  Handles billions of streaming requests through horizontal scaling across thousands of servers, demonstrating massive scale with fault tolerance
-                </div>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <div>
-                  <strong className="text-slate-700 dark:text-gray-300">
-                    Amazon:
-                  </strong>{" "}
-                  Processes millions of transactions by distributing load across distributed infrastructure where individual server failures don&rsquo;t impact availability
-                </div>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <div>
-                  <strong className="text-slate-700 dark:text-gray-300">
-                    Enterprise pattern:
-                  </strong>{" "}
-                  Modern internet-scale applications rely on horizontal scaling as the foundation for handling growth without single points of failure
-                </div>
-              </li>
-            </ul>
+        <div className="space-y-8">
+          {/* System Reliability Metrics */}
+          <div>
+            <MetricsCard
+              title="System Reliability Improvements"
+              metrics={[
+                {
+                  label: "Downtime Reduction",
+                  value: "50-70%",
+                  description:
+                    "Improved fault tolerance through health checks and failover",
+                  trend: "up",
+                  color: "green",
+                },
+                {
+                  label: "Single Point of Failure Elimination",
+                  value: "95%",
+                  description:
+                    "Automatic traffic routing away from failed components",
+                  trend: "up",
+                  color: "blue",
+                },
+                {
+                  label: "Service Availability",
+                  value: "99.9%+",
+                  description: "Continuous operation during server maintenance",
+                  color: "purple",
+                },
+                {
+                  label: "Recovery Time",
+                  value: "<30s",
+                  description: "Automatic failover to healthy servers",
+                  color: "green",
+                },
+              ]}
+              className="bg-gradient-to-br from-green-50 to-emerald-100 dark:from-green-950 dark:to-emerald-900"
+            />
           </div>
 
-          <div className="border-l-4 border-yellow-500 bg-yellow-50/50 dark:bg-yellow-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              Common customer triggers driving scaling architecture discussions
+          {/* Performance Optimization Metrics */}
+          <div>
+            <MetricsCard
+              title="Performance Optimization"
+              metrics={[
+                {
+                  label: "Response Time Improvement",
+                  value: "40-60%",
+                  description:
+                    "Better traffic distribution across server capacity",
+                  trend: "up",
+                  color: "blue",
+                },
+                {
+                  label: "Server Utilization Efficiency",
+                  value: "80%+",
+                  description:
+                    "Optimal resource allocation through weighted algorithms",
+                  trend: "up",
+                  color: "purple",
+                },
+                {
+                  label: "Peak Traffic Handling",
+                  value: "3x",
+                  description: "Improved capacity during high-demand periods",
+                  color: "orange",
+                },
+                {
+                  label: "Session Continuity",
+                  value: "99.8%",
+                  description: "Successful user session persistence",
+                  color: "green",
+                },
+              ]}
+              className="bg-gradient-to-br from-blue-50 to-cyan-100 dark:from-blue-950 dark:to-cyan-900"
+            />
+          </div>
+
+          {/* Customer Impact Analysis */}
+          <div className="space-y-6">
+            <h3 className="text-xl font-semibold text-slate-900 dark:text-white">
+              Customer Scenarios Driving Load Balancing Strategy Adoption
             </h3>
-            <ul className="space-y-3 text-slate-600 dark:text-gray-400 pl-4">
-              <li className="flex items-start gap-2">
-                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <div>
-                  <strong className="text-slate-700 dark:text-gray-300">
-                    Performance degradation under load:
-                  </strong>{" "}
-                  &ldquo;Our response times triple during peak hours and customers are complaining about slow checkout&rdquo;
+
+            <div className="grid gap-6">
+              <div className="border border-slate-200 dark:border-gray-700 rounded-lg p-6 bg-white/50 dark:bg-gray-800/50">
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-full bg-red-100 dark:bg-red-900/30 flex items-center justify-center flex-shrink-0">
+                    <span className="text-red-600 dark:text-red-400 font-bold">
+                      1
+                    </span>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-slate-900 dark:text-white mb-2">
+                      Performance Crisis During Peak Traffic
+                    </h4>
+                    <div className="space-y-2">
+                      <div>
+                        <strong className="text-slate-700 dark:text-gray-300">
+                          Performance crisis:
+                        </strong>{" "}
+                        &ldquo;Our response times spike to 8 seconds during peak
+                        hours even though individual servers show 40% CPU
+                        usage&rdquo;
+                      </div>
+                      <p className="text-slate-600 dark:text-gray-400">
+                        <strong>Root cause:</strong> Inefficient traffic
+                        distribution where some servers are overloaded while
+                        others are underutilized. Weighted round-robin
+                        algorithms can better distribute traffic based on server
+                        capacity and current load.
+                      </p>
+                    </div>
+                  </div>
                 </div>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <div>
-                  <strong className="text-slate-700 dark:text-gray-300">
-                    Cost optimization pressure:
-                  </strong>{" "}
-                  &ldquo;Our server costs doubled but revenue only increased 30% - the economics don&rsquo;t work&rdquo;
+              </div>
+
+              <div className="border border-slate-200 dark:border-gray-700 rounded-lg p-6 bg-white/50 dark:bg-gray-800/50">
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-full bg-orange-100 dark:bg-orange-900/30 flex items-center justify-center flex-shrink-0">
+                    <span className="text-orange-600 dark:text-orange-400 font-bold">
+                      2
+                    </span>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-slate-900 dark:text-white mb-2">
+                      Session Management Issues
+                    </h4>
+                    <div className="space-y-2">
+                      <div>
+                        <strong className="text-slate-700 dark:text-gray-300">
+                          User experience degradation:
+                        </strong>{" "}
+                        &ldquo;Users are getting logged out randomly during peak
+                        traffic&rdquo;
+                      </div>
+                      <p className="text-slate-600 dark:text-gray-400">
+                        <strong>Root cause:</strong> Load balancers routing
+                        subsequent requests to different servers that
+                        don&rsquo;t have session data. Session persistence
+                        (sticky sessions) configuration ensures users stay
+                        connected to the same server throughout their session.
+                      </p>
+                    </div>
+                  </div>
                 </div>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <div>
-                  <strong className="text-slate-700 dark:text-gray-300">
-                    High availability requirements:
-                  </strong>{" "}
-                  &ldquo;We can&rsquo;t afford any downtime because every hour offline costs us $50K in lost sales&rdquo;
+              </div>
+
+              <div className="border border-slate-200 dark:border-gray-700 rounded-lg p-6 bg-white/50 dark:bg-gray-800/50">
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-full bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center flex-shrink-0">
+                    <span className="text-purple-600 dark:text-purple-400 font-bold">
+                      3
+                    </span>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-slate-900 dark:text-white mb-2">
+                      Reliability and Downtime Concerns
+                    </h4>
+                    <div className="space-y-2">
+                      <div>
+                        <strong className="text-slate-700 dark:text-gray-300">
+                          Business continuity risk:
+                        </strong>{" "}
+                        &ldquo;When our main server goes down, our entire
+                        application becomes unavailable&rdquo;
+                      </div>
+                      <p className="text-slate-600 dark:text-gray-400">
+                        <strong>Root cause:</strong> Single point of failure
+                        architecture. Health checks and failover mechanisms
+                        automatically remove unhealthy servers from the load
+                        balancing pool and maintain system availability during
+                        component failures.
+                      </p>
+                    </div>
+                  </div>
                 </div>
-              </li>
-            </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Implementation Patterns Section */}
+      <section id="implementation-patterns">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Implementation Patterns
+        </h2>
+
+        <div className="space-y-8">
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Algorithm Selection Framework
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-4">
+              Choose load balancing algorithms based on infrastructure
+              characteristics and application requirements
+            </p>
+
+            <div className="space-y-4">
+              <div className="bg-white/70 dark:bg-gray-800/70 p-4 rounded-lg">
+                <h4 className="font-medium text-slate-900 dark:text-white mb-2">
+                  Round-Robin Distribution
+                </h4>
+                <p className="text-sm text-slate-600 dark:text-gray-400 mb-2">
+                  <strong>Best for:</strong> Homogeneous server environments
+                  where all servers have identical capabilities
+                </p>
+                <p className="text-sm text-slate-600 dark:text-gray-400">
+                  Provides even distribution across uniform infrastructure,
+                  ensuring each server receives an equal share of requests in
+                  sequence.
+                </p>
+              </div>
+
+              <div className="bg-white/70 dark:bg-gray-800/70 p-4 rounded-lg">
+                <h4 className="font-medium text-slate-900 dark:text-white mb-2">
+                  Weighted Round-Robin
+                </h4>
+                <p className="text-sm text-slate-600 dark:text-gray-400 mb-2">
+                  <strong>Best for:</strong> Heterogeneous environments with
+                  servers of different capacities
+                </p>
+                <p className="text-sm text-slate-600 dark:text-gray-400">
+                  Allows assigning higher weights to more powerful servers for
+                  optimal resource utilization across mixed infrastructure.
+                </p>
+              </div>
+
+              <div className="bg-white/70 dark:bg-gray-800/70 p-4 rounded-lg">
+                <h4 className="font-medium text-slate-900 dark:text-white mb-2">
+                  Least Connections Algorithm
+                </h4>
+                <p className="text-sm text-slate-600 dark:text-gray-400 mb-2">
+                  <strong>Best for:</strong> Long-running requests or
+                  applications with variable processing times
+                </p>
+                <p className="text-sm text-slate-600 dark:text-gray-400">
+                  Routes traffic to servers with fewest active connections,
+                  preventing servers from being overwhelmed by connection
+                  buildup.
+                </p>
+              </div>
+
+              <div className="bg-white/70 dark:bg-gray-800/70 p-4 rounded-lg">
+                <h4 className="font-medium text-slate-900 dark:text-white mb-2">
+                  IP Hash/Session Persistence
+                </h4>
+                <p className="text-sm text-slate-600 dark:text-gray-400 mb-2">
+                  <strong>Best for:</strong> Stateful applications requiring
+                  user sessions on the same server
+                </p>
+                <p className="text-sm text-slate-600 dark:text-gray-400">
+                  Maintains session continuity for applications that store user
+                  state locally, ensuring consistent user experience.
+                </p>
+              </div>
+            </div>
           </div>
 
           <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
             <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              Strategic decision framework for enterprise teams
+              Health Check Implementation Strategy
             </h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Key factors that should drive scaling architecture choices
+            <p className="text-slate-700 dark:text-gray-300 mb-4">
+              Implement comprehensive health monitoring to maintain system
+              reliability
             </p>
-            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
-              <li className="flex items-start gap-2">
-                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <strong className="text-slate-700 dark:text-gray-300">
-                  Current application architecture:
-                </strong>{" "}
-                Whether systems can be distributed or require refactoring
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <strong className="text-slate-700 dark:text-gray-300">
-                  Growth projections:
-                </strong>{" "}
-                Vertical scaling has hardware limits, horizontal scaling grows indefinitely
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <strong className="text-slate-700 dark:text-gray-300">
-                  Operational capabilities:
-                </strong>{" "}
-                Team expertise in distributed systems vs single-server management
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <strong className="text-slate-700 dark:text-gray-300">
-                  Fault tolerance requirements:
-                </strong>{" "}
-                Horizontal scaling provides better resilience with increased complexity
-              </li>
-            </ul>
+
+            <div className="space-y-3">
+              <div className="flex items-start gap-3">
+                <span className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-900 dark:text-white">
+                    Active health checks:
+                  </strong>
+                  <span className="text-slate-600 dark:text-gray-400 ml-2">
+                    Proactively monitor server status through periodic requests
+                    to health endpoints
+                  </span>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-900 dark:text-white">
+                    Passive health checks:
+                  </strong>
+                  <span className="text-slate-600 dark:text-gray-400 ml-2">
+                    Monitor response patterns from actual user requests to
+                    detect degraded performance
+                  </span>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-900 dark:text-white">
+                    Graceful server removal:
+                  </strong>
+                  <span className="text-slate-600 dark:text-gray-400 ml-2">
+                    Automatically exclude unhealthy servers while allowing
+                    existing connections to complete
+                  </span>
+                </div>
+              </div>
+            </div>
           </div>
 
           <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
             <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              Customer profiles and typical scaling patterns
+              Layer 7 routing capabilities for modern applications
             </h3>
-            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
-              <li className="flex items-start gap-2">
-                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <strong className="text-slate-700 dark:text-gray-300">
-                  Early-stage startups:
-                </strong>{" "}
-                Start with vertical scaling for immediate needs, plan horizontal for growth
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <strong className="text-slate-700 dark:text-gray-300">
-                  High-growth companies:
-                </strong>{" "}
-                Require horizontal scaling to handle unpredictable traffic spikes
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <strong className="text-slate-700 dark:text-gray-300">
-                  Enterprise organizations:
-                </strong>{" "}
-                Use hybrid approaches - vertical for databases, horizontal for application layers
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                <strong className="text-slate-700 dark:text-gray-300">
-                  Global platforms:
-                </strong>{" "}
-                Require horizontal scaling for geographic distribution and fault tolerance
-              </li>
-            </ul>
+            <p className="text-slate-700 dark:text-gray-300 mb-4">
+              Leverage application-layer intelligence for sophisticated traffic
+              management
+            </p>
+
+            <div className="space-y-3">
+              <div className="flex items-start gap-3">
+                <span className="w-2 h-2 bg-purple-500 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-900 dark:text-white">
+                    Content-based routing:
+                  </strong>
+                  <span className="text-slate-600 dark:text-gray-400 ml-2">
+                    Route API requests to specialized servers based on URL paths
+                    and request content
+                  </span>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="w-2 h-2 bg-purple-500 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-900 dark:text-white">
+                    Header-based distribution:
+                  </strong>
+                  <span className="text-slate-600 dark:text-gray-400 ml-2">
+                    Direct traffic based on HTTP headers for A/B testing and
+                    feature flagging
+                  </span>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="w-2 h-2 bg-purple-500 rounded-full mt-2 flex-shrink-0"></span>
+                <div>
+                  <strong className="text-slate-900 dark:text-white">
+                    SSL termination and inspection:
+                  </strong>
+                  <span className="text-slate-600 dark:text-gray-400 ml-2">
+                    Handle encryption/decryption at the load balancer for
+                    optimized backend communication
+                  </span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -11735,37 +12090,58 @@ function HorizontalVsVerticalScalingContent() {
         <div className="space-y-6">
           <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
             <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              Architecture decision support and planning assistance
+              AI-assisted load balancer configuration generation
             </h3>
             <p className="text-slate-700 dark:text-gray-300 mb-3">
-              AI assistance for the critical scaling architecture decisions that enterprises face when choosing between horizontal and vertical approaches. Cursor can help evaluate trade-offs between implementation complexity and long-term benefits, providing context-aware recommendations based on application characteristics, growth projections, and team capabilities.
+              Cursor can accelerate load balancing implementation by generating
+              optimal configuration files for popular load balancers like NGINX,
+              HAProxy, and cloud-native solutions. AI assistance helps teams
+              avoid common configuration pitfalls like improper health check
+              intervals, suboptimal algorithm selection, and missing failover
+              rules, reducing setup time from days to hours.
             </p>
           </div>
 
           <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
             <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              Distributed systems implementation guidance
+              Session management and state synchronization logic
             </h3>
             <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Teams implementing horizontal scaling need sophisticated distributed systems patterns. Cursor&rsquo;s codebase understanding can help generate load balancing configurations, data partitioning strategies, and consistency management patterns that address the operational complexity of managing multiple servers while maintaining application performance and reliability.
+              Teams implementing stateful applications need sophisticated
+              session handling mechanisms. Cursor&rsquo;s context awareness
+              helps generate session store integrations (Redis, Memcached),
+              sticky session configurations, and graceful session migration
+              patterns that ensure user continuity during server maintenance and
+              scaling operations.
             </p>
           </div>
 
           <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
             <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              Migration strategy development and risk mitigation
+              Health check endpoint implementation
             </h3>
             <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Organizations often struggle with migrating from vertical to horizontal scaling architectures without service disruption. AI assistance can help develop comprehensive migration strategies that minimize business risk, generate testing frameworks for validating distributed system behavior, and create rollback plans that ensure smooth transitions during the typical 3-6 month implementation timeline.
+              Load balancing strategies require comprehensive application health
+              endpoints that accurately reflect service status. AI assistance
+              can generate health check routes that validate database
+              connectivity, external service dependencies, and resource
+              availability, ensuring load balancers make intelligent routing
+              decisions based on actual application health rather than just
+              network connectivity.
             </p>
           </div>
 
           <div className="border-l-4 border-orange-500 bg-orange-50/50 dark:bg-orange-950/30 pl-6 py-4 rounded-r-lg">
             <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              Cost optimization and resource planning automation
+              Monitoring and observability automation for distributed traffic
             </h3>
             <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Enterprises seeking the 50-70% cost reduction benefits of horizontal scaling need sophisticated resource planning and cost modeling. Cursor can help generate elastic scaling policies, capacity planning calculations, and automated resource management scripts that maximize the economic advantages of distributed systems while maintaining performance and availability requirements.
+              Load-balanced architectures require detailed monitoring of traffic
+              distribution, server performance metrics, and user session flows.
+              Cursor can help generate comprehensive monitoring dashboards,
+              alerting configurations for uneven traffic distribution, and
+              automated reporting systems that help teams proactively optimize
+              load balancing performance before customer impact occurs.
             </p>
           </div>
         </div>
