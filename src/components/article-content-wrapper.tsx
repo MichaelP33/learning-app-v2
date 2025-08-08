@@ -31,16 +31,48 @@ interface ArticleContentWrapperProps {
 // Central registry mapping article IDs to renderer components
 // Add new articles here to avoid regressions when updating content
 const articleRenderers: Record<string, React.FC> = {
+  // Programming Fundamentals
+  "compiled-languages": CompiledLanguagesContent,
+  "interpreted-languages": InterpretedLanguagesContent,
+  "hybrid-languages": HybridLanguagesContent,
+  "object-oriented-programming": ObjectOrientedProgrammingContent,
+  "procedural-programming": ProceduralProgrammingContent,
+  "functional-programming": FunctionalProgrammingContent,
+  "variables-data-types": VariablesDataTypesContent,
+  "control-flow": ControlFlowContent,
+  "functions-methods-scope": FunctionsMethodsScopeContent,
+  "error-handling": ErrorHandlingContent,
+  "basic-structures": BasicStructuresContent,
+  "complex-structures": ComplexStructuresContent,
+  "algorithm-design": AlgorithmDesignContent,
+  "common-patterns": CommonPatternsContent,
+  "functions-classes-modules": FunctionsClassesModulesContent,
+  "separation-of-concerns": SeparationOfConcernsContent,
+  "code-reusability": CodeReusabilityContent,
+  "documentation-naming": DocumentationNamingContent,
+
+  // Software Architecture & Design
+  "solid-principles": SOLIDPrinciplesContent,
+  "design-patterns": DesignPatternsContent,
+  "client-server-patterns": DesignPatternsContent,
+  "microservices-architecture": MicroservicesArchitectureContent,
+  "monolithic-architecture": MonolithicArchitectureContent,
+  "domain-driven-design": DomainDrivenDesignContent,
+  "clean-architecture": CleanArchitectureContent,
+  "restful-apis": RESTfulApisContent,
+  "graphql": RESTfulApisContent,
   "load-balancing-strategies": LoadBalancingStrategiesContent,
-  "horizontal-vs-vertical-scaling": HorizontalVsVerticalScalingContent,
   "read-replicas-write-scaling": ReadReplicasWriteScalingContent,
   "database-connection-pooling": DatabaseConnectionPoolingContent,
+  "horizontal-vs-vertical-scaling": HorizontalVsVerticalScalingContent,
+
   // Temporary mappings to existing content components to avoid regressions
   "event-driven-architecture": MicroservicesArchitectureContent,
   "rpc-vs-rest": RESTfulApisContent,
   "sql-vs-nosql": DomainDrivenDesignContent,
   "acid-vs-eventual-consistency": CleanArchitectureContent,
   "database-sharding-partitioning": ReadReplicasWriteScalingContent,
+  "caching-layers": ReadReplicasWriteScalingContent,
 };
 
 export function ArticleContentWrapper({
@@ -158,16 +190,6 @@ export function ArticleContentWrapper({
             {/* Article Content */}
             <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-2xl border border-slate-200/50 dark:border-gray-700/50 shadow-lg overflow-hidden">
               <div className="p-8">
-                {/* Article Header */}
-                <div className="mb-8">
-                  <h1 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">
-                    {article.name}
-                  </h1>
-                  <p className="text-lg text-slate-600 dark:text-gray-300 italic leading-relaxed mb-8">
-                    {article.description}
-                  </p>
-                </div>
-
                 {/* Article Content with Enhanced Typography */}
                 <div className="prose prose-lg max-w-none prose-slate dark:prose-invert">
                   {/* Prefer registry renderer; fall back to legacy mapping and then default */}

@@ -20,11 +20,7 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Languages that translate source code into machine code before execution",
-              "topics": [
-                "Performance",
-                "Deployment",
-                "Enterprise Systems"
-              ],
+              "topics": ["Performance", "Deployment", "Enterprise Systems"],
               "quiz": {
                 "title": "Compiled Languages Knowledge Quiz",
                 "totalQuestions": 10,
@@ -169,12 +165,7 @@
                     "type": "multiple-choice",
                     "points": 2,
                     "question": "Which compiled language is specifically designed for system-level programming with memory safety as a core feature?",
-                    "options": [
-                      "Go",
-                      "Java",
-                      "Rust",
-                      "C++"
-                    ],
+                    "options": ["Go", "Java", "Rust", "C++"],
                     "correctAnswer": 2,
                     "additionalContext": "Rust was designed to provide memory safety without garbage collection, making it ideal for system-level programming where performance and safety are both critical. Companies like Discord achieved 40% cost reduction by migrating from JavaScript to Rust for performance-critical components. Each compiled language serves different strategic purposes: Go for microservices/cloud, Rust for system-level/memory safety, C++ for high-performance computing, and Java for enterprise backends.",
                     "keyConcepts": [
@@ -230,11 +221,7 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Languages executed line by line at runtime by an interpreter",
-              "topics": [
-                "Rapid Development",
-                "Scripting",
-                "Prototyping"
-              ],
+              "topics": ["Rapid Development", "Scripting", "Prototyping"],
               "quiz": {
                 "title": "Interpreted Languages Knowledge Quiz",
                 "totalQuestions": 10,
@@ -301,12 +288,7 @@
                     "type": "multiple-choice",
                     "points": 2,
                     "question": "According to the article, interpreted languages typically have what percentage higher compute costs compared to compiled alternatives?",
-                    "options": [
-                      "10-20%",
-                      "20-50%",
-                      "50-80%",
-                      "80-100%"
-                    ],
+                    "options": ["10-20%", "20-50%", "50-80%", "80-100%"],
                     "correctAnswer": 1,
                     "additionalContext": "The 20-50% higher compute costs reflect the overhead of runtime interpretation and less aggressive optimization compared to compiled languages. However, this cost difference is often justified by faster development cycles, immediate feedback, and reduced time-to-market, especially when engineering costs exceed operational costs.",
                     "keyConcepts": [
@@ -1166,11 +1148,7 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Understanding how data is stored and manipulated in programs",
-              "topics": [
-                "Memory Management",
-                "Type Systems",
-                "Variable Scope"
-              ],
+              "topics": ["Memory Management", "Type Systems", "Variable Scope"],
               "quiz": {
                 "title": "Variables, Data Types, Memory Concepts Knowledge Quiz",
                 "totalQuestions": 10,
@@ -1374,11 +1352,7 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "How programs make decisions and repeat operations",
-              "topics": [
-                "If/Else",
-                "Loops",
-                "Switch Statements"
-              ],
+              "topics": ["If/Else", "Loops", "Switch Statements"],
               "quiz": {
                 "title": "Control Flow Knowledge Quiz",
                 "totalQuestions": 10,
@@ -1582,11 +1556,7 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Organizing code into reusable blocks with proper scope management",
-              "topics": [
-                "Function Parameters",
-                "Return Values",
-                "Scope Chain"
-              ],
+              "topics": ["Function Parameters", "Return Values", "Scope Chain"],
               "quiz": {
                 "title": "Functions, Methods, and Scope Knowledge Quiz",
                 "totalQuestions": 10,
@@ -1790,11 +1760,7 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Managing and recovering from runtime errors",
-              "topics": [
-                "Try/Catch",
-                "Exception Types",
-                "Error Propagation"
-              ],
+              "topics": ["Try/Catch", "Exception Types", "Error Propagation"],
               "quiz": {
                 "title": "Error Handling and Exceptions Knowledge Quiz",
                 "totalQuestions": 10,
@@ -2007,11 +1973,7 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Fundamental data organization patterns",
-              "topics": [
-                "Arrays",
-                "Linked Lists",
-                "LIFO/FIFO"
-              ],
+              "topics": ["Arrays", "Linked Lists", "LIFO/FIFO"],
               "quiz": {
                 "title": "Basic Data Structures Knowledge Quiz",
                 "totalQuestions": 10,
@@ -2200,11 +2162,7 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Advanced data structures for complex relationships",
-              "topics": [
-                "Binary Trees",
-                "Graph Traversal",
-                "Hash Functions"
-              ],
+              "topics": ["Binary Trees", "Graph Traversal", "Hash Functions"],
               "quiz": {
                 "title": "Complex Data Structures Knowledge Quiz",
                 "totalQuestions": 10,
@@ -2586,11 +2544,7 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Frequently used algorithmic patterns",
-              "topics": [
-                "Binary Search",
-                "Quick Sort",
-                "Recursive Thinking"
-              ],
+              "topics": ["Binary Search", "Quick Sort", "Recursive Thinking"],
               "quiz": {
                 "title": "Common Algorithm Patterns Knowledge Quiz",
                 "totalQuestions": 10,
@@ -2980,11 +2934,7 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Principles for clean, maintainable code",
-              "topics": [
-                "SRP",
-                "Modularity",
-                "Clean Code"
-              ],
+              "topics": ["SRP", "Modularity", "Clean Code"],
               "quiz": {
                 "title": "Separation of Concerns Knowledge Quiz",
                 "totalQuestions": 10,
@@ -3540,12 +3490,7 @@
                     "type": "multiple-choice",
                     "points": 2,
                     "question": "Which company achieved 60% reduction in feature development time through SOLID principles?",
-                    "options": [
-                      "Amazon",
-                      "Microsoft",
-                      "Netflix",
-                      "Google"
-                    ],
+                    "options": ["Amazon", "Microsoft", "Netflix", "Google"],
                     "correctAnswer": 2,
                     "additionalContext": "Netflix achieved 60% reduction in feature development time through modular service architecture following SOLID principles. This demonstrates measurable business impact when design principles are applied systematically across enterprise software development teams.",
                     "keyConcepts": [
@@ -3559,12 +3504,7 @@
                     "type": "multiple-choice",
                     "points": 2,
                     "question": "Teams following SOLID principles typically report what improvement in bug reduction?",
-                    "options": [
-                      "20-30%",
-                      "30-40%",
-                      "40-50%",
-                      "50-70%"
-                    ],
+                    "options": ["20-30%", "30-40%", "40-50%", "50-70%"],
                     "correctAnswer": 3,
                     "additionalContext": "Teams following SOLID principles typically report 50-70% reduction in bugs due to isolated responsibilities and predictable interfaces. This significant improvement comes from better separation of concerns and clearer architectural boundaries.",
                     "keyConcepts": [
@@ -3638,11 +3578,7 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Common solutions to recurring design problems",
-              "topics": [
-                "Creational",
-                "Structural",
-                "Behavioral"
-              ],
+              "topics": ["Creational", "Structural", "Behavioral"],
               "quiz": {
                 "title": "Design Patterns Knowledge Quiz",
                 "totalQuestions": 10,
@@ -3885,12 +3821,7 @@
                     "type": "multiple-choice",
                     "points": 2,
                     "question": "According to the article, what percentage reduction in cross-team coordination overhead do organizations see when bounded contexts align with team ownership?",
-                    "options": [
-                      "20-30%",
-                      "40-60%",
-                      "70-80%",
-                      "80-90%"
-                    ],
+                    "options": ["20-30%", "40-60%", "70-80%", "80-90%"],
                     "correctAnswer": 1,
                     "additionalContext": "Organizations see 40-60% reduction in cross-team coordination overhead when bounded contexts align with team ownership, enabling faster feature delivery and reduced merge conflicts. This alignment creates natural ownership boundaries that reduce dependencies between teams and accelerate development cycles.",
                     "keyConcepts": [
@@ -4609,11 +4540,7 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Architectural style for designing web services",
-              "topics": [
-                "HTTP Methods",
-                "Resource-Based",
-                "Stateless"
-              ],
+              "topics": ["HTTP Methods", "Resource-Based", "Stateless"],
               "quiz": {
                 "title": "RESTful APIs Knowledge Quiz",
                 "totalQuestions": 10,
@@ -4794,11 +4721,7 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Query language and runtime for APIs",
-              "topics": [
-                "Single Endpoint",
-                "Type System",
-                "Query Optimization"
-              ]
+              "topics": ["Single Endpoint", "Type System", "Query Optimization"]
             },
             {
               "id": "event-driven-architecture",
@@ -5014,11 +4937,7 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Comparison of Remote Procedure Call and REST architectures",
-              "topics": [
-                "Performance",
-                "Coupling",
-                "Protocol Design"
-              ],
+              "topics": ["Performance", "Coupling", "Protocol Design"],
               "quiz": {
                 "title": "RPC vs REST Knowledge Quiz",
                 "totalQuestions": 10,
@@ -5230,11 +5149,7 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Choosing between relational and non-relational databases",
-              "topics": [
-                "ACID vs BASE",
-                "Schema Design",
-                "Scalability"
-              ],
+              "topics": ["ACID vs BASE", "Schema Design", "Scalability"],
               "quiz": {
                 "title": "SQL vs NoSQL Trade-offs Knowledge Quiz",
                 "totalQuestions": 10,
@@ -5264,12 +5179,7 @@
                     "type": "multiple-choice",
                     "points": 2,
                     "question": "According to enterprise adoption patterns, what percentage of Fortune 500 companies use SQL databases as their primary transactional system?",
-                    "options": [
-                      "45-60%",
-                      "65-75%",
-                      "80-95%",
-                      "25-40%"
-                    ],
+                    "options": ["45-60%", "65-75%", "80-95%", "25-40%"],
                     "correctAnswer": 2,
                     "additionalContext": "The 80-95% adoption rate reflects SQL databases' dominance in enterprise environments due to ACID compliance, mature tooling, and regulatory requirements. Companies like banks, healthcare systems, and ERP vendors rely on SQL's transaction guarantees for business-critical operations, while using NoSQL for specific use cases like analytics and content management.",
                     "keyConcepts": [
@@ -5451,7 +5361,7 @@
                   {
                     "id": 1,
                     "type": "multiple-choice",
-                    "points": 3,
+                    "points": 2,
                     "question": "What does the 'A' in ACID stand for, and why is it critical for financial applications?",
                     "options": [
                       "Availability - ensuring system remains operational",
@@ -5472,12 +5382,7 @@
                     "type": "multiple-choice",
                     "points": 2,
                     "question": "According to enterprise surveys, what percentage of organizations experience data inconsistency issues when implementing eventual consistency?",
-                    "options": [
-                      "15-20%",
-                      "25-35%",
-                      "45-60%",
-                      "70-85%"
-                    ],
+                    "options": ["15-20%", "25-35%", "45-60%", "70-85%"],
                     "correctAnswer": 2,
                     "additionalContext": "Studies show that 45-60% of organizations implementing eventual consistency models experience data inconsistency challenges, particularly during the initial transition period. Common issues include temporary data conflicts, race conditions, and complex conflict resolution scenarios that require sophisticated handling mechanisms.",
                     "keyConcepts": [
@@ -5489,7 +5394,7 @@
                   {
                     "id": 3,
                     "type": "multiple-choice",
-                    "points": 3,
+                    "points": 2,
                     "question": "What is the primary advantage of eventual consistency over ACID transactions in distributed systems?",
                     "options": [
                       "Guaranteed data accuracy at all times",
@@ -5527,7 +5432,7 @@
                   {
                     "id": 5,
                     "type": "multiple-choice",
-                    "points": 3,
+                    "points": 2,
                     "question": "What performance improvement do organizations typically see when switching from ACID to eventual consistency models?",
                     "options": [
                       "5-15% improvement in read operations",
@@ -5565,7 +5470,7 @@
                   {
                     "id": 7,
                     "type": "multiple-choice",
-                    "points": 3,
+                    "points": 2,
                     "question": "What is the biggest operational challenge when implementing eventual consistency?",
                     "options": [
                       "Higher hardware costs and infrastructure complexity",
@@ -5603,7 +5508,7 @@
                   {
                     "id": 9,
                     "type": "freeform",
-                    "points": 6,
+                    "points": 4,
                     "question": "A global e-commerce platform is experiencing performance bottlenecks during peak shopping periods. Their current ACID-compliant system processes 10,000 transactions per second but needs to scale to 50,000 TPS. They're considering eventual consistency for product catalog and user reviews while maintaining ACID for payments and inventory. Analyze this hybrid approach: What are the key implementation challenges, potential business risks, and recommended conflict resolution strategies for the eventually consistent components?",
                     "rubric": "Comprehensive analysis covering implementation complexity, business impact assessment, and practical resolution strategies",
                     "keyConcepts": [
@@ -6098,7 +6003,7 @@
                   },
                   {
                     "id": 2,
-                    "type": "multiple-choice", 
+                    "type": "multiple-choice",
                     "points": 2,
                     "question": "Which scaling approach typically provides better fault tolerance and why?",
                     "options": [
@@ -6122,7 +6027,7 @@
                     "question": "Organizations typically achieve what cost reduction range when migrating from vertical to horizontal scaling?",
                     "options": [
                       "10-20% cost reduction",
-                      "25-40% cost reduction", 
+                      "25-40% cost reduction",
                       "50-70% cost reduction",
                       "80-90% cost reduction"
                     ],
@@ -6142,7 +6047,7 @@
                     "options": [
                       "Horizontal scaling takes 3-6 months, vertical scaling takes 1-2 weeks",
                       "Both approaches take the same amount of time to implement",
-                      "Horizontal scaling takes 1-2 weeks, vertical scaling takes 3-6 months", 
+                      "Horizontal scaling takes 1-2 weeks, vertical scaling takes 3-6 months",
                       "Timeline depends only on budget, not scaling approach"
                     ],
                     "correctAnswer": 0,
@@ -6187,7 +6092,7 @@
                     "additionalContext": "The main operational complexity of horizontal scaling is managing distributed systems, which includes load balancing, data partitioning, consistency across nodes, monitoring multiple servers, and handling partial failures. These operational challenges require different skills and tooling compared to single-server vertical scaling approaches.",
                     "keyConcepts": [
                       "Operational complexity",
-                      "distributed systems management", 
+                      "distributed systems management",
                       "system administration"
                     ]
                   },
@@ -6376,7 +6281,7 @@
                     "question": "Organizations implementing load balancing strategies typically see what improvement in system availability?",
                     "options": [
                       "15-25% improvement in availability",
-                      "30-40% improvement in availability", 
+                      "30-40% improvement in availability",
                       "50-70% reduction in downtime and improved fault tolerance",
                       "85-95% cost reduction in infrastructure"
                     ],
@@ -6420,11 +6325,7 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Using caches to improve system performance",
-              "topics": [
-                "Cache Strategies",
-                "CDN",
-                "In-Memory Caching"
-              ]
+              "topics": ["Cache Strategies", "CDN", "In-Memory Caching"]
             },
             {
               "id": "database-connection-pooling",
@@ -6595,11 +6496,7 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Sequential development approach with distinct phases",
-              "topics": [
-                "Sequential Phases",
-                "Documentation",
-                "Planning"
-              ]
+              "topics": ["Sequential Phases", "Documentation", "Planning"]
             },
             {
               "id": "agile-scrum",
@@ -6607,11 +6504,7 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Iterative development with short sprints and regular feedback",
-              "topics": [
-                "Sprints",
-                "Stand-ups",
-                "Retrospectives"
-              ]
+              "topics": ["Sprints", "Stand-ups", "Retrospectives"]
             },
             {
               "id": "devops-philosophy",
@@ -6619,11 +6512,7 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Culture and practices that bridge development and operations",
-              "topics": [
-                "Collaboration",
-                "Automation",
-                "Continuous Delivery"
-              ]
+              "topics": ["Collaboration", "Automation", "Continuous Delivery"]
             },
             {
               "id": "lean-startup",
@@ -6631,11 +6520,7 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Methodology for developing products through validated learning",
-              "topics": [
-                "MVP",
-                "Build-Measure-Learn",
-                "Pivot"
-              ]
+              "topics": ["MVP", "Build-Measure-Learn", "Pivot"]
             }
           ]
         },
@@ -6651,11 +6536,7 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Systematic examination of code by team members",
-              "topics": [
-                "Review Process",
-                "Quality Gates",
-                "Knowledge Sharing"
-              ]
+              "topics": ["Review Process", "Quality Gates", "Knowledge Sharing"]
             },
             {
               "id": "pair-programming",
@@ -6675,11 +6556,7 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Whole team working together on the same thing",
-              "topics": [
-                "Collective Ownership",
-                "Mob Roles",
-                "Facilitation"
-              ]
+              "topics": ["Collective Ownership", "Mob Roles", "Facilitation"]
             },
             {
               "id": "documentation-standards",
@@ -6687,11 +6564,7 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Standards and practices for maintaining project documentation",
-              "topics": [
-                "Living Documentation",
-                "API Docs",
-                "Decision Records"
-              ]
+              "topics": ["Living Documentation", "API Docs", "Decision Records"]
             }
           ]
         },
@@ -6719,11 +6592,7 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Strategies for managing and reducing technical debt",
-              "topics": [
-                "Debt Assessment",
-                "Refactoring",
-                "Maintenance"
-              ]
+              "topics": ["Debt Assessment", "Refactoring", "Maintenance"]
             },
             {
               "id": "risk-assessment",
@@ -6763,11 +6632,7 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Strategies for managing code versions and releases",
-              "topics": [
-                "Git Flow",
-                "Feature Branches",
-                "Release Branches"
-              ]
+              "topics": ["Git Flow", "Feature Branches", "Release Branches"]
             },
             {
               "id": "feature-flags",
@@ -6775,11 +6640,7 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Technique for deploying code with features toggled on/off",
-              "topics": [
-                "Toggle Management",
-                "Gradual Rollouts",
-                "A/B Testing"
-              ]
+              "topics": ["Toggle Management", "Gradual Rollouts", "A/B Testing"]
             },
             {
               "id": "rollback-procedures",
@@ -6799,11 +6660,7 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Processes for managing changes to production systems",
-              "topics": [
-                "Change Approval",
-                "Release Notes",
-                "Communication"
-              ]
+              "topics": ["Change Approval", "Release Notes", "Communication"]
             }
           ]
         }
@@ -6829,11 +6686,7 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Different approaches to organizing Git-based development",
-              "topics": [
-                "Git Flow",
-                "GitHub Flow",
-                "Feature Branches"
-              ]
+              "topics": ["Git Flow", "GitHub Flow", "Feature Branches"]
             },
             {
               "id": "branching-strategies",
@@ -6841,11 +6694,7 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Strategies for organizing code branches",
-              "topics": [
-                "Master/Main",
-                "Feature Branches",
-                "Release Branches"
-              ]
+              "topics": ["Master/Main", "Feature Branches", "Release Branches"]
             },
             {
               "id": "pull-request-process",
@@ -6853,11 +6702,7 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Process for reviewing and merging code changes",
-              "topics": [
-                "PR Templates",
-                "Review Process",
-                "Merge Strategies"
-              ]
+              "topics": ["PR Templates", "Review Process", "Merge Strategies"]
             },
             {
               "id": "repository-organization",
@@ -6885,11 +6730,7 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Full-featured development environments with integrated tools",
-              "topics": [
-                "IntelliJ",
-                "Eclipse",
-                "Visual Studio"
-              ]
+              "topics": ["IntelliJ", "Eclipse", "Visual Studio"]
             },
             {
               "id": "code-editors-vs-ides",
@@ -6897,11 +6738,7 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Understanding the differences between editors and IDEs",
-              "topics": [
-                "VS Code",
-                "Sublime Text",
-                "Feature Comparison"
-              ]
+              "topics": ["VS Code", "Sublime Text", "Feature Comparison"]
             },
             {
               "id": "developer-productivity-tools",
@@ -6909,11 +6746,7 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Tools that enhance developer productivity and workflow",
-              "topics": [
-                "Terminal",
-                "Git GUI",
-                "Task Runners"
-              ]
+              "topics": ["Terminal", "Git GUI", "Task Runners"]
             },
             {
               "id": "extension-ecosystems",
@@ -6941,11 +6774,7 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Automating the process of building applications from source code",
-              "topics": [
-                "Make",
-                "Gradle",
-                "Maven"
-              ]
+              "topics": ["Make", "Gradle", "Maven"]
             },
             {
               "id": "package-managers",
@@ -6953,11 +6782,7 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Tools for managing external dependencies and libraries",
-              "topics": [
-                "npm",
-                "pip",
-                "Composer"
-              ]
+              "topics": ["npm", "pip", "Composer"]
             },
             {
               "id": "dependency-management",
@@ -6965,11 +6790,7 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Strategies for managing project dependencies",
-              "topics": [
-                "Version Locking",
-                "Dependency Updates",
-                "Security"
-              ]
+              "topics": ["Version Locking", "Dependency Updates", "Security"]
             },
             {
               "id": "artifact-management",
@@ -6997,11 +6818,7 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Using containers for consistent development environments",
-              "topics": [
-                "Docker",
-                "Images",
-                "Container Orchestration"
-              ]
+              "topics": ["Docker", "Images", "Container Orchestration"]
             },
             {
               "id": "development-containers",
@@ -7021,11 +6838,7 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Browser-based development environments",
-              "topics": [
-                "GitHub Codespaces",
-                "GitPod",
-                "Cloud9"
-              ]
+              "topics": ["GitHub Codespaces", "GitPod", "Cloud9"]
             },
             {
               "id": "local-development-setup",
@@ -7063,11 +6876,7 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Traditional SQL databases with structured relationships",
-              "topics": [
-                "SQL",
-                "ACID Properties",
-                "Normalization"
-              ]
+              "topics": ["SQL", "ACID Properties", "Normalization"]
             },
             {
               "id": "document-databases",
@@ -7075,11 +6884,7 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "NoSQL databases that store data in document format",
-              "topics": [
-                "MongoDB",
-                "JSON Documents",
-                "Schema Flexibility"
-              ]
+              "topics": ["MongoDB", "JSON Documents", "Schema Flexibility"]
             },
             {
               "id": "graph-databases",
@@ -7087,11 +6892,7 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Databases optimized for storing and querying relationships",
-              "topics": [
-                "Nodes",
-                "Edges",
-                "Graph Queries"
-              ]
+              "topics": ["Nodes", "Edges", "Graph Queries"]
             },
             {
               "id": "key-value-stores",
@@ -7099,11 +6900,7 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Simple databases that store data as key-value pairs",
-              "topics": [
-                "Redis",
-                "Caching",
-                "Simple Operations"
-              ]
+              "topics": ["Redis", "Caching", "Simple Operations"]
             }
           ]
         },
@@ -7119,11 +6916,7 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Process of organizing data to reduce redundancy",
-              "topics": [
-                "Normal Forms",
-                "Data Redundancy",
-                "Database Design"
-              ]
+              "topics": ["Normal Forms", "Data Redundancy", "Database Design"]
             },
             {
               "id": "indexing-strategies",
@@ -7143,11 +6936,7 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Techniques for improving database query performance",
-              "topics": [
-                "Execution Plans",
-                "Index Usage",
-                "Query Rewriting"
-              ]
+              "topics": ["Execution Plans", "Index Usage", "Query Rewriting"]
             },
             {
               "id": "schema-design",
@@ -7155,11 +6944,7 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Designing database schemas for performance and maintainability",
-              "topics": [
-                "Entity Relationships",
-                "Data Types",
-                "Constraints"
-              ]
+              "topics": ["Entity Relationships", "Data Types", "Constraints"]
             }
           ]
         },
@@ -7175,11 +6960,7 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Guidelines for designing RESTful APIs",
-              "topics": [
-                "Resource Naming",
-                "HTTP Methods",
-                "Status Codes"
-              ]
+              "topics": ["Resource Naming", "HTTP Methods", "Status Codes"]
             },
             {
               "id": "api-versioning",
@@ -7199,11 +6980,7 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Securing API access and controlling permissions",
-              "topics": [
-                "JWT",
-                "OAuth",
-                "API Keys"
-              ]
+              "topics": ["JWT", "OAuth", "API Keys"]
             },
             {
               "id": "rate-limiting",
@@ -7211,11 +6988,7 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Controlling API usage to prevent abuse",
-              "topics": [
-                "Throttling",
-                "Quota Management",
-                "Fair Usage"
-              ]
+              "topics": ["Throttling", "Quota Management", "Fair Usage"]
             }
           ]
         },
@@ -7267,11 +7040,7 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Centralized entry point for API management",
-              "topics": [
-                "Request Routing",
-                "Load Balancing",
-                "Security"
-              ]
+              "topics": ["Request Routing", "Load Balancing", "Security"]
             }
           ]
         }
@@ -7297,11 +7066,7 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Testing individual components in isolation",
-              "topics": [
-                "Test Isolation",
-                "Mocking",
-                "Test Coverage"
-              ]
+              "topics": ["Test Isolation", "Mocking", "Test Coverage"]
             },
             {
               "id": "integration-testing",
@@ -7353,11 +7118,7 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Measuring how much code is tested",
-              "topics": [
-                "Line Coverage",
-                "Branch Coverage",
-                "Coverage Reports"
-              ]
+              "topics": ["Line Coverage", "Branch Coverage", "Coverage Reports"]
             },
             {
               "id": "static-analysis",
@@ -7365,11 +7126,7 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Analyzing code without executing it",
-              "topics": [
-                "Linting",
-                "Code Smells",
-                "Security Analysis"
-              ]
+              "topics": ["Linting", "Code Smells", "Security Analysis"]
             },
             {
               "id": "performance-benchmarks",
@@ -7377,11 +7134,7 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Measuring and tracking application performance",
-              "topics": [
-                "Load Testing",
-                "Performance Metrics",
-                "Benchmarking"
-              ]
+              "topics": ["Load Testing", "Performance Metrics", "Benchmarking"]
             },
             {
               "id": "code-quality-gates",
@@ -7409,11 +7162,7 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Effective approaches to application logging",
-              "topics": [
-                "Log Levels",
-                "Structured Logging",
-                "Log Aggregation"
-              ]
+              "topics": ["Log Levels", "Structured Logging", "Log Aggregation"]
             },
             {
               "id": "debugging-tools",
@@ -7421,11 +7170,7 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Tools and techniques for debugging applications",
-              "topics": [
-                "Debuggers",
-                "Profilers",
-                "Memory Analysis"
-              ]
+              "topics": ["Debuggers", "Profilers", "Memory Analysis"]
             },
             {
               "id": "error-tracking",
@@ -7433,11 +7178,7 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Systems for monitoring and tracking application errors",
-              "topics": [
-                "Error Monitoring",
-                "Alert Systems",
-                "Error Grouping"
-              ]
+              "topics": ["Error Monitoring", "Alert Systems", "Error Grouping"]
             },
             {
               "id": "root-cause-analysis",
@@ -7445,11 +7186,7 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Systematic approach to finding the underlying cause of issues",
-              "topics": [
-                "5 Whys",
-                "Fault Tree Analysis",
-                "Problem Solving"
-              ]
+              "topics": ["5 Whys", "Fault Tree Analysis", "Problem Solving"]
             }
           ]
         },
@@ -7477,11 +7214,7 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Structured process for conducting code reviews",
-              "topics": [
-                "Pull Requests",
-                "Review Workflow",
-                "Approval Process"
-              ]
+              "topics": ["Pull Requests", "Review Workflow", "Approval Process"]
             },
             {
               "id": "automated-checks",
@@ -7489,11 +7222,7 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Automated tools that assist in code review",
-              "topics": [
-                "Lint Checks",
-                "Security Scans",
-                "Format Validation"
-              ]
+              "topics": ["Lint Checks", "Security Scans", "Format Validation"]
             },
             {
               "id": "knowledge-sharing",
@@ -7543,11 +7272,7 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Lightweight, portable application packaging",
-              "topics": [
-                "Docker",
-                "Container Images",
-                "Container Runtime"
-              ]
+              "topics": ["Docker", "Container Images", "Container Runtime"]
             },
             {
               "id": "kubernetes",
@@ -7555,11 +7280,7 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Container orchestration platform",
-              "topics": [
-                "Pods",
-                "Services",
-                "Deployments"
-              ]
+              "topics": ["Pods", "Services", "Deployments"]
             },
             {
               "id": "infrastructure-as-code",
@@ -7567,11 +7288,7 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Managing infrastructure through code and automation",
-              "topics": [
-                "Terraform",
-                "CloudFormation",
-                "Version Control"
-              ]
+              "topics": ["Terraform", "CloudFormation", "Version Control"]
             }
           ]
         },
@@ -7587,11 +7304,7 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Practice of frequently integrating code changes",
-              "topics": [
-                "Build Automation",
-                "Automated Testing",
-                "Integration"
-              ]
+              "topics": ["Build Automation", "Automated Testing", "Integration"]
             },
             {
               "id": "continuous-deployment",
@@ -7611,12 +7324,7 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Different stages in a CI/CD pipeline",
-              "topics": [
-                "Build",
-                "Test",
-                "Deploy",
-                "Stages"
-              ]
+              "topics": ["Build", "Test", "Deploy", "Stages"]
             },
             {
               "id": "tool-ecosystem",
@@ -7624,11 +7332,7 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Tools and platforms for implementing CI/CD",
-              "topics": [
-                "Jenkins",
-                "GitHub Actions",
-                "GitLab CI"
-              ]
+              "topics": ["Jenkins", "GitHub Actions", "GitLab CI"]
             }
           ]
         },
@@ -7644,11 +7348,7 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Monitoring application performance and behavior",
-              "topics": [
-                "APM",
-                "Performance Metrics",
-                "User Experience"
-              ]
+              "topics": ["APM", "Performance Metrics", "User Experience"]
             },
             {
               "id": "infrastructure-monitoring",
@@ -7668,11 +7368,7 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Centralized logging and log analysis",
-              "topics": [
-                "Log Aggregation",
-                "Log Analysis",
-                "Search"
-              ]
+              "topics": ["Log Aggregation", "Log Analysis", "Search"]
             },
             {
               "id": "distributed-tracing",
@@ -7700,11 +7396,7 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Practices for managing on-call responsibilities",
-              "topics": [
-                "Rotation Schedules",
-                "Escalation",
-                "Alert Management"
-              ]
+              "topics": ["Rotation Schedules", "Escalation", "Alert Management"]
             },
             {
               "id": "post-mortem-process",
@@ -7724,11 +7416,7 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Engineering approach to reliability and operations",
-              "topics": [
-                "SLI/SLO",
-                "Error Budgets",
-                "Reliability Engineering"
-              ]
+              "topics": ["SLI/SLO", "Error Budgets", "Reliability Engineering"]
             },
             {
               "id": "disaster-recovery",
