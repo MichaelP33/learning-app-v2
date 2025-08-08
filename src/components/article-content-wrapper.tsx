@@ -60,7 +60,7 @@ const articleRenderers: Record<string, React.FC> = {
   "domain-driven-design": DomainDrivenDesignContent,
   "clean-architecture": CleanArchitectureContent,
   "restful-apis": RESTfulApisContent,
-  "graphql": RESTfulApisContent,
+  graphql: RESTfulApisContent,
   "load-balancing-strategies": LoadBalancingStrategiesContent,
   "read-replicas-write-scaling": ReadReplicasWriteScalingContent,
   "database-connection-pooling": DatabaseConnectionPoolingContent,

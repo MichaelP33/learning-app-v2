@@ -4524,7 +4524,130 @@
                 "Request-Response",
                 "Thin/Thick Clients",
                 "Load Distribution"
-              ]
+              ],
+              "quiz": {
+                "title": "Client-Server Patterns Knowledge Quiz",
+                "totalQuestions": 10,
+                "totalPoints": 25,
+                "questions": [
+                  {
+                    "id": 1,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Which description best captures responsibilities in a typical client-server web application?",
+                    "options": [
+                      "The server only renders HTML while the client stores all business logic",
+                      "The client handles presentation and user interaction while the server enforces business logic and data access",
+                      "The client manages databases and the server renders UI only",
+                      "Both client and server persist data in the browser"
+                    ],
+                    "correctAnswer": 1
+                  },
+                  {
+                    "id": 2,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "What is a defining property of a stateless server design?",
+                    "options": [
+                      "Each request includes all necessary context without relying on prior server memory",
+                      "The server keeps in-memory sessions for every user",
+                      "Sticky sessions are mandatory at the load balancer",
+                      "Real-time sockets are required for every endpoint"
+                    ],
+                    "correctAnswer": 0
+                  },
+                  {
+                    "id": 3,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Which mechanism is commonly used for session management in HTTP applications?",
+                    "options": [
+                      "DNS records managed per user",
+                      "CSS variables attached to forms",
+                      "Cookies or JWTs exchanged with each request",
+                      "TCP window scaling on the client"
+                    ],
+                    "correctAnswer": 2
+                  },
+                  {
+                    "id": 4,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "What advantage does HTTP/2 multiplexing provide over separate HTTP/1.1 connections?",
+                    "options": [
+                      "It guarantees faster database queries",
+                      "It removes the need for TLS",
+                      "It makes all endpoints stateful by default",
+                      "A single connection can interleave multiple requests and responses efficiently"
+                    ],
+                    "correctAnswer": 3
+                  },
+                  {
+                    "id": 5,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "What is the primary role of a load balancer in client-server architectures?",
+                    "options": [
+                      "Store user profiles for quick lookup",
+                      "Distribute incoming requests across healthy backend instances using a routing policy",
+                      "Compile frontend assets at runtime",
+                      "Execute SQL queries directly on behalf of services"
+                    ],
+                    "correctAnswer": 1
+                  },
+                  {
+                    "id": 6,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Which action exemplifies horizontal scaling for an application tier?",
+                    "options": [
+                      "Add more identical application servers behind the load balancer",
+                      "Increase CPU and RAM on a single application server",
+                      "Replace HTTP with WebSockets",
+                      "Enable gzip compression for responses"
+                    ],
+                    "correctAnswer": 0
+                  },
+                  {
+                    "id": 7,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Which scenario most benefits from a full-duplex connection model such as WebSockets?",
+                    "options": [
+                      "Nightly batch reporting to an internal data store",
+                      "Simple static content delivery from a CDN",
+                      "Collaborative real-time editing where both client and server push updates",
+                      "Periodic health checks from load balancers"
+                    ],
+                    "correctAnswer": 2
+                  },
+                  {
+                    "id": 8,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "When are sticky sessions at the load balancer typically required?",
+                    "options": [
+                      "When all requests are idempotent",
+                      "When using a CDN for assets",
+                      "When using HTTP/2",
+                      "When session state is stored in server memory and requests must return to the same node"
+                    ],
+                    "correctAnswer": 3
+                  },
+                  {
+                    "id": 9,
+                    "type": "freeform",
+                    "points": 4,
+                    "question": "List three operational issues teams face in client-server systems and explain how specific architecture patterns mitigate each issue."
+                  },
+                  {
+                    "id": 10,
+                    "type": "freeform",
+                    "points": 5,
+                    "question": "Compare stateless and stateful session strategies, including trade-offs and when each is appropriate in enterprise contexts."
+                  }
+                ]
+              }
             }
           ]
         },
@@ -4721,7 +4844,134 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Query language and runtime for APIs",
-              "topics": ["Single Endpoint", "Type System", "Query Optimization"]
+              "topics": [
+                "Single Endpoint",
+                "Type System",
+                "Query Optimization"
+              ],
+              "quiz": {
+                "title": "GraphQL Knowledge Quiz",
+                "totalQuestions": 10,
+                "totalPoints": 25,
+                "questions": [
+                  {
+                    "id": 1,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "How does GraphQL reduce over-fetching and under-fetching compared to many REST patterns?",
+                    "options": [
+                      "By enforcing a single fixed response shape for all clients",
+                      "By requiring server-defined response templates that never change",
+                      "Clients request exactly the fields they need in a single query",
+                      "By versioning every field change with a mandatory v2 endpoint"
+                    ],
+                    "correctAnswer": 2
+                  },
+                  {
+                    "id": 2,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "What practice helps mitigate the N+1 query problem in GraphQL resolvers?",
+                    "options": [
+                      "Using only POST requests for all operations",
+                      "Returning raw SQL from resolvers",
+                      "Disabling resolvers for nested fields",
+                      "Batching and caching using a per-request loader"
+                    ],
+                    "correctAnswer": 3
+                  },
+                  {
+                    "id": 3,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "In GraphQL SDL, what do type definitions primarily describe?",
+                    "options": [
+                      "The schema types and their field relationships",
+                      "Client-side caching strategies",
+                      "Network retry backoff parameters",
+                      "Database sharding configuration"
+                    ],
+                    "correctAnswer": 0
+                  },
+                  {
+                    "id": 4,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "How does GraphQL typically handle evolution compared to REST versioning?",
+                    "options": [
+                      "GraphQL requires a new endpoint for every change",
+                      "Schemas evolve with field deprecation and non-breaking additions",
+                      "GraphQL forbids removing fields",
+                      "GraphQL changes are invisible to clients"
+                    ],
+                    "correctAnswer": 1
+                  },
+                  {
+                    "id": 5,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "What is a key security and performance benefit of persisted queries?",
+                    "options": [
+                      "They eliminate TLS overhead entirely",
+                      "They guarantee zero-latency responses",
+                      "Only preapproved query hashes are executed by the server",
+                      "They auto-generate database indexes"
+                    ],
+                    "correctAnswer": 2
+                  },
+                  {
+                    "id": 6,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Where is fine-grained authorization commonly enforced in GraphQL systems?",
+                    "options": [
+                      "At the CDN only",
+                      "At the DNS resolver",
+                      "In CSS modules for components",
+                      "At field or resolver level based on user context"
+                    ],
+                    "correctAnswer": 3
+                  },
+                  {
+                    "id": 7,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "What is the core purpose of a GraphQL gateway in a federated architecture?",
+                    "options": [
+                      "To replace the database",
+                      "To perform client-side rendering",
+                      "To store all session data centrally",
+                      "To compose multiple subgraphs into a unified schema and route requests"
+                    ],
+                    "correctAnswer": 3
+                  },
+                  {
+                    "id": 8,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Which control helps prevent abusive or overly expensive GraphQL queries?",
+                    "options": [
+                      "Requiring all queries to be named Query",
+                      "Enforcing depth and complexity limits based on cost rules",
+                      "Disabling variables in queries",
+                      "Turning off introspection in all environments"
+                    ],
+                    "correctAnswer": 1
+                  },
+                  {
+                    "id": 9,
+                    "type": "freeform",
+                    "points": 4,
+                    "question": "Describe three scenarios where GraphQL provides clear advantages over REST and explain why in each case."
+                  },
+                  {
+                    "id": 10,
+                    "type": "freeform",
+                    "points": 5,
+                    "question": "Explain techniques to prevent abusive or expensive GraphQL queries, including depth and complexity limits, persisted queries, and caching approaches."
+                  }
+                ]
+              }
             },
             {
               "id": "event-driven-architecture",
@@ -6325,7 +6575,130 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Using caches to improve system performance",
-              "topics": ["Cache Strategies", "CDN", "In-Memory Caching"]
+              "topics": ["Cache Strategies", "CDN", "In-Memory Caching"],
+              "quiz": {
+                "title": "Caching Layers Knowledge Quiz",
+                "totalQuestions": 10,
+                "totalPoints": 25,
+                "questions": [
+                  {
+                    "id": 1,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Which set represents a multi-layer caching strategy for a web application?",
+                    "options": [
+                      "Browser cache, CDN edge cache, application cache, database cache",
+                      "Only database cache with no other layers",
+                      "Client cache and database replicas only",
+                      "Queue-based caching without storage"
+                    ],
+                    "correctAnswer": 0
+                  },
+                  {
+                    "id": 2,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Which statement best describes cache-aside (lazy loading)?",
+                    "options": [
+                      "All writes go to the cache first and flush to origin later",
+                      "Writes go to cache and origin synchronously",
+                      "Application reads from cache, on miss loads from origin and populates cache",
+                      "The cache invalidates entries at random intervals"
+                    ],
+                    "correctAnswer": 2
+                  },
+                  {
+                    "id": 3,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "What is the primary purpose of a TTL on cache entries?",
+                    "options": [
+                      "To increase CPU frequency on cache nodes",
+                      "To bound staleness by expiring entries after a configured duration",
+                      "To guarantee strong consistency across regions",
+                      "To eliminate the need for invalidation"
+                    ],
+                    "correctAnswer": 1
+                  },
+                  {
+                    "id": 4,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Which practice most improves cache hit ratio for hot keys at scale?",
+                    "options": [
+                      "Allow any serialization format per request",
+                      "Use different key formats per service",
+                      "Always set TTL to 0 seconds",
+                      "Normalize keys, use consistent serialization, and set appropriate TTLs"
+                    ],
+                    "correctAnswer": 3
+                  },
+                  {
+                    "id": 5,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Which methods are generally safe to cache by default for HTTP content?",
+                    "options": [
+                      "GET responses with appropriate headers",
+                      "POST responses for mutating endpoints",
+                      "All authenticated responses regardless of headers",
+                      "WebSocket messages"
+                    ],
+                    "correctAnswer": 0
+                  },
+                  {
+                    "id": 6,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "What is a key risk of write-back caching strategies?",
+                    "options": [
+                      "Higher origin read load on misses",
+                      "Inability to scale horizontally",
+                      "Data loss if a cache node fails before flushing to origin",
+                      "Excessive TTL growth over time"
+                    ],
+                    "correctAnswer": 2
+                  },
+                  {
+                    "id": 7,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Which technique helps reduce a thundering herd after popular keys expire?",
+                    "options": [
+                      "Disable caching for all hot keys",
+                      "Request coalescing or dogpile protection with jittered TTLs",
+                      "Increase connection pool size on the database only",
+                      "Route traffic to a single cache node"
+                    ],
+                    "correctAnswer": 1
+                  },
+                  {
+                    "id": 8,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "How does a CDN cache differ from an application in-memory cache?",
+                    "options": [
+                      "Both operate only in the browser",
+                      "CDNs store data in the origin database",
+                      "Application caches are globally distributed at the edge",
+                      "CDNs cache content near users at the network edge while application caches live with the app servers"
+                    ],
+                    "correctAnswer": 3
+                  },
+                  {
+                    "id": 9,
+                    "type": "freeform",
+                    "points": 4,
+                    "question": "List three common cache invalidation pitfalls and provide a concrete remedy for each."
+                  },
+                  {
+                    "id": 10,
+                    "type": "freeform",
+                    "points": 5,
+                    "question": "Design a multi-layer caching approach for a read-heavy product catalog, addressing freshness, cache hierarchy, and origin protection."
+                  }
+                ]
+              }
             },
             {
               "id": "database-connection-pooling",
