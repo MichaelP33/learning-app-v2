@@ -246,182 +246,241 @@ export function ArticleContentWrapper({
 // Component for the horizontal vs vertical scaling article content
 function HorizontalVsVerticalScalingContent() {
   return (
-    <article className="space-y-10">
-      {/* Key Concepts Section */}
-      <section id="key-concepts">
-        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
-          Key Concepts
-        </h2>
+    <article className="space-y-12">
+      {/* Context & Framing */}
+      <section id="why-scaling-matters">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">Why scaling matters now</h2>
+        <p className="text-slate-700 dark:text-gray-300 mb-3">
+          Teams run into scaling inflection points when user growth outpaces current capacity, cost curves bend the wrong way, or reliability targets slip. Common signals include rising tail latency, intermittent errors under peak load, queue backlogs, and budget pressure even as utilization looks low due to uneven traffic distribution.
+        </p>
+        <p className="text-slate-700 dark:text-gray-300">
+          This article takes a context-first view aimed at tech-literate readers: crisp definitions, the real constraints that drive choices, and a practical decision framework before deep technical detail.
+        </p>
+      </section>
 
-        <div className="space-y-6">
+      {/* Definitions */}
+      <section id="definitions">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Definitions with practical anchors</h2>
+        <div className="grid gap-6 md:grid-cols-2">
           <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              Scale out vs scale up
-            </h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Horizontal scaling adds more servers to a system, while vertical
-              scaling increases the resources of a single server (like adding
-              more CPU or RAM)
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Horizontal scaling (scale out)</h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-2">
+              Add more nodes to spread load. Helps throughput and resilience, but introduces coordination costs and data distribution concerns.
             </p>
             <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
-              <li className="flex items-start gap-2">
-                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Horizontal scaling improves fault tolerance by spreading risk
-                across multiple nodes
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Vertical scaling is simpler to implement but has hardware limits
-                and single-point-of-failure risk
-              </li>
+              <li className="flex items-start gap-2"><span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>Great fit for stateless web tiers behind a load balancer.</li>
+              <li className="flex items-start gap-2"><span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>Data layers require replication or partitioning to keep up.</li>
             </ul>
           </div>
-
-          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              Elasticity and timelines
-            </h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Elastic scaling favors horizontal approaches for automatic
-              resource adjustment in response to demand (like adding lanes to a
-              highway instead of only widening a single lane)
+          <div className="border-l-4 border-emerald-500 bg-emerald-50/50 dark:bg-emerald-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Vertical scaling (scale up)</h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-2">
+              Make a single node more powerful. Keeps coordination simple and latency tight, but hits hardware ceilings and concentrates risk.
             </p>
             <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
-              <li className="flex items-start gap-2">
-                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Typical timeline: horizontal 3–6 months vs vertical 1–2 weeks
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Elastic scaling is more effective with horizontal architectures
-              </li>
+              <li className="flex items-start gap-2"><span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>Often the fastest short-term relief for transactional databases.</li>
+              <li className="flex items-start gap-2"><span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>Single point of failure unless paired with HA strategies.</li>
             </ul>
           </div>
         </div>
       </section>
 
-      {/* Business & Team Impact Section */}
+      {/* Workload patterns */}
+      <section id="workload-patterns">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">Workload patterns that bias the choice</h2>
+        <ul className="space-y-2 text-slate-700 dark:text-gray-300 pl-4">
+          <li className="flex items-start gap-2"><span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>CPU-bound vs I/O-bound: CPU-bound app tiers often scale out cleanly; I/O-bound data tiers can need careful partitioning.</li>
+          <li className="flex items-start gap-2"><span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>Read/write mix: Heavy reads favor caching and replicas; heavy writes pressure leaders and shard strategies.</li>
+          <li className="flex items-start gap-2"><span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>Stateful vs stateless: Stateless services adopt horizontal scaling fastest.</li>
+          <li className="flex items-start gap-2"><span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>Hot keys/shards and fan-out: Skew creates hotspots that defeat naive scale out.</li>
+        </ul>
+      </section>
+
+      {/* Comparison Table */}
+      <section id="comparison">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Horizontal vs vertical at a glance</h2>
+        <ComparisonTable
+          title="Scaling approaches compared"
+          headers={["Dimension", "Vertical (Scale Up)", "Horizontal (Scale Out)", "Notes"]}
+          rows={[
+            {
+              dimension: "Throughput",
+              "vertical_(scale_up)": "Improves to hardware limits",
+              "horizontal_(scale_out)": "Grows with nodes",
+              notes: "Coordination can cap practical gains",
+            },
+            {
+              dimension: "Latency",
+              "vertical_(scale_up)": "Often lower, simpler call path",
+              "horizontal_(scale_out)": "Adds hops; needs smart routing",
+              notes: "Tail latency sensitive to retries/backoff",
+            },
+            {
+              dimension: "Availability",
+              "vertical_(scale_up)": "SPOF without HA",
+              "horizontal_(scale_out)": "Isolates failures by node",
+              notes: "Requires resilient load balancing",
+            },
+            {
+              dimension: "Elasticity",
+              "vertical_(scale_up)": "Slow, coarse adjustments",
+              "horizontal_(scale_out)": "Fast, granular scaling",
+              notes: "Autoscaling must avoid lagging signals",
+            },
+            {
+              dimension: "Complexity",
+              "vertical_(scale_up)": "Operationally simple",
+              "horizontal_(scale_out)": "Distributed systems overhead",
+              notes: "Observability and rollout sophistication required",
+            },
+            {
+              dimension: "Cost curve",
+              "vertical_(scale_up)": "Diminishing returns, pricey SKUs",
+              "horizontal_(scale_out)": "Commodity nodes, better utilization",
+              notes: "People/ops cost matters in both",
+            },
+          ]}
+          className="mb-2"
+        />
+      </section>
+
+      {/* Business & Team Impact */}
       <section id="business-team-impact">
-        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
-          Business & Team Impact
-        </h2>
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Business & Team Impact</h2>
+        <MetricsCard
+          title="Cost & Resilience Outcomes"
+          metrics={[
+            { label: "Cost Reduction (horizontal migration)", value: "50-70%", description: "Commodity hardware + improved utilization", trend: "up", color: "green" },
+            { label: "Implementation Timeline (horizontal)", value: "3–6 months", description: "Architecture, load balancing, data partitioning", color: "orange" },
+            { label: "Implementation Timeline (vertical)", value: "1–2 weeks", description: "Hardware upgrade process", color: "blue" },
+            { label: "Fault Tolerance", value: "Higher (horizontal)", description: "No single point of failure", color: "purple" },
+          ]}
+          className="bg-gradient-to-br from-green-50 to-emerald-100 dark:from-green-950 dark:to-emerald-900"
+        />
+      </section>
 
-        <div className="space-y-8">
-          <div>
-            <MetricsCard
-              title="Cost & Resilience Outcomes"
-              metrics={[
-                {
-                  label: "Cost Reduction (horizontal migration)",
-                  value: "50-70%",
-                  description: "Commodity hardware + improved utilization",
-                  trend: "up",
-                  color: "green",
-                },
-                {
-                  label: "Implementation Timeline (horizontal)",
-                  value: "3–6 months",
-                  description:
-                    "Architecture, load balancing, data partitioning",
-                  color: "orange",
-                },
-                {
-                  label: "Implementation Timeline (vertical)",
-                  value: "1–2 weeks",
-                  description: "Hardware upgrade process",
-                  color: "blue",
-                },
-                {
-                  label: "Fault Tolerance",
-                  value: "Higher (horizontal)",
-                  description: "No single point of failure",
-                  color: "purple",
-                },
-              ]}
-              className="bg-gradient-to-br from-green-50 to-emerald-100 dark:from-green-950 dark:to-emerald-900"
-            />
+      {/* Vertical deep dive */}
+      <section id="vertical-deep-dive">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">Vertical scaling deep dive</h2>
+        <p className="text-slate-700 dark:text-gray-300 mb-3">Strengths: low coordination overhead, tight latency, simpler operations and change control.</p>
+        <ul className="space-y-2 text-slate-700 dark:text-gray-300 pl-4">
+          <li className="flex items-start gap-2"><span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>Great first step for memory-bound OLTP databases and low-latency monoliths.</li>
+          <li className="flex items-start gap-2"><span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>Ceilings arrive via hardware caps, licensing, and single failure domains.</li>
+          <li className="flex items-start gap-2"><span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>Pair with HA (failover replicas) to reduce single-node risk.</li>
+        </ul>
+      </section>
+
+      {/* Horizontal deep dive */}
+      <section id="horizontal-deep-dive">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">Horizontal scaling deep dive</h2>
+        <p className="text-slate-700 dark:text-gray-300 mb-3">Start where state is minimal. As state grows, choose a strategy deliberately.</p>
+        <ul className="space-y-2 text-slate-700 dark:text-gray-300 pl-4">
+          <li className="flex items-start gap-2"><span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>Replication for reads, partitioning/sharding for writes; prefer idempotency and backpressure over blind retries.</li>
+          <li className="flex items-start gap-2"><span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>Expect partial failures; design for timeouts, circuit breaking, and graceful degradation.</li>
+          <li className="flex items-start gap-2"><span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>Operational tax: observability across nodes, coordinated rollouts, schema/version drift.</li>
+        </ul>
+      </section>
+
+      {/* Data layer realities */}
+      <section id="data-realities">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">Data layer realities</h2>
+        <ul className="space-y-2 text-slate-700 dark:text-gray-300 pl-4">
+          <li className="flex items-start gap-2"><span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>Shard key choice dominates outcomes; skew and hot partitions create artificial bottlenecks.</li>
+          <li className="flex items-start gap-2"><span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>Rebalancing is disruptive without forethought; favor partitioning that aligns with access patterns.</li>
+          <li className="flex items-start gap-2"><span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>Consistency trade-offs appear: read-your-writes, leader elections, write amplification.</li>
+        </ul>
+      </section>
+
+      {/* Elasticity and traffic shapes */}
+      <section id="elasticity">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">Elasticity and traffic shapes</h2>
+        <ul className="space-y-2 text-slate-700 dark:text-gray-300 pl-4">
+          <li className="flex items-start gap-2"><span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>Spiky demand needs fast horizontal scale; avoid lagging autoscaling signals that trigger too late.</li>
+          <li className="flex items-start gap-2"><span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>Warm pools reduce cold-start impact for latency-sensitive tiers.</li>
+          <li className="flex items-start gap-2"><span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>SLO-aware scaling: scale to protect error budget and tail latency, not only average CPU.</li>
+        </ul>
+      </section>
+
+      {/* Decision framework */}
+      <section id="decision-framework">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">Decision framework</h2>
+        <p className="text-slate-700 dark:text-gray-300 mb-3">
+          If the immediate bottleneck is a single database and strict transactions are required, favor vertical scaling now while designing a partitioning path. If the bottleneck is a stateless web tier, favor horizontal scaling behind a load balancer and add caching.
+        </p>
+        <ul className="space-y-2 text-slate-700 dark:text-gray-300 pl-4">
+          <li className="flex items-start gap-2"><span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>If you need rapid relief within weeks, vertical first; parallel-plan horizontal for sustainable growth.</li>
+          <li className="flex items-start gap-2"><span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>If availability is non-negotiable, bias toward horizontal and eliminate single-node blast radius.</li>
+          <li className="flex items-start gap-2"><span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>If costs skyrocket with bigger boxes, shift to commodity nodes and scale out.</li>
+        </ul>
+      </section>
+
+      {/* Mini case studies */}
+      <section id="case-studies">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">Mini case studies</h2>
+        <div className="space-y-6">
+          <div className="border-l-4 border-fuchsia-500 bg-fuchsia-50/50 dark:bg-fuchsia-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-1">E‑commerce flash sale</h3>
+            <p className="text-slate-700 dark:text-gray-300">Context: traffic spikes 10x on Black Friday. Bottleneck: web tier saturation and checkout DB write contention. Approach: scale out stateless web/app tiers; add read replicas and write-optimized partitioning for orders; aggressive caching of catalog. Outcome: stable p95 latency with controlled error rate.</p>
+          </div>
+          <div className="border-l-4 border-sky-500 bg-sky-50/50 dark:bg-sky-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-1">Real-time multiplayer</h3>
+            <p className="text-slate-700 dark:text-gray-300">Context: many concurrent sessions with strict tail latency. Bottleneck: coordination and state locality. Approach: horizontal scaling with region-aware session routing and sticky sessions; state kept in partitioned in-memory stores with replication. Outcome: predictable latency and resilience to node loss.</p>
+          </div>
+          <div className="border-l-4 border-amber-500 bg-amber-50/50 dark:bg-amber-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-1">Batch analytics pipeline</h3>
+            <p className="text-slate-700 dark:text-gray-300">Context: nightly ETL bursts overwhelm a single warehouse node. Bottleneck: parallelism and I/O. Approach: horizontal workers with partitioned input and backpressure; storage tuned for parallel reads. Outcome: linear throughput gains with predictable cost per job.</p>
           </div>
         </div>
       </section>
 
-      {/* Implementation Patterns Section */}
-      <section id="implementation-patterns">
-        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
-          Implementation Patterns
-        </h2>
-
-        <div className="space-y-8">
-          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              Decision framework
-            </h3>
-            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
-              <li className="flex items-start gap-2">
-                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Workload profile and statefulness (stateless apps adopt
-                horizontal scaling faster)
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Data architecture readiness (partitioning, replication,
-                consistency trade-offs)
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Operational maturity (observability, automation, incident
-                response)
-              </li>
-            </ul>
-          </div>
-
-          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              Migration approach
-            </h3>
-            <ul className="space-y-2 text-slate-600 dark:text-gray-400 pl-4">
-              <li className="flex items-start gap-2">
-                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Begin with vertical scaling for quick relief while planning
-                horizontal architecture
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Gradual service-by-service decomposition and load balancing
-                introduction
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
-                Define SLOs and capacity targets before scaling
-              </li>
-            </ul>
-          </div>
-        </div>
+      {/* Red flags */}
+      <section id="red-flags">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">Red flags and anti‑patterns</h2>
+        <ul className="space-y-2 text-slate-700 dark:text-gray-300 pl-4">
+          <li className="flex items-start gap-2"><span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>Scaling stateful services before stateless tiers are addressed.</li>
+          <li className="flex items-start gap-2"><span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>Over-sharding early; creating too many tiny partitions to manage.</li>
+          <li className="flex items-start gap-2"><span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>Premature microservices adopted to solve performance rather than ownership and delivery speed.</li>
+        </ul>
       </section>
 
-      {/* Cursor Implementation Section */}
+      {/* FAQ */}
+      <section id="faq">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">Quick FAQ</h2>
+        <ul className="space-y-3 text-slate-700 dark:text-gray-300 pl-4">
+          <li><strong>Is scaling the same as performance tuning?</strong> No. Tuning squeezes more from the same capacity; scaling increases capacity.</li>
+          <li><strong>Does horizontal always mean microservices?</strong> No. You can scale out a monolith behind a load balancer.</li>
+          <li><strong>Can I do both?</strong> Yes. Many teams vertically scale critical databases while horizontally scaling stateless tiers.</li>
+          <li><strong>Why does tail latency matter?</strong> Users experience the slowest requests most vividly; retries and thundering herds amplify tail pain.</li>
+          <li><strong>When is &ldquo;good enough&rdquo; vertical scaling fine?</strong> When growth is predictable, availability needs are modest, and change risk outweighs benefits.</li>
+        </ul>
+      </section>
+
+      {/* Glossary */}
+      <section id="glossary">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">Glossary</h2>
+        <ul className="space-y-2 text-slate-700 dark:text-gray-300 pl-4">
+          <li><strong>Tail latency</strong>: The slowest requests (e.g., p95/p99) that dominate user perception.</li>
+          <li><strong>Blast radius</strong>: The scope of impact when a component fails.</li>
+          <li><strong>Shard</strong>: A partition of data routed by a key to distribute load.</li>
+          <li><strong>Replication</strong>: Copying data across nodes for reads and availability.</li>
+          <li><strong>Idempotency</strong>: Safe to retry the same operation without side effects.</li>
+          <li><strong>Backpressure</strong>: Deliberately slowing producers to protect downstream systems.</li>
+          <li><strong>Autoscaling signal</strong>: Metric that triggers scale changes (CPU, queue depth, SLOs).</li>
+          <li><strong>Read‑your‑writes</strong>: A consistency property where a client sees its own writes immediately.</li>
+        </ul>
+      </section>
+
+      {/* Cursor Implementation Considerations */}
       <section id="cursor-implementation">
-        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
-          Cursor Implementation Considerations
-        </h2>
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Cursor Implementation Considerations</h2>
         <div className="space-y-6">
           <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              Architecture scaffolding via AI
-            </h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Cursor can generate load balancer configs, autoscaling policies,
-              and database partitioning templates, reducing
-              design-to-implementation time.
-            </p>
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Architecture scaffolding via AI</h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">Cursor can generate load balancer configs, autoscaling policies, and database partitioning templates, reducing design-to-implementation time.</p>
           </div>
           <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              Observability and SLO automation
-            </h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-3">
-              AI-assisted dashboards and alerting for saturation, errors, and
-              latency help teams iterate toward capacity goals.
-            </p>
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Observability and SLO automation</h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-3">AI-assisted dashboards and alerting for saturation, errors, and latency help teams iterate toward capacity goals.</p>
           </div>
         </div>
       </section>
