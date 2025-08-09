@@ -6867,7 +6867,7 @@
               "id": "waterfall",
               "categoryId": "development-process-methodologies",
               "topicId": "software-development-lifecycle-models",
-              "title": "Waterfall",
+              "name": "Waterfall",
               "summary": "The Waterfall model follows a sequential, phase-driven approach to software development where each stage must be completed before the next begins. Despite criticism in volatile domains, it remains valuable for projects with stable requirements, regulatory compliance needs, and predictable timelines. Enterprise organizations continue using Waterfall for infrastructure projects, compliance systems, and scenarios where comprehensive upfront planning reduces downstream risks.",
               "estimatedReadTimeMin": 8,
               "learningOutcomes": [
@@ -7080,7 +7080,7 @@
               "id": "agile-scrum",
               "categoryId": "development-process-methodologies",
               "topicId": "software-development-lifecycle-models",
-              "title": "Agile/Scrum",
+              "name": "Agile/Scrum",
               "summary": "Agile methodologies prioritize iterative development, frequent feedback, and adaptive planning over comprehensive documentation and rigid processes. Scrum, the most widely adopted Agile framework, organizes work into short sprints with defined roles, ceremonies, and artifacts. Enterprise organizations leverage Agile/Scrum for product development, innovation projects, and environments where requirements evolve rapidly, achieving 30-50% faster time-to-market and improved customer satisfaction.",
               "estimatedReadTimeMin": 9,
               "learningOutcomes": [
@@ -7293,7 +7293,7 @@
               "id": "devops-philosophy",
               "categoryId": "development-process-methodologies",
               "topicId": "software-development-lifecycle-models",
-              "title": "DevOps Philosophy",
+              "name": "DevOps Philosophy",
               "summary": "DevOps represents a cultural shift that bridges the traditional gap between development and operations teams through shared ownership, automation, and continuous collaboration. Rather than a specific methodology, DevOps encompasses practices, tools, and cultural changes that enable faster delivery, improved reliability, and enhanced collaboration. Enterprise organizations adopting DevOps report 30-50% faster deployment frequency, 50-70% reduction in lead time for changes, and 60-80% improvement in mean time to recovery.",
               "estimatedReadTimeMin": 10,
               "learningOutcomes": [
@@ -7506,7 +7506,7 @@
               "id": "lean-startup",
               "categoryId": "development-process-methodologies",
               "topicId": "software-development-lifecycle-models",
-              "title": "Lean Startup",
+              "name": "Lean Startup",
               "summary": "Lean Startup methodology applies scientific experimentation to product development through rapid hypothesis testing, validated learning, and iterative improvement. Rather than building products based on assumptions, teams create minimum viable products (MVPs) to test core hypotheses with real customers before committing significant resources. Enterprise organizations using Lean Startup principles report 40-60% faster time-to-market for new products, 50-70% reduction in failed product launches, and 30-50% improvement in customer validation accuracy.",
               "estimatedReadTimeMin": 9,
               "learningOutcomes": [

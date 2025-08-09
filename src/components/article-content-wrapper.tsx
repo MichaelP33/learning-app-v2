@@ -436,7 +436,7 @@ export function ArticleContentWrapper({
               </h1>
 
               <p className="text-xl text-slate-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto">
-                {article.description}
+                {article.summary || article.description}
               </p>
 
               {/* Knowledge Assessment - Show if quiz is available */}
