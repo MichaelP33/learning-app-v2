@@ -73,6 +73,12 @@ const articleRenderers: Record<string, React.FC> = {
   "acid-vs-eventual-consistency": CleanArchitectureContent,
   "database-sharding-partitioning": ReadReplicasWriteScalingContent,
   "caching-layers": ReadReplicasWriteScalingContent,
+
+  // Development Process & Methodologies
+  "waterfall": WaterfallContent,
+  "agile-scrum": AgileScrumContent,
+  "devops-philosophy": DevOpsPhilosophyContent,
+  "lean-startup": LeanStartupContent,
 };
 
 export function ArticleContentWrapper({
@@ -8176,6 +8182,264 @@ function DocumentationNamingContent() {
               </p>
             </div>
           </div>
+        </div>
+      </section>
+    </article>
+  );
+}
+
+// Section-based content renderer for new schema articles
+function WaterfallContent() {
+  return (
+    <article className="prose prose-slate dark:prose-invert max-w-none">
+      <section id="core-principles" className="mb-12">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Core Principles & Sequential Phases
+        </h2>
+        <div className="text-slate-700 dark:text-gray-300">
+          <p>The Waterfall model organizes software development into distinct, sequential phases where each stage produces specific deliverables that gate progression to the next phase. This systematic approach emerged from manufacturing and construction industries where changes become exponentially more expensive as projects progress.</p>
+          <p><strong>Sequential Phase Structure:</strong></p>
+          <ul>
+            <li><strong>Requirements Analysis</strong>: Comprehensive gathering and documentation of functional and non-functional requirements</li>
+            <li><strong>System Design</strong>: Architectural planning, database design, and interface specifications</li>
+            <li><strong>Implementation</strong>: Code development following predetermined designs and specifications</li>
+            <li><strong>Testing</strong>: Verification and validation against documented requirements</li>
+            <li><strong>Deployment</strong>: Production release and system go-live activities</li>
+            <li><strong>Maintenance</strong>: Ongoing support, bug fixes, and minor enhancements</li>
+          </ul>
+          <p><strong>Gate-Based Progression</strong>: Each phase includes formal review checkpoints where stakeholders approve deliverables before teams can proceed. This creates natural quality gates but also introduces rigidity that can be problematic when requirements change.</p>
+        </div>
+      </section>
+
+      <section id="enterprise-applications" className="mb-12">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Enterprise Applications & Success Patterns
+        </h2>
+        <div className="text-slate-700 dark:text-gray-300">
+          <p><strong>Large-Scale Infrastructure Projects</strong>: Enterprise organizations successfully apply Waterfall to infrastructure modernization, data center migrations, and ERP implementations where requirements are well-understood and changes are costly. A Fortune 500 financial services company reduced infrastructure migration risks by 60% using Waterfall&rsquo;s comprehensive planning approach for their core banking system upgrade.</p>
+          <p><strong>Customer Pain Points Addressed</strong>:</p>
+          <ul>
+            <li><strong>Scope Creep Control</strong>: &ldquo;Requirements kept changing mid-project, doubling our timeline and budget&rdquo; - Waterfall&rsquo;s formal change control processes help manage scope expansion</li>
+            <li><strong>Vendor Accountability</strong>: &ldquo;External teams delivered incomplete work that didn&rsquo;t integrate properly&rdquo; - Detailed specifications and formal reviews create clear delivery expectations</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="trade-offs-limitations" className="mb-12">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Trade-offs & Strategic Limitations
+        </h2>
+        <div className="text-slate-700 dark:text-gray-300">
+          <p><strong>Adaptability Challenges</strong>: Waterfall&rsquo;s sequential structure makes it difficult to incorporate feedback or requirement changes discovered during development. Enterprise teams report that requirement changes identified during implementation can increase project costs by 200-300% compared to changes caught in early phases.</p>
+          <p><strong>Extended Time-to-Value</strong>: Complex enterprise projects using pure Waterfall often take 12-24 months before delivering any business value, compared to 2-4 weeks with iterative approaches.</p>
+        </div>
+      </section>
+
+      <section id="ai-integration-opportunities" className="mb-12">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          AI-Enhanced Waterfall Implementation
+        </h2>
+        <div className="text-slate-700 dark:text-gray-300">
+          <p><strong>Documentation Generation</strong>: AI coding tools excel at creating comprehensive technical documentation, requirements traceability matrices, and design specifications that Waterfall methodologies require. Enterprise teams report 60-70% time savings in documentation creation when using AI assistance for requirements analysis and system design phases.</p>
+        </div>
+      </section>
+    </article>
+  );
+}
+
+function AgileScrumContent() {
+  return (
+    <article className="prose prose-slate dark:prose-invert max-w-none">
+      <section id="agile-principles-scrum-framework" className="mb-12">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Agile Principles & Scrum Framework
+        </h2>
+        <div className="text-slate-700 dark:text-gray-300">
+          <p>Agile methodologies emerged as a response to the limitations of traditional plan-driven approaches, emphasizing adaptability, collaboration, and customer value delivery. The Agile Manifesto prioritizes individuals and interactions over processes and tools, working software over comprehensive documentation, customer collaboration over contract negotiation, and responding to change over following a plan.</p>
+          <p><strong>Core Agile Principles:</strong></p>
+          <ul>
+            <li><strong>Iterative Development</strong>: Deliver working software incrementally through short development cycles (typically 1-4 weeks)</li>
+            <li><strong>Customer Collaboration</strong>: Engage stakeholders continuously throughout development rather than only during requirements gathering</li>
+            <li><strong>Adaptive Planning</strong>: Embrace changing requirements as competitive advantages rather than scope creep</li>
+            <li><strong>Cross-Functional Teams</strong>: Self-organizing teams with all necessary skills to deliver complete functionality</li>
+          </ul>
+          <p><strong>Scrum Framework Structure:</strong></p>
+          <p><strong>Roles</strong>: Product Owner (defines what to build), Scrum Master (facilitates process), Development Team (builds the product)</p>
+          <p><strong>Ceremonies</strong>: Sprint Planning (define sprint goals), Daily Standups (coordinate daily work), Sprint Review (demonstrate completed work), Sprint Retrospective (improve team process)</p>
+        </div>
+      </section>
+
+      <section id="enterprise-success-patterns" className="mb-12">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Enterprise Success Patterns & Business Impact
+        </h2>
+        <div className="text-slate-700 dark:text-gray-300">
+          <p><strong>Product Development Excellence</strong>: Technology companies report 30-50% faster time-to-market when using Agile/Scrum for new product development. Spotify achieved 95% developer satisfaction and rapid feature deployment through autonomous squads operating within Agile principles.</p>
+          <p><strong>Customer Pain Points Addressed:</strong></p>
+          <ul>
+            <li><strong>Market Responsiveness</strong>: &ldquo;By the time we delivered our product, customer needs had completely changed&rdquo; - Agile&rsquo;s iterative approach enables rapid adaptation to market feedback</li>
+            <li><strong>Requirements Uncertainty</strong>: &ldquo;We spent months defining requirements only to discover we built the wrong features&rdquo; - Scrum&rsquo;s frequent customer collaboration reduces requirement misalignment</li>
+            <li><strong>Team Productivity</strong>: &ldquo;Our developers are constantly blocked by dependencies and waiting for approvals&rdquo; - Cross-functional teams and daily standups eliminate most coordination bottlenecks</li>
+          </ul>
+          <p><strong>Quantified Business Outcomes:</strong></p>
+          <ul>
+            <li><strong>Time-to-Market</strong>: 30-50% faster delivery for new features and products</li>
+            <li><strong>Customer Satisfaction</strong>: 40-60% improvement in user satisfaction scores</li>
+            <li><strong>Team Engagement</strong>: 60-80% improvement in developer satisfaction and retention</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="implementation-challenges-scale" className="mb-12">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Implementation Challenges & Enterprise Scale
+        </h2>
+        <div className="text-slate-700 dark:text-gray-300">
+          <p><strong>Organizational Culture Resistance</strong>: Traditional enterprises often struggle with Agile&rsquo;s emphasis on self-organizing teams and reduced hierarchical control. Success requires executive sponsorship and cultural change management initiatives that can take 12-18 months to fully establish.</p>
+          <p><strong>Enterprise Scaling Patterns:</strong></p>
+          <ul>
+            <li><strong>SAFe (Scaled Agile Framework)</strong>: Provides structure for coordinating multiple Agile teams with enterprise planning cycles and portfolio management</li>
+            <li><strong>Spotify Model</strong>: Autonomous squads with minimal coordination overhead, suitable for product companies with clear domain boundaries</li>
+            <li><strong>LeSS (Large-Scale Scrum)</strong>: Extends Scrum principles to multiple teams working on single products</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="ai-enhanced-agile-delivery" className="mb-12">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          AI-Enhanced Agile Delivery
+        </h2>
+        <div className="text-slate-700 dark:text-gray-300">
+          <p><strong>Sprint Planning Acceleration</strong>: AI tools analyze historical velocity data, story complexity, and team capacity to suggest realistic sprint commitments and identify potential bottlenecks. Enterprise teams report 40-50% more accurate sprint planning when using AI-assisted estimation and capacity analysis.</p>
+          <p><strong>Backlog Refinement Intelligence</strong>: AI assists Product Owners in analyzing user feedback, market trends, and business metrics to prioritize backlog items based on predicted customer value and technical feasibility.</p>
+        </div>
+      </section>
+    </article>
+  );
+}
+
+function DevOpsPhilosophyContent() {
+  return (
+    <article className="prose prose-slate dark:prose-invert max-w-none">
+      <section id="devops-culture-principles" className="mb-12">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          DevOps Culture & Core Principles
+        </h2>
+        <div className="text-slate-700 dark:text-gray-300">
+          <p>DevOps fundamentally represents a cultural transformation that eliminates the traditional wall of confusion between development and operations teams. This philosophy emerged from the recognition that siloed teams create bottlenecks, reduce deployment frequency, and increase failure rates in production systems.</p>
+          <p><strong>Core Cultural Principles:</strong></p>
+          <ul>
+            <li><strong>Shared Ownership</strong>: Development and operations teams share responsibility for the entire application lifecycle</li>
+            <li><strong>Collaboration Over Handoffs</strong>: Replace formal handoffs between teams with continuous collaboration</li>
+            <li><strong>Fail Fast, Learn Faster</strong>: Embrace failure as a learning opportunity with rapid feedback loops</li>
+            <li><strong>Customer-Centric Focus</strong>: Align all technical decisions with customer value delivery</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="automation-continuous-practices" className="mb-12">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Automation & Continuous Practices
+        </h2>
+        <div className="text-slate-700 dark:text-gray-300">
+          <p><strong>Continuous Integration (CI)</strong>: Developers integrate code changes frequently into a shared repository where automated builds and tests verify each integration. Enterprise teams report 40-60% reduction in integration problems when implementing proper CI practices.</p>
+          <p><strong>Infrastructure as Code (IaC)</strong>: Managing infrastructure through versioned, testable code rather than manual configuration. Teams using IaC report 50-70% reduction in environment-related deployment failures.</p>
+        </div>
+      </section>
+
+      <section id="enterprise-transformation-measurement" className="mb-12">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Enterprise Transformation & Measurement
+        </h2>
+        <div className="text-slate-700 dark:text-gray-300">
+          <p><strong>Deployment Frequency Transformation</strong>: Traditional enterprises typically deploy monthly or quarterly, while high-performing DevOps organizations deploy multiple times per day. Amazon reports deploying code to production every 11.7 seconds on average during peak periods.</p>
+          <p><strong>Key Performance Indicators (KPIs):</strong></p>
+          <ul>
+            <li><strong>Deployment Frequency</strong>: How often teams successfully deploy to production</li>
+            <li><strong>Lead Time for Changes</strong>: Time from code commit to production deployment</li>
+            <li><strong>Mean Time to Recovery</strong>: Time required to recover from production incidents</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="ai-devops-evolution" className="mb-12">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          AI-Driven DevOps Evolution
+        </h2>
+        <div className="text-slate-700 dark:text-gray-300">
+          <p><strong>Intelligent Pipeline Optimization</strong>: AI tools analyze deployment patterns and suggest pipeline improvements that reduce build times by 30-40% while maintaining quality.</p>
+          <p><strong>Predictive Incident Management</strong>: AI-powered monitoring systems can predict system failures before they occur. Enterprise teams report 40-50% reduction in unplanned downtime when using AI-driven predictive monitoring.</p>
+        </div>
+      </section>
+    </article>
+  );
+}
+
+function LeanStartupContent() {
+  return (
+    <article className="prose prose-slate dark:prose-invert max-w-none">
+      <section id="build-measure-learn-cycle" className="mb-12">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Build-Measure-Learn Cycle & Hypothesis-Driven Development
+        </h2>
+        <div className="text-slate-700 dark:text-gray-300">
+          <p>The Build-Measure-Learn cycle forms the core of Lean Startup methodology, replacing traditional planning-based approaches with rapid experimentation and validated learning. This scientific approach enables teams to test fundamental assumptions before investing significant time and resources in full product development.</p>
+          <p><strong>The Build-Measure-Learn Process:</strong></p>
+          <ul>
+            <li><strong>Build</strong>: Create the smallest possible experiment that can test a specific hypothesis</li>
+            <li><strong>Measure</strong>: Collect quantitative and qualitative data about customer interactions</li>
+            <li><strong>Learn</strong>: Analyze data to validate or invalidate hypotheses and decide next steps</li>
+          </ul>
+          <p><strong>Rapid Iteration Cycles</strong>: The methodology emphasizes speed of learning over speed of building, encouraging teams to complete multiple cycles quickly.</p>
+        </div>
+      </section>
+
+      <section id="mvp-validation-strategies" className="mb-12">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          MVP Development & Validation Strategies
+        </h2>
+        <div className="text-slate-700 dark:text-gray-300">
+          <p><strong>Minimum Viable Product (MVP) Definition</strong>: An MVP contains just enough features to enable validated learning about critical customer hypotheses while requiring minimal development effort. The goal is learning, not building a scaled product.</p>
+          <p><strong>Types of MVPs:</strong></p>
+          <ul>
+            <li><strong>Landing Page MVP</strong>: Tests demand through sign-up rates before building functionality</li>
+            <li><strong>Concierge MVP</strong>: Manually delivers services to validate core value propositions</li>
+            <li><strong>Wizard of Oz MVP</strong>: Creates appearance of automation while manual backend fulfillment</li>
+            <li><strong>Feature MVP</strong>: Implements single core features to test user behavior</li>
+          </ul>
+          <p><strong>Validation Focus</strong>: Effective MVP validation focuses on customer behavior rather than opinions, measuring actual actions like usage patterns and conversion rates.</p>
+        </div>
+      </section>
+
+      <section id="enterprise-innovation-applications" className="mb-12">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Enterprise Innovation & Strategic Applications
+        </h2>
+        <div className="text-slate-700 dark:text-gray-300">
+          <p><strong>Corporate Innovation Programs</strong>: Large enterprises use Lean Startup methodology to structure internal innovation initiatives. Companies like General Electric and Intuit have established innovation labs applying these principles.</p>
+          <p><strong>Quantified Enterprise Benefits:</strong></p>
+          <ul>
+            <li><strong>Time-to-Market</strong>: 40-60% faster delivery of validated product concepts</li>
+            <li><strong>Failure Rate Reduction</strong>: 50-70% fewer failed product launches</li>
+            <li><strong>Resource Efficiency</strong>: 60-80% reduction in resources spent on unvalidated features</li>
+            <li><strong>Innovation Speed</strong>: 3-5x faster testing of business model hypotheses</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="ai-lean-startup-acceleration" className="mb-12">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          AI-Accelerated Lean Startup Implementation
+        </h2>
+        <div className="text-slate-700 dark:text-gray-300">
+          <p><strong>Automated Hypothesis Testing</strong>: AI tools automatically design and execute A/B tests and experiments that support rapid Build-Measure-Learn cycles. Machine learning algorithms suggest optimal experiment designs.</p>
+          <p><strong>Real-Time Analytics</strong>: AI-powered analytics platforms provide real-time insights into MVP performance, automatically flagging significant results and suggesting next steps.</p>
+          <p><strong>Enterprise AI-Lean Integration:</strong></p>
+          <ul>
+            <li><strong>Automated Experimentation</strong>: AI systems manage complex experiment portfolios across multiple product lines</li>
+            <li><strong>Intelligent Feature Flagging</strong>: Machine learning determines optimal feature rollout strategies</li>
+            <li><strong>Scalable Research</strong>: AI enables continuous customer research through automated survey deployment</li>
+          </ul>
         </div>
       </section>
     </article>
