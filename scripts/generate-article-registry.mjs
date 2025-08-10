@@ -1,9 +1,13 @@
 import fs from "fs";
 import path from "path";
+import { fileURLToPath } from "url";
 
-const root =
-  "/Users/michaelpotteiger/software development learnign app/learning-app-v2";
-const articlesDir = path.join(root, "src/components/articles");
+// Resolve repo root relative to this script's location
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const root = path.resolve(__dirname, "..");
+
+const articlesDir = path.join(root, "src", "components", "articles");
 const registryPath = path.join(articlesDir, "registry.ts");
 
 if (!fs.existsSync(articlesDir)) {

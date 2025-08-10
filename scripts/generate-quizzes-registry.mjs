@@ -1,23 +1,25 @@
 import fs from "fs";
 import path from "path";
+import { fileURLToPath } from "url";
 
-const root =
-  "/Users/michaelpotteiger/software development learnign app/learning-app-v2";
-const quizzesDir = path.join(root, "data/quizzes");
-const outPath = path.join(root, "src/lib/generated-quizzes.ts");
+// Resolve repo root relative to this script's location
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const root = path.resolve(__dirname, "..");
 
-// Ensure quizzes dir exists
-if (!fs.existsSync(quizzesDir)) {
-  fs.mkdirSync(quizzesDir, { recursive: true });
-}
+const quizzesDir = path.join(root, "data", "quizzes");
+const outPath = path.join(root, "src", "lib", "generated-quizzes.ts");
 
 function kebabBase(filename) {
   return filename.replace(/\.json$/i, "");
 }
 
-const files = fs
-  .readdirSync(quizzesDir)
-  .filter((f) => f.toLowerCase().endsWith(".json"));
+// Read quiz JSON files if the directory exists; otherwise, skip gracefully
+const files = fs.existsSync(quizzesDir)
+  ? fs
+      .readdirSync(quizzesDir)
+      .filter((f) => f.toLowerCase().endsWith(".json"))
+  : [];
 
 const entries = [];
 for (const file of files) {
