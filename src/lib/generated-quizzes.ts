@@ -8,7 +8,7 @@ export const externalQuizzes: Record<string, Quiz> = {
   "totalPoints": 24,
   "questions": [
     {
-      "id": 1,
+      "id": "1",
       "type": "multiple-choice",
       "points": 2,
       "question": "Primary Scrum artifact tying scope to delivery?",
@@ -27,7 +27,7 @@ export const externalQuizzes: Record<string, Quiz> = {
       ]
     },
     {
-      "id": 2,
+      "id": "2",
       "type": "multiple-choice",
       "points": 2,
       "question": "Timebox for a standard Scrum sprint?",
@@ -45,7 +45,7 @@ export const externalQuizzes: Record<string, Quiz> = {
       ]
     },
     {
-      "id": 3,
+      "id": "3",
       "type": "multiple-choice",
       "points": 2,
       "question": "Who prioritizes the Product Backlog?",
@@ -63,7 +63,7 @@ export const externalQuizzes: Record<string, Quiz> = {
       ]
     },
     {
-      "id": 4,
+      "id": "4",
       "type": "multiple-choice",
       "points": 2,
       "question": "Daily Scrum goal?",
@@ -81,7 +81,7 @@ export const externalQuizzes: Record<string, Quiz> = {
       ]
     },
     {
-      "id": 5,
+      "id": "5",
       "type": "multiple-choice",
       "points": 2,
       "question": "Definition of Done ensures:",
@@ -99,7 +99,7 @@ export const externalQuizzes: Record<string, Quiz> = {
       ]
     },
     {
-      "id": 6,
+      "id": "6",
       "type": "multiple-choice",
       "points": 2,
       "question": "Sprint Review focuses on:",
@@ -117,7 +117,7 @@ export const externalQuizzes: Record<string, Quiz> = {
       ]
     },
     {
-      "id": 7,
+      "id": "7",
       "type": "multiple-choice",
       "points": 2,
       "question": "Sprint Retrospective outcome:",
@@ -135,7 +135,7 @@ export const externalQuizzes: Record<string, Quiz> = {
       ]
     },
     {
-      "id": 8,
+      "id": "8",
       "type": "multiple-choice",
       "points": 2,
       "question": "Velocity best practice:",
@@ -153,14 +153,14 @@ export const externalQuizzes: Record<string, Quiz> = {
       ]
     },
     {
-      "id": 9,
+      "id": "9",
       "type": "freeform",
       "points": 4,
       "question": "Describe one concrete change you would propose after a retrospective and how you would measure its impact.",
       "sampleStrongResponse": "Introduce WIP limit of 2 per developer; measure lead time and carryover reduction across next 3 sprints."
     },
     {
-      "id": 10,
+      "id": "10",
       "type": "freeform",
       "points": 4,
       "question": "Explain how you ensure Definition of Done is applied consistently across stories.",
@@ -174,7 +174,7 @@ export const externalQuizzes: Record<string, Quiz> = {
   "totalPoints": 24,
   "questions": [
     {
-      "id": 1,
+      "id": "1",
       "type": "multiple-choice",
       "points": 2,
       "question": "Core DevOps objective?",
@@ -193,7 +193,7 @@ export const externalQuizzes: Record<string, Quiz> = {
       ]
     },
     {
-      "id": 2,
+      "id": "2",
       "type": "multiple-choice",
       "points": 2,
       "question": "Key DevOps practice for environment parity:",
@@ -211,7 +211,7 @@ export const externalQuizzes: Record<string, Quiz> = {
       ]
     },
     {
-      "id": 3,
+      "id": "3",
       "type": "multiple-choice",
       "points": 2,
       "question": "CI best describes:",
@@ -229,7 +229,7 @@ export const externalQuizzes: Record<string, Quiz> = {
       ]
     },
     {
-      "id": 4,
+      "id": "4",
       "type": "multiple-choice",
       "points": 2,
       "question": "CD focuses on:",
@@ -247,7 +247,7 @@ export const externalQuizzes: Record<string, Quiz> = {
       ]
     },
     {
-      "id": 5,
+      "id": "5",
       "type": "multiple-choice",
       "points": 2,
       "question": "Observability provides:",
@@ -265,7 +265,7 @@ export const externalQuizzes: Record<string, Quiz> = {
       ]
     },
     {
-      "id": 6,
+      "id": "6",
       "type": "multiple-choice",
       "points": 2,
       "question": "Infrastructure as Code benefit:",
@@ -283,7 +283,7 @@ export const externalQuizzes: Record<string, Quiz> = {
       ]
     },
     {
-      "id": 7,
+      "id": "7",
       "type": "multiple-choice",
       "points": 2,
       "question": "Change failure rate goal:",
@@ -301,7 +301,7 @@ export const externalQuizzes: Record<string, Quiz> = {
       ]
     },
     {
-      "id": 8,
+      "id": "8",
       "type": "multiple-choice",
       "points": 2,
       "question": "Deployment strategy reducing blast radius:",
@@ -320,14 +320,14 @@ export const externalQuizzes: Record<string, Quiz> = {
       ]
     },
     {
-      "id": 9,
+      "id": "9",
       "type": "freeform",
       "points": 4,
       "question": "Name two metrics you would track to measure DevOps success and why they matter.",
       "sampleStrongResponse": "Lead time for changes and change failure rate; together reflect delivery speed and stability with direct business impact."
     },
     {
-      "id": 10,
+      "id": "10",
       "type": "freeform",
       "points": 4,
       "question": "Describe a rollback plan for a critical service and how you would test it.",
@@ -341,7 +341,7 @@ export const externalQuizzes: Record<string, Quiz> = {
   "totalPoints": 24,
   "questions": [
     {
-      "id": 1,
+      "id": "1",
       "type": "multiple-choice",
       "points": 2,
       "question": "Core loop in Lean Startup:",
@@ -359,7 +359,7 @@ export const externalQuizzes: Record<string, Quiz> = {
       ]
     },
     {
-      "id": 2,
+      "id": "2",
       "type": "multiple-choice",
       "points": 2,
       "question": "MVP stands for:",
@@ -377,7 +377,7 @@ export const externalQuizzes: Record<string, Quiz> = {
       ]
     },
     {
-      "id": 3,
+      "id": "3",
       "type": "multiple-choice",
       "points": 2,
       "question": "Primary goal of MVP:",
@@ -395,7 +395,7 @@ export const externalQuizzes: Record<string, Quiz> = {
       ]
     },
     {
-      "id": 4,
+      "id": "4",
       "type": "multiple-choice",
       "points": 2,
       "question": "Actionable metrics are:",
@@ -413,7 +413,7 @@ export const externalQuizzes: Record<string, Quiz> = {
       ]
     },
     {
-      "id": 5,
+      "id": "5",
       "type": "multiple-choice",
       "points": 2,
       "question": "Pivot means:",
@@ -431,7 +431,7 @@ export const externalQuizzes: Record<string, Quiz> = {
       ]
     },
     {
-      "id": 6,
+      "id": "6",
       "type": "multiple-choice",
       "points": 2,
       "question": "Cohort analysis helps with:",
@@ -449,7 +449,7 @@ export const externalQuizzes: Record<string, Quiz> = {
       ]
     },
     {
-      "id": 7,
+      "id": "7",
       "type": "multiple-choice",
       "points": 2,
       "question": "Riskiest assumption first principle:",
@@ -467,7 +467,7 @@ export const externalQuizzes: Record<string, Quiz> = {
       ]
     },
     {
-      "id": 8,
+      "id": "8",
       "type": "multiple-choice",
       "points": 2,
       "question": "Good MVP characteristic:",
@@ -485,14 +485,14 @@ export const externalQuizzes: Record<string, Quiz> = {
       ]
     },
     {
-      "id": 9,
+      "id": "9",
       "type": "freeform",
       "points": 4,
       "question": "Describe one experiment you would run to validate a pricing hypothesis and your success metric.",
       "sampleStrongResponse": "A/B test two price points on a landing page; measure conversion to signup and downstream retention at 2 weeks."
     },
     {
-      "id": 10,
+      "id": "10",
       "type": "freeform",
       "points": 4,
       "question": "Explain how you would decide to pivot vs persevere after two MVP iterations.",

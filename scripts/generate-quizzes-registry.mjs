@@ -25,6 +25,16 @@ for (const file of files) {
   const full = path.join(quizzesDir, file);
   try {
     const json = JSON.parse(fs.readFileSync(full, "utf8"));
+    // Normalize types: ensure question.id is a string to satisfy QuizQuestion.id
+    if (Array.isArray(json.questions)) {
+      json.questions = json.questions.map((qq) => {
+        const next = { ...qq };
+        if (next && typeof next.id !== "string") {
+          next.id = String(next.id);
+        }
+        return next;
+      });
+    }
     entries.push({ id: articleId, data: json });
   } catch (e) {
     console.warn(`Skipping invalid quiz file: ${file} (${e?.message || e})`);

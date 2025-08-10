@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "prebuild": "npm run generate:quizzes-registry && npm run generate:articles-registry",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
