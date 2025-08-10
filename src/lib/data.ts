@@ -9,6 +9,7 @@ import {
   QuizAnswer,
 } from "@/types";
 import learningData from "../../data/learning-content.json";
+import { externalQuizzes } from "@/lib/quizzes";
 
 const data: LearningContent = learningData as LearningContent;
 
@@ -212,6 +213,8 @@ export function getStatusIndicatorColor(status: string): string {
 
 // Quiz utility functions
 export function getQuizByArticleId(articleId: string): Quiz | null {
+  // Prefer external quizzes (future-proof for file-based quizzes)
+  if (externalQuizzes[articleId]) return externalQuizzes[articleId];
   const article = getArticleById(articleId);
   return article?.quiz || null;
 }

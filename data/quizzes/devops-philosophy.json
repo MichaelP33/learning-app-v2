@@ -1,0 +1,141 @@
+{
+  "title": "DevOps Philosophy Knowledge Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 24,
+  "questions": [
+    {
+      "id": 1,
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Core DevOps objective?",
+      "options": [
+        "Faster, safer delivery",
+        "More meetings",
+        "Quarterly releases",
+        "Manual deployments"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "DevOps optimizes delivery speed and reliability by aligning dev and ops through automation and collaboration.",
+      "keyConcepts": ["Delivery", "Collaboration", "Automation"]
+    },
+    {
+      "id": 2,
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Key DevOps practice for environment parity:",
+      "options": [
+        "Pet servers",
+        "Manual config",
+        "Immutable infrastructure",
+        "Snowflake hosts"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Immutable infra ensures deployments replace rather than mutate servers, preventing drift.",
+      "keyConcepts": ["Immutable Infra", "Drift"]
+    },
+    {
+      "id": 3,
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "CI best describes:",
+      "options": [
+        "Compiling once a year",
+        "Merging infrequently",
+        "Automated build/test per change",
+        "Manual QA only"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Each change triggers build and tests, catching issues early and often.",
+      "keyConcepts": ["CI", "Automation"]
+    },
+    {
+      "id": 4,
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "CD focuses on:",
+      "options": [
+        "Long release trains",
+        "Automated, reliable releases",
+        "Manual approvals only",
+        "Freeze windows"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "CD automates release pipelines for consistent, low‑risk deployments.",
+      "keyConcepts": ["CD", "Pipelines"]
+    },
+    {
+      "id": 5,
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Observability provides:",
+      "options": [
+        "Feature flags",
+        "Build caching",
+        "System insights via metrics/logs/traces",
+        "Static analysis"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Observability instruments systems to understand internal state via signals and traces.",
+      "keyConcepts": ["Observability", "Telemetry"]
+    },
+    {
+      "id": 6,
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Infrastructure as Code benefit:",
+      "options": [
+        "Undocumented state",
+        "Drift tolerance",
+        "Reproducibility and reviewability",
+        "Manual hotfixes only"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "IaC makes infra changes declarative, versioned, and reviewable like code.",
+      "keyConcepts": ["IaC", "Reproducibility"]
+    },
+    {
+      "id": 7,
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Change failure rate goal:",
+      "options": [
+        "As high as possible",
+        "Unknown",
+        "As low as possible",
+        "Exactly 10%"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Elite DevOps performance targets low change failure rate alongside high frequency and fast recovery.",
+      "keyConcepts": ["DORA", "CFR"]
+    },
+    {
+      "id": 8,
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Deployment strategy reducing blast radius:",
+      "options": [
+        "Big bang",
+        "All-at-once",
+        "Blue/Green or Canary",
+        "Manual midnight release"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Blue/Green and canary isolate impact and allow quick rollback.",
+      "keyConcepts": ["Blue/Green", "Canary", "Rollback"]
+    },
+    {
+      "id": 9,
+      "type": "freeform",
+      "points": 4,
+      "question": "Name two metrics you would track to measure DevOps success and why they matter.",
+      "sampleStrongResponse": "Lead time for changes and change failure rate; together reflect delivery speed and stability with direct business impact."
+    },
+    {
+      "id": 10,
+      "type": "freeform",
+      "points": 4,
+      "question": "Describe a rollback plan for a critical service and how you would test it.",
+      "sampleStrongResponse": "Use Blue/Green with traffic switch and database safety checks; practice regular game days validating scripts and monitoring thresholds."
+    }
+  ]
+}

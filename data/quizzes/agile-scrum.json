@@ -1,0 +1,136 @@
+{
+  "title": "Agile/Scrum Knowledge Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 24,
+  "questions": [
+    {
+      "id": 1,
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Primary Scrum artifact tying scope to delivery?",
+      "options": [
+        "Product Backlog",
+        "Burnup Chart",
+        "Definition of Done",
+        "Sprint Velocity"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "The Product Backlog is the ordered list of everything needed in the product; prioritization ties scope to delivery sequence.",
+      "keyConcepts": ["Product Backlog", "Prioritization", "Scope"]
+    },
+    {
+      "id": 2,
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Timebox for a standard Scrum sprint?",
+      "options": ["1-2 days", "1-4 weeks", "6-8 weeks", "Quarterly"],
+      "correctAnswer": 1,
+      "additionalContext": "Scrum sprints are short, consistent timeboxes (often 2 weeks) to enable frequent inspection and adaptation.",
+      "keyConcepts": ["Timebox", "Sprint"]
+    },
+    {
+      "id": 3,
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Who prioritizes the Product Backlog?",
+      "options": [
+        "Scrum Master",
+        "Product Owner",
+        "Developers",
+        "Project Manager"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "The Product Owner maximizes product value by ordering the backlog according to outcomes and risk.",
+      "keyConcepts": ["Product Owner", "Backlog Ordering"]
+    },
+    {
+      "id": 4,
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Daily Scrum goal?",
+      "options": [
+        "Approve budget",
+        "Plan next increment",
+        "Inspect progress and adapt plan",
+        "Demo to stakeholders"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "The team inspects progress toward the Sprint Goal and adapts the plan for the next 24 hours.",
+      "keyConcepts": ["Sprint Goal", "Inspect & Adapt"]
+    },
+    {
+      "id": 5,
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Definition of Done ensures:",
+      "options": [
+        "Scope flexibility",
+        "Release cadence",
+        "Quality and completeness",
+        "Executive approval"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "DoD is the quality bar for increments; work meeting DoD is potentially releasable.",
+      "keyConcepts": ["Definition of Done", "Quality Gates"]
+    },
+    {
+      "id": 6,
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Sprint Review focuses on:",
+      "options": [
+        "Team grievances",
+        "Hiring decisions",
+        "Increment inspection with stakeholders",
+        "Quarterly roadmap"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "The team and stakeholders inspect the increment and adapt the Product Backlog.",
+      "keyConcepts": ["Increment", "Stakeholders"]
+    },
+    {
+      "id": 7,
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Sprint Retrospective outcome:",
+      "options": [
+        "Shippable increment",
+        "Updated Definition of Ready",
+        "Improvement actions",
+        "Budget approval"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Retro produces concrete improvement actions to enhance process, tools, or collaboration.",
+      "keyConcepts": ["Retrospective", "Continuous Improvement"]
+    },
+    {
+      "id": 8,
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Velocity best practice:",
+      "options": [
+        "Compare teams",
+        "Treat as target",
+        "Use for team forecasting",
+        "Publish to executives"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Velocity is for team forecasting; it should not be used to compare teams or set quotas.",
+      "keyConcepts": ["Velocity", "Forecasting"]
+    },
+    {
+      "id": 9,
+      "type": "freeform",
+      "points": 4,
+      "question": "Describe one concrete change you would propose after a retrospective and how you would measure its impact.",
+      "sampleStrongResponse": "Introduce WIP limit of 2 per developer; measure lead time and carryover reduction across next 3 sprints."
+    },
+    {
+      "id": 10,
+      "type": "freeform",
+      "points": 4,
+      "question": "Explain how you ensure Definition of Done is applied consistently across stories.",
+      "sampleStrongResponse": "Shared DoD checklist in PR template + automated checks (tests, coverage, lint) in CI; audit sample of completed stories each sprint."
+    }
+  ]
+}

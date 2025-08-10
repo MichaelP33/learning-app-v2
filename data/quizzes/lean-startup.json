@@ -1,0 +1,141 @@
+{
+  "title": "Lean Startup Knowledge Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 24,
+  "questions": [
+    {
+      "id": 1,
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Core loop in Lean Startup:",
+      "options": [
+        "Build-Measure-Learn",
+        "Plan-Execute-Control",
+        "Design-Implement-Test",
+        "Ideate-Scale-Exit"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Build experiments, measure results, and learn to refine the next iteration.",
+      "keyConcepts": ["Experimentation", "Feedback Loop"]
+    },
+    {
+      "id": 2,
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "MVP stands for:",
+      "options": [
+        "Most Valuable Plan",
+        "Minimum Viable Product",
+        "Managed Vendor Product",
+        "Market Validation Process"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "MVP validates riskiest assumptions quickly with minimal investment.",
+      "keyConcepts": ["MVP", "Validation"]
+    },
+    {
+      "id": 3,
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Primary goal of MVP:",
+      "options": [
+        "Perfect UI",
+        "Max features",
+        "Validate assumptions quickly",
+        "Full automation"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Focus on learning, not completeness; ship the smallest experiment that yields signal.",
+      "keyConcepts": ["Assumptions", "Learning"]
+    },
+    {
+      "id": 4,
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Actionable metrics are:",
+      "options": [
+        "Vanity",
+        "Non‑repeatable",
+        "Guide decisions",
+        "Purely aesthetic"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "They map directly to decisions (e.g., pricing change) and can be repeated.",
+      "keyConcepts": ["Actionable Metrics", "Decision Making"]
+    },
+    {
+      "id": 5,
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Pivot means:",
+      "options": [
+        "Stop all work",
+        "Minor tweak",
+        "Strategic shift based on learning",
+        "Ignore data"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "A pivot changes strategy while preserving the vision, based on validated learning.",
+      "keyConcepts": ["Pivot", "Validated Learning"]
+    },
+    {
+      "id": 6,
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Cohort analysis helps with:",
+      "options": [
+        "UI theming",
+        "Deployment scheduling",
+        "Understanding user behavior over time",
+        "Randomization"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Tracks behavior by user cohorts to see retention and engagement patterns.",
+      "keyConcepts": ["Cohorts", "Retention"]
+    },
+    {
+      "id": 7,
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Riskiest assumption first principle:",
+      "options": [
+        "Build big first",
+        "Test least risky",
+        "Test most uncertain first",
+        "Skip validation"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Test the assumption that would most undermine the idea if false.",
+      "keyConcepts": ["Risk", "Prioritization"]
+    },
+    {
+      "id": 8,
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Good MVP characteristic:",
+      "options": [
+        "Pixel‑perfect",
+        "Quick to build and measure",
+        "Large scope",
+        "No instrumentation"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "An MVP is quick to build and instrumented to measure outcomes.",
+      "keyConcepts": ["Speed", "Instrumentation"]
+    },
+    {
+      "id": 9,
+      "type": "freeform",
+      "points": 4,
+      "question": "Describe one experiment you would run to validate a pricing hypothesis and your success metric.",
+      "sampleStrongResponse": "A/B test two price points on a landing page; measure conversion to signup and downstream retention at 2 weeks."
+    },
+    {
+      "id": 10,
+      "type": "freeform",
+      "points": 4,
+      "question": "Explain how you would decide to pivot vs persevere after two MVP iterations.",
+      "sampleStrongResponse": "Compare actionable metrics to thresholds; if north‑star metric is below target with negative trend and qualitative feedback indicates mismatch, pivot with a new hypothesis."
+    }
+  ]
+}

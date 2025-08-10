@@ -6869,7 +6869,168 @@
               "learningStatus": "Not started",
               "priorityStatus": "Low",
               "description": "Sequential development approach with distinct phases",
-              "topics": ["Sequential Phases", "Documentation", "Planning"]
+              "topics": ["Sequential Phases", "Documentation", "Planning"],
+              "quiz": {
+                "title": "Waterfall Lifecycle Assessment",
+                "totalQuestions": 10,
+                "totalPoints": 24,
+                "questions": [
+                  {
+                    "id": 1,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Which sequence best represents the Waterfall lifecycle?",
+                    "options": [
+                      "Requirements → Design → Implementation → Verification → Maintenance",
+                      "Design → Requirements → Implementation → Maintenance → Verification",
+                      "Implementation → Requirements → Design → Verification → Maintenance",
+                      "Requirements → Implementation → Design → Verification → Maintenance"
+                    ],
+                    "correctAnswer": 0,
+                    "additionalContext": "Waterfall emphasizes completing each phase with sign-offs before progressing to the next stage.",
+                    "keyConcepts": [
+                      "Stage Gates",
+                      "Phase Sequencing",
+                      "Predictability"
+                    ]
+                  },
+                  {
+                    "id": 2,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "When is Waterfall typically the best fit?",
+                    "options": [
+                      "When requirements are evolving rapidly and prototypes drive learning",
+                      "When requirements are stable and formal sign-offs are required",
+                      "When the team is new to the domain and needs frequent course corrections",
+                      "When product-market fit is unknown and experiments are prioritized"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Stable scope and compliance needs favor Waterfall; high volatility favors iterative approaches.",
+                    "keyConcepts": [
+                      "Requirements Volatility",
+                      "Compliance",
+                      "Governance"
+                    ]
+                  },
+                  {
+                    "id": 3,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "What is a primary risk of Waterfall?",
+                    "options": [
+                      "Too much early feedback causing scope creep",
+                      "Late discovery of misunderstandings during verification",
+                      "Lack of documentation and traceability",
+                      "Inability to integrate with external systems"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Feedback arrives late compared to iterative models, so rework costs can increase.",
+                    "keyConcepts": ["Feedback Timing", "Rework Cost"]
+                  },
+                  {
+                    "id": 4,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Which artifact most directly captures stakeholder needs in Waterfall?",
+                    "options": [
+                      "Deployment runbook",
+                      "Business Requirements Document (BRD)",
+                      "Incident postmortem",
+                      "Team working agreement"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "A BRD is commonly used to document and sign off on scope before design and implementation.",
+                    "keyConcepts": ["Documentation", "Traceability"]
+                  },
+                  {
+                    "id": 5,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "What is the role of a Change Control Board (CCB) in Waterfall?",
+                    "options": [
+                      "To perform daily stand-ups and remove blockers",
+                      "To evaluate and approve scope changes after requirements sign-off",
+                      "To write automated tests for each feature",
+                      "To deploy code to production every sprint"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "CCBs govern change to protect schedule, budget, and scope once baselined.",
+                    "keyConcepts": ["Governance", "Scope Control"]
+                  },
+                  {
+                    "id": 6,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "When is customer feedback primarily integrated in Waterfall?",
+                    "options": [
+                      "Continuously during daily demos",
+                      "At the end of each sprint",
+                      "During verification/acceptance against specifications",
+                      "Only after production incidents"
+                    ],
+                    "correctAnswer": 2,
+                    "additionalContext": "Verification validates deliverables against agreed specifications and requirements.",
+                    "keyConcepts": ["Acceptance Testing", "Specifications"]
+                  },
+                  {
+                    "id": 7,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Which is a key advantage of Waterfall in regulated industries?",
+                    "options": [
+                      "Minimal documentation requirements",
+                      "Rapid course correction with weekly scope changes",
+                      "Clear traceability from requirements to tests",
+                      "Continuous deployment without approvals"
+                    ],
+                    "correctAnswer": 2,
+                    "additionalContext": "Formal artifacts and sign-offs support audits and compliance reviews.",
+                    "keyConcepts": ["Compliance", "Traceability"]
+                  },
+                  {
+                    "id": 8,
+                    "type": "multiple-choice",
+                    "points": 2,
+                    "question": "Which project signal suggests Waterfall may be appropriate?",
+                    "options": [
+                      "Highly volatile requirements and unknown solution space",
+                      "Low requirements volatility and many dependency handoffs",
+                      "Need for weekly releases with continuous reprioritization",
+                      "Desire to maximize developer autonomy over process"
+                    ],
+                    "correctAnswer": 1,
+                    "additionalContext": "Stable scope and sequenced interfaces benefit from phased delivery.",
+                    "keyConcepts": ["Dependencies", "Volatility"]
+                  },
+                  {
+                    "id": 9,
+                    "type": "freeform",
+                    "points": 4,
+                    "question": "Describe two specific risks of Waterfall on complex projects and one mitigation for each.",
+                    "sampleStrongResponse": "Risk 1: Late feedback surfaces requirement misunderstandings in verification; Mitigation: Add interim design reviews and prototype validations. Risk 2: Change latency via CCB delays critical adjustments; Mitigation: Time-box change windows and pre-approve well-scoped adjustments with impact ranges.",
+                    "additionalContext": "Focus on feedback timing and change governance impacts.",
+                    "keyConcepts": [
+                      "Feedback Timing",
+                      "Change Control",
+                      "Risk Management"
+                    ]
+                  },
+                  {
+                    "id": 10,
+                    "type": "freeform",
+                    "points": 4,
+                    "question": "Outline expected deliverables at each stage gate (requirements, design, implementation, verification). Include one acceptance criterion.",
+                    "sampleStrongResponse": "Requirements: BRD with signed acceptance criteria. Design: Architecture diagrams, data models, interface specs. Implementation: Traceability matrix linking requirements to code modules. Verification: Test plans/cases with results, signed acceptance that features meet criteria.",
+                    "additionalContext": "Emphasize traceability across artifacts.",
+                    "keyConcepts": [
+                      "Artifacts",
+                      "Acceptance Criteria",
+                      "Traceability"
+                    ]
+                  }
+                ]
+              }
             },
             {
               "id": "agile-scrum",
