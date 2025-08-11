@@ -1,0 +1,141 @@
+{
+  "title": "Branching Strategies Knowledge Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Main risk of long&ndash;lived branches as teams and codebases grow is:",
+      "options": [
+        "Drift and higher integration risk as divergence increases",
+        "Simpler audits due to fewer commits",
+        "Guaranteed faster lead time",
+        "Elimination of merge conflicts over time"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Long&ndash;lived branches diverge from main, increasing conflict and integration risk, especially in tightly coupled code.",
+      "keyConcepts": ["Long&ndash;lived branches", "Integration risk", "Conflict frequency"]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Feature flags help reduce branching risk because they:",
+      "options": [
+        "Replace the need for testing altogether",
+        "Allow incomplete work to merge to main safely while disabled",
+        "Remove the need for code reviews",
+        "Make rebase operations unnecessary"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Flags let teams ship code paths disabled by default, shortening branch lifetime and reducing integration pain.",
+      "keyConcepts": ["Feature flags", "Risk reduction", "Integration cadence"]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A practical integration cadence to limit conflicts on active features is:",
+      "options": [
+        "Integrate at end of quarter during a freeze",
+        "Integrate only when conflicts arise",
+        "Integrate at least daily to keep branches current with main",
+        "Avoid integrating until the feature is complete"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Frequent integration shortens the divergence window and reduces conflict size when they occur.",
+      "keyConcepts": ["Integration cadence", "Conflict reduction", "Branch freshness"]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Prefer creating a short&ndash;lived branch instead of only using flags when:",
+      "options": [
+        "The change is trivial UI copy",
+        "The work is easily hidden behind a single toggle",
+        "The change only affects test data",
+        "The work spans risky schema or contract changes requiring isolation"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Risky cross&ndash;cutting changes often need isolation, incremental PRs, and explicit hardening before enabling flags.",
+      "keyConcepts": ["Risky changes", "Isolation", "Flags vs branching"]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Best practice for day&ndash;to&ndash;day feature branches is:",
+      "options": [
+        "Prefer small, single&ndash;purpose branches and PRs",
+        "Accumulate many unrelated changes to reduce PR count",
+        "Force&ndash;push shared release branches frequently",
+        "Skip PRs for speed when tests pass locally"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Small, focused PRs improve clarity, review quality, and merge safety.",
+      "keyConcepts": ["Small PRs", "Focus", "Review quality"]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Why is developing features directly on a release branch discouraged?",
+      "options": [
+        "It always breaks CI by design",
+        "It causes divergence, cherry&ndash;pick debt, and confusion about sources of truth",
+        "It prevents tagging",
+        "It disables hotfix workflows automatically"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Release branches should stabilize a specific cut. New feature work belongs on short&ndash;lived branches against main.",
+      "keyConcepts": ["Release branches", "Stabilization", "Cherry&ndash;pick debt"]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "To reduce conflict size on a feature branch you should:",
+      "options": [
+        "Avoid syncing with main until ready",
+        "Lock main during development",
+        "Regularly rebase or merge main into the branch to stay up to date",
+        "Rewrite main to match the branch"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Keeping branches current with main reduces the scope of conflicts and makes resolution simpler.",
+      "keyConcepts": ["Branch freshness", "Rebase vs merge", "Conflict scope"]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Which naming approach improves traceability for branches?",
+      "options": [
+        "Random names for privacy",
+        "All branches named after developers",
+        "Names that omit any link to tracking systems",
+        "Prefix with ticket ID and a concise description (e.g., feat/PROJ-123-short-title)"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Ticket&ndash;prefixed, descriptive names support searchability, auditability, and automation hooks.",
+      "keyConcepts": ["Traceability", "Naming", "Automation"]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Draft a team policy that keeps branches short&ndash;lived. Include maximum age, integration cadence, use of flags, and merge strategy to main.",
+      "sampleStrongResponse": "Set a default maximum branch age (e.g., 5 business days). Require at least daily sync with main and small PRs. Use feature flags for incomplete paths so changes can merge early. Merge to main via squash&ndash;merge after green CI and required reviews; prohibit rebasing shared branches."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Outline a migration plan from GitFlow with long&ndash;lived branches to trunk&ndash;based development. Include risk controls, rollout phases, and success metrics.",
+      "sampleStrongResponse": "Pilot trunk&ndash;based on one service with feature flags and strict CI gates. Phase 1: shrink branch lifetime, enforce small PRs, add status checks. Phase 2: add release trains if needed, create short stabilization windows, adopt tags and automated changelogs. Measure merge frequency, time&ndash;to&ndash;prod, and conflict rate; adjust guardrails as teams adapt."
+    }
+  ]
+}

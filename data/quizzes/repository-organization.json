@@ -1,0 +1,141 @@
+{
+  "title": "Repository Organization Knowledge Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Mono&ndash;repo advantages commonly include:",
+      "options": [
+        "Unified dependency and tooling management across services",
+        "Guaranteed faster builds in all cases",
+        "Complete isolation by default",
+        "No need for code ownership boundaries"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Mono&ndash;repos centralize tooling and dependencies, easing refactors and cross&ndash;cutting changes when guardrails exist.",
+      "keyConcepts": ["Mono&ndash;repo", "Tooling", "Dependencies"]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Multi&ndash;repo trade&ndash;offs often include:",
+      "options": [
+        "Clearer service boundaries and independent releases",
+        "No duplication risk",
+        "Single pipeline for everything",
+        "Automatic cross&ndash;repo refactors"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Multi&ndash;repos emphasize isolation and independent versioning, though shared libraries need release discipline.",
+      "keyConcepts": ["Multi&ndash;repo", "Isolation", "Independent releases"]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Submodules or subtree strategies are useful when:",
+      "options": [
+        "Sharing a library across repos while keeping its history and release cycle",
+        "Avoiding versioning entirely",
+        "You want to merge all repos into one without history",
+        "You need zero configuration for consumers"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Submodules/subtrees allow reuse while preserving independent history and version control of the shared component.",
+      "keyConcepts": ["Submodules", "Subtree", "Shared libraries"]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "CODEOWNERS files primarily help by:",
+      "options": [
+        "Enforcing keyboard layouts",
+        "Automatically assigning knowledgeable reviewers to owned areas",
+        "Replacing CI",
+        "Blocking all changes by default"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Ownership rules route PRs to the right people, improving review quality and governance.",
+      "keyConcepts": ["CODEOWNERS", "Ownership", "Governance"]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "In a mono&ndash;repo, boundaries are maintained by:",
+      "options": [
+        "Skipping tests for speed",
+        "Enforcing module boundaries with tooling, ownership, and CI rules",
+        "Copying code freely between packages",
+        "Letting any code import anything"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Tools like path rules, lint boundaries, and package ownership keep coupling under control.",
+      "keyConcepts": ["Module boundaries", "Lint rules", "Ownership"]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Release versioning in a multi&ndash;repo setup typically means:",
+      "options": [
+        "Each service or library can version and release independently",
+        "All components must share one version at all times",
+        "No tags are used",
+        "Only nightly bulk releases"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Independent versioning allows targeted releases; shared libraries must communicate changes via SemVer.",
+      "keyConcepts": ["Independent versioning", "SemVer"]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Build and test isolation in mono&ndash;repos is commonly achieved by:",
+      "options": [
+        "Running the full repo on every PR without caching",
+        "Using workspaces, affected&ndash;graph detection, and caching",
+        "Disabling CI to speed up",
+        "Manual selection of tests by each developer"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Affected&ndash;graph and caching target only impacted packages, keeping feedback loops fast.",
+      "keyConcepts": ["Affected graph", "Caching", "Workspaces"]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Choose mono&ndash;repo when you need:",
+      "options": [
+        "Maximum independent governance between teams",
+        "Unified tooling, shared libraries, and coordinated cross&ndash;cutting changes",
+        "No cross&ndash;team work ever",
+        "Total isolation of build infrastructure"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Mono&ndash;repos shine for coordinated refactors, shared tooling, and unified standards across many packages.",
+      "keyConcepts": ["Mono&ndash;repo", "Cross&ndash;cutting changes", "Unified tooling"]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Recommend mono&ndash;repo vs multi&ndash;repo for a platform with many shared libraries and frequent cross&ndash;cutting refactors. Include governance and tooling.",
+      "sampleStrongResponse": "Prefer a mono&ndash;repo with workspaces. Enforce module boundaries and CODEOWNERS; use affected&ndash;graph CI and caching. Centralize tooling (lint, test, build) and adopt SemVer for shared libraries. Define ownership and review policies to avoid uncontrolled coupling."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Define a submodule/subtree strategy for a shared cryptography library used by multiple services. Cover versioning, release process, and consumer updates.",
+      "sampleStrongResponse": "Maintain the library in its own repo with SemVer and signed tags. Consumers integrate via submodule/subtree. Publish releases with changelogs; CI verifies API compatibility. Consumers pin versions and update via scheduled PRs that run full security and performance suites."
+    }
+  ]
+}

@@ -1,0 +1,141 @@
+{
+  "title": "Git Workflows Knowledge Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Which description best matches trunk&ndash;based development for high&ndash;cadence teams?",
+      "options": [
+        "Small, frequent merges to main behind feature flags with short&ndash;lived branches",
+        "Quarterly integration from long&ndash;lived branches with manual hardening",
+        "Direct pushes to main without reviews or CI",
+        "Rewriting shared history via rebase to keep a perfectly linear log"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Trunk&ndash;based development emphasizes short&ndash;lived branches, continuous integration, and flags so incomplete work ships safely behind toggles.",
+      "keyConcepts": ["Trunk&ndash;based", "Short&ndash;lived branches", "Feature flags", "Continuous integration"]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "When is a GitFlow&ndash;style workflow typically the better organizational fit?",
+      "options": [
+        "Startups shipping many times per day with minimal ceremonies",
+        "Programs with fixed release trains and formal stabilization windows",
+        "Teams that never tag releases or maintain changelogs",
+        "Teams that avoid hotfixes and rely only on flags"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "GitFlow supports release branches, audits, and planned stabilization windows; it suits regulated programs and scheduled releases.",
+      "keyConcepts": ["GitFlow", "Release branches", "Stabilization", "Auditability"]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Safe guidance for merge vs rebase in shared repositories is:",
+      "options": [
+        "Always rebase all shared branches to keep history linear",
+        "Always squash&ndash;merge into main to hide history",
+        "Rebase private branches; merge into shared branches to preserve integration context",
+        "Avoid merge commits entirely across the organization"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Rebase on private branches is safe. Merging into shared branches preserves integration context and avoids rewriting public history.",
+      "keyConcepts": ["Rebase", "Merge", "Shared history", "Integration context"]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Semantic versioning communicates impact as &ldquo;MAJOR.MINOR.PATCH&rdquo;. Which statement aligns with this?",
+      "options": [
+        "MAJOR adds features; MINOR breaks APIs; PATCH redesigns history",
+        "MAJOR/MINOR/PATCH are interchangeable labels",
+        "PATCH is for experimental features behind flags only",
+        "MAJOR signals breaking changes; MINOR adds features; PATCH fixes bugs"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "SemVer sets expectations: breaking changes (MAJOR), backward&ndash;compatible features (MINOR), and bug fixes (PATCH).",
+      "keyConcepts": ["SemVer", "Tags", "Change visibility"]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "What CI policy best supports trunk&ndash;based development?",
+      "options": [
+        "Run checks on PRs and on merges to main; require green status checks before merge",
+        "Run CI only on nightly schedules to save capacity",
+        "Allow direct pushes to main if tests pass locally",
+        "Skip tests for small PRs to optimize reviewer time"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Status checks on PRs and post&ndash;merge catches regressions early and keeps main always releasable.",
+      "keyConcepts": ["CI gates", "Status checks", "Always&ndash;green main"]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Primary purpose of a release branch prior to shipping is to:",
+      "options": [
+        "Begin large new feature work",
+        "Stabilize a cut of main with targeted fixes and sign&ndash;off",
+        "Replace tagging and changelogs entirely",
+        "Rewrite history to simplify the log"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Release branches capture a specific cut for final fixes, docs, and validation before tagging and delivery.",
+      "keyConcepts": ["Release branches", "Stabilization", "Hardening"]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A pragmatic mainline history policy for feature branches is to:",
+      "options": [
+        "Enforce fast&ndash;forward merges only across all repos",
+        "Allow rebasing of shared release branches for a linear graph",
+        "Squash&ndash;merge feature branches to keep main concise and track detail in PRs",
+        "Avoid PRs and push directly to main to reduce overhead"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Squash&ndash;merging keeps main readable while preserving full detail in the PR conversation and branch history.",
+      "keyConcepts": ["Squash merge", "Mainline history", "PR detail"]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "To avoid &ldquo;lost fix&rdquo; incidents when hotfixing a release branch, the team should:",
+      "options": [
+        "Patch the release branch only and close the PR",
+        "Patch main only and hope the next release picks it up",
+        "Rebase main onto the release branch after every hotfix",
+        "Backport to the release branch and forward&ndash;merge to main, then tag"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Always forward&ndash;merge hotfixes applied to a release branch back to main so fixes persist in future releases.",
+      "keyConcepts": ["Backport", "Forward merge", "Hotfix policy"]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Propose a merge policy for release branches that prevents &ldquo;lost fix&rdquo; incidents. Include backport/forward&ndash;merge rules, tagging, and changelog automation.",
+      "sampleStrongResponse": "Use a stabilization branch per release. All critical fixes: (1) merge to the release branch, (2) immediately forward&ndash;merge the same commit to main, (3) tag once sign&ndash;off passes. Automate changelog generation from PR titles that carry SemVer intent (&ldquo;major&rdquo;/&ldquo;minor&rdquo;/&ldquo;patch&rdquo;). Rebase allowed only on private feature branches; shared branches use merges."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Design CI triggers and protections for a trunk&ndash;based repository. Specify PR checks, required statuses, branch protections, and how tags integrate with releases.",
+      "sampleStrongResponse": "Require status checks (tests, linters, security scans) on every PR and on merges to main; block merge unless all checks are green. Enable branch protection with required reviews and linear history via squash&ndash;merge. Tag from the release commit and publish artifacts; use automated changelogs derived from PR titles. Keep main always releasable by using feature flags for incomplete work."
+    }
+  ]
+}

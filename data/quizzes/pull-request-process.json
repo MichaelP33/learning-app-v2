@@ -1,0 +1,141 @@
+{
+  "title": "Pull Request Process Knowledge Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Primary purpose of a PR template is to:",
+      "options": [
+        "Capture intent, scope, risk, and test plan for reviewers",
+        "Enforce personal style preferences",
+        "Replace CI and automated checks",
+        "Discourage early feedback via drafts"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Templates standardize context so reviewers quickly understand change intent, risk areas, and validation steps.",
+      "keyConcepts": ["PR templates", "Reviewer context", "Risk and test plan"]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Risk labels on PRs should influence:",
+      "options": [
+        "Keyboard layout choices",
+        "Depth of review, required approvals, and CI rigor",
+        "Random assignment of reviewers",
+        "Skipping reviews to accelerate merges"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Higher&ndash;risk changes warrant deeper reviews, more approvals, and stricter pre&ndash;merge checks.",
+      "keyConcepts": ["Risk labels", "Approvals", "CI gates"]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Non&ndash;blocking vs blocking feedback should be handled by:",
+      "options": [
+        "Treating all comments as blocking",
+        "Hiding all nit comments",
+        "Separating must&ndash;fix from suggestions with rationale",
+        "Moving all feedback to post&ndash;merge"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Clear separation keeps velocity while ensuring critical issues block merges; suggestions can be queued.",
+      "keyConcepts": ["Blocking vs non&ndash;blocking", "Review norms"]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A practical SLA for reviews prioritizes:",
+      "options": [
+        "Time to first response and time to decision",
+        "Number of emoji reactions",
+        "Longest possible review duration to catch everything",
+        "Reviewing only on Fridays"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Fast first response unblocks authors; time to decision keeps delivery predictable.",
+      "keyConcepts": ["SLA", "Time to first response", "Time to decision"]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Effective reviewer checklists emphasize:",
+      "options": [
+        "Personal naming preferences",
+        "Security, accessibility, performance budgets, and error handling",
+        "Keyboard shortcuts",
+        "Code style nits only"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Checklists target risk hot spots and keep reviews consistent across changes and teams.",
+      "keyConcepts": ["Checklists", "Risk areas", "Consistency"]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Pre&ndash;merge CI policies that improve quality include:",
+      "options": [
+        "Optional tests to speed up merges",
+        "Required status checks (tests, lint, security) before merge",
+        "CI only after merge to main",
+        "Local testing only"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Required checks prevent regressions and enforce policy&ndash;as&ndash;code before changes land in main.",
+      "keyConcepts": ["Status checks", "Policy&ndash;as&ndash;code", "Pre&ndash;merge gates"]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Using draft PRs early primarily helps by:",
+      "options": [
+        "Delaying reviews until the end",
+        "Triggering early CI and gathering feedback on approach",
+        "Avoiding writing any description",
+        "Skipping tests while coding"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Drafts invite design feedback and CI validation earlier, reducing rework later.",
+      "keyConcepts": ["Draft PRs", "Early feedback", "CI signal"]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A healthy review culture encourages reviewers to:",
+      "options": [
+        "Gatekeep with blanket rejections",
+        "Block on preference&ndash;only comments",
+        "Ask questions with rationale and offer alternatives",
+        "Nitpick unrelated formatting"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Questions with rationale support psychological safety and better decisions.",
+      "keyConcepts": ["Psychological safety", "Rationale", "Alternatives"]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Design a PR template that encodes risk and validation info. Include sections, example labels, and how it maps to required checks.",
+      "sampleStrongResponse": "Include sections: Context, Scope, Risk level, Test plan, Rollback plan. Risk labels drive required checks (e.g., high&ndash;risk requires security scan and two approvals). Provide examples and link to standards. Keep a checklist for security, accessibility, performance budgets, and error handling."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Propose review SLAs and norms for a team handling mixed&ndash;risk changes. Show how to measure and improve them over time.",
+      "sampleStrongResponse": "Set SLAs: time to first response &le; 4 hours in working time; time to decision &le; 2 days for typical changes. Label risk to scale approvals and checks. Track metrics (first response, decision time, change failure rate, developer sentiment). Run monthly retros, adjust templates and checklists, and coach on separating must&ndash;fix vs suggestions."
+    }
+  ]
+}
