@@ -168,6 +168,179 @@ export const externalQuizzes: Record<string, Quiz> = {
     }
   ]
 },
+  "change-management": {
+  "title": "Change Management Knowledge Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Approvals vs guardrails &mdash; which is the mature stance?",
+      "options": [
+        "Shift routine, low&ndash;risk changes to automated guardrails; reserve approvals for high risk",
+        "Require approvals for all changes regardless of risk",
+        "Eliminate guardrails and rely on manager sign&ndash;off",
+        "Use approvals only after incidents"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Mature orgs automate safety checks (&ldquo;policy&ndash;as&ndash;code&rdquo;) and retain approvals for novel or high&ndash;risk work.",
+      "keyConcepts": [
+        "Approvals",
+        "Guardrails",
+        "Policy&ndash;as&ndash;code"
+      ]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Risk assessment inputs emphasized in the article?",
+      "options": [
+        "Impact, likelihood, detectability; consider seasonality and customer segments",
+        "Aesthetics, novelty, brand color",
+        "Developer preference only",
+        "Cost of hardware upgrades"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Assess impact, likelihood, and detectability; include context like holiday traffic spikes and affected segments.",
+      "keyConcepts": [
+        "Risk assessment",
+        "Detectability",
+        "Seasonality"
+      ]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Purpose of change windows?",
+      "options": [
+        "Concentrate staffing/comms when risk appetite is higher; keep emergency windows for true urgent work",
+        "Spread staffing thinly across time",
+        "Guarantee zero incidents",
+        "Replace guardrails with manual reviews"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Change windows coordinate people and communication for planned risk, while emergency criteria avoid blanket freezes.",
+      "keyConcepts": [
+        "Change windows",
+        "Risk appetite",
+        "Emergency windows"
+      ]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Communication and audit essentials for significant changes include:",
+      "options": [
+        "Pre&ndash;announce timelines/mitigations; keep who/what/when/why in audit trails",
+        "Verbal updates only",
+        "Hide impact until after rollout",
+        "Delete records after success"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Communicate early and maintain auditability: record approvers, rationale, timing, and link to artifacts/incidents.",
+      "keyConcepts": [
+        "Communication plan",
+        "Audit trail",
+        "Stakeholders"
+      ]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Change Advisory Board (CAB) usage per the article?",
+      "options": [
+        "Use for complex, multi&ndash;system changes; avoid for routine reversible work with strong guardrails",
+        "Use for all production changes",
+        "Avoid entirely",
+        "Only convene after outages"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "CABs help coordinate cross&ndash;system change; they are overkill for routine changes where guardrails suffice.",
+      "keyConcepts": [
+        "CAB",
+        "Cross&ndash;team coordination",
+        "Guardrails"
+      ]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "What increases safe throughput according to the article?",
+      "options": [
+        "Guardrails enabling smaller, more frequent changes",
+        "Bigger batches and rarer releases",
+        "Eliminating monitoring during windows",
+        "Unlimited parallel high&ndash;risk changes"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Smaller, frequent changes with automated checks reduce batch risk and increase safe throughput.",
+      "keyConcepts": [
+        "Throughput",
+        "Batch size",
+        "Guardrails"
+      ]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Auditability by default means:",
+      "options": [
+        "Collect approvals, evidence, and outcomes in one system; link to monitoring and tickets",
+        "Keep approvals separate from outcomes",
+        "Store records in personal notes",
+        "Only log issues, not changes"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Centralize change records with links to PRs, deploys, incidents, RCAs, and monitoring annotations.",
+      "keyConcepts": [
+        "Auditability",
+        "Single source of truth",
+        "Integrations"
+      ]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "When replacing approvals with guardrails, teams should:",
+      "options": [
+        "Map risk tiers to guardrails and keep human review for high&ndash;impact or irreversible changes",
+        "Remove all human review for novel changes",
+        "Use guardrails only for staging",
+        "Decide informally per engineer"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Codify risk tiers and align guardrails/approval paths; preserve human review for high&ndash;impact or irreversible changes.",
+      "keyConcepts": [
+        "Risk tiers",
+        "Guardrails mapping",
+        "Approvals"
+      ]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Classify a database index addition during peak season. Propose risk tier, guardrails vs approvals, change window, and communication artifacts.",
+      "sampleStrongResponse": "Risk: medium&ndash;high due to peak traffic and potential latency impact. Guardrails: tests, migration dry&ndash;run on prod&ndash;like data, capacity checks, monitoring annotations, rollback plan. Approvals: domain owner + DBA. Change window: staffed period with on&ndash;call ack. Comms: pre&ndash;announce internal impact, link to runbook and rollback triggers; update audit record with outcomes."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Design an end&ndash;to&ndash;end change record template that satisfies audit trail essentials and streamlines comms. Include how low&ndash;risk changes self&ndash;approve when guardrails pass.",
+      "sampleStrongResponse": "Template fields: what/why, risk tier, guardrails evidence (tests, SLO checks, rollout/rollback plan), approvers (auto&ndash;assigned by domain), change window, monitoring annotations, links to PRs/flags/deploys, and outcomes/RCAs. Policy: if risk tier is low and all guardrails pass, auto self&ndash;approve with owner ack; otherwise require listed approvers. System auto&ndash;publishes comms to stakeholders and stores immutable logs."
+    }
+  ]
+},
   "code-reviews": {
   "title": "Code Reviews Knowledge Quiz",
   "totalQuestions": 10,
@@ -680,6 +853,180 @@ export const externalQuizzes: Record<string, Quiz> = {
     }
   ]
 },
+  "feature-flags": {
+  "title": "Feature Flags Knowledge Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Which statement correctly maps common flag types?",
+      "options": [
+        "Release flags gate incomplete work; ops flags toggle runtime behavior; experiment flags run A/B or multivariate tests",
+        "Release flags for experiments; ops flags for A/B tests; experiment flags for incident response",
+        "Ops flags hide WIP; experiment flags manage cache TTLs; release flags target cohorts",
+        "All flag types are interchangeable if you log evaluations"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Release flags hide work&ndash;in&ndash;progress, ops flags change operational behavior, and experiment flags power A/B or multivariate tests.",
+      "keyConcepts": [
+        "Flag taxonomy",
+        "Release",
+        "Ops",
+        "Experiment"
+      ]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Best practice at flag creation time?",
+      "options": [
+        "Skip ownership to reduce process",
+        "Set intent (&ldquo;release&rdquo;/&ldquo;ops&rdquo;/&ldquo;experiment&rdquo;), owner, and a remove&ndash;by date",
+        "Default flags to permanent",
+        "Use ad&ndash;hoc names and rely on memory"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Defining intent, ownership, and expiry up front prevents orphaned toggles and reduces future risk.",
+      "keyConcepts": [
+        "Lifecycle",
+        "Ownership",
+        "Expiry"
+      ]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Safe default rollout pattern for a new high&ndash;risk flag?",
+      "options": [
+        "Flip globally immediately",
+        "Target only new users worldwide",
+        "Ramp from internal/staff to small percentages, then cohorts or regions",
+        "Roll out by random servers without monitoring"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Start with staff/internal exposure, then percentage ramps or cohort/geo targeting to limit blast radius while learning.",
+      "keyConcepts": [
+        "Progressive delivery",
+        "Targeting",
+        "Blast radius"
+      ]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A &ldquo;kill switch&rdquo; for critical surfaces should:",
+      "options": [
+        "Depend on long cache TTLs to avoid flapping",
+        "Require code redeploys to take effect",
+        "Be limited to staging environments",
+        "Be instantly actionable via synchronous control or fast&ndash;refresh rules"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "High&ndash;risk flags need a rapid disable path: synchronous control plane or cached rules with short TTLs.",
+      "keyConcepts": [
+        "Kill switch",
+        "TTL",
+        "Critical paths"
+      ]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "What is &ldquo;flag debt&rdquo; and how do you avoid it?",
+      "options": [
+        "Latent complexity from stale flags; schedule removal sprints and automate cleanup",
+        "A list of disabled flags to never remove",
+        "The number of flags flipped per day; increase to reduce debt",
+        "Debt measured only by experiment variants"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Stale flags add branching complexity and outage risk. Track intent and expiry; remove promptly after success.",
+      "keyConcepts": [
+        "Flag debt",
+        "Cleanup",
+        "Lifecycle"
+      ]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Why log flag evaluations with subject/context keys?",
+      "options": [
+        "To eliminate the need for testing",
+        "To enable audits and investigations of &ldquo;who saw what and why&rdquo;",
+        "To speed up database queries",
+        "To randomly sample user behavior"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Evaluation logs provide auditability and help explain outcomes in incidents or experiments.",
+      "keyConcepts": [
+        "Auditability",
+        "Evaluation logs",
+        "Compliance"
+      ]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Governance guidance for sensitive flags (privacy, billing)?",
+      "options": [
+        "Single&ndash;operator control",
+        "Dual control, approvals, and immutable logs",
+        "Public voting",
+        "Flip only during off&ndash;hours without records"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Sensitive flags should require stronger controls: approvals, dual control, and complete audit trails.",
+      "keyConcepts": [
+        "Governance",
+        "Approvals",
+        "Audit trail"
+      ]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "When should teams coordinate a change window for flips?",
+      "options": [
+        "For small internal tests only",
+        "Never; flips should be silent",
+        "Only after an incident has occurred",
+        "For large audience changes where support/comms need preparation"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Coordinate windows for high&ndash;impact flips so support and stakeholders are prepared.",
+      "keyConcepts": [
+        "Change windows",
+        "Stakeholder comms",
+        "Support prep"
+      ]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Outline a flag lifecycle from creation to cleanup. Include owner, intent, telemetry thresholds for success, rollout plan, and a &ldquo;remove by&rdquo; date.",
+      "sampleStrongResponse": "Create the flag with intent (&ldquo;release&rdquo;/&ldquo;ops&rdquo;/&ldquo;experiment&rdquo;), named owner, and remove&ndash;by date. Start with staff exposure, then ramp by percentage/cohort while tracking conversion, error rate, and p95 latency against thresholds. Maintain evaluation logs with subject/context. After success, execute a removal PR and delete targeting rules to avoid flag debt."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Design a safe rollout for a high&ndash;risk payment feature behind a flag. Describe targeting, blast radius containment, kill switch behavior, and cleanup criteria.",
+      "sampleStrongResponse": "Start internal&ndash;only, then 1% of a low&ndash;risk cohort by region, ramping while SLOs hold. Enable a global emergency off switch with short TTL rule refresh. Log all evaluations with user and reason. Predefine rollback triggers (error rate, p95 latency) and halt expansion if breached. Declare success criteria (conversion, error budgets) and schedule a removal PR once thresholds are met."
+    }
+  ]
+},
   "lean-startup": {
   "title": "Lean Startup Knowledge Quiz",
   "totalQuestions": 10,
@@ -1188,6 +1535,352 @@ export const externalQuizzes: Record<string, Quiz> = {
       "points": 5,
       "question": "You must land a risky concurrency change under time pressure. Propose a pairing plan (who, when, where) and justify the ROI. How will you measure success?",
       "sampleStrongResponse": "Pair a domain expert with an implementer in the highest‑risk code area during peak collaboration hours. Use shared cursors, prompts, and test‑first scaffolding. Success metrics: reduction in escaped defects, faster code review cycle time, stable performance metrics, and positive developer sentiment."
+    }
+  ]
+},
+  "rollback-procedures": {
+  "title": "Rollback Procedures Knowledge Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Core principle of reversible deployments?",
+      "options": [
+        "Design forward&ndash;only DB changes and idempotent operations with versioned artifacts",
+        "Allow destructive DB changes under peak load",
+        "Rely on manual recovery steps only",
+        "Avoid testing rollbacks in staging"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Reversible deployments favor forward&ndash;only migrations, idempotent ops, immutable artifacts, and rehearsal of rollbacks.",
+      "keyConcepts": [
+        "Reversible deployments",
+        "Idempotency",
+        "Versioned artifacts"
+      ]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Blue/Green vs canary &mdash; which mapping is correct?",
+      "options": [
+        "Blue/Green maintains two environments for atomic traffic switch; canary starts with a small percentage",
+        "Blue/Green shifts a small percent first; canary flips all traffic instantly",
+        "Both are identical strategies",
+        "Canary requires DNS only; Blue/Green requires no routing changes"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Blue/Green runs two environments and flips traffic atomically for instant rollback; canary ramps a small percentage to detect regressions early.",
+      "keyConcepts": [
+        "Blue/Green",
+        "Canary",
+        "Rollback speed"
+      ]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Observability requirement for safe rollback strategies?",
+      "options": [
+        "SLO&ndash;linked signals (errors, p95 latency) with alerting",
+        "Informal logging only",
+        "Manual dashboards after incidents",
+        "Noisy alerts without thresholds"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Rollback triggers depend on timely signals tied to SLOs with alerting to detect regressions quickly.",
+      "keyConcepts": [
+        "Observability",
+        "SLOs",
+        "Alerts"
+      ]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Database&ndash;safe change pattern during migrations?",
+      "options": [
+        "Forward&ndash;only additive changes; temporary dual&ndash;write/dual&ndash;read",
+        "Destructive schema changes during peak",
+        "Permanent dual&ndash;write architecture",
+        "Skip backfill and reconcile later only if issues occur"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Prefer additive changes and short&ndash;lived dual&ndash;write/dual&ndash;read to migrate safely with clear backfill and reconciliation steps.",
+      "keyConcepts": [
+        "Forward&ndash;only",
+        "Dual write/read",
+        "Backfill"
+      ]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Benefit of practicing rollbacks in staging?",
+      "options": [
+        "Reveals missing scripts and coupling before customers are impacted",
+        "Increases surprise during production",
+        "Eliminates the need for runbooks",
+        "Guarantees zero incidents"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Rehearsals expose gaps in scripts and hidden coupling early, improving confidence and speed during incidents.",
+      "keyConcepts": [
+        "Rehearsal",
+        "Staging",
+        "Runbooks"
+      ]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Automated rollback triggers should:",
+      "options": [
+        "Use multi&ndash;signal confirmation tied to SLOs to avoid flapping",
+        "Flip on any single noisy metric",
+        "Depend on manual approval only",
+        "Ignore error budgets"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Combine metrics, logs, and synthetic checks with thresholds to trigger rollback reliably without flapping.",
+      "keyConcepts": [
+        "Triggers",
+        "Multi&ndash;signal",
+        "Error budgets"
+      ]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Blast radius containment means:",
+      "options": [
+        "Stagger rollouts by region/cohort and isolate experiments from core flows",
+        "Roll out everywhere at once",
+        "Disable monitoring to reduce noise",
+        "Dark launch UI to all users first"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Limit simultaneous risk by regional or cohort ramps, dark launches, and isolation of experimental changes.",
+      "keyConcepts": [
+        "Blast radius",
+        "Staggered rollout",
+        "Dark launch"
+      ]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Why pin artifacts, infra, and migrations?",
+      "options": [
+        "To reproduce prior states faithfully for deterministic rollback",
+        "To allow silent drift between environments",
+        "To avoid tagging releases",
+        "To remove the need for version control"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Pinning versions makes rollback deterministic by reproducing the previous known&ndash;good state.",
+      "keyConcepts": [
+        "Version pinning",
+        "Determinism",
+        "Immutability"
+      ]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Draft a per&ndash;service rollback checklist for a DB migration. Include health checks, version pinning, backfill steps, and owner acknowledgements.",
+      "sampleStrongResponse": "Checklist: (1) Verify prior artifact and schema versions are available and pinned, (2) Pre&ndash;flight health checks green, (3) Backfill plan and verification queries prepared, (4) Dual&ndash;write toggle path and teardown plan documented, (5) Rollback triggers linked to SLO thresholds, (6) On&ndash;call and service owner acks recorded, (7) Post&ndash;rollback validation and changelog entry."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Compare canary vs Blue/Green for a high&ndash;traffic service. When would you choose each, and what rollback signals/triggers would you configure?",
+      "sampleStrongResponse": "Use canary for incremental risk: start at 1&ndash;5% to validate error rate and p95 latency with multi&ndash;signal confirmation; expand as signals stay green. Choose Blue/Green when you need instant rollback and minimal downtime: maintain two environments and flip traffic atomically. In both cases, define SLO thresholds, synthetic probes, and alerting; auto&ndash;revert on threshold breach and notify stakeholders with version and reason."
+    }
+  ]
+},
+  "version-control-strategies": {
+  "title": "Version Control Strategies Knowledge Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Default strategy that keeps integration pain low for teams beyond 8&ndash;10 engineers?",
+      "options": [
+        "Trunk&ndash;based development with small, frequent merges and flags",
+        "Long&ndash;lived GitFlow branches with quarterly integration",
+        "Only release branches with extended code freezes",
+        "Hotfixes directly on main without review"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Trunk&ndash;based development emphasizes short&ndash;lived branches and frequent merges to main, often behind flags, which reduces integration risk as teams scale.",
+      "keyConcepts": [
+        "Trunk&ndash;based",
+        "Short&ndash;lived branches",
+        "Feature flags"
+      ]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Primary purpose of a release branch before shipping?",
+      "options": [
+        "Begin new feature work",
+        "Rewrite history for readability",
+        "Replace tagging and changelogs",
+        "Stabilize a cut of main for hardening and targeted fixes"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Release branches capture a specific cut for final fixes, docs, and sign&ndash;off before shipping.",
+      "keyConcepts": [
+        "Release branches",
+        "Stabilization",
+        "Hardening"
+      ]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Code freeze best practice during a stabilization window?",
+      "options": [
+        "Pause all changes indefinitely",
+        "Continue all merges to main at full speed",
+        "Pause risky changes; allow targeted fixes; keep freeze short",
+        "Ban hotfixes across environments"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Code freezes should be short, minimize risk, and still allow targeted fixes that are backported to the release branch and forward&ndash;merged to main.",
+      "keyConcepts": [
+        "Code freeze",
+        "Backporting",
+        "Forward merge"
+      ]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "SemVer communicates impact as &ldquo;MAJOR.MINOR.PATCH&rdquo;. Which statement aligns with this?",
+      "options": [
+        "MAJOR adds features; MINOR breaks APIs; PATCH redesigns history",
+        "MAJOR signals breaking changes; MINOR adds features; PATCH fixes bugs",
+        "MAJOR/ MINOR/ PATCH are interchangeable labels",
+        "PATCH is for experimental features behind flags only"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Semantic versioning communicates expected impact: MAJOR for breaking changes, MINOR for backward&ndash;compatible features, PATCH for fixes.",
+      "keyConcepts": [
+        "SemVer",
+        "Tags",
+        "Change visibility"
+      ]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Safe standard for rebase vs merge?",
+      "options": [
+        "Rebase private branches; merge into shared branches to preserve integration context",
+        "Rebase shared branches to keep history linear",
+        "Always squash&ndash;merge into main to hide history",
+        "Avoid merge commits entirely"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Rebase on private branches is safe; merging into shared branches preserves integration context and avoids rewriting public history.",
+      "keyConcepts": [
+        "Rebase",
+        "Merge",
+        "Shared history"
+      ]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Risk of long&ndash;lived branches in GitFlow&ndash;style workflows?",
+      "options": [
+        "Reduced merge conflicts over time",
+        "Simpler audits due to fewer commits",
+        "Guaranteed faster lead time",
+        "Drift and higher integration risk as divergence grows"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Long&ndash;lived branches drift from main, increasing merge conflicts and integration risk, especially with tightly coupled code.",
+      "keyConcepts": [
+        "Long&ndash;lived branches",
+        "Merge conflicts",
+        "Coupling"
+      ]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Benefit of automating changelogs from commits or PR titles?",
+      "options": [
+        "Removes the need for tags",
+        "Eliminates all release notes",
+        "Improves change visibility and reduces manual error",
+        "Allows arbitrary rewrite of history"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Automated changelogs increase transparency and reduce manual error, helping customers and internal teams understand &ldquo;what changed&rdquo;.",
+      "keyConcepts": [
+        "Changelogs",
+        "Automation",
+        "Visibility"
+      ]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "To avoid &ldquo;lost fix&rdquo; incidents when patching a release branch, the team should:",
+      "options": [
+        "Only patch the release branch",
+        "Backport to the release branch and forward&ndash;merge to main",
+        "Patch main only and hope the release picks it up",
+        "Rebase main onto the release branch"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Patches applied to a release branch should also be forward&ndash;merged to main so fixes are preserved in future releases.",
+      "keyConcepts": [
+        "Backport",
+        "Forward merge",
+        "Release policy"
+      ]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Propose a release branch merge policy that prevents &ldquo;lost fix&rdquo; incidents. Include backport/forward&ndash;merge rules, tagging, and how changelogs are generated.",
+      "sampleStrongResponse": "Use a stabilization branch per release. All critical fixes: (1) merge to release branch, (2) immediately forward&ndash;merge the same commit to main, (3) tag once sign&ndash;off passes. Automate changelog generation from PR titles that include SemVer intent (&ldquo;major&rdquo;/&ldquo;minor&rdquo;/&ldquo;patch&rdquo;). Protect shared branches; allow rebase only on private feature branches."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Given a regulated program needing quarterly releases and audit trails, justify GitFlow vs trunk&ndash;based. Specify rebase/merge rules, code freeze handling, and tag/changelog automation.",
+      "sampleStrongResponse": "Choose GitFlow for quarterly, audited releases: long&ndash;lived release branches for stabilization and formal sign&ndash;off; short code freezes limited to riskier changes. Rebase allowed only on private branches; merge to shared branches. Tag every release with SemVer and auto&ndash;generate changelogs from PR titles. Backport fixes to the release branch and forward&ndash;merge to main to avoid &ldquo;lost fix&rdquo; issues."
     }
   ]
 }

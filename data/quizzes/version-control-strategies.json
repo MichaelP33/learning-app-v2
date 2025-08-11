@@ -1,0 +1,141 @@
+{
+  "title": "Version Control Strategies Knowledge Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Default strategy that keeps integration pain low for teams beyond 8&ndash;10 engineers?",
+      "options": [
+        "Trunk&ndash;based development with small, frequent merges and flags",
+        "Long&ndash;lived GitFlow branches with quarterly integration",
+        "Only release branches with extended code freezes",
+        "Hotfixes directly on main without review"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Trunk&ndash;based development emphasizes short&ndash;lived branches and frequent merges to main, often behind flags, which reduces integration risk as teams scale.",
+      "keyConcepts": ["Trunk&ndash;based", "Short&ndash;lived branches", "Feature flags"]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Primary purpose of a release branch before shipping?",
+      "options": [
+        "Begin new feature work",
+        "Rewrite history for readability",
+        "Replace tagging and changelogs",
+        "Stabilize a cut of main for hardening and targeted fixes"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Release branches capture a specific cut for final fixes, docs, and sign&ndash;off before shipping.",
+      "keyConcepts": ["Release branches", "Stabilization", "Hardening"]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Code freeze best practice during a stabilization window?",
+      "options": [
+        "Pause all changes indefinitely",
+        "Continue all merges to main at full speed",
+        "Pause risky changes; allow targeted fixes; keep freeze short",
+        "Ban hotfixes across environments"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Code freezes should be short, minimize risk, and still allow targeted fixes that are backported to the release branch and forward&ndash;merged to main.",
+      "keyConcepts": ["Code freeze", "Backporting", "Forward merge"]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "SemVer communicates impact as &ldquo;MAJOR.MINOR.PATCH&rdquo;. Which statement aligns with this?",
+      "options": [
+        "MAJOR adds features; MINOR breaks APIs; PATCH redesigns history",
+        "MAJOR signals breaking changes; MINOR adds features; PATCH fixes bugs",
+        "MAJOR/ MINOR/ PATCH are interchangeable labels",
+        "PATCH is for experimental features behind flags only"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Semantic versioning communicates expected impact: MAJOR for breaking changes, MINOR for backward&ndash;compatible features, PATCH for fixes.",
+      "keyConcepts": ["SemVer", "Tags", "Change visibility"]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Safe standard for rebase vs merge?",
+      "options": [
+        "Rebase private branches; merge into shared branches to preserve integration context",
+        "Rebase shared branches to keep history linear",
+        "Always squash&ndash;merge into main to hide history",
+        "Avoid merge commits entirely"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Rebase on private branches is safe; merging into shared branches preserves integration context and avoids rewriting public history.",
+      "keyConcepts": ["Rebase", "Merge", "Shared history"]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Risk of long&ndash;lived branches in GitFlow&ndash;style workflows?",
+      "options": [
+        "Reduced merge conflicts over time",
+        "Simpler audits due to fewer commits",
+        "Guaranteed faster lead time",
+        "Drift and higher integration risk as divergence grows"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Long&ndash;lived branches drift from main, increasing merge conflicts and integration risk, especially with tightly coupled code.",
+      "keyConcepts": ["Long&ndash;lived branches", "Merge conflicts", "Coupling"]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Benefit of automating changelogs from commits or PR titles?",
+      "options": [
+        "Removes the need for tags",
+        "Eliminates all release notes",
+        "Improves change visibility and reduces manual error",
+        "Allows arbitrary rewrite of history"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Automated changelogs increase transparency and reduce manual error, helping customers and internal teams understand &ldquo;what changed&rdquo;.",
+      "keyConcepts": ["Changelogs", "Automation", "Visibility"]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "To avoid &ldquo;lost fix&rdquo; incidents when patching a release branch, the team should:",
+      "options": [
+        "Only patch the release branch",
+        "Backport to the release branch and forward&ndash;merge to main",
+        "Patch main only and hope the release picks it up",
+        "Rebase main onto the release branch"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Patches applied to a release branch should also be forward&ndash;merged to main so fixes are preserved in future releases.",
+      "keyConcepts": ["Backport", "Forward merge", "Release policy"]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Propose a release branch merge policy that prevents &ldquo;lost fix&rdquo; incidents. Include backport/forward&ndash;merge rules, tagging, and how changelogs are generated.",
+      "sampleStrongResponse": "Use a stabilization branch per release. All critical fixes: (1) merge to release branch, (2) immediately forward&ndash;merge the same commit to main, (3) tag once sign&ndash;off passes. Automate changelog generation from PR titles that include SemVer intent (&ldquo;major&rdquo;/&ldquo;minor&rdquo;/&ldquo;patch&rdquo;). Protect shared branches; allow rebase only on private feature branches."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Given a regulated program needing quarterly releases and audit trails, justify GitFlow vs trunk&ndash;based. Specify rebase/merge rules, code freeze handling, and tag/changelog automation.",
+      "sampleStrongResponse": "Choose GitFlow for quarterly, audited releases: long&ndash;lived release branches for stabilization and formal sign&ndash;off; short code freezes limited to riskier changes. Rebase allowed only on private branches; merge to shared branches. Tag every release with SemVer and auto&ndash;generate changelogs from PR titles. Backport fixes to the release branch and forward&ndash;merge to main to avoid &ldquo;lost fix&rdquo; issues."
+    }
+  ]
+}
