@@ -1,0 +1,141 @@
+{
+  "title": "Sprint Planning Knowledge Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "What best characterizes a strong sprint goal?",
+      "options": [
+        "A collection of unrelated tasks",
+        "A committed list of every backlog item regardless of capacity",
+        "A cohesive outcome that guides trade offs and sequencing",
+        "An exact task list with hour estimates for each person"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "A sprint goal describes a coherent outcome that focuses the team and enables trade offs in scope while preserving intent.",
+      "keyConcepts": ["Sprint goal", "Focus", "Trade offs"]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Preferred slicing approach for stories selected in planning:",
+      "options": [
+        "Horizontal slices by layer only",
+        "Thin vertical slice that delivers end to end user value",
+        "One large spike followed by a big bang delivery",
+        "Only technical subtasks with no user impact"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Thin vertical slices validate value and integration early, reducing risk and carryover.",
+      "keyConcepts": ["Slicing", "Vertical slice", "Risk reduction"]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Capacity versus commitment guidance:",
+      "options": [
+        "Plan at 110 percent of capacity to push throughput",
+        "Commit exactly to average velocity without buffer",
+        "Ignore capacity if stakeholders need a date",
+        "Plan below capacity and include buffer for unplanned and support"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Plan conservatively against capacity and historical velocity, reserving buffer for support and discovery.",
+      "keyConcepts": ["Capacity", "Velocity", "Buffer"]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "How should carryover be handled at the end of a sprint?",
+      "options": [
+        "Split the work and keep only completed scope as done; roll the remainder",
+        "Mark everything done if it is close",
+        "Extend the sprint length to finish",
+        "Count points for partially completed work"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Only work that meets the definition of done is counted; remaining scope is split or re planned.",
+      "keyConcepts": ["Carryover", "Definition of done", "Splitting"]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Definition of ready primarily ensures:",
+      "options": [
+        "Tasks are fully coded before planning",
+        "Stories are clear, sized, and testable enough to plan",
+        "Stakeholders have approved every detail",
+        "Velocity will increase automatically"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Definition of ready sets entry quality so teams can plan and forecast with fewer surprises.",
+      "keyConcepts": ["Definition of ready", "Planning quality"]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Tasking during sprint planning is most useful when:",
+      "options": [
+        "It clarifies approach for complex stories without over specifying",
+        "It specifies minute by minute actions for the sprint",
+        "It replaces acceptance criteria",
+        "It is skipped for all work to save time"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Lightweight tasking can expose risk and dependencies for complex items while avoiding premature detail.",
+      "keyConcepts": ["Tasking", "Complexity", "Dependencies"]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "How should velocity be used in sprint planning?",
+      "options": [
+        "Set as a target to hit each sprint",
+        "Compare teams and rank performance",
+        "Ignore it and rely only on optimism",
+        "Use historical team trend as an input to forecast"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Velocity is a team internal forecasting signal, not a target or comparison metric.",
+      "keyConcepts": ["Velocity", "Forecasting", "Anti patterns"]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A dependent item is not ready due to an external team. Best action during planning:",
+      "options": [
+        "Commit anyway and hope it resolves",
+        "Overcommit to compensate",
+        "Surface the risk, add mitigation or spike, and re sequence if possible",
+        "Remove the story and cancel the sprint"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Identify dependencies early, plan spikes or mitigations, and choose items that keep the sprint goal achievable.",
+      "keyConcepts": ["Dependencies", "Risk", "Spikes"]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Given three backlog items that touch the same user outcome, write a sprint goal and describe one vertical slice that proves value early.",
+      "sampleStrongResponse": "Sprint goal focuses on a single outcome such as enabling self service password reset. Choose a thin slice that hits UI, API, and data path to complete one reset path, then iterate on edge cases."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Your team averages a velocity range of 20 to 26 over the last six sprints. Support typically consumes two points. Describe your commitment and buffer for the next sprint and why.",
+      "sampleStrongResponse": "Commit near the low end of historical range minus expected support, for example 18 to 20 points of planned work. Reserve explicit buffer for support and discovery. This preserves sprint goal focus and reduces rollover."
+    }
+  ]
+}

@@ -9,7 +9,10 @@ const root = path.resolve(__dirname, "..");
 
 const dataPath = path.join(root, "data/learning-content.json");
 const registryPath = path.join(root, "src/components/articles/registry.ts");
-const wrapperPath = path.join(root, "src/components/article-content-wrapper.tsx");
+const wrapperPath = path.join(
+  root,
+  "src/components/article-content-wrapper.tsx"
+);
 const articlesDir = path.join(root, "src/components/articles");
 
 const json = JSON.parse(fs.readFileSync(dataPath, "utf8"));
@@ -57,7 +60,9 @@ const registryKeys = Array.from(new Set([...dynamicKeys, ...legacyKeys]));
 
 // Coverage checks (authored components must be in JSON and in registry)
 const authoredMissingInJson = fileIds.filter((id) => !articleIds.includes(id));
-const authoredMissingInRegistry = fileIds.filter((id) => !registryKeys.includes(id));
+const authoredMissingInRegistry = fileIds.filter(
+  (id) => !registryKeys.includes(id)
+);
 
 // Basic quiz checks (points and structure)
 function validateQuiz(a) {
@@ -142,9 +147,15 @@ for (const cat of json.categories) {
 }
 
 if (authoredMissingInJson.length)
-  console.error("Authored article files missing JSON entries:", authoredMissingInJson);
+  console.error(
+    "Authored article files missing JSON entries:",
+    authoredMissingInJson
+  );
 if (authoredMissingInRegistry.length)
-  console.error("Authored article files missing registry mappings:", authoredMissingInRegistry);
+  console.error(
+    "Authored article files missing registry mappings:",
+    authoredMissingInRegistry
+  );
 if (unescaped.length)
   console.warn(
     "Unescaped quotes detected (escape with &ldquo; &rdquo; &rsquo;):",
@@ -153,7 +164,8 @@ if (unescaped.length)
 if (quizErrors.length)
   console.warn("Quiz structural issues detected:", quizErrors);
 
-if (authoredMissingInJson.length || authoredMissingInRegistry.length) process.exit(1);
+if (authoredMissingInJson.length || authoredMissingInRegistry.length)
+  process.exit(1);
 console.log(
   `Renderer coverage OK for authored components. Content checks completed for categories: ${[
     ...categoriesToCheck,

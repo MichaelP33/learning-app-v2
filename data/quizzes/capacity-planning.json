@@ -1,0 +1,141 @@
+{
+  "title": "Capacity Planning Knowledge Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Velocity is best used as:",
+      "options": [
+        "A target teams must hit",
+        "A comparison metric across teams",
+        "A performance rating for individuals",
+        "An input for team forecasting and planning"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Velocity is a team-internal trend to inform forecasts; it is not a target or comparison metric.",
+      "keyConcepts": ["Velocity", "Forecasting", "Anti patterns"]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Utilization near 100% typically leads to:",
+      "options": [
+        "Lower cycle time and faster flow",
+        "Higher wait times and queueing delays",
+        "Fewer incidents",
+        "More flexibility and buffer"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "High utilization creates queues and delays; leaving buffer improves predictability.",
+      "keyConcepts": ["Utilization", "Queues", "Predictability"]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A practical buffer for unplanned work in sprint forecasting:",
+      "options": [
+        "0% so we maximize commitment",
+        "10&ndash;20% based on historical interrupts",
+        "50% by default",
+        "Only if leadership asks for it"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Reserve a modest buffer based on history to absorb support and discovery without frequent rollover.",
+      "keyConcepts": ["Buffer", "Unplanned work", "Forecasting"]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Forecast ranges communicate:",
+      "options": [
+        "Certainty of a single date",
+        "A desire to avoid accountability",
+        "Confidence intervals that reflect variability",
+        "Only worst case scenarios"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Use ranges and probabilities to reflect uncertainty and set better expectations.",
+      "keyConcepts": ["Ranges", "Confidence", "Uncertainty"]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Variance in throughput or cycle time should prompt:",
+      "options": [
+        "Root cause exploration and scenario updates",
+        "Team comparison for competition",
+        "Immediate scope increase",
+        "Ignoring the data to avoid churn"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Investigate sources of variance and update scenarios and buffers accordingly.",
+      "keyConcepts": ["Variance", "Root cause", "Scenario updates"]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Scenario planning in capacity planning means:",
+      "options": [
+        "Choosing one plan and sticking to it",
+        "Deferring decisions until the deadline",
+        "Building multiple plausible plans with triggers to switch",
+        "Always picking the most optimistic plan"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Define best/base/worst cases with signals that indicate when to pivot between them.",
+      "keyConcepts": ["Scenario planning", "Triggers", "Pivoting"]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "How should historical velocity be combined with upcoming constraints?",
+      "options": [
+        "Ignore constraints if velocity is high",
+        "Keep the highest observed velocity as the commitment",
+        "Use the manager&rsquo;s preference",
+        "Adjust forecasts for holidays, support load, and dependencies"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Apply known constraints and expected interrupts to adjust from historical trends.",
+      "keyConcepts": ["Historical data", "Constraints", "Adjustments"]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A signal that a team is overcommitting in planning:",
+      "options": [
+        "Frequent rollover and growing WIP",
+        "Stable cycle time and minimal carryover",
+        "Predictable forecasts within range",
+        "Consistent buffer usage without spillover"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Rollover and growing WIP indicate overcommitment; reduce scope and increase slice thinness.",
+      "keyConcepts": ["Overcommitment", "WIP", "Rollover"]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "You have 6 sprints of data with velocities: 22, 18, 24, 20, 21, 19. Propose a forecast range and buffer for the next sprint, and explain how you would communicate confidence.",
+      "sampleStrongResponse": "Use recent range 18&ndash;24 with median near 20&ndash;21. Plan near the lower bound minus expected interrupts, e.g., 18&ndash;20 of planned work with a small buffer. Communicate as a range with confidence and assumptions, and revisit mid sprint with signals."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "A leadership date is proposed that assumes zero interrupts. Outline a scenario plan that includes triggers to tighten scope or switch tracks while maintaining quality.",
+      "sampleStrongResponse": "Create base/best/worst scenarios with explicit buffers and quality guardrails. Define triggers like support ticket volume or dependency slippage to tighten scope, defer lower value items, or switch to a fallback plan. Keep quality bars enforced by CI and DoD."
+    }
+  ]
+}
