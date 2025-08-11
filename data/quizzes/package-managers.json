@@ -1,0 +1,141 @@
+{
+  "title": "Package Managers Knowledge Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Lockfiles primarily ensure:",
+      "options": [
+        "Faster network speed regardless of versions",
+        "Automatic upgrades to latest versions on install",
+        "Deterministic, reproducible installs with exact transitive versions",
+        "That developers never need to commit dependency files"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Lockfiles capture resolved versions and integrity so installs match across machines and CI.",
+      "keyConcepts": ["Lockfiles", "Determinism", "Integrity"]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Integrity/signature checks are used to:",
+      "options": [
+        "Speed up compilation only",
+        "Replace testing",
+        "Decorate release notes",
+        "Detect tampering and verify publisher authenticity"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Integrity fields and signatures defend against tampering and support supply chain assurance.",
+      "keyConcepts": ["Integrity", "Signatures", "Supply chain security"]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "SemVer communicates impact as MAJOR.MINOR.PATCH. Which statement aligns?",
+      "options": [
+        "MAJOR signals breaking changes; MINOR adds features; PATCH fixes bugs",
+        "MAJOR/ MINOR/ PATCH are interchangeable",
+        "PATCH introduces experiments by default",
+        "MINOR always breaks APIs"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Use SemVer to set expectations: breaking vs additive vs fixes.",
+      "keyConcepts": ["SemVer", "Compatibility", "Impact"]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Recommended enterprise stance on install commands in CI:",
+      "options": [
+        "Use floating installs to catch new fixes",
+        "Use frozen, lockfile-respecting installs (e.g., npm ci, pip-sync)",
+        "Allow developers to skip installs",
+        "Always regenerate the lockfile on every CI run"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Frozen installs enforce the lockfile and prevent accidental drift.",
+      "keyConcepts": ["Frozen installs", "CI", "Drift prevention"]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Workspaces in monorepos primarily help by:",
+      "options": [
+        "Removing the need for version control",
+        "Publishing everything globally by default",
+        "Preventing local development across packages",
+        "Linking internal packages and sharing a single lockfile for consistency"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Workspaces speed local iteration and keep resolution consistent across packages.",
+      "keyConcepts": ["Workspaces", "Monorepos", "Shared lockfile"]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A safe update policy for dependencies is:",
+      "options": [
+        "Automate patch/minor updates with tests; plan majors with migration guides",
+        "Auto-merge all majors daily",
+        "Never update unless broken",
+        "Pin forever to first working version"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Routine small updates reduce risk; majors deserve scheduled migrations.",
+      "keyConcepts": ["Update cadence", "Automation", "Migrations"]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A practical registry governance control is:",
+      "options": [
+        "Public write for everyone",
+        "No audit logs",
+        "Namespace ownership and signature verification",
+        "Always use mutable tags in production"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Private proxies with ownership, signatures, and audit trails reduce supply chain risk.",
+      "keyConcepts": ["Registry governance", "Ownership", "Signatures"]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Which practice prevents &ldquo;random Monday versions&rdquo; in CI?",
+      "options": [
+        "Frozen installs that honor the lockfile",
+        "Running installs with network disabled",
+        "Allowing caret ranges without locks",
+        "Deleting node_modules on every run"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Use lockfile-enforcing commands (e.g., npm ci) to avoid drift from floating ranges.",
+      "keyConcepts": ["Deterministic installs", "Lockfile enforcement", "CI"]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Propose an enterprise policy that enforces lockfile usage, frozen installs, and integrity/signature checks across repos. How will exceptions be handled?",
+      "sampleStrongResponse": "Require committed lockfiles and frozen installs in CI (npm ci/pip-sync). Enforce integrity and signature verification at install/publish via private proxies. Maintain an exception registry with time-bound waivers and owner approval. Monitor drift and block merges on violations."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Design a monorepo workspace strategy: shared lockfile, boundaries, and publish flows that mimic production. How will you debug resolution issues?",
+      "sampleStrongResponse": "Use a single top-level lockfile with workspaces linking internal packages. Enforce boundaries via lint rules and build graphs. Publish through a private registry proxy; use digest/signature verification. When debugging, switch to isolated installs per package and trace resolution; then revert to hoisted for speed."
+    }
+  ]
+}

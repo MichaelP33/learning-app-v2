@@ -1,0 +1,141 @@
+{
+  "title": "Build Automation Knowledge Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Incremental builds primarily rely on:",
+      "options": [
+        "Timestamps on files to decide what to rebuild",
+        "A build graph with content hashing of declared inputs and tools",
+        "Manual selection of targets each run",
+        "Ignoring tool versions to keep keys stable"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Tracking inputs → outputs across a DAG and hashing inputs (including tool versions) lets the system skip unchanged work.",
+      "keyConcepts": ["Incremental builds", "Build graph", "Content hashing"]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Stable cache keys for build steps should include:",
+      "options": [
+        "Only filenames without content",
+        "Source digests, toolchain identifiers, env/flags that affect outputs",
+        "Timestamps and CI job number",
+        "Random seed to avoid collisions"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Cache keys must reflect all inputs to avoid collisions and enable deterministic reuse across machines.",
+      "keyConcepts": ["Cache keys", "Determinism", "Toolchain identifiers"]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A primary benefit of a remote build cache is:",
+      "options": [
+        "Forcing full rebuilds for safety",
+        "Storing logs only, not artifacts",
+        "Tying builds to a single runner",
+        "Sharing compiled results across CI agents and laptops"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Remote caches let teams reuse prior results across machines, cutting CI minutes and local feedback time.",
+      "keyConcepts": ["Remote cache", "Reuse", "CI speed"]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Which practice unlocks maximum parallelism in builds?",
+      "options": [
+        "Single-threaded minifiers",
+        "Global locks around package installation",
+        "Graph-aware scheduling of independent nodes",
+        "Serial test execution without sharding"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Model dependencies as a DAG and schedule independent nodes concurrently; shard long-running tests by runtime.",
+      "keyConcepts": ["Parallelization", "DAG", "Test sharding"]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Treating CI as a DAG of cacheable stages instead of shell scripts enables:",
+      "options": [
+        "Selective execution of only affected targets",
+        "Longer queues and idle cores",
+        "Hidden, ambient dependencies",
+        "Unbounded network access in compile steps"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Pipelines modeled as graphs make dependencies explicit and allow partial, affected-only runs.",
+      "keyConcepts": ["CI orchestration", "Affected-only runs", "Pipeline DAG"]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Matrix builds are primarily used to:",
+      "options": [
+        "Speed up a single OS by duplicating work",
+        "Hide flaky tests",
+        "Validate across OS/architectures in parallel",
+        "Reduce test coverage for faster runs"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Matrix builds fan out jobs across OS/arch combinations to catch portability issues efficiently.",
+      "keyConcepts": ["Matrix builds", "Cross-platform", "Parallelism"]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Why should artifacts be promoted by digest across environments?",
+      "options": [
+        "It preserves exact bits and provenance; no rebuilds during promotion",
+        "Digests are easier to remember than tags",
+        "It guarantees rebuilds at each stage",
+        "Tags are immutable everywhere"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Promoting by digest ensures the same artifact is used in staging and production, maintaining provenance and repeatability.",
+      "keyConcepts": ["Promotion", "Digest", "Provenance"]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "To prevent &ldquo;works on my machine&rdquo; failures, build systems should:",
+      "options": [
+        "Rely on developer PATH and host tools",
+        "Use hermetic, containerized toolchains and block undeclared network access",
+        "Skip hashing tool versions to keep caches warm",
+        "Allow ambient environment variables to influence outputs"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Hermetic builds pin tools and remove ambient state so outputs depend only on declared inputs.",
+      "keyConcepts": ["Hermetic builds", "Containers", "Determinism"]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Design a caching strategy for a large monorepo. What belongs in action keys, what should be stored remotely, and how will you pre-warm caches in CI?",
+      "sampleStrongResponse": "Compute content-addressed keys from source digests, toolchain image, env flags, and fetch inputs. Store action results and final artifacts in a remote cache. Pre-warm by reusing successful pipeline caches, seeding common targets on main, and sharing cache across branches. Track hit rates and fix missing inputs that cause cache misses."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Outline a hermetic CI pipeline as a DAG: compile, shard tests, package, SBOM/provenance/signing, and promotion. How will you measure success and enable fast rollback?",
+      "sampleStrongResponse": "Model stages as cacheable nodes. Compile with network blocked; shard tests by historical runtime; package artifacts and attach SBOM and provenance; sign outputs; promote by digest only after gates pass. Success metrics: p95 PR validation time, cache hit rate, change failure rate. Rollback by promoting a prior known-good digest with recorded evidence and alerts."
+    }
+  ]
+}

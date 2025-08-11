@@ -1,0 +1,141 @@
+{
+  "title": "Dependency Management Knowledge Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Most dependency risk in large systems comes from:",
+      "options": [
+        "Only direct dependencies that we import",
+        "Transitive dependencies pulled in by direct deps (blast radius)",
+        "Operating system packages only",
+        "Tooling unrelated to builds"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Transitives often hide vulnerabilities and create wide blast radius across many services.",
+      "keyConcepts": ["Transitive risk", "Blast radius", "Graphs"]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Effective triage of a CVE should prioritize:",
+      "options": [
+        "Package popularity",
+        "Reachability and exploitability in your binaries",
+        "Commit message length",
+        "Team size"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Use reachability to see if vulnerable code paths are invoked; combine with severity and compensating controls.",
+      "keyConcepts": ["Reachability", "Exploitability", "Triage"]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "License policy enforcement should be:",
+      "options": [
+        "Manual and ad-hoc",
+        "Performed only during annual audits",
+        "Automated as policy-as-code in CI and registries",
+        "Skipped for transitive dependencies"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Automate license allow/deny checks at PR time and publish; generate attribution for distributions.",
+      "keyConcepts": ["Licenses", "Policy-as-code", "Attribution"]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Why adopt regular update cadences?",
+      "options": [
+        "To defer risk until the end of the year",
+        "To accumulate larger, riskier upgrades",
+        "To avoid all PRs for months",
+        "To reduce big-bang upgrades and keep remediation fast"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Small, routine bumps keep systems fresh and make security fixes easier to ship.",
+      "keyConcepts": ["Update cadence", "Risk reduction", "Remediation speed"]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "When remediation must be deferred, a good practice is to:",
+      "options": [
+        "Accept permanent risk without record",
+        "Hide the issue to avoid attention",
+        "Remove attribution requirements",
+        "Record a time-bound exception with owner and expiry"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Time-bound exceptions with approvals prevent silent, permanent risk acceptance.",
+      "keyConcepts": ["Exceptions", "Governance", "Expiry"]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A common safe remediation path is:",
+      "options": [
+        "Rewrite the app immediately",
+        "Ignore advisories if tests are green",
+        "Backport a patch or pin to a safe minor and plan a major upgrade",
+        "Remove the dependency from SBOMs only"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Backports and safe pins buy time; majors get scheduled with migration guides and tests.",
+      "keyConcepts": ["Backport", "Pinning", "Major upgrade"]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Reasonable remediation SLAs often include:",
+      "options": [
+        "Only best-effort timelines",
+        "Critical in 48–72h; high in a sprint; others via cadence",
+        "No timelines for transitive issues",
+        "Annual remediation only"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Set clear SLAs to keep risk low while balancing team capacity.",
+      "keyConcepts": ["SLA", "Risk", "Prioritization"]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A key metric to track dependency program effectiveness is:",
+      "options": [
+        "Number of stars on GitHub",
+        "Lines of code changed",
+        "Number of packages installed per day",
+        "Remediation lead time from advisory to rollout"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Track how quickly advisories are triaged, fixed, tested, and rolled out across services.",
+      "keyConcepts": ["Lead time", "Advisories", "Program metrics"]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Design a company-wide dependency remediation workflow: ingestion of advisories, reachability analysis, triage, PR automation, canary rollout, and exception handling.",
+      "sampleStrongResponse": "Ingest advisories into a central system and map to SBOMs. Run reachability to prioritize. Auto-open PRs for safe bumps; create migration tracks for breakers. Canary critical services first behind flags. Track remediation lead time and require time-bound exceptions with owner/expiry for deferrals."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "A high-centrality library in your monorepo needs a major upgrade. Outline a plan that limits blast radius and preserves delivery: staging strategy, test strategy, and rollout.",
+      "sampleStrongResponse": "Add characterization and integration tests around critical paths. Create a branch with workspace isolation; bump the library and codemods. Roll out via flags/canary to low-risk services first, then expand. Monitor error rate and p95 latency; rollback by digest if thresholds breach. Complete attribution and license checks before production."
+    }
+  ]
+}
