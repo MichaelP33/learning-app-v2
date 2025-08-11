@@ -1,0 +1,141 @@
+{
+  "title": "Rollback Procedures Knowledge Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Core principle of reversible deployments?",
+      "options": [
+        "Design forward&ndash;only DB changes and idempotent operations with versioned artifacts",
+        "Allow destructive DB changes under peak load",
+        "Rely on manual recovery steps only",
+        "Avoid testing rollbacks in staging"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Reversible deployments favor forward&ndash;only migrations, idempotent ops, immutable artifacts, and rehearsal of rollbacks.",
+      "keyConcepts": ["Reversible deployments", "Idempotency", "Versioned artifacts"]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Blue/Green vs canary &mdash; which mapping is correct?",
+      "options": [
+        "Blue/Green maintains two environments for atomic traffic switch; canary starts with a small percentage",
+        "Blue/Green shifts a small percent first; canary flips all traffic instantly",
+        "Both are identical strategies",
+        "Canary requires DNS only; Blue/Green requires no routing changes"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Blue/Green runs two environments and flips traffic atomically for instant rollback; canary ramps a small percentage to detect regressions early.",
+      "keyConcepts": ["Blue/Green", "Canary", "Rollback speed"]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Observability requirement for safe rollback strategies?",
+      "options": [
+        "SLO&ndash;linked signals (errors, p95 latency) with alerting",
+        "Informal logging only",
+        "Manual dashboards after incidents",
+        "Noisy alerts without thresholds"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Rollback triggers depend on timely signals tied to SLOs with alerting to detect regressions quickly.",
+      "keyConcepts": ["Observability", "SLOs", "Alerts"]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Database&ndash;safe change pattern during migrations?",
+      "options": [
+        "Forward&ndash;only additive changes; temporary dual&ndash;write/dual&ndash;read",
+        "Destructive schema changes during peak",
+        "Permanent dual&ndash;write architecture",
+        "Skip backfill and reconcile later only if issues occur"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Prefer additive changes and short&ndash;lived dual&ndash;write/dual&ndash;read to migrate safely with clear backfill and reconciliation steps.",
+      "keyConcepts": ["Forward&ndash;only", "Dual write/read", "Backfill"]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Benefit of practicing rollbacks in staging?",
+      "options": [
+        "Reveals missing scripts and coupling before customers are impacted",
+        "Increases surprise during production",
+        "Eliminates the need for runbooks",
+        "Guarantees zero incidents"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Rehearsals expose gaps in scripts and hidden coupling early, improving confidence and speed during incidents.",
+      "keyConcepts": ["Rehearsal", "Staging", "Runbooks"]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Automated rollback triggers should:",
+      "options": [
+        "Use multi&ndash;signal confirmation tied to SLOs to avoid flapping",
+        "Flip on any single noisy metric",
+        "Depend on manual approval only",
+        "Ignore error budgets"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Combine metrics, logs, and synthetic checks with thresholds to trigger rollback reliably without flapping.",
+      "keyConcepts": ["Triggers", "Multi&ndash;signal", "Error budgets"]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Blast radius containment means:",
+      "options": [
+        "Stagger rollouts by region/cohort and isolate experiments from core flows",
+        "Roll out everywhere at once",
+        "Disable monitoring to reduce noise",
+        "Dark launch UI to all users first"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Limit simultaneous risk by regional or cohort ramps, dark launches, and isolation of experimental changes.",
+      "keyConcepts": ["Blast radius", "Staggered rollout", "Dark launch"]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Why pin artifacts, infra, and migrations?",
+      "options": [
+        "To reproduce prior states faithfully for deterministic rollback",
+        "To allow silent drift between environments",
+        "To avoid tagging releases",
+        "To remove the need for version control"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Pinning versions makes rollback deterministic by reproducing the previous known&ndash;good state.",
+      "keyConcepts": ["Version pinning", "Determinism", "Immutability"]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Draft a per&ndash;service rollback checklist for a DB migration. Include health checks, version pinning, backfill steps, and owner acknowledgements.",
+      "sampleStrongResponse": "Checklist: (1) Verify prior artifact and schema versions are available and pinned, (2) Pre&ndash;flight health checks green, (3) Backfill plan and verification queries prepared, (4) Dual&ndash;write toggle path and teardown plan documented, (5) Rollback triggers linked to SLO thresholds, (6) On&ndash;call and service owner acks recorded, (7) Post&ndash;rollback validation and changelog entry."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Compare canary vs Blue/Green for a high&ndash;traffic service. When would you choose each, and what rollback signals/triggers would you configure?",
+      "sampleStrongResponse": "Use canary for incremental risk: start at 1&ndash;5% to validate error rate and p95 latency with multi&ndash;signal confirmation; expand as signals stay green. Choose Blue/Green when you need instant rollback and minimal downtime: maintain two environments and flip traffic atomically. In both cases, define SLO thresholds, synthetic probes, and alerting; auto&ndash;revert on threshold breach and notify stakeholders with version and reason."
+    }
+  ]
+}
