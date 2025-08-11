@@ -168,6 +168,179 @@ export const externalQuizzes: Record<string, Quiz> = {
     }
   ]
 },
+  "capacity-planning": {
+  "title": "Capacity Planning Knowledge Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Velocity is best used as:",
+      "options": [
+        "A target teams must hit",
+        "A comparison metric across teams",
+        "A performance rating for individuals",
+        "An input for team forecasting and planning"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Velocity is a team-internal trend to inform forecasts; it is not a target or comparison metric.",
+      "keyConcepts": [
+        "Velocity",
+        "Forecasting",
+        "Anti patterns"
+      ]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Utilization near 100% typically leads to:",
+      "options": [
+        "Lower cycle time and faster flow",
+        "Higher wait times and queueing delays",
+        "Fewer incidents",
+        "More flexibility and buffer"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "High utilization creates queues and delays; leaving buffer improves predictability.",
+      "keyConcepts": [
+        "Utilization",
+        "Queues",
+        "Predictability"
+      ]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A practical buffer for unplanned work in sprint forecasting:",
+      "options": [
+        "0% so we maximize commitment",
+        "10&ndash;20% based on historical interrupts",
+        "50% by default",
+        "Only if leadership asks for it"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Reserve a modest buffer based on history to absorb support and discovery without frequent rollover.",
+      "keyConcepts": [
+        "Buffer",
+        "Unplanned work",
+        "Forecasting"
+      ]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Forecast ranges communicate:",
+      "options": [
+        "Certainty of a single date",
+        "A desire to avoid accountability",
+        "Confidence intervals that reflect variability",
+        "Only worst case scenarios"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Use ranges and probabilities to reflect uncertainty and set better expectations.",
+      "keyConcepts": [
+        "Ranges",
+        "Confidence",
+        "Uncertainty"
+      ]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Variance in throughput or cycle time should prompt:",
+      "options": [
+        "Root cause exploration and scenario updates",
+        "Team comparison for competition",
+        "Immediate scope increase",
+        "Ignoring the data to avoid churn"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Investigate sources of variance and update scenarios and buffers accordingly.",
+      "keyConcepts": [
+        "Variance",
+        "Root cause",
+        "Scenario updates"
+      ]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Scenario planning in capacity planning means:",
+      "options": [
+        "Choosing one plan and sticking to it",
+        "Deferring decisions until the deadline",
+        "Building multiple plausible plans with triggers to switch",
+        "Always picking the most optimistic plan"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Define best/base/worst cases with signals that indicate when to pivot between them.",
+      "keyConcepts": [
+        "Scenario planning",
+        "Triggers",
+        "Pivoting"
+      ]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "How should historical velocity be combined with upcoming constraints?",
+      "options": [
+        "Ignore constraints if velocity is high",
+        "Keep the highest observed velocity as the commitment",
+        "Use the manager&rsquo;s preference",
+        "Adjust forecasts for holidays, support load, and dependencies"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Apply known constraints and expected interrupts to adjust from historical trends.",
+      "keyConcepts": [
+        "Historical data",
+        "Constraints",
+        "Adjustments"
+      ]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A signal that a team is overcommitting in planning:",
+      "options": [
+        "Frequent rollover and growing WIP",
+        "Stable cycle time and minimal carryover",
+        "Predictable forecasts within range",
+        "Consistent buffer usage without spillover"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Rollover and growing WIP indicate overcommitment; reduce scope and increase slice thinness.",
+      "keyConcepts": [
+        "Overcommitment",
+        "WIP",
+        "Rollover"
+      ]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "You have 6 sprints of data with velocities: 22, 18, 24, 20, 21, 19. Propose a forecast range and buffer for the next sprint, and explain how you would communicate confidence.",
+      "sampleStrongResponse": "Use recent range 18&ndash;24 with median near 20&ndash;21. Plan near the lower bound minus expected interrupts, e.g., 18&ndash;20 of planned work with a small buffer. Communicate as a range with confidence and assumptions, and revisit mid sprint with signals."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "A leadership date is proposed that assumes zero interrupts. Outline a scenario plan that includes triggers to tighten scope or switch tracks while maintaining quality.",
+      "sampleStrongResponse": "Create base/best/worst scenarios with explicit buffers and quality guardrails. Define triggers like support ticket volume or dependency slippage to tighten scope, defer lower value items, or switch to a fallback plan. Keep quality bars enforced by CI and DoD."
+    }
+  ]
+},
   "code-reviews": {
   "title": "Code Reviews Knowledge Quiz",
   "totalQuestions": 10,
@@ -1188,6 +1361,524 @@ export const externalQuizzes: Record<string, Quiz> = {
       "points": 5,
       "question": "You must land a risky concurrency change under time pressure. Propose a pairing plan (who, when, where) and justify the ROI. How will you measure success?",
       "sampleStrongResponse": "Pair a domain expert with an implementer in the highest‑risk code area during peak collaboration hours. Use shared cursors, prompts, and test‑first scaffolding. Success metrics: reduction in escaped defects, faster code review cycle time, stable performance metrics, and positive developer sentiment."
+    }
+  ]
+},
+  "risk-assessment": {
+  "title": "Risk Assessment Knowledge Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "What is the primary purpose of a likelihood/impact matrix?",
+      "options": [
+        "To assign blame after incidents",
+        "To create audit paperwork only",
+        "To replace monitoring entirely",
+        "To visualize risk exposure and prioritize mitigations"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "The matrix highlights high likelihood/high impact risks for prioritization and mitigation planning.",
+      "keyConcepts": [
+        "Risk matrix",
+        "Prioritization",
+        "Exposure"
+      ]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A mitigation differs from a contingency because:",
+      "options": [
+        "Mitigation is applied after the risk occurs; contingency is before",
+        "They are identical",
+        "Mitigation reduces likelihood/impact beforehand; contingency is the plan if the risk happens",
+        "Contingency reduces probability only"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Mitigations act proactively to reduce probability or impact; contingencies are &ldquo;what we do if it happens&rdquo;.",
+      "keyConcepts": [
+        "Mitigation",
+        "Contingency",
+        "Proactive vs reactive"
+      ]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A good trigger for a risk is:",
+      "options": [
+        "A specific observable event like error rate exceeding a threshold",
+        "Vague concern with no observable signal",
+        "A quarterly meeting invite",
+        "A teammate&rsquo;s feeling"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Triggers should be measurable signals (metrics, logs, events) that indicate increased risk likelihood.",
+      "keyConcepts": [
+        "Triggers",
+        "Signals",
+        "Monitoring"
+      ]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Which practice supports ongoing risk visibility during a project?",
+      "options": [
+        "Static risk list created once",
+        "Risk burndown chart updated with discovery and mitigations",
+        "Only postmortems",
+        "Ignoring low probability risks"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "A risk burndown tracks exposure over time and shows effect of mitigations and new discoveries.",
+      "keyConcepts": [
+        "Risk burndown",
+        "Discovery",
+        "Exposure over time"
+      ]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "When interpreting a risk burndown that is flat or rising:",
+      "options": [
+        "Everything is fine by default",
+        "It proves schedule padding is too large",
+        "It means we overestimated impact",
+        "It indicates mitigations are insufficient or new risks emerged"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Flat or rising exposure suggests mitigations are ineffective or risks are being discovered faster than addressed.",
+      "keyConcepts": [
+        "Interpretation",
+        "Exposure",
+        "Mitigation effectiveness"
+      ]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Scenario planning helps by:",
+      "options": [
+        "Eliminating all uncertainty",
+        "Replacing incident response",
+        "Defining responses for plausible futures and decision points",
+        "Guaranteeing dates regardless of risk"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Scenarios outline plausible futures with triggers/decision points so teams can act quickly when signals occur.",
+      "keyConcepts": [
+        "Scenario planning",
+        "Decision points",
+        "Futures"
+      ]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A common bias to avoid in risk assessment:",
+      "options": [
+        "Anchoring to first estimates without new data",
+        "Using data from monitoring",
+        "Considering multiple mitigation options",
+        "Revisiting assumptions when signals change"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Anchoring and confirmation bias can distort likelihood/impact estimates; regularly revisit with fresh data.",
+      "keyConcepts": [
+        "Bias",
+        "Anchoring",
+        "Confirmation bias"
+      ]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Which combination best reduces risk exposure before launch?",
+      "options": [
+        "Disable monitoring and ship",
+        "Pilot with canary/feature flags plus rollback strategy",
+        "Skip load testing to save time",
+        "Ship on Friday evening"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Pilots with flags and clear rollback reduce blast radius and time to recover.",
+      "keyConcepts": [
+        "Pilot",
+        "Feature flags",
+        "Rollback"
+      ]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "You inherit a project with high unknowns. Describe how you would establish a risk register with triggers, mitigations, and contingencies. How will you track exposure over time?",
+      "sampleStrongResponse": "Create a lightweight register listing risk, likelihood, impact, owner, trigger, mitigation, contingency. Tie triggers to metrics/logs and review weekly. Track exposure via a risk burndown chart updated as mitigations land and new risks are discovered."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "An upcoming launch depends on an external API with uncertain limits. Propose mitigations and contingencies, including signals to switch strategies.",
+      "sampleStrongResponse": "Mitigations: cache, rate limiting, backoff, prefetching, contract tests. Contingencies: failover path, toggle to reduced capability, staged rollout. Signals: elevated 429/5xx rate or latency p95 crossing threshold triggers fallback and rollback."
+    }
+  ]
+},
+  "sprint-planning": {
+  "title": "Sprint Planning Knowledge Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "What best characterizes a strong sprint goal?",
+      "options": [
+        "A collection of unrelated tasks",
+        "A committed list of every backlog item regardless of capacity",
+        "A cohesive outcome that guides trade offs and sequencing",
+        "An exact task list with hour estimates for each person"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "A sprint goal describes a coherent outcome that focuses the team and enables trade offs in scope while preserving intent.",
+      "keyConcepts": [
+        "Sprint goal",
+        "Focus",
+        "Trade offs"
+      ]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Preferred slicing approach for stories selected in planning:",
+      "options": [
+        "Horizontal slices by layer only",
+        "Thin vertical slice that delivers end to end user value",
+        "One large spike followed by a big bang delivery",
+        "Only technical subtasks with no user impact"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Thin vertical slices validate value and integration early, reducing risk and carryover.",
+      "keyConcepts": [
+        "Slicing",
+        "Vertical slice",
+        "Risk reduction"
+      ]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Capacity versus commitment guidance:",
+      "options": [
+        "Plan at 110 percent of capacity to push throughput",
+        "Commit exactly to average velocity without buffer",
+        "Ignore capacity if stakeholders need a date",
+        "Plan below capacity and include buffer for unplanned and support"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Plan conservatively against capacity and historical velocity, reserving buffer for support and discovery.",
+      "keyConcepts": [
+        "Capacity",
+        "Velocity",
+        "Buffer"
+      ]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "How should carryover be handled at the end of a sprint?",
+      "options": [
+        "Split the work and keep only completed scope as done; roll the remainder",
+        "Mark everything done if it is close",
+        "Extend the sprint length to finish",
+        "Count points for partially completed work"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Only work that meets the definition of done is counted; remaining scope is split or re planned.",
+      "keyConcepts": [
+        "Carryover",
+        "Definition of done",
+        "Splitting"
+      ]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Definition of ready primarily ensures:",
+      "options": [
+        "Tasks are fully coded before planning",
+        "Stories are clear, sized, and testable enough to plan",
+        "Stakeholders have approved every detail",
+        "Velocity will increase automatically"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Definition of ready sets entry quality so teams can plan and forecast with fewer surprises.",
+      "keyConcepts": [
+        "Definition of ready",
+        "Planning quality"
+      ]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Tasking during sprint planning is most useful when:",
+      "options": [
+        "It clarifies approach for complex stories without over specifying",
+        "It specifies minute by minute actions for the sprint",
+        "It replaces acceptance criteria",
+        "It is skipped for all work to save time"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Lightweight tasking can expose risk and dependencies for complex items while avoiding premature detail.",
+      "keyConcepts": [
+        "Tasking",
+        "Complexity",
+        "Dependencies"
+      ]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "How should velocity be used in sprint planning?",
+      "options": [
+        "Set as a target to hit each sprint",
+        "Compare teams and rank performance",
+        "Ignore it and rely only on optimism",
+        "Use historical team trend as an input to forecast"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Velocity is a team internal forecasting signal, not a target or comparison metric.",
+      "keyConcepts": [
+        "Velocity",
+        "Forecasting",
+        "Anti patterns"
+      ]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A dependent item is not ready due to an external team. Best action during planning:",
+      "options": [
+        "Commit anyway and hope it resolves",
+        "Overcommit to compensate",
+        "Surface the risk, add mitigation or spike, and re sequence if possible",
+        "Remove the story and cancel the sprint"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Identify dependencies early, plan spikes or mitigations, and choose items that keep the sprint goal achievable.",
+      "keyConcepts": [
+        "Dependencies",
+        "Risk",
+        "Spikes"
+      ]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Given three backlog items that touch the same user outcome, write a sprint goal and describe one vertical slice that proves value early.",
+      "sampleStrongResponse": "Sprint goal focuses on a single outcome such as enabling self service password reset. Choose a thin slice that hits UI, API, and data path to complete one reset path, then iterate on edge cases."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Your team averages a velocity range of 20 to 26 over the last six sprints. Support typically consumes two points. Describe your commitment and buffer for the next sprint and why.",
+      "sampleStrongResponse": "Commit near the low end of historical range minus expected support, for example 18 to 20 points of planned work. Reserve explicit buffer for support and discovery. This preserves sprint goal focus and reduces rollover."
+    }
+  ]
+},
+  "technical-debt-management": {
+  "title": "Technical Debt Management Knowledge Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "What is the “interest” on technical debt?",
+      "options": [
+        "Ongoing extra effort, defects, and slower delivery caused by the debt",
+        "The one time refactor cost",
+        "Financial expense from cloud invoices",
+        "Depreciation of hardware"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Interest manifests as recurring costs: slower changes, more bugs, and reduced throughput until the debt is addressed.",
+      "keyConcepts": [
+        "Technical debt",
+        "Interest",
+        "Throughput"
+      ]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Best first step to prioritize a portfolio of debt items:",
+      "options": [
+        "Sort alphabetically",
+        "Estimate once and forget",
+        "Only fix what engineers find annoying",
+        "Create a simple impact versus effort matrix with triggers"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Use impact/effort and clear triggers (e.g., incident count, lead time) to decide when to pay down debt.",
+      "keyConcepts": [
+        "Prioritization",
+        "Impact/Effort",
+        "Triggers"
+      ]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A safe refactor strategy for high risk areas includes:",
+      "options": [
+        "Large bang rewrite without tests",
+        "Editing production directly",
+        "Refactor behind feature flags with incremental steps and tests",
+        "Skipping code review to move faster"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Incremental refactors with tests and flags reduce blast radius and allow progressive hardening.",
+      "keyConcepts": [
+        "Refactor",
+        "Feature flags",
+        "Incremental"
+      ]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Which safety net most directly reduces refactor risk?",
+      "options": [
+        "Weekly email updates",
+        "Automated tests in CI with fast feedback",
+        "Extensive manual QA only",
+        "Bigger PRs to keep context together"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Automated unit, integration, and contract tests in CI catch regressions quickly.",
+      "keyConcepts": [
+        "CI",
+        "Automated tests",
+        "Regression"
+      ]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A clear guardrail for tech debt management is:",
+      "options": [
+        "No tests needed if code is simple",
+        "Avoid writing ADRs for debt-related decisions",
+        "Merge on red builds if change is urgent",
+        "Block refactors that reduce coverage below threshold"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Policy-as-code guardrails keep quality bars intact during refactors.",
+      "keyConcepts": [
+        "Guardrails",
+        "Policy as code",
+        "Coverage"
+      ]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Identifying technical debt effectively involves:",
+      "options": [
+        "Using signals like flaky tests, long lead time, hotspots, and incident history",
+        "Only engineers logging annoyances",
+        "Relying solely on intuition",
+        "Ignoring production metrics"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Objective signals surface cost centers: hotspots in version control, MTTR, change failure rate, flaky tests.",
+      "keyConcepts": [
+        "Signals",
+        "Hotspots",
+        "Incidents"
+      ]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "When should you schedule debt work within sprints?",
+      "options": [
+        "Only when there is no feature work",
+        "As dedicated slices within feature work or a small standing allocation",
+        "Never; it fixes itself",
+        "At the very end of a release only"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Blend debt work into the flow or reserve a small, explicit allocation to avoid perpetual deferral.",
+      "keyConcepts": [
+        "Scheduling",
+        "Allocation",
+        "Flow"
+      ]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A telltale sign that a rewrite is riskier than an incremental refactor:",
+      "options": [
+        "Interfaces are stable and well tested",
+        "There is robust observability and contract tests",
+        "Large unknowns and undocumented behaviors exist",
+        "The area has low coupling and clear boundaries"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Undocumented edge cases make big bang rewrites risky; prefer incremental changes with characterization tests.",
+      "keyConcepts": [
+        "Rewrite risk",
+        "Characterization tests",
+        "Unknowns"
+      ]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "You have a payment service with frequent hotfixes due to brittle code. Outline a plan to stabilize it while paying down debt with safety nets.",
+      "sampleStrongResponse": "Introduce contract and integration tests around critical paths, add logging and tracing, and refactor behind feature flags in small steps. Track change failure rate and MTTR; require green CI and coverage thresholds for merges."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Propose a quarterly technical debt roadmap that balances feature delivery and debt. Include triggers to escalate specific items.",
+      "sampleStrongResponse": "Reserve a 10–15% allocation for prioritized debt tied to measurable outcomes (lead time, CFR). Use an impact/effort matrix, set triggers like incident count or blocked PRs, and review monthly. Escalate items when triggers fire or variance grows."
     }
   ]
 }

@@ -1,0 +1,141 @@
+{
+  "title": "Technical Debt Management Knowledge Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "What is the \u201cinterest\u201d on technical debt?",
+      "options": [
+        "Ongoing extra effort, defects, and slower delivery caused by the debt",
+        "The one time refactor cost",
+        "Financial expense from cloud invoices",
+        "Depreciation of hardware"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Interest manifests as recurring costs: slower changes, more bugs, and reduced throughput until the debt is addressed.",
+      "keyConcepts": ["Technical debt", "Interest", "Throughput"]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Best first step to prioritize a portfolio of debt items:",
+      "options": [
+        "Sort alphabetically",
+        "Estimate once and forget",
+        "Only fix what engineers find annoying",
+        "Create a simple impact versus effort matrix with triggers"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Use impact/effort and clear triggers (e.g., incident count, lead time) to decide when to pay down debt.",
+      "keyConcepts": ["Prioritization", "Impact/Effort", "Triggers"]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A safe refactor strategy for high risk areas includes:",
+      "options": [
+        "Large bang rewrite without tests",
+        "Editing production directly",
+        "Refactor behind feature flags with incremental steps and tests",
+        "Skipping code review to move faster"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Incremental refactors with tests and flags reduce blast radius and allow progressive hardening.",
+      "keyConcepts": ["Refactor", "Feature flags", "Incremental"]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Which safety net most directly reduces refactor risk?",
+      "options": [
+        "Weekly email updates",
+        "Automated tests in CI with fast feedback",
+        "Extensive manual QA only",
+        "Bigger PRs to keep context together"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Automated unit, integration, and contract tests in CI catch regressions quickly.",
+      "keyConcepts": ["CI", "Automated tests", "Regression"]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A clear guardrail for tech debt management is:",
+      "options": [
+        "No tests needed if code is simple",
+        "Avoid writing ADRs for debt-related decisions",
+        "Merge on red builds if change is urgent",
+        "Block refactors that reduce coverage below threshold"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Policy-as-code guardrails keep quality bars intact during refactors.",
+      "keyConcepts": ["Guardrails", "Policy as code", "Coverage"]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Identifying technical debt effectively involves:",
+      "options": [
+        "Using signals like flaky tests, long lead time, hotspots, and incident history",
+        "Only engineers logging annoyances",
+        "Relying solely on intuition",
+        "Ignoring production metrics"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Objective signals surface cost centers: hotspots in version control, MTTR, change failure rate, flaky tests.",
+      "keyConcepts": ["Signals", "Hotspots", "Incidents"]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "When should you schedule debt work within sprints?",
+      "options": [
+        "Only when there is no feature work",
+        "As dedicated slices within feature work or a small standing allocation",
+        "Never; it fixes itself",
+        "At the very end of a release only"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Blend debt work into the flow or reserve a small, explicit allocation to avoid perpetual deferral.",
+      "keyConcepts": ["Scheduling", "Allocation", "Flow"]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A telltale sign that a rewrite is riskier than an incremental refactor:",
+      "options": [
+        "Interfaces are stable and well tested",
+        "There is robust observability and contract tests",
+        "Large unknowns and undocumented behaviors exist",
+        "The area has low coupling and clear boundaries"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Undocumented edge cases make big bang rewrites risky; prefer incremental changes with characterization tests.",
+      "keyConcepts": ["Rewrite risk", "Characterization tests", "Unknowns"]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "You have a payment service with frequent hotfixes due to brittle code. Outline a plan to stabilize it while paying down debt with safety nets.",
+      "sampleStrongResponse": "Introduce contract and integration tests around critical paths, add logging and tracing, and refactor behind feature flags in small steps. Track change failure rate and MTTR; require green CI and coverage thresholds for merges."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Propose a quarterly technical debt roadmap that balances feature delivery and debt. Include triggers to escalate specific items.",
+      "sampleStrongResponse": "Reserve a 10\u201315% allocation for prioritized debt tied to measurable outcomes (lead time, CFR). Use an impact/effort matrix, set triggers like incident count or blocked PRs, and review monthly. Escalate items when triggers fire or variance grows."
+    }
+  ]
+}
