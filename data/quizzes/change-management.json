@@ -1,0 +1,141 @@
+{
+  "title": "Change Management Knowledge Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Approvals vs guardrails &mdash; which is the mature stance?",
+      "options": [
+        "Shift routine, low&ndash;risk changes to automated guardrails; reserve approvals for high risk",
+        "Require approvals for all changes regardless of risk",
+        "Eliminate guardrails and rely on manager sign&ndash;off",
+        "Use approvals only after incidents"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Mature orgs automate safety checks (&ldquo;policy&ndash;as&ndash;code&rdquo;) and retain approvals for novel or high&ndash;risk work.",
+      "keyConcepts": ["Approvals", "Guardrails", "Policy&ndash;as&ndash;code"]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Risk assessment inputs emphasized in the article?",
+      "options": [
+        "Impact, likelihood, detectability; consider seasonality and customer segments",
+        "Aesthetics, novelty, brand color",
+        "Developer preference only",
+        "Cost of hardware upgrades"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Assess impact, likelihood, and detectability; include context like holiday traffic spikes and affected segments.",
+      "keyConcepts": ["Risk assessment", "Detectability", "Seasonality"]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Purpose of change windows?",
+      "options": [
+        "Concentrate staffing/comms when risk appetite is higher; keep emergency windows for true urgent work",
+        "Spread staffing thinly across time",
+        "Guarantee zero incidents",
+        "Replace guardrails with manual reviews"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Change windows coordinate people and communication for planned risk, while emergency criteria avoid blanket freezes.",
+      "keyConcepts": ["Change windows", "Risk appetite", "Emergency windows"]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Communication and audit essentials for significant changes include:",
+      "options": [
+        "Pre&ndash;announce timelines/mitigations; keep who/what/when/why in audit trails",
+        "Verbal updates only",
+        "Hide impact until after rollout",
+        "Delete records after success"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Communicate early and maintain auditability: record approvers, rationale, timing, and link to artifacts/incidents.",
+      "keyConcepts": ["Communication plan", "Audit trail", "Stakeholders"]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Change Advisory Board (CAB) usage per the article?",
+      "options": [
+        "Use for complex, multi&ndash;system changes; avoid for routine reversible work with strong guardrails",
+        "Use for all production changes",
+        "Avoid entirely",
+        "Only convene after outages"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "CABs help coordinate cross&ndash;system change; they are overkill for routine changes where guardrails suffice.",
+      "keyConcepts": ["CAB", "Cross&ndash;team coordination", "Guardrails"]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "What increases safe throughput according to the article?",
+      "options": [
+        "Guardrails enabling smaller, more frequent changes",
+        "Bigger batches and rarer releases",
+        "Eliminating monitoring during windows",
+        "Unlimited parallel high&ndash;risk changes"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Smaller, frequent changes with automated checks reduce batch risk and increase safe throughput.",
+      "keyConcepts": ["Throughput", "Batch size", "Guardrails"]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Auditability by default means:",
+      "options": [
+        "Collect approvals, evidence, and outcomes in one system; link to monitoring and tickets",
+        "Keep approvals separate from outcomes",
+        "Store records in personal notes",
+        "Only log issues, not changes"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Centralize change records with links to PRs, deploys, incidents, RCAs, and monitoring annotations.",
+      "keyConcepts": ["Auditability", "Single source of truth", "Integrations"]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "When replacing approvals with guardrails, teams should:",
+      "options": [
+        "Map risk tiers to guardrails and keep human review for high&ndash;impact or irreversible changes",
+        "Remove all human review for novel changes",
+        "Use guardrails only for staging",
+        "Decide informally per engineer"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Codify risk tiers and align guardrails/approval paths; preserve human review for high&ndash;impact or irreversible changes.",
+      "keyConcepts": ["Risk tiers", "Guardrails mapping", "Approvals"]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Classify a database index addition during peak season. Propose risk tier, guardrails vs approvals, change window, and communication artifacts.",
+      "sampleStrongResponse": "Risk: medium&ndash;high due to peak traffic and potential latency impact. Guardrails: tests, migration dry&ndash;run on prod&ndash;like data, capacity checks, monitoring annotations, rollback plan. Approvals: domain owner + DBA. Change window: staffed period with on&ndash;call ack. Comms: pre&ndash;announce internal impact, link to runbook and rollback triggers; update audit record with outcomes."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Design an end&ndash;to&ndash;end change record template that satisfies audit trail essentials and streamlines comms. Include how low&ndash;risk changes self&ndash;approve when guardrails pass.",
+      "sampleStrongResponse": "Template fields: what/why, risk tier, guardrails evidence (tests, SLO checks, rollout/rollback plan), approvers (auto&ndash;assigned by domain), change window, monitoring annotations, links to PRs/flags/deploys, and outcomes/RCAs. Policy: if risk tier is low and all guardrails pass, auto self&ndash;approve with owner ack; otherwise require listed approvers. System auto&ndash;publishes comms to stakeholders and stores immutable logs."
+    }
+  ]
+}

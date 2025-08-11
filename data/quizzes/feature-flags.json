@@ -1,0 +1,141 @@
+{
+  "title": "Feature Flags Knowledge Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Which statement correctly maps common flag types?",
+      "options": [
+        "Release flags gate incomplete work; ops flags toggle runtime behavior; experiment flags run A/B or multivariate tests",
+        "Release flags for experiments; ops flags for A/B tests; experiment flags for incident response",
+        "Ops flags hide WIP; experiment flags manage cache TTLs; release flags target cohorts",
+        "All flag types are interchangeable if you log evaluations"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Release flags hide work&ndash;in&ndash;progress, ops flags change operational behavior, and experiment flags power A/B or multivariate tests.",
+      "keyConcepts": ["Flag taxonomy", "Release", "Ops", "Experiment"]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Best practice at flag creation time?",
+      "options": [
+        "Skip ownership to reduce process",
+        "Set intent (&ldquo;release&rdquo;/&ldquo;ops&rdquo;/&ldquo;experiment&rdquo;), owner, and a remove&ndash;by date",
+        "Default flags to permanent",
+        "Use ad&ndash;hoc names and rely on memory"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Defining intent, ownership, and expiry up front prevents orphaned toggles and reduces future risk.",
+      "keyConcepts": ["Lifecycle", "Ownership", "Expiry"]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Safe default rollout pattern for a new high&ndash;risk flag?",
+      "options": [
+        "Flip globally immediately",
+        "Target only new users worldwide",
+        "Ramp from internal/staff to small percentages, then cohorts or regions",
+        "Roll out by random servers without monitoring"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Start with staff/internal exposure, then percentage ramps or cohort/geo targeting to limit blast radius while learning.",
+      "keyConcepts": ["Progressive delivery", "Targeting", "Blast radius"]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A &ldquo;kill switch&rdquo; for critical surfaces should:",
+      "options": [
+        "Depend on long cache TTLs to avoid flapping",
+        "Require code redeploys to take effect",
+        "Be limited to staging environments",
+        "Be instantly actionable via synchronous control or fast&ndash;refresh rules"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "High&ndash;risk flags need a rapid disable path: synchronous control plane or cached rules with short TTLs.",
+      "keyConcepts": ["Kill switch", "TTL", "Critical paths"]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "What is &ldquo;flag debt&rdquo; and how do you avoid it?",
+      "options": [
+        "Latent complexity from stale flags; schedule removal sprints and automate cleanup",
+        "A list of disabled flags to never remove",
+        "The number of flags flipped per day; increase to reduce debt",
+        "Debt measured only by experiment variants"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Stale flags add branching complexity and outage risk. Track intent and expiry; remove promptly after success.",
+      "keyConcepts": ["Flag debt", "Cleanup", "Lifecycle"]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Why log flag evaluations with subject/context keys?",
+      "options": [
+        "To eliminate the need for testing",
+        "To enable audits and investigations of &ldquo;who saw what and why&rdquo;",
+        "To speed up database queries",
+        "To randomly sample user behavior"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Evaluation logs provide auditability and help explain outcomes in incidents or experiments.",
+      "keyConcepts": ["Auditability", "Evaluation logs", "Compliance"]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Governance guidance for sensitive flags (privacy, billing)?",
+      "options": [
+        "Single&ndash;operator control",
+        "Public voting",
+        "Dual control, approvals, and immutable logs",
+        "Flip only during off&ndash;hours without records"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Sensitive flags should require stronger controls: approvals, dual control, and complete audit trails.",
+      "keyConcepts": ["Governance", "Approvals", "Audit trail"]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "When should teams coordinate a change window for flips?",
+      "options": [
+        "For small internal tests only",
+        "Never; flips should be silent",
+        "Only after an incident has occurred",
+        "For large audience changes where support/comms need preparation"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Coordinate windows for high&ndash;impact flips so support and stakeholders are prepared.",
+      "keyConcepts": ["Change windows", "Stakeholder comms", "Support prep"]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Outline a flag lifecycle from creation to cleanup. Include owner, intent, telemetry thresholds for success, rollout plan, and a &ldquo;remove by&rdquo; date.",
+      "sampleStrongResponse": "Create the flag with intent (&ldquo;release&rdquo;/&ldquo;ops&rdquo;/&ldquo;experiment&rdquo;), named owner, and remove&ndash;by date. Start with staff exposure, then ramp by percentage/cohort while tracking conversion, error rate, and p95 latency against thresholds. Maintain evaluation logs with subject/context. After success, execute a removal PR and delete targeting rules to avoid flag debt."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Design a safe rollout for a high&ndash;risk payment feature behind a flag. Describe targeting, blast radius containment, kill switch behavior, and cleanup criteria.",
+      "sampleStrongResponse": "Start internal&ndash;only, then 1% of a low&ndash;risk cohort by region, ramping while SLOs hold. Enable a global emergency off switch with short TTL rule refresh. Log all evaluations with user and reason. Predefine rollback triggers (error rate, p95 latency) and halt expansion if breached. Declare success criteria (conversion, error budgets) and schedule a removal PR once thresholds are met."
+    }
+  ]
+}
