@@ -4,6 +4,7 @@ export interface Article {
   learningStatus: "Not started" | "In progress" | "Completed" | "Reviewing";
   priorityStatus: "Low" | "Medium" | "High" | "Critical";
   description: string;
+  summary?: string;
   topics: string[];
   quiz?: Quiz;
 }
