@@ -1,0 +1,141 @@
+{
+  "title": "Mob Programming Knowledge Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Mob programming involves:",
+      "options": [
+        "The whole team collaborating at one keyboard with explicit roles and timeboxes",
+        "Two developers working asynchronously",
+        "Managers writing code with the team",
+        "Solo development with periodic check‑ins"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Mob sessions synchronize attention and decision‑making via facilitation, roles, and timers.",
+      "keyConcepts": ["Whole‑team", "Facilitation", "Timeboxes"]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Key roles often used in mobs:",
+      "options": [
+        "Driver, Facilitator, Navigator(s)",
+        "Scrum Master, Product Owner, Executive",
+        "Only Driver and no other roles",
+        "Auditor and Scribe only"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Driver operates the keyboard, Facilitator manages flow, Navigator(s) guide approach and architecture.",
+      "keyConcepts": ["Driver", "Facilitator", "Navigator"]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "When mobs are most beneficial:",
+      "options": [
+        "Architecture definition and cross‑cutting decisions",
+        "Routine formatting changes",
+        "Late‑night hotfixing without context",
+        "Simple CSS tweaks"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Mobs accelerate convergence on complex, high‑impact decisions and gnarly bugs.",
+      "keyConcepts": ["Architecture", "Cross‑cutting decisions", "Gnarly bugs"]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "An expected outcome of effective mobbing:",
+      "options": [
+        "Reduced knowledge spread",
+        "Wider knowledge spread and shared mental models",
+        "Slower decisions on complex topics",
+        "More rework later"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Collective validation reduces rework, and shared mental models increase throughput later.",
+      "keyConcepts": ["Knowledge spread", "Shared models", "Reduced rework"]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Risk to watch for in mobs and mitigation:",
+      "options": [
+        "Social loafing; rotate roles and keep contributions visible",
+        "Excessive documentation; delete all notes",
+        "Too many keyboards; add more keyboards",
+        "No agenda; add more participants"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Timeboxed rotations and explicit contributions help maintain engagement.",
+      "keyConcepts": ["Social loafing", "Rotation", "Engagement"]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Anti‑pattern indicating a meeting smell:",
+      "options": [
+        "Defined agenda, outcomes, and breakout plan",
+        "Undefined scope and no timeboxes",
+        "Clear decision record (ADR) at the end",
+        "Explicit handoffs to pairs for implementation"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Without agenda and timeboxes, mobs devolve into meetings. Create outcomes and breakouts.",
+      "keyConcepts": ["Agenda", "Timeboxes", "Breakouts"]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Artifact that helps post‑mob alignment:",
+      "options": [
+        "Unwritten verbal agreements",
+        "Random chat logs",
+        "Architecture Decision Records (ADRs) summarizing key decisions",
+        "Private notes only"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Summarize key decisions and rationale into ADRs and issue descriptions for clear handoffs.",
+      "keyConcepts": ["ADRs", "Handoffs", "Summaries"]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Good follow‑up after a mob session:",
+      "options": [
+        "Rotate prompts across team members to sustain engagement",
+        "Forget to record decisions",
+        "Delay all actions until next quarter",
+        "Discard the timer and cadence"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Rotate prompts and actions to keep engagement high and spread ownership.",
+      "keyConcepts": ["Rotation", "Engagement", "Ownership"]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Design a 60‑minute mob for diagnosing a gnarly production bug. Include roles, agenda, timeboxes, and breakout triggers. How will you capture decisions?",
+      "sampleStrongResponse": "Agenda: 5m context, 20m hypothesis generation, 20m focused investigation, 10m decision, 5m next steps. Roles: Facilitator, Driver, 1–2 Navigators. Breakout when two viable paths emerge. Capture decisions and rationale in an ADR and issue with owners and due dates."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "You have to define cross‑cutting architecture for a new platform. Propose a mob plan and success metrics to justify the time investment.",
+      "sampleStrongResponse": "Plan: 90‑minute mob with rotating Driver/Navigators, explicit agenda, and timeboxed spikes; follow with ADRs and pair breakouts to implement. Success: fewer rework cycles, faster convergence on decisions, improved alignment scores, and reduced incident rate due to early validation."
+    }
+  ]
+}

@@ -69,7 +69,6 @@ const articleRenderers: Record<string, React.FC> = {
   "horizontal-vs-vertical-scaling": HorizontalVsVerticalScalingContent,
 
   // Development Process & Methodologies
-  waterfall: WaterfallContent,
 
   // Temporary mappings to existing content components to avoid regressions
   "event-driven-architecture": MicroservicesArchitectureContent,

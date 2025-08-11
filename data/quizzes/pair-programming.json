@@ -1,0 +1,141 @@
+{
+  "title": "Pair Programming Knowledge Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Primary roles in pairing:",
+      "options": [
+        "Driver writes code; Navigator reviews in real time and thinks ahead",
+        "Driver reviews while Navigator types",
+        "Both type simultaneously on separate branches",
+        "No defined roles; ad‑hoc collaboration only"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Clear roles improve focus: Driver handles the keyboard; Navigator scans for edge cases, design, and risks.",
+      "keyConcepts": ["Driver", "Navigator", "Role clarity"]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Recommended rotation cadence:",
+      "options": [
+        "Once per day",
+        "Every 15–30 minutes",
+        "Once per sprint",
+        "No rotation necessary"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Regular rotation balances attention, maintains energy, and spreads knowledge evenly.",
+      "keyConcepts": ["Rotation", "Cadence", "Attention management"]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "When pairing delivers the most value:",
+      "options": [
+        "Routine, low‑risk refactors",
+        "Formatting‑only changes",
+        "High‑risk or complex changes (security, performance, data)",
+        "Late after release"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Use pairing for high‑risk or unknown problem spaces; solo is fine for small, low‑risk tasks.",
+      "keyConcepts": ["Risk‑based pairing", "Complexity", "Exploration"]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Team‑level outcome from consistent pairing:",
+      "options": [
+        "More single points of failure",
+        "Longer onboarding time",
+        "Fewer defects on trivial tasks",
+        "Higher bus factor and fewer single points of failure"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Pairing spreads context, increasing the team&rsquo;s resilience to individual unavailability.",
+      "keyConcepts": ["Bus factor", "Onboarding", "Quality"]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A common trade‑off of pairing is:",
+      "options": [
+        "Better UI polish by default",
+        "Guaranteed schedule acceleration",
+        "Diminishing returns on well‑understood, low‑risk changes",
+        "Elimination of all defects"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Schedule pairing during high‑value windows; avoid over‑pairing on simple, low‑risk work.",
+      "keyConcepts": ["Trade‑offs", "Scheduling", "Value focus"]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Remote ergonomics that matter most:",
+      "options": [
+        "Video always on with no exceptions",
+        "Low‑latency tools with shared cursors, clear audio, and agreed handoffs",
+        "Emailing code snippets between developers",
+        "Screen sharing with 10‑second lag"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Optimize for low latency and clarity; video can be optional when prompts, checklists, and small commits are used.",
+      "keyConcepts": ["Latency", "Shared cursors", "Handoffs"]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Practice that improves remote pairing clarity:",
+      "options": [
+        "Use prompts, checklists, and small commits",
+        "Disable commit messages to move faster",
+        "Avoid writing tests until the end",
+        "Hide the cursor to reduce distractions"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Shared context prompts and small, well‑described commits reduce confusion and rework.",
+      "keyConcepts": ["Prompts", "Checklists", "Small commits"]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Test‑first flow enabled by pairing:",
+      "options": [
+        "Skip tests to type faster",
+        "Write tests only after deployment",
+        "Defer acceptance criteria to a later sprint",
+        "Scaffold unit tests and acceptance criteria while designing"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Pairing supports test‑first flows: clarify acceptance criteria and scaffold tests early.",
+      "keyConcepts": ["Test‑first", "Acceptance criteria", "Scaffolding"]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Outline a pairing rotation policy for a new service (roles, 15–30 minute cadence, break conditions). Which metrics would you track to evaluate effectiveness?",
+      "sampleStrongResponse": "Define Driver/Navigator rotation every 20 minutes with a timer and explicit handoff prompts. Break when latency, fatigue, or scope shifts require it. Track defect rates in complex paths, lead time for risky changes, onboarding time, and developer sentiment."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "You must land a risky concurrency change under time pressure. Propose a pairing plan (who, when, where) and justify the ROI. How will you measure success?",
+      "sampleStrongResponse": "Pair a domain expert with an implementer in the highest‑risk code area during peak collaboration hours. Use shared cursors, prompts, and test‑first scaffolding. Success metrics: reduction in escaped defects, faster code review cycle time, stable performance metrics, and positive developer sentiment."
+    }
+  ]
+}

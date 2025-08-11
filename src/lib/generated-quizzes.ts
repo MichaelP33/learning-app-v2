@@ -168,6 +168,178 @@ export const externalQuizzes: Record<string, Quiz> = {
     }
   ]
 },
+  "code-reviews": {
+  "title": "Code Reviews Knowledge Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Primary goal of code reviews:",
+      "options": [
+        "Detect defects early and reduce risk",
+        "Enforce individual style preferences",
+        "Slow down delivery to catch all nits",
+        "Replace testing entirely"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Early reviews surface issues before production when remediation costs can rise 10x–100x; they also spread knowledge.",
+      "keyConcepts": [
+        "Defect detection",
+        "Risk reduction",
+        "Knowledge sharing"
+      ]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Recommended review batch size:",
+      "options": [
+        "Thousands of lines per PR",
+        "Small, focused changes with clear intent",
+        "Only one PR per quarter",
+        "Massive refactors mixed with unrelated changes"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Smaller, focused PRs reduce cognitive load and increase feedback quality and speed.",
+      "keyConcepts": [
+        "Batch size",
+        "Focused PRs",
+        "Cognitive load"
+      ]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Best review style for high‑risk, complex changes:",
+      "options": [
+        "Async PR review only",
+        "No review if tests pass",
+        "Pair review (synchronous walkthrough)",
+        "Wait until after release"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Pairing on complex changes improves shared understanding and catches design issues earlier.",
+      "keyConcepts": [
+        "Pair review",
+        "Complex changes",
+        "Risk"
+      ]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Feedback norm aligned with psychological safety:",
+      "options": [
+        "Gatekeep with blanket rejections",
+        "Block on preference‑only comments",
+        "Nitpick unrelated formatting",
+        "Ask questions with rationale and offer alternatives"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Prefer questions and rationale (&ldquo;Could we extract this because...&rdquo;) and separate must‑fix issues from suggestions.",
+      "keyConcepts": [
+        "Psychological safety",
+        "Feedback norms",
+        "Must‑fix vs suggestions"
+      ]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Useful reviewer checklist focus:",
+      "options": [
+        "Personal naming preferences",
+        "Keyboard layout consistency",
+        "Security, accessibility, performance budgets",
+        "Whimsical style changes"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Checklists tailored to code areas (security, accessibility, performance, error handling) improve consistency.",
+      "keyConcepts": [
+        "Checklists",
+        "Quality gates",
+        "Consistency"
+      ]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Expected outcomes of effective reviews:",
+      "options": [
+        "Longer cycle times",
+        "Higher change success rate and predictable cycle time",
+        "More rollbacks",
+        "Less onboarding clarity"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Outcomes include fewer production defects, faster onboarding, and steadier delivery.",
+      "keyConcepts": [
+        "Outcomes",
+        "Change success",
+        "Cycle time"
+      ]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Which is an anti‑pattern in reviews?",
+      "options": [
+        "Rubber‑stamping large diffs without context",
+        "Providing context and standards links",
+        "Clarifying must‑fix vs suggestions",
+        "Keeping PRs focused"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Avoid rubber‑stamping and preference‑only blocking; focus on risk hot spots and clarity.",
+      "keyConcepts": [
+        "Anti‑patterns",
+        "Rubber‑stamping"
+      ]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Policy‑as‑code guardrails primarily:",
+      "options": [
+        "Replace human reviews",
+        "Measure keyboard speed",
+        "Enforce security/performance policies via linters and CI",
+        "Delay releases by adding manual steps"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Automated checks enforce standards and surface breaking changes to APIs and contracts early.",
+      "keyConcepts": [
+        "Policy‑as‑code",
+        "Linters",
+        "CI"
+      ]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Describe how you would structure a reviewer checklist for a critical area (e.g., auth or data access) and how you would validate its effectiveness over time.",
+      "sampleStrongResponse": "Create a short, risk‑based checklist (input validation, authz, logging, error handling, perf budgets). Track escaped defects and change failure rate; spot‑audit PRs monthly and evolve items when incidents occur."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "A teammate flags that reviews feel like gates rather than collaboration. How would you reset norms and measure improvement?",
+      "sampleStrongResponse": "Run a brief workshop to align on goals and examples of constructive feedback; update PR template to separate must‑fix vs suggestions and rationale. Measure review turnaround, change success rate, and developer sentiment over 2–3 sprints."
+    }
+  ]
+},
   "devops-philosophy": {
   "title": "DevOps Philosophy Knowledge Quiz",
   "totalQuestions": 10,
@@ -335,6 +507,179 @@ export const externalQuizzes: Record<string, Quiz> = {
     }
   ]
 },
+  "documentation-standards": {
+  "title": "Documentation Standards Knowledge Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Docs‑as‑Code emphasizes:",
+      "options": [
+        "Ad‑hoc wikis without reviews",
+        "Versioned docs reviewed via PRs and validated by CI",
+        "Docs separate from source control",
+        "Handwritten notes only"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Treat docs like code: versioning, reviews, and CI validation improve quality and freshness.",
+      "keyConcepts": [
+        "Docs‑as‑Code",
+        "PR reviews",
+        "CI validation"
+      ]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Templates help by:",
+      "options": [
+        "Enforcing required sections and style",
+        "Replacing all documentation",
+        "Hiding ownership information",
+        "Preventing updates"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "ADRs, runbooks, and README templates ensure consistent structure and content.",
+      "keyConcepts": [
+        "Templates",
+        "Consistency",
+        "Quality"
+      ]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Information architecture practice:",
+      "options": [
+        "Unclear ownership and nested folders without logic",
+        "Random links between services",
+        "Clear ownership and discoverability per system or domain",
+        "One giant README for everything"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Link code to docs (services → READMEs, APIs → OpenAPI, ops → runbooks) with clear owners.",
+      "keyConcepts": [
+        "Ownership",
+        "Discoverability",
+        "Linking code to docs"
+      ]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Governance that prevents drift:",
+      "options": [
+        "No review cadence",
+        "Annual audits only",
+        "Ongoing review cadence and freshness SLAs",
+        "Delete stale docs without replacement"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Set owners and review cadence to keep documentation current and trustworthy.",
+      "keyConcepts": [
+        "Governance",
+        "Freshness",
+        "SLA"
+      ]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Metric that indicates documentation health:",
+      "options": [
+        "Number of emojis used",
+        "Doc freshness (time since last verified)",
+        "Team size",
+        "Lines of code in the repo"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Track freshness, coverage, and search success/time‑to‑find to improve outcomes.",
+      "keyConcepts": [
+        "Freshness",
+        "Coverage",
+        "Search success"
+      ]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Linking code to docs example:",
+      "options": [
+        "APIs → OpenAPI specs; operations → runbooks",
+        "APIs → random chat screenshots",
+        "Services → unrelated blog posts",
+        "Incidents → no records"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Make APIs discoverable through OpenAPI; operational knowledge through runbooks; services through READMEs.",
+      "keyConcepts": [
+        "OpenAPI",
+        "Runbooks",
+        "READMEs"
+      ]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Policy/style linting in CI helps by:",
+      "options": [
+        "Blocking all documentation",
+        "Automating checks for required sections and style",
+        "Randomly reformatting content",
+        "Replacing human review fully"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Linting detects missing sections and style drift early, improving quality.",
+      "keyConcepts": [
+        "Linting",
+        "CI",
+        "Quality"
+      ]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Outcome of robust documentation standards:",
+      "options": [
+        "Increased coordination cost",
+        "More blocked incidents",
+        "Reduced handoff errors and faster onboarding",
+        "No change to audit readiness"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Standards reduce handoff errors, unblock incidents, and improve compliance readiness.",
+      "keyConcepts": [
+        "Handoffs",
+        "Onboarding",
+        "Compliance"
+      ]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Propose a &ldquo;docs‑as‑code&rdquo; rollout for a monorepo: templates, ownership, CI checks, and review cadence. How will you measure improvement?",
+      "sampleStrongResponse": "Introduce README, runbook, and ADR templates with owners per service. Add CI linting for required sections and stale checks. Establish quarterly freshness reviews. Measure doc freshness, coverage across systems, search success rate, and mean time‑to‑find critical docs."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "An audit is upcoming. Outline a lightweight plan to achieve compliance readiness by default through documentation standards and automation.",
+      "sampleStrongResponse": "Define ownership and SLAs, enforce templates, and add CI checks for required content. Link code to OpenAPI and runbooks, auto‑summarize incidents/PRs into docs, and monitor coverage/freshness dashboards. Success is smoother audits and reduced time‑to‑find during incidents."
+    }
+  ]
+},
   "lean-startup": {
   "title": "Lean Startup Knowledge Quiz",
   "totalQuestions": 10,
@@ -497,6 +842,352 @@ export const externalQuizzes: Record<string, Quiz> = {
       "points": 4,
       "question": "Explain how you would decide to pivot vs persevere after two MVP iterations.",
       "sampleStrongResponse": "Compare actionable metrics to thresholds; if north‑star metric is below target with negative trend and qualitative feedback indicates mismatch, pivot with a new hypothesis."
+    }
+  ]
+},
+  "mob-programming": {
+  "title": "Mob Programming Knowledge Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Mob programming involves:",
+      "options": [
+        "The whole team collaborating at one keyboard with explicit roles and timeboxes",
+        "Two developers working asynchronously",
+        "Managers writing code with the team",
+        "Solo development with periodic check‑ins"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Mob sessions synchronize attention and decision‑making via facilitation, roles, and timers.",
+      "keyConcepts": [
+        "Whole‑team",
+        "Facilitation",
+        "Timeboxes"
+      ]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Key roles often used in mobs:",
+      "options": [
+        "Driver, Facilitator, Navigator(s)",
+        "Scrum Master, Product Owner, Executive",
+        "Only Driver and no other roles",
+        "Auditor and Scribe only"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Driver operates the keyboard, Facilitator manages flow, Navigator(s) guide approach and architecture.",
+      "keyConcepts": [
+        "Driver",
+        "Facilitator",
+        "Navigator"
+      ]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "When mobs are most beneficial:",
+      "options": [
+        "Architecture definition and cross‑cutting decisions",
+        "Routine formatting changes",
+        "Late‑night hotfixing without context",
+        "Simple CSS tweaks"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Mobs accelerate convergence on complex, high‑impact decisions and gnarly bugs.",
+      "keyConcepts": [
+        "Architecture",
+        "Cross‑cutting decisions",
+        "Gnarly bugs"
+      ]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "An expected outcome of effective mobbing:",
+      "options": [
+        "Reduced knowledge spread",
+        "Wider knowledge spread and shared mental models",
+        "Slower decisions on complex topics",
+        "More rework later"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Collective validation reduces rework, and shared mental models increase throughput later.",
+      "keyConcepts": [
+        "Knowledge spread",
+        "Shared models",
+        "Reduced rework"
+      ]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Risk to watch for in mobs and mitigation:",
+      "options": [
+        "Social loafing; rotate roles and keep contributions visible",
+        "Excessive documentation; delete all notes",
+        "Too many keyboards; add more keyboards",
+        "No agenda; add more participants"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Timeboxed rotations and explicit contributions help maintain engagement.",
+      "keyConcepts": [
+        "Social loafing",
+        "Rotation",
+        "Engagement"
+      ]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Anti‑pattern indicating a meeting smell:",
+      "options": [
+        "Defined agenda, outcomes, and breakout plan",
+        "Undefined scope and no timeboxes",
+        "Clear decision record (ADR) at the end",
+        "Explicit handoffs to pairs for implementation"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Without agenda and timeboxes, mobs devolve into meetings. Create outcomes and breakouts.",
+      "keyConcepts": [
+        "Agenda",
+        "Timeboxes",
+        "Breakouts"
+      ]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Artifact that helps post‑mob alignment:",
+      "options": [
+        "Unwritten verbal agreements",
+        "Random chat logs",
+        "Architecture Decision Records (ADRs) summarizing key decisions",
+        "Private notes only"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Summarize key decisions and rationale into ADRs and issue descriptions for clear handoffs.",
+      "keyConcepts": [
+        "ADRs",
+        "Handoffs",
+        "Summaries"
+      ]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Good follow‑up after a mob session:",
+      "options": [
+        "Rotate prompts across team members to sustain engagement",
+        "Forget to record decisions",
+        "Delay all actions until next quarter",
+        "Discard the timer and cadence"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Rotate prompts and actions to keep engagement high and spread ownership.",
+      "keyConcepts": [
+        "Rotation",
+        "Engagement",
+        "Ownership"
+      ]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Design a 60‑minute mob for diagnosing a gnarly production bug. Include roles, agenda, timeboxes, and breakout triggers. How will you capture decisions?",
+      "sampleStrongResponse": "Agenda: 5m context, 20m hypothesis generation, 20m focused investigation, 10m decision, 5m next steps. Roles: Facilitator, Driver, 1–2 Navigators. Breakout when two viable paths emerge. Capture decisions and rationale in an ADR and issue with owners and due dates."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "You have to define cross‑cutting architecture for a new platform. Propose a mob plan and success metrics to justify the time investment.",
+      "sampleStrongResponse": "Plan: 90‑minute mob with rotating Driver/Navigators, explicit agenda, and timeboxed spikes; follow with ADRs and pair breakouts to implement. Success: fewer rework cycles, faster convergence on decisions, improved alignment scores, and reduced incident rate due to early validation."
+    }
+  ]
+},
+  "pair-programming": {
+  "title": "Pair Programming Knowledge Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Primary roles in pairing:",
+      "options": [
+        "Driver writes code; Navigator reviews in real time and thinks ahead",
+        "Driver reviews while Navigator types",
+        "Both type simultaneously on separate branches",
+        "No defined roles; ad‑hoc collaboration only"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Clear roles improve focus: Driver handles the keyboard; Navigator scans for edge cases, design, and risks.",
+      "keyConcepts": [
+        "Driver",
+        "Navigator",
+        "Role clarity"
+      ]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Recommended rotation cadence:",
+      "options": [
+        "Once per day",
+        "Every 15–30 minutes",
+        "Once per sprint",
+        "No rotation necessary"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Regular rotation balances attention, maintains energy, and spreads knowledge evenly.",
+      "keyConcepts": [
+        "Rotation",
+        "Cadence",
+        "Attention management"
+      ]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "When pairing delivers the most value:",
+      "options": [
+        "Routine, low‑risk refactors",
+        "Formatting‑only changes",
+        "High‑risk or complex changes (security, performance, data)",
+        "Late after release"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Use pairing for high‑risk or unknown problem spaces; solo is fine for small, low‑risk tasks.",
+      "keyConcepts": [
+        "Risk‑based pairing",
+        "Complexity",
+        "Exploration"
+      ]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Team‑level outcome from consistent pairing:",
+      "options": [
+        "More single points of failure",
+        "Longer onboarding time",
+        "Fewer defects on trivial tasks",
+        "Higher bus factor and fewer single points of failure"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Pairing spreads context, increasing the team&rsquo;s resilience to individual unavailability.",
+      "keyConcepts": [
+        "Bus factor",
+        "Onboarding",
+        "Quality"
+      ]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A common trade‑off of pairing is:",
+      "options": [
+        "Better UI polish by default",
+        "Guaranteed schedule acceleration",
+        "Diminishing returns on well‑understood, low‑risk changes",
+        "Elimination of all defects"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Schedule pairing during high‑value windows; avoid over‑pairing on simple, low‑risk work.",
+      "keyConcepts": [
+        "Trade‑offs",
+        "Scheduling",
+        "Value focus"
+      ]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Remote ergonomics that matter most:",
+      "options": [
+        "Video always on with no exceptions",
+        "Low‑latency tools with shared cursors, clear audio, and agreed handoffs",
+        "Emailing code snippets between developers",
+        "Screen sharing with 10‑second lag"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Optimize for low latency and clarity; video can be optional when prompts, checklists, and small commits are used.",
+      "keyConcepts": [
+        "Latency",
+        "Shared cursors",
+        "Handoffs"
+      ]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Practice that improves remote pairing clarity:",
+      "options": [
+        "Use prompts, checklists, and small commits",
+        "Disable commit messages to move faster",
+        "Avoid writing tests until the end",
+        "Hide the cursor to reduce distractions"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Shared context prompts and small, well‑described commits reduce confusion and rework.",
+      "keyConcepts": [
+        "Prompts",
+        "Checklists",
+        "Small commits"
+      ]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Test‑first flow enabled by pairing:",
+      "options": [
+        "Skip tests to type faster",
+        "Write tests only after deployment",
+        "Defer acceptance criteria to a later sprint",
+        "Scaffold unit tests and acceptance criteria while designing"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Pairing supports test‑first flows: clarify acceptance criteria and scaffold tests early.",
+      "keyConcepts": [
+        "Test‑first",
+        "Acceptance criteria",
+        "Scaffolding"
+      ]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Outline a pairing rotation policy for a new service (roles, 15–30 minute cadence, break conditions). Which metrics would you track to evaluate effectiveness?",
+      "sampleStrongResponse": "Define Driver/Navigator rotation every 20 minutes with a timer and explicit handoff prompts. Break when latency, fatigue, or scope shifts require it. Track defect rates in complex paths, lead time for risky changes, onboarding time, and developer sentiment."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "You must land a risky concurrency change under time pressure. Propose a pairing plan (who, when, where) and justify the ROI. How will you measure success?",
+      "sampleStrongResponse": "Pair a domain expert with an implementer in the highest‑risk code area during peak collaboration hours. Use shared cursors, prompts, and test‑first scaffolding. Success metrics: reduction in escaped defects, faster code review cycle time, stable performance metrics, and positive developer sentiment."
     }
   ]
 }

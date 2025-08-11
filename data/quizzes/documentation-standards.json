@@ -1,0 +1,141 @@
+{
+  "title": "Documentation Standards Knowledge Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Docs‑as‑Code emphasizes:",
+      "options": [
+        "Ad‑hoc wikis without reviews",
+        "Versioned docs reviewed via PRs and validated by CI",
+        "Docs separate from source control",
+        "Handwritten notes only"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Treat docs like code: versioning, reviews, and CI validation improve quality and freshness.",
+      "keyConcepts": ["Docs‑as‑Code", "PR reviews", "CI validation"]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Templates help by:",
+      "options": [
+        "Enforcing required sections and style",
+        "Replacing all documentation",
+        "Hiding ownership information",
+        "Preventing updates"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "ADRs, runbooks, and README templates ensure consistent structure and content.",
+      "keyConcepts": ["Templates", "Consistency", "Quality"]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Information architecture practice:",
+      "options": [
+        "Unclear ownership and nested folders without logic",
+        "Random links between services",
+        "Clear ownership and discoverability per system or domain",
+        "One giant README for everything"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Link code to docs (services → READMEs, APIs → OpenAPI, ops → runbooks) with clear owners.",
+      "keyConcepts": ["Ownership", "Discoverability", "Linking code to docs"]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Governance that prevents drift:",
+      "options": [
+        "No review cadence",
+        "Annual audits only",
+        "Ongoing review cadence and freshness SLAs",
+        "Delete stale docs without replacement"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Set owners and review cadence to keep documentation current and trustworthy.",
+      "keyConcepts": ["Governance", "Freshness", "SLA"]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Metric that indicates documentation health:",
+      "options": [
+        "Number of emojis used",
+        "Doc freshness (time since last verified)",
+        "Team size",
+        "Lines of code in the repo"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Track freshness, coverage, and search success/time‑to‑find to improve outcomes.",
+      "keyConcepts": ["Freshness", "Coverage", "Search success"]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Linking code to docs example:",
+      "options": [
+        "APIs → OpenAPI specs; operations → runbooks",
+        "APIs → random chat screenshots",
+        "Services → unrelated blog posts",
+        "Incidents → no records"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Make APIs discoverable through OpenAPI; operational knowledge through runbooks; services through READMEs.",
+      "keyConcepts": ["OpenAPI", "Runbooks", "READMEs"]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Policy/style linting in CI helps by:",
+      "options": [
+        "Blocking all documentation",
+        "Automating checks for required sections and style",
+        "Randomly reformatting content",
+        "Replacing human review fully"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Linting detects missing sections and style drift early, improving quality.",
+      "keyConcepts": ["Linting", "CI", "Quality"]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Outcome of robust documentation standards:",
+      "options": [
+        "Increased coordination cost",
+        "More blocked incidents",
+        "Reduced handoff errors and faster onboarding",
+        "No change to audit readiness"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Standards reduce handoff errors, unblock incidents, and improve compliance readiness.",
+      "keyConcepts": ["Handoffs", "Onboarding", "Compliance"]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Propose a &ldquo;docs‑as‑code&rdquo; rollout for a monorepo: templates, ownership, CI checks, and review cadence. How will you measure improvement?",
+      "sampleStrongResponse": "Introduce README, runbook, and ADR templates with owners per service. Add CI linting for required sections and stale checks. Establish quarterly freshness reviews. Measure doc freshness, coverage across systems, search success rate, and mean time‑to‑find critical docs."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "An audit is upcoming. Outline a lightweight plan to achieve compliance readiness by default through documentation standards and automation.",
+      "sampleStrongResponse": "Define ownership and SLAs, enforce templates, and add CI checks for required content. Link code to OpenAPI and runbooks, auto‑summarize incidents/PRs into docs, and monitor coverage/freshness dashboards. Success is smoother audits and reduced time‑to‑find during incidents."
+    }
+  ]
+}

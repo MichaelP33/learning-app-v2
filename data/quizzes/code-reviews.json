@@ -1,0 +1,145 @@
+{
+  "title": "Code Reviews Knowledge Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Primary goal of code reviews:",
+      "options": [
+        "Detect defects early and reduce risk",
+        "Enforce individual style preferences",
+        "Slow down delivery to catch all nits",
+        "Replace testing entirely"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Early reviews surface issues before production when remediation costs can rise 10x–100x; they also spread knowledge.",
+      "keyConcepts": ["Defect detection", "Risk reduction", "Knowledge sharing"]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Recommended review batch size:",
+      "options": [
+        "Thousands of lines per PR",
+        "Small, focused changes with clear intent",
+        "Only one PR per quarter",
+        "Massive refactors mixed with unrelated changes"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Smaller, focused PRs reduce cognitive load and increase feedback quality and speed.",
+      "keyConcepts": ["Batch size", "Focused PRs", "Cognitive load"]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Best review style for high‑risk, complex changes:",
+      "options": [
+        "Async PR review only",
+        "No review if tests pass",
+        "Pair review (synchronous walkthrough)",
+        "Wait until after release"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Pairing on complex changes improves shared understanding and catches design issues earlier.",
+      "keyConcepts": ["Pair review", "Complex changes", "Risk"]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Feedback norm aligned with psychological safety:",
+      "options": [
+        "Gatekeep with blanket rejections",
+        "Block on preference‑only comments",
+        "Nitpick unrelated formatting",
+        "Ask questions with rationale and offer alternatives"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Prefer questions and rationale (&ldquo;Could we extract this because...&rdquo;) and separate must‑fix issues from suggestions.",
+      "keyConcepts": [
+        "Psychological safety",
+        "Feedback norms",
+        "Must‑fix vs suggestions"
+      ]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Useful reviewer checklist focus:",
+      "options": [
+        "Personal naming preferences",
+        "Keyboard layout consistency",
+        "Security, accessibility, performance budgets",
+        "Whimsical style changes"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Checklists tailored to code areas (security, accessibility, performance, error handling) improve consistency.",
+      "keyConcepts": ["Checklists", "Quality gates", "Consistency"]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Expected outcomes of effective reviews:",
+      "options": [
+        "Longer cycle times",
+        "Higher change success rate and predictable cycle time",
+        "More rollbacks",
+        "Less onboarding clarity"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Outcomes include fewer production defects, faster onboarding, and steadier delivery.",
+      "keyConcepts": ["Outcomes", "Change success", "Cycle time"]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Which is an anti‑pattern in reviews?",
+      "options": [
+        "Rubber‑stamping large diffs without context",
+        "Providing context and standards links",
+        "Clarifying must‑fix vs suggestions",
+        "Keeping PRs focused"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Avoid rubber‑stamping and preference‑only blocking; focus on risk hot spots and clarity.",
+      "keyConcepts": ["Anti‑patterns", "Rubber‑stamping"]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Policy‑as‑code guardrails primarily:",
+      "options": [
+        "Replace human reviews",
+        "Measure keyboard speed",
+        "Enforce security/performance policies via linters and CI",
+        "Delay releases by adding manual steps"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Automated checks enforce standards and surface breaking changes to APIs and contracts early.",
+      "keyConcepts": ["Policy‑as‑code", "Linters", "CI"]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Describe how you would structure a reviewer checklist for a critical area (e.g., auth or data access) and how you would validate its effectiveness over time.",
+      "sampleStrongResponse": "Create a short, risk‑based checklist (input validation, authz, logging, error handling, perf budgets). Track escaped defects and change failure rate; spot‑audit PRs monthly and evolve items when incidents occur."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "A teammate flags that reviews feel like gates rather than collaboration. How would you reset norms and measure improvement?",
+      "sampleStrongResponse": "Run a brief workshop to align on goals and examples of constructive feedback; update PR template to separate must‑fix vs suggestions and rationale. Measure review turnaround, change success rate, and developer sentiment over 2–3 sprints."
+    }
+  ]
+}
