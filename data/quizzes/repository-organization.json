@@ -1,0 +1,141 @@
+{
+  "title": "Repository Organization Knowledge Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A primary advantage of a mono&ndash;repo for related services is:",
+      "options": [
+        "Atomic changes across shared modules with unified tooling",
+        "Guaranteed faster builds regardless of size",
+        "Complete isolation between teams without coordination",
+        "Automatic elimination of integration testing"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Mono&ndash;repos enable atomic refactors, consistent tooling, and shared standards across codebases.",
+      "keyConcepts": ["Mono&ndash;repo", "Atomic changes", "Shared tooling"]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A primary advantage of a multi&ndash;repo approach is:",
+      "options": [
+        "No need for dependency management",
+        "Automatic cross&ndash;repo code sharing without effort",
+        "Free build minutes on all platforms",
+        "Independent release cadence and access boundaries per repo"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Separate repositories can enforce access control, enable independent versioning, and simplify compliance boundaries.",
+      "keyConcepts": ["Multi&ndash;repo", "Isolation", "Independent cadence"]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "An anti&ndash;pattern in multi&ndash;repo setups is:",
+      "options": [
+        "Clear ownership documented in each repo",
+        "Automated releases per repo",
+        "Deep runtime coupling across repos requiring synchronized deploys",
+        "Dedicated CI per repo"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "When services are tightly coupled at runtime but split across repos, orchestration and deployment become brittle.",
+      "keyConcepts": ["Coupling", "Deploy orchestration", "Anti&ndash;patterns"]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A reasonable use case for Git submodules is:",
+      "options": [
+        "Vendoring external code pinned to a specific upstream commit",
+        "Keeping all internal services as submodules of a parent",
+        "Replacing package managers",
+        "Ensuring linear history across all repos"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Submodules can track an external dependency at an exact commit when package registries are unsuitable.",
+      "keyConcepts": ["Submodules", "Vendoring", "Pinned commits"]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "CODEOWNERS primarily helps by:",
+      "options": [
+        "Blocking all PRs by default",
+        "Routing changes to responsible owners and enforcing reviews in owned areas",
+        "Automatically fixing bugs",
+        "Eliminating the need for documentation"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "CODEOWNERS maps paths to reviewers, ensuring the right people see relevant changes.",
+      "keyConcepts": ["CODEOWNERS", "Ownership", "Review routing"]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "To keep boundaries clean in a mono&ndash;repo you should:",
+      "options": [
+        "Allow any module to import any other path",
+        "Disable CI to speed up merges",
+        "Store all third&ndash;party code in the same folder as app code",
+        "Enforce module boundaries with lint rules and project graph checks"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Static checks and graph tooling prevent unwanted imports and maintain clear architectural boundaries.",
+      "keyConcepts": ["Boundaries", "Lint rules", "Project graph"]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Versioning strategy that often works in mono&ndash;repos is:",
+      "options": [
+        "A single global version for all packages only",
+        "No tags or releases at all",
+        "Per&ndash;package versioning and tags, optionally coordinated via release trains",
+        "Randomly chosen versions to avoid conflicts"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Per&ndash;package versions keep changes scoped; release trains can coordinate synchronized milestones when needed.",
+      "keyConcepts": ["Versioning", "Per&ndash;package tags", "Release trains"]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "To keep build and test times reasonable in a large mono&ndash;repo:",
+      "options": [
+        "Always run the entire repo on every change",
+        "Use project graph to run only affected builds/tests and cache results",
+        "Disable some tests to save time",
+        "Split the repo after every sprint"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Affected&ndash;only execution and build caching (e.g., via Nx/turborepo) keep CI efficient at scale.",
+      "keyConcepts": ["Affected graph", "Caching", "CI efficiency"]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Recommend mono&ndash;repo vs multi&ndash;repo for a product with 6 services, 3 shared libraries, and strict access boundaries. Explain your choice and outline guardrails.",
+      "sampleStrongResponse": "Choose a mono&ndash;repo if the services evolve together and share libraries: enables atomic refactors and shared tooling. Guardrails: module boundary rules, CODEOWNERS per folder, path&ndash;based CI, and affected&ndash;only builds. Choose multi&ndash;repo if services release independently with strict access isolation; guard with separate CI, per&ndash;repo tags, and published shared libraries."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Outline a migration plan to a mono&ndash;repo from multiple repos while preserving boundaries and release independence.",
+      "sampleStrongResponse": "Stage 1: consolidate shared libraries; publish versions and adopt semantic release. Stage 2: mirror repos into a mono&ndash;repo with preserved history; introduce project graph, lint rules, and CODEOWNERS. Stage 3: enable affected&ndash;only CI and per&ndash;package versioning; add release trains for synchronized milestones. Maintain access controls and audit trails per path."
+    }
+  ]
+}

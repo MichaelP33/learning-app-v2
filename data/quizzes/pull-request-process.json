@@ -1,0 +1,141 @@
+{
+  "title": "Pull Request Process Knowledge Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Primary purpose of a PR template is to:",
+      "options": [
+        "Capture context, scope, risk, and test plan to guide reviewers",
+        "Enforce stylistic preferences strictly",
+        "Replace testing entirely with reviewer judgment",
+        "Increase PR size to reduce review frequency"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Structured templates improve clarity and reduce back&ndash;and&ndash;forth by front&ndash;loading essential context.",
+      "keyConcepts": ["PR templates", "Reviewer guidance", "Context sharing"]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Risk labels (e.g., low/medium/high) are most useful when they:",
+      "options": [
+        "Decorate PRs without any process impact",
+        "Route to appropriate reviewers, set SLAs, and tune checklists",
+        "Replace automated checks",
+        "Discourage contributors from opening PRs"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Labels steer routing, response time, and the depth of review; high&ndash;risk changes may need synchronous walkthroughs.",
+      "keyConcepts": ["Risk labels", "SLA", "Routing"]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Non&ndash;blocking vs blocking feedback distinction is:",
+      "options": [
+        "Non&ndash;blocking comments are style nitpicks only",
+        "Blocking comments only apply to code formatting",
+        "Non&ndash;blocking suggestions come with rationale; blocking is reserved for correctness, risk, or policy",
+        "Both terms are interchangeable"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Use non&ndash;blocking suggestions for improvements; reserve blocking for defects, violations, or material risk.",
+      "keyConcepts": ["Feedback norms", "Blocking vs non&ndash;blocking", "Correctness"]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "When should a draft PR be used?",
+      "options": [
+        "Only after code is fully complete",
+        "When asking for early directional feedback before final polish",
+        "To bypass required reviews",
+        "To avoid running CI checks"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Draft PRs invite early feedback and surface risks sooner without signaling readiness to merge.",
+      "keyConcepts": ["Draft PRs", "Early feedback", "Risk surfacing"]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A core flow metric for PR SLAs is:",
+      "options": [
+        "Lines of code changed",
+        "Number of emojis in comments",
+        "Percentage of squash merges",
+        "Time&ndash;to&ndash;first&ndash;review from PR open"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Time to first review predicts cycle time and developer satisfaction; it is a leading indicator for throughput.",
+      "keyConcepts": ["SLA", "Flow metrics", "Cycle time"]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Effective reviewer checklists focus on:",
+      "options": [
+        "Risk&ndash;based items like security, performance budgets, accessibility, error handling",
+        "Personal naming preferences",
+        "Keyboard layout consistency",
+        "Whimsical style changes"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Risk&ndash;based checklists improve consistency for hot spots and reduce escaped defects.",
+      "keyConcepts": ["Checklists", "Quality gates", "Consistency"]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Reviewer assignment best practice for reliability is:",
+      "options": [
+        "Assign at random for all PRs",
+        "Assign only senior engineers regardless of domain",
+        "Use CODEOWNERS for domain experts plus round&ndash;robin backups; escalate by risk label",
+        "Always ask the author to self&ndash;approve"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Owners ensure domain knowledge; backups provide coverage; labels tune routing and speed based on risk.",
+      "keyConcepts": ["CODEOWNERS", "Routing", "Coverage"]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Converting a PR to blocking should happen when:",
+      "options": [
+        "A reviewer prefers a different naming style",
+        "Commit messages exceed a line limit",
+        "The author asks a question in comments",
+        "New information reveals correctness or security risk"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Escalate to blocking when risk is material (security, correctness, contracts). Keep preferences non&ndash;blocking.",
+      "keyConcepts": ["Blocking criteria", "Risk management", "Security"]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Design a PR template structure that improves review quality and speed. Include sections and examples of good content.",
+      "sampleStrongResponse": "Template sections: Context &amp; intent, Scope of change, Risk level &amp; impact, Test plan (manual/automated), Rollout/flag plan, Checklist (security, accessibility, performance, errors). Provide examples for each so submitters know what &ldquo;good&rdquo; looks like."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Set PR review SLAs for a medium&ndash;sized team. Include routing by risk label, expectations for time&ndash;to&ndash;first&ndash;review, and etiquette for non&ndash;blocking vs blocking comments.",
+      "sampleStrongResponse": "Route low&ndash;risk PRs via round&ndash;robin with a 4&ndash;business&ndash;hour first&ndash;review SLA; medium risk to owners within 1 business day; high risk requires owner + synchronous walkthrough within 1 business day. Non&ndash;blocking feedback includes rationale and alternatives; blocking is reserved for correctness, security, or policy violations. Track SLA adherence and change failure rate across sprints."
+    }
+  ]
+}

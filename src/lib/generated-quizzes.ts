@@ -168,6 +168,179 @@ export const externalQuizzes: Record<string, Quiz> = {
     }
   ]
 },
+  "branching-strategies": {
+  "title": "Branching Strategies Knowledge Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Main risk of long&ndash;lived branches as teams and codebases grow is:",
+      "options": [
+        "Drift and higher integration risk as divergence increases",
+        "Simpler audits due to fewer commits",
+        "Guaranteed faster lead time",
+        "Elimination of merge conflicts over time"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Long&ndash;lived branches diverge from main, increasing conflict and integration risk, especially in tightly coupled code.",
+      "keyConcepts": [
+        "Long&ndash;lived branches",
+        "Integration risk",
+        "Conflict frequency"
+      ]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Feature flags help reduce branching risk because they:",
+      "options": [
+        "Replace the need for testing altogether",
+        "Allow incomplete work to merge to main safely while disabled",
+        "Remove the need for code reviews",
+        "Make rebase operations unnecessary"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Flags let teams ship code paths disabled by default, shortening branch lifetime and reducing integration pain.",
+      "keyConcepts": [
+        "Feature flags",
+        "Risk reduction",
+        "Integration cadence"
+      ]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A practical integration cadence to limit conflicts on active features is:",
+      "options": [
+        "Integrate at end of quarter during a freeze",
+        "Integrate only when conflicts arise",
+        "Integrate at least daily to keep branches current with main",
+        "Avoid integrating until the feature is complete"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Frequent integration shortens the divergence window and reduces conflict size when they occur.",
+      "keyConcepts": [
+        "Integration cadence",
+        "Conflict reduction",
+        "Branch freshness"
+      ]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Prefer creating a short&ndash;lived branch instead of only using flags when:",
+      "options": [
+        "The change is trivial UI copy",
+        "The work is easily hidden behind a single toggle",
+        "The change only affects test data",
+        "The work spans risky schema or contract changes requiring isolation"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Risky cross&ndash;cutting changes often need isolation, incremental PRs, and explicit hardening before enabling flags.",
+      "keyConcepts": [
+        "Risky changes",
+        "Isolation",
+        "Flags vs branching"
+      ]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Best practice for day&ndash;to&ndash;day feature branches is:",
+      "options": [
+        "Prefer small, single&ndash;purpose branches and PRs",
+        "Accumulate many unrelated changes to reduce PR count",
+        "Force&ndash;push shared release branches frequently",
+        "Skip PRs for speed when tests pass locally"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Small, focused PRs improve clarity, review quality, and merge safety.",
+      "keyConcepts": [
+        "Small PRs",
+        "Focus",
+        "Review quality"
+      ]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Why is developing features directly on a release branch discouraged?",
+      "options": [
+        "It always breaks CI by design",
+        "It causes divergence, cherry&ndash;pick debt, and confusion about sources of truth",
+        "It prevents tagging",
+        "It disables hotfix workflows automatically"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Release branches should stabilize a specific cut. New feature work belongs on short&ndash;lived branches against main.",
+      "keyConcepts": [
+        "Release branches",
+        "Stabilization",
+        "Cherry&ndash;pick debt"
+      ]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "To reduce conflict size on a feature branch you should:",
+      "options": [
+        "Avoid syncing with main until ready",
+        "Lock main during development",
+        "Regularly rebase or merge main into the branch to stay up to date",
+        "Rewrite main to match the branch"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Keeping branches current with main reduces the scope of conflicts and makes resolution simpler.",
+      "keyConcepts": [
+        "Branch freshness",
+        "Rebase vs merge",
+        "Conflict scope"
+      ]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Which naming approach improves traceability for branches?",
+      "options": [
+        "Random names for privacy",
+        "All branches named after developers",
+        "Names that omit any link to tracking systems",
+        "Prefix with ticket ID and a concise description (e.g., feat/PROJ-123-short-title)"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Ticket&ndash;prefixed, descriptive names support searchability, auditability, and automation hooks.",
+      "keyConcepts": [
+        "Traceability",
+        "Naming",
+        "Automation"
+      ]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Draft a team policy that keeps branches short&ndash;lived. Include maximum age, integration cadence, use of flags, and merge strategy to main.",
+      "sampleStrongResponse": "Set a default maximum branch age (e.g., 5 business days). Require at least daily sync with main and small PRs. Use feature flags for incomplete paths so changes can merge early. Merge to main via squash&ndash;merge after green CI and required reviews; prohibit rebasing shared branches."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Outline a migration plan from GitFlow with long&ndash;lived branches to trunk&ndash;based development. Include risk controls, rollout phases, and success metrics.",
+      "sampleStrongResponse": "Pilot trunk&ndash;based on one service with feature flags and strict CI gates. Phase 1: shrink branch lifetime, enforce small PRs, add status checks. Phase 2: add release trains if needed, create short stabilization windows, adopt tags and automated changelogs. Measure merge frequency, time&ndash;to&ndash;prod, and conflict rate; adjust guardrails as teams adapt."
+    }
+  ]
+},
   "capacity-planning": {
   "title": "Capacity Planning Knowledge Quiz",
   "totalQuestions": 10,
@@ -1200,6 +1373,182 @@ export const externalQuizzes: Record<string, Quiz> = {
     }
   ]
 },
+  "git-workflows": {
+  "title": "Git Workflows Knowledge Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Which description best matches trunk&ndash;based development for high&ndash;cadence teams?",
+      "options": [
+        "Small, frequent merges to main behind feature flags with short&ndash;lived branches",
+        "Quarterly integration from long&ndash;lived branches with manual hardening",
+        "Direct pushes to main without reviews or CI",
+        "Rewriting shared history via rebase to keep a perfectly linear log"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Trunk&ndash;based development emphasizes short&ndash;lived branches, continuous integration, and flags so incomplete work ships safely behind toggles.",
+      "keyConcepts": [
+        "Trunk&ndash;based",
+        "Short&ndash;lived branches",
+        "Feature flags",
+        "Continuous integration"
+      ]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "When is a GitFlow&ndash;style workflow typically the better organizational fit?",
+      "options": [
+        "Startups shipping many times per day with minimal ceremonies",
+        "Programs with fixed release trains and formal stabilization windows",
+        "Teams that never tag releases or maintain changelogs",
+        "Teams that avoid hotfixes and rely only on flags"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "GitFlow supports release branches, audits, and planned stabilization windows; it suits regulated programs and scheduled releases.",
+      "keyConcepts": [
+        "GitFlow",
+        "Release branches",
+        "Stabilization",
+        "Auditability"
+      ]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Safe guidance for merge vs rebase in shared repositories is:",
+      "options": [
+        "Always rebase all shared branches to keep history linear",
+        "Always squash&ndash;merge into main to hide history",
+        "Rebase private branches; merge into shared branches to preserve integration context",
+        "Avoid merge commits entirely across the organization"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Rebase on private branches is safe. Merging into shared branches preserves integration context and avoids rewriting public history.",
+      "keyConcepts": [
+        "Rebase",
+        "Merge",
+        "Shared history",
+        "Integration context"
+      ]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Semantic versioning communicates impact as &ldquo;MAJOR.MINOR.PATCH&rdquo;. Which statement aligns with this?",
+      "options": [
+        "MAJOR adds features; MINOR breaks APIs; PATCH redesigns history",
+        "MAJOR/MINOR/PATCH are interchangeable labels",
+        "PATCH is for experimental features behind flags only",
+        "MAJOR signals breaking changes; MINOR adds features; PATCH fixes bugs"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "SemVer sets expectations: breaking changes (MAJOR), backward&ndash;compatible features (MINOR), and bug fixes (PATCH).",
+      "keyConcepts": [
+        "SemVer",
+        "Tags",
+        "Change visibility"
+      ]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "What CI policy best supports trunk&ndash;based development?",
+      "options": [
+        "Run checks on PRs and on merges to main; require green status checks before merge",
+        "Run CI only on nightly schedules to save capacity",
+        "Allow direct pushes to main if tests pass locally",
+        "Skip tests for small PRs to optimize reviewer time"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Status checks on PRs and post&ndash;merge catches regressions early and keeps main always releasable.",
+      "keyConcepts": [
+        "CI gates",
+        "Status checks",
+        "Always&ndash;green main"
+      ]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Primary purpose of a release branch prior to shipping is to:",
+      "options": [
+        "Begin large new feature work",
+        "Stabilize a cut of main with targeted fixes and sign&ndash;off",
+        "Replace tagging and changelogs entirely",
+        "Rewrite history to simplify the log"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Release branches capture a specific cut for final fixes, docs, and validation before tagging and delivery.",
+      "keyConcepts": [
+        "Release branches",
+        "Stabilization",
+        "Hardening"
+      ]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A pragmatic mainline history policy for feature branches is to:",
+      "options": [
+        "Enforce fast&ndash;forward merges only across all repos",
+        "Allow rebasing of shared release branches for a linear graph",
+        "Squash&ndash;merge feature branches to keep main concise and track detail in PRs",
+        "Avoid PRs and push directly to main to reduce overhead"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Squash&ndash;merging keeps main readable while preserving full detail in the PR conversation and branch history.",
+      "keyConcepts": [
+        "Squash merge",
+        "Mainline history",
+        "PR detail"
+      ]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "To avoid &ldquo;lost fix&rdquo; incidents when hotfixing a release branch, the team should:",
+      "options": [
+        "Patch the release branch only and close the PR",
+        "Patch main only and hope the next release picks it up",
+        "Rebase main onto the release branch after every hotfix",
+        "Backport to the release branch and forward&ndash;merge to main, then tag"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Always forward&ndash;merge hotfixes applied to a release branch back to main so fixes persist in future releases.",
+      "keyConcepts": [
+        "Backport",
+        "Forward merge",
+        "Hotfix policy"
+      ]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Propose a merge policy for release branches that prevents &ldquo;lost fix&rdquo; incidents. Include backport/forward&ndash;merge rules, tagging, and changelog automation.",
+      "sampleStrongResponse": "Use a stabilization branch per release. All critical fixes: (1) merge to the release branch, (2) immediately forward&ndash;merge the same commit to main, (3) tag once sign&ndash;off passes. Automate changelog generation from PR titles that carry SemVer intent (&ldquo;major&rdquo;/&ldquo;minor&rdquo;/&ldquo;patch&rdquo;). Rebase allowed only on private feature branches; shared branches use merges."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Design CI triggers and protections for a trunk&ndash;based repository. Specify PR checks, required statuses, branch protections, and how tags integrate with releases.",
+      "sampleStrongResponse": "Require status checks (tests, linters, security scans) on every PR and on merges to main; block merge unless all checks are green. Enable branch protection with required reviews and linear history via squash&ndash;merge. Tag from the release commit and publish artifacts; use automated changelogs derived from PR titles. Keep main always releasable by using feature flags for incomplete work."
+    }
+  ]
+},
   "lean-startup": {
   "title": "Lean Startup Knowledge Quiz",
   "totalQuestions": 10,
@@ -1708,6 +2057,352 @@ export const externalQuizzes: Record<string, Quiz> = {
       "points": 5,
       "question": "You must land a risky concurrency change under time pressure. Propose a pairing plan (who, when, where) and justify the ROI. How will you measure success?",
       "sampleStrongResponse": "Pair a domain expert with an implementer in the highest‑risk code area during peak collaboration hours. Use shared cursors, prompts, and test‑first scaffolding. Success metrics: reduction in escaped defects, faster code review cycle time, stable performance metrics, and positive developer sentiment."
+    }
+  ]
+},
+  "pull-request-process": {
+  "title": "Pull Request Process Knowledge Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Primary purpose of a PR template is to:",
+      "options": [
+        "Capture context, scope, risk, and test plan to guide reviewers",
+        "Enforce stylistic preferences strictly",
+        "Replace testing entirely with reviewer judgment",
+        "Increase PR size to reduce review frequency"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Structured templates improve clarity and reduce back&ndash;and&ndash;forth by front&ndash;loading essential context.",
+      "keyConcepts": [
+        "PR templates",
+        "Reviewer guidance",
+        "Context sharing"
+      ]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Risk labels (e.g., low/medium/high) are most useful when they:",
+      "options": [
+        "Decorate PRs without any process impact",
+        "Route to appropriate reviewers, set SLAs, and tune checklists",
+        "Replace automated checks",
+        "Discourage contributors from opening PRs"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Labels steer routing, response time, and the depth of review; high&ndash;risk changes may need synchronous walkthroughs.",
+      "keyConcepts": [
+        "Risk labels",
+        "SLA",
+        "Routing"
+      ]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Non&ndash;blocking vs blocking feedback distinction is:",
+      "options": [
+        "Non&ndash;blocking comments are style nitpicks only",
+        "Blocking comments only apply to code formatting",
+        "Non&ndash;blocking suggestions come with rationale; blocking is reserved for correctness, risk, or policy",
+        "Both terms are interchangeable"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Use non&ndash;blocking suggestions for improvements; reserve blocking for defects, violations, or material risk.",
+      "keyConcepts": [
+        "Feedback norms",
+        "Blocking vs non&ndash;blocking",
+        "Correctness"
+      ]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "When should a draft PR be used?",
+      "options": [
+        "Only after code is fully complete",
+        "When asking for early directional feedback before final polish",
+        "To bypass required reviews",
+        "To avoid running CI checks"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Draft PRs invite early feedback and surface risks sooner without signaling readiness to merge.",
+      "keyConcepts": [
+        "Draft PRs",
+        "Early feedback",
+        "Risk surfacing"
+      ]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A core flow metric for PR SLAs is:",
+      "options": [
+        "Lines of code changed",
+        "Number of emojis in comments",
+        "Percentage of squash merges",
+        "Time&ndash;to&ndash;first&ndash;review from PR open"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Time to first review predicts cycle time and developer satisfaction; it is a leading indicator for throughput.",
+      "keyConcepts": [
+        "SLA",
+        "Flow metrics",
+        "Cycle time"
+      ]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Effective reviewer checklists focus on:",
+      "options": [
+        "Risk&ndash;based items like security, performance budgets, accessibility, error handling",
+        "Personal naming preferences",
+        "Keyboard layout consistency",
+        "Whimsical style changes"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Risk&ndash;based checklists improve consistency for hot spots and reduce escaped defects.",
+      "keyConcepts": [
+        "Checklists",
+        "Quality gates",
+        "Consistency"
+      ]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Reviewer assignment best practice for reliability is:",
+      "options": [
+        "Assign at random for all PRs",
+        "Assign only senior engineers regardless of domain",
+        "Use CODEOWNERS for domain experts plus round&ndash;robin backups; escalate by risk label",
+        "Always ask the author to self&ndash;approve"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Owners ensure domain knowledge; backups provide coverage; labels tune routing and speed based on risk.",
+      "keyConcepts": [
+        "CODEOWNERS",
+        "Routing",
+        "Coverage"
+      ]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Converting a PR to blocking should happen when:",
+      "options": [
+        "A reviewer prefers a different naming style",
+        "Commit messages exceed a line limit",
+        "The author asks a question in comments",
+        "New information reveals correctness or security risk"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Escalate to blocking when risk is material (security, correctness, contracts). Keep preferences non&ndash;blocking.",
+      "keyConcepts": [
+        "Blocking criteria",
+        "Risk management",
+        "Security"
+      ]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Design a PR template structure that improves review quality and speed. Include sections and examples of good content.",
+      "sampleStrongResponse": "Template sections: Context &amp; intent, Scope of change, Risk level &amp; impact, Test plan (manual/automated), Rollout/flag plan, Checklist (security, accessibility, performance, errors). Provide examples for each so submitters know what &ldquo;good&rdquo; looks like."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Set PR review SLAs for a medium&ndash;sized team. Include routing by risk label, expectations for time&ndash;to&ndash;first&ndash;review, and etiquette for non&ndash;blocking vs blocking comments.",
+      "sampleStrongResponse": "Route low&ndash;risk PRs via round&ndash;robin with a 4&ndash;business&ndash;hour first&ndash;review SLA; medium risk to owners within 1 business day; high risk requires owner + synchronous walkthrough within 1 business day. Non&ndash;blocking feedback includes rationale and alternatives; blocking is reserved for correctness, security, or policy violations. Track SLA adherence and change failure rate across sprints."
+    }
+  ]
+},
+  "repository-organization": {
+  "title": "Repository Organization Knowledge Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A primary advantage of a mono&ndash;repo for related services is:",
+      "options": [
+        "Atomic changes across shared modules with unified tooling",
+        "Guaranteed faster builds regardless of size",
+        "Complete isolation between teams without coordination",
+        "Automatic elimination of integration testing"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Mono&ndash;repos enable atomic refactors, consistent tooling, and shared standards across codebases.",
+      "keyConcepts": [
+        "Mono&ndash;repo",
+        "Atomic changes",
+        "Shared tooling"
+      ]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A primary advantage of a multi&ndash;repo approach is:",
+      "options": [
+        "No need for dependency management",
+        "Automatic cross&ndash;repo code sharing without effort",
+        "Free build minutes on all platforms",
+        "Independent release cadence and access boundaries per repo"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Separate repositories can enforce access control, enable independent versioning, and simplify compliance boundaries.",
+      "keyConcepts": [
+        "Multi&ndash;repo",
+        "Isolation",
+        "Independent cadence"
+      ]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "An anti&ndash;pattern in multi&ndash;repo setups is:",
+      "options": [
+        "Clear ownership documented in each repo",
+        "Automated releases per repo",
+        "Deep runtime coupling across repos requiring synchronized deploys",
+        "Dedicated CI per repo"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "When services are tightly coupled at runtime but split across repos, orchestration and deployment become brittle.",
+      "keyConcepts": [
+        "Coupling",
+        "Deploy orchestration",
+        "Anti&ndash;patterns"
+      ]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A reasonable use case for Git submodules is:",
+      "options": [
+        "Vendoring external code pinned to a specific upstream commit",
+        "Keeping all internal services as submodules of a parent",
+        "Replacing package managers",
+        "Ensuring linear history across all repos"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Submodules can track an external dependency at an exact commit when package registries are unsuitable.",
+      "keyConcepts": [
+        "Submodules",
+        "Vendoring",
+        "Pinned commits"
+      ]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "CODEOWNERS primarily helps by:",
+      "options": [
+        "Blocking all PRs by default",
+        "Routing changes to responsible owners and enforcing reviews in owned areas",
+        "Automatically fixing bugs",
+        "Eliminating the need for documentation"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "CODEOWNERS maps paths to reviewers, ensuring the right people see relevant changes.",
+      "keyConcepts": [
+        "CODEOWNERS",
+        "Ownership",
+        "Review routing"
+      ]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "To keep boundaries clean in a mono&ndash;repo you should:",
+      "options": [
+        "Allow any module to import any other path",
+        "Disable CI to speed up merges",
+        "Store all third&ndash;party code in the same folder as app code",
+        "Enforce module boundaries with lint rules and project graph checks"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Static checks and graph tooling prevent unwanted imports and maintain clear architectural boundaries.",
+      "keyConcepts": [
+        "Boundaries",
+        "Lint rules",
+        "Project graph"
+      ]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Versioning strategy that often works in mono&ndash;repos is:",
+      "options": [
+        "A single global version for all packages only",
+        "No tags or releases at all",
+        "Per&ndash;package versioning and tags, optionally coordinated via release trains",
+        "Randomly chosen versions to avoid conflicts"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Per&ndash;package versions keep changes scoped; release trains can coordinate synchronized milestones when needed.",
+      "keyConcepts": [
+        "Versioning",
+        "Per&ndash;package tags",
+        "Release trains"
+      ]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "To keep build and test times reasonable in a large mono&ndash;repo:",
+      "options": [
+        "Always run the entire repo on every change",
+        "Use project graph to run only affected builds/tests and cache results",
+        "Disable some tests to save time",
+        "Split the repo after every sprint"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Affected&ndash;only execution and build caching (e.g., via Nx/turborepo) keep CI efficient at scale.",
+      "keyConcepts": [
+        "Affected graph",
+        "Caching",
+        "CI efficiency"
+      ]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Recommend mono&ndash;repo vs multi&ndash;repo for a product with 6 services, 3 shared libraries, and strict access boundaries. Explain your choice and outline guardrails.",
+      "sampleStrongResponse": "Choose a mono&ndash;repo if the services evolve together and share libraries: enables atomic refactors and shared tooling. Guardrails: module boundary rules, CODEOWNERS per folder, path&ndash;based CI, and affected&ndash;only builds. Choose multi&ndash;repo if services release independently with strict access isolation; guard with separate CI, per&ndash;repo tags, and published shared libraries."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Outline a migration plan to a mono&ndash;repo from multiple repos while preserving boundaries and release independence.",
+      "sampleStrongResponse": "Stage 1: consolidate shared libraries; publish versions and adopt semantic release. Stage 2: mirror repos into a mono&ndash;repo with preserved history; introduce project graph, lint rules, and CODEOWNERS. Stage 3: enable affected&ndash;only CI and per&ndash;package versioning; add release trains for synchronized milestones. Maintain access controls and audit trails per path."
     }
   ]
 },
