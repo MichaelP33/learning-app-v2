@@ -2,6 +2,11 @@
 // Do not edit directly; run npm run generate:articles-registry
 export const articleRegistry: Record<string, () => Promise<{ default: React.FC }>> = {
   "agile-scrum": () => import("./agile-scrum"),
+  "code-reviews": () => import("./code-reviews"),
   "devops-philosophy": () => import("./devops-philosophy"),
-  "lean-startup": () => import("./lean-startup")
+  "documentation-standards": () => import("./documentation-standards"),
+  "lean-startup": () => import("./lean-startup"),
+  "mob-programming": () => import("./mob-programming"),
+  "pair-programming": () => import("./pair-programming"),
+  "waterfall": () => import("./waterfall")
 };
