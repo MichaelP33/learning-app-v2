@@ -1,0 +1,143 @@
+{
+  "title": "Integrated Development Environments Knowledge Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "What does an IDE&rsquo;s code intelligence typically provide beyond basic syntax highlighting?",
+      "options": [
+        "Only color themes and font rendering",
+        "Type‑aware completions, symbol navigation, and inline documentation",
+        "A built‑in production deployment pipeline",
+        "Automatic database schema migrations"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Modern IDE code intelligence uses parse trees, symbol indexes, and language servers to surface context‑aware suggestions, jump‑to‑definition, and inline docs, reducing cognitive load and navigation time.",
+      "keyConcepts": ["Code intelligence", "Language Server Protocol", "Productivity"]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "What is a conditional breakpoint used for when debugging in an IDE?",
+      "options": [
+        "To always pause on every iteration",
+        "To print logs without pausing execution",
+        "To pause only when a specified expression evaluates to true",
+        "To speed up execution by skipping lines"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Conditional breakpoints help isolate issues that occur only under certain states (for example, when a counter exceeds a threshold), avoiding noisy pauses and enabling focused inspection.",
+      "keyConcepts": ["Debugger", "Breakpoints", "State inspection"]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "How do IDE profilers help address performance problems?",
+      "options": [
+        "They enforce code style rules",
+        "They provision staging environments",
+        "They manage Git branches automatically",
+        "They measure CPU time, memory usage, and hot paths to find bottlenecks"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Profilers reveal where time and memory are actually spent (hot functions, allocations, blocking calls), allowing targeted optimizations instead of guesswork.",
+      "keyConcepts": ["Profiling", "CPU hotspots", "Memory diagnostics"]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "What benefit does IDE test runner integration primarily provide?",
+      "options": [
+        "Run tests with focused filters, watch mode, and inline failure details",
+        "Start and stop the production database",
+        "Manage Kubernetes cluster scaling",
+        "Generate UI wireframes automatically"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Tight test runner integration shortens feedback loops with quick filtering (by file, tag, or failed tests), watch re‑runs, and clickable stack traces.",
+      "keyConcepts": ["Test runners", "Feedback loop", "Developer velocity"]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "What is the purpose of IDE refactor tools like Rename Symbol or Extract Function?",
+      "options": [
+        "To obfuscate variable names for security",
+        "To randomly reorder code blocks to test resilience",
+        "To safely update usages across the project while preserving behavior",
+        "To minify code for production"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Refactor tools operate on the symbol graph, updating all references consistently (for example, renaming across files) and reducing manual, error‑prone edits.",
+      "keyConcepts": ["Refactoring", "Symbol graph", "Safety"]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "In an IDE, what does the project model (workspace indexing) enable?",
+      "options": [
+        "Auto‑scaling of cloud infrastructure",
+        "Live production feature flags",
+        "Automated legal compliance reports",
+        "Cross‑file navigation, find‑usages, and refactor accuracy"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Indexing builds a searchable map of symbols and relationships, powering accurate navigation (find usages) and safe refactors across large codebases.",
+      "keyConcepts": ["Project model", "Indexing", "Find usages"]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "How does the Language Server Protocol (LSP) relate to IDE code intelligence?",
+      "options": [
+        "LSP is a UI theme engine",
+        "LSP standardizes how editors/IDEs request symbols, diagnostics, and completions from language servers",
+        "LSP is a Git hosting protocol",
+        "LSP is only for building container images"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "LSP decouples language smarts from the editor UI. A language server provides completions, diagnostics, and definitions to any LSP‑compatible client.",
+      "keyConcepts": ["LSP", "Diagnostics", "Completions"]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "When is attaching an IDE debugger preferable to adding temporary print statements?",
+      "options": [
+        "When you need to inspect complex, stateful interactions and step through code paths",
+        "When you only need final program output",
+        "When the code runs once and cannot be paused",
+        "When you are formatting code for readability only"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Debuggers provide granular control (step‑in, step‑over, watch expressions) to analyze state transitions that are hard to capture with ad‑hoc logs.",
+      "keyConcepts": ["Debugger vs logs", "State analysis", "Step control"]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Describe a practical workflow to diagnose a slow test suite using IDE tools.",
+      "sampleStrongResponse": "Start by scoping with the IDE&rsquo;s test explorer (filter to the slowest suites by duration), then run with watch to reproduce locally. Use the built‑in profiler to capture a CPU timeline and identify hot paths (for example, expensive setup/teardown or I/O). Inspect flame graphs for repeated allocations. Add conditional breakpoints around suspected hotspots to examine state without spamming logs. Finally, verify improvements by rerunning the filtered tests and reviewing before/after timings inside the IDE.",
+      "keyConcepts": ["Test explorer", "Profiling", "Hot path isolation"]
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Outline a safe refactor using IDE tools to extract a large code block into a function and verify correctness.",
+      "sampleStrongResponse": "Use the IDE&rsquo;s Extract Function to move the block behind a clear signature with typed parameters and return value. Run &ldquo;find usages&rdquo; to confirm call sites and use Rename Symbol to align names. Execute unit tests via the IDE&rsquo;s runner and add a focused test if coverage is thin. If behavior is complex, attach the debugger and step through both the original and refactored paths with breakpoints to confirm identical state transitions.",
+      "keyConcepts": ["Extract Function", "Rename Symbol", "Verification"]
+    }
+  ]
+}

@@ -514,6 +514,190 @@ export const externalQuizzes: Record<string, Quiz> = {
     }
   ]
 },
+  "code-editors-vs-ides": {
+  "title": "Code Editors vs IDEs Knowledge Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "What is the core difference between a lightweight code editor and a full IDE?",
+      "options": [
+        "IDEs integrate debugging, refactoring, and project tooling; editors focus on editing with optional plugins",
+        "Editors always include full build systems and test runners",
+        "IDEs cannot be extended with plugins",
+        "Editors are only for plain‑text files, not code"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Editors prioritize startup speed and small footprint. IDEs ship integrated debugging, refactors, test runners, and project models out of the box for deeper workflows.",
+      "keyConcepts": [
+        "Capability vs footprint",
+        "Integration depth",
+        "Extensibility"
+      ]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Which statement best describes typical startup performance?",
+      "options": [
+        "IDEs always start faster due to indexing",
+        "Editors tend to start faster; IDEs may take longer due to indexing and project scanning",
+        "Editors are always slower because they lack features",
+        "Both are identical in startup time"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Indexing and heavy project models can add startup overhead in IDEs, while editors often defer work until a feature is invoked.",
+      "keyConcepts": [
+        "Startup time",
+        "Indexing",
+        "Deferred work"
+      ]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "How can plugin ecosystems affect capability parity between editors and IDEs?",
+      "options": [
+        "Plugins rarely add significant features",
+        "Plugins only change themes",
+        "Rich plugin ecosystems can close capability gaps, though configuration effort may rise",
+        "Plugins eliminate the need for version control"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "With the right extensions (LSP, debugger adapters, test runners), editors can approximate IDE features but require careful setup.",
+      "keyConcepts": [
+        "Plugin ecosystems",
+        "Configuration",
+        "LSP"
+      ]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "What is a primary benefit of remote development (for example, dev containers or remote SSH) in this context?",
+      "options": [
+        "It guarantees zero latency",
+        "It prevents any dependency drift automatically",
+        "It makes local CPUs irrelevant in all cases",
+        "It offloads heavy toolchains to a remote host while using a local UI"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Remote development centralizes toolchains and compute in a consistent environment while the editor/IDE provides the interface locally.",
+      "keyConcepts": [
+        "Remote dev",
+        "Dev containers",
+        "Consistency"
+      ]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "When might a lightweight editor be preferable over an IDE for a large monorepo?",
+      "options": [
+        "When deep refactors across many projects are required immediately",
+        "When you need built‑in database migration tools",
+        "When quick edits are needed and heavy indexing would slow you down",
+        "When you must compile native toolchains locally"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "For quick, localized changes, avoiding full indexing can reduce waiting time. For large cross‑cutting changes, IDE capabilities may win.",
+      "keyConcepts": [
+        "Monorepos",
+        "Indexing cost",
+        "Edit latency"
+      ]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "In which scenario does an IDE typically provide outsized benefits?",
+      "options": [
+        "Editing a single config file",
+        "Performing large, type‑aware refactors and deep navigation in complex codebases",
+        "Previewing Markdown",
+        "Viewing logs only"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Type‑aware navigation and refactoring tools shine in big, strongly typed codebases where correctness and consistency matter.",
+      "keyConcepts": [
+        "Refactors",
+        "Type awareness",
+        "Deep navigation"
+      ]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "What is a common risk of installing too many extensions?",
+      "options": [
+        "Increased CPU, memory usage, and slower startup times",
+        "Lower memory usage",
+        "Guaranteed stability improvements",
+        "Automatic security hardening"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Each extension can load background processes, watchers, or parsers that add overhead. A curated set helps maintain performance.",
+      "keyConcepts": [
+        "Extension bloat",
+        "Performance budgets",
+        "Startup"
+      ]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "What is a typical trade‑off of remote development compared to fully local development?",
+      "options": [
+        "No need for security reviews",
+        "Unlimited offline capability",
+        "Zero cost for compute",
+        "Potential latency and dependency on network connectivity"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "While remote environments can be consistent and powerful, interactive tasks can feel slower on poor connections.",
+      "keyConcepts": [
+        "Latency",
+        "Connectivity",
+        "Remote trade‑offs"
+      ]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Your team is deciding between an IDE‑first or editor‑plus‑plugins approach. Explain the trade‑offs and when you would recommend each.",
+      "sampleStrongResponse": "Recommend an IDE for large, typed codebases where refactor safety, deep navigation, and integrated debugging reduce risk. Recommend an editor‑plus‑plugins for fast startup, lightweight machines, or polyglot teams where only a subset of features is needed. Note the setup tax for plugins and the need for extension governance. Consider remote development when local machines struggle with indexing.",
+      "keyConcepts": [
+        "Trade‑offs",
+        "Team context",
+        "Risk vs speed"
+      ]
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Propose a plugin governance policy that balances capability with performance and security for your organization.",
+      "sampleStrongResponse": "Define an allowlist with review criteria (maintenance cadence, permissions requested, reputation). Set performance budgets (startup time, memory) and monitor with profiling tools. Require &ldquo;least privilege&rdquo; by disabling unused capabilities. Stage updates in a pilot group before broad rollout, and document alternatives for any blocked extensions.",
+      "keyConcepts": [
+        "Governance",
+        "Allowlist",
+        "Performance budgets",
+        "Security"
+      ]
+    }
+  ]
+},
   "code-reviews": {
   "title": "Code Reviews Knowledge Quiz",
   "totalQuestions": 10,
@@ -683,6 +867,189 @@ export const externalQuizzes: Record<string, Quiz> = {
       "points": 5,
       "question": "A teammate flags that reviews feel like gates rather than collaboration. How would you reset norms and measure improvement?",
       "sampleStrongResponse": "Run a brief workshop to align on goals and examples of constructive feedback; update PR template to separate must‑fix vs suggestions and rationale. Measure review turnaround, change success rate, and developer sentiment over 2–3 sprints."
+    }
+  ]
+},
+  "developer-productivity-tools": {
+  "title": "Developer Productivity Tools Knowledge Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "What is the primary distinction between linters and code formatters?",
+      "options": [
+        "Formatters detect security vulnerabilities; linters only change whitespace",
+        "Linters only add colors; formatters enforce naming conventions",
+        "Linters enforce rules and surface potential defects; formatters standardize code style",
+        "They are interchangeable tools"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Linters flag probable bugs and policy violations (for example, unused variables), while formatters normalize layout so developers focus on logic, not style.",
+      "keyConcepts": [
+        "Linters",
+        "Formatters",
+        "Quality vs style"
+      ]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "How do pre‑commit hooks improve consistency?",
+      "options": [
+        "They randomly block commits",
+        "They auto‑merge branches",
+        "They enforce checks (for example, lint/format) before code lands",
+        "They remove tests to speed up CI"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Pre‑commit hooks run tooling locally (format, lint, type checks) to catch issues early and reduce churn in CI.",
+      "keyConcepts": [
+        "Pre‑commit",
+        "Consistency",
+        "Shift‑left"
+      ]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "What advantage does structural code search provide over plain text search?",
+      "options": [
+        "It searches only comments",
+        "It matches code patterns at the syntax/AST level (for example, function calls with certain arguments)",
+        "It renames files automatically",
+        "It replaces the need for tests"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Structural search understands code shapes, enabling precise queries like finding unsafe API usages versus broad text matches.",
+      "keyConcepts": [
+        "Structural search",
+        "AST",
+        "Precision"
+      ]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "How do snippets and macros boost developer throughput?",
+      "options": [
+        "By disabling type checking",
+        "By hiding errors",
+        "By increasing network bandwidth",
+        "By automating repetitive patterns and reducing keystrokes"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Reusable templates for boilerplate (for example, test skeletons) reduce friction and promote consistency.",
+      "keyConcepts": [
+        "Snippets",
+        "Automation",
+        "Consistency"
+      ]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "What role do task runners (for example, npm scripts, Make, or Invoke) play?",
+      "options": [
+        "They replace version control",
+        "They handle production incident response",
+        "They provide a single entry point to common commands and workflows",
+        "They automatically refactor code"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Task runners standardize commands like test, lint, build, and release, reducing the &ldquo;how do I run this&rdquo; learning curve.",
+      "keyConcepts": [
+        "Task runners",
+        "Standardization",
+        "DX"
+      ]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Why is terminal/CLI integration inside the editor/IDE useful?",
+      "options": [
+        "It disables environment variables",
+        "It forces GUI usage only",
+        "It removes the need for build tools",
+        "It keeps commands, environment, and output close to the code for fast iteration"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "An embedded terminal preserves project context and makes iterative loops (edit‑run‑test) quicker.",
+      "keyConcepts": [
+        "CLI",
+        "Feedback loop",
+        "Context switching"
+      ]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "How should Prettier and ESLint typically be used together?",
+      "options": [
+        "Run Prettier for styling and use ESLint for rules; resolve conflicts with appropriate configs",
+        "Only run ESLint and ignore formatting",
+        "Run both but disable all rules",
+        "Run Prettier as a linter plugin so no configuration is needed"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Prettier handles formatting concerns, while ESLint enforces quality and policy rules. Use configs to avoid rule overlap.",
+      "keyConcepts": [
+        "Prettier",
+        "ESLint",
+        "Tooling harmony"
+      ]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "What is a balanced policy for linter severity in CI?",
+      "options": [
+        "Fail CI on any warning",
+        "Fail on errors while tracking warnings; escalate categories over time",
+        "Ignore errors and warnings",
+        "Fail only on style issues"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Start with errors as blockers and warnings as tracked metrics, then ratchet up standards as the codebase improves.",
+      "keyConcepts": [
+        "CI policy",
+        "Severity",
+        "Continuous improvement"
+      ]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Outline a plan to roll out linters and formatters to an existing repository with minimal disruption.",
+      "sampleStrongResponse": "Introduce shared configs and run tools in fix mode to create a baseline commit. Add pre‑commit hooks to prevent regressions. In CI, fail on errors and report warnings. Communicate style decisions and provide editor integration steps. Apply changes in focused batches to avoid noisy diffs and coordinate with active feature branches.",
+      "keyConcepts": [
+        "Migration plan",
+        "Hooks",
+        "Baseline commit"
+      ]
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Design a productivity toolkit for a new service: specify search tools, snippets, tasks, and CI integrations that will reduce onboarding time.",
+      "sampleStrongResponse": "Provide structural code search patterns for common APIs, a curated snippet set for test and handler templates, and npm scripts for dev, test, lint, and type‑check. Add a &ldquo;first‑run&rdquo; script to install dependencies and pre‑commit hooks. Document how to run everything inside the editor&rsquo;s terminal so newcomers can ship a passing change in under an hour.",
+      "keyConcepts": [
+        "Onboarding",
+        "Toolkit",
+        "Standard scripts"
+      ]
     }
   ]
 },
@@ -1026,6 +1393,189 @@ export const externalQuizzes: Record<string, Quiz> = {
     }
   ]
 },
+  "extension-ecosystems": {
+  "title": "Extension Ecosystems Knowledge Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "What is a primary security risk introduced by editor/IDE extensions?",
+      "options": [
+        "Supply‑chain exposure if extensions have broad filesystem or network permissions",
+        "Guaranteed elimination of all vulnerabilities",
+        "Automatic code review of all commits",
+        "Hardware isolation of the development machine"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Extensions may have access to files, environment variables, and network calls. Poorly vetted plugins can exfiltrate data or inject malicious code.",
+      "keyConcepts": [
+        "Supply chain",
+        "Permissions",
+        "Data exfiltration"
+      ]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "What is a good first‑pass evaluation signal when assessing an extension?",
+      "options": [
+        "Number of colors in its theme",
+        "Presence of animated icons",
+        "Maintenance cadence, clear permissions, and reputable publisher",
+        "Total size of screenshots"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Look for an active changelog, transparent scopes/permissions, signed publishers, and community reputation before trial.",
+      "keyConcepts": [
+        "Evaluation",
+        "Reputation",
+        "Permissions"
+      ]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "How can teams isolate performance issues potentially caused by extensions?",
+      "options": [
+        "Install more extensions to mask the problem",
+        "Ignore any slowdowns",
+        "Disable the IDE entirely",
+        "Use built‑in profiling and extension bisect/safe‑mode to identify the culprit"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Many tools provide an &ldquo;extension bisect&rdquo; or safe‑mode that disables subsets of extensions to quickly find regressions.",
+      "keyConcepts": [
+        "Performance diagnostics",
+        "Profiling",
+        "Bisect"
+      ]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Which policy best addresses telemetry and privacy concerns with extensions?",
+      "options": [
+        "Allow any telemetry by default",
+        "Review extension telemetry, disable unnecessary tracking, and document data flows",
+        "Block all extensions regardless of function",
+        "Trust publishers without review"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "A balanced approach audits what data leaves developer machines and ensures collection aligns with company policy.",
+      "keyConcepts": [
+        "Telemetry",
+        "Privacy",
+        "Policy"
+      ]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "What is a best practice for update hygiene in an extension‑heavy environment?",
+      "options": [
+        "Auto‑update all extensions immediately in production",
+        "Never update extensions",
+        "Let each developer choose any version",
+        "Stage updates with a canary group and pin versions for critical tools"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Staged rollouts catch regressions early. Pinning versions for critical tools prevents surprise breakages.",
+      "keyConcepts": [
+        "Update hygiene",
+        "Staged rollout",
+        "Version pinning"
+      ]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "What is the purpose of an organization extension allowlist?",
+      "options": [
+        "To improve keyboard backlighting",
+        "To block all development",
+        "To require administrative passwords for every keystroke",
+        "To approve a curated set of extensions that meet security and performance standards"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "An allowlist defines which extensions are approved. Criteria include maintenance, permissions, and performance impact.",
+      "keyConcepts": [
+        "Allowlist",
+        "Governance",
+        "Standards"
+      ]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "What principle should guide requested permissions for extensions?",
+      "options": [
+        "Request every permission to avoid friction",
+        "Request the minimum necessary (least privilege)",
+        "Avoid declaring permissions",
+        "Share credentials for convenience"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Least privilege reduces blast radius if an extension is compromised and limits accidental data exposure.",
+      "keyConcepts": [
+        "Least privilege",
+        "Permissions",
+        "Risk reduction"
+      ]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "How should teams handle extensions in remote/containerized development environments?",
+      "options": [
+        "Allow any extension from the public marketplace",
+        "Disable all extensions always",
+        "Audit container capabilities and restrict extension hosts to the project scope",
+        "Run extensions as root for convenience"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Scope extensions to the workspace folder, avoid privileged containers, and review shared images for preinstalled plugins.",
+      "keyConcepts": [
+        "Remote dev",
+        "Containers",
+        "Scope restrictions"
+      ]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Draft a lightweight process for evaluating and approving new extensions for team use.",
+      "sampleStrongResponse": "Define review criteria (publisher reputation, maintenance cadence, permissions requested, telemetry behavior). Test the extension in a sandbox project, measure startup impact, and run a brief security review. If approved, add it to the allowlist with version pinning and document configuration steps.",
+      "keyConcepts": [
+        "Evaluation",
+        "Sandboxing",
+        "Approval"
+      ]
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Describe how you would detect and remediate a performance regression introduced by an extension across a large team.",
+      "sampleStrongResponse": "Use profiling and the platform&rsquo;s extension bisect to confirm the culprit. Roll back or pin the previous version, notify a pilot channel, and open an upstream issue with traces. Update the allowlist with a mitigation note and monitor startup and idle CPU metrics before re‑enabling the extension broadly.",
+      "keyConcepts": [
+        "Regression response",
+        "Pin/rollback",
+        "Monitoring"
+      ]
+    }
+  ]
+},
   "feature-flags": {
   "title": "Feature Flags Knowledge Quiz",
   "totalQuestions": 10,
@@ -1197,6 +1747,189 @@ export const externalQuizzes: Record<string, Quiz> = {
       "points": 5,
       "question": "Design a safe rollout for a high&ndash;risk payment feature behind a flag. Describe targeting, blast radius containment, kill switch behavior, and cleanup criteria.",
       "sampleStrongResponse": "Start internal&ndash;only, then 1% of a low&ndash;risk cohort by region, ramping while SLOs hold. Enable a global emergency off switch with short TTL rule refresh. Log all evaluations with user and reason. Predefine rollback triggers (error rate, p95 latency) and halt expansion if breached. Declare success criteria (conversion, error budgets) and schedule a removal PR once thresholds are met."
+    }
+  ]
+},
+  "integrated-development-environments": {
+  "title": "Integrated Development Environments Knowledge Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "What does an IDE&rsquo;s code intelligence typically provide beyond basic syntax highlighting?",
+      "options": [
+        "Only color themes and font rendering",
+        "Type‑aware completions, symbol navigation, and inline documentation",
+        "A built‑in production deployment pipeline",
+        "Automatic database schema migrations"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Modern IDE code intelligence uses parse trees, symbol indexes, and language servers to surface context‑aware suggestions, jump‑to‑definition, and inline docs, reducing cognitive load and navigation time.",
+      "keyConcepts": [
+        "Code intelligence",
+        "Language Server Protocol",
+        "Productivity"
+      ]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "What is a conditional breakpoint used for when debugging in an IDE?",
+      "options": [
+        "To always pause on every iteration",
+        "To print logs without pausing execution",
+        "To pause only when a specified expression evaluates to true",
+        "To speed up execution by skipping lines"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Conditional breakpoints help isolate issues that occur only under certain states (for example, when a counter exceeds a threshold), avoiding noisy pauses and enabling focused inspection.",
+      "keyConcepts": [
+        "Debugger",
+        "Breakpoints",
+        "State inspection"
+      ]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "How do IDE profilers help address performance problems?",
+      "options": [
+        "They enforce code style rules",
+        "They provision staging environments",
+        "They manage Git branches automatically",
+        "They measure CPU time, memory usage, and hot paths to find bottlenecks"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Profilers reveal where time and memory are actually spent (hot functions, allocations, blocking calls), allowing targeted optimizations instead of guesswork.",
+      "keyConcepts": [
+        "Profiling",
+        "CPU hotspots",
+        "Memory diagnostics"
+      ]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "What benefit does IDE test runner integration primarily provide?",
+      "options": [
+        "Run tests with focused filters, watch mode, and inline failure details",
+        "Start and stop the production database",
+        "Manage Kubernetes cluster scaling",
+        "Generate UI wireframes automatically"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Tight test runner integration shortens feedback loops with quick filtering (by file, tag, or failed tests), watch re‑runs, and clickable stack traces.",
+      "keyConcepts": [
+        "Test runners",
+        "Feedback loop",
+        "Developer velocity"
+      ]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "What is the purpose of IDE refactor tools like Rename Symbol or Extract Function?",
+      "options": [
+        "To obfuscate variable names for security",
+        "To randomly reorder code blocks to test resilience",
+        "To safely update usages across the project while preserving behavior",
+        "To minify code for production"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Refactor tools operate on the symbol graph, updating all references consistently (for example, renaming across files) and reducing manual, error‑prone edits.",
+      "keyConcepts": [
+        "Refactoring",
+        "Symbol graph",
+        "Safety"
+      ]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "In an IDE, what does the project model (workspace indexing) enable?",
+      "options": [
+        "Auto‑scaling of cloud infrastructure",
+        "Live production feature flags",
+        "Automated legal compliance reports",
+        "Cross‑file navigation, find‑usages, and refactor accuracy"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Indexing builds a searchable map of symbols and relationships, powering accurate navigation (find usages) and safe refactors across large codebases.",
+      "keyConcepts": [
+        "Project model",
+        "Indexing",
+        "Find usages"
+      ]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "How does the Language Server Protocol (LSP) relate to IDE code intelligence?",
+      "options": [
+        "LSP is a UI theme engine",
+        "LSP standardizes how editors/IDEs request symbols, diagnostics, and completions from language servers",
+        "LSP is a Git hosting protocol",
+        "LSP is only for building container images"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "LSP decouples language smarts from the editor UI. A language server provides completions, diagnostics, and definitions to any LSP‑compatible client.",
+      "keyConcepts": [
+        "LSP",
+        "Diagnostics",
+        "Completions"
+      ]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "When is attaching an IDE debugger preferable to adding temporary print statements?",
+      "options": [
+        "When you need to inspect complex, stateful interactions and step through code paths",
+        "When you only need final program output",
+        "When the code runs once and cannot be paused",
+        "When you are formatting code for readability only"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Debuggers provide granular control (step‑in, step‑over, watch expressions) to analyze state transitions that are hard to capture with ad‑hoc logs.",
+      "keyConcepts": [
+        "Debugger vs logs",
+        "State analysis",
+        "Step control"
+      ]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Describe a practical workflow to diagnose a slow test suite using IDE tools.",
+      "sampleStrongResponse": "Start by scoping with the IDE&rsquo;s test explorer (filter to the slowest suites by duration), then run with watch to reproduce locally. Use the built‑in profiler to capture a CPU timeline and identify hot paths (for example, expensive setup/teardown or I/O). Inspect flame graphs for repeated allocations. Add conditional breakpoints around suspected hotspots to examine state without spamming logs. Finally, verify improvements by rerunning the filtered tests and reviewing before/after timings inside the IDE.",
+      "keyConcepts": [
+        "Test explorer",
+        "Profiling",
+        "Hot path isolation"
+      ]
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Outline a safe refactor using IDE tools to extract a large code block into a function and verify correctness.",
+      "sampleStrongResponse": "Use the IDE&rsquo;s Extract Function to move the block behind a clear signature with typed parameters and return value. Run &ldquo;find usages&rdquo; to confirm call sites and use Rename Symbol to align names. Execute unit tests via the IDE&rsquo;s runner and add a focused test if coverage is thin. If behavior is complex, attach the debugger and step through both the original and refactored paths with breakpoints to confirm identical state transitions.",
+      "keyConcepts": [
+        "Extract Function",
+        "Rename Symbol",
+        "Verification"
+      ]
     }
   ]
 },
