@@ -91,7 +91,11 @@
       ],
       "correctAnswer": 1,
       "additionalContext": "Required checks prevent regressions and enforce policy&ndash;as&ndash;code before changes land in main.",
-      "keyConcepts": ["Status checks", "Policy&ndash;as&ndash;code", "Pre&ndash;merge gates"]
+      "keyConcepts": [
+        "Status checks",
+        "Policy&ndash;as&ndash;code",
+        "Pre&ndash;merge gates"
+      ]
     },
     {
       "id": "7",

@@ -4,165 +4,127 @@ export default function VersionControlStrategies() {
   return (
     <article className="space-y-10">
       {/* Key Concepts */}
-      <section id="key-concepts">
+      <section id="key-concepts" className="mb-12">
         <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Key Concepts</h2>
-        <div className="space-y-4">
+        <div className="space-y-6">
           <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Trunk‑based vs GitFlow</h3>
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Stabilization Windows and Code Freeze</h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-2">
+              Stabilization windows (temporary limits on risky changes before release) reduce last‑minute regressions by focusing teams on fixing rather than adding features. Code freeze is a stricter form where only critical fixes are allowed (useful when external commitments or compliance deadlines require predictability). Flags let you keep deploying while &ldquo;freezing&rdquo; user‑visible changes.
+            </p>
             <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>
-                Trunk‑based favors tiny, frequent merges to main with feature flags (keeps integration pain low when teams scale beyond 8–10 engineers).
-              </li>
-              <li>
-                GitFlow relies on long‑lived branches (branches that live for weeks) and coordinated merges into develop/release; higher ceremony fits regulated contexts (audit trails and change boards).
-              </li>
-              <li>
-                Choose based on lead time, compliance needs, and coupling (tight coupling makes long‑lived branches drift dangerously).
-              </li>
+              <li>Freeze scope and length should be proportional to risk and system criticality.</li>
+              <li>Maintain a clear exception process with on‑call approvers and rollback steps.</li>
             </ul>
           </div>
 
-          <div className="border-l-4 border-emerald-500 bg-emerald-50/50 dark:bg-emerald-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Release Branches and Code Freeze</h3>
+          <div className="border-l-4 border-amber-500 bg-amber-50/50 dark:bg-amber-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Release Trains</h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-2">
+              Release trains ship on a fixed cadence regardless of feature readiness (miss the train, catch the next). This reduces negotiation overhead and aligns teams on predictable schedules (stakeholders can plan downstream activities confidently). Pair with branch protections and merge queues to keep train branches green.
+            </p>
             <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>
-                Release branches stabilize a cut of main for hardening (final fixes, docs, and sign‑off before shipping).
-              </li>
-              <li>
-                Code freeze pauses risky changes (changes that might destabilize) while allowing targeted fixes; keep freezes short to avoid backlog buildup.
-              </li>
-              <li>
-                Maintain a clear merge policy: backport fixes to the release branch and forward‑merge to main to prevent regressions (avoid &ldquo;lost fix&rdquo; incidents).
-              </li>
+              <li>Use train branches like <code>release/2025.08</code> with cherry‑picks for late fixes.</li>
+              <li>Freeze a few days before departure for final validation and tagging.</li>
             </ul>
           </div>
 
-          <div className="pl-6">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Tagging, SemVer, and History Hygiene</h3>
+          <div>
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Changelogs and Visibility</h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-2">
+              High‑quality changelogs increase trust and reduce support load (non‑technical readers understand scope and impact). Generate changelogs from PR labels and conventional commits, and tie entries to ticket IDs and risk categories (breaking changes, migrations). Publish change summaries to internal channels and customer‑facing notes when relevant.
+            </p>
             <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>
-                Tags mark immutable release points; use SemVer (&ldquo;MAJOR.MINOR.PATCH&rdquo;) so impact is legible to stakeholders.
-              </li>
-              <li>
-                Keep commit history understandable: prefer merge commits when preserving context, rebase to clean noise (&ldquo;fix typo&rdquo; clutter) in local branches.
-              </li>
-              <li>
-                Generate changelogs from commits or PR titles (automated summaries reduce manual error and improve change visibility for customers).
-              </li>
+              <li>Automate changelog sections for features, fixes, security, and breaking changes.</li>
+              <li>Link to rollout plans, feature flags, and deprecation notices for clarity.</li>
             </ul>
           </div>
 
           <div className="pl-6">
             <h3 className="font-semibold text-slate-900 dark:text-white mb-2">In practice</h3>
             <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>Pick trunk‑based by default; add release branches only for stabilization windows.</li>
-              <li>Adopt SemVer tags and automate changelog generation from PR titles.</li>
-              <li>Use rebase locally; merge to main to preserve integration context.</li>
+              <li>Adopt short stabilization windows before train cut‑offs; keep deploys flowing with flags.</li>
+              <li>Create a release‑train calendar and publish it to engineering and GTM stakeholders.</li>
+              <li>Automate changelogs from PR metadata and verify on tag creation.</li>
             </ul>
           </div>
         </div>
       </section>
 
       {/* Business & Team Impact */}
-      <section id="business-team-impact">
-        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Business & Team Impact</h2>
-        <div className="space-y-4">
-          <div className="pl-6">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Lead Time, Quality, and Risk</h3>
+      <section id="business-team-impact" className="mb-12">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Business &amp; Team Impact</h2>
+        <div className="space-y-6">
+          <div className="border-l-4 border-violet-500 bg-violet-50/50 dark:bg-violet-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Predictability and Risk Reduction</h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-2">
+              Stabilization windows and trains improve planning accuracy for support, marketing, and compliance (clear dates and change scopes reduce last‑minute scrambles). Changelogs improve stakeholder confidence and reduce incident volume post‑release (operational teams know what changed and where to look).
+            </p>
             <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>
-                Short‑lived branches reduce merge conflicts (conflicts grow quadratically with time) and surface issues earlier.
-              </li>
-              <li>
-                GitFlow slows delivery but adds predictability for quarterly releases (helpful when multiple audit gates exist).
-              </li>
-              <li>
-                Release branches enable &ldquo;stabilization without stoppage&rdquo;: customer fixes ship while new work continues behind flags.
-              </li>
+              <li>Lower change failure rate and shorter MTTR due to predictable rollouts.</li>
+              <li>Fewer emergency hotfixes when trains batch changes with stabilization time.</li>
             </ul>
           </div>
 
-          <div className="pl-6">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Merge vs Rebase Trade‑offs</h3>
+          <div className="border-l-4 border-slate-500 bg-slate-50/50 dark:bg-slate-900/40 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Cross‑Functional Alignment</h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-2">
+              Fixed schedules enable downstream teams to sync campaigns, training, and operational readiness (non‑engineering peers can plan confidently). Visibility reduces escalations as product managers and support have a single source of truth for change scope and dates.
+            </p>
             <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>
-                Merge preserves context across teams (&ldquo;who integrated what, when&rdquo;), aiding audits and incident forensics.
-              </li>
-              <li>
-                Rebase keeps history linear (easier to read during bisect), but rewriting shared history can break collaborators.
-              </li>
-              <li>
-                Standardize: rebase on private branches; merge to shared branches to avoid surprises during release crunch.
-              </li>
+              <li>Publish &ldquo;what shipped&rdquo; summaries mapped to customer personas and regions.</li>
+              <li>Include risk labels and fallback plans to align incident response readiness.</li>
             </ul>
           </div>
 
-          <div className="pl-6">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Change Visibility and Changelogs</h3>
+          <div>
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Metrics</h3>
             <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>
-                Customer‑facing changelogs build trust (customers plan around breaking changes if signaled clearly).
-              </li>
-              <li>
-                Internal release notes speed support and sales (fast answers to &ldquo;what changed&rdquo; reduce handoffs).
-              </li>
-              <li>
-                Wire changelog generation into CI so every release branch/tag produces a crisp summary automatically.
-              </li>
+              <li>Adherence to train schedule and exception counts during freezes.</li>
+              <li>Post‑release incident rate and time‑to‑prepare release notes.</li>
+              <li>Changelog completeness and consumer engagement with release communications.</li>
             </ul>
           </div>
 
           <div className="pl-6">
             <h3 className="font-semibold text-slate-900 dark:text-white mb-2">In practice</h3>
             <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>Measure PR size, cycle time, and merge conflict rate as leading indicators.</li>
-              <li>Adopt PR templates that encode SemVer impact and rollout/rollback notes.</li>
-              <li>Automate changelog release notes and include upgrade guidance for breaking changes.</li>
+              <li>Define exception policy and on‑call approvers for freezes; track exceptions publicly.</li>
+              <li>Use merge queues to keep train branches green and releases reproducible.</li>
+              <li>Automate &ldquo;what changed&rdquo; digests and circulate to support and GTM weekly.</li>
             </ul>
           </div>
         </div>
       </section>
 
       {/* Cursor Implementation */}
-      <section id="cursor-implementation">
+      <section id="cursor-implementation" className="mb-12">
         <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Cursor Implementation</h2>
         <div className="space-y-6">
           <div className="border-l-4 border-cyan-500 bg-cyan-50/50 dark:bg-cyan-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Policy‑as‑Code Branching Guardrails</h3>
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">AI‑Orchestrated Trains and Notes</h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-2">
+              Use AI to maintain a release‑train calendar, draft freeze announcements, and generate release notes from PR metadata (labels, scopes, and breaking‑change flags). Create dashboards that forecast train readiness and highlight risky areas based on test failures or hot‑spots of change.
+            </p>
             <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>
-                Enforce branch protections (status checks, review requirements) aligned to risk tiers (payment code vs docs).
-              </li>
-              <li>
-                Auto‑label PRs with SemVer intent (&ldquo;major&rdquo;, &ldquo;minor&rdquo;, &ldquo;patch&rdquo;) and require extra eyes for majors.
-              </li>
-              <li>
-                Generate release branch checklists: version bump, migrations plan, rollback steps, and comms owners.
-              </li>
+              <li>Automate tag creation and signed artifacts with changelog verification gates.</li>
+              <li>Summarize &ldquo;diff since last train&rdquo; for executives and support leaders.</li>
             </ul>
           </div>
 
-          <div className="pl-6">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Automation: Tags, Notes, and Visibility</h3>
-            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>
-                Template PR titles for changelog parsing (standard verbs minimize ambiguity for automation).
-              </li>
-              <li>
-                On merge to main or release, auto‑create a tag and draft release notes with owner review.
-              </li>
-              <li>
-                Publish internal &ldquo;what changed&rdquo; digests to Slack/email (summaries save managers 30–60 minutes weekly).
-              </li>
-            </ul>
+          <div>
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Policy as Code</h3>
+            <p className="text-slate-700 dark:text-gray-300 mb-2">
+              Generate policies that block risky merges during freezes and require risk labels, test evidence, and rollout plans for train branches. Validate that changelog entries exist for user‑visible changes before tagging.
+            </p>
           </div>
 
           <div className="pl-6">
             <h3 className="font-semibold text-slate-900 dark:text-white mb-2">In practice</h3>
             <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>Adopt trunk‑based with flags; reserve GitFlow for regulated programs.</li>
-              <li>Automate tag creation and SemVer validation on release branches.</li>
-              <li>Continuously publish changelog snippets to customer‑facing docs and support playbooks.</li>
+              <li>Create a train branch naming convention and merge queue policy.</li>
+              <li>Adopt AI‑generated release notes and changelog checks at tag time.</li>
+              <li>Publish freeze timelines and exception rationale to increase transparency.</li>
             </ul>
           </div>
         </div>

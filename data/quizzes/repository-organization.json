@@ -121,7 +121,11 @@
       ],
       "correctAnswer": 1,
       "additionalContext": "Mono&ndash;repos shine for coordinated refactors, shared tooling, and unified standards across many packages.",
-      "keyConcepts": ["Mono&ndash;repo", "Cross&ndash;cutting changes", "Unified tooling"]
+      "keyConcepts": [
+        "Mono&ndash;repo",
+        "Cross&ndash;cutting changes",
+        "Unified tooling"
+      ]
     },
     {
       "id": "9",
