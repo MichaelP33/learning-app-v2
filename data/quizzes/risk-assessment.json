@@ -1,0 +1,141 @@
+{
+  "title": "Risk Assessment Knowledge Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "What is the primary purpose of a likelihood/impact matrix?",
+      "options": [
+        "To assign blame after incidents",
+        "To create audit paperwork only",
+        "To replace monitoring entirely",
+        "To visualize risk exposure and prioritize mitigations"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "The matrix highlights high likelihood/high impact risks for prioritization and mitigation planning.",
+      "keyConcepts": ["Risk matrix", "Prioritization", "Exposure"]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A mitigation differs from a contingency because:",
+      "options": [
+        "Mitigation is applied after the risk occurs; contingency is before",
+        "They are identical",
+        "Mitigation reduces likelihood/impact beforehand; contingency is the plan if the risk happens",
+        "Contingency reduces probability only"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Mitigations act proactively to reduce probability or impact; contingencies are &ldquo;what we do if it happens&rdquo;.",
+      "keyConcepts": ["Mitigation", "Contingency", "Proactive vs reactive"]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A good trigger for a risk is:",
+      "options": [
+        "A specific observable event like error rate exceeding a threshold",
+        "Vague concern with no observable signal",
+        "A quarterly meeting invite",
+        "A teammate&rsquo;s feeling"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Triggers should be measurable signals (metrics, logs, events) that indicate increased risk likelihood.",
+      "keyConcepts": ["Triggers", "Signals", "Monitoring"]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Which practice supports ongoing risk visibility during a project?",
+      "options": [
+        "Static risk list created once",
+        "Risk burndown chart updated with discovery and mitigations",
+        "Only postmortems",
+        "Ignoring low probability risks"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "A risk burndown tracks exposure over time and shows effect of mitigations and new discoveries.",
+      "keyConcepts": ["Risk burndown", "Discovery", "Exposure over time"]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "When interpreting a risk burndown that is flat or rising:",
+      "options": [
+        "Everything is fine by default",
+        "It proves schedule padding is too large",
+        "It means we overestimated impact",
+        "It indicates mitigations are insufficient or new risks emerged"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Flat or rising exposure suggests mitigations are ineffective or risks are being discovered faster than addressed.",
+      "keyConcepts": ["Interpretation", "Exposure", "Mitigation effectiveness"]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Scenario planning helps by:",
+      "options": [
+        "Eliminating all uncertainty",
+        "Replacing incident response",
+        "Defining responses for plausible futures and decision points",
+        "Guaranteeing dates regardless of risk"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Scenarios outline plausible futures with triggers/decision points so teams can act quickly when signals occur.",
+      "keyConcepts": ["Scenario planning", "Decision points", "Futures"]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A common bias to avoid in risk assessment:",
+      "options": [
+        "Anchoring to first estimates without new data",
+        "Using data from monitoring",
+        "Considering multiple mitigation options",
+        "Revisiting assumptions when signals change"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Anchoring and confirmation bias can distort likelihood/impact estimates; regularly revisit with fresh data.",
+      "keyConcepts": ["Bias", "Anchoring", "Confirmation bias"]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Which combination best reduces risk exposure before launch?",
+      "options": [
+        "Disable monitoring and ship",
+        "Pilot with canary/feature flags plus rollback strategy",
+        "Skip load testing to save time",
+        "Ship on Friday evening"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Pilots with flags and clear rollback reduce blast radius and time to recover.",
+      "keyConcepts": ["Pilot", "Feature flags", "Rollback"]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "You inherit a project with high unknowns. Describe how you would establish a risk register with triggers, mitigations, and contingencies. How will you track exposure over time?",
+      "sampleStrongResponse": "Create a lightweight register listing risk, likelihood, impact, owner, trigger, mitigation, contingency. Tie triggers to metrics/logs and review weekly. Track exposure via a risk burndown chart updated as mitigations land and new risks are discovered."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "An upcoming launch depends on an external API with uncertain limits. Propose mitigations and contingencies, including signals to switch strategies.",
+      "sampleStrongResponse": "Mitigations: cache, rate limiting, backoff, prefetching, contract tests. Contingencies: failover path, toggle to reduced capability, staged rollout. Signals: elevated 429/5xx rate or latency p95 crossing threshold triggers fallback and rollback."
+    }
+  ]
+}
