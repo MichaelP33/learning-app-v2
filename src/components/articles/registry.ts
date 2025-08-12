@@ -2,7 +2,9 @@
 // Do not edit directly; run npm run generate:articles-registry
 export const articleRegistry: Record<string, () => Promise<{ default: React.FC }>> = {
   "agile-scrum": () => import("./agile-scrum"),
+  "api-versioning": () => import("./api-versioning"),
   "artifact-management": () => import("./artifact-management"),
+  "authentication-authorization": () => import("./authentication-authorization"),
   "branching-strategies": () => import("./branching-strategies"),
   "build-automation": () => import("./build-automation"),
   "capacity-planning": () => import("./capacity-planning"),
@@ -26,7 +28,9 @@ export const articleRegistry: Record<string, () => Promise<{ default: React.FC }
   "package-managers": () => import("./package-managers"),
   "pair-programming": () => import("./pair-programming"),
   "pull-request-process": () => import("./pull-request-process"),
+  "rate-limiting": () => import("./rate-limiting"),
   "repository-organization": () => import("./repository-organization"),
+  "rest-best-practices": () => import("./rest-best-practices"),
   "risk-assessment": () => import("./risk-assessment"),
   "rollback-procedures": () => import("./rollback-procedures"),
   "sprint-planning": () => import("./sprint-planning"),
