@@ -168,6 +168,525 @@ export const externalQuizzes: Record<string, Quiz> = {
     }
   ]
 },
+  "artifact-management": {
+  "title": "Artifact Management Knowledge Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Immutability in artifact management is best ensured by:",
+      "options": [
+        "Promoting by digest across environments; treat tags as pointers",
+        "Editing artifacts in-place after publish",
+        "Rebuilding artifacts at each promotion step",
+        "Using only human-readable tags in production"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Digest-based promotion preserves exact bits and provenance; tags can move and are not reliable identity.",
+      "keyConcepts": [
+        "Immutability",
+        "Digest",
+        "Promotion"
+      ]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Provenance and SBOMs together primarily enable:",
+      "options": [
+        "Faster CSS builds",
+        "Traceability, vulnerability response, and audits",
+        "UI theming consistency",
+        "Shorter commit messages"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Provenance ties builds to inputs and process; SBOM lists components and licenses.",
+      "keyConcepts": [
+        "Provenance",
+        "SBOM",
+        "Audits"
+      ]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Why separate package registries from deploy-time artifact registries?",
+      "options": [
+        "They are identical and interchangeable",
+        "To remove access control",
+        "They have different SLAs and access patterns (build vs deploy)",
+        "To avoid replication and caching"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Build-time package registries differ from deploy-time artifact registries; manage them with appropriate policies and SLAs.",
+      "keyConcepts": [
+        "Registries",
+        "SLAs",
+        "Access patterns"
+      ]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A correct promotion practice across environments is to:",
+      "options": [
+        "Rebuild binaries for each environment",
+        "Change content under the same tag",
+        "Delete old digests to save space only",
+        "Copy or reference the same digest after checks pass"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Promotion should move the exact digest that passed tests and scans; never rebuild during promotion.",
+      "keyConcepts": [
+        "Promotion",
+        "Checks",
+        "Determinism"
+      ]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Strong signature verification should occur:",
+      "options": [
+        "At deploy time with fail-closed gates",
+        "Only in local development",
+        "Never, to speed up deploys",
+        "Only if a human approves manually"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Verify signatures and provenance at deploy; block rollouts when evidence is missing or invalid.",
+      "keyConcepts": [
+        "Signatures",
+        "Verification",
+        "Fail-closed"
+      ]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Why are tags alone insufficient as deploy identifiers?",
+      "options": [
+        "Tags are always unique across time",
+        "Tags cannot be read by tools",
+        "Tags can be mutable; digests guarantee exact content",
+        "Tags require no access control"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Tags may move; deploy by digest to ensure the exact bits run everywhere.",
+      "keyConcepts": [
+        "Tags",
+        "Digest",
+        "Identity"
+      ]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Regional mirrors and caching primarily help by:",
+      "options": [
+        "Increasing egress costs",
+        "Reducing latency, egress, and improving resilience",
+        "Avoiding access control",
+        "Disabling audits"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Mirrors keep deploys fast and resilient during central outages and reduce network costs.",
+      "keyConcepts": [
+        "Mirrors",
+        "Latency",
+        "Resilience"
+      ]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "An audit-friendly promotion record should include:",
+      "options": [
+        "Only the artifact name",
+        "No timestamps to reduce noise",
+        "A random hash unrelated to content",
+        "Who promoted, when, source/target namespaces, and digest"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Record promotion lineage: actor, time, from/to, checks passed, and exact digest.",
+      "keyConcepts": [
+        "Audit trail",
+        "Lineage",
+        "Compliance"
+      ]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Design an artifact promotion pipeline from dev → staging → prod that preserves immutability and provenance. Include rollback and audit requirements.",
+      "sampleStrongResponse": "Publish artifacts with SBOM and provenance; sign outputs. Promote by digest through environment namespaces after tests/scans pass. Record who/when/checks in an immutable log. Rollback by re-promoting a prior known-good digest. Enforce deploy-time signature and provenance verification (fail-closed)."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Your org experienced a &ldquo;prod tag drifted from staging&rdquo; incident. Propose controls in registries and CD to prevent this class of issue permanently.",
+      "sampleStrongResponse": "Require deploy by digest in CD; block mutable tags at prod. Verify signatures and provenance at deploy. Record promotion events with actor/time/digest. Use regional mirrors for resilience. Add policy that forbids rebuilds during promotion and alerts on tag moves in prod namespaces."
+    }
+  ]
+},
+  "branching-strategies": {
+  "title": "Branching Strategies Knowledge Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Main risk of long&ndash;lived branches as teams and codebases grow is:",
+      "options": [
+        "Drift and higher integration risk as divergence increases",
+        "Simpler audits due to fewer commits",
+        "Guaranteed faster lead time",
+        "Elimination of merge conflicts over time"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Long&ndash;lived branches diverge from main, increasing conflict and integration risk, especially in tightly coupled code.",
+      "keyConcepts": [
+        "Long&ndash;lived branches",
+        "Integration risk",
+        "Conflict frequency"
+      ]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Feature flags help reduce branching risk because they:",
+      "options": [
+        "Replace the need for testing altogether",
+        "Allow incomplete work to merge to main safely while disabled",
+        "Remove the need for code reviews",
+        "Make rebase operations unnecessary"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Flags let teams ship code paths disabled by default, shortening branch lifetime and reducing integration pain.",
+      "keyConcepts": [
+        "Feature flags",
+        "Risk reduction",
+        "Integration cadence"
+      ]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A practical integration cadence to limit conflicts on active features is:",
+      "options": [
+        "Integrate at end of quarter during a freeze",
+        "Integrate only when conflicts arise",
+        "Integrate at least daily to keep branches current with main",
+        "Avoid integrating until the feature is complete"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Frequent integration shortens the divergence window and reduces conflict size when they occur.",
+      "keyConcepts": [
+        "Integration cadence",
+        "Conflict reduction",
+        "Branch freshness"
+      ]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Prefer creating a short&ndash;lived branch instead of only using flags when:",
+      "options": [
+        "The change is trivial UI copy",
+        "The work is easily hidden behind a single toggle",
+        "The change only affects test data",
+        "The work spans risky schema or contract changes requiring isolation"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Risky cross&ndash;cutting changes often need isolation, incremental PRs, and explicit hardening before enabling flags.",
+      "keyConcepts": [
+        "Risky changes",
+        "Isolation",
+        "Flags vs branching"
+      ]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Best practice for day&ndash;to&ndash;day feature branches is:",
+      "options": [
+        "Prefer small, single&ndash;purpose branches and PRs",
+        "Accumulate many unrelated changes to reduce PR count",
+        "Force&ndash;push shared release branches frequently",
+        "Skip PRs for speed when tests pass locally"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Small, focused PRs improve clarity, review quality, and merge safety.",
+      "keyConcepts": [
+        "Small PRs",
+        "Focus",
+        "Review quality"
+      ]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Why is developing features directly on a release branch discouraged?",
+      "options": [
+        "It always breaks CI by design",
+        "It causes divergence, cherry&ndash;pick debt, and confusion about sources of truth",
+        "It prevents tagging",
+        "It disables hotfix workflows automatically"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Release branches should stabilize a specific cut. New feature work belongs on short&ndash;lived branches against main.",
+      "keyConcepts": [
+        "Release branches",
+        "Stabilization",
+        "Cherry&ndash;pick debt"
+      ]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "To reduce conflict size on a feature branch you should:",
+      "options": [
+        "Avoid syncing with main until ready",
+        "Lock main during development",
+        "Regularly rebase or merge main into the branch to stay up to date",
+        "Rewrite main to match the branch"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Keeping branches current with main reduces the scope of conflicts and makes resolution simpler.",
+      "keyConcepts": [
+        "Branch freshness",
+        "Rebase vs merge",
+        "Conflict scope"
+      ]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Which naming approach improves traceability for branches?",
+      "options": [
+        "Random names for privacy",
+        "All branches named after developers",
+        "Names that omit any link to tracking systems",
+        "Prefix with ticket ID and a concise description (e.g., feat/PROJ-123-short-title)"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Ticket&ndash;prefixed, descriptive names support searchability, auditability, and automation hooks.",
+      "keyConcepts": [
+        "Traceability",
+        "Naming",
+        "Automation"
+      ]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Draft a team policy that keeps branches short&ndash;lived. Include maximum age, integration cadence, use of flags, and merge strategy to main.",
+      "sampleStrongResponse": "Set a default maximum branch age (e.g., 5 business days). Require at least daily sync with main and small PRs. Use feature flags for incomplete paths so changes can merge early. Merge to main via squash&ndash;merge after green CI and required reviews; prohibit rebasing shared branches."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Outline a migration plan from GitFlow with long&ndash;lived branches to trunk&ndash;based development. Include risk controls, rollout phases, and success metrics.",
+      "sampleStrongResponse": "Pilot trunk&ndash;based on one service with feature flags and strict CI gates. Phase 1: shrink branch lifetime, enforce small PRs, add status checks. Phase 2: add release trains if needed, create short stabilization windows, adopt tags and automated changelogs. Measure merge frequency, time&ndash;to&ndash;prod, and conflict rate; adjust guardrails as teams adapt."
+    }
+  ]
+},
+  "build-automation": {
+  "title": "Build Automation Knowledge Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Incremental builds primarily rely on:",
+      "options": [
+        "Timestamps on files to decide what to rebuild",
+        "A build graph with content hashing of declared inputs and tools",
+        "Manual selection of targets each run",
+        "Ignoring tool versions to keep keys stable"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Tracking inputs → outputs across a DAG and hashing inputs (including tool versions) lets the system skip unchanged work.",
+      "keyConcepts": [
+        "Incremental builds",
+        "Build graph",
+        "Content hashing"
+      ]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Stable cache keys for build steps should include:",
+      "options": [
+        "Only filenames without content",
+        "Source digests, toolchain identifiers, env/flags that affect outputs",
+        "Timestamps and CI job number",
+        "Random seed to avoid collisions"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Cache keys must reflect all inputs to avoid collisions and enable deterministic reuse across machines.",
+      "keyConcepts": [
+        "Cache keys",
+        "Determinism",
+        "Toolchain identifiers"
+      ]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A primary benefit of a remote build cache is:",
+      "options": [
+        "Forcing full rebuilds for safety",
+        "Storing logs only, not artifacts",
+        "Tying builds to a single runner",
+        "Sharing compiled results across CI agents and laptops"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Remote caches let teams reuse prior results across machines, cutting CI minutes and local feedback time.",
+      "keyConcepts": [
+        "Remote cache",
+        "Reuse",
+        "CI speed"
+      ]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Which practice unlocks maximum parallelism in builds?",
+      "options": [
+        "Single-threaded minifiers",
+        "Global locks around package installation",
+        "Graph-aware scheduling of independent nodes",
+        "Serial test execution without sharding"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Model dependencies as a DAG and schedule independent nodes concurrently; shard long-running tests by runtime.",
+      "keyConcepts": [
+        "Parallelization",
+        "DAG",
+        "Test sharding"
+      ]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Treating CI as a DAG of cacheable stages instead of shell scripts enables:",
+      "options": [
+        "Selective execution of only affected targets",
+        "Longer queues and idle cores",
+        "Hidden, ambient dependencies",
+        "Unbounded network access in compile steps"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Pipelines modeled as graphs make dependencies explicit and allow partial, affected-only runs.",
+      "keyConcepts": [
+        "CI orchestration",
+        "Affected-only runs",
+        "Pipeline DAG"
+      ]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Matrix builds are primarily used to:",
+      "options": [
+        "Speed up a single OS by duplicating work",
+        "Hide flaky tests",
+        "Validate across OS/architectures in parallel",
+        "Reduce test coverage for faster runs"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Matrix builds fan out jobs across OS/arch combinations to catch portability issues efficiently.",
+      "keyConcepts": [
+        "Matrix builds",
+        "Cross-platform",
+        "Parallelism"
+      ]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Why should artifacts be promoted by digest across environments?",
+      "options": [
+        "It preserves exact bits and provenance; no rebuilds during promotion",
+        "Digests are easier to remember than tags",
+        "It guarantees rebuilds at each stage",
+        "Tags are immutable everywhere"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Promoting by digest ensures the same artifact is used in staging and production, maintaining provenance and repeatability.",
+      "keyConcepts": [
+        "Promotion",
+        "Digest",
+        "Provenance"
+      ]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "To prevent &ldquo;works on my machine&rdquo; failures, build systems should:",
+      "options": [
+        "Rely on developer PATH and host tools",
+        "Use hermetic, containerized toolchains and block undeclared network access",
+        "Skip hashing tool versions to keep caches warm",
+        "Allow ambient environment variables to influence outputs"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Hermetic builds pin tools and remove ambient state so outputs depend only on declared inputs.",
+      "keyConcepts": [
+        "Hermetic builds",
+        "Containers",
+        "Determinism"
+      ]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Design a caching strategy for a large monorepo. What belongs in action keys, what should be stored remotely, and how will you pre-warm caches in CI?",
+      "sampleStrongResponse": "Compute content-addressed keys from source digests, toolchain image, env flags, and fetch inputs. Store action results and final artifacts in a remote cache. Pre-warm by reusing successful pipeline caches, seeding common targets on main, and sharing cache across branches. Track hit rates and fix missing inputs that cause cache misses."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Outline a hermetic CI pipeline as a DAG: compile, shard tests, package, SBOM/provenance/signing, and promotion. How will you measure success and enable fast rollback?",
+      "sampleStrongResponse": "Model stages as cacheable nodes. Compile with network blocked; shard tests by historical runtime; package artifacts and attach SBOM and provenance; sign outputs; promote by digest only after gates pass. Success metrics: p95 PR validation time, cache hit rate, change failure rate. Rollback by promoting a prior known-good digest with recorded evidence and alerts."
+    }
+  ]
+},
   "capacity-planning": {
   "title": "Capacity Planning Knowledge Quiz",
   "totalQuestions": 10,
@@ -687,6 +1206,190 @@ export const externalQuizzes: Record<string, Quiz> = {
     }
   ]
 },
+  "code-editors-vs-ides": {
+  "title": "Code Editors vs IDEs Knowledge Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "What is the core difference between a lightweight code editor and a full IDE?",
+      "options": [
+        "IDEs integrate debugging, refactoring, and project tooling; editors focus on editing with optional plugins",
+        "Editors always include full build systems and test runners",
+        "IDEs cannot be extended with plugins",
+        "Editors are only for plain‑text files, not code"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Editors prioritize startup speed and small footprint. IDEs ship integrated debugging, refactors, test runners, and project models out of the box for deeper workflows.",
+      "keyConcepts": [
+        "Capability vs footprint",
+        "Integration depth",
+        "Extensibility"
+      ]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Which statement best describes typical startup performance?",
+      "options": [
+        "IDEs always start faster due to indexing",
+        "Editors tend to start faster; IDEs may take longer due to indexing and project scanning",
+        "Editors are always slower because they lack features",
+        "Both are identical in startup time"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Indexing and heavy project models can add startup overhead in IDEs, while editors often defer work until a feature is invoked.",
+      "keyConcepts": [
+        "Startup time",
+        "Indexing",
+        "Deferred work"
+      ]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "How can plugin ecosystems affect capability parity between editors and IDEs?",
+      "options": [
+        "Plugins rarely add significant features",
+        "Plugins only change themes",
+        "Rich plugin ecosystems can close capability gaps, though configuration effort may rise",
+        "Plugins eliminate the need for version control"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "With the right extensions (LSP, debugger adapters, test runners), editors can approximate IDE features but require careful setup.",
+      "keyConcepts": [
+        "Plugin ecosystems",
+        "Configuration",
+        "LSP"
+      ]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "What is a primary benefit of remote development (for example, dev containers or remote SSH) in this context?",
+      "options": [
+        "It guarantees zero latency",
+        "It prevents any dependency drift automatically",
+        "It makes local CPUs irrelevant in all cases",
+        "It offloads heavy toolchains to a remote host while using a local UI"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Remote development centralizes toolchains and compute in a consistent environment while the editor/IDE provides the interface locally.",
+      "keyConcepts": [
+        "Remote dev",
+        "Dev containers",
+        "Consistency"
+      ]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "When might a lightweight editor be preferable over an IDE for a large monorepo?",
+      "options": [
+        "When deep refactors across many projects are required immediately",
+        "When you need built‑in database migration tools",
+        "When quick edits are needed and heavy indexing would slow you down",
+        "When you must compile native toolchains locally"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "For quick, localized changes, avoiding full indexing can reduce waiting time. For large cross‑cutting changes, IDE capabilities may win.",
+      "keyConcepts": [
+        "Monorepos",
+        "Indexing cost",
+        "Edit latency"
+      ]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "In which scenario does an IDE typically provide outsized benefits?",
+      "options": [
+        "Editing a single config file",
+        "Performing large, type‑aware refactors and deep navigation in complex codebases",
+        "Previewing Markdown",
+        "Viewing logs only"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Type‑aware navigation and refactoring tools shine in big, strongly typed codebases where correctness and consistency matter.",
+      "keyConcepts": [
+        "Refactors",
+        "Type awareness",
+        "Deep navigation"
+      ]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "What is a common risk of installing too many extensions?",
+      "options": [
+        "Increased CPU, memory usage, and slower startup times",
+        "Lower memory usage",
+        "Guaranteed stability improvements",
+        "Automatic security hardening"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Each extension can load background processes, watchers, or parsers that add overhead. A curated set helps maintain performance.",
+      "keyConcepts": [
+        "Extension bloat",
+        "Performance budgets",
+        "Startup"
+      ]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "What is a typical trade‑off of remote development compared to fully local development?",
+      "options": [
+        "No need for security reviews",
+        "Unlimited offline capability",
+        "Zero cost for compute",
+        "Potential latency and dependency on network connectivity"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "While remote environments can be consistent and powerful, interactive tasks can feel slower on poor connections.",
+      "keyConcepts": [
+        "Latency",
+        "Connectivity",
+        "Remote trade‑offs"
+      ]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Your team is deciding between an IDE‑first or editor‑plus‑plugins approach. Explain the trade‑offs and when you would recommend each.",
+      "sampleStrongResponse": "Recommend an IDE for large, typed codebases where refactor safety, deep navigation, and integrated debugging reduce risk. Recommend an editor‑plus‑plugins for fast startup, lightweight machines, or polyglot teams where only a subset of features is needed. Note the setup tax for plugins and the need for extension governance. Consider remote development when local machines struggle with indexing.",
+      "keyConcepts": [
+        "Trade‑offs",
+        "Team context",
+        "Risk vs speed"
+      ]
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Propose a plugin governance policy that balances capability with performance and security for your organization.",
+      "sampleStrongResponse": "Define an allowlist with review criteria (maintenance cadence, permissions requested, reputation). Set performance budgets (startup time, memory) and monitor with profiling tools. Require &ldquo;least privilege&rdquo; by disabling unused capabilities. Stage updates in a pilot group before broad rollout, and document alternatives for any blocked extensions.",
+      "keyConcepts": [
+        "Governance",
+        "Allowlist",
+        "Performance budgets",
+        "Security"
+      ]
+    }
+  ]
+},
   "code-reviews": {
   "title": "Code Reviews Knowledge Quiz",
   "totalQuestions": 10,
@@ -856,6 +1559,362 @@ export const externalQuizzes: Record<string, Quiz> = {
       "points": 5,
       "question": "A teammate flags that reviews feel like gates rather than collaboration. How would you reset norms and measure improvement?",
       "sampleStrongResponse": "Run a brief workshop to align on goals and examples of constructive feedback; update PR template to separate must‑fix vs suggestions and rationale. Measure review turnaround, change success rate, and developer sentiment over 2–3 sprints."
+    }
+  ]
+},
+  "dependency-management": {
+  "title": "Dependency Management Knowledge Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Most dependency risk in large systems comes from:",
+      "options": [
+        "Only direct dependencies that we import",
+        "Transitive dependencies pulled in by direct deps (blast radius)",
+        "Operating system packages only",
+        "Tooling unrelated to builds"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Transitives often hide vulnerabilities and create wide blast radius across many services.",
+      "keyConcepts": [
+        "Transitive risk",
+        "Blast radius",
+        "Graphs"
+      ]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Effective triage of a CVE should prioritize:",
+      "options": [
+        "Package popularity",
+        "Reachability and exploitability in your binaries",
+        "Commit message length",
+        "Team size"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Use reachability to see if vulnerable code paths are invoked; combine with severity and compensating controls.",
+      "keyConcepts": [
+        "Reachability",
+        "Exploitability",
+        "Triage"
+      ]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "License policy enforcement should be:",
+      "options": [
+        "Manual and ad-hoc",
+        "Performed only during annual audits",
+        "Automated as policy-as-code in CI and registries",
+        "Skipped for transitive dependencies"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Automate license allow/deny checks at PR time and publish; generate attribution for distributions.",
+      "keyConcepts": [
+        "Licenses",
+        "Policy-as-code",
+        "Attribution"
+      ]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Why adopt regular update cadences?",
+      "options": [
+        "To defer risk until the end of the year",
+        "To accumulate larger, riskier upgrades",
+        "To avoid all PRs for months",
+        "To reduce big-bang upgrades and keep remediation fast"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Small, routine bumps keep systems fresh and make security fixes easier to ship.",
+      "keyConcepts": [
+        "Update cadence",
+        "Risk reduction",
+        "Remediation speed"
+      ]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "When remediation must be deferred, a good practice is to:",
+      "options": [
+        "Accept permanent risk without record",
+        "Hide the issue to avoid attention",
+        "Remove attribution requirements",
+        "Record a time-bound exception with owner and expiry"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Time-bound exceptions with approvals prevent silent, permanent risk acceptance.",
+      "keyConcepts": [
+        "Exceptions",
+        "Governance",
+        "Expiry"
+      ]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A common safe remediation path is:",
+      "options": [
+        "Rewrite the app immediately",
+        "Ignore advisories if tests are green",
+        "Backport a patch or pin to a safe minor and plan a major upgrade",
+        "Remove the dependency from SBOMs only"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Backports and safe pins buy time; majors get scheduled with migration guides and tests.",
+      "keyConcepts": [
+        "Backport",
+        "Pinning",
+        "Major upgrade"
+      ]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Reasonable remediation SLAs often include:",
+      "options": [
+        "Only best-effort timelines",
+        "Critical in 48–72h; high in a sprint; others via cadence",
+        "No timelines for transitive issues",
+        "Annual remediation only"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Set clear SLAs to keep risk low while balancing team capacity.",
+      "keyConcepts": [
+        "SLA",
+        "Risk",
+        "Prioritization"
+      ]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A key metric to track dependency program effectiveness is:",
+      "options": [
+        "Number of stars on GitHub",
+        "Lines of code changed",
+        "Number of packages installed per day",
+        "Remediation lead time from advisory to rollout"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Track how quickly advisories are triaged, fixed, tested, and rolled out across services.",
+      "keyConcepts": [
+        "Lead time",
+        "Advisories",
+        "Program metrics"
+      ]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Design a company-wide dependency remediation workflow: ingestion of advisories, reachability analysis, triage, PR automation, canary rollout, and exception handling.",
+      "sampleStrongResponse": "Ingest advisories into a central system and map to SBOMs. Run reachability to prioritize. Auto-open PRs for safe bumps; create migration tracks for breakers. Canary critical services first behind flags. Track remediation lead time and require time-bound exceptions with owner/expiry for deferrals."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "A high-centrality library in your monorepo needs a major upgrade. Outline a plan that limits blast radius and preserves delivery: staging strategy, test strategy, and rollout.",
+      "sampleStrongResponse": "Add characterization and integration tests around critical paths. Create a branch with workspace isolation; bump the library and codemods. Roll out via flags/canary to low-risk services first, then expand. Monitor error rate and p95 latency; rollback by digest if thresholds breach. Complete attribution and license checks before production."
+    }
+  ]
+},
+  "developer-productivity-tools": {
+  "title": "Developer Productivity Tools Knowledge Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "What is the primary distinction between linters and code formatters?",
+      "options": [
+        "Formatters detect security vulnerabilities; linters only change whitespace",
+        "Linters only add colors; formatters enforce naming conventions",
+        "Linters enforce rules and surface potential defects; formatters standardize code style",
+        "They are interchangeable tools"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Linters flag probable bugs and policy violations (for example, unused variables), while formatters normalize layout so developers focus on logic, not style.",
+      "keyConcepts": [
+        "Linters",
+        "Formatters",
+        "Quality vs style"
+      ]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "How do pre‑commit hooks improve consistency?",
+      "options": [
+        "They randomly block commits",
+        "They auto‑merge branches",
+        "They enforce checks (for example, lint/format) before code lands",
+        "They remove tests to speed up CI"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Pre‑commit hooks run tooling locally (format, lint, type checks) to catch issues early and reduce churn in CI.",
+      "keyConcepts": [
+        "Pre‑commit",
+        "Consistency",
+        "Shift‑left"
+      ]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "What advantage does structural code search provide over plain text search?",
+      "options": [
+        "It searches only comments",
+        "It matches code patterns at the syntax/AST level (for example, function calls with certain arguments)",
+        "It renames files automatically",
+        "It replaces the need for tests"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Structural search understands code shapes, enabling precise queries like finding unsafe API usages versus broad text matches.",
+      "keyConcepts": [
+        "Structural search",
+        "AST",
+        "Precision"
+      ]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "How do snippets and macros boost developer throughput?",
+      "options": [
+        "By disabling type checking",
+        "By hiding errors",
+        "By increasing network bandwidth",
+        "By automating repetitive patterns and reducing keystrokes"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Reusable templates for boilerplate (for example, test skeletons) reduce friction and promote consistency.",
+      "keyConcepts": [
+        "Snippets",
+        "Automation",
+        "Consistency"
+      ]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "What role do task runners (for example, npm scripts, Make, or Invoke) play?",
+      "options": [
+        "They replace version control",
+        "They handle production incident response",
+        "They provide a single entry point to common commands and workflows",
+        "They automatically refactor code"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Task runners standardize commands like test, lint, build, and release, reducing the &ldquo;how do I run this&rdquo; learning curve.",
+      "keyConcepts": [
+        "Task runners",
+        "Standardization",
+        "DX"
+      ]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Why is terminal/CLI integration inside the editor/IDE useful?",
+      "options": [
+        "It disables environment variables",
+        "It forces GUI usage only",
+        "It removes the need for build tools",
+        "It keeps commands, environment, and output close to the code for fast iteration"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "An embedded terminal preserves project context and makes iterative loops (edit‑run‑test) quicker.",
+      "keyConcepts": [
+        "CLI",
+        "Feedback loop",
+        "Context switching"
+      ]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "How should Prettier and ESLint typically be used together?",
+      "options": [
+        "Run Prettier for styling and use ESLint for rules; resolve conflicts with appropriate configs",
+        "Only run ESLint and ignore formatting",
+        "Run both but disable all rules",
+        "Run Prettier as a linter plugin so no configuration is needed"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Prettier handles formatting concerns, while ESLint enforces quality and policy rules. Use configs to avoid rule overlap.",
+      "keyConcepts": [
+        "Prettier",
+        "ESLint",
+        "Tooling harmony"
+      ]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "What is a balanced policy for linter severity in CI?",
+      "options": [
+        "Fail CI on any warning",
+        "Fail on errors while tracking warnings; escalate categories over time",
+        "Ignore errors and warnings",
+        "Fail only on style issues"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Start with errors as blockers and warnings as tracked metrics, then ratchet up standards as the codebase improves.",
+      "keyConcepts": [
+        "CI policy",
+        "Severity",
+        "Continuous improvement"
+      ]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Outline a plan to roll out linters and formatters to an existing repository with minimal disruption.",
+      "sampleStrongResponse": "Introduce shared configs and run tools in fix mode to create a baseline commit. Add pre‑commit hooks to prevent regressions. In CI, fail on errors and report warnings. Communicate style decisions and provide editor integration steps. Apply changes in focused batches to avoid noisy diffs and coordinate with active feature branches.",
+      "keyConcepts": [
+        "Migration plan",
+        "Hooks",
+        "Baseline commit"
+      ]
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Design a productivity toolkit for a new service: specify search tools, snippets, tasks, and CI integrations that will reduce onboarding time.",
+      "sampleStrongResponse": "Provide structural code search patterns for common APIs, a curated snippet set for test and handler templates, and npm scripts for dev, test, lint, and type‑check. Add a &ldquo;first‑run&rdquo; script to install dependencies and pre‑commit hooks. Document how to run everything inside the editor&rsquo;s terminal so newcomers can ship a passing change in under an hour.",
+      "keyConcepts": [
+        "Onboarding",
+        "Toolkit",
+        "Standard scripts"
+      ]
     }
   ]
 },
@@ -1545,6 +2604,189 @@ export const externalQuizzes: Record<string, Quiz> = {
     }
   ]
 },
+  "extension-ecosystems": {
+  "title": "Extension Ecosystems Knowledge Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "What is a primary security risk introduced by editor/IDE extensions?",
+      "options": [
+        "Supply‑chain exposure if extensions have broad filesystem or network permissions",
+        "Guaranteed elimination of all vulnerabilities",
+        "Automatic code review of all commits",
+        "Hardware isolation of the development machine"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Extensions may have access to files, environment variables, and network calls. Poorly vetted plugins can exfiltrate data or inject malicious code.",
+      "keyConcepts": [
+        "Supply chain",
+        "Permissions",
+        "Data exfiltration"
+      ]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "What is a good first‑pass evaluation signal when assessing an extension?",
+      "options": [
+        "Number of colors in its theme",
+        "Presence of animated icons",
+        "Maintenance cadence, clear permissions, and reputable publisher",
+        "Total size of screenshots"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Look for an active changelog, transparent scopes/permissions, signed publishers, and community reputation before trial.",
+      "keyConcepts": [
+        "Evaluation",
+        "Reputation",
+        "Permissions"
+      ]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "How can teams isolate performance issues potentially caused by extensions?",
+      "options": [
+        "Use built‑in profiling and extension bisect/safe‑mode to identify the culprit",
+        "Install more extensions to mask the problem",
+        "Ignore any slowdowns",
+        "Disable the IDE entirely"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Many tools provide an &ldquo;extension bisect&rdquo; or safe‑mode that disables subsets of extensions to quickly find regressions.",
+      "keyConcepts": [
+        "Performance diagnostics",
+        "Profiling",
+        "Bisect"
+      ]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Which policy best addresses telemetry and privacy concerns with extensions?",
+      "options": [
+        "Allow any telemetry by default",
+        "Review extension telemetry, disable unnecessary tracking, and document data flows",
+        "Block all extensions regardless of function",
+        "Trust publishers without review"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "A balanced approach audits what data leaves developer machines and ensures collection aligns with company policy.",
+      "keyConcepts": [
+        "Telemetry",
+        "Privacy",
+        "Policy"
+      ]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "What is a best practice for update hygiene in an extension‑heavy environment?",
+      "options": [
+        "Auto‑update all extensions immediately in production",
+        "Never update extensions",
+        "Let each developer choose any version",
+        "Stage updates with a canary group and pin versions for critical tools"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Staged rollouts catch regressions early. Pinning versions for critical tools prevents surprise breakages.",
+      "keyConcepts": [
+        "Update hygiene",
+        "Staged rollout",
+        "Version pinning"
+      ]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "What is the purpose of an organization extension allowlist?",
+      "options": [
+        "To improve keyboard backlighting",
+        "To block all development",
+        "To require administrative passwords for every keystroke",
+        "To approve a curated set of extensions that meet security and performance standards"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "An allowlist defines which extensions are approved. Criteria include maintenance, permissions, and performance impact.",
+      "keyConcepts": [
+        "Allowlist",
+        "Governance",
+        "Standards"
+      ]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "What principle should guide requested permissions for extensions?",
+      "options": [
+        "Request every permission to avoid friction",
+        "Request the minimum necessary (least privilege)",
+        "Avoid declaring permissions",
+        "Share credentials for convenience"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Least privilege reduces blast radius if an extension is compromised and limits accidental data exposure.",
+      "keyConcepts": [
+        "Least privilege",
+        "Permissions",
+        "Risk reduction"
+      ]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "How should teams handle extensions in remote/containerized development environments?",
+      "options": [
+        "Allow any extension from the public marketplace",
+        "Disable all extensions always",
+        "Audit container capabilities and restrict extension hosts to the project scope",
+        "Run extensions as root for convenience"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Scope extensions to the workspace folder, avoid privileged containers, and review shared images for preinstalled plugins.",
+      "keyConcepts": [
+        "Remote dev",
+        "Containers",
+        "Scope restrictions"
+      ]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Draft a lightweight process for evaluating and approving new extensions for team use.",
+      "sampleStrongResponse": "Define review criteria (publisher reputation, maintenance cadence, permissions requested, telemetry behavior). Test the extension in a sandbox project, measure startup impact, and run a brief security review. If approved, add it to the allowlist with version pinning and document configuration steps.",
+      "keyConcepts": [
+        "Evaluation",
+        "Sandboxing",
+        "Approval"
+      ]
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Describe how you would detect and remediate a performance regression introduced by an extension across a large team.",
+      "sampleStrongResponse": "Use profiling and the platform&rsquo;s extension bisect to confirm the culprit. Roll back or pin the previous version, notify a pilot channel, and open an upstream issue with traces. Update the allowlist with a mitigation note and monitor startup and idle CPU metrics before re‑enabling the extension broadly.",
+      "keyConcepts": [
+        "Regression response",
+        "Pin/rollback",
+        "Monitoring"
+      ]
+    }
+  ]
+},
   "feature-flags": {
   "title": "Feature Flags Knowledge Quiz",
   "totalQuestions": 10,
@@ -1716,6 +2958,365 @@ export const externalQuizzes: Record<string, Quiz> = {
       "points": 5,
       "question": "Design a safe rollout for a high&ndash;risk payment feature behind a flag. Describe targeting, blast radius containment, kill switch behavior, and cleanup criteria.",
       "sampleStrongResponse": "Start internal&ndash;only, then 1% of a low&ndash;risk cohort by region, ramping while SLOs hold. Enable a global emergency off switch with short TTL rule refresh. Log all evaluations with user and reason. Predefine rollback triggers (error rate, p95 latency) and halt expansion if breached. Declare success criteria (conversion, error budgets) and schedule a removal PR once thresholds are met."
+    }
+  ]
+},
+  "git-workflows": {
+  "title": "Git Workflows Knowledge Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Which description best matches trunk&ndash;based development for high&ndash;cadence teams?",
+      "options": [
+        "Small, frequent merges to main behind feature flags with short&ndash;lived branches",
+        "Quarterly integration from long&ndash;lived branches with manual hardening",
+        "Direct pushes to main without reviews or CI",
+        "Rewriting shared history via rebase to keep a perfectly linear log"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Trunk&ndash;based development emphasizes short&ndash;lived branches, continuous integration, and flags so incomplete work ships safely behind toggles.",
+      "keyConcepts": [
+        "Trunk&ndash;based",
+        "Short&ndash;lived branches",
+        "Feature flags",
+        "Continuous integration"
+      ]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "When is a GitFlow&ndash;style workflow typically the better organizational fit?",
+      "options": [
+        "Startups shipping many times per day with minimal ceremonies",
+        "Programs with fixed release trains and formal stabilization windows",
+        "Teams that never tag releases or maintain changelogs",
+        "Teams that avoid hotfixes and rely only on flags"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "GitFlow supports release branches, audits, and planned stabilization windows; it suits regulated programs and scheduled releases.",
+      "keyConcepts": [
+        "GitFlow",
+        "Release branches",
+        "Stabilization",
+        "Auditability"
+      ]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Safe guidance for merge vs rebase in shared repositories is:",
+      "options": [
+        "Always rebase all shared branches to keep history linear",
+        "Always squash&ndash;merge into main to hide history",
+        "Rebase private branches; merge into shared branches to preserve integration context",
+        "Avoid merge commits entirely across the organization"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Rebase on private branches is safe. Merging into shared branches preserves integration context and avoids rewriting public history.",
+      "keyConcepts": [
+        "Rebase",
+        "Merge",
+        "Shared history",
+        "Integration context"
+      ]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Semantic versioning communicates impact as &ldquo;MAJOR.MINOR.PATCH&rdquo;. Which statement aligns with this?",
+      "options": [
+        "MAJOR adds features; MINOR breaks APIs; PATCH redesigns history",
+        "MAJOR/MINOR/PATCH are interchangeable labels",
+        "PATCH is for experimental features behind flags only",
+        "MAJOR signals breaking changes; MINOR adds features; PATCH fixes bugs"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "SemVer sets expectations: breaking changes (MAJOR), backward&ndash;compatible features (MINOR), and bug fixes (PATCH).",
+      "keyConcepts": [
+        "SemVer",
+        "Tags",
+        "Change visibility"
+      ]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "What CI policy best supports trunk&ndash;based development?",
+      "options": [
+        "Run checks on PRs and on merges to main; require green status checks before merge",
+        "Run CI only on nightly schedules to save capacity",
+        "Allow direct pushes to main if tests pass locally",
+        "Skip tests for small PRs to optimize reviewer time"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Status checks on PRs and post&ndash;merge catches regressions early and keeps main always releasable.",
+      "keyConcepts": [
+        "CI gates",
+        "Status checks",
+        "Always&ndash;green main"
+      ]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Primary purpose of a release branch prior to shipping is to:",
+      "options": [
+        "Begin large new feature work",
+        "Stabilize a cut of main with targeted fixes and sign&ndash;off",
+        "Replace tagging and changelogs entirely",
+        "Rewrite history to simplify the log"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Release branches capture a specific cut for final fixes, docs, and validation before tagging and delivery.",
+      "keyConcepts": [
+        "Release branches",
+        "Stabilization",
+        "Hardening"
+      ]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A pragmatic mainline history policy for feature branches is to:",
+      "options": [
+        "Enforce fast&ndash;forward merges only across all repos",
+        "Allow rebasing of shared release branches for a linear graph",
+        "Squash&ndash;merge feature branches to keep main concise and track detail in PRs",
+        "Avoid PRs and push directly to main to reduce overhead"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Squash&ndash;merging keeps main readable while preserving full detail in the PR conversation and branch history.",
+      "keyConcepts": [
+        "Squash merge",
+        "Mainline history",
+        "PR detail"
+      ]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "To avoid &ldquo;lost fix&rdquo; incidents when hotfixing a release branch, the team should:",
+      "options": [
+        "Patch the release branch only and close the PR",
+        "Patch main only and hope the next release picks it up",
+        "Rebase main onto the release branch after every hotfix",
+        "Backport to the release branch and forward&ndash;merge to main, then tag"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Always forward&ndash;merge hotfixes applied to a release branch back to main so fixes persist in future releases.",
+      "keyConcepts": [
+        "Backport",
+        "Forward merge",
+        "Hotfix policy"
+      ]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Propose a merge policy for release branches that prevents &ldquo;lost fix&rdquo; incidents. Include backport/forward&ndash;merge rules, tagging, and changelog automation.",
+      "sampleStrongResponse": "Use a stabilization branch per release. All critical fixes: (1) merge to the release branch, (2) immediately forward&ndash;merge the same commit to main, (3) tag once sign&ndash;off passes. Automate changelog generation from PR titles that carry SemVer intent (&ldquo;major&rdquo;/&ldquo;minor&rdquo;/&ldquo;patch&rdquo;). Rebase allowed only on private feature branches; shared branches use merges."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Design CI triggers and protections for a trunk&ndash;based repository. Specify PR checks, required statuses, branch protections, and how tags integrate with releases.",
+      "sampleStrongResponse": "Require status checks (tests, linters, security scans) on every PR and on merges to main; block merge unless all checks are green. Enable branch protection with required reviews and linear history via squash&ndash;merge. Tag from the release commit and publish artifacts; use automated changelogs derived from PR titles. Keep main always releasable by using feature flags for incomplete work."
+    }
+  ]
+},
+  "integrated-development-environments": {
+  "title": "Integrated Development Environments Knowledge Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "What does an IDE&rsquo;s code intelligence typically provide beyond basic syntax highlighting?",
+      "options": [
+        "Only color themes and font rendering",
+        "Type‑aware completions, symbol navigation, and inline documentation",
+        "A built‑in production deployment pipeline",
+        "Automatic database schema migrations"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Modern IDE code intelligence uses parse trees, symbol indexes, and language servers to surface context‑aware suggestions, jump‑to‑definition, and inline docs, reducing cognitive load and navigation time.",
+      "keyConcepts": [
+        "Code intelligence",
+        "Language Server Protocol",
+        "Productivity"
+      ]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "What is a conditional breakpoint used for when debugging in an IDE?",
+      "options": [
+        "To always pause on every iteration",
+        "To print logs without pausing execution",
+        "To pause only when a specified expression evaluates to true",
+        "To speed up execution by skipping lines"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Conditional breakpoints help isolate issues that occur only under certain states (for example, when a counter exceeds a threshold), avoiding noisy pauses and enabling focused inspection.",
+      "keyConcepts": [
+        "Debugger",
+        "Breakpoints",
+        "State inspection"
+      ]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "How do IDE profilers help address performance problems?",
+      "options": [
+        "They enforce code style rules",
+        "They provision staging environments",
+        "They manage Git branches automatically",
+        "They measure CPU time, memory usage, and hot paths to find bottlenecks"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Profilers reveal where time and memory are actually spent (hot functions, allocations, blocking calls), allowing targeted optimizations instead of guesswork.",
+      "keyConcepts": [
+        "Profiling",
+        "CPU hotspots",
+        "Memory diagnostics"
+      ]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "What benefit does IDE test runner integration primarily provide?",
+      "options": [
+        "Run tests with focused filters, watch mode, and inline failure details",
+        "Start and stop the production database",
+        "Manage Kubernetes cluster scaling",
+        "Generate UI wireframes automatically"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Tight test runner integration shortens feedback loops with quick filtering (by file, tag, or failed tests), watch re‑runs, and clickable stack traces.",
+      "keyConcepts": [
+        "Test runners",
+        "Feedback loop",
+        "Developer velocity"
+      ]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "What is the purpose of IDE refactor tools like Rename Symbol or Extract Function?",
+      "options": [
+        "To obfuscate variable names for security",
+        "To randomly reorder code blocks to test resilience",
+        "To safely update usages across the project while preserving behavior",
+        "To minify code for production"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Refactor tools operate on the symbol graph, updating all references consistently (for example, renaming across files) and reducing manual, error‑prone edits.",
+      "keyConcepts": [
+        "Refactoring",
+        "Symbol graph",
+        "Safety"
+      ]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "In an IDE, what does the project model (workspace indexing) enable?",
+      "options": [
+        "Auto‑scaling of cloud infrastructure",
+        "Live production feature flags",
+        "Automated legal compliance reports",
+        "Cross‑file navigation, find‑usages, and refactor accuracy"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Indexing builds a searchable map of symbols and relationships, powering accurate navigation (find usages) and safe refactors across large codebases.",
+      "keyConcepts": [
+        "Project model",
+        "Indexing",
+        "Find usages"
+      ]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "How does the Language Server Protocol (LSP) relate to IDE code intelligence?",
+      "options": [
+        "LSP is a UI theme engine",
+        "LSP standardizes how editors/IDEs request symbols, diagnostics, and completions from language servers",
+        "LSP is a Git hosting protocol",
+        "LSP is only for building container images"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "LSP decouples language smarts from the editor UI. A language server provides completions, diagnostics, and definitions to any LSP‑compatible client.",
+      "keyConcepts": [
+        "LSP",
+        "Diagnostics",
+        "Completions"
+      ]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "When is attaching an IDE debugger preferable to adding temporary print statements?",
+      "options": [
+        "When you need to inspect complex, stateful interactions and step through code paths",
+        "When you only need final program output",
+        "When the code runs once and cannot be paused",
+        "When you are formatting code for readability only"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Debuggers provide granular control (step‑in, step‑over, watch expressions) to analyze state transitions that are hard to capture with ad‑hoc logs.",
+      "keyConcepts": [
+        "Debugger vs logs",
+        "State analysis",
+        "Step control"
+      ]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Describe a practical workflow to diagnose a slow test suite using IDE tools.",
+      "sampleStrongResponse": "Start by scoping with the IDE&rsquo;s test explorer (filter to the slowest suites by duration), then run with watch to reproduce locally. Use the built‑in profiler to capture a CPU timeline and identify hot paths (for example, expensive setup/teardown or I/O). Inspect flame graphs for repeated allocations. Add conditional breakpoints around suspected hotspots to examine state without spamming logs. Finally, verify improvements by rerunning the filtered tests and reviewing before/after timings inside the IDE.",
+      "keyConcepts": [
+        "Test explorer",
+        "Profiling",
+        "Hot path isolation"
+      ]
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Outline a safe refactor using IDE tools to extract a large code block into a function and verify correctness.",
+      "sampleStrongResponse": "Use the IDE&rsquo;s Extract Function to move the block behind a clear signature with typed parameters and return value. Run &ldquo;find usages&rdquo; to confirm call sites and use Rename Symbol to align names. Execute unit tests via the IDE&rsquo;s runner and add a focused test if coverage is thin. If behavior is complex, attach the debugger and step through both the original and refactored paths with breakpoints to confirm identical state transitions.",
+      "keyConcepts": [
+        "Extract Function",
+        "Rename Symbol",
+        "Verification"
+      ]
     }
   ]
 },
@@ -2231,6 +3832,179 @@ export const externalQuizzes: Record<string, Quiz> = {
     }
   ]
 },
+  "package-managers": {
+  "title": "Package Managers Knowledge Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Lockfiles primarily ensure:",
+      "options": [
+        "Faster network speed regardless of versions",
+        "Automatic upgrades to latest versions on install",
+        "Deterministic, reproducible installs with exact transitive versions",
+        "That developers never need to commit dependency files"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Lockfiles capture resolved versions and integrity so installs match across machines and CI.",
+      "keyConcepts": [
+        "Lockfiles",
+        "Determinism",
+        "Integrity"
+      ]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Integrity/signature checks are used to:",
+      "options": [
+        "Speed up compilation only",
+        "Replace testing",
+        "Decorate release notes",
+        "Detect tampering and verify publisher authenticity"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Integrity fields and signatures defend against tampering and support supply chain assurance.",
+      "keyConcepts": [
+        "Integrity",
+        "Signatures",
+        "Supply chain security"
+      ]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "SemVer communicates impact as MAJOR.MINOR.PATCH. Which statement aligns?",
+      "options": [
+        "MAJOR signals breaking changes; MINOR adds features; PATCH fixes bugs",
+        "MAJOR/ MINOR/ PATCH are interchangeable",
+        "PATCH introduces experiments by default",
+        "MINOR always breaks APIs"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Use SemVer to set expectations: breaking vs additive vs fixes.",
+      "keyConcepts": [
+        "SemVer",
+        "Compatibility",
+        "Impact"
+      ]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Recommended enterprise stance on install commands in CI:",
+      "options": [
+        "Use floating installs to catch new fixes",
+        "Use frozen, lockfile-respecting installs (e.g., npm ci, pip-sync)",
+        "Allow developers to skip installs",
+        "Always regenerate the lockfile on every CI run"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Frozen installs enforce the lockfile and prevent accidental drift.",
+      "keyConcepts": [
+        "Frozen installs",
+        "CI",
+        "Drift prevention"
+      ]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Workspaces in monorepos primarily help by:",
+      "options": [
+        "Removing the need for version control",
+        "Publishing everything globally by default",
+        "Preventing local development across packages",
+        "Linking internal packages and sharing a single lockfile for consistency"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Workspaces speed local iteration and keep resolution consistent across packages.",
+      "keyConcepts": [
+        "Workspaces",
+        "Monorepos",
+        "Shared lockfile"
+      ]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A safe update policy for dependencies is:",
+      "options": [
+        "Automate patch/minor updates with tests; plan majors with migration guides",
+        "Auto-merge all majors daily",
+        "Never update unless broken",
+        "Pin forever to first working version"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Routine small updates reduce risk; majors deserve scheduled migrations.",
+      "keyConcepts": [
+        "Update cadence",
+        "Automation",
+        "Migrations"
+      ]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A practical registry governance control is:",
+      "options": [
+        "Public write for everyone",
+        "No audit logs",
+        "Namespace ownership and signature verification",
+        "Always use mutable tags in production"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Private proxies with ownership, signatures, and audit trails reduce supply chain risk.",
+      "keyConcepts": [
+        "Registry governance",
+        "Ownership",
+        "Signatures"
+      ]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Which practice prevents &ldquo;random Monday versions&rdquo; in CI?",
+      "options": [
+        "Frozen installs that honor the lockfile",
+        "Running installs with network disabled",
+        "Allowing caret ranges without locks",
+        "Deleting node_modules on every run"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Use lockfile-enforcing commands (e.g., npm ci) to avoid drift from floating ranges.",
+      "keyConcepts": [
+        "Deterministic installs",
+        "Lockfile enforcement",
+        "CI"
+      ]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Propose an enterprise policy that enforces lockfile usage, frozen installs, and integrity/signature checks across repos. How will exceptions be handled?",
+      "sampleStrongResponse": "Require committed lockfiles and frozen installs in CI (npm ci/pip-sync). Enforce integrity and signature verification at install/publish via private proxies. Maintain an exception registry with time-bound waivers and owner approval. Monitor drift and block merges on violations."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Design a monorepo workspace strategy: shared lockfile, boundaries, and publish flows that mimic production. How will you debug resolution issues?",
+      "sampleStrongResponse": "Use a single top-level lockfile with workspaces linking internal packages. Enforce boundaries via lint rules and build graphs. Publish through a private registry proxy; use digest/signature verification. When debugging, switch to isolated installs per package and trace resolution; then revert to hoisted for speed."
+    }
+  ]
+},
   "pair-programming": {
   "title": "Pair Programming Knowledge Quiz",
   "totalQuestions": 10,
@@ -2401,6 +4175,350 @@ export const externalQuizzes: Record<string, Quiz> = {
       "points": 5,
       "question": "You must land a risky concurrency change under time pressure. Propose a pairing plan (who, when, where) and justify the ROI. How will you measure success?",
       "sampleStrongResponse": "Pair a domain expert with an implementer in the highest‑risk code area during peak collaboration hours. Use shared cursors, prompts, and test‑first scaffolding. Success metrics: reduction in escaped defects, faster code review cycle time, stable performance metrics, and positive developer sentiment."
+    }
+  ]
+},
+  "pull-request-process": {
+  "title": "Pull Request Process Knowledge Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Primary purpose of a PR template is to:",
+      "options": [
+        "Capture intent, scope, risk, and test plan for reviewers",
+        "Enforce personal style preferences",
+        "Replace CI and automated checks",
+        "Discourage early feedback via drafts"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Templates standardize context so reviewers quickly understand change intent, risk areas, and validation steps.",
+      "keyConcepts": [
+        "PR templates",
+        "Reviewer context",
+        "Risk and test plan"
+      ]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Risk labels on PRs should influence:",
+      "options": [
+        "Keyboard layout choices",
+        "Depth of review, required approvals, and CI rigor",
+        "Random assignment of reviewers",
+        "Skipping reviews to accelerate merges"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Higher&ndash;risk changes warrant deeper reviews, more approvals, and stricter pre&ndash;merge checks.",
+      "keyConcepts": [
+        "Risk labels",
+        "Approvals",
+        "CI gates"
+      ]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Non&ndash;blocking vs blocking feedback should be handled by:",
+      "options": [
+        "Treating all comments as blocking",
+        "Hiding all nit comments",
+        "Separating must&ndash;fix from suggestions with rationale",
+        "Moving all feedback to post&ndash;merge"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Clear separation keeps velocity while ensuring critical issues block merges; suggestions can be queued.",
+      "keyConcepts": [
+        "Blocking vs non&ndash;blocking",
+        "Review norms"
+      ]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A practical SLA for reviews prioritizes:",
+      "options": [
+        "Time to first response and time to decision",
+        "Number of emoji reactions",
+        "Longest possible review duration to catch everything",
+        "Reviewing only on Fridays"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Fast first response unblocks authors; time to decision keeps delivery predictable.",
+      "keyConcepts": [
+        "SLA",
+        "Time to first response",
+        "Time to decision"
+      ]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Effective reviewer checklists emphasize:",
+      "options": [
+        "Personal naming preferences",
+        "Security, accessibility, performance budgets, and error handling",
+        "Keyboard shortcuts",
+        "Code style nits only"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Checklists target risk hot spots and keep reviews consistent across changes and teams.",
+      "keyConcepts": [
+        "Checklists",
+        "Risk areas",
+        "Consistency"
+      ]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Pre&ndash;merge CI policies that improve quality include:",
+      "options": [
+        "Optional tests to speed up merges",
+        "Required status checks (tests, lint, security) before merge",
+        "CI only after merge to main",
+        "Local testing only"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Required checks prevent regressions and enforce policy&ndash;as&ndash;code before changes land in main.",
+      "keyConcepts": [
+        "Status checks",
+        "Policy&ndash;as&ndash;code",
+        "Pre&ndash;merge gates"
+      ]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Using draft PRs early primarily helps by:",
+      "options": [
+        "Delaying reviews until the end",
+        "Triggering early CI and gathering feedback on approach",
+        "Avoiding writing any description",
+        "Skipping tests while coding"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Drafts invite design feedback and CI validation earlier, reducing rework later.",
+      "keyConcepts": [
+        "Draft PRs",
+        "Early feedback",
+        "CI signal"
+      ]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A healthy review culture encourages reviewers to:",
+      "options": [
+        "Gatekeep with blanket rejections",
+        "Block on preference&ndash;only comments",
+        "Ask questions with rationale and offer alternatives",
+        "Nitpick unrelated formatting"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Questions with rationale support psychological safety and better decisions.",
+      "keyConcepts": [
+        "Psychological safety",
+        "Rationale",
+        "Alternatives"
+      ]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Design a PR template that encodes risk and validation info. Include sections, example labels, and how it maps to required checks.",
+      "sampleStrongResponse": "Include sections: Context, Scope, Risk level, Test plan, Rollback plan. Risk labels drive required checks (e.g., high&ndash;risk requires security scan and two approvals). Provide examples and link to standards. Keep a checklist for security, accessibility, performance budgets, and error handling."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Propose review SLAs and norms for a team handling mixed&ndash;risk changes. Show how to measure and improve them over time.",
+      "sampleStrongResponse": "Set SLAs: time to first response &le; 4 hours in working time; time to decision &le; 2 days for typical changes. Label risk to scale approvals and checks. Track metrics (first response, decision time, change failure rate, developer sentiment). Run monthly retros, adjust templates and checklists, and coach on separating must&ndash;fix vs suggestions."
+    }
+  ]
+},
+  "repository-organization": {
+  "title": "Repository Organization Knowledge Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Mono&ndash;repo advantages commonly include:",
+      "options": [
+        "Unified dependency and tooling management across services",
+        "Guaranteed faster builds in all cases",
+        "Complete isolation by default",
+        "No need for code ownership boundaries"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Mono&ndash;repos centralize tooling and dependencies, easing refactors and cross&ndash;cutting changes when guardrails exist.",
+      "keyConcepts": [
+        "Mono&ndash;repo",
+        "Tooling",
+        "Dependencies"
+      ]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Multi&ndash;repo trade&ndash;offs often include:",
+      "options": [
+        "Clearer service boundaries and independent releases",
+        "No duplication risk",
+        "Single pipeline for everything",
+        "Automatic cross&ndash;repo refactors"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Multi&ndash;repos emphasize isolation and independent versioning, though shared libraries need release discipline.",
+      "keyConcepts": [
+        "Multi&ndash;repo",
+        "Isolation",
+        "Independent releases"
+      ]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Submodules or subtree strategies are useful when:",
+      "options": [
+        "Sharing a library across repos while keeping its history and release cycle",
+        "Avoiding versioning entirely",
+        "You want to merge all repos into one without history",
+        "You need zero configuration for consumers"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Submodules/subtrees allow reuse while preserving independent history and version control of the shared component.",
+      "keyConcepts": [
+        "Submodules",
+        "Subtree",
+        "Shared libraries"
+      ]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "CODEOWNERS files primarily help by:",
+      "options": [
+        "Enforcing keyboard layouts",
+        "Automatically assigning knowledgeable reviewers to owned areas",
+        "Replacing CI",
+        "Blocking all changes by default"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Ownership rules route PRs to the right people, improving review quality and governance.",
+      "keyConcepts": [
+        "CODEOWNERS",
+        "Ownership",
+        "Governance"
+      ]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "In a mono&ndash;repo, boundaries are maintained by:",
+      "options": [
+        "Skipping tests for speed",
+        "Enforcing module boundaries with tooling, ownership, and CI rules",
+        "Copying code freely between packages",
+        "Letting any code import anything"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Tools like path rules, lint boundaries, and package ownership keep coupling under control.",
+      "keyConcepts": [
+        "Module boundaries",
+        "Lint rules",
+        "Ownership"
+      ]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Release versioning in a multi&ndash;repo setup typically means:",
+      "options": [
+        "Each service or library can version and release independently",
+        "All components must share one version at all times",
+        "No tags are used",
+        "Only nightly bulk releases"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Independent versioning allows targeted releases; shared libraries must communicate changes via SemVer.",
+      "keyConcepts": [
+        "Independent versioning",
+        "SemVer"
+      ]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Build and test isolation in mono&ndash;repos is commonly achieved by:",
+      "options": [
+        "Running the full repo on every PR without caching",
+        "Using workspaces, affected&ndash;graph detection, and caching",
+        "Disabling CI to speed up",
+        "Manual selection of tests by each developer"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Affected&ndash;graph and caching target only impacted packages, keeping feedback loops fast.",
+      "keyConcepts": [
+        "Affected graph",
+        "Caching",
+        "Workspaces"
+      ]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Choose mono&ndash;repo when you need:",
+      "options": [
+        "Maximum independent governance between teams",
+        "Unified tooling, shared libraries, and coordinated cross&ndash;cutting changes",
+        "No cross&ndash;team work ever",
+        "Total isolation of build infrastructure"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Mono&ndash;repos shine for coordinated refactors, shared tooling, and unified standards across many packages.",
+      "keyConcepts": [
+        "Mono&ndash;repo",
+        "Cross&ndash;cutting changes",
+        "Unified tooling"
+      ]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Recommend mono&ndash;repo vs multi&ndash;repo for a platform with many shared libraries and frequent cross&ndash;cutting refactors. Include governance and tooling.",
+      "sampleStrongResponse": "Prefer a mono&ndash;repo with workspaces. Enforce module boundaries and CODEOWNERS; use affected&ndash;graph CI and caching. Centralize tooling (lint, test, build) and adopt SemVer for shared libraries. Define ownership and review policies to avoid uncontrolled coupling."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Define a submodule/subtree strategy for a shared cryptography library used by multiple services. Cover versioning, release process, and consumer updates.",
+      "sampleStrongResponse": "Maintain the library in its own repo with SemVer and signed tags. Consumers integrate via submodule/subtree. Publish releases with changelogs; CI verifies API compatibility. Consumers pin versions and update via scheduled PRs that run full security and performance suites."
     }
   ]
 },
