@@ -1,0 +1,143 @@
+{
+  "title": "Code Editors vs IDEs Knowledge Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "What is the core difference between a lightweight code editor and a full IDE?",
+      "options": [
+        "IDEs integrate debugging, refactoring, and project tooling; editors focus on editing with optional plugins",
+        "Editors always include full build systems and test runners",
+        "IDEs cannot be extended with plugins",
+        "Editors are only for plain‑text files, not code"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Editors prioritize startup speed and small footprint. IDEs ship integrated debugging, refactors, test runners, and project models out of the box for deeper workflows.",
+      "keyConcepts": ["Capability vs footprint", "Integration depth", "Extensibility"]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Which statement best describes typical startup performance?",
+      "options": [
+        "IDEs always start faster due to indexing",
+        "Editors tend to start faster; IDEs may take longer due to indexing and project scanning",
+        "Editors are always slower because they lack features",
+        "Both are identical in startup time"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Indexing and heavy project models can add startup overhead in IDEs, while editors often defer work until a feature is invoked.",
+      "keyConcepts": ["Startup time", "Indexing", "Deferred work"]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "How can plugin ecosystems affect capability parity between editors and IDEs?",
+      "options": [
+        "Plugins rarely add significant features",
+        "Plugins only change themes",
+        "Rich plugin ecosystems can close capability gaps, though configuration effort may rise",
+        "Plugins eliminate the need for version control"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "With the right extensions (LSP, debugger adapters, test runners), editors can approximate IDE features but require careful setup.",
+      "keyConcepts": ["Plugin ecosystems", "Configuration", "LSP"]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "What is a primary benefit of remote development (for example, dev containers or remote SSH) in this context?",
+      "options": [
+        "It guarantees zero latency",
+        "It prevents any dependency drift automatically",
+        "It makes local CPUs irrelevant in all cases",
+        "It offloads heavy toolchains to a remote host while using a local UI"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Remote development centralizes toolchains and compute in a consistent environment while the editor/IDE provides the interface locally.",
+      "keyConcepts": ["Remote dev", "Dev containers", "Consistency"]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "When might a lightweight editor be preferable over an IDE for a large monorepo?",
+      "options": [
+        "When deep refactors across many projects are required immediately",
+        "When you need built‑in database migration tools",
+        "When quick edits are needed and heavy indexing would slow you down",
+        "When you must compile native toolchains locally"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "For quick, localized changes, avoiding full indexing can reduce waiting time. For large cross‑cutting changes, IDE capabilities may win.",
+      "keyConcepts": ["Monorepos", "Indexing cost", "Edit latency"]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "In which scenario does an IDE typically provide outsized benefits?",
+      "options": [
+        "Editing a single config file",
+        "Performing large, type‑aware refactors and deep navigation in complex codebases",
+        "Previewing Markdown",
+        "Viewing logs only"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Type‑aware navigation and refactoring tools shine in big, strongly typed codebases where correctness and consistency matter.",
+      "keyConcepts": ["Refactors", "Type awareness", "Deep navigation"]
+    },
+          {
+        "id": "7",
+        "type": "multiple-choice",
+        "points": 2,
+        "question": "What is a common risk of installing too many extensions?",
+        "options": [
+          "Increased CPU, memory usage, and slower startup times",
+          "Lower memory usage",
+          "Guaranteed stability improvements",
+          "Automatic security hardening"
+        ],
+        "correctAnswer": 0,
+        "additionalContext": "Each extension can load background processes, watchers, or parsers that add overhead. A curated set helps maintain performance.",
+        "keyConcepts": ["Extension bloat", "Performance budgets", "Startup"]
+      },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "What is a typical trade‑off of remote development compared to fully local development?",
+      "options": [
+        "No need for security reviews",
+        "Unlimited offline capability",
+        "Zero cost for compute",
+        "Potential latency and dependency on network connectivity"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "While remote environments can be consistent and powerful, interactive tasks can feel slower on poor connections.",
+      "keyConcepts": ["Latency", "Connectivity", "Remote trade‑offs"]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Your team is deciding between an IDE‑first or editor‑plus‑plugins approach. Explain the trade‑offs and when you would recommend each.",
+      "sampleStrongResponse": "Recommend an IDE for large, typed codebases where refactor safety, deep navigation, and integrated debugging reduce risk. Recommend an editor‑plus‑plugins for fast startup, lightweight machines, or polyglot teams where only a subset of features is needed. Note the setup tax for plugins and the need for extension governance. Consider remote development when local machines struggle with indexing.",
+      "keyConcepts": ["Trade‑offs", "Team context", "Risk vs speed"]
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Propose a plugin governance policy that balances capability with performance and security for your organization.",
+      "sampleStrongResponse": "Define an allowlist with review criteria (maintenance cadence, permissions requested, reputation). Set performance budgets (startup time, memory) and monitor with profiling tools. Require &ldquo;least privilege&rdquo; by disabling unused capabilities. Stage updates in a pilot group before broad rollout, and document alternatives for any blocked extensions.",
+      "keyConcepts": ["Governance", "Allowlist", "Performance budgets", "Security"]
+    }
+  ]
+}

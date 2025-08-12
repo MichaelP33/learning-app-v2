@@ -1,0 +1,143 @@
+{
+  "title": "Extension Ecosystems Knowledge Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "What is a primary security risk introduced by editor/IDE extensions?",
+      "options": [
+        "Supply‑chain exposure if extensions have broad filesystem or network permissions",
+        "Guaranteed elimination of all vulnerabilities",
+        "Automatic code review of all commits",
+        "Hardware isolation of the development machine"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Extensions may have access to files, environment variables, and network calls. Poorly vetted plugins can exfiltrate data or inject malicious code.",
+      "keyConcepts": ["Supply chain", "Permissions", "Data exfiltration"]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "What is a good first‑pass evaluation signal when assessing an extension?",
+      "options": [
+        "Number of colors in its theme",
+        "Presence of animated icons",
+        "Maintenance cadence, clear permissions, and reputable publisher",
+        "Total size of screenshots"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Look for an active changelog, transparent scopes/permissions, signed publishers, and community reputation before trial.",
+      "keyConcepts": ["Evaluation", "Reputation", "Permissions"]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "How can teams isolate performance issues potentially caused by extensions?",
+      "options": [
+        "Use built‑in profiling and extension bisect/safe‑mode to identify the culprit",
+        "Install more extensions to mask the problem",
+        "Ignore any slowdowns",
+        "Disable the IDE entirely"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Many tools provide an &ldquo;extension bisect&rdquo; or safe‑mode that disables subsets of extensions to quickly find regressions.",
+      "keyConcepts": ["Performance diagnostics", "Profiling", "Bisect"]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Which policy best addresses telemetry and privacy concerns with extensions?",
+      "options": [
+        "Allow any telemetry by default",
+        "Review extension telemetry, disable unnecessary tracking, and document data flows",
+        "Block all extensions regardless of function",
+        "Trust publishers without review"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "A balanced approach audits what data leaves developer machines and ensures collection aligns with company policy.",
+      "keyConcepts": ["Telemetry", "Privacy", "Policy"]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "What is a best practice for update hygiene in an extension‑heavy environment?",
+      "options": [
+        "Auto‑update all extensions immediately in production",
+        "Never update extensions",
+        "Let each developer choose any version",
+        "Stage updates with a canary group and pin versions for critical tools"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Staged rollouts catch regressions early. Pinning versions for critical tools prevents surprise breakages.",
+      "keyConcepts": ["Update hygiene", "Staged rollout", "Version pinning"]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "What is the purpose of an organization extension allowlist?",
+      "options": [
+        "To improve keyboard backlighting",
+        "To block all development",
+        "To require administrative passwords for every keystroke",
+        "To approve a curated set of extensions that meet security and performance standards"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "An allowlist defines which extensions are approved. Criteria include maintenance, permissions, and performance impact.",
+      "keyConcepts": ["Allowlist", "Governance", "Standards"]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "What principle should guide requested permissions for extensions?",
+      "options": [
+        "Request every permission to avoid friction",
+        "Request the minimum necessary (least privilege)",
+        "Avoid declaring permissions",
+        "Share credentials for convenience"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Least privilege reduces blast radius if an extension is compromised and limits accidental data exposure.",
+      "keyConcepts": ["Least privilege", "Permissions", "Risk reduction"]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "How should teams handle extensions in remote/containerized development environments?",
+      "options": [
+        "Allow any extension from the public marketplace",
+        "Disable all extensions always",
+        "Audit container capabilities and restrict extension hosts to the project scope",
+        "Run extensions as root for convenience"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Scope extensions to the workspace folder, avoid privileged containers, and review shared images for preinstalled plugins.",
+      "keyConcepts": ["Remote dev", "Containers", "Scope restrictions"]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Draft a lightweight process for evaluating and approving new extensions for team use.",
+      "sampleStrongResponse": "Define review criteria (publisher reputation, maintenance cadence, permissions requested, telemetry behavior). Test the extension in a sandbox project, measure startup impact, and run a brief security review. If approved, add it to the allowlist with version pinning and document configuration steps.",
+      "keyConcepts": ["Evaluation", "Sandboxing", "Approval"]
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Describe how you would detect and remediate a performance regression introduced by an extension across a large team.",
+      "sampleStrongResponse": "Use profiling and the platform&rsquo;s extension bisect to confirm the culprit. Roll back or pin the previous version, notify a pilot channel, and open an upstream issue with traces. Update the allowlist with a mitigation note and monitor startup and idle CPU metrics before re‑enabling the extension broadly.",
+      "keyConcepts": ["Regression response", "Pin/rollback", "Monitoring"]
+    }
+  ]
+}

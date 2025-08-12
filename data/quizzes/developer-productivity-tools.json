@@ -1,0 +1,143 @@
+{
+  "title": "Developer Productivity Tools Knowledge Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "What is the primary distinction between linters and code formatters?",
+      "options": [
+        "Formatters detect security vulnerabilities; linters only change whitespace",
+        "Linters only add colors; formatters enforce naming conventions",
+        "Linters enforce rules and surface potential defects; formatters standardize code style",
+        "They are interchangeable tools"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Linters flag probable bugs and policy violations (for example, unused variables), while formatters normalize layout so developers focus on logic, not style.",
+      "keyConcepts": ["Linters", "Formatters", "Quality vs style"]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "How do pre‑commit hooks improve consistency?",
+      "options": [
+        "They randomly block commits",
+        "They auto‑merge branches",
+        "They enforce checks (for example, lint/format) before code lands",
+        "They remove tests to speed up CI"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Pre‑commit hooks run tooling locally (format, lint, type checks) to catch issues early and reduce churn in CI.",
+      "keyConcepts": ["Pre‑commit", "Consistency", "Shift‑left"]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "What advantage does structural code search provide over plain text search?",
+      "options": [
+        "It searches only comments",
+        "It matches code patterns at the syntax/AST level (for example, function calls with certain arguments)",
+        "It renames files automatically",
+        "It replaces the need for tests"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Structural search understands code shapes, enabling precise queries like finding unsafe API usages versus broad text matches.",
+      "keyConcepts": ["Structural search", "AST", "Precision"]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "How do snippets and macros boost developer throughput?",
+      "options": [
+        "By disabling type checking",
+        "By hiding errors",
+        "By increasing network bandwidth",
+        "By automating repetitive patterns and reducing keystrokes"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Reusable templates for boilerplate (for example, test skeletons) reduce friction and promote consistency.",
+      "keyConcepts": ["Snippets", "Automation", "Consistency"]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "What role do task runners (for example, npm scripts, Make, or Invoke) play?",
+      "options": [
+        "They replace version control",
+        "They handle production incident response",
+        "They provide a single entry point to common commands and workflows",
+        "They automatically refactor code"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Task runners standardize commands like test, lint, build, and release, reducing the &ldquo;how do I run this&rdquo; learning curve.",
+      "keyConcepts": ["Task runners", "Standardization", "DX"]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Why is terminal/CLI integration inside the editor/IDE useful?",
+      "options": [
+        "It disables environment variables",
+        "It forces GUI usage only",
+        "It removes the need for build tools",
+        "It keeps commands, environment, and output close to the code for fast iteration"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "An embedded terminal preserves project context and makes iterative loops (edit‑run‑test) quicker.",
+      "keyConcepts": ["CLI", "Feedback loop", "Context switching"]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "How should Prettier and ESLint typically be used together?",
+      "options": [
+        "Run Prettier for styling and use ESLint for rules; resolve conflicts with appropriate configs",
+        "Only run ESLint and ignore formatting",
+        "Run both but disable all rules",
+        "Run Prettier as a linter plugin so no configuration is needed"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Prettier handles formatting concerns, while ESLint enforces quality and policy rules. Use configs to avoid rule overlap.",
+      "keyConcepts": ["Prettier", "ESLint", "Tooling harmony"]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "What is a balanced policy for linter severity in CI?",
+      "options": [
+        "Fail CI on any warning",
+        "Fail on errors while tracking warnings; escalate categories over time",
+        "Ignore errors and warnings",
+        "Fail only on style issues"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Start with errors as blockers and warnings as tracked metrics, then ratchet up standards as the codebase improves.",
+      "keyConcepts": ["CI policy", "Severity", "Continuous improvement"]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Outline a plan to roll out linters and formatters to an existing repository with minimal disruption.",
+      "sampleStrongResponse": "Introduce shared configs and run tools in fix mode to create a baseline commit. Add pre‑commit hooks to prevent regressions. In CI, fail on errors and report warnings. Communicate style decisions and provide editor integration steps. Apply changes in focused batches to avoid noisy diffs and coordinate with active feature branches.",
+      "keyConcepts": ["Migration plan", "Hooks", "Baseline commit"]
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Design a productivity toolkit for a new service: specify search tools, snippets, tasks, and CI integrations that will reduce onboarding time.",
+      "sampleStrongResponse": "Provide structural code search patterns for common APIs, a curated snippet set for test and handler templates, and npm scripts for dev, test, lint, and type‑check. Add a &ldquo;first‑run&rdquo; script to install dependencies and pre‑commit hooks. Document how to run everything inside the editor&rsquo;s terminal so newcomers can ship a passing change in under an hour.",
+      "keyConcepts": ["Onboarding", "Toolkit", "Standard scripts"]
+    }
+  ]
+}
