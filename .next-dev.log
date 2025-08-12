@@ -1,0 +1,39 @@
+
+> learning-app-v2@0.1.0 dev
+> next dev
+
+ ⚠ Port 3000 is in use by process 16621, using available port 3001 instead.
+   ▲ Next.js 15.4.5
+   - Local:        http://localhost:3001
+   - Network:      http://10.0.0.37:3001
+
+ ✓ Starting...
+ ✓ Ready in 1343ms
+ ○ Compiling / ...
+ ✓ Compiled / in 3.2s (1437 modules)
+ GET / 200 in 3540ms
+ ○ Compiling /category/[categoryId] ...
+ ✓ Compiled /category/[categoryId] in 549ms (1446 modules)
+ GET /category/data-management-apis 200 in 1042ms
+ ✓ Compiled /topic/[topicId] in 196ms (1459 modules)
+ GET /topic/api-design-principles 200 in 549ms
+ ○ Compiling /article/[articleId] ...
+ ✓ Compiled /article/[articleId] in 1295ms (1587 modules)
+ GET /article/rest-best-practices 200 in 1732ms
+ GET /article/api-versioning 200 in 8ms
+ GET /topic/api-design-principles 200 in 16ms
+ GET /category/data-management-apis 200 in 28ms
+ GET /topic/data-modeling-concepts 200 in 23ms
+ GET /article/normalization 200 in 706ms
+ GET /article/indexing-strategies 200 in 30ms
+ GET /article/query-optimization 200 in 25ms
+ GET /article/schema-design 200 in 50ms
+ GET /topic/data-modeling-concepts 200 in 17ms
+ GET /category/data-management-apis 200 in 30ms
+ GET /topic/database-fundamentals 200 in 26ms
+ GET /article/relational-databases 200 in 20ms
+ GET /article/document-databases 200 in 23ms
+ GET /article/graph-databases 200 in 27ms
+ GET /article/key-value-stores 200 in 24ms
+ GET /topic/database-fundamentals 200 in 24ms
+ GET /category/data-management-apis 200 in 24ms
