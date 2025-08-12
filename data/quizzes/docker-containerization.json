@@ -1,0 +1,141 @@
+{
+  "title": "Docker Containerization Knowledge Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Core benefit of Docker image layers:",
+      "options": [
+        "Layered filesystem enables cache reuse across builds",
+        "Images are single monolithic archives without diffs",
+        "Layers compile into the host kernel for performance",
+        "Layers are only used for UI assets"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Images are composed of immutable layers. Unchanged layers are reused between builds, which accelerates CI and reduces registry storage. Pinning layers improves reproducibility.",
+      "keyConcepts": ["Image layers", "Caching", "Reproducibility"]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Container isolation model:",
+      "options": [
+        "Hardware virtualization per container",
+        "Process isolation with namespaces/cgroups on a shared kernel",
+        "Only a chroot without resource controls",
+        "Browser sandboxing"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Containers isolate processes using Linux namespaces and cgroups on a shared host kernel. This differs from VMs, which virtualize hardware via a hypervisor.",
+      "keyConcepts": ["Namespaces", "cgroups", "Shared kernel"]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Docker registries are used to:",
+      "options": [
+        "Force rebuilding images on every host",
+        "Store only image metadata without layers",
+        "Push/pull images and reference them by tags or digests",
+        "Replace application package managers entirely"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Registries store image layers and manifests. Use tags for human‑friendly versions and digests for immutable references. Prefer digests for deploys that must be exact.",
+      "keyConcepts": ["Registry", "Tags", "Digests"]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Bridge networking and port publishing:",
+      "options": [
+        "Containers are directly routable on the LAN by default",
+        "Mapping 8080:80 exposes container port 80 on host port 8080",
+        "Publishing ports changes the container&rsquo;s internal port",
+        "Bridge networking disallows container‑to‑container traffic"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "On the default bridge network, you can map host ports to container ports (e.g., 8080:80). Service discovery within a user‑defined network uses container or service names.",
+      "keyConcepts": ["Bridge network", "Port mapping", "Service discovery"]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Multi‑arch builds with Buildx:",
+      "options": [
+        "Use docker buildx build --platform linux/amd64,linux/arm64 to publish a multi‑arch manifest",
+        "Multi‑arch requires separate Dockerfiles per architecture",
+        "Only arm64 can be targeted by Buildx",
+        "Multi‑arch removes the need for testing"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "BuildKit/Buildx can build for multiple architectures and publish a manifest list so clients pull the right image for their CPU.",
+      "keyConcepts": ["Buildx", "Multi‑arch", "Manifest list"]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Best practice for leveraging layer cache:",
+      "options": [
+        "Copy the entire repo before installing dependencies",
+        "Disable cache to avoid stale layers",
+        "Install dependencies before copying full source and pin versions",
+        "Combine all steps into a single RUN to simplify"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Order Dockerfile steps to maximize cache hits. Install dependencies (using lockfiles) before copying the full source so frequent code changes don&rsquo;t bust earlier layers.",
+      "keyConcepts": ["Layer cache", "Dockerfile ordering", "Pinning"]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Container data persistence:",
+      "options": [
+        "Rely on the container writable layer for databases",
+        "Always bake data into the image",
+        "Restart containers to ensure data durability",
+        "Use named volumes or managed storage for persistent state"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "The writable layer is ephemeral. Use volumes or external storage for stateful data. Backups and lifecycle policies should apply to volumes, not container layers.",
+      "keyConcepts": ["Volumes", "Ephemeral layers", "Persistence"]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Docker Compose service communication:",
+      "options": [
+        "Requires hostnames set in /etc/hosts",
+        "Requires publishing all ports to the host",
+        "Uses host network by default",
+        "Uses an isolated network with DNS by service name"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Compose creates an isolated network; services can reach each other via service names (DNS). Host port publishing isn&rsquo;t needed for internal calls.",
+      "keyConcepts": ["Compose", "Isolated network", "DNS"]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Outline a production‑ready Dockerfile for a web API: base image choice, build stages, caching strategy, non‑root user, and runtime configuration.",
+      "sampleStrongResponse": "Use a small, CVE‑scanned base (e.g., distroless) and multi‑stage builds: builder stage for deps/compile, final stage with only runtime artifacts. Order steps to maximize cache with lockfiles. Run as non‑root, drop capabilities, and configure via env vars/secrets. Add healthcheck and set read‑only filesystem where possible."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Describe how you would design image distribution and provenance: tags vs digests, SBOM/signing, and rollback strategy across regions.",
+      "sampleStrongResponse": "Publish images with semantic tags and deploy by immutable digests for repeatability. Generate SBOMs and sign images (e.g., Sigstore). Enforce policy that only signed images run. Roll out region by region with canaries; keep previous digests for fast rollback. Monitor pull success rates and error budgets."
+    }
+  ]
+}

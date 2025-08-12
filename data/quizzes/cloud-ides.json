@@ -1,0 +1,141 @@
+{
+  "title": "Cloud IDEs Knowledge Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Latency consideration for Cloud IDEs:",
+      "options": [
+        "Place workspaces near users and prebuild heavy tasks",
+        "Add more local plugins to reduce RTT",
+        "Throttle keystrokes to match server speed",
+        "Ignore latency; developer location doesn&rsquo;t matter"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Latency impacts typing responsiveness and debugging. Run workspaces in nearby regions and shift heavy work (builds, indexing) to prebuilds to minimize perceived lag.",
+      "keyConcepts": ["Latency", "Regions", "Prebuilds"]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Workspace isolation best aligns with:",
+      "options": [
+        "Shared containers for all users",
+        "Per‑user isolated VMs/containers with network guardrails",
+        "Mount production databases directly",
+        "One workspace per organization only"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Isolate user workspaces using per‑user VMs/containers, apply egress controls, and restrict privileges. This limits blast radius and meets compliance needs.",
+      "keyConcepts": ["Isolation", "Egress control", "Least privilege"]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Ephemeral environments help by:",
+      "options": [
+        "Accumulating unpatched tools",
+        "Persisting root access across sessions",
+        "Ensuring clean state on start and easy disposal",
+        "Requiring manual cleanup"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Ephemeral workspaces start from a clean, approved image each time, reducing config drift. Persistent storage can be separate (e.g., home volume) with policies.",
+      "keyConcepts": ["Ephemeral", "Golden images", "Drift reduction"]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Policy controls in Cloud IDEs typically:",
+      "options": [
+        "Disable all outbound networking",
+        "Ignore audit logging to reduce cost",
+        "Replace code review entirely",
+        "Enforce org policies (egress, secrets, extensions) as code"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Policy‑as‑code can enforce extensions, block risky egress, require signed images, and log actions. This complements reviews rather than replacing them.",
+      "keyConcepts": ["Policy‑as‑code", "Audit logs", "Governance"]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Secrets handling principle:",
+      "options": [
+        "Inject short‑lived credentials from a secrets manager",
+        "Check secrets into the repo but encrypt later",
+        "Store tokens in dotfiles permanently",
+        "Ask users to paste secrets each session"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Use a secrets manager with short‑lived tokens (e.g., OIDC‑issued). Avoid committing secrets. Provide least privilege and rotate frequently.",
+      "keyConcepts": ["Secrets manager", "Short‑lived tokens", "Least privilege"]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Trade‑off vs local IDEs:",
+      "options": [
+        "Cloud IDEs always work offline",
+        "They centralize policy and improve security but add network dependency",
+        "They remove all latency",
+        "They require admin rights on developer laptops"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Cloud IDEs improve control and consistency, but rely on network performance and availability. Offline work is limited.",
+      "keyConcepts": ["Trade‑offs", "Network dependency", "Control"]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Prebuild pipelines primarily:",
+      "options": [
+        "Run production workloads",
+        "Throttle user CPU",
+        "Prepare dependencies and index code to speed start times",
+        "Disable language servers"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Prebuilds download dependencies, run CI‑like setup, and index code so interactive sessions are snappy.",
+      "keyConcepts": ["Prebuilds", "Indexing", "Cold start"]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Data exfiltration risk mitigation includes:",
+      "options": [
+        "Unlimited clipboard and port‑forwarding",
+        "No monitoring of workspace actions",
+        "Sharing a single SSH key across all users",
+        "Egress restrictions, watermarking, and audit trails"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Apply DLP policies: control clipboard/port‑forwarding, restrict egress, and log activity. Use per‑user credentials with rotation.",
+      "keyConcepts": ["DLP", "Egress control", "Audit"]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Design a secure Cloud IDE rollout: region selection, workspace isolation, secrets handling, and monitoring.",
+      "sampleStrongResponse": "Choose regions close to users and enforce per‑user isolated workspaces with egress policies. Inject short‑lived credentials from a secrets manager via OIDC. Require signed base images and extensions allowlists. Enable comprehensive audit logs, anomaly detection, and alerting. Measure latency, time‑to‑ready, and policy violations."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Your team is migrating to Cloud IDEs. Outline a plan to keep developer experience fast while meeting compliance requirements.",
+      "sampleStrongResponse": "Implement prebuilds to warm caches and index code. Place workspaces near users and autoscale. Enforce policy‑as‑code for extensions, networking, and base images; inject short‑lived secrets. Provide fallbacks for local dev when needed, and track metrics (latency, launch time, error rates, and security findings)."
+    }
+  ]
+}
