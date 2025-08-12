@@ -592,3 +592,5 @@ TypeError: __webpack_modules__[moduleId] is not a function
  ✓ Compiled in 8.5s (1945 modules)
  ✓ Compiled in 10.2s (1945 modules)
  ✓ Compiled in 1478ms (1945 modules)
+ ✓ Compiled in 8.2s (1945 modules)
+ ✓ Compiled in 2.6s (1945 modules)
