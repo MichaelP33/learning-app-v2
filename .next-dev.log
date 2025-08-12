@@ -37,3 +37,558 @@
  GET /article/key-value-stores 200 in 24ms
  GET /topic/database-fundamentals 200 in 24ms
  GET /category/data-management-apis 200 in 24ms
+ ⨯ ./src/components/articles/registry.ts
+Error:   [31mx[0m Merge conflict marker encountered.
+    ,-[[36;1;4m/Users/michaelpotteiger/software development learnign app/learning-app-v2/src/components/articles/registry.ts[0m:30:1]
+ [2m27[0m |   "graph-databases": () => import("./graph-databases"),
+ [2m28[0m |   "indexing-strategies": () => import("./indexing-strategies"),
+ [2m29[0m |   "integrated-development-environments": () => import("./integrated-development-environments"),
+ [2m30[0m | <<<<<<< Current (Your changes)
+    : [35;1m^^^^^^^[0m
+ [2m31[0m |   "key-value-stores": () => import("./key-value-stores"),
+ [2m32[0m | =======
+ [2m33[0m |   "integration-testing": () => import("./integration-testing"),
+    `----
+  [31mx[0m Merge conflict marker encountered.
+    ,-[[36;1;4m/Users/michaelpotteiger/software development learnign app/learning-app-v2/src/components/articles/registry.ts[0m:32:1]
+ [2m29[0m |   "integrated-development-environments": () => import("./integrated-development-environments"),
+ [2m30[0m | <<<<<<< Current (Your changes)
+ [2m31[0m |   "key-value-stores": () => import("./key-value-stores"),
+ [2m32[0m | =======
+    : [35;1m^^^^^^^[0m
+ [2m33[0m |   "integration-testing": () => import("./integration-testing"),
+ [2m34[0m | >>>>>>> Incoming (Background Agent changes)
+ [2m35[0m |   "lean-startup": () => import("./lean-startup"),
+    `----
+  [31mx[0m Merge conflict marker encountered.
+    ,-[[36;1;4m/Users/michaelpotteiger/software development learnign app/learning-app-v2/src/components/articles/registry.ts[0m:34:1]
+ [2m31[0m |   "key-value-stores": () => import("./key-value-stores"),
+ [2m32[0m | =======
+ [2m33[0m |   "integration-testing": () => import("./integration-testing"),
+ [2m34[0m | >>>>>>> Incoming (Background Agent changes)
+    : [35;1m^^^^^^^[0m
+ [2m35[0m |   "lean-startup": () => import("./lean-startup"),
+ [2m36[0m |   "local-development-setup": () => import("./local-development-setup"),
+ [2m37[0m |   "mob-programming": () => import("./mob-programming"),
+    `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/components/articles/registry.ts
+./src/components/article-content-wrapper.tsx
+ ⨯ ./src/components/articles/registry.ts
+Error:   [31mx[0m Merge conflict marker encountered.
+    ,-[[36;1;4m/Users/michaelpotteiger/software development learnign app/learning-app-v2/src/components/articles/registry.ts[0m:30:1]
+ [2m27[0m |   "graph-databases": () => import("./graph-databases"),
+ [2m28[0m |   "indexing-strategies": () => import("./indexing-strategies"),
+ [2m29[0m |   "integrated-development-environments": () => import("./integrated-development-environments"),
+ [2m30[0m | <<<<<<< Current (Your changes)
+    : [35;1m^^^^^^^[0m
+ [2m31[0m |   "key-value-stores": () => import("./key-value-stores"),
+ [2m32[0m | =======
+ [2m33[0m |   "integration-testing": () => import("./integration-testing"),
+    `----
+  [31mx[0m Merge conflict marker encountered.
+    ,-[[36;1;4m/Users/michaelpotteiger/software development learnign app/learning-app-v2/src/components/articles/registry.ts[0m:32:1]
+ [2m29[0m |   "integrated-development-environments": () => import("./integrated-development-environments"),
+ [2m30[0m | <<<<<<< Current (Your changes)
+ [2m31[0m |   "key-value-stores": () => import("./key-value-stores"),
+ [2m32[0m | =======
+    : [35;1m^^^^^^^[0m
+ [2m33[0m |   "integration-testing": () => import("./integration-testing"),
+ [2m34[0m | >>>>>>> Incoming (Background Agent changes)
+ [2m35[0m |   "lean-startup": () => import("./lean-startup"),
+    `----
+  [31mx[0m Merge conflict marker encountered.
+    ,-[[36;1;4m/Users/michaelpotteiger/software development learnign app/learning-app-v2/src/components/articles/registry.ts[0m:34:1]
+ [2m31[0m |   "key-value-stores": () => import("./key-value-stores"),
+ [2m32[0m | =======
+ [2m33[0m |   "integration-testing": () => import("./integration-testing"),
+ [2m34[0m | >>>>>>> Incoming (Background Agent changes)
+    : [35;1m^^^^^^^[0m
+ [2m35[0m |   "lean-startup": () => import("./lean-startup"),
+ [2m36[0m |   "local-development-setup": () => import("./local-development-setup"),
+ [2m37[0m |   "mob-programming": () => import("./mob-programming"),
+    `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/components/articles/registry.ts
+./src/components/article-content-wrapper.tsx
+ ○ Compiling /_error ...
+ GET /category/data-management-apis 500 in 1939ms
+ GET /category/data-management-apis 500 in 452ms
+ GET /category/data-management-apis 500 in 59ms
+ GET /category/data-management-apis 500 in 15ms
+ ✓ Compiled /_error in 1944ms (1937 modules)
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ○ Compiling /_not-found ...
+ GET /category/data-management-apis 200 in 1235ms
+ ✓ Compiled /_not-found in 1173ms (1928 modules)
+ GET /topic/data-integration-patterns 200 in 170ms
+ ⨯ Failed to generate static paths for /topic/[topicId]:
+TypeError: __webpack_modules__[moduleId] is not a function
+    at __webpack_exec__ (.next/server/app/topic/[topicId]/page.js:379:39)
+    at <unknown> (.next/server/app/topic/[topicId]/page.js:380:133) {
+  type: 'TypeError'
+}
+ ⨯ Failed to generate static paths for /topic/[topicId]:
+TypeError: __webpack_modules__[moduleId] is not a function
+    at __webpack_exec__ (.next/server/app/topic/[topicId]/page.js:379:39)
+    at <unknown> (.next/server/app/topic/[topicId]/page.js:380:133) {
+  type: 'TypeError'
+}
+ GET /article/etl-vs-elt 200 in 93ms
+ ⨯ TypeError: __webpack_modules__[moduleId] is not a function
+    at __webpack_exec__ (.next/server/app/topic/[topicId]/page.js:379:39)
+    at <unknown> (.next/server/app/topic/[topicId]/page.js:380:133) {
+  type: 'TypeError',
+  page: '/topic/data-integration-patterns'
+}
+ GET /topic/data-integration-patterns 500 in 531ms
+ ⨯ TypeError: __webpack_modules__[moduleId] is not a function
+    at __webpack_exec__ (.next/server/app/topic/[topicId]/page.js:379:39)
+    at <unknown> (.next/server/app/topic/[topicId]/page.js:380:133) {
+  type: 'TypeError',
+  page: '/topic/data-integration-patterns'
+}
+ GET /topic/data-integration-patterns 500 in 693ms
+ GET / 200 in 220ms
+ GET /category/data-management-apis 200 in 49ms
+ ⨯ Failed to generate static paths for /category/[categoryId]:
+TypeError: __webpack_modules__[moduleId] is not a function
+    at __webpack_exec__ (.next/server/app/category/[categoryId]/page.js:444:39)
+    at <unknown> (.next/server/app/category/[categoryId]/page.js:445:219) {
+  type: 'TypeError'
+}
+ ⨯ Failed to generate static paths for /category/[categoryId]:
+TypeError: __webpack_modules__[moduleId] is not a function
+    at __webpack_exec__ (.next/server/app/category/[categoryId]/page.js:444:39)
+    at <unknown> (.next/server/app/category/[categoryId]/page.js:445:219) {
+  type: 'TypeError'
+}
+ ⨯ TypeError: __webpack_modules__[moduleId] is not a function
+    at __webpack_exec__ (.next/server/app/topic/[topicId]/page.js:379:39)
+    at <unknown> (.next/server/app/topic/[topicId]/page.js:380:133) {
+  type: 'TypeError',
+  page: '/topic/database-fundamentals'
+}
+ GET /topic/database-fundamentals 500 in 475ms
+ ⨯ TypeError: __webpack_modules__[moduleId] is not a function
+    at __webpack_exec__ (.next/server/app/topic/[topicId]/page.js:379:39)
+    at <unknown> (.next/server/app/topic/[topicId]/page.js:380:133) {
+  type: 'TypeError',
+  page: '/topic/database-fundamentals'
+}
+ GET /topic/database-fundamentals 500 in 464ms
+ ⨯ TypeError: __webpack_modules__[moduleId] is not a function
+    at __webpack_exec__ (.next/server/app/topic/[topicId]/page.js:379:39)
+    at <unknown> (.next/server/app/topic/[topicId]/page.js:380:133) {
+  type: 'TypeError',
+  page: '/topic/database-fundamentals'
+}
+ GET /topic/database-fundamentals 500 in 1187ms
+ GET /t 404 in 75ms
+ GET / 200 in 105ms
+ ⨯ TypeError: __webpack_modules__[moduleId] is not a function
+    at __webpack_exec__ (.next/server/app/category/[categoryId]/page.js:444:39)
+    at <unknown> (.next/server/app/category/[categoryId]/page.js:445:219) {
+  type: 'TypeError',
+  page: '/category/tools-development-environment'
+}
+ GET /category/tools-development-environment 500 in 529ms
+ ⨯ TypeError: __webpack_modules__[moduleId] is not a function
+    at __webpack_exec__ (.next/server/app/category/[categoryId]/page.js:444:39)
+    at <unknown> (.next/server/app/category/[categoryId]/page.js:445:219) {
+  type: 'TypeError',
+  page: '/category/tools-development-environment'
+}
+ GET /category/tools-development-environment 500 in 591ms
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/cache/webpack/server-development/0.pack.gz_' -> '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/cache/webpack/server-development/0.pack.gz'
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/server/app-paths-manifest.json'] {
+  errno: -2,
+  syscall: 'open',
+  code: 'ENOENT',
+  path: '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/server/app-paths-manifest.json',
+  page: '/category/tools-development-environment'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/server/pages-manifest.json'] {
+  errno: -2,
+  syscall: 'open',
+  code: 'ENOENT',
+  path: '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/server/pages-manifest.json'
+}
+ GET /category/tools-development-environment 500 in 688ms
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/server/app-paths-manifest.json'] {
+  errno: -2,
+  syscall: 'open',
+  code: 'ENOENT',
+  path: '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/server/app-paths-manifest.json'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/server/app-paths-manifest.json'] {
+  errno: -2,
+  syscall: 'open',
+  code: 'ENOENT',
+  path: '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/server/app-paths-manifest.json'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/server/app-paths-manifest.json'] {
+  errno: -2,
+  syscall: 'open',
+  code: 'ENOENT',
+  path: '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/server/app-paths-manifest.json'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/server/app-paths-manifest.json'] {
+  errno: -2,
+  syscall: 'open',
+  code: 'ENOENT',
+  path: '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/server/app-paths-manifest.json'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/server/app-paths-manifest.json'] {
+  errno: -2,
+  syscall: 'open',
+  code: 'ENOENT',
+  path: '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/server/app-paths-manifest.json'
+}
+ GET /_next/static/chunks/fallback/main.js 500 in 526ms
+ GET /_next/static/chunks/fallback/webpack.js 500 in 510ms
+ GET /_next/static/chunks/fallback/pages/_app.js 500 in 450ms
+ GET /_next/static/chunks/fallback/react-refresh.js 500 in 454ms
+ GET /_next/static/chunks/fallback/pages/_error.js 500 in 447ms
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/server/app-paths-manifest.json'] {
+  errno: -2,
+  syscall: 'open',
+  code: 'ENOENT',
+  path: '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/server/app-paths-manifest.json',
+  page: '/'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/server/pages-manifest.json'] {
+  errno: -2,
+  syscall: 'open',
+  code: 'ENOENT',
+  path: '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/server/pages-manifest.json'
+}
+ GET / 500 in 252ms
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/server/app-paths-manifest.json'] {
+  errno: -2,
+  syscall: 'open',
+  code: 'ENOENT',
+  path: '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/server/app-paths-manifest.json',
+  page: '/'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/server/pages-manifest.json'] {
+  errno: -2,
+  syscall: 'open',
+  code: 'ENOENT',
+  path: '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/server/pages-manifest.json'
+}
+ GET / 500 in 44ms
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/server/app-paths-manifest.json'] {
+  errno: -2,
+  syscall: 'open',
+  code: 'ENOENT',
+  path: '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/server/app-paths-manifest.json'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/server/app-paths-manifest.json'] {
+  errno: -2,
+  syscall: 'open',
+  code: 'ENOENT',
+  path: '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/server/app-paths-manifest.json'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/server/app-paths-manifest.json'] {
+  errno: -2,
+  syscall: 'open',
+  code: 'ENOENT',
+  path: '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/server/app-paths-manifest.json'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/server/app-paths-manifest.json'] {
+  errno: -2,
+  syscall: 'open',
+  code: 'ENOENT',
+  path: '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/server/app-paths-manifest.json'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/server/app-paths-manifest.json'] {
+  errno: -2,
+  syscall: 'open',
+  code: 'ENOENT',
+  path: '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/server/app-paths-manifest.json'
+}
+ GET /_next/static/chunks/fallback/webpack.js 500 in 155ms
+ GET /_next/static/chunks/fallback/react-refresh.js 500 in 134ms
+ GET /_next/static/chunks/fallback/main.js 500 in 136ms
+ GET /_next/static/chunks/fallback/pages/_app.js 500 in 135ms
+ GET /_next/static/chunks/fallback/pages/_error.js 500 in 140ms
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/server/app-paths-manifest.json'] {
+  errno: -2,
+  syscall: 'open',
+  code: 'ENOENT',
+  path: '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/server/app-paths-manifest.json',
+  page: '/'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/server/pages-manifest.json'] {
+  errno: -2,
+  syscall: 'open',
+  code: 'ENOENT',
+  path: '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/server/pages-manifest.json'
+}
+ GET / 500 in 56ms
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/server/app-paths-manifest.json'] {
+  errno: -2,
+  syscall: 'open',
+  code: 'ENOENT',
+  path: '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/server/app-paths-manifest.json'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/server/app-paths-manifest.json'] {
+  errno: -2,
+  syscall: 'open',
+  code: 'ENOENT',
+  path: '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/server/app-paths-manifest.json'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/server/app-paths-manifest.json'] {
+  errno: -2,
+  syscall: 'open',
+  code: 'ENOENT',
+  path: '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/server/app-paths-manifest.json'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/server/app-paths-manifest.json'] {
+  errno: -2,
+  syscall: 'open',
+  code: 'ENOENT',
+  path: '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/server/app-paths-manifest.json'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/server/app-paths-manifest.json'] {
+  errno: -2,
+  syscall: 'open',
+  code: 'ENOENT',
+  path: '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/server/app-paths-manifest.json'
+}
+ GET /_next/static/chunks/fallback/webpack.js 500 in 121ms
+ GET /_next/static/chunks/fallback/react-refresh.js 500 in 120ms
+ GET /_next/static/chunks/fallback/main.js 500 in 121ms
+ GET /_next/static/chunks/fallback/pages/_app.js 500 in 120ms
+ GET /_next/static/chunks/fallback/pages/_error.js 500 in 120ms
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/server/app-paths-manifest.json'] {
+  errno: -2,
+  syscall: 'open',
+  code: 'ENOENT',
+  path: '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/server/app-paths-manifest.json',
+  page: '/'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/server/pages-manifest.json'] {
+  errno: -2,
+  syscall: 'open',
+  code: 'ENOENT',
+  path: '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/server/pages-manifest.json'
+}
+ GET / 500 in 101ms
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/server/app-paths-manifest.json'] {
+  errno: -2,
+  syscall: 'open',
+  code: 'ENOENT',
+  path: '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/server/app-paths-manifest.json'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/server/app-paths-manifest.json'] {
+  errno: -2,
+  syscall: 'open',
+  code: 'ENOENT',
+  path: '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/server/app-paths-manifest.json'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/server/app-paths-manifest.json'] {
+  errno: -2,
+  syscall: 'open',
+  code: 'ENOENT',
+  path: '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/server/app-paths-manifest.json'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/server/app-paths-manifest.json'] {
+  errno: -2,
+  syscall: 'open',
+  code: 'ENOENT',
+  path: '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/server/app-paths-manifest.json'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/server/app-paths-manifest.json'] {
+  errno: -2,
+  syscall: 'open',
+  code: 'ENOENT',
+  path: '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/server/app-paths-manifest.json'
+}
+ GET /_next/static/chunks/fallback/webpack.js 500 in 92ms
+ GET /_next/static/chunks/fallback/react-refresh.js 500 in 92ms
+ GET /_next/static/chunks/fallback/main.js 500 in 91ms
+ GET /_next/static/chunks/fallback/pages/_error.js 500 in 88ms
+ GET /_next/static/chunks/fallback/pages/_app.js 500 in 88ms
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/routes-manifest.json'] {
+  errno: -2,
+  syscall: 'open',
+  code: 'ENOENT',
+  path: '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/routes-manifest.json',
+  page: '/'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/routes-manifest.json'] {
+  errno: -2,
+  syscall: 'open',
+  code: 'ENOENT',
+  path: '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/routes-manifest.json'
+}
+ GET / 500 in 565ms
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/routes-manifest.json'] {
+  errno: -2,
+  syscall: 'open',
+  code: 'ENOENT',
+  path: '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/routes-manifest.json',
+  page: '/'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/routes-manifest.json'] {
+  errno: -2,
+  syscall: 'open',
+  code: 'ENOENT',
+  path: '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/routes-manifest.json'
+}
+ GET / 500 in 468ms
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/routes-manifest.json'] {
+  errno: -2,
+  syscall: 'open',
+  code: 'ENOENT',
+  path: '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/routes-manifest.json'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/routes-manifest.json'] {
+  errno: -2,
+  syscall: 'open',
+  code: 'ENOENT',
+  path: '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/routes-manifest.json'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/routes-manifest.json'] {
+  errno: -2,
+  syscall: 'open',
+  code: 'ENOENT',
+  path: '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/routes-manifest.json'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/routes-manifest.json'] {
+  errno: -2,
+  syscall: 'open',
+  code: 'ENOENT',
+  path: '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/routes-manifest.json'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/routes-manifest.json'] {
+  errno: -2,
+  syscall: 'open',
+  code: 'ENOENT',
+  path: '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/routes-manifest.json'
+}
+ GET /_next/static/chunks/fallback/webpack.js 500 in 709ms
+ GET /_next/static/chunks/fallback/main.js 500 in 708ms
+ GET /_next/static/chunks/fallback/react-refresh.js 500 in 708ms
+ GET /_next/static/chunks/fallback/pages/_error.js 500 in 707ms
+ GET /_next/static/chunks/fallback/pages/_app.js 500 in 708ms
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/server/app-paths-manifest.json'] {
+  errno: -2,
+  syscall: 'open',
+  code: 'ENOENT',
+  path: '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/server/app-paths-manifest.json',
+  page: '/'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/server/pages-manifest.json'] {
+  errno: -2,
+  syscall: 'open',
+  code: 'ENOENT',
+  path: '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/server/pages-manifest.json'
+}
+ GET / 500 in 624ms
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/server/app-paths-manifest.json'] {
+  errno: -2,
+  syscall: 'open',
+  code: 'ENOENT',
+  path: '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/server/app-paths-manifest.json'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/server/app-paths-manifest.json'] {
+  errno: -2,
+  syscall: 'open',
+  code: 'ENOENT',
+  path: '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/server/app-paths-manifest.json'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/server/app-paths-manifest.json'] {
+  errno: -2,
+  syscall: 'open',
+  code: 'ENOENT',
+  path: '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/server/app-paths-manifest.json'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/server/app-paths-manifest.json'] {
+  errno: -2,
+  syscall: 'open',
+  code: 'ENOENT',
+  path: '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/server/app-paths-manifest.json'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/server/app-paths-manifest.json'] {
+  errno: -2,
+  syscall: 'open',
+  code: 'ENOENT',
+  path: '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/server/app-paths-manifest.json'
+}
+ GET /_next/static/chunks/fallback/main.js 500 in 293ms
+ GET /_next/static/chunks/fallback/react-refresh.js 500 in 292ms
+ GET /_next/static/chunks/fallback/pages/_app.js 500 in 291ms
+ GET /_next/static/chunks/fallback/pages/_error.js 500 in 292ms
+ GET /_next/static/chunks/fallback/webpack.js 500 in 296ms
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/server/app-paths-manifest.json'] {
+  errno: -2,
+  syscall: 'open',
+  code: 'ENOENT',
+  path: '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/server/app-paths-manifest.json',
+  page: '/'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/server/pages-manifest.json'] {
+  errno: -2,
+  syscall: 'open',
+  code: 'ENOENT',
+  path: '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/server/pages-manifest.json'
+}
+ GET / 500 in 95ms
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/server/app-paths-manifest.json'] {
+  errno: -2,
+  syscall: 'open',
+  code: 'ENOENT',
+  path: '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/server/app-paths-manifest.json'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/server/app-paths-manifest.json'] {
+  errno: -2,
+  syscall: 'open',
+  code: 'ENOENT',
+  path: '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/server/app-paths-manifest.json'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/server/app-paths-manifest.json'] {
+  errno: -2,
+  syscall: 'open',
+  code: 'ENOENT',
+  path: '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/server/app-paths-manifest.json'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/server/app-paths-manifest.json'] {
+  errno: -2,
+  syscall: 'open',
+  code: 'ENOENT',
+  path: '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/server/app-paths-manifest.json'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/server/app-paths-manifest.json'] {
+  errno: -2,
+  syscall: 'open',
+  code: 'ENOENT',
+  path: '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/server/app-paths-manifest.json'
+}
+ GET /_next/static/chunks/fallback/webpack.js 500 in 91ms
+ GET /_next/static/chunks/fallback/react-refresh.js 500 in 91ms
+ GET /_next/static/chunks/fallback/main.js 500 in 90ms
+ GET /_next/static/chunks/fallback/pages/_app.js 500 in 87ms
+ GET /_next/static/chunks/fallback/pages/_error.js 500 in 88ms
+[Error: Failed to persist Chrome DevTools workspace UUID. The Chrome DevTools Workspace needs to be reconnected after the next page reload.] {
+  [cause]: [Error: ENOENT: no such file or directory, open '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/cache/chrome-devtools-workspace-uuid'] {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: '/Users/michaelpotteiger/software development learnign app/learning-app-v2/.next/cache/chrome-devtools-workspace-uuid'
+  }
+}
+ ✓ Compiled in 732ms (1942 modules)
+ ✓ Compiled in 8.5s (1945 modules)
+ ✓ Compiled in 10.2s (1945 modules)
+ ✓ Compiled in 1478ms (1945 modules)
