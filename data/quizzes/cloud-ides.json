@@ -76,7 +76,11 @@
       ],
       "correctAnswer": 0,
       "additionalContext": "Use a secrets manager with short‑lived tokens (e.g., OIDC‑issued). Avoid committing secrets. Provide least privilege and rotate frequently.",
-      "keyConcepts": ["Secrets manager", "Short‑lived tokens", "Least privilege"]
+      "keyConcepts": [
+        "Secrets manager",
+        "Short‑lived tokens",
+        "Least privilege"
+      ]
     },
     {
       "id": "6",
