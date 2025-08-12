@@ -1,0 +1,141 @@
+{
+  "title": "Development Containers Knowledge Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Purpose of devcontainer.json:",
+      "options": [
+        "Define a reproducible containerized dev environment",
+        "Store editor theme preferences only",
+        "Replace CI/CD pipelines",
+        "Manage production deployments"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "The devcontainer.json describes the tools, extensions, ports, and container image/Dockerfile so every developer gets the same environment.",
+      "keyConcepts": ["devcontainer.json", "Reproducibility", "Tooling"]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Typical location of devcontainer config:",
+      "options": [
+        ".vscode/devcontainers.json",
+        ".devcontainer/devcontainer.json",
+        "devcontainers/devcontainer.yaml",
+        "~/.config/devcontainer.json"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Editors like VS Code look for a .devcontainer directory with devcontainer.json (and optionally Dockerfile/docker‑compose) to define the environment.",
+      "keyConcepts": ["Project layout", "VS Code", "Remote Containers"]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Key benefit for onboarding speed:",
+      "options": [
+        "Manual per‑machine setup",
+        "Rewriting code editors",
+        "One‑click &ldquo;Reopen in Container&rdquo; with prebuilt tools",
+        "Skipping dependency installation"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Preconfigured images/Dockerfiles minimize time to first PR. Prebuilds can front‑load dependency installation for even faster starts.",
+      "keyConcepts": ["Onboarding", "Prebuilds", "Consistency"]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Remote container workflow characteristic:",
+      "options": [
+        "All dev tools run on the host OS",
+        "Local files are copied into the container once",
+        "Container shares the host kernel and full host PATH",
+        "Workspace is mounted; tools run inside the container"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Editors mount the workspace into the container so changes reflect instantly. Language servers, compilers, and CLIs run inside the container.",
+      "keyConcepts": ["Workspace mount", "Tooling in container", "Live edits"]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Volume strategy for dependency caches:",
+      "options": [
+        "Use a named volume to persist npm/pip caches across rebuilds",
+        "Always install dependencies into the image&rsquo;s final layer",
+        "Delete caches on every start to be &ldquo;clean&rdquo;",
+        "Mount caches from /tmp inside the container"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Persistent named volumes (e.g., node_modules cache) speed up iterative development without polluting the image layers.",
+      "keyConcepts": ["Volumes", "Caching", "Iterative dev"]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Reproducibility practice in devcontainers:",
+      "options": [
+        "Rely on latest tags everywhere",
+        "Pin base image versions and use lockfiles for dependencies",
+        "Install tools manually after container starts",
+        "Use environment variables only"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Pin images (e.g., sha256 digests) and use package lockfiles so every developer and CI get the same toolchain.",
+      "keyConcepts": ["Pinning", "Lockfiles", "Determinism"]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "When to use remote containers vs local host tools:",
+      "options": [
+        "Prefer remote containers only for static websites",
+        "Always use host tools regardless of requirements",
+        "Use remote containers when projects demand specific OS/toolchains",
+        "Remote containers are required for production only"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Remote containers shine when native dependencies, compilers, or services are hard to reproduce locally. Local tools can be fine for simple stacks.",
+      "keyConcepts": ["Native deps", "Toolchains", "Trade‑offs"]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Common devcontainer.json fields:",
+      "options": [
+        "GPU firmware blobs, BIOS settings, kernel patches",
+        "Executable installer paths for each OS",
+        "IAM user creation scripts for production",
+        "image/Dockerfile, features, customizations, forwardPorts"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Fields typically include image/Dockerfile, features, extensions, settings, mounts, postCreate/postStart commands, and forwarded ports.",
+      "keyConcepts": ["Features", "Extensions", "Ports"]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Design a devcontainer for a polyglot repo (Node + Python + Postgres). Include base image strategy, features, volumes, and postCreate steps.",
+      "sampleStrongResponse": "Start from a minimal base (e.g., debian-slim) or official devcontainers image. Add features for Node and Python with pinned versions; install Poetry and use a lockfile. Define a service for Postgres in compose with a named volume for data. Mount caches (npm/pip) via named volumes. Expose/forward ports, set environment variables, and run postCreate to install dependencies and prewarm caches."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Propose a plan to speed onboarding using prebuilt devcontainers and CI prebuilds while keeping environments deterministic.",
+      "sampleStrongResponse": "Create prebuilt images with pinned versions and publish to an internal registry. Use CI prebuilds to install dependencies and run language server indexing. Developers use &ldquo;Reopen in Container&rdquo; to start quickly. Enforce lockfiles, digest‑pinned base images, and postCreate validation scripts. Track time‑to‑first‑PR, failure rates due to env issues, and cache hit rates."
+    }
+  ]
+}

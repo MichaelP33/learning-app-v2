@@ -168,352 +168,6 @@ export const externalQuizzes: Record<string, Quiz> = {
     }
   ]
 },
-  "artifact-management": {
-  "title": "Artifact Management Knowledge Quiz",
-  "totalQuestions": 10,
-  "totalPoints": 25,
-  "questions": [
-    {
-      "id": "1",
-      "type": "multiple-choice",
-      "points": 2,
-      "question": "Immutability in artifact management is best ensured by:",
-      "options": [
-        "Promoting by digest across environments; treat tags as pointers",
-        "Editing artifacts in-place after publish",
-        "Rebuilding artifacts at each promotion step",
-        "Using only human-readable tags in production"
-      ],
-      "correctAnswer": 0,
-      "additionalContext": "Digest-based promotion preserves exact bits and provenance; tags can move and are not reliable identity.",
-      "keyConcepts": [
-        "Immutability",
-        "Digest",
-        "Promotion"
-      ]
-    },
-    {
-      "id": "2",
-      "type": "multiple-choice",
-      "points": 2,
-      "question": "Provenance and SBOMs together primarily enable:",
-      "options": [
-        "Faster CSS builds",
-        "Traceability, vulnerability response, and audits",
-        "UI theming consistency",
-        "Shorter commit messages"
-      ],
-      "correctAnswer": 1,
-      "additionalContext": "Provenance ties builds to inputs and process; SBOM lists components and licenses.",
-      "keyConcepts": [
-        "Provenance",
-        "SBOM",
-        "Audits"
-      ]
-    },
-    {
-      "id": "3",
-      "type": "multiple-choice",
-      "points": 2,
-      "question": "Why separate package registries from deploy-time artifact registries?",
-      "options": [
-        "They are identical and interchangeable",
-        "To remove access control",
-        "They have different SLAs and access patterns (build vs deploy)",
-        "To avoid replication and caching"
-      ],
-      "correctAnswer": 2,
-      "additionalContext": "Build-time package registries differ from deploy-time artifact registries; manage them with appropriate policies and SLAs.",
-      "keyConcepts": [
-        "Registries",
-        "SLAs",
-        "Access patterns"
-      ]
-    },
-    {
-      "id": "4",
-      "type": "multiple-choice",
-      "points": 2,
-      "question": "A correct promotion practice across environments is to:",
-      "options": [
-        "Rebuild binaries for each environment",
-        "Change content under the same tag",
-        "Delete old digests to save space only",
-        "Copy or reference the same digest after checks pass"
-      ],
-      "correctAnswer": 3,
-      "additionalContext": "Promotion should move the exact digest that passed tests and scans; never rebuild during promotion.",
-      "keyConcepts": [
-        "Promotion",
-        "Checks",
-        "Determinism"
-      ]
-    },
-    {
-      "id": "5",
-      "type": "multiple-choice",
-      "points": 2,
-      "question": "Strong signature verification should occur:",
-      "options": [
-        "At deploy time with fail-closed gates",
-        "Only in local development",
-        "Never, to speed up deploys",
-        "Only if a human approves manually"
-      ],
-      "correctAnswer": 0,
-      "additionalContext": "Verify signatures and provenance at deploy; block rollouts when evidence is missing or invalid.",
-      "keyConcepts": [
-        "Signatures",
-        "Verification",
-        "Fail-closed"
-      ]
-    },
-    {
-      "id": "6",
-      "type": "multiple-choice",
-      "points": 2,
-      "question": "Why are tags alone insufficient as deploy identifiers?",
-      "options": [
-        "Tags are always unique across time",
-        "Tags cannot be read by tools",
-        "Tags can be mutable; digests guarantee exact content",
-        "Tags require no access control"
-      ],
-      "correctAnswer": 2,
-      "additionalContext": "Tags may move; deploy by digest to ensure the exact bits run everywhere.",
-      "keyConcepts": [
-        "Tags",
-        "Digest",
-        "Identity"
-      ]
-    },
-    {
-      "id": "7",
-      "type": "multiple-choice",
-      "points": 2,
-      "question": "Regional mirrors and caching primarily help by:",
-      "options": [
-        "Increasing egress costs",
-        "Reducing latency, egress, and improving resilience",
-        "Avoiding access control",
-        "Disabling audits"
-      ],
-      "correctAnswer": 1,
-      "additionalContext": "Mirrors keep deploys fast and resilient during central outages and reduce network costs.",
-      "keyConcepts": [
-        "Mirrors",
-        "Latency",
-        "Resilience"
-      ]
-    },
-    {
-      "id": "8",
-      "type": "multiple-choice",
-      "points": 2,
-      "question": "An audit-friendly promotion record should include:",
-      "options": [
-        "Only the artifact name",
-        "No timestamps to reduce noise",
-        "A random hash unrelated to content",
-        "Who promoted, when, source/target namespaces, and digest"
-      ],
-      "correctAnswer": 3,
-      "additionalContext": "Record promotion lineage: actor, time, from/to, checks passed, and exact digest.",
-      "keyConcepts": [
-        "Audit trail",
-        "Lineage",
-        "Compliance"
-      ]
-    },
-    {
-      "id": "9",
-      "type": "freeform",
-      "points": 4,
-      "question": "Design an artifact promotion pipeline from dev → staging → prod that preserves immutability and provenance. Include rollback and audit requirements.",
-      "sampleStrongResponse": "Publish artifacts with SBOM and provenance; sign outputs. Promote by digest through environment namespaces after tests/scans pass. Record who/when/checks in an immutable log. Rollback by re-promoting a prior known-good digest. Enforce deploy-time signature and provenance verification (fail-closed)."
-    },
-    {
-      "id": "10",
-      "type": "freeform",
-      "points": 5,
-      "question": "Your org experienced a &ldquo;prod tag drifted from staging&rdquo; incident. Propose controls in registries and CD to prevent this class of issue permanently.",
-      "sampleStrongResponse": "Require deploy by digest in CD; block mutable tags at prod. Verify signatures and provenance at deploy. Record promotion events with actor/time/digest. Use regional mirrors for resilience. Add policy that forbids rebuilds during promotion and alerts on tag moves in prod namespaces."
-    }
-  ]
-},
-  "build-automation": {
-  "title": "Build Automation Knowledge Quiz",
-  "totalQuestions": 10,
-  "totalPoints": 25,
-  "questions": [
-    {
-      "id": "1",
-      "type": "multiple-choice",
-      "points": 2,
-      "question": "Incremental builds primarily rely on:",
-      "options": [
-        "Timestamps on files to decide what to rebuild",
-        "A build graph with content hashing of declared inputs and tools",
-        "Manual selection of targets each run",
-        "Ignoring tool versions to keep keys stable"
-      ],
-      "correctAnswer": 1,
-      "additionalContext": "Tracking inputs → outputs across a DAG and hashing inputs (including tool versions) lets the system skip unchanged work.",
-      "keyConcepts": [
-        "Incremental builds",
-        "Build graph",
-        "Content hashing"
-      ]
-    },
-    {
-      "id": "2",
-      "type": "multiple-choice",
-      "points": 2,
-      "question": "Stable cache keys for build steps should include:",
-      "options": [
-        "Only filenames without content",
-        "Source digests, toolchain identifiers, env/flags that affect outputs",
-        "Timestamps and CI job number",
-        "Random seed to avoid collisions"
-      ],
-      "correctAnswer": 1,
-      "additionalContext": "Cache keys must reflect all inputs to avoid collisions and enable deterministic reuse across machines.",
-      "keyConcepts": [
-        "Cache keys",
-        "Determinism",
-        "Toolchain identifiers"
-      ]
-    },
-    {
-      "id": "3",
-      "type": "multiple-choice",
-      "points": 2,
-      "question": "A primary benefit of a remote build cache is:",
-      "options": [
-        "Forcing full rebuilds for safety",
-        "Storing logs only, not artifacts",
-        "Tying builds to a single runner",
-        "Sharing compiled results across CI agents and laptops"
-      ],
-      "correctAnswer": 3,
-      "additionalContext": "Remote caches let teams reuse prior results across machines, cutting CI minutes and local feedback time.",
-      "keyConcepts": [
-        "Remote cache",
-        "Reuse",
-        "CI speed"
-      ]
-    },
-    {
-      "id": "4",
-      "type": "multiple-choice",
-      "points": 2,
-      "question": "Which practice unlocks maximum parallelism in builds?",
-      "options": [
-        "Single-threaded minifiers",
-        "Global locks around package installation",
-        "Graph-aware scheduling of independent nodes",
-        "Serial test execution without sharding"
-      ],
-      "correctAnswer": 2,
-      "additionalContext": "Model dependencies as a DAG and schedule independent nodes concurrently; shard long-running tests by runtime.",
-      "keyConcepts": [
-        "Parallelization",
-        "DAG",
-        "Test sharding"
-      ]
-    },
-    {
-      "id": "5",
-      "type": "multiple-choice",
-      "points": 2,
-      "question": "Treating CI as a DAG of cacheable stages instead of shell scripts enables:",
-      "options": [
-        "Selective execution of only affected targets",
-        "Longer queues and idle cores",
-        "Hidden, ambient dependencies",
-        "Unbounded network access in compile steps"
-      ],
-      "correctAnswer": 0,
-      "additionalContext": "Pipelines modeled as graphs make dependencies explicit and allow partial, affected-only runs.",
-      "keyConcepts": [
-        "CI orchestration",
-        "Affected-only runs",
-        "Pipeline DAG"
-      ]
-    },
-    {
-      "id": "6",
-      "type": "multiple-choice",
-      "points": 2,
-      "question": "Matrix builds are primarily used to:",
-      "options": [
-        "Speed up a single OS by duplicating work",
-        "Hide flaky tests",
-        "Validate across OS/architectures in parallel",
-        "Reduce test coverage for faster runs"
-      ],
-      "correctAnswer": 2,
-      "additionalContext": "Matrix builds fan out jobs across OS/arch combinations to catch portability issues efficiently.",
-      "keyConcepts": [
-        "Matrix builds",
-        "Cross-platform",
-        "Parallelism"
-      ]
-    },
-    {
-      "id": "7",
-      "type": "multiple-choice",
-      "points": 2,
-      "question": "Why should artifacts be promoted by digest across environments?",
-      "options": [
-        "It preserves exact bits and provenance; no rebuilds during promotion",
-        "Digests are easier to remember than tags",
-        "It guarantees rebuilds at each stage",
-        "Tags are immutable everywhere"
-      ],
-      "correctAnswer": 0,
-      "additionalContext": "Promoting by digest ensures the same artifact is used in staging and production, maintaining provenance and repeatability.",
-      "keyConcepts": [
-        "Promotion",
-        "Digest",
-        "Provenance"
-      ]
-    },
-    {
-      "id": "8",
-      "type": "multiple-choice",
-      "points": 2,
-      "question": "To prevent &ldquo;works on my machine&rdquo; failures, build systems should:",
-      "options": [
-        "Rely on developer PATH and host tools",
-        "Use hermetic, containerized toolchains and block undeclared network access",
-        "Skip hashing tool versions to keep caches warm",
-        "Allow ambient environment variables to influence outputs"
-      ],
-      "correctAnswer": 1,
-      "additionalContext": "Hermetic builds pin tools and remove ambient state so outputs depend only on declared inputs.",
-      "keyConcepts": [
-        "Hermetic builds",
-        "Containers",
-        "Determinism"
-      ]
-    },
-    {
-      "id": "9",
-      "type": "freeform",
-      "points": 4,
-      "question": "Design a caching strategy for a large monorepo. What belongs in action keys, what should be stored remotely, and how will you pre-warm caches in CI?",
-      "sampleStrongResponse": "Compute content-addressed keys from source digests, toolchain image, env flags, and fetch inputs. Store action results and final artifacts in a remote cache. Pre-warm by reusing successful pipeline caches, seeding common targets on main, and sharing cache across branches. Track hit rates and fix missing inputs that cause cache misses."
-    },
-    {
-      "id": "10",
-      "type": "freeform",
-      "points": 5,
-      "question": "Outline a hermetic CI pipeline as a DAG: compile, shard tests, package, SBOM/provenance/signing, and promotion. How will you measure success and enable fast rollback?",
-      "sampleStrongResponse": "Model stages as cacheable nodes. Compile with network blocked; shard tests by historical runtime; package artifacts and attach SBOM and provenance; sign outputs; promote by digest only after gates pass. Success metrics: p95 PR validation time, cache hit rate, change failure rate. Rollback by promoting a prior known-good digest with recorded evidence and alerts."
-    }
-  ]
-},
   "capacity-planning": {
   "title": "Capacity Planning Knowledge Quiz",
   "totalQuestions": 10,
@@ -860,6 +514,179 @@ export const externalQuizzes: Record<string, Quiz> = {
     }
   ]
 },
+  "cloud-ides": {
+  "title": "Cloud IDEs Knowledge Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Latency consideration for Cloud IDEs:",
+      "options": [
+        "Place workspaces near users and prebuild heavy tasks",
+        "Add more local plugins to reduce RTT",
+        "Throttle keystrokes to match server speed",
+        "Ignore latency; developer location doesn&rsquo;t matter"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Latency impacts typing responsiveness and debugging. Run workspaces in nearby regions and shift heavy work (builds, indexing) to prebuilds to minimize perceived lag.",
+      "keyConcepts": [
+        "Latency",
+        "Regions",
+        "Prebuilds"
+      ]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Workspace isolation best aligns with:",
+      "options": [
+        "Shared containers for all users",
+        "Per‑user isolated VMs/containers with network guardrails",
+        "Mount production databases directly",
+        "One workspace per organization only"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Isolate user workspaces using per‑user VMs/containers, apply egress controls, and restrict privileges. This limits blast radius and meets compliance needs.",
+      "keyConcepts": [
+        "Isolation",
+        "Egress control",
+        "Least privilege"
+      ]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Ephemeral environments help by:",
+      "options": [
+        "Accumulating unpatched tools",
+        "Persisting root access across sessions",
+        "Ensuring clean state on start and easy disposal",
+        "Requiring manual cleanup"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Ephemeral workspaces start from a clean, approved image each time, reducing config drift. Persistent storage can be separate (e.g., home volume) with policies.",
+      "keyConcepts": [
+        "Ephemeral",
+        "Golden images",
+        "Drift reduction"
+      ]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Policy controls in Cloud IDEs typically:",
+      "options": [
+        "Disable all outbound networking",
+        "Ignore audit logging to reduce cost",
+        "Replace code review entirely",
+        "Enforce org policies (egress, secrets, extensions) as code"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Policy‑as‑code can enforce extensions, block risky egress, require signed images, and log actions. This complements reviews rather than replacing them.",
+      "keyConcepts": [
+        "Policy‑as‑code",
+        "Audit logs",
+        "Governance"
+      ]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Secrets handling principle:",
+      "options": [
+        "Inject short‑lived credentials from a secrets manager",
+        "Check secrets into the repo but encrypt later",
+        "Store tokens in dotfiles permanently",
+        "Ask users to paste secrets each session"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Use a secrets manager with short‑lived tokens (e.g., OIDC‑issued). Avoid committing secrets. Provide least privilege and rotate frequently.",
+      "keyConcepts": [
+        "Secrets manager",
+        "Short‑lived tokens",
+        "Least privilege"
+      ]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Trade‑off vs local IDEs:",
+      "options": [
+        "Cloud IDEs always work offline",
+        "They centralize policy and improve security but add network dependency",
+        "They remove all latency",
+        "They require admin rights on developer laptops"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Cloud IDEs improve control and consistency, but rely on network performance and availability. Offline work is limited.",
+      "keyConcepts": [
+        "Trade‑offs",
+        "Network dependency",
+        "Control"
+      ]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Prebuild pipelines primarily:",
+      "options": [
+        "Run production workloads",
+        "Throttle user CPU",
+        "Prepare dependencies and index code to speed start times",
+        "Disable language servers"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Prebuilds download dependencies, run CI‑like setup, and index code so interactive sessions are snappy.",
+      "keyConcepts": [
+        "Prebuilds",
+        "Indexing",
+        "Cold start"
+      ]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Data exfiltration risk mitigation includes:",
+      "options": [
+        "Unlimited clipboard and port‑forwarding",
+        "No monitoring of workspace actions",
+        "Sharing a single SSH key across all users",
+        "Egress restrictions, watermarking, and audit trails"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Apply DLP policies: control clipboard/port‑forwarding, restrict egress, and log activity. Use per‑user credentials with rotation.",
+      "keyConcepts": [
+        "DLP",
+        "Egress control",
+        "Audit"
+      ]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Design a secure Cloud IDE rollout: region selection, workspace isolation, secrets handling, and monitoring.",
+      "sampleStrongResponse": "Choose regions close to users and enforce per‑user isolated workspaces with egress policies. Inject short‑lived credentials from a secrets manager via OIDC. Require signed base images and extensions allowlists. Enable comprehensive audit logs, anomaly detection, and alerting. Measure latency, time‑to‑ready, and policy violations."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Your team is migrating to Cloud IDEs. Outline a plan to keep developer experience fast while meeting compliance requirements.",
+      "sampleStrongResponse": "Implement prebuilds to warm caches and index code. Place workspaces near users and autoscale. Enforce policy‑as‑code for extensions, networking, and base images; inject short‑lived secrets. Provide fallbacks for local dev when needed, and track metrics (latency, launch time, error rates, and security findings)."
+    }
+  ]
+},
   "code-reviews": {
   "title": "Code Reviews Knowledge Quiz",
   "totalQuestions": 10,
@@ -1032,8 +859,8 @@ export const externalQuizzes: Record<string, Quiz> = {
     }
   ]
 },
-  "dependency-management": {
-  "title": "Dependency Management Knowledge Quiz",
+  "development-containers": {
+  "title": "Development Containers Knowledge Quiz",
   "totalQuestions": 10,
   "totalPoints": 25,
   "questions": [
@@ -1041,167 +868,167 @@ export const externalQuizzes: Record<string, Quiz> = {
       "id": "1",
       "type": "multiple-choice",
       "points": 2,
-      "question": "Most dependency risk in large systems comes from:",
+      "question": "Purpose of devcontainer.json:",
       "options": [
-        "Only direct dependencies that we import",
-        "Transitive dependencies pulled in by direct deps (blast radius)",
-        "Operating system packages only",
-        "Tooling unrelated to builds"
+        "Define a reproducible containerized dev environment",
+        "Store editor theme preferences only",
+        "Replace CI/CD pipelines",
+        "Manage production deployments"
       ],
-      "correctAnswer": 1,
-      "additionalContext": "Transitives often hide vulnerabilities and create wide blast radius across many services.",
+      "correctAnswer": 0,
+      "additionalContext": "The devcontainer.json describes the tools, extensions, ports, and container image/Dockerfile so every developer gets the same environment.",
       "keyConcepts": [
-        "Transitive risk",
-        "Blast radius",
-        "Graphs"
+        "devcontainer.json",
+        "Reproducibility",
+        "Tooling"
       ]
     },
     {
       "id": "2",
       "type": "multiple-choice",
       "points": 2,
-      "question": "Effective triage of a CVE should prioritize:",
+      "question": "Typical location of devcontainer config:",
       "options": [
-        "Package popularity",
-        "Reachability and exploitability in your binaries",
-        "Commit message length",
-        "Team size"
+        ".vscode/devcontainers.json",
+        ".devcontainer/devcontainer.json",
+        "devcontainers/devcontainer.yaml",
+        "~/.config/devcontainer.json"
       ],
       "correctAnswer": 1,
-      "additionalContext": "Use reachability to see if vulnerable code paths are invoked; combine with severity and compensating controls.",
+      "additionalContext": "Editors like VS Code look for a .devcontainer directory with devcontainer.json (and optionally Dockerfile/docker‑compose) to define the environment.",
       "keyConcepts": [
-        "Reachability",
-        "Exploitability",
-        "Triage"
+        "Project layout",
+        "VS Code",
+        "Remote Containers"
       ]
     },
     {
       "id": "3",
       "type": "multiple-choice",
       "points": 2,
-      "question": "License policy enforcement should be:",
+      "question": "Key benefit for onboarding speed:",
       "options": [
-        "Manual and ad-hoc",
-        "Performed only during annual audits",
-        "Automated as policy-as-code in CI and registries",
-        "Skipped for transitive dependencies"
+        "Manual per‑machine setup",
+        "Rewriting code editors",
+        "One‑click &ldquo;Reopen in Container&rdquo; with prebuilt tools",
+        "Skipping dependency installation"
       ],
       "correctAnswer": 2,
-      "additionalContext": "Automate license allow/deny checks at PR time and publish; generate attribution for distributions.",
+      "additionalContext": "Preconfigured images/Dockerfiles minimize time to first PR. Prebuilds can front‑load dependency installation for even faster starts.",
       "keyConcepts": [
-        "Licenses",
-        "Policy-as-code",
-        "Attribution"
+        "Onboarding",
+        "Prebuilds",
+        "Consistency"
       ]
     },
     {
       "id": "4",
       "type": "multiple-choice",
       "points": 2,
-      "question": "Why adopt regular update cadences?",
+      "question": "Remote container workflow characteristic:",
       "options": [
-        "To defer risk until the end of the year",
-        "To accumulate larger, riskier upgrades",
-        "To avoid all PRs for months",
-        "To reduce big-bang upgrades and keep remediation fast"
+        "All dev tools run on the host OS",
+        "Local files are copied into the container once",
+        "Container shares the host kernel and full host PATH",
+        "Workspace is mounted; tools run inside the container"
       ],
       "correctAnswer": 3,
-      "additionalContext": "Small, routine bumps keep systems fresh and make security fixes easier to ship.",
+      "additionalContext": "Editors mount the workspace into the container so changes reflect instantly. Language servers, compilers, and CLIs run inside the container.",
       "keyConcepts": [
-        "Update cadence",
-        "Risk reduction",
-        "Remediation speed"
+        "Workspace mount",
+        "Tooling in container",
+        "Live edits"
       ]
     },
     {
       "id": "5",
       "type": "multiple-choice",
       "points": 2,
-      "question": "When remediation must be deferred, a good practice is to:",
+      "question": "Volume strategy for dependency caches:",
       "options": [
-        "Accept permanent risk without record",
-        "Hide the issue to avoid attention",
-        "Remove attribution requirements",
-        "Record a time-bound exception with owner and expiry"
+        "Use a named volume to persist npm/pip caches across rebuilds",
+        "Always install dependencies into the image&rsquo;s final layer",
+        "Delete caches on every start to be &ldquo;clean&rdquo;",
+        "Mount caches from /tmp inside the container"
       ],
-      "correctAnswer": 3,
-      "additionalContext": "Time-bound exceptions with approvals prevent silent, permanent risk acceptance.",
+      "correctAnswer": 0,
+      "additionalContext": "Persistent named volumes (e.g., node_modules cache) speed up iterative development without polluting the image layers.",
       "keyConcepts": [
-        "Exceptions",
-        "Governance",
-        "Expiry"
+        "Volumes",
+        "Caching",
+        "Iterative dev"
       ]
     },
     {
       "id": "6",
       "type": "multiple-choice",
       "points": 2,
-      "question": "A common safe remediation path is:",
+      "question": "Reproducibility practice in devcontainers:",
       "options": [
-        "Rewrite the app immediately",
-        "Ignore advisories if tests are green",
-        "Backport a patch or pin to a safe minor and plan a major upgrade",
-        "Remove the dependency from SBOMs only"
+        "Rely on latest tags everywhere",
+        "Pin base image versions and use lockfiles for dependencies",
+        "Install tools manually after container starts",
+        "Use environment variables only"
       ],
-      "correctAnswer": 2,
-      "additionalContext": "Backports and safe pins buy time; majors get scheduled with migration guides and tests.",
+      "correctAnswer": 1,
+      "additionalContext": "Pin images (e.g., sha256 digests) and use package lockfiles so every developer and CI get the same toolchain.",
       "keyConcepts": [
-        "Backport",
         "Pinning",
-        "Major upgrade"
+        "Lockfiles",
+        "Determinism"
       ]
     },
     {
       "id": "7",
       "type": "multiple-choice",
       "points": 2,
-      "question": "Reasonable remediation SLAs often include:",
+      "question": "When to use remote containers vs local host tools:",
       "options": [
-        "Only best-effort timelines",
-        "Critical in 48–72h; high in a sprint; others via cadence",
-        "No timelines for transitive issues",
-        "Annual remediation only"
+        "Prefer remote containers only for static websites",
+        "Always use host tools regardless of requirements",
+        "Use remote containers when projects demand specific OS/toolchains",
+        "Remote containers are required for production only"
       ],
-      "correctAnswer": 1,
-      "additionalContext": "Set clear SLAs to keep risk low while balancing team capacity.",
+      "correctAnswer": 2,
+      "additionalContext": "Remote containers shine when native dependencies, compilers, or services are hard to reproduce locally. Local tools can be fine for simple stacks.",
       "keyConcepts": [
-        "SLA",
-        "Risk",
-        "Prioritization"
+        "Native deps",
+        "Toolchains",
+        "Trade‑offs"
       ]
     },
     {
       "id": "8",
       "type": "multiple-choice",
       "points": 2,
-      "question": "A key metric to track dependency program effectiveness is:",
+      "question": "Common devcontainer.json fields:",
       "options": [
-        "Number of stars on GitHub",
-        "Lines of code changed",
-        "Number of packages installed per day",
-        "Remediation lead time from advisory to rollout"
+        "GPU firmware blobs, BIOS settings, kernel patches",
+        "Executable installer paths for each OS",
+        "IAM user creation scripts for production",
+        "image/Dockerfile, features, customizations, forwardPorts"
       ],
       "correctAnswer": 3,
-      "additionalContext": "Track how quickly advisories are triaged, fixed, tested, and rolled out across services.",
+      "additionalContext": "Fields typically include image/Dockerfile, features, extensions, settings, mounts, postCreate/postStart commands, and forwarded ports.",
       "keyConcepts": [
-        "Lead time",
-        "Advisories",
-        "Program metrics"
+        "Features",
+        "Extensions",
+        "Ports"
       ]
     },
     {
       "id": "9",
       "type": "freeform",
       "points": 4,
-      "question": "Design a company-wide dependency remediation workflow: ingestion of advisories, reachability analysis, triage, PR automation, canary rollout, and exception handling.",
-      "sampleStrongResponse": "Ingest advisories into a central system and map to SBOMs. Run reachability to prioritize. Auto-open PRs for safe bumps; create migration tracks for breakers. Canary critical services first behind flags. Track remediation lead time and require time-bound exceptions with owner/expiry for deferrals."
+      "question": "Design a devcontainer for a polyglot repo (Node + Python + Postgres). Include base image strategy, features, volumes, and postCreate steps.",
+      "sampleStrongResponse": "Start from a minimal base (e.g., debian-slim) or official devcontainers image. Add features for Node and Python with pinned versions; install Poetry and use a lockfile. Define a service for Postgres in compose with a named volume for data. Mount caches (npm/pip) via named volumes. Expose/forward ports, set environment variables, and run postCreate to install dependencies and prewarm caches."
     },
     {
       "id": "10",
       "type": "freeform",
       "points": 5,
-      "question": "A high-centrality library in your monorepo needs a major upgrade. Outline a plan that limits blast radius and preserves delivery: staging strategy, test strategy, and rollout.",
-      "sampleStrongResponse": "Add characterization and integration tests around critical paths. Create a branch with workspace isolation; bump the library and codemods. Roll out via flags/canary to low-risk services first, then expand. Monitor error rate and p95 latency; rollback by digest if thresholds breach. Complete attribution and license checks before production."
+      "question": "Propose a plan to speed onboarding using prebuilt devcontainers and CI prebuilds while keeping environments deterministic.",
+      "sampleStrongResponse": "Create prebuilt images with pinned versions and publish to an internal registry. Use CI prebuilds to install dependencies and run language server indexing. Developers use &ldquo;Reopen in Container&rdquo; to start quickly. Enforce lockfiles, digest‑pinned base images, and postCreate validation scripts. Track time‑to‑first‑PR, failure rates due to env issues, and cache hit rates."
     }
   ]
 },
@@ -1369,6 +1196,179 @@ export const externalQuizzes: Record<string, Quiz> = {
       "points": 4,
       "question": "Describe a rollback plan for a critical service and how you would test it.",
       "sampleStrongResponse": "Use Blue/Green with traffic switch and database safety checks; practice regular game days validating scripts and monitoring thresholds."
+    }
+  ]
+},
+  "docker-containerization": {
+  "title": "Docker Containerization Knowledge Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Core benefit of Docker image layers:",
+      "options": [
+        "Layered filesystem enables cache reuse across builds",
+        "Images are single monolithic archives without diffs",
+        "Layers compile into the host kernel for performance",
+        "Layers are only used for UI assets"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Images are composed of immutable layers. Unchanged layers are reused between builds, which accelerates CI and reduces registry storage. Pinning layers improves reproducibility.",
+      "keyConcepts": [
+        "Image layers",
+        "Caching",
+        "Reproducibility"
+      ]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Container isolation model:",
+      "options": [
+        "Hardware virtualization per container",
+        "Process isolation with namespaces/cgroups on a shared kernel",
+        "Only a chroot without resource controls",
+        "Browser sandboxing"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Containers isolate processes using Linux namespaces and cgroups on a shared host kernel. This differs from VMs, which virtualize hardware via a hypervisor.",
+      "keyConcepts": [
+        "Namespaces",
+        "cgroups",
+        "Shared kernel"
+      ]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Docker registries are used to:",
+      "options": [
+        "Force rebuilding images on every host",
+        "Store only image metadata without layers",
+        "Push/pull images and reference them by tags or digests",
+        "Replace application package managers entirely"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Registries store image layers and manifests. Use tags for human‑friendly versions and digests for immutable references. Prefer digests for deploys that must be exact.",
+      "keyConcepts": [
+        "Registry",
+        "Tags",
+        "Digests"
+      ]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Bridge networking and port publishing:",
+      "options": [
+        "Containers are directly routable on the LAN by default",
+        "Mapping 8080:80 exposes container port 80 on host port 8080",
+        "Publishing ports changes the container&rsquo;s internal port",
+        "Bridge networking disallows container‑to‑container traffic"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "On the default bridge network, you can map host ports to container ports (e.g., 8080:80). Service discovery within a user‑defined network uses container or service names.",
+      "keyConcepts": [
+        "Bridge network",
+        "Port mapping",
+        "Service discovery"
+      ]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Multi‑arch builds with Buildx:",
+      "options": [
+        "Use docker buildx build --platform linux/amd64,linux/arm64 to publish a multi‑arch manifest",
+        "Multi‑arch requires separate Dockerfiles per architecture",
+        "Only arm64 can be targeted by Buildx",
+        "Multi‑arch removes the need for testing"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "BuildKit/Buildx can build for multiple architectures and publish a manifest list so clients pull the right image for their CPU.",
+      "keyConcepts": [
+        "Buildx",
+        "Multi‑arch",
+        "Manifest list"
+      ]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Best practice for leveraging layer cache:",
+      "options": [
+        "Copy the entire repo before installing dependencies",
+        "Disable cache to avoid stale layers",
+        "Install dependencies before copying full source and pin versions",
+        "Combine all steps into a single RUN to simplify"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Order Dockerfile steps to maximize cache hits. Install dependencies (using lockfiles) before copying the full source so frequent code changes don&rsquo;t bust earlier layers.",
+      "keyConcepts": [
+        "Layer cache",
+        "Dockerfile ordering",
+        "Pinning"
+      ]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Container data persistence:",
+      "options": [
+        "Rely on the container writable layer for databases",
+        "Always bake data into the image",
+        "Restart containers to ensure data durability",
+        "Use named volumes or managed storage for persistent state"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "The writable layer is ephemeral. Use volumes or external storage for stateful data. Backups and lifecycle policies should apply to volumes, not container layers.",
+      "keyConcepts": [
+        "Volumes",
+        "Ephemeral layers",
+        "Persistence"
+      ]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Docker Compose service communication:",
+      "options": [
+        "Requires hostnames set in /etc/hosts",
+        "Requires publishing all ports to the host",
+        "Uses host network by default",
+        "Uses an isolated network with DNS by service name"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Compose creates an isolated network; services can reach each other via service names (DNS). Host port publishing isn&rsquo;t needed for internal calls.",
+      "keyConcepts": [
+        "Compose",
+        "Isolated network",
+        "DNS"
+      ]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Outline a production‑ready Dockerfile for a web API: base image choice, build stages, caching strategy, non‑root user, and runtime configuration.",
+      "sampleStrongResponse": "Use a small, CVE‑scanned base (e.g., distroless) and multi‑stage builds: builder stage for deps/compile, final stage with only runtime artifacts. Order steps to maximize cache with lockfiles. Run as non‑root, drop capabilities, and configure via env vars/secrets. Add healthcheck and set read‑only filesystem where possible."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Describe how you would design image distribution and provenance: tags vs digests, SBOM/signing, and rollback strategy across regions.",
+      "sampleStrongResponse": "Publish images with semantic tags and deploy by immutable digests for repeatability. Generate SBOMs and sign images (e.g., Sigstore). Enforce policy that only signed images run. Roll out region by region with canaries; keep previous digests for fast rollback. Monitor pull success rates and error budgets."
     }
   ]
 },
@@ -1884,6 +1884,180 @@ export const externalQuizzes: Record<string, Quiz> = {
     }
   ]
 },
+  "local-development-setup": {
+  "title": "Local Development Setup Knowledge Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Role of version managers (e.g., asdf, nvm, pyenv):",
+      "options": [
+        "Install multiple runtime versions and switch per project",
+        "Replace package managers entirely",
+        "Manage OS kernel updates",
+        "Run databases in production"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Version managers pin language runtimes per project, improving reproducibility and avoiding global conflicts.",
+      "keyConcepts": [
+        "asdf",
+        "nvm",
+        "pyenv",
+        "Reproducibility"
+      ]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Reproducible setup scripts should:",
+      "options": [
+        "Be manual, documented in a wiki",
+        "Be automated via Makefile/NPM scripts with idempotent steps",
+        "Use one‑off shell commands copied from chat",
+        "Be different on each laptop"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Automate with scripts that can be re‑run safely. Capture prerequisites, lint/format commands, and common workflows consistently.",
+      "keyConcepts": [
+        "Automation",
+        "Idempotence",
+        "Makefile/NPM scripts"
+      ]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Environment variable tooling best practice:",
+      "options": [
+        "Commit .env files to git",
+        "Hardcode secrets in source code",
+        "Use templates (.env.example) and load via tooling like direnv",
+        "Rely on global machine variables only"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Provide an .env.example without secrets, and use tools like direnv to load env variables automatically per project. Keep secrets out of source control.",
+      "keyConcepts": [
+        ".env",
+        "direnv",
+        "Templates"
+      ]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Cross‑OS caveat to watch for:",
+      "options": [
+        "Uniform path separators across platforms",
+        "Identical native tooling across OSes",
+        "Same filesystem behavior everywhere",
+        "Differences in line endings and file permissions"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Windows vs Unix line endings, permissions, and path separators can break builds. Normalize via editorconfig, git settings, and cross‑platform scripts.",
+      "keyConcepts": [
+        "Line endings",
+        "Permissions",
+        "Paths"
+      ]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Local secrets handling:",
+      "options": [
+        "Use a secrets manager or encrypted files (e.g., sops)",
+        "Store secrets in plaintext .env committed to git",
+        "Email API keys to teammates",
+        "Bake secrets into binaries"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Prefer managers like 1Password/Keychain or encrypted files with sops/age. Provide tooling to decrypt on demand and avoid committing secrets.",
+      "keyConcepts": [
+        "Secrets",
+        "sops",
+        "Keychain"
+      ]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Managing databases locally:",
+      "options": [
+        "Install directly on the host only",
+        "Use containers or managed services for easy start/stop and isolation",
+        "Share a single database across all projects",
+        "Never reset state"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Use containers (docker compose) or lightweight managed options for local testing. Reset state with migrations/fixtures to ensure reproducibility.",
+      "keyConcepts": [
+        "Databases",
+        "Compose",
+        "Fixtures"
+      ]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Consistent toolchains across OSes:",
+      "options": [
+        "Rely on OS‑specific docs",
+        "Ask teammates for ad‑hoc help",
+        "Containerize dev environments or use devcontainers",
+        "Skip consistency concerns"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Devcontainers or Docker‑based workflows provide consistent toolchains across macOS, Linux, and Windows (via WSL).",
+      "keyConcepts": [
+        "Devcontainers",
+        "Consistency",
+        "WSL"
+      ]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Speeding feedback loops locally:",
+      "options": [
+        "Disable caches and hot‑reload",
+        "Reinstall dependencies every run",
+        "Avoid using watchers",
+        "Enable hot‑reload and cache deps; run focused tests"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Use hot‑reload, watch mode, and cached dependencies. Scope tests to changed areas and keep fixtures small for quick cycles.",
+      "keyConcepts": [
+        "Hot‑reload",
+        "Caching",
+        "Focused tests"
+      ]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Draft a local setup guide for a TypeScript monorepo: runtime/version managers, package manager, scripts, env loading, and database strategy.",
+      "sampleStrongResponse": "Use asdf to pin Node and any other runtimes; commit .tool-versions. Use a single workspace package manager (e.g., pnpm) with a lockfile. Provide Make/NPM scripts for common workflows. Supply .env.example and direnv for loading vars. Run Postgres via docker compose with a named volume and seed scripts. Add lint/format/pre-commit hooks and a CI check that reproduces locally."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "How would you make a cross‑platform dev workflow reliable across macOS, Linux, and Windows (including WSL)?",
+      "sampleStrongResponse": "Containerize the toolchain via devcontainers or Docker to avoid OS differences. If host tools are needed, use asdf/nvm/pyenv to pin versions. Normalize line endings via .editorconfig and git config; avoid OS‑specific paths in scripts. Use cross‑platform CLIs (e.g., shelljs, zx) and verify in CI on all OSes. Document fallbacks and add health checks for services."
+    }
+  ]
+},
   "mob-programming": {
   "title": "Mob Programming Knowledge Quiz",
   "totalQuestions": 10,
@@ -2054,179 +2228,6 @@ export const externalQuizzes: Record<string, Quiz> = {
       "points": 5,
       "question": "You have to define cross‑cutting architecture for a new platform. Propose a mob plan and success metrics to justify the time investment.",
       "sampleStrongResponse": "Plan: 90‑minute mob with rotating Driver/Navigators, explicit agenda, and timeboxed spikes; follow with ADRs and pair breakouts to implement. Success: fewer rework cycles, faster convergence on decisions, improved alignment scores, and reduced incident rate due to early validation."
-    }
-  ]
-},
-  "package-managers": {
-  "title": "Package Managers Knowledge Quiz",
-  "totalQuestions": 10,
-  "totalPoints": 25,
-  "questions": [
-    {
-      "id": "1",
-      "type": "multiple-choice",
-      "points": 2,
-      "question": "Lockfiles primarily ensure:",
-      "options": [
-        "Faster network speed regardless of versions",
-        "Automatic upgrades to latest versions on install",
-        "Deterministic, reproducible installs with exact transitive versions",
-        "That developers never need to commit dependency files"
-      ],
-      "correctAnswer": 2,
-      "additionalContext": "Lockfiles capture resolved versions and integrity so installs match across machines and CI.",
-      "keyConcepts": [
-        "Lockfiles",
-        "Determinism",
-        "Integrity"
-      ]
-    },
-    {
-      "id": "2",
-      "type": "multiple-choice",
-      "points": 2,
-      "question": "Integrity/signature checks are used to:",
-      "options": [
-        "Speed up compilation only",
-        "Replace testing",
-        "Decorate release notes",
-        "Detect tampering and verify publisher authenticity"
-      ],
-      "correctAnswer": 3,
-      "additionalContext": "Integrity fields and signatures defend against tampering and support supply chain assurance.",
-      "keyConcepts": [
-        "Integrity",
-        "Signatures",
-        "Supply chain security"
-      ]
-    },
-    {
-      "id": "3",
-      "type": "multiple-choice",
-      "points": 2,
-      "question": "SemVer communicates impact as MAJOR.MINOR.PATCH. Which statement aligns?",
-      "options": [
-        "MAJOR signals breaking changes; MINOR adds features; PATCH fixes bugs",
-        "MAJOR/ MINOR/ PATCH are interchangeable",
-        "PATCH introduces experiments by default",
-        "MINOR always breaks APIs"
-      ],
-      "correctAnswer": 0,
-      "additionalContext": "Use SemVer to set expectations: breaking vs additive vs fixes.",
-      "keyConcepts": [
-        "SemVer",
-        "Compatibility",
-        "Impact"
-      ]
-    },
-    {
-      "id": "4",
-      "type": "multiple-choice",
-      "points": 2,
-      "question": "Recommended enterprise stance on install commands in CI:",
-      "options": [
-        "Use floating installs to catch new fixes",
-        "Use frozen, lockfile-respecting installs (e.g., npm ci, pip-sync)",
-        "Allow developers to skip installs",
-        "Always regenerate the lockfile on every CI run"
-      ],
-      "correctAnswer": 1,
-      "additionalContext": "Frozen installs enforce the lockfile and prevent accidental drift.",
-      "keyConcepts": [
-        "Frozen installs",
-        "CI",
-        "Drift prevention"
-      ]
-    },
-    {
-      "id": "5",
-      "type": "multiple-choice",
-      "points": 2,
-      "question": "Workspaces in monorepos primarily help by:",
-      "options": [
-        "Removing the need for version control",
-        "Publishing everything globally by default",
-        "Preventing local development across packages",
-        "Linking internal packages and sharing a single lockfile for consistency"
-      ],
-      "correctAnswer": 3,
-      "additionalContext": "Workspaces speed local iteration and keep resolution consistent across packages.",
-      "keyConcepts": [
-        "Workspaces",
-        "Monorepos",
-        "Shared lockfile"
-      ]
-    },
-    {
-      "id": "6",
-      "type": "multiple-choice",
-      "points": 2,
-      "question": "A safe update policy for dependencies is:",
-      "options": [
-        "Automate patch/minor updates with tests; plan majors with migration guides",
-        "Auto-merge all majors daily",
-        "Never update unless broken",
-        "Pin forever to first working version"
-      ],
-      "correctAnswer": 0,
-      "additionalContext": "Routine small updates reduce risk; majors deserve scheduled migrations.",
-      "keyConcepts": [
-        "Update cadence",
-        "Automation",
-        "Migrations"
-      ]
-    },
-    {
-      "id": "7",
-      "type": "multiple-choice",
-      "points": 2,
-      "question": "A practical registry governance control is:",
-      "options": [
-        "Public write for everyone",
-        "No audit logs",
-        "Namespace ownership and signature verification",
-        "Always use mutable tags in production"
-      ],
-      "correctAnswer": 2,
-      "additionalContext": "Private proxies with ownership, signatures, and audit trails reduce supply chain risk.",
-      "keyConcepts": [
-        "Registry governance",
-        "Ownership",
-        "Signatures"
-      ]
-    },
-    {
-      "id": "8",
-      "type": "multiple-choice",
-      "points": 2,
-      "question": "Which practice prevents &ldquo;random Monday versions&rdquo; in CI?",
-      "options": [
-        "Frozen installs that honor the lockfile",
-        "Running installs with network disabled",
-        "Allowing caret ranges without locks",
-        "Deleting node_modules on every run"
-      ],
-      "correctAnswer": 0,
-      "additionalContext": "Use lockfile-enforcing commands (e.g., npm ci) to avoid drift from floating ranges.",
-      "keyConcepts": [
-        "Deterministic installs",
-        "Lockfile enforcement",
-        "CI"
-      ]
-    },
-    {
-      "id": "9",
-      "type": "freeform",
-      "points": 4,
-      "question": "Propose an enterprise policy that enforces lockfile usage, frozen installs, and integrity/signature checks across repos. How will exceptions be handled?",
-      "sampleStrongResponse": "Require committed lockfiles and frozen installs in CI (npm ci/pip-sync). Enforce integrity and signature verification at install/publish via private proxies. Maintain an exception registry with time-bound waivers and owner approval. Monitor drift and block merges on violations."
-    },
-    {
-      "id": "10",
-      "type": "freeform",
-      "points": 5,
-      "question": "Design a monorepo workspace strategy: shared lockfile, boundaries, and publish flows that mimic production. How will you debug resolution issues?",
-      "sampleStrongResponse": "Use a single top-level lockfile with workspaces linking internal packages. Enforce boundaries via lint rules and build graphs. Publish through a private registry proxy; use digest/signature verification. When debugging, switch to isolated installs per package and trace resolution; then revert to hoisted for speed."
     }
   ]
 },

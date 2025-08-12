@@ -1,0 +1,141 @@
+{
+  "title": "Local Development Setup Knowledge Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Role of version managers (e.g., asdf, nvm, pyenv):",
+      "options": [
+        "Install multiple runtime versions and switch per project",
+        "Replace package managers entirely",
+        "Manage OS kernel updates",
+        "Run databases in production"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Version managers pin language runtimes per project, improving reproducibility and avoiding global conflicts.",
+      "keyConcepts": ["asdf", "nvm", "pyenv", "Reproducibility"]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Reproducible setup scripts should:",
+      "options": [
+        "Be manual, documented in a wiki",
+        "Be automated via Makefile/NPM scripts with idempotent steps",
+        "Use one‑off shell commands copied from chat",
+        "Be different on each laptop"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Automate with scripts that can be re‑run safely. Capture prerequisites, lint/format commands, and common workflows consistently.",
+      "keyConcepts": ["Automation", "Idempotence", "Makefile/NPM scripts"]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Environment variable tooling best practice:",
+      "options": [
+        "Commit .env files to git",
+        "Hardcode secrets in source code",
+        "Use templates (.env.example) and load via tooling like direnv",
+        "Rely on global machine variables only"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Provide an .env.example without secrets, and use tools like direnv to load env variables automatically per project. Keep secrets out of source control.",
+      "keyConcepts": [".env", "direnv", "Templates"]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Cross‑OS caveat to watch for:",
+      "options": [
+        "Uniform path separators across platforms",
+        "Identical native tooling across OSes",
+        "Same filesystem behavior everywhere",
+        "Differences in line endings and file permissions"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Windows vs Unix line endings, permissions, and path separators can break builds. Normalize via editorconfig, git settings, and cross‑platform scripts.",
+      "keyConcepts": ["Line endings", "Permissions", "Paths"]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Local secrets handling:",
+      "options": [
+        "Use a secrets manager or encrypted files (e.g., sops)",
+        "Store secrets in plaintext .env committed to git",
+        "Email API keys to teammates",
+        "Bake secrets into binaries"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Prefer managers like 1Password/Keychain or encrypted files with sops/age. Provide tooling to decrypt on demand and avoid committing secrets.",
+      "keyConcepts": ["Secrets", "sops", "Keychain"]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Managing databases locally:",
+      "options": [
+        "Install directly on the host only",
+        "Use containers or managed services for easy start/stop and isolation",
+        "Share a single database across all projects",
+        "Never reset state"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Use containers (docker compose) or lightweight managed options for local testing. Reset state with migrations/fixtures to ensure reproducibility.",
+      "keyConcepts": ["Databases", "Compose", "Fixtures"]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Consistent toolchains across OSes:",
+      "options": [
+        "Rely on OS‑specific docs",
+        "Ask teammates for ad‑hoc help",
+        "Containerize dev environments or use devcontainers",
+        "Skip consistency concerns"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Devcontainers or Docker‑based workflows provide consistent toolchains across macOS, Linux, and Windows (via WSL).",
+      "keyConcepts": ["Devcontainers", "Consistency", "WSL"]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Speeding feedback loops locally:",
+      "options": [
+        "Disable caches and hot‑reload",
+        "Reinstall dependencies every run",
+        "Avoid using watchers",
+        "Enable hot‑reload and cache deps; run focused tests"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Use hot‑reload, watch mode, and cached dependencies. Scope tests to changed areas and keep fixtures small for quick cycles.",
+      "keyConcepts": ["Hot‑reload", "Caching", "Focused tests"]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Draft a local setup guide for a TypeScript monorepo: runtime/version managers, package manager, scripts, env loading, and database strategy.",
+      "sampleStrongResponse": "Use asdf to pin Node and any other runtimes; commit .tool-versions. Use a single workspace package manager (e.g., pnpm) with a lockfile. Provide Make/NPM scripts for common workflows. Supply .env.example and direnv for loading vars. Run Postgres via docker compose with a named volume and seed scripts. Add lint/format/pre-commit hooks and a CI check that reproduces locally."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "How would you make a cross‑platform dev workflow reliable across macOS, Linux, and Windows (including WSL)?",
+      "sampleStrongResponse": "Containerize the toolchain via devcontainers or Docker to avoid OS differences. If host tools are needed, use asdf/nvm/pyenv to pin versions. Normalize line endings via .editorconfig and git config; avoid OS‑specific paths in scripts. Use cross‑platform CLIs (e.g., shelljs, zx) and verify in CI on all OSes. Document fallbacks and add health checks for services."
+    }
+  ]
+}
