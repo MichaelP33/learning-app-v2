@@ -1,0 +1,56 @@
+
+> learning-app-v2@0.1.0 prebuild
+> npm run generate:quizzes-registry && npm run generate:articles-registry
+
+
+> learning-app-v2@0.1.0 generate:quizzes-registry
+> node scripts/generate-quizzes-registry.mjs
+
+Generated quizzes registry with 31 entries at /workspace/src/lib/generated-quizzes.ts
+
+> learning-app-v2@0.1.0 generate:articles-registry
+> node scripts/generate-article-registry.mjs
+
+Generated article registry with 36 entries at /workspace/src/components/articles/registry.ts
+
+> learning-app-v2@0.1.0 build
+> NEXT_DISABLE_ESLINT=1 NEXT_TELEMETRY_DISABLED=1 next build
+
+   ▲ Next.js 15.4.5
+
+   Creating an optimized production build ...
+
+
+Retrying 1/3...
+
+
+Retrying 1/3...
+ ✓ Compiled successfully in 6.0s
+   Linting and checking validity of types ...
+ ⨯ ESLint: Invalid Options: - Unknown options: useEslintrc, extensions - 'extensions' has been removed.
+   Collecting page data ...
+   Generating static pages (0/5) ...
+   Generating static pages (1/5) 
+   Generating static pages (2/5) 
+   Generating static pages (3/5) 
+ ✓ Generating static pages (5/5)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                                 Size  First Load JS
+┌ ○ /                                    5.89 kB         282 kB
+├ ○ /_not-found                            996 B         101 kB
+├ ƒ /article/[articleId]                 72.8 kB         349 kB
+├ ƒ /category/[categoryId]                2.8 kB         279 kB
+├ ● /quiz/[articleId]                    9.86 kB         286 kB
+└ ƒ /topic/[topicId]                     3.41 kB         243 kB
++ First Load JS shared by all             100 kB
+  ├ chunks/4bd1b696-602635ee57868870.js  54.1 kB
+  ├ chunks/5964-65b29b990a9f3302.js      43.5 kB
+  └ other shared chunks (total)           2.6 kB
+
+
+○  (Static)   prerendered as static content
+●  (SSG)      prerendered as static HTML (uses generateStaticParams)
+ƒ  (Dynamic)  server-rendered on demand
+
