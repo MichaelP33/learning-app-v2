@@ -1,0 +1,141 @@
+{
+  "title": "Artifact Management Knowledge Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Immutability in artifact management is best ensured by:",
+      "options": [
+        "Promoting by digest across environments; treat tags as pointers",
+        "Editing artifacts in-place after publish",
+        "Rebuilding artifacts at each promotion step",
+        "Using only human-readable tags in production"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Digest-based promotion preserves exact bits and provenance; tags can move and are not reliable identity.",
+      "keyConcepts": ["Immutability", "Digest", "Promotion"]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Provenance and SBOMs together primarily enable:",
+      "options": [
+        "Faster CSS builds",
+        "Traceability, vulnerability response, and audits",
+        "UI theming consistency",
+        "Shorter commit messages"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Provenance ties builds to inputs and process; SBOM lists components and licenses.",
+      "keyConcepts": ["Provenance", "SBOM", "Audits"]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Why separate package registries from deploy-time artifact registries?",
+      "options": [
+        "They are identical and interchangeable",
+        "To remove access control",
+        "They have different SLAs and access patterns (build vs deploy)",
+        "To avoid replication and caching"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Build-time package registries differ from deploy-time artifact registries; manage them with appropriate policies and SLAs.",
+      "keyConcepts": ["Registries", "SLAs", "Access patterns"]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A correct promotion practice across environments is to:",
+      "options": [
+        "Rebuild binaries for each environment",
+        "Change content under the same tag",
+        "Delete old digests to save space only",
+        "Copy or reference the same digest after checks pass"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Promotion should move the exact digest that passed tests and scans; never rebuild during promotion.",
+      "keyConcepts": ["Promotion", "Checks", "Determinism"]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Strong signature verification should occur:",
+      "options": [
+        "At deploy time with fail-closed gates",
+        "Only in local development",
+        "Never, to speed up deploys",
+        "Only if a human approves manually"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Verify signatures and provenance at deploy; block rollouts when evidence is missing or invalid.",
+      "keyConcepts": ["Signatures", "Verification", "Fail-closed"]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Why are tags alone insufficient as deploy identifiers?",
+      "options": [
+        "Tags are always unique across time",
+        "Tags cannot be read by tools",
+        "Tags can be mutable; digests guarantee exact content",
+        "Tags require no access control"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Tags may move; deploy by digest to ensure the exact bits run everywhere.",
+      "keyConcepts": ["Tags", "Digest", "Identity"]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Regional mirrors and caching primarily help by:",
+      "options": [
+        "Increasing egress costs",
+        "Reducing latency, egress, and improving resilience",
+        "Avoiding access control",
+        "Disabling audits"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Mirrors keep deploys fast and resilient during central outages and reduce network costs.",
+      "keyConcepts": ["Mirrors", "Latency", "Resilience"]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "An audit-friendly promotion record should include:",
+      "options": [
+        "Only the artifact name",
+        "No timestamps to reduce noise",
+        "A random hash unrelated to content",
+        "Who promoted, when, source/target namespaces, and digest"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Record promotion lineage: actor, time, from/to, checks passed, and exact digest.",
+      "keyConcepts": ["Audit trail", "Lineage", "Compliance"]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Design an artifact promotion pipeline from dev → staging → prod that preserves immutability and provenance. Include rollback and audit requirements.",
+      "sampleStrongResponse": "Publish artifacts with SBOM and provenance; sign outputs. Promote by digest through environment namespaces after tests/scans pass. Record who/when/checks in an immutable log. Rollback by re-promoting a prior known-good digest. Enforce deploy-time signature and provenance verification (fail-closed)."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Your org experienced a &ldquo;prod tag drifted from staging&rdquo; incident. Propose controls in registries and CD to prevent this class of issue permanently.",
+      "sampleStrongResponse": "Require deploy by digest in CD; block mutable tags at prod. Verify signatures and provenance at deploy. Record promotion events with actor/time/digest. Use regional mirrors for resilience. Add policy that forbids rebuilds during promotion and alerts on tag moves in prod namespaces."
+    }
+  ]
+}

@@ -16,7 +16,11 @@
       ],
       "correctAnswer": 0,
       "additionalContext": "Editors prioritize startup speed and small footprint. IDEs ship integrated debugging, refactors, test runners, and project models out of the box for deeper workflows.",
-      "keyConcepts": ["Capability vs footprint", "Integration depth", "Extensibility"]
+      "keyConcepts": [
+        "Capability vs footprint",
+        "Integration depth",
+        "Extensibility"
+      ]
     },
     {
       "id": "2",
@@ -93,21 +97,21 @@
       "additionalContext": "Type‑aware navigation and refactoring tools shine in big, strongly typed codebases where correctness and consistency matter.",
       "keyConcepts": ["Refactors", "Type awareness", "Deep navigation"]
     },
-          {
-        "id": "7",
-        "type": "multiple-choice",
-        "points": 2,
-        "question": "What is a common risk of installing too many extensions?",
-        "options": [
-          "Increased CPU, memory usage, and slower startup times",
-          "Lower memory usage",
-          "Guaranteed stability improvements",
-          "Automatic security hardening"
-        ],
-        "correctAnswer": 0,
-        "additionalContext": "Each extension can load background processes, watchers, or parsers that add overhead. A curated set helps maintain performance.",
-        "keyConcepts": ["Extension bloat", "Performance budgets", "Startup"]
-      },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "What is a common risk of installing too many extensions?",
+      "options": [
+        "Increased CPU, memory usage, and slower startup times",
+        "Lower memory usage",
+        "Guaranteed stability improvements",
+        "Automatic security hardening"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Each extension can load background processes, watchers, or parsers that add overhead. A curated set helps maintain performance.",
+      "keyConcepts": ["Extension bloat", "Performance budgets", "Startup"]
+    },
     {
       "id": "8",
       "type": "multiple-choice",
@@ -137,7 +141,12 @@
       "points": 5,
       "question": "Propose a plugin governance policy that balances capability with performance and security for your organization.",
       "sampleStrongResponse": "Define an allowlist with review criteria (maintenance cadence, permissions requested, reputation). Set performance budgets (startup time, memory) and monitor with profiling tools. Require &ldquo;least privilege&rdquo; by disabling unused capabilities. Stage updates in a pilot group before broad rollout, and document alternatives for any blocked extensions.",
-      "keyConcepts": ["Governance", "Allowlist", "Performance budgets", "Security"]
+      "keyConcepts": [
+        "Governance",
+        "Allowlist",
+        "Performance budgets",
+        "Security"
+      ]
     }
   ]
 }
