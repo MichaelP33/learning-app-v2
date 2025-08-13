@@ -1,5 +1,7 @@
 import React from "react";
 
+export const articleFormatVersion = 2;
+
 export default function RateLimiting() {
   return (
     <article className="space-y-10">
@@ -8,61 +10,83 @@ export default function RateLimiting() {
         <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Key Concepts</h2>
         <div className="space-y-6">
           <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Why rate limit?</h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Rate limiting protects shared infrastructure, improves fairness, and constrains abusive or accidental traffic. It should be predictable and visible to clients so they can adapt behavior without guessing.
-            </p>
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Plain-English definition</h3>
+            <p className="text-slate-700 dark:text-gray-300">Rate limiting controls how much a client can call an API over time to protect systems, ensure fairness, and improve reliability.</p>
+          </div>
+
+          <div className="border-l-4 border-emerald-500 bg-emerald-50/50 dark:bg-emerald-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Why users feel it</h3>
             <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>Define identities to limit against: per‑user, per‑API key, per‑app, per‑IP, or per‑tenant.</li>
-              <li>Separate read vs write limits; batch write‑heavy operations with async processing.</li>
-              <li>Return <code>429 Too Many Requests</code> with clear recovery headers.</li>
+              <li>More stable APIs during peaks; fewer timeouts.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400 space-y-1"><li>Example: checkout stays responsive on drops.</li><li>Plain English: no stampedes.</li></ul>
+              </li>
+              <li>Clear guidance when blocked (when to retry).
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400 space-y-1"><li>Example: <code>429</code> with <code>Retry-After</code>.</li><li>Plain English: not a mystery failure.</li></ul>
+              </li>
+              <li>Fairness across tenants and apps.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400 space-y-1"><li>Example: noisy neighbor cannot starve others.</li><li>Plain English: everyone gets a turn.</li></ul>
+              </li>
             </ul>
           </div>
 
-          <div>
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Algorithms: fixed, sliding, log, token‑bucket</h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Choose an algorithm matching your traffic shape and fairness guarantees. Implementations usually rely on Redis or in‑memory counters at the edge.
-            </p>
-            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-2">
-              <li><span className="font-medium">Fixed window:</span> simple counters per interval (e.g., 100 req/min). Can burst at window boundaries.</li>
-              <li><span className="font-medium">Sliding window:</span> smooths boundary effects using rolling time windows; fairer under bursts.</li>
-              <li><span className="font-medium">Log‑based:</span> stores timestamps per request; accurate but heavier on storage/CPU.</li>
-              <li><span className="font-medium">Token bucket / leaky bucket:</span> allows bursts by accumulating tokens (rate) and a bucket (burst). Great UX for short spikes.</li>
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Sticky mental model</h3>
+            <p className="text-slate-700 dark:text-gray-300">&ldquo;Tickets into a venue.&rdquo; You can enter at a steady rate and a short burst is okay if you saved tickets.</p>
+          </div>
+
+          <div className="border-l-4 border-orange-500 bg-orange-50/50 dark:bg-orange-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Strengths &amp; limits (trade‑offs)</h3>
+            <div className="grid gap-4">
+              <div>
+                <h4 className="font-medium text-slate-900 dark:text-white">Strengths</h4>
+                <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
+                  <li>Protects dependencies and budgets → fewer outages.
+                    <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Payoff: predictable SLOs and costs.</li></ul>
+                  </li>
+                  <li>Fairness across identities → better multi‑tenant UX.
+                    <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Plain English: no one hogs the line.</li></ul>
+                  </li>
+                  <li>Segmentation by plan → monetization lever.
+                    <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Payoff: upsell path without risk.</li></ul>
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="font-medium text-slate-900 dark:text-white">Limits</h4>
+                <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
+                  <li>Over‑strict limits → broken UX and support pain.
+                    <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Tip: allow short bursts via token bucket.</li></ul>
+                  </li>
+                  <li>Identity mismatch (IP vs API key) → bypass or false blocks.
+                    <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Tip: limit on trusted credentials.</li></ul>
+                  </li>
+                  <li>Opaque errors → retry storms.
+                    <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Tip: include headers and guidance.</li></ul>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Common misunderstandings</h3>
+            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
+              <li>&ldquo;Offset limits users fairly.&rdquo; → Impact: bursts at boundaries → Fix: sliding window or token bucket.</li>
+              <li>&ldquo;Limit everything by IP.&rdquo; → Impact: NAT/shared IP issues → Fix: prefer API key or OAuth client.</li>
+              <li>&ldquo;429 is enough.&rdquo; → Impact: retry storms → Fix: include <code>Retry-After</code> and remaining headers.</li>
             </ul>
           </div>
 
-          <div className="border-l-4 border-amber-500 bg-amber-50/50 dark:bg-amber-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Headers and client guidance</h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Communicate limits and recovery with headers. Common practice: <code>X-RateLimit-Limit</code>, <code>X-RateLimit-Remaining</code>, and <code>X-RateLimit-Reset</code> (epoch seconds). On 429, include <code>Retry-After</code> (seconds or HTTP date).
-            </p>
+          <div className="border-l-4 border-slate-400 bg-slate-50/50 dark:bg-slate-800/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Related Glossary (terms &amp; tech)</h3>
             <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>Expose per‑resource or per‑method limits if they differ (e.g., stricter on <code>POST</code>).</li>
-              <li>Document burst semantics so clients know whether short spikes are allowed.</li>
-              <li>Provide a self‑service endpoint (<code>GET /rate-limit</code>) returning the caller&rsquo;s current limits.</li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Scopes and segmentation</h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Apply different limits per user, app, tenant, or plan. Consider tighter limits on anonymous IPs, looser on authenticated partners, and special pools for internal services. Tie rate limit identity to the credential you trust most (API key, OAuth client, or signed user ID), not just IP.
-            </p>
-            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>Expose plan‑based limits in billing; let customers purchase higher quotas.</li>
-              <li>Use separate buckets for <code>GET</code> vs <code>POST</code> to protect writes.</li>
-              <li>Apply per‑tenant fairness in multi‑tenant systems to prevent &ldquo;noisy neighbor&rdquo; issues.</li>
-            </ul>
-          </div>
-
-          <div className="pl-6">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">In practice</h3>
-            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>Start with token bucket limits at the edge; store counters in Redis with TTLs.</li>
-              <li>Return <code>429</code> + <code>Retry-After</code>; include <code>X-RateLimit-*</code> for visibility.</li>
-              <li>Segment by API key or OAuth client; treat IP as a secondary signal.</li>
-              <li>Document per‑endpoint limits and burst behavior in OpenAPI descriptions.</li>
+              <li><strong>Token Bucket</strong> — rate + burst tokens. <em>Why it matters:</em> UX‑friendly bursts.</li>
+              <li><strong>Sliding Window</strong> — rolling counters. <em>Why it matters:</em> smoother fairness.</li>
+              <li><strong>Retry-After</strong> — when to try again. <em>Why it matters:</em> prevents storms.</li>
+              <li><strong>X‑RateLimit‑*</strong> — limit/remaining/reset. <em>Why it matters:</em> client visibility.</li>
+              <li><strong>Identity</strong> — who is limited. <em>Why it matters:</em> correct attribution.</li>
+              <li><strong>Burst</strong> — short spikes allowed. <em>Why it matters:</em> better UX for clicks.</li>
+              <li><strong>Plan Quotas</strong> — per‑tier limits. <em>Why it matters:</em> monetization and isolation.</li>
             </ul>
           </div>
         </div>
@@ -72,48 +96,52 @@ export default function RateLimiting() {
       <section id="business-team-impact" className="mb-12">
         <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Business &amp; Team Impact</h2>
         <div className="space-y-6">
-          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Cost control and reliability</h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Limits protect upstream dependencies (databases, third‑party APIs) from overload and control cloud cost spikes. They also create predictable SLOs by smoothing traffic bursts and isolating abusive actors.
-            </p>
+          <div className="border-l-4 border-emerald-500 bg-emerald-50/50 dark:bg-emerald-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Where it shows up</h3>
             <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>Protect write paths to prevent data corruption during traffic storms.</li>
-              <li>Tiered plans let you monetize higher limits while keeping baseline fairness.</li>
-              <li>429 policies should be part of incident runbooks; clients must know how to back off.</li>
+              <li>Public APIs and partner integrations (fairness and cost control).
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Example: per‑key buckets by plan.</li></ul>
+              </li>
+              <li>Write‑heavy endpoints (protect data integrity).
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Example: POST/DELETE stricter than GET.</li></ul>
+              </li>
+              <li>Abuse vectors (credential stuffing, scraping).
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Example: per‑IP/ASN dampening.</li></ul>
+              </li>
             </ul>
           </div>
 
-          <div>
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Customer experience and fairness</h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Transparent headers and consistent enforcement reduce confusion. Clients can implement token bucket compatible backoff (sleep until <code>X-RateLimit-Reset</code>) instead of retry storms.
-            </p>
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">What good looks like</h3>
             <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>Return human‑friendly error details with a stable <code>code</code> like <code>rate_limit_exceeded</code>.</li>
-              <li>Offer higher burst buckets for latency‑sensitive UI flows and lower steady‑state rates for batch jobs.</li>
-              <li>Provide a sandbox with generous limits for development and certification.</li>
+              <li>Consistent headers and <code>429</code> responses → self‑healing clients.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Payoff: fewer support tickets.</li></ul>
+              </li>
+              <li>Segmentation by identity/plan → predictable SLOs and revenue.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Payoff: protect core customers.</li></ul>
+              </li>
+              <li>Dashboards for top limiters and 429s → proactive tuning.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Payoff: early fixes before churn.</li></ul>
+              </li>
             </ul>
           </div>
 
-          <div className="border-l-4 border-amber-500 bg-amber-50/50 dark:bg-amber-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Security and abuse mitigation</h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Rate limits complement authN/Z and fraud detection. Per‑IP or per‑ASN limits can dampen credential stuffing and scraping; per‑account limits prevent &ldquo;friendly fire&rdquo; from misconfigured clients.
-            </p>
+          <div className="border-l-4 border-yellow-500 bg-yellow-50/50 dark:bg-yellow-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Failure signals (customer words)</h3>
             <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>Combine with anomaly detection (sudden spike alerts) and captchas where appropriate.</li>
-              <li>Use &ldquo;penalty boxes&rdquo;: progressively stricter limits for repeated violators.</li>
-              <li>Whitelist health checks and webhooks separately to avoid cascading failures.</li>
+              <li>&ldquo;We get random 429s with no guidance.&rdquo; → Likely cause: missing headers → What to check: <code>X‑RateLimit‑*</code> and <code>Retry-After</code>.</li>
+              <li>&ldquo;Batch jobs starve the UI.&rdquo; → Likely cause: single bucket → What to check: separate GET/POST pools.</li>
+              <li>&ldquo;Limits are unfair across tenants.&rdquo; → Likely cause: IP‑based limits → What to check: key/tenant identity.
+              </li>
             </ul>
           </div>
 
-          <div className="pl-6">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">In practice</h3>
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Industry lenses</h3>
             <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>Publish a limits table per plan and endpoint; include <code>Retry-After</code> semantics.</li>
-              <li>Add dashboards for top limiters by identity and most frequent 429s.</li>
-              <li>Test backoff behavior with chaos exercises that force 429s on staging.</li>
+              <li><strong>Enterprise Tech</strong>: per‑service quotas; dashboards and autoscaling tie‑ins.</li>
+              <li><strong>Non‑Tech Enterprise</strong>: policy controls and audit; explicit customer limits.</li>
+              <li><strong>Startups</strong>: simple token buckets at the edge; iterate from data.</li>
             </ul>
           </div>
         </div>
@@ -123,37 +151,65 @@ export default function RateLimiting() {
       <section id="cursor-implementation" className="mb-12">
         <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Cursor Implementation</h2>
         <div className="space-y-6">
-          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Edge and gateway enforcement</h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Cursor can generate NGINX/Envoy policies or application middleware implementing token bucket or sliding window counters backed by Redis. It can also add standardized headers and structured logs for observability.
-            </p>
+          <div className="border-l-4 border-slate-400 bg-slate-50/50 dark:bg-slate-800/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">TL;DR (AM-friendly)</h3>
             <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>Scaffold a <code>rateLimit(identity, bucket)</code> middleware and attach per‑route configs.</li>
-              <li>Emit <code>X-RateLimit-*</code> and <code>Retry-After</code> consistently from a shared helper.</li>
-              <li>Provide sample client backoff utilities that sleep until <code>X-RateLimit-Reset</code>.</li>
+              <li>Add token buckets with clear headers.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Plain English: fair lines with signs.</li></ul>
+              </li>
+              <li>Limit by trusted identity (key/tenant), not IP by default.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Plain English: count the right person.</li></ul>
+              </li>
+              <li>Segment write vs read; show <code>Retry-After</code>.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Payoff: protects core paths without confusion.</li></ul>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Review workflow (AI in PRs/design)</h3>
+            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
+              <li>Validate bucket identity, algorithms, and per‑route configs.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Checklist: token bucket, GET/POST split, plan tiers.</li></ul>
+              </li>
+              <li>Check headers and error bodies include guidance and <code>traceId</code>.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Checklist: <code>X‑RateLimit‑*</code>, <code>Retry-After</code>.</li></ul>
+              </li>
+              <li>Propose dashboards and alerts for top 429 producers.</li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Guardrails &amp; automation</h3>
+            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
+              <li>Edge/gateway middleware with Redis counters and jittered TTLs.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Benefit: fast and consistent.</li></ul>
+              </li>
+              <li>Config‑driven plan tiers with CI validation and docs generation.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Benefit: safe changes and clear comms.</li></ul>
+              </li>
+              <li>Client helpers for backoff/sleep until reset.</li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-emerald-500 bg-emerald-50/50 dark:bg-emerald-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Operational playbooks</h3>
+            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
+              <li><strong>Abuse spike</strong>: tighten per‑IP/ASN temporarily; raise sampling; add CAPTCHA where appropriate.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Why it helps: contain blast radius.</li></ul>
+              </li>
+              <li><strong>Legit customer throttled</strong>: increase plan bucket; whitelist job paths with expiry.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Why it helps: preserve revenue without risk.</li></ul>
+              </li>
+              <li><strong>UI lag during batch jobs</strong>: separate pools; reduce batch concurrency; schedule off‑peak.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Why it helps: protects UX.</li></ul>
+              </li>
             </ul>
           </div>
 
           <div>
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Segmentation and analytics</h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Cursor can keep limits in config or a control plane (by plan, tenant, endpoint) and ship dashboards tracking near‑limit callers. It can suggest per‑tier defaults and generate tests to prevent accidental changes.
-            </p>
-            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>Create a config schema for plans and buckets; validate on CI.</li>
-              <li>Generate usage reports and alerts for &ldquo;top 429 producers&rdquo; per identity.</li>
-              <li>Automate exceptions/whitelists with expirations for incident mitigation.</li>
-            </ul>
-          </div>
-
-          <div className="pl-6">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">In practice</h3>
-            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>Ask Cursor to scaffold edge policies and app middlewares with shared helpers.</li>
-              <li>Adopt a plan config file; generate docs and tests from it.</li>
-              <li>Provide example client backoff code and SDK hooks for <code>429</code> handling.</li>
-            </ul>
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Talk track (20 sec)</h3>
+            <p className="text-slate-700 dark:text-gray-300">&ldquo;We add fair queues with clear limits and guidance, segment by identity and plan, and protect writes—so platforms stay reliable and customers know exactly how to adapt.&rdquo;</p>
           </div>
         </div>
       </section>

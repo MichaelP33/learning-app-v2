@@ -1,157 +1,227 @@
 import React from "react";
 
+export const articleFormatVersion = 2;
+
 export default function ContractTesting() {
   return (
     <article className="space-y-10">
       {/* Key Concepts */}
-      <section id="key-concepts">
+      <section id="key-concepts" className="mb-12">
         <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Key Concepts</h2>
         <div className="space-y-6">
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Plain-English definition</h3>
+            <p className="text-slate-700 dark:text-gray-300">Contract tests capture what consumers need from a provider (HTTP or events) as executable agreements, so providers can verify they won&rsquo;t break existing clients.</p>
+          </div>
+
+          <div className="border-l-4 border-emerald-500 bg-emerald-50/50 dark:bg-emerald-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Why users feel it</h3>
+            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
+              <li>Fewer last‑minute integration fire drills.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Example: provider PR fails fast on contract mismatch.</li><li>Plain English: catch breaks before release.</li></ul>
+              </li>
+              <li>Clear upgrade guidance and confidence.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Example: diff shows exactly what changed between majors.</li><li>Plain English: consumers know what to do.</li></ul>
+              </li>
+              <li>Safer multi‑team delivery with less coordination.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Example: CDC blocks merges that break prod users.</li><li>Plain English: autonomy without surprises.</li></ul>
+              </li>
+            </ul>
+          </div>
+
           <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Consumer‑driven contracts (CDC)</h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-3">
-              In CDC, each consumer describes the API interactions it depends on (requests, responses, edge cases). Those expectations become executable contracts that the provider must satisfy. Contracts live close to the consumer (source of truth) and are published to a broker (shared registry) for providers to verify.
-            </p>
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Sticky mental model</h3>
+            <p className="text-slate-700 dark:text-gray-300">&ldquo;Signed checklist.&rdquo; Consumers sign off on the list they need; providers prove they still satisfy it.</p>
+          </div>
+
+          <div className="border-l-4 border-orange-500 bg-orange-50/50 dark:bg-orange-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Strengths &amp; limits (trade‑offs)</h3>
+            <div className="grid gap-4">
+              <div>
+                <h4 className="font-medium text-slate-900 dark:text-white">Strengths</h4>
+                <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
+                  <li>Independent deployability → fewer coordination bottlenecks.
+                    <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Payoff: faster delivery across teams.</li></ul>
+                  </li>
+                  <li>Executable compatibility gates → safer changes.
+                    <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Plain English: automated &ldquo;won&rsquo;t break&rdquo; checks.</li></ul>
+                  </li>
+                  <li>Visible deprecation paths → smoother migrations.
+                    <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Payoff: fewer escalations.</li></ul>
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="font-medium text-slate-900 dark:text-white">Limits</h4>
+                <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
+                  <li>Upfront setup and broker maintenance.
+                    <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Tip: start with one consumer/provider pair.</li></ul>
+                  </li>
+                  <li>Doesn&rsquo;t replace unit/integration/E2E tests.
+                    <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Tip: layer defenses.</li></ul>
+                  </li>
+                  <li>Stale contracts cause noise.
+                    <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Tip: tag and retire unused quickly.</li></ul>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Common misunderstandings</h3>
             <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>Scope contracts to business capabilities (cohesive use cases), not single endpoints.</li>
-              <li>Include negative cases (validation errors, 404/409) to prevent silent drift.</li>
-              <li>Version contracts just like code (semantic versioning for breaking vs non‑breaking).</li>
+              <li>&ldquo;Providers write the contracts.&rdquo; → Impact: misses real needs → Fix: consumers author; providers verify.
+              </li>
+              <li>&ldquo;Contracts equal docs.&rdquo; → Impact: not enforced → Fix: executable, verified in CI.
+              </li>
+              <li>&ldquo;Only happy paths.&rdquo; → Impact: unnoticed breakage → Fix: include errors, 404/409, and edge cases.
+              </li>
             </ul>
           </div>
 
-          <div>
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Provider verification</h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Providers run verification tests that replay all relevant consumer contracts against their implementation. Verification ensures backward compatibility (existing consumers keep working) and catches accidental changes (renamed fields, altered status codes) before deployment.
-            </p>
+          <div className="border-l-4 border-slate-400 bg-slate-50/50 dark:bg-slate-800/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Related Glossary (terms &amp; tech)</h3>
             <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>Run verification in CI on every provider PR (fast feedback on compatibility).</li>
-              <li>Pin provider to the latest verified contract set before allowing merges.</li>
-              <li>Surface mismatches with clear diffs (schema, example payloads) for quick fixes.</li>
-            </ul>
-          </div>
-
-          <div className="border-l-4 border-amber-500 bg-amber-50/50 dark:bg-amber-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Versioning and compatibility</h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Use semantic versions for contracts (MAJOR.MINOR.PATCH). A MAJOR bump signals a breaking change (remove fields, change types); MINOR adds non‑breaking fields; PATCH fixes examples or clarifies descriptions. Support multiple versions concurrently during migration windows (graceful deprecation).
-            </p>
-            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>Communicate deprecation timelines in the broker (visibility for consumers).</li>
-              <li>Prefer additive changes (backward compatible) and feature‑flag behavior changes.</li>
-              <li>Use default values and tolerant readers (ignore unknown fields) to ease rollouts.</li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Transport‑agnostic contracts</h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Contracts apply to HTTP and evented systems alike. For events, capture topics, schemas, and ordering/duplication semantics (at‑least‑once delivery means consumers must be idempotent—processing the same message multiple times safely). For HTTP, capture methods, status codes, and error shapes.
-            </p>
-            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>Use schema registries (Avro/JSON Schema) for strongly typed events.</li>
-              <li>Document idempotency keys and retry behavior explicitly at the contract level.</li>
-              <li>Cover pagination, filtering, and sorting semantics where applicable.</li>
-            </ul>
-          </div>
-
-          <div className="pl-6">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">In practice</h3>
-            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>Start with one consumer→provider pair and grow coverage incrementally.</li>
-              <li>Publish contracts automatically from consumer CI after review.</li>
-              <li>Fail provider PRs when verification breaks against any supported contract version.</li>
+              <li><strong>CDC (Consumer‑Driven Contracts)</strong> — consumer defines needs. <em>Why it matters:</em> aligns with usage.
+              </li>
+              <li><strong>Provider Verification</strong> — run contracts against provider. <em>Why it matters:</em> blocks breaking changes.
+              </li>
+              <li><strong>Broker</strong> — shared registry. <em>Why it matters:</em> discoverability and governance.
+              </li>
+              <li><strong>Semantic Versioning</strong> — MAJOR.MINOR.PATCH. <em>Why it matters:</em> change signaling.
+              </li>
+              <li><strong>Tolerant Reader</strong> — ignore unknown fields. <em>Why it matters:</em> additive changes are safe.
+              </li>
+              <li><strong>Idempotency</strong> — safe retries. <em>Why it matters:</em> robust clients.
+              </li>
+              <li><strong>Event Schemas</strong> — topics and payloads. <em>Why it matters:</em> consistent messaging.
+              </li>
+              <li><strong>Replay/Golden Payloads</strong> — sample messages. <em>Why it matters:</em> regression proof.
+              </li>
             </ul>
           </div>
         </div>
       </section>
 
       {/* Business & Team Impact */}
-      <section id="business-team-impact">
-        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Business & Team Impact</h2>
+      <section id="business-team-impact" className="mb-12">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Business &amp; Team Impact</h2>
         <div className="space-y-6">
-          <div>
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Outcomes</h3>
+          <div className="border-l-4 border-emerald-500 bg-emerald-50/50 dark:bg-emerald-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Where it shows up</h3>
             <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>Independent deployability of services (reduced coordination overhead).</li>
-              <li>Fewer integration fire‑drills late in release cycles (earlier, automated detection).</li>
-              <li>Clearer ownership of API change management (visibility of impact across consumers).</li>
+              <li>Public/partner APIs and microservice boundaries.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Example: orders API used by billing and analytics.</li></ul>
+              </li>
+              <li>Evented systems (streams/queues) with multiple consumers.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Example: payment events drive invoices and emails.</li></ul>
+              </li>
+              <li>Versioned SDKs and multi‑tenant platforms.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Example: v1/v2 coexistence.</li></ul>
+              </li>
             </ul>
           </div>
 
-          <div className="border-l-4 border-slate-500 bg-slate-50/50 dark:bg-slate-900/40 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Trade‑offs</h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Contracts require stewardship (versioning discipline, broker maintenance) and cultural adoption (teams respond to verification failures quickly). They do not replace other tests—use alongside unit, integration, and E2E for layered protection (defense in depth).
-            </p>
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">What good looks like</h3>
             <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>Initial setup time (tooling, pipelines) pays back through reduced outage risk.</li>
-              <li>Requires cross‑team agreements on naming, error shapes, and deprecation windows.</li>
-              <li>Visibility is essential—dashboards showing contract coverage and failures help.</li>
+              <li>Contracts include negative cases and pagination/error semantics → realistic safety.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Payoff: fewer production slips.</li></ul>
+              </li>
+              <li>Verification runs on every provider PR → instant feedback.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Payoff: quicker merges and fewer rollbacks.</li></ul>
+              </li>
+              <li>Semver + deprecation windows → calm migrations.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Payoff: predictable customer experience.</li></ul>
+              </li>
             </ul>
           </div>
 
-          <div>
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Anti‑patterns</h3>
+          <div className="border-l-4 border-yellow-500 bg-yellow-50/50 dark:bg-yellow-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Failure signals (customer words)</h3>
             <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>Treating contracts as documentation only (must be executable and verified in CI).</li>
-              <li>Publishing contracts from providers (breaks CDC premise—consumers define needs).</li>
-              <li>Letting &ldquo;unknown consumer&rdquo; failures pile up without triage (stale contracts).</li>
+              <li>&ldquo;Our client broke after your deploy.&rdquo; → Likely cause: missing verification → What to check: provider PR checks against all supported contracts.</li>
+              <li>&ldquo;Docs say one thing, API did another.&rdquo; → Likely cause: docs drift → What to check: contracts vs OpenAPI alignment.</li>
+              <li>&ldquo;Event consumers are crashing.&rdquo; → Likely cause: schema change → What to check: event contracts and tolerant readers.</li>
             </ul>
           </div>
 
-          <div className="pl-6">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">In practice</h3>
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Industry lenses</h3>
             <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>Adopt a broker (e.g., Pact Broker) early and automate publication/verification.</li>
-              <li>Define deprecation SLAs (e.g., 90 days) and communicate via the broker UI.</li>
-              <li>Use consumer tags (prod/alpha) to filter which contracts block provider merges.</li>
+              <li><strong>Enterprise Tech</strong>: broker governance; dashboards for verification status.</li>
+              <li><strong>Non‑Tech Enterprise</strong>: change control; compatibility evidence for audits.</li>
+              <li><strong>Startups</strong>: start with 1–2 key consumer contracts; grow coverage.
+              </li>
             </ul>
           </div>
         </div>
       </section>
 
       {/* Cursor Implementation */}
-      <section id="cursor-implementation">
+      <section id="cursor-implementation" className="mb-12">
         <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Cursor Implementation</h2>
         <div className="space-y-6">
-          <div className="border-l-4 border-cyan-500 bg-cyan-50/50 dark:bg-cyan-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">CDC workflow in CI</h3>
+          <div className="border-l-4 border-slate-400 bg-slate-50/50 dark:bg-slate-800/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">TL;DR (AM-friendly)</h3>
             <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>Consumers: generate and publish contracts during PRs (tag with branch/commit).</li>
-              <li>Providers: on PR, pull latest consumer contracts and run verification before tests.</li>
-              <li>Block merges if verification fails against any supported consumer version.</li>
+              <li>Consumers author; providers verify on PR.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Plain English: needs come from users; suppliers prove fit.</li></ul>
+              </li>
+              <li>Add negative cases and pagination/errors to contracts.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Plain English: test real‑world failure too.</li></ul>
+              </li>
+              <li>Use semver and deprecation windows for calm changes.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Payoff: fewer escalations.</li></ul>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Review workflow (AI in PRs/design)</h3>
+            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
+              <li>Generate/verify contracts on consumer/provider PRs; tag by environment.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Checklist: prod‑tagged contracts must block.</li></ul>
+              </li>
+              <li>Create diffs for MAJOR/MINOR/PATCH and produce migration notes.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Checklist: additive in minor; breaking in major with window.</li></ul>
+              </li>
+              <li>Validate event schemas and tolerant readers for message changes.</li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Guardrails &amp; automation</h3>
+            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
+              <li>Broker with policy (which contracts block which providers) and adoption dashboards.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Benefit: visibility and control.</li></ul>
+              </li>
+              <li>SDK/schema generators per contract; CI publishes/consumes automatically.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Benefit: fewer drift bugs.</li></ul>
+              </li>
+              <li>Webhooks/alerts for new MAJORs and verification failures.</li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-emerald-500 bg-emerald-50/50 dark:bg-emerald-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Operational playbooks</h3>
+            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
+              <li><strong>Breaking change needed</strong>: stage a MAJOR; publish adapters; set deprecation headers/notes.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Why it helps: calm migrations.</li></ul>
+              </li>
+              <li><strong>Unknown consumer failures</strong>: audit broker; tag and retire stale contracts.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Why it helps: reduces noise and risk.</li></ul>
+              </li>
+              <li><strong>Event schema drift</strong>: add tolerant readers; publish new version; verify all consumers.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Why it helps: no mass breakage.</li></ul>
+              </li>
             </ul>
           </div>
 
           <div>
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Versioning and compatibility playbook</h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Provide a simple rubric for API changes: additive fields → MINOR; renames/removals → MAJOR with deprecation window; description/example fixes → PATCH. Cursor can generate change logs and broker notes automatically from PR labels.
-            </p>
-            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>Generate SDK stubs and schema diffs per contract change for developers.</li>
-              <li>Alert subscribers (consumers) when a new MAJOR is published with migration notes.</li>
-              <li>Run synthetic compatibility tests for common client libraries.</li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Event contracts</h3>
-            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>Capture ordering guarantees and duplication semantics in schema (at‑least‑once).</li>
-              <li>Provide idempotent consumer examples and verification hooks.</li>
-              <li>Store exemplar payloads and golden traces to validate downstream parsing.</li>
-            </ul>
-          </div>
-
-          <div className="pl-6">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">In practice</h3>
-            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>Start with HTTP contracts for 1–2 high‑traffic endpoints, then extend to events.</li>
-              <li>Make verification required status checks in CI for providers.</li>
-              <li>Track time‑to‑compatibility (from consumer publish to provider verification) as a KPI.</li>
-            </ul>
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Talk track (20 sec)</h3>
+            <p className="text-slate-700 dark:text-gray-300">&ldquo;We let consumers define what they need and verify providers on every PR, including error cases and versions—so teams move faster without breaking each other.&rdquo;</p>
           </div>
         </div>
       </section>
