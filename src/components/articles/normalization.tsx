@@ -1,159 +1,284 @@
 import React from "react";
 
+export const articleFormatVersion = 2;
+
 export default function Normalization() {
   return (
     <article className="space-y-10">
       {/* Key Concepts */}
-      <section id="key-concepts">
-        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Key Concepts</h2>
-
+      <section id="key-concepts" className="mb-12">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Key Concepts
+        </h2>
         <div className="space-y-6">
-          {/* Callout: Normal forms ladder */}
           <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Normal forms as a ladder of constraints</h3>
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Plain-English definition
+            </h3>
             <p className="text-slate-700 dark:text-gray-300">
-              Think of 1NF, 2NF, and 3NF as progressively stronger rules that turn loosely structured tables into stable models (each step removes a class of update anomalies and sharpens data integrity). 1NF flattens repeating groups; 2NF eliminates partial dependency on a composite key; 3NF removes transitive dependencies so non‑key columns depend only on the key.
+              Normalization organizes data so each fact lives in exactly one place with stable keys and explicit references. It removes duplication that causes update bugs while keeping writes predictable.
             </p>
           </div>
 
-          <div>
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">1NF, 2NF, 3NF in plain language</h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-2">
-              <strong>1NF:</strong> Every field holds a single value, not arrays or nested records (no repeating columns like phone_1, phone_2). <strong>2NF:</strong> If a table has a composite primary key, every non‑key attribute must depend on the full key, not a subset (avoid attributes that belong to only half the key). <strong>3NF:</strong> No non‑key attribute depends on another non‑key attribute (prevent facts about facts, such as storing a city&rsquo;s region alongside city when region can be derived from city).
-            </p>
-            <p className="text-slate-700 dark:text-gray-300">
-              Normalization is not a rigid checkbox exercise; it is a tool for aligning tables with business facts (entities, relationships, and attributes) so reads and writes behave predictably under change.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Anomalies: update, insert, delete</h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-2">
-              Poorly normalized designs suffer from three common anomalies: <strong>update</strong> (same fact stored in multiple rows must be changed everywhere), <strong>insert</strong> (you cannot add a new fact without unrelated data), and <strong>delete</strong> (removing one row accidentally deletes an independent fact). These drive inconsistency, production bugs, and frustrating rework (especially in OLTP systems with many concurrent writers).
-            </p>
-            <p className="text-slate-700 dark:text-gray-300">
-              Applying 3NF typically addresses these anomalies by ensuring each fact has one authoritative home (source of truth) with stable keys and explicit references.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Denormalization trade‑offs</h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-2">
-              Denormalization intentionally duplicates data to optimize read paths (fewer joins, simpler queries). It can reduce latency for dashboards or hot APIs, but shifts the burden to consistency mechanisms: triggers, materialized views, change data capture, or application logic (choose one and keep it tested). Use denormalization where the performance benefit is measurable and the update rate is manageable.
-            </p>
-            <p className="text-slate-700 dark:text-gray-300">
-              A pragmatic sequence: normalize to 3NF, measure, then denormalize narrowly to remove proven bottlenecks (start with derived aggregates or prejoined views rather than duplicating raw attributes).
-            </p>
-          </div>
-
-          <div className="pl-6">
-            <p className="font-semibold text-slate-900 dark:text-white mb-2">In practice</p>
+          <div className="border-l-4 border-emerald-500 bg-emerald-50/50 dark:bg-emerald-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Why users feel it
+            </h3>
             <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>Write table intents as sentences: &ldquo;One row represents X; columns describe Y.&rdquo;</li>
-              <li>Prove 2NF/3NF with dependency statements (attribute depends on the whole key and nothing but the key).</li>
-              <li>Prefer surrogate keys for stability; keep natural keys as unique constraints (immutable business identifiers).</li>
-              <li>Prototype joins on realistic data volume; record p95 latency before and after normalization.</li>
+              <li>
+                Fewer contradictory numbers across pages.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400 space-y-1">
+                  <li>Example: order totals match in checkout, receipts, and dashboards.</li>
+                  <li>Plain English: one source of truth prevents &ldquo;two different truths&rdquo;.</li>
+                </ul>
+              </li>
+              <li>
+                Faster writes and safer edits under load.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400 space-y-1">
+                  <li>Example: updating a customer address changes one row, not many copies.</li>
+                  <li>Plain English: fix it once and it&rsquo;s fixed everywhere.</li>
+                </ul>
+              </li>
+              <li>
+                Clearer relationships and fewer weird edge cases.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400 space-y-1">
+                  <li>Example: products connect to categories through a simple link table.</li>
+                  <li>Plain English: tidy shelves make things easy to find and change.</li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Sticky mental model
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300">
+              &ldquo;Filing cabinet.&rdquo; Each folder (table) holds one kind of document (entity). If two folders contain the same paper, someone will forget to update one. Normalization keeps one official copy and adds pointers.
+            </p>
+          </div>
+
+          <div className="border-l-4 border-orange-500 bg-orange-50/50 dark:bg-orange-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Strengths &amp; limits (trade‑offs)
+            </h3>
+            <div className="grid gap-4">
+              <div>
+                <h4 className="font-medium text-slate-900 dark:text-white">Strengths</h4>
+                <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
+                  <li>
+                    Removes update/insert/delete anomalies → fewer production bugs.
+                    <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Plain English: no more fixing the same fact in three places.</li></ul>
+                  </li>
+                  <li>
+                    Predictable writes and smaller rows → better OLTP performance.
+                    <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Payoff: lower p95 on hot write paths.</li></ul>
+                  </li>
+                  <li>
+                    Clear ownership and keys → easier evolution and audits.
+                    <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Plain English: everyone knows which table is the boss.</li></ul>
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="font-medium text-slate-900 dark:text-white">Limits</h4>
+                <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
+                  <li>
+                    Read paths can need many joins → slower analytics and reports.
+                    <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Tip: serve analytics from a denormalized warehouse.</li></ul>
+                  </li>
+                  <li>
+                    Over‑normalization fragments aggregates → awkward queries.
+                    <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Tip: precompute materialized views for hot reads.</li></ul>
+                  </li>
+                  <li>
+                    Strict constraints raise migration overhead → plan change steps.
+                    <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Tip: use expand→migrate→contract with backfills.</li></ul>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Common misunderstandings
+            </h3>
+            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
+              <li>
+                &ldquo;3NF makes queries fast.&rdquo; → Impact: slow reports due to many joins → Fix: normalize for correctness; denormalize/report in a warehouse.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Plain English: tidy storage; separate shelves for reporting.</li></ul>
+              </li>
+              <li>
+                &ldquo;We can denormalize later with no cost.&rdquo; → Impact: drift and complex sync → Fix: plan CDC/materialized views up front.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Plain English: duplication needs a janitor job.</li></ul>
+              </li>
+              <li>
+                &ldquo;Surrogate keys replace natural keys.&rdquo; → Impact: duplicate entities → Fix: keep unique constraints on business identifiers.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Plain English: still tag real‑world IDs as unique.</li></ul>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-slate-400 bg-slate-50/50 dark:bg-slate-800/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Related Glossary (terms &amp; tech)
+            </h3>
+            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
+              <li><strong>1NF / 2NF / 3NF</strong> — normalization steps. <em>Why it matters:</em> eliminate repeating groups and dependent facts.</li>
+              <li><strong>Functional Dependency</strong> — attribute depends on key. <em>Why it matters:</em> proves 2NF/3NF.
+              </li>
+              <li><strong>Update/Insert/Delete Anomaly</strong> — duplicate‑driven bugs. <em>Why it matters:</em> signals poor design.
+              </li>
+              <li><strong>Surrogate Key</strong> — stable generated id. <em>Why it matters:</em> simplifies joins and migrations.
+              </li>
+              <li><strong>Natural Key</strong> — business identifier. <em>Why it matters:</em> enforce uniqueness and dedupe.
+              </li>
+              <li><strong>Denormalization</strong> — intentional duplication. <em>Why it matters:</em> speed reads with sync cost.
+              </li>
+              <li><strong>Materialized View</strong> — precomputed result. <em>Why it matters:</em> fast analytics from normalized source.
+              </li>
+              <li><strong>CDC (Change Data Capture)</strong> — stream changes. <em>Why it matters:</em> keeps downstream copies fresh.
+              </li>
             </ul>
           </div>
         </div>
       </section>
 
       {/* Business & Team Impact */}
-      <section id="business-team-impact">
-        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Business &amp; Team Impact</h2>
-
+      <section id="business-team-impact" className="mb-12">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Business &amp; Team Impact
+        </h2>
         <div className="space-y-6">
-          {/* Callout: Cost of inconsistency */}
-          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Data quality compounds into trust</h3>
-            <p className="text-slate-700 dark:text-gray-300">
-              Normalized schemas reduce contradictory numbers across reports and services (fewer &ldquo;which table is correct?&rdquo; incidents), improving stakeholder confidence and auditability. This enables faster decisions and lowers the cost of change over time.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">OLTP vs analytics</h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-2">
-              OLTP workloads prioritize fast, consistent writes and transactional integrity (row‑level operations, strict constraints). Analytics workloads value wide scans, aggregations, and convenience of prejoined shapes. A common pattern is to normalize in the source OLTP database, then transform to denormalized star schemas in the warehouse (via ELT) for BI performance.
-            </p>
-            <p className="text-slate-700 dark:text-gray-300">
-              Trying to serve both OLTP and analytics from the same schema often forces awkward compromises; decouple surfaces where possible (operational store vs serving layer).
-            </p>
-          </div>
-
-          <div>
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Iteration speed and team contracts</h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-2">
-              Clear normalization clarifies ownership boundaries (which service or table owns which fact). With stable keys, downstream consumers can evolve independently using views or versioned interfaces (reduce cross‑team coordination overhead during releases).
-            </p>
-            <p className="text-slate-700 dark:text-gray-300">
-              Conversely, denormalization without a sync plan creates hidden coupling: small upstream changes propagate to many tables and caches (a maintenance drag that slows delivery).
-            </p>
-          </div>
-
-          <div>
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Storage, costs, and SLOs</h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-2">
-              Normalized data typically uses less storage and yields smaller write amplification (fewer rows touch on updates). Denormalized models can be cheaper to read but more expensive to keep consistent (extra writes, rebuilds, and invalidations), which matters for SLOs under write‑heavy workloads.
-            </p>
-            <p className="text-slate-700 dark:text-gray-300">
-              Treat the trade‑off as an economics problem: optimize for the dominant path (user‑facing reads vs operational writes) with metrics guiding the decision.
-            </p>
-          </div>
-
-          <div className="pl-6">
-            <p className="font-semibold text-slate-900 dark:text-white mb-2">In practice</p>
+          <div className="border-l-4 border-emerald-500 bg-emerald-50/50 dark:bg-emerald-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Where it shows up</h3>
             <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>Separate OLTP and analytics stores; use change data capture for downstream modeling.</li>
-              <li>Document ownership for each attribute (which system publishes the source of truth).</li>
-              <li>Track incident classes caused by anomalies; prioritize schema fixes over band‑aid ETL.</li>
-              <li>Budget consistency work when planning denormalization (tests, rebuild jobs, and alerts).</li>
+              <li>
+                Checkout totals, taxes, discounts (single source of truth).
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Example: no price mismatches between cart and invoice.</li></ul>
+              </li>
+              <li>
+                Customer profiles and permissions (no partial duplicates).
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Example: merging accounts without losing history.</li></ul>
+              </li>
+              <li>
+                Product catalogs and references (stable keys across services).
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Example: same SKU across search, PDP, and fulfillment.</li></ul>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">What good looks like</h3>
+            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
+              <li>
+                Clear entity boundaries and keys → fewer defects.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Payoff: lower change‑failure rate.</li></ul>
+              </li>
+              <li>
+                3NF for OLTP, denormalized stars for BI → fast both ways.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Payoff: snappy apps and trustworthy dashboards.</li></ul>
+              </li>
+              <li>
+                CDC or jobs to sync derived copies → no silent drift.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Payoff: fewer &ldquo;why does report disagree?&rdquo; escalations.</li></ul>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-yellow-500 bg-yellow-50/50 dark:bg-yellow-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Failure signals (customer words)</h3>
+            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
+              <li>&ldquo;Numbers don&rsquo;t match across pages.&rdquo; → Likely cause: duplicated facts → What to check: update anomalies and missing unique constraints.</li>
+              <li>&ldquo;Editing one thing breaks another.&rdquo; → Likely cause: transitive dependency → What to check: 3NF violations and foreign key design.</li>
+              <li>&ldquo;Reports don&rsquo;t add up.&rdquo; → Likely cause: stale denormalized copies → What to check: CDC lag and view refresh jobs.</li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Industry lenses</h3>
+            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
+              <li><strong>Enterprise Tech</strong>: strict keys and CDC to many downstream systems; audit every denormalized sink.</li>
+              <li><strong>Non‑Tech Enterprise</strong>: compliance and MDM; prioritize dedupe and lineage for PII.
+              </li>
+              <li><strong>Startups</strong>: start normalized, denormalize only proven hotspots with metrics.
+              </li>
             </ul>
           </div>
         </div>
       </section>
 
       {/* Cursor Implementation */}
-      <section id="cursor-implementation">
-        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Cursor Implementation</h2>
-
+      <section id="cursor-implementation" className="mb-12">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Cursor Implementation
+        </h2>
         <div className="space-y-6">
-          {/* Callout: Assisted modeling */}
-          <div className="border-l-4 border-indigo-500 bg-indigo-50/50 dark:bg-indigo-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Assisted modeling and safe denormalization</h3>
-            <p className="text-slate-700 dark:text-gray-300">
-              Provide schema suggestions that flag partial or transitive dependencies, propose candidate keys, and outline controlled denormalization patterns (materialized views, computed columns, or CDC‑driven tables) with validation steps.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Schema linting and migrations</h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-2">
-              Add checks that detect multi‑valued columns, nullable foreign keys without constraints, or transitive dependencies inferred from column names (e.g., city and region). Generate migration plans that split tables, extract lookup entities, and backfill safely with idempotent steps.
-            </p>
-            <p className="text-slate-700 dark:text-gray-300">
-              Surface a dry‑run report showing expected impacts: index changes, foreign key updates, and data movement volume (so rollback is planned up front).
-            </p>
-          </div>
-
-          <div>
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Query review and risk flags</h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-2">
-              Highlight join patterns that suggest hidden duplication (fan‑out reads, many‑to‑many without junction tables). Warn when denormalized fields diverge from their source (drift), and propose repair jobs (periodic reconciliation) before errors reach users.
-            </p>
-            <p className="text-slate-700 dark:text-gray-300">
-              For OLAP pipelines, recommend star schemas with dimension conformance and slowly changing dimension handling (type 2 where history matters, type 1 where it does not).
-            </p>
-          </div>
-
-          <div className="pl-6">
-            <p className="font-semibold text-slate-900 dark:text-white mb-2">In practice</p>
+          <div className="border-l-4 border-slate-400 bg-slate-50/50 dark:bg-slate-800/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">TL;DR (AM-friendly)</h3>
             <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>Automate a &ldquo;normalization check&rdquo; CI job on pull requests affecting schema.</li>
-              <li>Offer codemods that replace embedded attributes with foreign keys and lookups.</li>
-              <li>Ship a cookbook of denormalization patterns with test templates and rollback steps.</li>
-              <li>Track drift metrics for denormalized fields; alert when thresholds are exceeded.</li>
+              <li>Keep one truth per fact; add pointers for relationships.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Plain English: one folder, many bookmarks.</li></ul>
+              </li>
+              <li>Use 3NF for apps; denormalized views for reports.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Plain English: tidy storage, fast read copies.</li></ul>
+              </li>
+              <li>Automate sync (CDC/views) so copies don&rsquo;t drift.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Plain English: scheduled refresh keeps reports honest.</li></ul>
+              </li>
+              <li>Review migrations in steps with backfills and rollbacks.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Plain English: change the plane one bolt at a time.</li></ul>
+              </li>
             </ul>
+          </div>
+
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Review workflow (AI in PRs/design)</h3>
+            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
+              <li>Explain dependency chains; flag 2NF/3NF violations and duplicated attributes.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Checklist: one fact, one table; foreign keys for relationships.</li></ul>
+              </li>
+              <li>Propose unique constraints and surrogate keys; suggest CDC or views for read shapes.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Checklist: merge keys clear; downstream copies documented.</li></ul>
+              </li>
+              <li>Simulate join costs vs materialized views for target reports (evidence‑based choice).</li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Guardrails &amp; automation</h3>
+            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
+              <li>CI lint for multi‑valued columns, missing FKs, and duplicated fields across tables.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Benefit: catches anomalies before prod.</li></ul>
+              </li>
+              <li>Migration generator with expand→backfill→cutover recipes and idempotent steps.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Benefit: safer releases and rollbacks.</li></ul>
+              </li>
+              <li>View/refresh scheduler and drift detector for denormalized sinks.</li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-emerald-500 bg-emerald-50/50 dark:bg-emerald-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Operational playbooks</h3>
+            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
+              <li><strong>Contradictory numbers</strong>: reconcile sources; add uniqueness and fix duplication at origin.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Why it helps: stops drift at the source, not in ETL.</li></ul>
+              </li>
+              <li><strong>Slow reports</strong>: create materialized views; schedule refresh; index join keys.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Why it helps: shifts cost off hot paths.</li></ul>
+              </li>
+              <li><strong>Hot migration</strong>: shadow tables + dual‑write; backfill in chunks; verify with sampling.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Why it helps: safe change with rollback lines.</li></ul>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Talk track (20 sec)</h3>
+            <p className="text-slate-700 dark:text-gray-300">
+              &ldquo;We keep one truth per fact with clear keys, serve apps from 3NF, feed reports from views, and automate sync and migrations—so numbers match, writes stay fast, and change is safe.&rdquo;
+            </p>
           </div>
         </div>
       </section>

@@ -1,188 +1,225 @@
 import React from "react";
 
+export const articleFormatVersion = 2;
+
 export default function PerformanceBenchmarks() {
   return (
     <article className="space-y-10">
       {/* Key Concepts */}
-      <section id="key-concepts">
-        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
-          Key Concepts
-        </h2>
-        <div className="space-y-4">
+      <section id="key-concepts" className="mb-12">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Key Concepts</h2>
+        <div className="space-y-6">
           <div className="border-l-4 border-blue-600 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              Latency, Throughput, and Tail
-            </h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-2">
-              Benchmarking clarifies how fast and how much the system can handle. Latency measures per‑request time (p50/p95/p99), throughput measures work per unit time (req/s, jobs/s), and saturation indicates how close resources are to limits (CPU, memory, I/O). Optimize for tail latency (p95&ndash;p99) because user experience and cascading failures are dominated by slow outliers (e.g., head‑of‑line blocking). Averages hide pain.
-            </p>
-            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>Track distributions, not just means (histograms, percentiles).</li>
-              <li>Record resource counters alongside latencies (correlate hotspots).
-              </li>
-              <li>Define SLOs that match reality (end‑to‑end latency, not just service time).
-              </li>
-            </ul>
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Plain-English definition</h3>
+            <p className="text-slate-700 dark:text-gray-300">Benchmarking measures how fast and how much work a system can do under controlled conditions. Track latency distributions (p50/p95/p99), throughput, and saturation to spot bottlenecks.</p>
           </div>
 
           <div className="border-l-4 border-emerald-600 bg-emerald-50/50 dark:bg-emerald-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              Harnesses & Environment Control
-            </h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-2">
-              Benchmarks are experiments; control variables or results mislead. Fix dataset size, request mix, and run duration. Pin versions (kernel, runtime) and isolate noisy neighbors (dedicated nodes or &ldquo;performance&rdquo; machine classes). Warm caches consistently (or explicitly cold‑start) and document workload shape (burst vs. steady‑state). Repeatability beats one‑off &ldquo;lab wins&rdquo; that disappear in production.
-            </p>
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Why users feel it</h3>
             <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>Use reproducible harnesses (scripts as code, seeded randomness).
+              <li>Faster pages and fewer p95 spikes at peak.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Example: checkout stays &le; 300ms p95 on launch day.</li><li>Plain English: no surprise slowdowns.</li></ul>
               </li>
-              <li>Capture environment fingerprints (CPU model, clock scaling, NUMA) in reports.
+              <li>Stable capacity planning and lower costs.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Example: right-size instances based on throughput-at-SLO.</li><li>Plain English: don&rsquo;t overpay.</li></ul>
               </li>
-              <li>Separate microbenchmarks (function level) from macro (end‑to‑end) runs.
+              <li>Predictable releases with performance budgets.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Example: PR fails if p95 breaches budget.</li><li>Plain English: guardrails for speed.</li></ul>
               </li>
             </ul>
           </div>
 
-          <div className="pl-6">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              Regression Detection
-            </h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-2">
-              The goal is to detect meaningful slowdowns quickly and confidently. Use guardrails that account for noise (confidence intervals, control charts) and alert on sustained deviations, not single spikes. Evaluate improvements under the same conditions where you measured baselines (same workload, same concurrency). Benchmark review should be part of PRs for performance‑sensitive code.
-            </p>
+          <div className="border-l-4 border-purple-600 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Sticky mental model</h3>
+            <p className="text-slate-700 dark:text-gray-300">&ldquo;Wind tunnel.&rdquo; Control variables to see how the system behaves under load before flying in production.</p>
+          </div>
+
+          <div className="border-l-4 border-orange-500 bg-orange-50/50 dark:bg-orange-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Strengths &amp; limits (trade‑offs)</h3>
+            <div className="grid gap-4">
+              <div>
+                <h4 className="font-medium text-slate-900 dark:text-white">Strengths</h4>
+                <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
+                  <li>Early detection of performance regressions → safer launches.
+                    <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Payoff: fewer pagers at release.</li></ul>
+                  </li>
+                  <li>Evidence‑based tuning and capacity planning → lower cost.
+                    <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Payoff: reduce spend without risk.</li></ul>
+                  </li>
+                  <li>Clear budgets for teams → shared accountability.
+                    <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Plain English: everyone knows the speed limit.</li></ul>
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="font-medium text-slate-900 dark:text-white">Limits</h4>
+                <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
+                  <li>Microbench illusions if harness differs from prod.
+                    <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Tip: pin environment and workload shape.</li></ul>
+                  </li>
+                  <li>Averages hide pain; tails matter most to users.
+                    <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Tip: track p95/p99 and rows/bytes moved.</li></ul>
+                  </li>
+                  <li>Noise in measurements without repetition/controls.
+                    <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Tip: compare with error bars/tolerances.</li></ul>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div className="border-l-4 border-blue-600 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Common misunderstandings</h3>
             <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>Compare percentiles with error bars (non‑parametric tests are robust to outliers).
+              <li>&ldquo;Average latency is fine.&rdquo; → Impact: users still feel spikes → Fix: budget on p95/p99.
               </li>
-              <li>Use synthetic canaries in staging to catch regressions before production.
+              <li>&ldquo;One run proves a win.&rdquo; → Impact: noise‑driven decisions → Fix: repeat with confidence intervals.
               </li>
-              <li>Track capacity headroom (throughput at target p95) as a planning metric.
+              <li>&ldquo;Prod will match the lab.&rdquo; → Impact: surprises → Fix: pin env; use preview env and production canaries.
               </li>
             </ul>
           </div>
 
-          <div className="pl-6">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              In practice
-            </h3>
+          <div className="border-l-4 border-slate-400 bg-slate-50/50 dark:bg-slate-800/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Related Glossary (terms &amp; tech)</h3>
             <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>Define &ldquo;performance budgets&rdquo; (max p95 latency, min throughput) per endpoint/job.
+              <li><strong>Latency (p50/p95/p99)</strong> — time to respond. <em>Why it matters:</em> users feel tails.
               </li>
-              <li>Publish harness scripts and datasets; require PRs to cite baseline vs. treatment.
+              <li><strong>Throughput</strong> — work per second. <em>Why it matters:</em> capacity planning.
               </li>
-              <li>Store results with metadata (commit hash, env fingerprint) for comparisons.
+              <li><strong>Saturation</strong> — resource pressure. <em>Why it matters:</em> headroom and throttling.
               </li>
+              <li><strong>Open‑loop vs Closed‑loop</strong> — request model. <em>Why it matters:</em> reveals back‑pressure.
+              </li>
+              <li><strong>Warm vs Cold</strong> — cache/initialization state. <em>Why it matters:</em> realistic results.
+              </li>
+              <li><strong>Performance Budget</strong> — target latency/throughput. <em>Why it matters:</em> gating changes.
+              </li>
+              <li><strong>Harness</strong> — scripts/env config. <em>Why it matters:</em> reproducibility.
+              </li>
+              <li><strong>Confidence Interval</strong> — range for true value. <em>Why it matters:</em> separates noise from signal.</li>
             </ul>
           </div>
         </div>
       </section>
 
       {/* Business & Team Impact */}
-      <section id="business-team-impact">
-        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
-          Business & Team Impact
-        </h2>
-        <div className="space-y-4">
-          <div className="border-l-4 border-amber-500 bg-amber-50/50 dark:bg-amber-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              Outcomes & Trade‑offs
-            </h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-2">
-              Consistent benchmarking prevents silent capacity erosion (e.g., each release adds 2% p95 latency) and avoids firefighting by giving teams early signals. The cost is time and environment control; balance with risk by focusing on customer‑visible paths first (checkout, ingestion) and automating the rest.
-            </p>
+      <section id="business-team-impact" className="mb-12">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Business &amp; Team Impact</h2>
+        <div className="space-y-6">
+          <div className="border-l-4 border-emerald-600 bg-emerald-50/50 dark:bg-emerald-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Where it shows up</h3>
             <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>Improved SLO attainment (fewer p99 breaches) and predictable scaling costs.
+              <li>Checkout/search APIs and dashboards with strict SLOs.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Example: p95 budgets on top endpoints.</li></ul>
               </li>
-              <li>Shorter feedback cycles for performance work (evidence‑based decisions).
+              <li>Ingestion/background jobs needing throughput headroom.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Example: nightly imports within window.</li></ul>
               </li>
-              <li>Better cross‑team negotiation via shared budgets (frontend/backends agree on split).
+              <li>Cost reviews and capacity planning for peak seasons.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Example: plan Black Friday capacity.</li></ul>
               </li>
             </ul>
           </div>
 
-          <div className="pl-6">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              Measurement Culture
-            </h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-2">
-              Make performance everyone&rsquo;s job. Product participates by protecting time for benchmarks on performance‑sensitive initiatives; platform provides harnesses; teams publish budgets and justify exceptions. Incidents that cite &ldquo;slow&rdquo; without data become opportunities to add measurements (and baselines) so future debates use numbers, not opinions.
-            </p>
+          <div className="border-l-4 border-blue-600 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">What good looks like</h3>
             <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>Create a shared glossary (latency, throughput, saturation, warm vs. cold) to avoid confusion.
+              <li>Performance budgets per endpoint/job and CI gates on regressions.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Payoff: no silent erosion.</li></ul>
               </li>
-              <li>Use dashboards with distributions (heatmaps) rather than single averages.
+              <li>Pinned runners/env and repeatable harness with datasets.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Payoff: believable numbers.</li></ul>
               </li>
-              <li>Tie roadmap items to budgets (e.g., &ldquo;feature X must stay &le; 300ms p95&rdquo;).
+              <li>Reports compare distributions with tolerances and error bars.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Payoff: fewer false alarms.</li></ul>
               </li>
             </ul>
           </div>
 
-          <div className="pl-6">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              In practice
-            </h3>
+          <div className="border-l-4 border-yellow-500 bg-yellow-50/50 dark:bg-yellow-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Failure signals (customer words)</h3>
             <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>Prioritize endpoints by traffic and revenue impact (ranked list for attention).
-              </li>
-              <li>Hold &ldquo;perf office hours&rdquo; to teach reading flame graphs and percentiles.
-              </li>
-              <li>Budget time in each epic to update baselines and rerun harnesses.
-              </li>
+              <li>&ldquo;Average is fine but users complain.&rdquo; → Likely cause: tail spikes → What to check: p95/p99 and resource waits.</li>
+              <li>&ldquo;Benchmarks don&rsquo;t match prod.&rdquo; → Likely cause: env drift → What to check: pinned runners and workload shape.</li>
+              <li>&ldquo;Perf keeps slipping each release.&rdquo; → Likely cause: no budgets → What to check: add gates on rows/bytes/latency.</li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-purple-600 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Industry lenses</h3>
+            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
+              <li><strong>Enterprise Tech</strong>: flame graphs + percentiles; CI perf gates for hot paths.</li>
+              <li><strong>Non‑Tech Enterprise</strong>: capacity dashboards for quarters; cost guardrails.</li>
+              <li><strong>Startups</strong>: budget top endpoints; run microbenchmarks in PR, macro nightly.</li>
             </ul>
           </div>
         </div>
       </section>
 
       {/* Cursor Implementation */}
-      <section id="cursor-implementation">
-        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
-          Cursor Implementation
-        </h2>
+      <section id="cursor-implementation" className="mb-12">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Cursor Implementation</h2>
         <div className="space-y-6">
-          <div className="border-l-4 border-cyan-600 bg-cyan-50/50 dark:bg-cyan-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              Automation & CI Gating
-            </h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-2">
-              Automate benchmark runs in CI for microbenchmarks (per PR) and schedule macro runs nightly or on demand. Use stable runners (pinned hardware class) and compare against baselines with tolerance windows (account for noise). Report budgets as status checks, linking charts directly in PRs for review.
-            </p>
+          <div className="border-l-4 border-slate-400 bg-slate-50/50 dark:bg-slate-800/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">TL;DR (AM-friendly)</h3>
             <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>Emit machine‑readable outputs (JSON) and visual summaries (sparklines in PR comments).
+              <li>Set budgets on p95 and throughput; gate PRs on meaningful deltas.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Plain English: protect user speed.</li></ul>
               </li>
-              <li>Fail PRs when budgets are exceeded persistently (e.g., 3 consecutive runs).
+              <li>Use pinned runners and reproducible harnesses with datasets.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Plain English: same lab, same test.</li></ul>
               </li>
-              <li>Store artifacts with commit hashes to enable bisecting regressions.
+              <li>Compare distributions with tolerances; track capacity at SLO.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Payoff: fewer false alarms and better planning.</li></ul>
               </li>
             </ul>
           </div>
 
-          <div className="pl-6">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              Practical Patterns
-            </h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-2">
-              Prefer end‑to‑end synthetic tests for user flows (checkout, search) and microbenchmarks for hot functions (serialization, parsing). Control concurrency levels (open‑loop vs. closed‑loop) and record retry behavior to avoid hiding back‑pressure. Track warm vs. cold start performance separately and document caching assumptions explicitly.
-            </p>
+          <div className="border-l-4 border-purple-600 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Review workflow (AI in PRs/design)</h3>
             <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>Pair flame graphs with percentiles to pinpoint wins that matter to users.
+              <li>Require budgets on hot endpoints; surface expected wins and risk.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Checklist: p95/p99, throughput, CPU/allocs.</li></ul>
               </li>
-              <li>Isolate external dependencies (record/replay) to stabilize measurements.
+              <li>Request harness details (dataset, concurrency, warm/cold) and pinning.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Checklist: reproducible conditions.</li></ul>
               </li>
-              <li>Use feature flags to compare treatment vs. control in production safely.
+              <li>Attach charts with error bars; block on sustained regressions, not single spikes.</li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-blue-600 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Guardrails &amp; automation</h3>
+            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
+              <li>CI steps for microbenchmarks on PR; macro suites nightly on pinned runners.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Benefit: fast dev loop; realistic coverage.</li></ul>
+              </li>
+              <li>Artifacts: JSON metrics + charts; status checks with sparkline diffs.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Benefit: evidence in PR.</li></ul>
+              </li>
+              <li>Capacity at SLO tracked per service; alerts on erosion over time.</li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-emerald-600 bg-emerald-50/50 dark:bg-emerald-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Operational playbooks</h3>
+            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
+              <li><strong>Tail spike</strong>: identify heavy operators via profiles; reduce rows/bytes; cache; batch writes.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Why it helps: cuts p95.</li></ul>
+              </li>
+              <li><strong>Capacity shortfall</strong>: tune concurrency; add nodes; shed load with fair limits.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Why it helps: keeps SLOs green.</li></ul>
+              </li>
+              <li><strong>Budget breach in PR</strong>: request harness re‑run and profiling; optimize or rollback feature.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Why it helps: protects user experience.</li></ul>
               </li>
             </ul>
           </div>
 
-          <div className="pl-6">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              In practice
-            </h3>
-            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>Set per‑endpoint budgets (e.g., &le;250ms p95 at 500 rps on staging hardware).
-              </li>
-              <li>Track capacity at SLO (throughput at target p95) for planning and cost control.
-              </li>
-              <li>Automate regression alerts to Slack with links to diffs and dashboards.
-              </li>
-            </ul>
+          <div>
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Talk track (20 sec)</h3>
+            <p className="text-slate-700 dark:text-gray-300">&ldquo;We set p95 and throughput budgets, run reproducible benchmarks, and gate regressions—so apps stay fast at peak while costs stay under control.&rdquo;</p>
           </div>
         </div>
       </section>
