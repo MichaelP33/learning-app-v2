@@ -1,5 +1,7 @@
 import React from "react";
 
+export const articleFormatVersion = 2;
+
 export default function DocumentDatabases() {
   return (
     <article className="space-y-10">
@@ -9,70 +11,161 @@ export default function DocumentDatabases() {
           Key Concepts
         </h2>
         <div className="space-y-6">
-          <div>
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
             <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              Flexible schema and document modeling
+              Plain-English definition
             </h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Document databases store hierarchical data as self‑contained
-              documents, commonly JSON or BSON. The schema is validated at write
-              time by application code or optional validators, not enforced
-              across collections by foreign keys (teams enjoy rapid iteration
-              when fields evolve quickly between releases). Embedded
-              subdocuments keep related data together to optimize locality for
-              common read paths (fetching a profile with settings avoids
-              cross‑table joins and round‑trips).
-            </p>
-            <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Model documents to reflect read patterns first, then handle write
-              amplification deliberately (combining customer profile,
-              preferences, and derived aggregates can lift read performance an
-              order of magnitude on hot pages). Keep document sizes within
-              recommended limits to prevent chunk splits or unbounded growth
-              (storing large blobs elsewhere reduces memory pressure and page
-              faults during scans).
+            <p className="text-slate-700 dark:text-gray-300">
+              A document database stores{" "}
+              <strong>self‑contained JSON‑like documents</strong> (e.g., a whole
+              customer profile with settings) so an app can fetch everything it
+              needs in <strong>one quick grab</strong>.
             </p>
           </div>
 
-          <div>
+          <div className="border-l-4 border-emerald-500 bg-emerald-50/50 dark:bg-emerald-950/30 pl-6 py-4 rounded-r-lg">
             <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              Denormalization and consistency implications
-            </h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Denormalization is the norm: a field may be duplicated across many
-              documents so reads avoid fan‑out. That shifts complexity to write
-              paths, where updates must touch multiple documents (background
-              repair jobs and change streams help converge state after partial
-              failures or retries). Multi‑document transactions exist but often
-              trade latency for simplicity; many teams prefer idempotent updates
-              and compensations to keep hot paths lean.
-            </p>
-            <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
-              <p className="text-slate-700 dark:text-gray-300">
-                Callout: Treat denormalized fields as caches of truth maintained
-                elsewhere. Track provenance and define rebuild procedures (a
-                nightly backfill or on‑write recalculation) so documents remain
-                correct after incident workarounds or schema shifts over time.
-              </p>
-            </div>
-          </div>
-
-          <div className="pl-6">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              In practice
+              Why users feel it
             </h3>
             <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
               <li>
-                Start with read‑optimized shapes; document size budgets and
-                versioning strategy.
+                <strong>Snappy page loads</strong> for object‑centric screens
+                (profiles, carts, dashboards).
               </li>
               <li>
-                Use validators for critical invariants; keep optional fields
-                backward‑compatible.
+                <strong>Fast iteration</strong>&mdash;add a field without a big
+                table migration.
               </li>
               <li>
-                Maintain repair jobs for denormalized fields to recover after
-                edge failures.
+                <strong>Fewer round‑trips</strong> when related data is embedded
+                together.
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Sticky mental model
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300">
+              &ldquo;Packed lunch.&rdquo; You grab one box with everything
+              inside&mdash;super quick to serve, but if the recipe changes you
+              must update <strong>many</strong> boxes.
+            </p>
+          </div>
+
+          <div className="border-l-4 border-orange-500 bg-orange-50/50 dark:bg-orange-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Strengths &amp; limits (trade‑offs)
+            </h3>
+            <div className="grid gap-4">
+              <div>
+                <h4 className="font-medium text-slate-900 dark:text-white">
+                  Strengths
+                </h4>
+                <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
+                  <li>
+                    Reads are fast (data is co‑located) — so pages feel snappy.
+                  </li>
+                  <li>
+                    Schemas can evolve quickly — so teams ship features faster.
+                  </li>
+                  <li>
+                    Horizontal scale is straightforward — so throughput grows
+                    with demand.
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="font-medium text-slate-900 dark:text-white">
+                  Limits
+                </h4>
+                <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
+                  <li>
+                    Often <strong>duplicate</strong> data for speed
+                    (denormalization) — needs repair jobs to stay correct.
+                  </li>
+                  <li>
+                    Writes/repairs are more complex; poor shard keys cause
+                    scatter‑gather — pick keys that match filters.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Common misunderstandings
+            </h3>
+            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
+              <li>
+                &ldquo;Schemaless means structure doesn&rsquo;t matter.&rdquo;
+                &rarr; False — Impact: data drift; Fix: validators/conventions.
+              </li>
+              <li>
+                &ldquo;Any shard key is fine.&rdquo; &rarr; False — Impact:
+                fan‑out queries; Fix: key on dominant filter (e.g., user_id).
+              </li>
+              <li>
+                &ldquo;Indexes are free.&rdquo; &rarr; False — Impact: slower
+                writes; Fix: curate to real predicates; prune unused.
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-slate-400 bg-slate-50/50 dark:bg-slate-800/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Related Glossary (terms &amp; tech)
+            </h3>
+            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
+              <li>
+                <strong>Document / Collection</strong>: a JSON‑like record; a
+                grouping of documents (e.g., users).
+              </li>
+              <li>
+                <strong>JSON / BSON</strong>: text vs binary encodings; BSON
+                adds extra types (MongoDB).
+              </li>
+              <li>
+                <strong>Schema Validation</strong>: optional rules that keep
+                documents clean and predictable.
+              </li>
+              <li>
+                <strong>Denormalization</strong>: duplicate fields to make reads
+                fast; requires repair jobs.
+              </li>
+              <li>
+                <strong>Aggregation Pipeline</strong>: server‑side stages to
+                reshape/aggregate documents.
+              </li>
+              <li>
+                <strong>Secondary Index</strong>: extra phone books for lookups
+                beyond the primary key.
+              </li>
+              <li>
+                <strong>TTL / Partial Index</strong>: expire old docs
+                automatically; index a subset only.
+              </li>
+              <li>
+                <strong>Shard / Shard Key</strong>: split data across machines;
+                key must match filters.
+              </li>
+              <li>
+                <strong>Replica Set</strong>: primary + secondaries for
+                reads/failover; secondaries may lag.
+              </li>
+              <li>
+                <strong>Eventual / Causal Consistency</strong>: staleness vs
+                read‑after‑write per session.
+              </li>
+              <li>
+                <strong>Change Streams</strong>: DB change subscriptions to keep
+                caches/projections in sync.
+              </li>
+              <li>
+                <strong>Materialized Projection</strong>: pre‑built summary
+                document for constant‑time reads.
               </li>
             </ul>
           </div>
@@ -85,69 +178,97 @@ export default function DocumentDatabases() {
           Business &amp; Team Impact
         </h2>
         <div className="space-y-6">
-          <div>
+          <div className="border-l-4 border-emerald-500 bg-emerald-50/50 dark:bg-emerald-950/30 pl-6 py-4 rounded-r-lg">
             <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              Throughput vs consistency trade‑offs
-            </h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Document stores scale horizontally through sharding and replica
-              sets, prioritizing write throughput and low operational friction
-              (teams launch features faster when the data model changes weekly).
-              Reads from secondaries are often eventually consistent; write
-              routing must respect shard keys to avoid scatter‑gather queries
-              that degrade latency (access patterns should be stable and well
-              understood ahead of traffic events).
-            </p>
-            <p className="text-slate-700 dark:text-gray-300 mb-3">
-              When customer experience requires fresh reads, route those
-              requests to primaries or enforce causal consistency per session
-              (UX surfaces like carts and payments typically prefer primary
-              reads to avoid confusion after quick updates). For less sensitive
-              dashboards, secondaries reduce load and cost substantially
-              (non‑critical analytics can tolerate minute‑level staleness
-              without harming outcomes).
-            </p>
-          </div>
-
-          <div>
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              Secondary indexes and query patterns
-            </h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Secondary indexes accelerate equality and range lookups but must
-              be curated to avoid write amplification. Avoid unbounded wildcard
-              indexes; instead tailor indexes to the predicates used in
-              production queries (review logs to confirm shape and selectivity).
-              Compute‑heavy filters should leverage pre‑materialized fields or
-              aggregates instead of scanning entire collections on demand under
-              load.
-            </p>
-            <div className="border-l-4 border-emerald-500 bg-emerald-50/50 dark:bg-emerald-950/30 pl-6 py-4 rounded-r-lg">
-              <p className="text-slate-700 dark:text-gray-300">
-                Callout: TTL indexes and partial indexes control growth and
-                cost. Expire ephemeral data automatically and restrict indexes
-                to frequently queried subsets (cardinality and filter ratios
-                determine whether an index helps or hurts during peaks).
-              </p>
-            </div>
-          </div>
-
-          <div className="pl-6">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              In practice
+              Where it shows up
             </h3>
             <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
               <li>
-                Choose shard keys aligned to dominant access paths; avoid
-                scatter‑gather.
+                <strong>Profiles &amp; settings</strong>: load everything for a
+                page in a single read.
               </li>
               <li>
-                Send freshness‑sensitive reads to primaries; use secondaries for
-                dashboards.
+                <strong>Activity feeds / content hubs</strong>: pre‑combined
+                objects for fast display.
               </li>
               <li>
-                Curate secondary indexes; measure write amplification and prune
-                unused ones.
+                <strong>Feature iteration</strong>: add fields quickly across
+                fast‑moving product teams.
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              What good looks like
+            </h3>
+            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
+              <li>
+                Model documents to match <strong>dominant read paths</strong>;
+                keep sizes within limits.
+              </li>
+              <li>
+                Route <strong>must‑be‑fresh</strong> reads to primaries;
+                dashboards to secondaries.
+              </li>
+              <li>
+                Maintain <strong>repair jobs</strong> or{" "}
+                <strong>on‑read migrations</strong> for denormalized fields.
+              </li>
+              <li>
+                Curate <strong>secondary indexes</strong> to real predicates;
+                prune unused ones.
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-yellow-500 bg-yellow-50/50 dark:bg-yellow-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Failure signals (customer words)
+            </h3>
+            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
+              <li>
+                &ldquo;The page is randomly slow.&rdquo; &rarr; Scatter‑gather
+                from a poor shard key &rarr; Choose a key aligned to dominant
+                filters.
+              </li>
+              <li>
+                &ldquo;Totals are occasionally wrong.&rdquo; &rarr; Denormalized
+                fields drifted &rarr; Run repair job; add provenance and rebuild
+                path.
+              </li>
+              <li>
+                &ldquo;Writes feel sluggish now.&rdquo; &rarr; Too
+                many/overlapping indexes &rarr; Prune unused indexes; cap index
+                count.
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Industry lenses
+            </h3>
+            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
+              <li>
+                <strong>Enterprise Tech (Amazon/NVIDIA/Spotify)</strong>:
+                profiles, playlists, preferences; shard by <code>user_id</code>;
+                primary (or causal) reads for recency‑critical UIs; watch
+                oversize docs and fan‑out queries.
+              </li>
+              <li>
+                <strong>
+                  Non‑Tech Enterprise (telecom/finserv/healthcare)
+                </strong>
+                : Customer 360, cases/claims; validators for critical fields,
+                PHI/PII controls, change streams to warehouse; enforce retention
+                via TTL.
+              </li>
+              <li>
+                <strong>Startups (SaaS/marketplaces/consumer)</strong>:
+                dashboards, notifications; move fast with flexible docs, add
+                constraints later; track p95 latency and{" "}
+                <strong>cost per 1k reads/writes</strong>.
               </li>
             </ul>
           </div>
@@ -160,69 +281,102 @@ export default function DocumentDatabases() {
           Cursor Implementation
         </h2>
         <div className="space-y-6">
-          <div>
+          <div className="border-l-4 border-slate-400 bg-slate-50/50 dark:bg-slate-800/30 pl-6 py-4 rounded-r-lg">
             <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              Aggregation pipelines and computed views
-            </h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Use aggregation pipelines to precompute metrics and reshape
-              documents for specific screens (pushing compute to the database
-              simplifies API code and speeds hot endpoints). Materialize
-              frequently needed aggregates on write or via scheduled jobs so
-              reads remain constant‑time (customer homepages benefit from
-              pre‑joined &ldquo;summary&rdquo; documents that load in a single
-              request during peaks).
-            </p>
-            <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Keep pipelines readable by splitting stages and adding comments in
-              code alongside test fixtures (data‑driven tests with fixture
-              documents catch pipeline regressions early). Version documents
-              with a schemaVersion field and migrate lazily on read to avoid
-              long blocking jobs (progressive migration keeps uptime high during
-              large refactors and index changes).
-            </p>
-          </div>
-
-          <div>
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              Operational guardrails and observability
-            </h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Enforce per‑operation timeouts, payload size caps, and circuit
-              breakers for hot collections (these controls prevent runaway scans
-              and protect primaries during traffic spikes). Emit metrics by
-              collection, operation, and shard to pinpoint hotspots rapidly
-              (dashboards for p95 latency, queue depth, and replication lag
-              shorten incident time to resolve when patterns change suddenly).
-            </p>
-            <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
-              <p className="text-slate-700 dark:text-gray-300">
-                Callout: Change streams enable reactive updates to downstream
-                caches or projections. Use idempotent consumers and backpressure
-                to avoid event storms (replay strategies protect consistency
-                after outages or maintenance windows).
-              </p>
-            </div>
-          </div>
-
-          <div className="pl-6">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              In practice
+              TL;DR (AM-friendly)
             </h3>
             <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
               <li>
-                Materialize aggregates for hot endpoints; avoid runtime scans
-                under peak load.
+                Simulate query shape and warn if a change will fan‑out across
+                shards.
               </li>
               <li>
-                Version documents and migrate lazily; keep backfill jobs
-                resumable.
+                Suggest shard keys and partial/TTL indexes tied to real filters.
               </li>
               <li>
-                Set timeouts and size caps; surface replication lag and error
-                rates per shard.
+                Generate change‑stream consumers that are idempotent and
+                resilient.
+              </li>
+              <li>
+                Keep documents within size limits and propose on‑read
+                migrations.
+              </li>
+              <li>
+                Flag write slowdowns caused by too many or overlapping indexes.
               </li>
             </ul>
+          </div>
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Review workflow (AI in PRs/design)
+            </h3>
+            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
+              <li>
+                Ask AI to <strong>simulate query shapes</strong> and flag when a
+                proposed query would <strong>fan‑out</strong> across shards.
+              </li>
+              <li>
+                Check <strong>document size budgets</strong> and suggest{" "}
+                <strong>partial/TTL indexes</strong> tied to real queries.
+              </li>
+              <li>
+                Generate <strong>change‑stream consumers</strong> to keep
+                downstream caches/projections up‑to‑date and idempotent.
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Guardrails &amp; automation
+            </h3>
+            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
+              <li>
+                <strong>Collection checklist</strong>: max doc size, shard‑key
+                rationale, primary‑read rules, index cap.
+              </li>
+              <li>
+                <strong>On‑read migration helper</strong>: transparently
+                upgrades old docs to the new shape.
+              </li>
+              <li>
+                <strong>Repair job template</strong>: resumable, with
+                backpressure, to fix denormalized fields.
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-emerald-500 bg-emerald-50/50 dark:bg-emerald-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Operational playbooks
+            </h3>
+            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
+              <li>
+                <strong>Latency spike</strong>: verify shard‑key selectivity;
+                add precomputed projections; cap query time.
+              </li>
+              <li>
+                <strong>Wrong totals</strong>: run repair job; add
+                provenance/last‑rebuilt stamps; tighten validators.
+              </li>
+              <li>
+                <strong>Write slowdown</strong>: prune/merge indexes; batch
+                reindexing in maintenance windows.
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Talk track (20 sec)
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300">
+              &ldquo;Document stores are <strong>packed lunches</strong>
+              &mdash;perfect for fast page loads and quick iteration. We shape
+              docs for the hottest reads, send fresh‑must‑be reads to the
+              primary, and keep denormalized fields healthy with validators,
+              repair jobs, and change streams.&rdquo;
+            </p>
           </div>
         </div>
       </section>

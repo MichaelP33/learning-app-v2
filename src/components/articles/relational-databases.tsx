@@ -1,43 +1,166 @@
 import React from "react";
 
+export const articleFormatVersion = 2;
+
 export default function RelationalDatabases() {
   return (
     <article className="space-y-10">
       {/* Key Concepts */}
       <section id="key-concepts" className="mb-12">
-        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Key Concepts</h2>
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Key Concepts
+        </h2>
         <div className="space-y-6">
-          <div>
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">ACID transactions and durability</h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Relational databases guarantee atomicity, consistency, isolation, and durability across multi‑statement operations. Atomicity means a set of changes either all commit or none do (preventing partial writes that corrupt business state). Consistency enforces invariants via constraints so data never violates schema rules. Isolation controls how concurrent transactions observe one another through isolation levels. Durability ensures committed data survives crashes through write‑ahead logs and checkpointing (crash‑recovery relies on redo/undo logs and fsync policies).
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Plain-English definition
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300">
+              A relational database is a <strong>rule‑bound ledger</strong> for
+              your app. It stores data in tables and guarantees that multi‑step
+              changes are <strong>all‑or‑nothing</strong> and{" "}
+              <strong>stay correct</strong> even if servers crash.
             </p>
-            <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Practical workloads lean on these properties to coordinate money movement, inventory reservations, or idempotent workflow steps (customer operations frequently span multiple rows and tables). A good mental model is &ldquo;a transaction is a contract&rdquo; between the application and the database: either the contract completes fully or it is rolled back cleanly with no side effects (this framing reduces complex failure handling across services).
+          </div>
+
+          <div className="border-l-4 border-emerald-500 bg-emerald-50/50 dark:bg-emerald-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Why users feel it
+            </h3>
+            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
+              <li>
+                The order they just placed{" "}
+                <strong>exists and is accurate</strong>.
+              </li>
+              <li>
+                Account balances <strong>update right away</strong>.
+              </li>
+              <li>
+                History is <strong>auditable</strong> (refunds, disputes,
+                compliance).
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Sticky mental model
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300">
+              &ldquo;Contract at the vault.&rdquo; A transaction is like signing
+              a contract in a bank vault: either <strong>every clause</strong>{" "}
+              happens, or <strong>nothing</strong> changes&mdash;no partial
+              updates.
             </p>
-            <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
-              <p className="text-slate-700 dark:text-gray-300">
-                Callout: Isolation is a spectrum. Read committed prevents dirty reads, repeatable read prevents non‑repeatable reads, and serializable prevents phantoms (choose the weakest level that preserves correctness to minimize contention under load).
-              </p>
+          </div>
+
+          <div className="border-l-4 border-orange-500 bg-orange-50/50 dark:bg-orange-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Strengths &amp; limits (trade‑offs)
+            </h3>
+            <div className="grid gap-4">
+              <div>
+                <h4 className="font-medium text-slate-900 dark:text-white">
+                  Strengths
+                </h4>
+                <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
+                  <li>
+                    Strong truthfulness across users — so shared data stays
+                    consistent across features.
+                  </li>
+                  <li>
+                    Powerful joins/queries — so product teams can answer complex
+                    questions quickly.
+                  </li>
+                  <li>
+                    Financial‑grade integrity — so money/inventory operations
+                    are safe by default.
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="font-medium text-slate-900 dark:text-white">
+                  Limits
+                </h4>
+                <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
+                  <li>
+                    Under heavy writes or complex joins, strict rules can slow
+                    things — plan indexes and query shape.
+                  </li>
+                  <li>
+                    Giant schema changes need careful, phased rollouts — avoid
+                    long locks and risky deploys.
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
 
-          <div>
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Normalization basics and data integrity</h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Normalization decomposes tables to eliminate redundancy and update anomalies. First normal form requires atomic values; second and third normal forms remove partial and transitive dependencies (teams often target 3NF for OLTP while tolerating selective denormalization for read performance). Normalized schemas reduce ambiguity and improve correctness when many writers collaborate (shared databases with dozens of services demand predictable constraints and keys).
-            </p>
-            <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Denormalization is a deliberate optimization that duplicates derived fields to accelerate common reads (for example, caching order totals on the order header to avoid aggregate scans under high traffic). It should be documented with provenance so it can be recomputed when upstream fields change (having a regeneration job protects against drift after unusual incident paths or manual fixes).
-            </p>
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Common misunderstandings
+            </h3>
+            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
+              <li>
+                &ldquo;Replicas are instant.&rdquo; &rarr; They{" "}
+                <strong>lag</strong> — Impact: users see stale data; Fix: route
+                freshness‑critical reads to primary.
+              </li>
+              <li>
+                &ldquo;More indexes = faster.&rdquo; &rarr; Helps reads but{" "}
+                <strong>slows writes</strong> — Impact: slower checkouts; Fix:
+                curate minimal indexes.
+              </li>
+              <li>
+                &ldquo;Migrations are trivial.&rdquo; &rarr; Big changes can{" "}
+                <strong>lock tables</strong> — Impact: app pauses; Fix: phased
+                migration plan.
+              </li>
+            </ul>
           </div>
 
-          <div className="pl-6">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">In practice</h3>
+          <div className="border-l-4 border-slate-400 bg-slate-50/50 dark:bg-slate-800/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Related Glossary (terms &amp; tech)
+            </h3>
             <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>Default to transactions for any operation that touches multiple rows or tables.</li>
-              <li>Use explicit foreign keys, unique constraints, and check constraints to encode rules.</li>
-              <li>Normalize to 3NF first; add selective denormalization only for measured hot paths.</li>
+              <li>
+                <strong>ACID</strong> — all‑or‑nothing, valid, isolated, durable
+                transactions. <em>Why it matters:</em> prevents partial orders
+                and double charges.
+              </li>
+              <li>
+                <strong>Primary/Foreign Key</strong> — unique IDs and links
+                across tables. <em>Why it matters:</em> keeps relationships
+                sound (no orphaned rows).
+              </li>
+              <li>
+                <strong>Index</strong> — phone book for fast lookups.{" "}
+                <em>Why it matters:</em> speeds hot reads without scanning whole
+                tables.
+              </li>
+              <li>
+                <strong>Query Planner / EXPLAIN</strong> — how the DB will fetch
+                data. <em>Why it matters:</em> confirms performance before
+                release.
+              </li>
+              <li>
+                <strong>Isolation Levels</strong> — who sees in‑progress work.{" "}
+                <em>Why it matters:</em> balances correctness vs throughput.
+              </li>
+              <li>
+                <strong>Read Replica</strong> — copy of the primary for reads.{" "}
+                <em>Why it matters:</em> scales dashboards without harming OLTP.
+              </li>
+              <li>
+                <strong>Materialized View</strong> — pre‑computed query result.{" "}
+                <em>Why it matters:</em> fast analytics with lower primary load.
+              </li>
+              <li>
+                <strong>Outbox &amp; Idempotency</strong> — reliable
+                messaging/write safety. <em>Why it matters:</em> avoids double
+                charges on retries.
+              </li>
             </ul>
           </div>
         </div>
@@ -45,36 +168,108 @@ export default function RelationalDatabases() {
 
       {/* Business & Team Impact */}
       <section id="business-team-impact" className="mb-12">
-        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Business &amp; Team Impact</h2>
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Business &amp; Team Impact
+        </h2>
         <div className="space-y-6">
-          <div>
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Typical workloads and scalability posture</h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Relational systems excel at high‑fidelity OLTP: many small, consistent writes and point reads with strict ordering (most product transactions are under tens of milliseconds when indexed appropriately). They also power reporting through read replicas and materialized views, but deep analytical scans belong in warehouses where columnar formats shine (separating OLTP from OLAP reduces lock contention and operational risk during month‑end spikes).
-            </p>
-            <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Teams plan capacity around connection pooling, replica lag, and burst workload envelopes (unexpected traffic surges during campaigns frequently hit connection limits first). Align SLOs with realistic isolation levels: many organizations run at read committed or repeatable read for throughput, escalating to serializable only within narrow critical sections (this approach preserves business guarantees without sacrificing latency under peak demand).
-            </p>
-          </div>
-
-          <div>
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Consistency models and cross‑service coordination</h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Within a single database, ACID provides strong consistency; across services, consistency becomes a design decision. Read replicas offer scale‑out reads but introduce replica lag (eventual consistency appears as stale reads when traffic hits replicas immediately after writes). Cross‑service workflows commonly use outbox patterns and idempotent consumers so messages reflect committed state (this pattern avoids &ldquo;double spend&rdquo; during retries and failovers).
-            </p>
-            <div className="border-l-4 border-emerald-500 bg-emerald-50/50 dark:bg-emerald-950/30 pl-6 py-4 rounded-r-lg">
-              <p className="text-slate-700 dark:text-gray-300">
-                Callout: Business stakeholders care about end‑to‑end correctness. Make consistency guarantees explicit in product docs and SLAs (for example, &ldquo;account balances are immediately consistent; analytics dashboards may lag by two minutes&rdquo; for clarity during incidents and audits).
-              </p>
-            </div>
-          </div>
-
-          <div className="pl-6">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">In practice</h3>
+          <div className="border-l-4 border-emerald-500 bg-emerald-50/50 dark:bg-emerald-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Where it shows up
+            </h3>
             <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>Run OLTP on primary; offload heavy reads to replicas or materialized views.</li>
-              <li>Publish explicit SLAs for freshness on replicas and analytics surfaces.</li>
-              <li>Use outbox + consumer idempotency for cross‑service consistency.</li>
+              <li>
+                <strong>Checkout &amp; billing</strong>: prevents &ldquo;paid
+                but no order&rdquo; or double charges.
+              </li>
+              <li>
+                <strong>Inventory &amp; reservations</strong>: keeps counts
+                accurate during flash sales.
+              </li>
+              <li>
+                <strong>Compliance &amp; audits</strong>: produces trustworthy
+                histories for regulators and finance.
+              </li>
+              <li>
+                <strong>Reporting vs product traffic</strong>: dashboards move
+                to replicas/materialized views.
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              What good looks like
+            </h3>
+            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
+              <li>
+                Hot queries are <strong>index‑backed</strong> and written
+                sargably.
+              </li>
+              <li>
+                Dashboards/heavy reads use{" "}
+                <strong>replicas/materialized views</strong> with a{" "}
+                <strong>freshness SLA</strong> (e.g., &ldquo;may lag up to 2
+                minutes&rdquo;).
+              </li>
+              <li>
+                <strong>Phased, backward‑compatible migrations</strong> (add
+                &rarr; backfill &rarr; switch) avoid long locks.
+              </li>
+              <li>
+                <strong>Idempotent writes &amp; timeouts</strong> keep retries
+                safe and tails predictable.
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-yellow-500 bg-yellow-50/50 dark:bg-yellow-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Failure signals (customer words)
+            </h3>
+            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
+              <li>
+                &ldquo;I saved but see old data.&rdquo; &rarr; Read from replica
+                before catch‑up &rarr; Route freshness‑critical reads to
+                primary.
+              </li>
+              <li>
+                &ldquo;The site is slow during promos.&rdquo; &rarr; Missing
+                indexes or pool exhaustion &rarr; Add/selective indexes;
+                right‑size pool.
+              </li>
+              <li>
+                &ldquo;The deploy locked the app.&rdquo; &rarr; Blocking
+                migration &rarr; Phase changes (add &rarr; backfill &rarr;
+                switch).
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Industry lenses
+            </h3>
+            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
+              <li>
+                <strong>Enterprise Tech (Amazon/NVIDIA/Spotify)</strong>:
+                Payments, subscriptions, entitlement checks; OLTP on primary,
+                analytics via replicas/warehouse; watch hot partitions and
+                month‑end jobs.
+              </li>
+              <li>
+                <strong>
+                  Non‑Tech Enterprise (telecom/finserv/healthcare)
+                </strong>
+                : Billing cycles, claims/KYC; conservative isolation, strict
+                access controls, documented RPO/RTO; avoid ad‑hoc reports on
+                primary.
+              </li>
+              <li>
+                <strong>Startups (SaaS/marketplaces/consumer)</strong>: Orders,
+                carts, credits; start with one primary, add replicas later;
+                don&rsquo;t over‑index; aim for stable p95 latency and low
+                on‑call noise.
+              </li>
             </ul>
           </div>
         </div>
@@ -82,40 +277,107 @@ export default function RelationalDatabases() {
 
       {/* Cursor Implementation */}
       <section id="cursor-implementation" className="mb-12">
-        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Cursor Implementation</h2>
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+          Cursor Implementation
+        </h2>
         <div className="space-y-6">
-          <div>
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Joins, indexes, and query design</h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Start with selective indexes that match the leftmost columns of your most common predicates, then cover joins with composite keys where appropriate (join order and filtering selectivity drive plans more than raw table size). Prefer simple, sargable predicates to enable index use and avoid functions on indexed columns (wrapping columns forces scans even when a suitable index exists).
-            </p>
-            <p className="text-slate-700 dark:text-gray-300 mb-3">
-              For joins, aim to join on stable identifiers, not text fields (surrogate keys keep joins lean and avoid collation surprises). Use explain plans to confirm cardinality estimates and join strategies before shipping changes (small data in dev often hides expensive plans that surface only at production scale). Keep a baseline of slow query logs to detect regressions proactively.
-            </p>
-            <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
-              <p className="text-slate-700 dark:text-gray-300">
-                Callout: Index anti‑patterns include over‑indexing, overlapping prefixes, and unused bloat. Consolidate redundant indexes and monitor write amplification (excessive indexes increase CPU and WAL volume during hot write spikes, eroding SLOs unexpectedly).
-              </p>
-            </div>
-          </div>
-
-          <div>
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Operational patterns and safety rails</h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Use migrations that are backward‑compatible and chunk large data changes into batches (online schema changes or phased rollouts minimize lock time and replication lag). Enforce connection pooling at the app layer and cap long‑running transactions to avoid vacuum starvation (timeouts and statement time limits preserve cluster health during incident conditions).
-            </p>
-            <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Bake retry logic with idempotency keys into write paths so transient failures do not duplicate effects (payment and fulfillment workflows benefit from deterministic replays during partial outages). Capture query plans and row counts in observability to contextualize latency spikes (knowing whether scans or sorts appeared explains sudden tail latency under traffic bursts).
-            </p>
-          </div>
-
-          <div className="pl-6">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">In practice</h3>
+          <div className="border-l-4 border-slate-400 bg-slate-50/50 dark:bg-slate-800/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              TL;DR (AM-friendly)
+            </h3>
             <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>Design sargable predicates; verify with explain plans in CI for hot queries.</li>
-              <li>Batch migrations and use feature flags to decouple schema from deploys.</li>
-              <li>Instrument slow query logs and set statement timeouts aligned to SLOs.</li>
+              <li>
+                Check SQL diffs for full scans and suggest the smallest safe
+                index.
+              </li>
+              <li>
+                Draft a phased migration plan so releases don&rsquo;t lock the
+                app.
+              </li>
+              <li>
+                Translate ORM calls into clear SQL so everyone can review risk.
+              </li>
+              <li>
+                Route must‑be‑fresh reads to primary; send dashboards to
+                replicas.
+              </li>
+              <li>
+                Flag slow queries in CI before customers feel the slowdown.
+              </li>
             </ul>
+          </div>
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Review workflow (AI in PRs/design)
+            </h3>
+            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
+              <li>
+                Ask the AI to <strong>EXPLAIN</strong> changed SQL and flag full
+                scans; propose minimal, non‑overlapping indexes.
+              </li>
+              <li>
+                Have it draft a <strong>phased migration plan</strong> (add
+                nullable &rarr; backfill in batches &rarr; flip feature flag
+                &rarr; drop old).
+              </li>
+              <li>
+                Use AI to convert <strong>ORM magic</strong> into explicit SQL
+                to verify query shape on hot paths.
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Guardrails &amp; automation
+            </h3>
+            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
+              <li>
+                CI check that critical queries meet a{" "}
+                <strong>slow‑query budget</strong> and use indexes.
+              </li>
+              <li>
+                A standard <strong>idempotent‑write</strong> template
+                (idempotency keys + retry/backoff).
+              </li>
+              <li>
+                A helper that routes{" "}
+                <strong>freshness‑critical reads to primary</strong>; replicas
+                for dashboards.
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-emerald-500 bg-emerald-50/50 dark:bg-emerald-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Operational playbooks
+            </h3>
+            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
+              <li>
+                <strong>Promo spike</strong>: verify indexes, raise pool limits
+                carefully, shift heavy reads to replicas/materialized views.
+              </li>
+              <li>
+                <strong>Dashboard surge</strong>: throttle/report lag, favor
+                warehouse paths, protect OLTP.
+              </li>
+              <li>
+                <strong>Migration wobble</strong>: pause backfill, flip flag
+                back, keep old codepath live until safe.
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
+              Talk track (20 sec)
+            </h3>
+            <p className="text-slate-700 dark:text-gray-300">
+              &ldquo;Relational DBs are the vault for customer truth. We keep
+              hot queries index‑backed, push dashboards to replicas with a
+              freshness SLA, and ship schema changes in phases so rush hour
+              never locks the vault.&rdquo;
+            </p>
           </div>
         </div>
       </section>

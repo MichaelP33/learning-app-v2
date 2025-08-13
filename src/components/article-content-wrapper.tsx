@@ -132,9 +132,17 @@ export function ArticleContentWrapper({
         },
       ]
     : [
-        { id: "learning-objectives", title: "Learning Objectives", level: 1 },
-        { id: "overview", title: "Overview", level: 1 },
-        { id: "related-topics", title: "Related Topics", level: 1 },
+        { id: "key-concepts", title: "Key Concepts", level: 1 },
+        {
+          id: "business-team-impact",
+          title: "Business & Team Impact",
+          level: 1,
+        },
+        {
+          id: "cursor-implementation",
+          title: "Cursor Implementation",
+          level: 1,
+        },
       ];
 
   return (

@@ -164,6 +164,94 @@ if (unescaped.length)
 if (quizErrors.length)
   console.warn("Quiz structural issues detected:", quizErrors);
 
+// v2 template validation for files that opt in via exported articleFormatVersion = 2
+function validateV2Template(filePath) {
+  const src = fs.readFileSync(filePath, "utf8");
+  const optedIn = /export\s+const\s+articleFormatVersion\s*=\s*2\s*;/.test(src);
+  if (!optedIn) return { ok: true };
+
+  const requiredSections = [
+    { id: "key-concepts", title: "Key Concepts" },
+    { id: "business-team-impact", title: "Business & Team Impact" },
+    { id: "cursor-implementation", title: "Cursor Implementation" },
+  ];
+
+  const errors = [];
+  // Flatten whitespace for resilient matching across newlines/indentation
+  const srcFlat = src.replace(/\s+/g, " ");
+  for (const { id, title } of requiredSections) {
+    const hasId = new RegExp(`<section\\s+id=\\"${id}\\"`).test(srcFlat);
+    const titlePattern = title.replace(/&/g, "(?:&|&amp;)");
+    const hasH2 = new RegExp(
+      `<h2[^>]*>\\s*${titlePattern}\\s*<\\/h2>`,
+      "i"
+    ).test(srcFlat);
+    if (!hasId || !hasH2) {
+      errors.push(`Missing section ${id} with h2 title \"${title}\"`);
+    }
+  }
+
+  // Basic glossary presence check: look for "Related Glossary" header when opted in
+  const hasGlossaryHeader =
+    /Related Glossary \(terms \&amp; tech\)/.test(srcFlat) ||
+    /Related Glossary \(terms &amp; tech\)/.test(srcFlat);
+  if (!hasGlossaryHeader) {
+    errors.push(
+      "Key Concepts should include a 'Related Glossary (terms &amp; tech)' subsection"
+    );
+  }
+
+  // Glossary size: 6–8 items and each with 'Why it matters:'
+  const glossaryBlockMatch = srcFlat.match(
+    /Related Glossary \(terms (?:&|&amp;) tech\)\)<[^>]*>\s*<ul[\s\S]*?<\/ul>/i
+  );
+  if (glossaryBlockMatch) {
+    const items = (glossaryBlockMatch[0].match(/<li>/g) || []).length;
+    if (items < 6 || items > 8) {
+      errors.push(`Glossary should include 6–8 items, found ${items}`);
+    }
+    const whyCount = (glossaryBlockMatch[0].match(/Why it matters:/gi) || [])
+      .length;
+    if (whyCount < Math.min(items, 6)) {
+      errors.push("Each glossary item should include 'Why it matters:'");
+    }
+  }
+
+  // Talk track presence check
+  const hasTalkTrack = /Talk track \(20 sec\)/.test(srcFlat);
+  if (!hasTalkTrack) {
+    errors.push(
+      "Cursor Implementation should include a 'Talk track (20 sec)' subsection"
+    );
+  }
+
+  // Customer words mapping: require at least 2 lines with "→ or &rarr;"
+  const hasCustomerMapping =
+    /Failure signals \(customer words\)[\s\S]*?(?:&rdquo;|&ldquo;)\s*[^<]*?(?:→|&rarr;)\s*[^<]*?(?:→|&rarr;)/i.test(
+      srcFlat
+    );
+  if (!hasCustomerMapping) {
+    errors.push(
+      "Failure signals should map Quote → Likely cause → What to check (at least 2 items)"
+    );
+  }
+
+  return { ok: errors.length === 0, errors };
+}
+
+const v2Errors = [];
+for (const id of fileIds) {
+  const filePath = path.join(articlesDir, `${id}.tsx`);
+  const check = validateV2Template(filePath);
+  if (!check.ok) {
+    v2Errors.push({ id, errors: check.errors });
+  }
+}
+
+if (v2Errors.length) {
+  console.error("V2 template validation errors:", v2Errors);
+}
+
 if (authoredMissingInJson.length || authoredMissingInRegistry.length)
   process.exit(1);
 console.log(
