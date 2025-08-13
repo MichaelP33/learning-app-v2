@@ -1,121 +1,99 @@
 import React from "react";
 
+export const articleFormatVersion = 2;
+
 export default function CodeCoverage() {
   return (
     <article className="space-y-10">
       {/* Key Concepts */}
-      <section id="key-concepts">
-        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
-          Key Concepts
-        </h2>
-        <div className="space-y-4">
+      <section id="key-concepts" className="mb-12">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Key Concepts</h2>
+        <div className="space-y-6">
           <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              Coverage Types
-            </h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-2">
-              Coverage measures indicate how much of the codebase is executed by
-              tests. Three foundational perspectives work together: line
-              coverage (did each statement run?), branch coverage (did each
-              decision path run?), and function coverage (were functions/methods
-              invoked?). Each metric reveals different blind spots: high line
-              coverage with low branch coverage can hide untested conditionals
-              (e.g., error branches that never execute in tests), while high
-              function coverage can still miss internal paths (e.g., early
-              returns). Treat them as complementary rather than interchangeable.
-            </p>
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Plain-English definition</h3>
+            <p className="text-slate-700 dark:text-gray-300">Coverage measures how much code ran during tests (lines, branches, functions). It is a signal to find gaps, not a guarantee of quality.</p>
+          </div>
+
+          <div className="border-l-4 border-emerald-500 bg-emerald-50/50 dark:bg-emerald-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Why users feel it</h3>
             <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>
-                Line coverage: quick, broad signal (fast feedback in CI) but
-                shallow.
+              <li>Fewer production defects when hot paths are tested.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Example: checkout code has high branch coverage.</li><li>Plain English: most used parts are protected.</li></ul>
               </li>
-              <li>
-                Branch coverage: exercises true/false outcomes for decisions
-                (ifs/switches/guards).
+              <li>Faster refactors because evidence is visible in PRs.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Example: diff coverage shows new logic is tested.</li><li>Plain English: changes come with proof.</li></ul>
               </li>
-              <li>
-                Function coverage: ensures entry points are tested (APIs,
-                helpers), not just incidental execution.
+              <li>Clearer onboarding via executable examples.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Example: tests teach API usage.</li><li>Plain English: learn by running.</li></ul>
               </li>
             </ul>
           </div>
 
-          <div className="border-l-4 border-emerald-600 bg-emerald-50/50 dark:bg-emerald-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              Mutation Testing
-            </h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-2">
-              Mutation testing flips the question from &ldquo;how much code
-              ran?&rdquo; to &ldquo;would tests fail if the code were subtly
-              wrong?&rdquo; A mutation engine introduces small changes (e.g.,
-              invert a conditional, replace an operator, remove a call). If
-              tests still pass, a mutant &ldquo;survives&rdquo; and indicates
-              weak assertions or missing scenarios. Mutation score (killed vs.
-              total mutants) often correlates better with defect detection than
-              raw coverage.
-            </p>
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Sticky mental model</h3>
+            <p className="text-slate-700 dark:text-gray-300">&ldquo;Flashlight, not finish line.&rdquo; It shows dark corners but doesn&rsquo;t mean the room is clean.</p>
+          </div>
+
+          <div className="border-l-4 border-orange-500 bg-orange-50/50 dark:bg-orange-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Strengths &amp; limits (trade‑offs)</h3>
+            <div className="grid gap-4">
+              <div>
+                <h4 className="font-medium text-slate-900 dark:text-white">Strengths</h4>
+                <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
+                  <li>Highlights risky untested areas → better prioritization.
+                    <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Payoff: fewer escapes on hot paths.</li></ul>
+                  </li>
+                  <li>Objective, automatable signal in CI → consistent reviews.
+                    <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Plain English: the bot checks, not opinions.</li></ul>
+                  </li>
+                  <li>Combines with mutation testing → stronger quality.
+                    <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Payoff: assertions actually catch bugs.</li></ul>
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="font-medium text-slate-900 dark:text-white">Limits</h4>
+                <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
+                  <li>High % can hide weak assertions.
+                    <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Tip: assert outcomes and edge branches.</li></ul>
+                  </li>
+                  <li>Global gates can stall delivery unfairly.
+                    <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Tip: gate deltas; use risk tiers.</li></ul>
+                  </li>
+                  <li>Noise from generated/legacy files.
+                    <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Tip: exclude with rationale.</li></ul>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Common misunderstandings</h3>
             <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>
-                Focus on critical modules first (auth, billing, concurrency hot
-                paths).
+              <li>&ldquo;100% coverage = quality.&rdquo; → Impact: performative tests → Fix: target risk areas, not vanity numbers.</li>
+              <li>&ldquo;Only line coverage matters.&rdquo; → Impact: missed branches → Fix: track line + branch + function.
               </li>
-              <li>
-                Use targeted operators to control runtime (e.g., only boolean
-                negation to start).
-              </li>
-              <li>
-                Pair with branch coverage to expose silent paths (e.g., error
-                handling branches).
+              <li>&ldquo;Break builds on day one.&rdquo; → Impact: blocked teams → Fix: baseline now; ratchet on deltas.
               </li>
             </ul>
           </div>
 
-          <div className="pl-6">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              Pitfalls & Thresholds
-            </h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-2">
-              Gaming the metric is a classic failure mode: trivial tests that
-              execute lines without asserting behavior, or mocks that bypass
-              real logic. Thresholds should be guardrails, not goals. Start with
-              pragmatic baselines (e.g., 80% line, 60&ndash;70% branch for
-              services, tighter for libraries) and raise them selectively. Gate
-              only what you can enforce fairly (e.g., &ldquo;changed lines must
-              not reduce project baseline&rdquo;) and reserve hard blocks for
-              high‑risk areas.
-            </p>
+          <div className="border-l-4 border-slate-400 bg-slate-50/50 dark:bg-slate-800/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Related Glossary (terms &amp; tech)</h3>
             <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>
-                Test quality beats test quantity (assert on outcomes and risks,
-                not just execution).
+              <li><strong>Line/Branch/Function Coverage</strong> — execution signals. <em>Why it matters:</em> reveal blind spots.
               </li>
-              <li>
-                Prefer diff coverage (PR delta) over global gates for
-                incremental adoption.
+              <li><strong>Diff Coverage</strong> — PR delta only. <em>Why it matters:</em> fair gating during migration.</li>
+              <li><strong>Mutation Testing</strong> — introduce small changes. <em>Why it matters:</em> catches weak assertions.</li>
+              <li><strong>Risk Tiers</strong> — domain criticality. <em>Why it matters:</em> focus investment.</li>
+              <li><strong>Exclusions Policy</strong> — generated/legacy. <em>Why it matters:</em> reduce noise.
               </li>
-              <li>
-                Exclude generated and legacy-proven files explicitly (document
-                rationale in repo).
+              <li><strong>CI Status Checks</strong> — automated gates. <em>Why it matters:</em> enforce standards.
               </li>
-            </ul>
-          </div>
-
-          <div className="pl-6">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              In practice
-            </h3>
-            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>
-                Establish a &ldquo;baseline now, improve later&rdquo; policy
-                (publish current metrics, enforce on PR deltas).
+              <li><strong>Baselines/Ratchets</strong> — non‑regression. <em>Why it matters:</em> improve steadily.
               </li>
-              <li>
-                Track line, branch, and function coverage together (single
-                dashboard in CI).
-              </li>
-              <li>
-                Add mutation testing for safety‑critical modules (gradual
-                rollout with time‑boxed budgets).
+              <li><strong>Hot Paths</strong> — user‑felt code. <em>Why it matters:</em> optimize impact.
               </li>
             </ul>
           </div>
@@ -123,84 +101,57 @@ export default function CodeCoverage() {
       </section>
 
       {/* Business & Team Impact */}
-      <section id="business-team-impact">
-        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
-          Business & Team Impact
-        </h2>
-        <div className="space-y-4">
-          <div className="border-l-4 border-amber-500 bg-amber-50/50 dark:bg-amber-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              Outcomes & Trade‑offs
-            </h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-2">
-              Mature coverage practices shift failure discovery left (from
-              production to CI) and accelerate refactoring by providing safety
-              nets. However, over‑strict gates can stall delivery (e.g., small
-              changes blocked by global shortfalls) and incentivize shallow
-              tests. The business objective is risk‑adjusted speed: use coverage
-              to prioritize, not paralyze.
-            </p>
+      <section id="business-team-impact" className="mb-12">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Business &amp; Team Impact</h2>
+        <div className="space-y-6">
+          <div className="border-l-4 border-emerald-500 bg-emerald-50/50 dark:bg-emerald-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Where it shows up</h3>
             <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>
-                Faster incident recovery (confident hotfixes) and lower change
-                failure rate (DORA metric).
+              <li>Risky domains (auth, payments, PII, migrations).
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Example: strict branch coverage on billing logic.</li></ul>
               </li>
-              <li>
-                Clearer onboarding through executable examples (tests as living
-                documentation).
+              <li>PR reviews needing quick evidence.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Example: CI shows diff coverage and mutation score.</li></ul>
               </li>
-              <li>
-                Forecastable delivery when PRs include evidence (coverage
-                deltas, mutation score).
+              <li>Quarterly quality initiatives and audits.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Example: dashboards by module.</li></ul>
               </li>
             </ul>
           </div>
 
-          <div className="pl-6">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              Ownership & Accountability
-            </h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-2">
-              Teams own their thresholds and waivers. Changes that reduce
-              coverage must include rationale (risk context, compensating
-              controls) and a remediation plan. Product accepts time investment
-              for tests on high‑impact features (e.g., data integrity, money
-              movement). Leadership tracks trendlines (coverage by domain,
-              mutation score in critical paths) rather than fixating on a single
-              number.
-            </p>
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">What good looks like</h3>
             <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>
-                Use time‑boxed exceptions with expiry and explicit owners (no
-                indefinite waivers).
+              <li>Ratchet‑only diff gates on PRs; full scans nightly with trends.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Payoff: steady improvement without blocking.</li></ul>
               </li>
-              <li>
-                Publish dashboards to make gaps visible (by repo, service, and
-                module).
+              <li>Risk tiers with stricter targets on hot paths and critical modules.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Payoff: ROI where it matters.</li></ul>
               </li>
-              <li>
-                Connect incidents back to test gaps (post‑mortems update
-                thresholds or add tests).
+              <li>Mutation testing on key packages; measure killed mutants.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Payoff: stronger assertions.</li></ul>
               </li>
             </ul>
           </div>
 
-          <div className="pl-6">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              In practice
-            </h3>
+          <div className="border-l-4 border-yellow-500 bg-yellow-50/50 dark:bg-yellow-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Failure signals (customer words)</h3>
             <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>
-                Adopt &ldquo;ratchet only&rdquo; deltas: PRs cannot reduce
-                coverage below baseline for touched files.
+              <li>&ldquo;We keep breaking the same area.&rdquo; → Likely cause: shallow tests → What to check: branch coverage + mutation score.
               </li>
-              <li>
-                Define risk tiers (e.g., payments, auth, PII) with stricter
-                targets and mutation testing.
+              <li>&ldquo;PRs are blocked by unrelated gaps.&rdquo; → Likely cause: global gate → What to check: diff coverage config.
               </li>
-              <li>
-                Track ROI: compare change failure rate and MTTR before/after
-                coverage initiatives.
+              <li>&ldquo;Noise from generated files.&rdquo; → Likely cause: poor exclusions → What to check: policy with rationale.
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Industry lenses</h3>
+            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
+              <li><strong>Enterprise Tech</strong>: SARIF aggregation; per‑team scorecards.</li>
+              <li><strong>Non‑Tech Enterprise</strong>: compliance metrics and waivers with expiry.</li>
+              <li><strong>Startups</strong>: simple diff gates; add mutation later on hot spots.
               </li>
             </ul>
           </div>
@@ -208,83 +159,68 @@ export default function CodeCoverage() {
       </section>
 
       {/* Cursor Implementation */}
-      <section id="cursor-implementation">
-        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
-          Cursor Implementation
-        </h2>
+      <section id="cursor-implementation" className="mb-12">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Cursor Implementation</h2>
         <div className="space-y-6">
-          <div className="border-l-4 border-cyan-600 bg-cyan-50/50 dark:bg-cyan-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              CI Integration & Reporting
-            </h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-2">
-              Automate collection and gating in CI (per‑job, per‑package) and
-              publish unified reports. Use diff coverage for PRs (changed
-              lines/functions) and nightly jobs for full project metrics. Tag
-              reports by context (service name, risk tier) to enable risk‑based
-              decisions.
-            </p>
+          <div className="border-l-4 border-slate-400 bg-slate-50/50 dark:bg-slate-800/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">TL;DR (AM-friendly)</h3>
             <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>
-                Enforce on PRs with status checks (e.g., &ldquo;delta line &ge;
-                80%&rdquo; and &ldquo;no drop vs baseline&rdquo;).
+              <li>Gate PRs on diff coverage; publish nightly trends.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Plain English: don&rsquo;t regress, improve steadily.</li></ul>
               </li>
-              <li>
-                Store historical metrics for trends (coverage by module,
-                mutation score trajectory).
+              <li>Track line+branch+function together; add mutation on hot paths.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Plain English: measure what matters.</li></ul>
               </li>
-              <li>
-                Annotate files excluded by policy with rationale (generated
-                code, migrations, vendor libs).
+              <li>Exclude generated/legacy with rationale to cut noise.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Payoff: trust in the signals.</li></ul>
               </li>
             </ul>
           </div>
 
-          <div className="pl-6">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              Developer Workflow
-            </h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-2">
-              Make the right action the easy action: fast local runs (watch
-              mode), pre‑commit hooks for touched files, and inline coverage
-              overlays in editors. Provide examples for common patterns (async
-              errors, edge branches, retries) so tests model realistic behavior
-              (e.g., flaky network).
-            </p>
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Review workflow (AI in PRs/design)</h3>
             <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>
-                Add a &ldquo;test evidence&rdquo; checklist to PR templates
-                (risk areas, scenarios, data cases).
+              <li>Annotate PRs with diff coverage and untested branches; suggest focused tests.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Checklist: high‑impact branches first.</li></ul>
               </li>
-              <li>
-                Generate snapshots of diff coverage in CI comments (linking to
-                lines/branches).
+              <li>Recommend exclusions for generated code with justification.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Checklist: policy‑backed exceptions.</li></ul>
               </li>
-              <li>
-                Schedule mutation tests overnight or on demand for hot spots
-                (budgeted runtime).
+              <li>Flag shallow tests where mutation would survive.</li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Guardrails &amp; automation</h3>
+            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
+              <li>CI status checks for diff coverage (e.g., ≥ 80%) and no drop vs baseline.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Benefit: fair gates during migration.</li></ul>
+              </li>
+              <li>Nightly full reports by module/service with sparklines and trends.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Benefit: planning and visibility.</li></ul>
+              </li>
+              <li>Optional mutation testing jobs on high‑risk packages.</li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-emerald-500 bg-emerald-50/50 dark:bg-emerald-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Operational playbooks</h3>
+            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
+              <li><strong>Coverage drop</strong>: add tests on changed files; update baselines after verification.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Why it helps: restores trust quickly.</li></ul>
+              </li>
+              <li><strong>High noise</strong>: exclude generated/legacy with policy; focus on risk tiers.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Why it helps: signal over noise.</li></ul>
+              </li>
+              <li><strong>Escapes despite green</strong>: add mutation tests on the module; strengthen assertions.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Why it helps: raises bar where needed.</li></ul>
               </li>
             </ul>
           </div>
 
-          <div className="pl-6">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              In practice
-            </h3>
-            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>
-                Start with line coverage gates on changed code (fast to compute,
-                high leverage).
-              </li>
-              <li>
-                Introduce branch coverage on critical packages (guards, error
-                paths, feature flags).
-              </li>
-              <li>
-                Roll out mutation testing to high‑risk domains after stabilizing
-                basic gates.
-              </li>
-            </ul>
+          <div>
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Talk track (20 sec)</h3>
+            <p className="text-slate-700 dark:text-gray-300">&ldquo;We gate on diff coverage and track trends, focus on branches and hot paths, and use mutation where it counts—so tests prevent real bugs without blocking delivery.&rdquo;</p>
           </div>
         </div>
       </section>

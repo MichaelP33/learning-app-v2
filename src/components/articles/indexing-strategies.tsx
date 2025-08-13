@@ -1,149 +1,225 @@
 import React from "react";
 
+export const articleFormatVersion = 2;
+
 export default function IndexingStrategies() {
   return (
     <article className="space-y-10">
       {/* Key Concepts */}
-      <section id="key-concepts">
+      <section id="key-concepts" className="mb-12">
         <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Key Concepts</h2>
 
         <div className="space-y-6">
-          {/* Callout: Right index for the job */}
           <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Choose the right index for the access pattern</h3>
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Plain-English definition</h3>
             <p className="text-slate-700 dark:text-gray-300">
-              Indexes accelerate reads by maintaining auxiliary data structures tailored to lookups (you pay extra writes and storage for that speed). Align index type and order to how queries filter and sort; measure selectivity and cardinality to validate benefit.
+              Indexes are lookup guides that let databases find rows fast without scanning everything. You pay extra storage and write cost for faster reads, so match index shape to query shape.
             </p>
           </div>
 
-          <div>
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">B‑tree vs hash</h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-2">
-              <strong>B‑tree</strong> indexes support range scans, ordered traversal, and prefix lookups (great for BETWEEN, &gt;, &lt;, and ORDER BY). They are the default in many relational engines and handle mixed workloads well. <strong>Hash</strong> indexes map keys to buckets for O(1) equality checks but provide no ordering (ideal for exact matches on high‑cardinality keys, not for ranges).
-            </p>
-            <p className="text-slate-700 dark:text-gray-300">
-              Some systems automatically choose internal variants (e.g., skip lists) yet expose them as B‑trees; focus on the semantic capability required by your predicates rather than low‑level implementation details.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Composite and covering indexes</h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-2">
-              A <strong>composite</strong> index orders multiple columns. The leftmost prefix rule means predicates must use the leading columns to leverage the index effectively (filtering on the second column only often cannot seek). A <strong>covering</strong> index includes all columns needed to answer a query (predicates, joins, and select list) so the engine avoids lookups to the base table.
-            </p>
-            <p className="text-slate-700 dark:text-gray-300">
-              Design order from most selective to least, then align with GROUP BY and ORDER BY when possible (one index can serve multiple queries if you harmonize shapes).
-            </p>
-          </div>
-
-          <div>
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Selectivity, cardinality, and sargability</h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-2">
-              <strong>Selectivity</strong> is the fraction of rows filtered by a predicate (lower fraction means higher selectivity, more benefit). <strong>Cardinality</strong> is the number of distinct values. Keep predicates <strong>sargable</strong> by avoiding functions on indexed columns and by using normalized forms (e.g., store lowercase in a computed column for case‑insensitive search rather than wrapping LOWER(column) in the predicate).
-            </p>
-            <p className="text-slate-700 dark:text-gray-300">
-              Profile queries with realistic data distributions; small dev datasets often miss edge cases (skew, hot keys, and non‑uniform histograms).
-            </p>
-          </div>
-
-          <div className="pl-6">
-            <p className="font-semibold text-slate-900 dark:text-white mb-2">In practice</p>
+          <div className="border-l-4 border-emerald-500 bg-emerald-50/50 dark:bg-emerald-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Why users feel it</h3>
             <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>Design composite indexes to match WHERE, JOIN, GROUP BY, and ORDER BY in that order.</li>
-              <li>Use INCLUDE columns to make frequently used queries covering without bloating the key.</li>
-              <li>Prefer equality on leading columns; move range predicates to the rightmost position.</li>
-              <li>Measure on production‑like data; verify that index seek + residual predicate beats a scan.</li>
+              <li>
+                Lists and search feel snappy even with lots of data.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400 space-y-1"><li>Example: product search and order lists open in milliseconds.</li><li>Plain English: a table of contents vs flipping every page.</li></ul>
+              </li>
+              <li>
+                Fewer timeouts on busy endpoints.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400 space-y-1"><li>Example: checkout history loads reliably during peaks.</li><li>Plain English: fast lanes prevent traffic jams.</li></ul>
+              </li>
+              <li>
+                Stable performance as data grows.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400 space-y-1"><li>Example: p95 holds steady from 1M to 10M rows.</li><li>Plain English: routes scale with the city.</li></ul>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Sticky mental model</h3>
+            <p className="text-slate-700 dark:text-gray-300">&ldquo;Library card catalog.&rdquo; Put the right cards in the right drawers so you can go straight to a shelf instead of walking every aisle.</p>
+          </div>
+
+          <div className="border-l-4 border-orange-500 bg-orange-50/50 dark:bg-orange-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Strengths &amp; limits (trade‑offs)</h3>
+            <div className="grid gap-4">
+              <div>
+                <h4 className="font-medium text-slate-900 dark:text-white">Strengths</h4>
+                <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
+                  <li>Equality and range seeks become O(log n) → faster queries.
+                    <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Plain English: jump to the right page, don&rsquo;t read the book.</li></ul>
+                  </li>
+                  <li>Covering indexes avoid base table lookups → fewer I/Os.
+                    <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Payoff: lower p95 and CPU.</li></ul>
+                  </li>
+                  <li>Composite order aligns multiple queries → fewer indexes overall.
+                    <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Payoff: simpler maintenance.</li></ul>
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="font-medium text-slate-900 dark:text-white">Limits</h4>
+                <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
+                  <li>Write amplification on INSERT/UPDATE/DELETE → slower writes.
+                    <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Tip: avoid over‑indexing hot tables.</li></ul>
+                  </li>
+                  <li>Wrong order or functions on columns → index not used.
+                    <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Tip: keep predicates sargable; use computed columns.</li></ul>
+                  </li>
+                  <li>Overlapping shapes → entropy and wasted storage.
+                    <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Tip: consolidate to canonical composites.</li></ul>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Common misunderstandings</h3>
+            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
+              <li>&ldquo;Add indexes everywhere.&rdquo; → Impact: slow writes and big bills → Fix: index only hot queries with evidence.</li>
+              <li>&ldquo;Order doesn&rsquo;t matter in composite keys.&rdquo; → Impact: index unused → Fix: lead with most selective/equality columns.</li>
+              <li>&ldquo;Functions on columns are fine.&rdquo; → Impact: scans → Fix: computed/persisted columns for sargability.</li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-slate-400 bg-slate-50/50 dark:bg-slate-800/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Related Glossary (terms &amp; tech)</h3>
+            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
+              <li><strong>Sargability</strong> — predicates usable by indexes. <em>Why it matters:</em> enables seeks over scans.</li>
+              <li><strong>Selectivity</strong> — rows filtered fraction. <em>Why it matters:</em> predicts benefit.</li>
+              <li><strong>Cardinality</strong> — distinct values count. <em>Why it matters:</em> informs index choice.</li>
+              <li><strong>Composite Index</strong> — multiple columns in one key. <em>Why it matters:</em> supports multi‑predicate queries.</li>
+              <li><strong>Covering Index</strong> — includes all needed columns. <em>Why it matters:</em> avoids lookups.</li>
+              <li><strong>Histogram/Stats</strong> — value distribution. <em>Why it matters:</em> drives optimizer estimates.</li>
+              <li><strong>Fragmentation</strong> — physical page disorder. <em>Why it matters:</em> affects I/O and maintenance.</li>
+              <li><strong>Filtered/Partial Index</strong> — subset coverage. <em>Why it matters:</em> lowers cost on skewed data.</li>
             </ul>
           </div>
         </div>
       </section>
 
       {/* Business & Team Impact */}
-      <section id="business-team-impact">
+      <section id="business-team-impact" className="mb-12">
         <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Business &amp; Team Impact</h2>
 
         <div className="space-y-6">
-          {/* Callout: Maintenance costs */}
-          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Maintenance overhead and write amplification</h3>
-            <p className="text-slate-700 dark:text-gray-300">
-              Every index must be updated on INSERT/UPDATE/DELETE (write amplification). Over‑indexing speeds a few reads but can throttle throughput on write‑heavy services, increase lock contention, and inflate storage costs (especially with wide covering indexes).
-            </p>
-          </div>
-
-          <div>
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Operational posture and SLOs</h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-2">
-              Index design is a lever on both latency and tail behavior (p95/p99). The right covering index can turn a multi‑second scan into a millisecond seek, directly impacting user‑facing SLOs. Conversely, too many secondary indexes slow migrations, increase replication lag, and complicate failovers.
-            </p>
-            <p className="text-slate-700 dark:text-gray-300">
-              Teams should treat index changes like code: review, test, and roll out safely with observability (compare plan shapes before and after).
-            </p>
-          </div>
-
-          <div>
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Governance: drift and entropy control</h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-2">
-              Over time, ad‑hoc indexes accumulate (created to fix one query in a rush). Unused or redundant indexes create entropy. Establish review cadences: track usage, drop duplicates, and consolidate shapes (document the canonical composite orders so new queries align).
-            </p>
-            <p className="text-slate-700 dark:text-gray-300">
-              Align with product priorities: optimize for the top interactions first (checkout, search, onboarding), then work down the long tail.
-            </p>
-          </div>
-
-          <div className="pl-6">
-            <p className="font-semibold text-slate-900 dark:text-white mb-2">In practice</p>
+          <div className="border-l-4 border-emerald-500 bg-emerald-50/50 dark:bg-emerald-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Where it shows up</h3>
             <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>Track index usage and fragmentation; set thresholds for rebuild vs reorganize.</li>
-              <li>Budget write costs when proposing new covering indexes (estimate added bytes per row).</li>
-              <li>Prefer fewer, well‑designed composites over many overlapping single‑column indexes.</li>
-              <li>Gate index changes behind migrations with rollout metrics and safe rollback steps.</li>
+              <li>Search/results pages and admin lists (sort/filter at scale).
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Example: customers/orders/issues lists.</li></ul>
+              </li>
+              <li>Checkout and payments (idempotent lookups, unique constraints).
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Example: dedupe by idempotency key.</li></ul>
+              </li>
+              <li>Reporting extracts (stable sort and cursor paging without gaps).
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Example: cursor pagination on createdAt+id.</li></ul>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">What good looks like</h3>
+            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
+              <li>Composite orders match WHERE/JOIN/GROUP BY/ORDER BY → stable p95.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Payoff: fewer regressions after launches.</li></ul>
+              </li>
+              <li>Covering indexes on top journeys only → controlled write cost.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Payoff: cost goes where users feel it.</li></ul>
+              </li>
+              <li>Quarterly prune of unused/redundant indexes → lower storage and entropy.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Payoff: faster deploys and simpler ops.</li></ul>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-yellow-500 bg-yellow-50/50 dark:bg-yellow-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Failure signals (customer words)</h3>
+            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
+              <li>&ldquo;Search is slow.&rdquo; → Likely cause: no selective prefix → What to check: leading columns and sargability.</li>
+              <li>&ldquo;Time spikes randomly.&rdquo; → Likely cause: plan flips or scans → What to check: stats freshness and function‑wrapped predicates.</li>
+              <li>&ldquo;Exports time out.&rdquo; → Likely cause: sort without index → What to check: ORDER BY alignment and covering.
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Industry lenses</h3>
+            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
+              <li><strong>Enterprise Tech</strong>: heavy read mixes; prioritize covering indexes on analytics APIs.</li>
+              <li><strong>Non‑Tech Enterprise</strong>: reporting and audit; align indexes to compliance extracts.</li>
+              <li><strong>Startups</strong>: index top 3 endpoints only; keep write costs low while learning.
+              </li>
             </ul>
           </div>
         </div>
       </section>
 
       {/* Cursor Implementation */}
-      <section id="cursor-implementation">
+      <section id="cursor-implementation" className="mb-12">
         <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Cursor Implementation</h2>
 
         <div className="space-y-6">
-          {/* Callout: Assisted design */}
-          <div className="border-l-4 border-indigo-500 bg-indigo-50/50 dark:bg-indigo-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Index advisors grounded in real predicates</h3>
-            <p className="text-slate-700 dark:text-gray-300">
-              Generate candidate composite and covering indexes from actual workload samples, rank by expected benefit, and provide the DDL with safety notes (lock considerations, online options, and backfill impact on replicas).
-            </p>
-          </div>
-
-          <div>
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Sargability and rewrite hints</h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-2">
-              Detect anti‑patterns like functions on indexed columns, leading wildcards, and mismatched collations. Propose rewrites that make predicates sargable (computed columns or persisted expressions instead of per‑row functions).
-            </p>
-            <p className="text-slate-700 dark:text-gray-300">
-              Include plan diffs to demonstrate expected improvements (seek vs scan, key lookups removed, memory grants reduced).
-            </p>
-          </div>
-
-          <div>
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Lifecycle: create, monitor, prune</h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-2">
-              Ship playbooks for safe creation under load, monitoring with telemetry (logical reads, usage counts, fragmentation), and pruning heuristics that identify redundant shapes (subset and superset relationships) to reduce entropy.
-            </p>
-            <p className="text-slate-700 dark:text-gray-300">
-              For write‑heavy tables, estimate additional write amplification and propose alternatives (caching, partial indexes, or query redesign) before adding heavy covering indexes.
-            </p>
-          </div>
-
-          <div className="pl-6">
-            <p className="font-semibold text-slate-900 dark:text-white mb-2">In practice</p>
+          <div className="border-l-4 border-slate-400 bg-slate-50/50 dark:bg-slate-800/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">TL;DR (AM-friendly)</h3>
             <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>Automate &ldquo;index diff&rdquo; PR comments with predicted plan changes and risk level.</li>
-              <li>Maintain a living catalog of approved composite orders per table.</li>
-              <li>Backtest candidate indexes against slow‑query logs and production histograms.</li>
-              <li>Tie index metrics to user journeys so teams optimize what customers actually feel.</li>
+              <li>Shape indexes to match real WHERE/JOIN/ORDER BY.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Plain English: make the card catalog match how people search.</li></ul>
+              </li>
+              <li>Keep predicates sargable; avoid functions on indexed columns.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Plain English: don&rsquo;t hide the label the librarian needs.</li></ul>
+              </li>
+              <li>Limit covering indexes to top journeys to control write cost.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Payoff: speed where it matters without bloating storage.</li></ul>
+              </li>
             </ul>
+          </div>
+
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Review workflow (AI in PRs/design)</h3>
+            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
+              <li>Extract query shapes; propose composite order and INCLUDE columns.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Checklist: equality first, ranges later; cover select list.</li></ul>
+              </li>
+              <li>Detect non‑sargable predicates and suggest computed/persisted columns.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Checklist: no functions on keys; collations consistent.</li></ul>
+              </li>
+              <li>Flag redundant/unused indexes; propose prunes with safety notes.</li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Guardrails &amp; automation</h3>
+            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
+              <li>CI plan diff and sargability lint on changed queries.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Benefit: prevents regressions before merge.</li></ul>
+              </li>
+              <li>Index usage tracking and &ldquo;prune suggestions&rdquo; dashboards.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Benefit: lower costs and simpler ops.</li></ul>
+              </li>
+              <li>Safety calculators for write amplification when proposing covering indexes.</li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-emerald-500 bg-emerald-50/50 dark:bg-emerald-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Operational playbooks</h3>
+            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
+              <li><strong>Slow search</strong>: add selective prefix; verify with EXPLAIN and p95.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Why it helps: turns scans into seeks.</li></ul>
+              </li>
+              <li><strong>Timeouts during peak</strong>: cover top list queries; trim unused indexes.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Why it helps: reduces I/O and plan risk.</li></ul>
+              </li>
+              <li><strong>Write slowdowns</strong>: drop overlapping indexes; defer heavy covers to analytics.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Why it helps: restores throughput.</li></ul>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Talk track (20 sec)</h3>
+            <p className="text-slate-700 dark:text-gray-300">&ldquo;We shape indexes to how code actually queries, keep predicates index‑friendly, and prune entropy—so hot journeys stay fast while write costs stay predictable.&rdquo;</p>
           </div>
         </div>
       </section>

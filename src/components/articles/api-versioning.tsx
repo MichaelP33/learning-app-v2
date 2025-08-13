@@ -1,150 +1,93 @@
 import React from "react";
 
+export const articleFormatVersion = 2;
+
 export default function ApiVersioning() {
   return (
     <article className="space-y-10">
       {/* Key Concepts */}
       <section id="key-concepts" className="mb-12">
-        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
-          Key Concepts
-        </h2>
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Key Concepts</h2>
         <div className="space-y-6">
           <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              Why version at all?
-            </h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Versioning lets you evolve contracts without breaking existing
-              clients. Backward‑compatible, additive changes (new fields, new
-              optional endpoints) do not require a major bump; breaking changes
-              (rename, removal, behavior shifts) do. Your strategy should make
-              compatibility rules explicit and observable in tooling.
-            </p>
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Plain-English definition</h3>
+            <p className="text-slate-700 dark:text-gray-300">API versioning lets you ship breaking changes without breaking existing clients by providing separate, stable contract lanes.</p>
+          </div>
+
+          <div className="border-l-4 border-emerald-500 bg-emerald-50/50 dark:bg-emerald-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Why users feel it</h3>
             <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>
-                Adopt a clear policy: additive changes in <code>v1</code> are
-                allowed; breaking changes ship in <code>v2</code>.
+              <li>Predictable upgrades with clear timelines.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Example: customers migrate from v1 to v2 over months, not days.</li><li>Plain English: no surprise breakage.</li></ul>
               </li>
-              <li>
-                Define &ldquo;compatibility&rdquo; for payloads, pagination, and
-                error codes, not just fields.
+              <li>Docs and SDKs match behavior exactly.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Example: v2 SDK uses v2 endpoints by default.</li><li>Plain English: fewer integration bugs.</li></ul>
               </li>
-              <li>
-                Use contract tests to assert backward compatibility on CI before
-                publishing.
+              <li>Deprecation notices show up where calls happen.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Example: <code>Sunset</code> headers on every v1 response.</li><li>Plain English: heads‑up in context.</li></ul>
               </li>
             </ul>
           </div>
 
-          <div>
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              URI vs header vs content negotiation
-            </h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Three common patterns exist. Choose based on platform constraints
-              and client ergonomics, and be consistent.
-            </p>
-            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-2">
-              <li>
-                <span className="font-medium">URI versioning:</span>{" "}
-                <code>/v1/orders</code>, <code>/v2/orders</code>. Easiest to
-                reason about, cache‑friendly, great for public APIs. Drawback:
-                proliferates paths and docs.
-              </li>
-              <li>
-                <span className="font-medium">Header versioning:</span> custom{" "}
-                <code>X-API-Version: 2</code> or vendor media types via{" "}
-                <code>Accept: application/vnd.acme.orders+json;version=2</code>.
-                Keeps URLs stable; harder to test in browsers without tooling.
-              </li>
-              <li>
-                <span className="font-medium">Content negotiation:</span>{" "}
-                <code>Accept: application/vnd.acme.v2+json</code>. Fine‑grained
-                but more complex; works well when gateways or CDNs already vary
-                on <code>Accept</code>.
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Sticky mental model</h3>
+            <p className="text-slate-700 dark:text-gray-300">&ldquo;Lanes on a highway.&rdquo; New lanes open without closing old ones immediately; signs warn when an old lane will close.</p>
+          </div>
+
+          <div className="border-l-4 border-orange-500 bg-orange-50/50 dark:bg-orange-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Strengths &amp; limits (trade‑offs)</h3>
+            <div className="grid gap-4">
+              <div>
+                <h4 className="font-medium text-slate-900 dark:text-white">Strengths</h4>
+                <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
+                  <li>Safe evolution of APIs → faster product delivery.
+                    <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Payoff: fewer emergency rollbacks.</li></ul>
+                  </li>
+                  <li>Per‑version docs and SDKs → clearer DX.
+                    <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Plain English: docs always match behavior.</li></ul>
+                  </li>
+                  <li>Sunset signaling → orderly migrations.
+                    <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Payoff: predictable roadmaps.</li></ul>
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="font-medium text-slate-900 dark:text-white">Limits</h4>
+                <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
+                  <li>Too many concurrent majors → high ops cost.
+                    <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Tip: limit supported majors.</li></ul>
+                  </li>
+                  <li>Silent breaking changes inside a major → trust erosion.
+                    <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Tip: freeze schemas per major.</li></ul>
+                  </li>
+                  <li>Header vs URI confusion → cache/CDN issues.
+                    <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Tip: pick one mechanism and stick to it.</li></ul>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Common misunderstandings</h3>
+            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
+              <li>&ldquo;Patch within a major can break behavior.&rdquo; → Impact: client bugs → Fix: only additive within a major.</li>
+              <li>&ldquo;We can deprecate silently.&rdquo; → Impact: surprise outages → Fix: <code>Deprecation</code>/<code>Sunset</code> headers + docs.</li>
+              <li>&ldquo;We support every major forever.&rdquo; → Impact: test matrix explosion → Fix: policy to retire old majors.
               </li>
             </ul>
           </div>
 
-          <div className="border-l-4 border-amber-500 bg-amber-50/50 dark:bg-amber-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              Compatibility, deprecation, and stability
-            </h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Define what is stable in a version and for how long. Publish
-              deprecation rules, minimum support windows, and sunset plans.
-              Communicate where and how clients will be notified when behavior
-              changes.
-            </p>
+          <div className="border-l-4 border-slate-400 bg-slate-50/50 dark:bg-slate-800/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Related Glossary (terms &amp; tech)</h3>
             <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>
-                Backwards‑compatible changes: add fields (never remove), add
-                endpoints, extend enums using tolerant readers.
-              </li>
-              <li>
-                Breaking changes: rename or remove fields, change types, alter
-                pagination semantics, change error <code>code</code> meanings.
-              </li>
-              <li>
-                Stability signals: pin examples and JSON Schemas per version; do
-                not retroactively change them.
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              Sunset and deprecation headers
-            </h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Communicate timelines in responses. Common patterns include{" "}
-              <code>Deprecation: true</code> when a resource is deprecated,{" "}
-              <code>Sunset: Wed, 11 Dec 2026 23:59:59 GMT</code> to indicate
-              end‑of‑life, and{" "}
-              <code>
-                Link: &lt;https://docs.example.com/migrate&gt;;
-                rel="deprecation"
-              </code>{" "}
-              for guidance. Emit these for all affected endpoints and
-              environments.
-            </p>
-            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>
-                Return the same headers on <code>HEAD</code> and{" "}
-                <code>OPTIONS</code> so clients can audit without side‑effects.
-              </li>
-              <li>
-                Consider an <code>X-API-Warn</code> header with a short human
-                hint while keeping the body stable.
-              </li>
-              <li>
-                Gate headers behind flags to test communications before
-                announcement.
-              </li>
-            </ul>
-          </div>
-
-          <div className="pl-6">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              In practice
-            </h3>
-            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>
-                Pick one primary mechanism (URI or header); support it
-                everywhere consistently.
-              </li>
-              <li>
-                Codify a &ldquo;no breaking changes in minors&rdquo; rule; batch
-                breaks into clear majors.
-              </li>
-              <li>
-                Publish deprecation windows (e.g., 12 months) and add{" "}
-                <code>Sunset</code>/<code>Deprecation</code> headers 90+ days
-                ahead.
-              </li>
-              <li>
-                Keep per‑version OpenAPI docs; freeze schemas once released.
-              </li>
+              <li><strong>Major/Minor/Patch</strong> — semver tiers. <em>Why it matters:</em> signals breaking vs additive.</li>
+              <li><strong>URI vs Header Versioning</strong> — path or header. <em>Why it matters:</em> caching and tooling.</li>
+              <li><strong>Vendor Media Types</strong> — <code>Accept: application/vnd.acme.v2+json</code>. <em>Why it matters:</em> fine‑grained content negotiation.</li>
+              <li><strong>Sunset/Deprecation</strong> headers — timed retirement. <em>Why it matters:</em> visible warnings in responses.</li>
+              <li><strong>Compatibility Contract</strong> — rules per major. <em>Why it matters:</em> prevents accidental breaks.</li>
+              <li><strong>Per‑version OpenAPI</strong> — docs by lane. <em>Why it matters:</em> accurate SDKs and tests.</li>
+              <li><strong>Version Router</strong> — dispatch by path/header. <em>Why it matters:</em> isolates behavior.</li>
             </ul>
           </div>
         </div>
@@ -152,102 +95,53 @@ export default function ApiVersioning() {
 
       {/* Business & Team Impact */}
       <section id="business-team-impact" className="mb-12">
-        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
-          Business &amp; Team Impact
-        </h2>
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Business &amp; Team Impact</h2>
         <div className="space-y-6">
-          <div className="border-l-4 border-green-500 bg-green-50/50 dark:bg-green-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              Predictable change management
-            </h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Clear version lanes let product teams ship fast without breaking
-              partners. Customer success can communicate timelines with
-              confidence, and SDK teams know where to invest.
-            </p>
+          <div className="border-l-4 border-emerald-500 bg-emerald-50/50 dark:bg-emerald-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Where it shows up</h3>
             <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>
-                Reduced churn: fewer emergency rollbacks due to unplanned
-                breaking changes.
+              <li>Public APIs with long‑tail clients.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Example: partners on older SDKs.</li></ul>
               </li>
-              <li>
-                Lower support volume during migrations when <code>Sunset</code>{" "}
-                and <code>Link</code> guidance are visible in every response.
+              <li>Mobile apps needing staged rollouts.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Example: app store delays.</li></ul>
               </li>
-              <li>
-                Tiered support models: enterprise customers may receive extended
-                support windows on older majors.
+              <li>Large enterprise contracts with support windows.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Example: extended v1 support for strategic accounts.</li></ul>
               </li>
             </ul>
           </div>
 
-          <div>
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              Operational cost and risk
-            </h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Multiple supported majors increase testing matrix size and infra
-              cost. Minimize the number of concurrent majors and automate
-              regression tests across all.
-            </p>
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">What good looks like</h3>
             <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>
-                Limit concurrent majors (e.g., support <code>v1</code> and{" "}
-                <code>v2</code>, deprecate older).
+              <li>One primary mechanism (URI or header) used consistently → fewer bugs.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Payoff: simpler gateways/CDNs.</li></ul>
               </li>
-              <li>
-                Use traffic analytics to discover long‑tail clients still on old
-                versions before enforcing sunset.
+              <li>Fixed deprecation windows and comms → predictable planning.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Payoff: fewer escalations.</li></ul>
               </li>
-              <li>
-                Offer migration guides, diff tables, and code‑mods to reduce
-                customer migration effort.
+              <li>Per‑version docs/tests/SDKs → low integration friction.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Payoff: faster migrations.</li></ul>
               </li>
             </ul>
           </div>
 
-          <div className="border-l-4 border-amber-500 bg-amber-50/50 dark:bg-amber-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              Documentation and discovery
-            </h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Per‑version docs eliminate ambiguity and help sales engineers demo
-              the right flows. DX improves when examples and schemas match the
-              version implied by the URL or headers.
-            </p>
+          <div className="border-l-4 border-yellow-500 bg-yellow-50/50 dark:bg-yellow-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Failure signals (customer words)</h3>
             <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>
-                Pin examples to specific majors:{" "}
-                <code>GET /v2/orders?cursor=...</code>.
-              </li>
-              <li>
-                Generate multi‑version SDKs or adapters; mark deprecated APIs at
-                compile‑time with annotations.
-              </li>
-              <li>
-                Document breaking changes as a checklist: removed fields,
-                renamed enums, pagination changes.
-              </li>
+              <li>&ldquo;v1 and v2 behave differently for the same call.&rdquo; → Likely cause: inconsistent policy → What to check: compatibility contract and tests.</li>
+              <li>&ldquo;We didn&rsquo;t know v1 was ending.&rdquo; → Likely cause: missing headers → What to check: <code>Sunset</code>/<code>Deprecation</code> in gateways.</li>
+              <li>&ldquo;Docs don&rsquo;t match responses.&rdquo; → Likely cause: mixed versions → What to check: per‑version OpenAPI and SDKs.</li>
             </ul>
           </div>
 
-          <div className="pl-6">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              In practice
-            </h3>
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Industry lenses</h3>
             <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>
-                Create a &ldquo;compatibility contract&rdquo; page and link it
-                from every spec.
-              </li>
-              <li>
-                Emit <code>Sunset</code>/<code>Deprecation</code> headers across
-                staging first; observe client behavior.
-              </li>
-              <li>
-                Define a major‑release train with dates, migration kits, and
-                reference repos.
-              </li>
+              <li><strong>Enterprise Tech</strong>: header/media‑type versioning behind gateways; dashboards for adoption.</li>
+              <li><strong>Non‑Tech Enterprise</strong>: strict support windows; change reviews for majors.</li>
+              <li><strong>Startups</strong>: URI versioning for simplicity; few concurrent majors.</li>
             </ul>
           </div>
         </div>
@@ -255,79 +149,67 @@ export default function ApiVersioning() {
 
       {/* Cursor Implementation */}
       <section id="cursor-implementation" className="mb-12">
-        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
-          Cursor Implementation
-        </h2>
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Cursor Implementation</h2>
         <div className="space-y-6">
-          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              Spec management and scaffolding
-            </h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Cursor can maintain per‑version OpenAPI documents, generate server
-              stubs and typed SDKs, and enforce compatibility rules in CI (no
-              breaking changes in a minor). It can also produce diff reports
-              between majors.
-            </p>
+          <div className="border-l-4 border-slate-400 bg-slate-50/50 dark:bg-slate-800/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">TL;DR (AM-friendly)</h3>
             <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>
-                Generate <code>/v1</code> and <code>/v2</code> routers or header
-                negotiators with shared handlers where behavior is unchanged.
+              <li>Pick one versioning mechanism and use it everywhere.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Plain English: one lane policy.</li></ul>
               </li>
-              <li>
-                Create compatibility tests that run against recorded fixtures
-                from real clients.
+              <li>Freeze schemas per major; only additive changes within a major.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Plain English: no moving goalposts.</li></ul>
               </li>
-              <li>
-                Publish multi‑version docs sites with version switchers and
-                migration notes.
+              <li>Signal deprecation with headers and dashboards.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Payoff: fewer surprises.</li></ul>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Review workflow (AI in PRs/design)</h3>
+            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
+              <li>Diff OpenAPI between majors; generate change logs and migration notes.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Checklist: removed/renamed fields; pagination and error changes.</li></ul>
+              </li>
+              <li>Enforce compatibility tests on PRs for same‑major changes.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Checklist: tolerant readers; additive only.</li></ul>
+              </li>
+              <li>Add <code>Sunset</code>/<code>Deprecation</code> headers from middleware; verify in staging.</li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Guardrails &amp; automation</h3>
+            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
+              <li>Per‑version routers/SDKs/docs generation.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Benefit: no accidental cross‑version drift.</li></ul>
+              </li>
+              <li>Traffic analytics by version; adoption dashboards and alerts.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Benefit: targeted outreach.</li></ul>
+              </li>
+              <li>Template comms for 90/60/30‑day notices with links to guides.</li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-emerald-500 bg-emerald-50/50 dark:bg-emerald-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Operational playbooks</h3>
+            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
+              <li><strong>Breaking change needed</strong>: schedule new major; generate diffs and adapters.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Why it helps: clean cut without chaos.</li></ul>
+              </li>
+              <li><strong>Lingering v1 traffic</strong>: identify accounts; offer migration help; set sunset date.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Why it helps: organized retirement.</li></ul>
+              </li>
+              <li><strong>Docs drift</strong>: regenerate per‑version docs from OpenAPI; add CI check.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Why it helps: trust in docs restored.</li></ul>
               </li>
             </ul>
           </div>
 
           <div>
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              Observability and comms automation
-            </h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Cursor can instrument responses with <code>Deprecation</code>/
-              <code>Sunset</code> headers and produce dashboards revealing who
-              still calls deprecated endpoints. It can draft customer emails and
-              changelogs from the diffs.
-            </p>
-            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>
-                Add traffic sampling to map versions by API key or account to
-                target outreach.
-              </li>
-              <li>
-                Automate &ldquo;90/60/30 day&rdquo; reminders with links to
-                migration guides.
-              </li>
-              <li>
-                Ship example adapters to ease migration (e.g., old enum values
-                mapped to new ones).
-              </li>
-            </ul>
-          </div>
-
-          <div className="pl-6">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              In practice
-            </h3>
-            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>
-                Ask Cursor to generate per‑version routers and a compatibility
-                CI job.
-              </li>
-              <li>
-                Emit <code>Sunset</code>/<code>Link rel="deprecation"</code>{" "}
-                headers from a shared middleware.
-              </li>
-              <li>
-                Provide a migration cookbook and code‑mods for high‑volume SDKs.
-              </li>
-            </ul>
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Talk track (20 sec)</h3>
+            <p className="text-slate-700 dark:text-gray-300">&ldquo;We keep one clear versioning lane, freeze behavior per major, and signal deprecations in responses—so customers upgrade smoothly and releases stay safe.&rdquo;</p>
           </div>
         </div>
       </section>

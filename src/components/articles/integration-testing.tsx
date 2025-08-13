@@ -1,157 +1,233 @@
 import React from "react";
 
+export const articleFormatVersion = 2;
+
 export default function IntegrationTesting() {
   return (
     <article className="space-y-10">
       {/* Key Concepts */}
-      <section id="key-concepts">
+      <section id="key-concepts" className="mb-12">
         <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Key Concepts</h2>
         <div className="space-y-6">
-          <div className="border-l-4 border-indigo-500 bg-indigo-50/50 dark:bg-indigo-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">What to integrate (and what not)</h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Integration tests verify behavior across real boundaries (database, message bus, external service) but still keep scope narrow (one service&rsquo;s code path). The goal is to validate contracts and side effects (persistence, network I/O) using realistic infrastructure. Avoid treating integration tests as mini E2E (full UI flows) to preserve focus and speed.
-            </p>
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Plain-English definition</h3>
+            <p className="text-slate-700 dark:text-gray-300">Integration tests verify behavior across real boundaries (DB, message bus, third‑party) for one service, ensuring contracts and side‑effects work together.</p>
+          </div>
+
+          <div className="border-l-4 border-emerald-500 bg-emerald-50/50 dark:bg-emerald-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Why users feel it</h3>
             <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>Exercise the service boundary through public APIs (HTTP handler, use case method).</li>
-              <li>Use the real database schema and migrations (schema drift catches) but isolate data per test.</li>
-              <li>Mock only truly external dependencies (third‑party APIs) to keep the system under test real.</li>
+              <li>Fewer broken releases from wiring issues.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Example: DB constraint or serializer mismatch caught pre‑merge.</li><li>Plain English: the pipes fit before we ship.</li></ul>
+              </li>
+              <li>Faster incident resolution with production‑like signals.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Example: tests capture logs/traces/metrics for debugging.</li><li>Plain English: evidence on hand.</li></ul>
+              </li>
+              <li>Confidence upgrading infra (DB/broker versions).
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Example: Testcontainers prove parity.</li><li>Plain English: safer upgrades.</li></ul>
+              </li>
             </ul>
           </div>
 
-          <div>
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Test data strategies</h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-3">
-              High‑quality test data makes failures actionable. Prefer factories/builders (code‑generated fixtures) over massive JSON blobs (hard to understand). Use migrations to set up schema; seed only minimal reference data (currencies, feature flags). For behavior, arrange data per test using helpers that ensure isolation (unique keys, truncated tables).
-            </p>
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Sticky mental model</h3>
+            <p className="text-slate-700 dark:text-gray-300">&ldquo;Dress rehearsal.&rdquo; The show (service) runs with real props (DB, queue) before opening night.</p>
+          </div>
+
+          <div className="border-l-4 border-orange-500 bg-orange-50/50 dark:bg-orange-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Strengths &amp; limits (trade‑offs)</h3>
+            <div className="grid gap-4">
+              <div>
+                <h4 className="font-medium text-slate-900 dark:text-white">Strengths</h4>
+                <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
+                  <li>Validates real contracts and side‑effects → fewer integration bugs.
+                    <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Payoff: higher change success rate.</li></ul>
+                  </li>
+                  <li>Captures observability and error semantics → faster triage.
+                    <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Plain English: same symptoms as prod.</li></ul>
+                  </li>
+                  <li>Faithful performance taste → earlier regressions found.
+                    <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Payoff: fewer p95 surprises.</li></ul>
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="font-medium text-slate-900 dark:text-white">Limits</h4>
+                <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
+                  <li>Slower than unit; needs infra orchestration.
+                    <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Tip: keep sets focused and parallelizable.</li></ul>
+                  </li>
+                  <li>Not end‑to‑end user flow coverage.
+                    <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Tip: reserve a thin E2E layer.</li></ul>
+                  </li>
+                  <li>Shared state flakiness if isolation is weak.
+                    <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Tip: per‑test DB schema/transactions/truncate.</li></ul>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Common misunderstandings</h3>
             <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>Factories: parameterized helpers that compose defaults with overrides (clear intent).</li>
-              <li>Fixtures: immutable reference seed (idempotent setup; safe to run multiple times).</li>
-              <li>Builders: fluent objects that create valid aggregates (domain integrity maintained).</li>
+              <li>&ldquo;Integration means E2E.&rdquo; → Impact: slow, flaky suites → Fix: scope to one service boundary.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Plain English: test wiring, not whole company.</li></ul>
+              </li>
+              <li>&ldquo;Use real third‑party APIs in CI.&rdquo; → Impact: flake/cost → Fix: mock servers with contract tests.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Tip: verify against recorded contracts.</li></ul>
+              </li>
+              <li>&ldquo;Sleep to wait for readiness.&rdquo; → Impact: slow/flaky → Fix: health‑checks and explicit wait‑for‑ready.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Plain English: wait for the &ldquo;ready&rdquo; light.</li></ul>
+              </li>
             </ul>
           </div>
 
-          <div className="border-l-4 border-amber-500 bg-amber-50/50 dark:bg-amber-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Containers and orchestration</h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Use ephemeral containers to run real infrastructure locally and in CI (environment parity). Tools like Testcontainers spin up databases/queues with lifecycle hooks, while Docker Compose can model a minimal stack (service + db + dependencies). Clean teardown ensures no cross‑test contamination (hermetic test runs).
-            </p>
+          <div className="border-l-4 border-slate-400 bg-slate-50/50 dark:bg-slate-800/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Related Glossary (terms &amp; tech)</h3>
             <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>Pin container images for reproducibility (avoid &ldquo;latest&rdquo; drift across environments).</li>
-              <li>Expose health‑checks and wait strategies (block until DB ready; remove arbitrary sleeps).</li>
-              <li>Run tests in parallel with isolated network/ports (namespace per worker when needed).</li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Contract boundaries</h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Decide where the contract is enforced (HTTP schema, DB invariants, event shapes). Integration tests validate those seams with real serialization/deserialization (JSON schemas), real persistence constraints (foreign keys, unique indexes), and real error handling (timeouts, retries, idempotency—safe to retry without side effects).
-            </p>
-            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>Prefer schema validation at the edges (OpenAPI/JSON Schema) with negative cases covered.</li>
-              <li>Assert idempotency and retry semantics at integration points (network instability happens).</li>
-              <li>Capture and assert observability signals (structured logs, metrics, traces) for diagnosis.</li>
-            </ul>
-          </div>
-
-          <div className="pl-6">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">In practice</h3>
-            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>Name tests by user‑visible behavior (&ldquo;persists and publishes order&rdquo;), not tables.</li>
-              <li>Reset state between tests using transactions or TRUNCATE (fast and deterministic).</li>
-              <li>Prefer &ldquo;known good&rdquo; test images pinned to versions that match production.</li>
+              <li><strong>Testcontainers</strong> — ephemeral infra. <em>Why it matters:</em> parity with prod.
+              </li>
+              <li><strong>Health‑check/Readiness</strong> — wait conditions. <em>Why it matters:</em> removes sleeps.
+              </li>
+              <li><strong>Fixture/Factory</strong> — data setup helpers. <em>Why it matters:</em> isolation and clarity.
+              </li>
+              <li><strong>Contract Test</strong> — consumer/provider agreement. <em>Why it matters:</em> avoid drift.
+              </li>
+              <li><strong>Idempotency</strong> — safe retries. <em>Why it matters:</em> robust network behavior.
+              </li>
+              <li><strong>Hermetic Test</strong> — self‑contained run. <em>Why it matters:</em> parallel, reliable CI.
+              </li>
+              <li><strong>Seed Data</strong> — reference records. <em>Why it matters:</em> reproducibility.
+              </li>
+              <li><strong>Snapshotting Schemas</strong> — detect drift. <em>Why it matters:</em> stable contracts.
+              </li>
             </ul>
           </div>
         </div>
       </section>
 
       {/* Business & Team Impact */}
-      <section id="business-team-impact">
-        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Business & Team Impact</h2>
+      <section id="business-team-impact" className="mb-12">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Business &amp; Team Impact</h2>
         <div className="space-y-6">
-          <div>
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Outcomes</h3>
+          <div className="border-l-4 border-emerald-500 bg-emerald-50/50 dark:bg-emerald-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Where it shows up</h3>
             <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>Fewer production defects tied to integration seams (serialization, DB constraints).</li>
-              <li>Faster incident resolution (observability captured in tests mirrors production signals).</li>
-              <li>Confidence to upgrade infra versions (Postgres, Kafka) with safety nets in CI.</li>
+              <li>Service APIs (HTTP/GraphQL) verifying real serialization and DB writes.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Example: POST /orders persists and emits event.</li></ul>
+              </li>
+              <li>Background jobs/queues ensuring idempotency and timeouts.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Example: retry on 5xx without dupes.</li></ul>
+              </li>
+              <li>Version upgrades of infra (Postgres/Kafka) with pinned images.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Example: new minor upgrade keeps plans stable.</li></ul>
+              </li>
             </ul>
           </div>
 
-          <div className="border-l-4 border-slate-500 bg-slate-50/50 dark:bg-slate-900/40 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Trade‑offs and costs</h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Integration tests are slower than unit tests (containers, real I/O) and require infra setup. Keep the set risk‑based and representative (few critical paths). Run on CI for every PR, but optimize with sharding and caching (warm DB images). Avoid overusing integration where a unit suffices (maintain pyramid balance).
-            </p>
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">What good looks like</h3>
             <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>Budget runtime (e.g., &lt; 3–5 minutes per PR) and track regressions weekly.</li>
-              <li>Treat flakiness rate as a defect to fix, not to mute with retries (root‑cause first).</li>
-              <li>Centralize helpers for setup/teardown to reduce copy‑paste and divergence.</li>
+              <li>Per‑test isolation (transactions/truncate) → no cross‑test flake.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Payoff: stable CI, parallel runs.</li></ul>
+              </li>
+              <li>Pinned images and wait‑for‑ready hooks → reproducible runs.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Payoff: fewer heisenbugs.</li></ul>
+              </li>
+              <li>Idempotency and error semantics asserted → resilient behavior.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Payoff: fewer production incidents.</li></ul>
+              </li>
             </ul>
           </div>
 
-          <div>
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Anti‑patterns</h3>
+          <div className="border-l-4 border-yellow-500 bg-yellow-50/50 dark:bg-yellow-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Failure signals (customer words)</h3>
             <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>Testing through private DB tables instead of public APIs (leaky encapsulation).</li>
-              <li>Global, shared test databases (non‑hermetic; order‑dependent failures).</li>
-              <li>Using real third‑party APIs in CI (slow, flaky, rate‑limited, and potentially billable).</li>
+              <li>&ldquo;It passed tests but failed in staging.&rdquo; → Likely cause: mocks hid real behavior → What to check: real DB/schema and serializer.
+              </li>
+              <li>&ldquo;Flaky failures in CI.&rdquo; → Likely cause: shared state or sleeps → What to check: per‑test isolation and health‑checks.
+              </li>
+              <li>&ldquo;Upgrades keep breaking stuff.&rdquo; → Likely cause: missing parity tests → What to check: pinned versions and upgrade tests.
+              </li>
             </ul>
           </div>
 
-          <div className="pl-6">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">In practice</h3>
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Industry lenses</h3>
             <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>Create a &ldquo;minimal stack&rdquo; Compose file for local dev and CI service containers.</li>
-              <li>Adopt Testcontainers (or equivalent) with wait‑for‑ready hooks and reusable networks.</li>
-              <li>Snapshot API contracts (OpenAPI) and validate responses in tests automatically.</li>
+              <li><strong>Enterprise Tech</strong>: deep contract coverage; golden traces/logs included in tests.</li>
+              <li><strong>Non‑Tech Enterprise</strong>: change approvals tied to integration evidence.</li>
+              <li><strong>Startups</strong>: minimal but high‑value suites for hot paths.
+              </li>
             </ul>
           </div>
         </div>
       </section>
 
       {/* Cursor Implementation */}
-      <section id="cursor-implementation">
+      <section id="cursor-implementation" className="mb-12">
         <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Cursor Implementation</h2>
         <div className="space-y-6">
+          <div className="border-l-4 border-slate-400 bg-slate-50/50 dark:bg-slate-800/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">TL;DR (AM-friendly)</h3>
+            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
+              <li>Spin up real infra in tests with pinned versions.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Plain English: rehearsal with real props.</li></ul>
+              </li>
+              <li>Isolate tests and assert idempotency/error semantics.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Plain English: safe to retry; clear errors.</li></ul>
+              </li>
+              <li>Capture logs/traces so failures are diagnosable.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Payoff: faster fixes.</li></ul>
+              </li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Review workflow (AI in PRs/design)</h3>
+            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
+              <li>Check test isolation (transactions/truncate) and readiness waits.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Checklist: no sleeps; health‑checks present.</li></ul>
+              </li>
+              <li>Assert idempotency, retries, and negative cases on boundaries.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Checklist: 409 conflict, 5xx retry, timeouts.</li></ul>
+              </li>
+              <li>Verify pinned images and parity with production settings.</li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Guardrails &amp; automation</h3>
+            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
+              <li>Templates for Testcontainers and DB/queue helpers with wait‑for‑ready.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Benefit: reliable local+CI runs.</li></ul>
+              </li>
+              <li>CI sharding, artifact uploads (logs/traces), and flake tracking.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Benefit: faster, visible feedback.</li></ul>
+              </li>
+              <li>Schema drift checks and fixture seeding utilities.</li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-emerald-500 bg-emerald-50/50 dark:bg-emerald-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Operational playbooks</h3>
+            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
+              <li><strong>Flaky integration</strong>: remove sleeps; add readiness checks; isolate DB per test.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Why it helps: eliminates contention and timing races.</li></ul>
+              </li>
+              <li><strong>Slow suite</strong>: shard in CI; pin and cache images; reuse networks/volumes.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Why it helps: keeps runtime predictable.</li></ul>
+              </li>
+              <li><strong>Version upgrade risk</strong>: run canaries on new images; compare plans and error rates.
+                <ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Why it helps: catches regressions early.</li></ul>
+              </li>
+            </ul>
+          </div>
+
           <div>
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Environment parity via containers</h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Use service containers in CI (GitHub Actions) and local Docker to match production versions (environment parity). Cursor can scaffold configuration for Postgres, Redis, and message brokers with pinned versions and health‑checks.
-            </p>
-            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>Provide Make/NPM scripts for <code>up</code>/<code>down</code> and <code>migrate</code> to standardize flows.</li>
-              <li>Mount schema migration folders read‑only to guarantee drift is detected by tests.</li>
-              <li>Seed minimal reference data through idempotent scripts (safe to rerun).</li>
-            </ul>
-          </div>
-
-          <div className="border-l-4 border-teal-500 bg-teal-50/50 dark:bg-teal-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Data builders and teardown helpers</h3>
-            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>Generate typed factories for domain aggregates (builder pattern with sensible defaults).</li>
-              <li>Reset DB state efficiently (transactional tests or TRUNCATE selective tables).</li>
-              <li>Capture logs/metrics/traces during test runs and surface on failure for diagnosis.</li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Reliability practices</h3>
-            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>Add timeouts and fail‑fast behavior to client libraries used by tests (don&rsquo;t hang CI).</li>
-              <li>Use synthetic network faults (timeouts, 500s) to prove idempotency and retries.</li>
-              <li>Shard the suite across CI workers and report flake rates with tags.</li>
-            </ul>
-          </div>
-
-          <div className="pl-6">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">In practice</h3>
-            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>Keep a &ldquo;golden path&rdquo; integration test per critical capability (write/read, publish/consume).</li>
-              <li>Fail PRs that add integration tests but skip unit coverage (pyramid discipline).</li>
-              <li>Surface DB query plans on failure to spot schema or index drift quickly.</li>
-            </ul>
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Talk track (20 sec)</h3>
+            <p className="text-slate-700 dark:text-gray-300">&ldquo;We rehearse services with real DBs and queues in tests, wait for ready signals, and assert idempotency and errors—so launches are boring and upgrades are safe.&rdquo;</p>
           </div>
         </div>
       </section>
