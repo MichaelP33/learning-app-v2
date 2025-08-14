@@ -1,0 +1,141 @@
+{
+  "title": "Logging Strategies Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "PR adds new log fields across services. What must you require before approving?",
+      "options": [
+        "Adopt a shared structured schema with correlation, redaction, and cardinality/retention budgets",
+        "Mandate DEBUG in prod to capture every event regardless of cost and paging noise",
+        "Skip schema and rely on free‑text with ad‑hoc queries and grep‑style searches",
+        "Disable all sampling so every route emits full payloads for complete visibility"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Headline: standardize structure and safety before volume.; Why correct: a shared JSON schema with correlation IDs and redaction makes logs trustworthy and joinable while budgets keep costs predictable.; Why others are wrong: DEBUG everywhere creates cost/alert storms; free‑text prevents precise joins and indexing; zero sampling ignores cost and still loses fidelity in noise.; Cursor leverage: diff schemas and flag PII/high‑cardinality; generate correlation middleware; propose sampling/retention tiers.; Acceptance checks: schema doc approved; correlation propagated e2e; sampling/retention budgets committed.",
+      "keyConcepts": ["Structured logging", "Correlation IDs", "PII redaction"]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Teams say &ldquo;We can&rsquo;t trace a user journey.&rdquo; What is the right PR ask?",
+      "options": [
+        "Raise log level to ERROR only and hope pages point to the flow",
+        "Add more random context fields without a standard to increase chances",
+        "Propagate and log a stable traceId/requestId across all boundaries and services",
+        "Turn on expensive full‑body logging for a week across all routes"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Headline: require end‑to‑end correlation, not just more noise.; Why correct: consistent traceId/requestId across hops enables stitching logs, traces, and errors into one narrative.; Why others are wrong: ERROR‑only hides flow; unstandardized fields are not joinable; blanket full‑body logging is risky and costly.; Cursor leverage: generate correlation middleware; add headers/filters to gateways; create a joinable dashboard template.; Acceptance checks: correlation fields present at ingress/egress; sampled journey can be reconstructed; dashboard PR attached.",
+      "keyConcepts": ["Correlation IDs", "Cross‑service tracing", "Joinability"]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "You notice userId and email are logged as raw fields. What should you insist on?",
+      "options": [
+        "Keep raw PII to accelerate audits since legal can filter later",
+        "Hash/bucket high‑cardinality IDs and apply centralized PII redaction before emit",
+        "Store PII in logs but restrict with network ACLs only for speed",
+        "Drop all user context from logs so nothing sensitive is ever recorded"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: protect privacy without losing signal.; Why correct: centralized redaction and hashing preserve utility while minimizing risk and index bloat.; Why others are wrong: raw PII creates compliance risk; ACLs alone are insufficient; removing all context breaks diagnosis.; Cursor leverage: generate redaction filters; add hash/bucketing helpers; write unit tests proving sensitive fields are scrubbed.; Acceptance checks: redaction tested; high‑cardinality fields bounded; privacy review link added.",
+      "keyConcepts": ["PII redaction", "High cardinality", "Hashing/bucketing"]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Prod costs spiked after enabling verbose logs. What is the right mitigation plan?",
+      "options": [
+        "Turn off all logs in prod until the bill normalizes",
+        "Move logs to a cheaper region with higher latency and no indexing",
+        "Increase storage quotas so engineers can keep current verbosity indefinitely",
+        "Sample DEBUG by route and lower retention; keep ERROR and audit trails at 100%"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Headline: tune levels, sampling, and retention by risk.; Why correct: tiered policies keep critical signal while trimming cost on low‑value DEBUG.; Why others are wrong: disabling all logs removes safety; moving regions breaks SLOs and search; bigger quotas dodge the root cause.; Cursor leverage: simulate cost deltas; propose per‑route sampling; generate retention policy diffs.; Acceptance checks: policy PR merged; ERROR retained fully; cost dashboard shows target drop.",
+      "keyConcepts": ["Sampling", "Retention tiers", "Level policy"]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Queries are slow because of high‑cardinality labels. What is your guidance?",
+      "options": [
+        "Add indexes for every field in the log schema to be safe",
+        "Replace structured logs with free‑text so search is simpler to write",
+        "Normalize or hash high‑cardinality fields and precompute targeted projections",
+        "Limit all logs to WARN and ERROR so there are fewer fields to scan"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Headline: control cardinality and query shape.; Why correct: hashing/bucketing and projections reduce index size and keep queries predictable.; Why others are wrong: indexing everything explodes write cost; free‑text removes precision; level limits alone don&rsquo;t fix query shape.; Cursor leverage: detect high‑cardinality fields; propose hashing/bucketing; generate projection queries/dashboards.; Acceptance checks: index size reduced; p95 query latency within budget; projections shipped.",
+      "keyConcepts": ["Cardinality", "Projections", "Index cost"]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A PR adds request/response bodies to logs on every endpoint. What should you require?",
+      "options": [
+        "Scope to sampled cohorts on risky endpoints and enforce size/PII limits",
+        "Approve as is to maximize future debugging fidelity",
+        "Move bodies to a separate plaintext file for occasional grep",
+        "Disable correlation IDs to save space for the larger bodies"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Headline: bound payloads and scope capture.; Why correct: limiting capture to risky flows with size and redaction controls preserves safety and cost.; Why others are wrong: blanket capture is risky; plaintext separates context and hurts joins; removing correlation breaks diagnosis.; Cursor leverage: generate cohort sampling config; add size/field allow‑lists; write redaction tests.; Acceptance checks: endpoint list agreed; payload limits enforced; privacy sign‑off recorded.",
+      "keyConcepts": ["Scoped capture", "Payload limits", "Privacy guards"]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Incidents show inconsistent levels (ERROR vs WARN). What do you drive in PRs?",
+      "options": [
+        "Let each team choose levels informally per service culture",
+        "Adopt a level policy with examples/tests and enforce via CI",
+        "Keep levels flexible and rely on on‑call judgment during incidents",
+        "Promote adding emojis/tags to make WARNs look like ERRORs when needed"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: codify level policy and enforce it.; Why correct: a tested policy keeps alert hygiene and predictable paging.; Why others are wrong: ad‑hoc choices cause drift; judgment alone is noisy; emojis don&rsquo;t change semantics.; Cursor leverage: draft the policy with examples; add CI lint rules; generate unit tests for level usage.; Acceptance checks: policy merged; CI failing on violations; alert noise reduced week‑over‑week.",
+      "keyConcepts": ["Level policy", "CI enforcement", "Alert hygiene"]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "New service launches. What logging guardrails should be in the &ldquo;definition of done&rdquo;?",
+      "options": [
+        "Logs optional in MVP; add them later if incidents occur",
+        "Only console.log statements; structure and context can wait",
+        "Structured logger, correlation propagation, redaction filters, and sampling/retention tiers",
+        "Turn on full TRACE everywhere for the first quarter to be safe"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Headline: ship with the essentials on day one.; Why correct: baseline structure, correlation, redaction, and budgets make incidents diagnosable without runaway cost.; Why others are wrong: deferring logs loses signal; console‑only lacks consistency; TRACE everywhere is unsustainable.; Cursor leverage: scaffold logger wrapper; inject middleware; generate default policies.; Acceptance checks: checklist completed; smoke test shows end‑to‑end correlation; policy dashboards live.",
+      "keyConcepts": ["Service onboarding", "Correlation", "Sampling/retention"]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Draft a PR comment to de‑risk a new log schema for a hot path. Include: field list diff, level policy alignment, sampling/retention budget (e.g., ingest ≤ 2 GB/day; p95 query ≤ 200 ms), and a rollback plan if costs or latency regress.",
+      "sampleStrongResponse": "Request a diff of fields with types and example events; confirm levels map to the policy (ERROR 100% kept, DEBUG sampled). State the ingest budget (e.g., ≤ 2 GB/day for this route) and a p95 query target (≤ 200 ms for key dashboards). Ask for a minimal index plan and a rollback toggle to revert to the prior schema if costs or p95 regress. Ask Cursor to generate the schema doc, sampling/retention config, index DDL, and a PR‑ready comment with acceptance checks."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Outline a phased rollout to move from free‑text logs to a structured, redacted schema. Include add → dual‑write → flip reads → enforce → cleanup with safety checks and stakeholder comms.",
+      "sampleStrongResponse": "Plan: add a structured logger wrapper and begin dual‑writing structured + free‑text for the hot paths; backfill parsers for historical search; flip dashboards/alerts to structured fields once parity is verified on a sampled slice; enforce redaction/level policies in CI and disable free‑text emits; clean up parsers and indexes. Safety: cohort rollout, p95 query ≤ 200 ms, ingest budget ≤ X GB/day, privacy tests green. Comms: share schema highlights, sampling policy, and expected cost delta; confirm success by stable alert rate and reduced MTTR. Ask Cursor to scaffold the wrapper, redaction filters, CI checks, and a comms note."
+    }
+  ]
+}

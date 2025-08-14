@@ -341,6 +341,179 @@ export const externalQuizzes: Record<string, Quiz> = {
     }
   ]
 },
+  "automated-checks": {
+  "title": "Automated Checks Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "CI is slow and noisy. What principle should guide your checks?",
+      "options": [
+        "Run every check on every change regardless of path or risk",
+        "Target checks by changed paths/risk and keep failures explainable with fixes",
+        "Turn off most checks to restore velocity and rely on reviewers",
+        "Batch all checks nightly so daytime merges are fast"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: run the right checks with actionable output.; Why correct: path/risk targeting speeds CI; explainable failures unblock devs.; Why others are wrong: all‑checks always is slow; turning off checks loses safety; nightly batches delay feedback.; Cursor leverage: infer checks from diff; post SARIF with fix hints; track CI SLAs.; Acceptance checks: CI time meets target; failures include fixes; developer satisfaction improves.",
+      "keyConcepts": [
+        "Path targeting",
+        "Explainable failures",
+        "CI SLAs"
+      ]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Security wants stronger gates without blocking everything. Your approach?",
+      "options": [
+        "Fail all security findings immediately regardless of severity",
+        "Adopt policy‑as‑code with severity thresholds and time‑boxed waivers",
+        "Move security checks post‑merge to avoid developer friction",
+        "Leave security to annual audits instead of CI"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: enforce must‑fix, allow managed exceptions.; Why correct: policy‑as‑code makes rules clear and reviewable while waivers prevent deadlocks.; Why others are wrong: fail‑all blocks velocity; post‑merge is too late; annual audits miss issues.; Cursor leverage: generate policy configs; add waiver templates; link SARIF to lines.; Acceptance checks: must‑fix blocked; waiver SLAs tracked; noise low.",
+      "keyConcepts": [
+        "Policy‑as‑code",
+        "Waivers",
+        "Severity thresholds"
+      ]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Diff coverage is low on changed code. What is the right stance?",
+      "options": [
+        "Block on global coverage percentage only; diff coverage is optional",
+        "Require diff coverage targets on changed lines and critical paths",
+        "Ignore coverage entirely and rely on manual testing",
+        "Increase unit test counts without regard to relevance"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: test where change risk is.; Why correct: diff coverage focuses effort on changed code and hot paths.; Why others are wrong: global % can hide gaps; ignoring coverage misses defects; counting tests incentivizes noise.; Cursor leverage: compute diff coverage; suggest test cases; annotate gaps.; Acceptance checks: diff targets met; critical paths covered; escapes stable or down.",
+      "keyConcepts": [
+        "Diff coverage",
+        "Risk focus",
+        "Critical paths"
+      ]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Flaky tests are eroding trust. What check automation helps?",
+      "options": [
+        "Retry failures endlessly until they pass and then merge",
+        "Quarantine flakes with owner notification and require stabilization PRs",
+        "Delete flaky tests to clean dashboards quickly",
+        "Ignore flakiness if overall pass rate is acceptable"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: isolate and fix flakes systematically.; Why correct: quarantine + owners maintain signal while driving cleanup.; Why others are wrong: endless retries hide issues; deletion loses coverage; ignoring preserves noise.; Cursor leverage: detect flakes; auto‑retry and quarantine; create owner tasks.; Acceptance checks: flake rate drops; quarantines resolved; CI trust improves.",
+      "keyConcepts": [
+        "Flake quarantine",
+        "Owner routing",
+        "Signal quality"
+      ]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "PR adds a new API. What automated checks should block merge?",
+      "options": [
+        "Formatter and linter only; API behavior can be reviewed manually",
+        "Contract tests, schema validation, and security scanning for the new surface",
+        "Skip checks for small endpoints to keep velocity high",
+        "Only end‑to‑end tests since they cover the whole stack"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: block on contract/security for new surfaces.; Why correct: preventing breaking changes and vulnerabilities is critical for APIs.; Why others are wrong: style‑only misses risk; skipping by size ignores impact; e2e‑only is brittle.; Cursor leverage: scaffold contract tests; add schema docs; configure SAST/DAST.; Acceptance checks: contracts green; scans clean; docs linked.",
+      "keyConcepts": [
+        "Contract tests",
+        "Schema validation",
+        "Security scans"
+      ]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "CI time exceeds targets after monorepo growth. Best first step?",
+      "options": [
+        "Parallelize jobs and add caching keyed by paths and lockfiles",
+        "Disable heavy checks permanently to recover speed",
+        "Move all checks to nightly and accept slower feedback",
+        "Ask engineers to run all checks locally before pushing"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Headline: speed up without losing coverage.; Why correct: parallelism + caching attack critical path while preserving safety.; Why others are wrong: disabling or moving checks delays feedback; local‑only lacks consistency.; Cursor leverage: profile CI; add cache keys; tune parallelism.; Acceptance checks: CI p95 within SLA; cache hit rate rises; failure detection unchanged.",
+      "keyConcepts": [
+        "Parallelism",
+        "Caching",
+        "CI profiling"
+      ]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Bypass culture appears: frequent &ldquo;admin merges.&rdquo; What should you implement?",
+      "options": [
+        "Encourage admin merges to keep velocity high during crunch times",
+        "Require waiver workflow with approvers, scope, and expiry; audit weekly",
+        "Hide failing checks from the PR UI to reduce pressure on teams",
+        "Lower thresholds so checks pass more easily without waivers"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: make exceptions explicit and temporary.; Why correct: waivers with owners/expiry preserve standards and provide visibility.; Why others are wrong: admin merges erode trust; hiding failures removes feedback; lowering bars hides risk.; Cursor leverage: add waiver form to template; build audit report; alert on expiry.; Acceptance checks: admin merges decrease; waivers tracked; expiries enforced.",
+      "keyConcepts": [
+        "Waiver workflow",
+        "Audit",
+        "Standards"
+      ]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Checks produce long logs with no clear fix. What do you require?",
+      "options": [
+        "Accept verbose logs as the cost of safety",
+        "SARIF annotations with line‑level pointers and doc links for remediation",
+        "Ask developers to read the entire log and guess the fix",
+        "Disable the check to avoid developer frustration"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: make failures self‑service with pointers.; Why correct: SARIF annotations speed fixes and adoption.; Why others are wrong: verbosity without guidance slows teams; guessing wastes time; disabling removes safety.; Cursor leverage: integrate SARIF; link docs; propose autofix PRs.; Acceptance checks: mean time‑to‑fix drops; adoption increases; developer survey improves.",
+      "keyConcepts": [
+        "SARIF",
+        "Remediation guidance",
+        "Adoption"
+      ]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Write a PR comment to de‑risk a new CI gate for contracts. Include: path targeting, failing example, SARIF annotation, and waiver rules with expiry.",
+      "sampleStrongResponse": "Ask for path‑based targeting (only API packages), a failing example linked to the diff, and SARIF inline annotations with doc links. Define waiver policy (owner/approver, scope, expiry). Ask Cursor to generate config diffs, a waiver template, and a PR‑ready comment with acceptance checks (targeting verified, SARIF visible, waivers enforced)."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Outline a progressive‑hardening plan for automated checks. Include add core checks → backfill policies → flip must‑fix gates → enforce waivers → cleanup with safety checks and stakeholder comms.",
+      "sampleStrongResponse": "Plan: add core checks (formatter/linter/tests/contracts); backfill policy‑as‑code; flip must‑fix gates for high‑risk areas; enforce waiver workflow with audit; remove redundant checks. Safety: CI p95 ≤ X min, flake rate ≤ Y%, escape rate stable. Comms: share thresholds and waiver process. Ask Cursor to draft configs, thresholds, and a comms note."
+    }
+  ]
+},
   "branching-strategies": {
   "title": "Branching Strategies Knowledge Quiz",
   "totalQuestions": 10,
@@ -1562,6 +1735,179 @@ export const externalQuizzes: Record<string, Quiz> = {
     }
   ]
 },
+  "debugging-tools": {
+  "title": "Debugging Tools Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Prod bug is intermittent and hard to reproduce. What should you require first?",
+      "options": [
+        "Capture a golden trace/profile on a safe replica and standardize repro scripts",
+        "Spin up a bigger cluster and hope the symptom disappears under load",
+        "SSH into prod boxes and add printf statements directly on live code",
+        "Ask authors to re‑read the code slowly to find the mistake by inspection"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Headline: collect safe, high‑fidelity evidence.; Why correct: golden traces/profiles and repro scripts turn anecdotes into repeatable evidence without risky live edits.; Why others are wrong: more hardware masks bugs; live printf is unsafe; reading code alone misses runtime conditions.; Cursor leverage: generate repro plan/scripts; suggest tracing/profiling presets; link evidence to the PR.; Acceptance checks: golden trace/profile attached; repro script passes; risk assessment noted.",
+      "keyConcepts": [
+        "Golden trace",
+        "Profiling presets",
+        "Repro scripts"
+      ]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Team proposes always attaching a debugger in prod. What is the right stance?",
+      "options": [
+        "Approve always‑on debug sessions for maximum insight and live patching",
+        "Forbid all forms of attach because it is inherently unsafe in every case",
+        "Use printf in loops instead of any debugger or tracing instrumentation",
+        "Allow read‑only remote attach with audits on replicas and short, scoped sessions"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Headline: enable safe attach under guardrails.; Why correct: read‑only, audited, short‑lived sessions on replicas reduce risk while enabling real‑world diagnosis.; Why others are wrong: always‑on is risky; absolute bans block learning; printf loops add noise and risk.; Cursor leverage: generate attach configs; add audit logging; create a time‑boxed attach runbook.; Acceptance checks: read‑only mode enforced; session logs stored; replica policy documented.",
+      "keyConcepts": [
+        "Remote attach",
+        "Audit trails",
+        "Risk reduction"
+      ]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Perf regression claim is based on &ldquo;CPU 100%&rdquo; alone. What do you ask for in the PR?",
+      "options": [
+        "Approval now; CPU is definitive proof of a code bug",
+        "Wall‑time vs CPU‑time profiles and comparative flamegraphs before/after",
+        "A larger staging cluster to duplicate high CPU with more machines",
+        "Turning off GC to see if CPU falls during the test runs"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: require comparative profiles tied to user impact.; Why correct: wall vs CPU time and flamegraph diffs expose true hot paths and misattribution.; Why others are wrong: CPU alone is ambiguous; more machines hide causes; disabling GC is unrealistic.; Cursor leverage: run profiler presets; generate before/after flamegraphs; summarize hotspots with suggested fixes.; Acceptance checks: profiles attached; hotspot named; expected p95 improvement stated.",
+      "keyConcepts": [
+        "Flamegraphs",
+        "CPU vs wall time",
+        "p95 impact"
+      ]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A &ldquo;works on my machine&rdquo; bug hits one cohort only. First diagnostic move?",
+      "options": [
+        "Rewrite the feature to a different language to avoid environment issues",
+        "Add tracing with stable context fields and capture a cohort‑specific golden trace",
+        "Wait for more reports before spending time on instrumentation",
+        "Enable DEBUG logs globally to collect as much information as possible"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: add traces to isolate environment/inputs.; Why correct: stable context + cohort golden trace surfaces the divergent path and inputs.; Why others are wrong: language rewrites are overkill; waiting delays learning; DEBUG everywhere is costly/noisy.; Cursor leverage: generate trace instrumentation diff; add context fields; create cohort router rules.; Acceptance checks: trace covers boundaries; cohort reproduced; divergent hop identified.",
+      "keyConcepts": [
+        "Tracing",
+        "Context fields",
+        "Golden trace"
+      ]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A PR introduces a sampling profiler for prod. What boundary should you set?",
+      "options": [
+        "Allow unlimited duration to ensure rare events are captured",
+        "Run continuous profiling on every node at full frequency all the time",
+        "Scope to short windows with low overhead and publish flamegraph artifacts",
+        "Block profiling entirely because it can perturb performance measurements"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Headline: profile briefly with artifacts.; Why correct: short, low‑overhead sampling windows are safe and produce diffable artifacts.; Why others are wrong: unlimited windows risk overhead; always‑on everywhere is wasteful; blocking loses insight.; Cursor leverage: template profiler scripts; set safe defaults; store artifacts and links.; Acceptance checks: duration/frequency documented; artifacts attached; overhead budget respected.",
+      "keyConcepts": [
+        "Sampling profiler",
+        "Overhead budget",
+        "Artifacts"
+      ]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "The trace naming is inconsistent across services. What is your PR ask?",
+      "options": [
+        "Adopt a naming standard for service/operation/span kinds and update emitters",
+        "Keep current names to preserve team autonomy on terminology",
+        "Remove tracing and rely on logs only for simplicity and speed",
+        "Only rename spans involved in current incidents; leave the rest alone"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Headline: enforce naming standards for clarity.; Why correct: consistent names make traces searchable and comparable across teams.; Why others are wrong: autonomy without standards hurts joins; removing tracing loses causality; selective renames keep drift.; Cursor leverage: draft naming guide; generate PRs to update emitters; add lint checks for names.; Acceptance checks: naming guide merged; emitters updated; search queries standardize.",
+      "keyConcepts": [
+        "Naming standards",
+        "Traceability",
+        "Cross‑team consistency"
+      ]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Developer wants to debug a race condition with breakpoints. Your guidance?",
+      "options": [
+        "Use breakpoints to pause threads and observe interleavings directly",
+        "Disable concurrency to make the race disappear and call it fixed",
+        "Run on a single CPU core to reduce scheduling complexity permanently",
+        "Prefer tracepoints/logs and targeted sleeps; avoid stop‑the‑world pauses"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Headline: avoid perturbing timing in race diagnosis.; Why correct: tracepoints/logs keep timing closer to real while revealing order; breakpoints mask races.; Why others are wrong: disabling concurrency hides bugs; single‑core is not representative; pauses change behavior.; Cursor leverage: add tracepoints; generate timing diagrams; propose targeted stress tests.; Acceptance checks: race reproduced with tracepoints; order clarified; fix validated under load.",
+      "keyConcepts": [
+        "Race conditions",
+        "Tracepoints",
+        "Determinism"
+      ]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Teams propose one tool to rule them all. What do you advocate?",
+      "options": [
+        "Use only logs; traces and profilers add unnecessary complexity",
+        "Use only traces; logs and profilers are redundant for modern systems",
+        "Combine logs, traces, and profiles; each sees different aspects of behavior",
+        "Avoid tools and focus only on reading code and unit tests carefully"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Headline: use complementary tools together.; Why correct: logs show events, traces show causality, profiles show hot paths; together they close blind spots.; Why others are wrong: single‑tool dogma leaves gaps; reading code alone misses runtime context.; Cursor leverage: generate a combined evidence checklist; produce side‑by‑side diffs; attach artifacts to PRs.; Acceptance checks: artifacts for all three present; shared narrative written; decision captured in PR notes.",
+      "keyConcepts": [
+        "Logs vs traces vs profiles",
+        "Complementarity",
+        "Evidence pack"
+      ]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Write a PR comment to de‑risk a performance fix on a hot path. Include: before/after profiles, p95 target (e.g., ≤ 150 ms), tracing evidence of the slow hop, and a rollback flag if p95 regresses after deploy.",
+      "sampleStrongResponse": "Ask for sampling profiles and flamegraphs before/after showing wall vs CPU time for the suspected function; include a golden trace identifying the slow hop. State a p95 budget (≤ 150 ms at current QPS) and request a feature flag/rollback toggle if p95 regresses. Ask Cursor to generate profiler scripts, merge the artifacts into the PR, and draft the acceptance checks (artifact links, p95 met, rollback validated)."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Plan a phased rollout for enabling tracing and profiling on a critical service. Include add → backfill exemplars → flip dashboards → enforce standards → cleanup with safety checks and comms.",
+      "sampleStrongResponse": "Plan: add minimal tracing/profiling presets; capture exemplars and check in golden trace/profile; flip dashboards/SLOs to use new spans once parity with logs is verified; enforce naming/context standards via CI; clean up legacy scripts. Safety: limit overhead ≤ 2% CPU, session windows ≤ 5 min, p95 latency unchanged. Comms: share the presets, exemplars, expected impact, and owner runbooks. Ask Cursor to generate instrumentation diffs, presets, and a comms note."
+    }
+  ]
+},
   "dependency-management": {
   "title": "Dependency Management Knowledge Quiz",
   "totalQuestions": 10,
@@ -2777,6 +3123,179 @@ export const externalQuizzes: Record<string, Quiz> = {
     }
   ]
 },
+  "error-tracking": {
+  "title": "Error Tracking Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Pager fatigue from noisy errors is harming on‑call. What policy should you require?",
+      "options": [
+        "Page on every error seen in any environment for maximum safety",
+        "Route all errors to a shared channel; engineers can triage later manually",
+        "Adopt burn‑rate/SLO paging and digest low‑impact noise with owners",
+        "Disable paging entirely and review errors weekly in a batch"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Headline: align alerts to user impact via SLOs.; Why correct: burn‑rate triggers page only when user experience is at risk; digests handle the rest.; Why others are wrong: page‑all burns trust; shared channels lose ownership; no paging hides urgent issues.; Cursor leverage: generate burn‑rate rules; map owners; create digest workflows.; Acceptance checks: SLO rules in config; owners assigned; page volume reduced with no MTTR increase.",
+      "keyConcepts": [
+        "Burn rate",
+        "SLOs",
+        "Ownership routing"
+      ]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Errors are mis‑grouped after a framework upgrade. What do you ask for?",
+      "options": [
+        "Turn off grouping and show raw stacks to avoid mistakes",
+        "Customize fingerprinting to include stable frames and context fields",
+        "Group only by error message text to keep things simple",
+        "Ignore mis‑grouping; it averages out over time in dashboards"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: tune fingerprints for accuracy.; Why correct: adding stable frames and context avoids collapsing distinct bugs or splitting one issue.; Why others are wrong: no grouping explodes noise; message text is brittle; ignoring creates routing chaos.; Cursor leverage: propose fingerprint rules; add tests for grouping outcomes; generate migration notes for the upgrade.; Acceptance checks: grouping accuracy verified on a sample; issue links stable; owner routing correct.",
+      "keyConcepts": [
+        "Fingerprinting",
+        "Context fields",
+        "Noise reduction"
+      ]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A PR initializes the tracker without env/service/trace context. Your response?",
+      "options": [
+        "Approve and add context later if owners request it",
+        "Block until standard context fields and redaction are present at init",
+        "Replace the tracker with console logs to keep things simple",
+        "Send all user PII to improve routing accuracy during incidents"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: require context and privacy from the start.; Why correct: standard fields make issues joinable to logs/traces and safe via redaction.; Why others are wrong: deferring context causes drift; console logs lack grouping/routing; PII breaks compliance.; Cursor leverage: generate wrapper SDK; add init checks; write redaction tests.; Acceptance checks: service/env/user/trace present; redaction proven; links to logs/traces verified.",
+      "keyConcepts": [
+        "Context standard",
+        "Redaction",
+        "Joinability"
+      ]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Support asks &ldquo;What changed when crashes spiked?&rdquo; What do you enforce?",
+      "options": [
+        "Manual spreadsheets to track releases and compare error counts weekly",
+        "Release annotations in CI and dashboards linking issues to versions",
+        "Rely on engineer memory to recall when code shipped",
+        "Disable release tracking to reduce overhead and keep the pipeline simple"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: link errors to releases automatically.; Why correct: release annotations surface regressions and speed rollback decisions.; Why others are wrong: manual tracking is error‑prone; memory is unreliable; disabling loses critical signal.; Cursor leverage: add CI step for annotations; update dashboards; draft rollback notes.; Acceptance checks: release links present; regression identified in minutes; rollback path documented.",
+      "keyConcepts": [
+        "Release health",
+        "Regression detection",
+        "Rollback readiness"
+      ]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "PII appeared in error payloads. What must the PR include?",
+      "options": [
+        "Add a warning comment to remind developers to be careful next time",
+        "Centralize redaction in the SDK and add tests to prove scrubbing",
+        "Disable error tracking for that module to avoid risk entirely",
+        "Route all errors containing PII to a private Slack channel only"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: fix the system, not just the instance.; Why correct: SDK‑level redaction with tests prevents recurrence and proves compliance.; Why others are wrong: comments don&rsquo;t prevent leaks; disabling loses visibility; private channels don&rsquo;t remove data.; Cursor leverage: implement redaction rules; add unit tests; run a backfill scrub if needed.; Acceptance checks: tests green; historical payloads sanitized; privacy sign‑off complete.",
+      "keyConcepts": [
+        "PII redaction",
+        "SDK wrapper",
+        "Compliance"
+      ]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Ownership rules are stale and issues bounce between teams. Your PR ask?",
+      "options": [
+        "Remove ownership to avoid mis‑routing until a committee decides",
+        "Route everything to a central triage group indefinitely",
+        "Refresh owner maps by path/service and add fallbacks with escalation",
+        "Close unowned issues automatically after a short timeout"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Headline: keep routing current and resilient.; Why correct: updated maps with fallbacks reduce ping‑pong and speed resolution.; Why others are wrong: removing ownership adds delay; central triage overloads; auto‑closing hides problems.; Cursor leverage: generate owner maps from repo structure; add fallback rules; create a monthly audit task.; Acceptance checks: routing accuracy improved; bounce rate down; audit schedule in place.",
+      "keyConcepts": [
+        "Ownership routing",
+        "Fallbacks",
+        "Operational maturity"
+      ]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Noise burst from a flaky integration test drives hundreds of entries. Best stance?",
+      "options": [
+        "Treat as real errors and keep paging the team until fixed",
+        "Throttle and digest the noise while tracking flake trends and owners",
+        "Delete all events from the tracker database to start fresh",
+        "Disable the error tracker until flakiness is resolved in CI"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: manage noise without losing signal.; Why correct: throttling/digests reduce alert fatigue while tracking trends keeps visibility and accountability.; Why others are wrong: paging for flakes burns trust; deletion loses history; disabling removes coverage.; Cursor leverage: configure throttles/digests; tag flaky sources; open stabilization tasks.; Acceptance checks: page rate stabilized; flake issues created; tracker visibility maintained.",
+      "keyConcepts": [
+        "Alert hygiene",
+        "Flake management",
+        "Trend tracking"
+      ]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A new mobile app integrates the tracker. What do you require for crash‑free goals?",
+      "options": [
+        "Capture only stack traces without breadcrumbs to reduce payload size",
+        "Include breadcrumbs, release tags, and user/session context with privacy filters",
+        "Disable crash reporting in early versions to avoid noise during development",
+        "Rely on app store reviews to detect stability problems quickly"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: capture context for actionable mobile signals.; Why correct: breadcrumbs and release/session context make crashes reproducible and owner‑routable with privacy protection.; Why others are wrong: stacks alone slow triage; disabling loses early insight; reviews are too slow.; Cursor leverage: generate mobile SDK config; add filters; create release health dashboards.; Acceptance checks: context present; crash‑free target defined; privacy tests pass.",
+      "keyConcepts": [
+        "Breadcrumbs",
+        "Release tagging",
+        "Crash‑free rate"
+      ]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Write a PR comment that de‑risks introducing a new error‑tracking SDK. Include: required context fields, burn‑rate paging rules, grouping fingerprints, and a rollback if alert rate exceeds Y/hr.",
+      "sampleStrongResponse": "Ask for a wrapper that initializes service/env/user/trace with default redaction; define burn‑rate thresholds and owners; propose fingerprint rules with tests. Set an alert rate cap (e.g., Y/hr) and a kill switch to revert to prior SDK if noise exceeds budget. Ask Cursor to scaffold the wrapper, tests, and config diffs, and produce a PR‑ready comment with acceptance checks."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Outline a phased rollout to move from noisy pages to SLO burn‑rate alerts. Include add → backfill history → flip paging → enforce policy → cleanup with safety checks and stakeholder comms.",
+      "sampleStrongResponse": "Plan: add burn‑rate policies and owners while continuing current alerts; backfill historical SLOs to set thresholds; flip paging to burn‑rate with a rollback toggle; enforce policy in code and dashboards; remove legacy page‑all rules. Safety: page rate ≤ baseline, MTTR stable, false positive rate ≤ X%. Comms: announce policy, thresholds, and owner maps to support/eng; confirm success by reduced noise and unchanged user impact. Ask Cursor to draft policies, owner maps, and a comms note."
+    }
+  ]
+},
   "extension-ecosystems": {
   "title": "Extension Ecosystems Knowledge Quiz",
   "totalQuestions": 10,
@@ -3839,6 +4358,179 @@ export const externalQuizzes: Record<string, Quiz> = {
     }
   ]
 },
+  "knowledge-sharing": {
+  "title": "Knowledge Sharing Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Review conversations are rich but nothing is captured. What policy should you require?",
+      "options": [
+        "Let reviewers decide ad‑hoc whether to write notes or not",
+        "Capture short, link‑rich PR notes with decisions and rationale near the code",
+        "Move all discussion into a separate wiki and keep PRs minimal",
+        "Rely on memory and chat history to reconstruct context later"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: leave breadcrumbs by the code.; Why correct: short notes with links make history discoverable and maintainable.; Why others are wrong: ad‑hoc capture leads to gaps; separate wikis drift; memory/chat are unreliable.; Cursor leverage: provide note macros; extract entities/links; index notes across repos.; Acceptance checks: notes present in PRs; decisions/links captured; discoverability improves.",
+      "keyConcepts": [
+        "PR notes",
+        "Discoverability",
+        "Maintainability"
+      ]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Teams keep re‑debating common patterns. What should reviewers do?",
+      "options": [
+        "Link to exemplars and standards/ADRs in comments and propose updates if gaps exist",
+        "Repeat the full explanation in each PR to ensure everyone reads it",
+        "Avoid linking to external docs to keep the PR focused",
+        "Escalate debates immediately to managers to stop the churn"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Headline: anchor to shared patterns and evolve them.; Why correct: exemplars + standards reduce debate and improve consistency; gaps lead to updates.; Why others are wrong: repeating wastes time; avoiding links loses history; escalation is premature.; Cursor leverage: insert comment macros with links; find similar past PRs; draft standards updates.; Acceptance checks: links present; debate frequency drops; standards refreshed where needed.",
+      "keyConcepts": [
+        "Exemplars",
+        "Standards/ADRs",
+        "Comment macros"
+      ]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Handoffs stall after pairing sessions. What is the right practice?",
+      "options": [
+        "Trust the author to remember next steps and follow up later",
+        "Generate pairing summaries with concrete next‑step tasks and owners",
+        "Record long meeting notes and attach them verbatim to the PR",
+        "Skip pairing notes to avoid cluttering the PR history"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: turn handoffs into tasks.; Why correct: summaries with owners keep momentum and preserve context.; Why others are wrong: memory fails; long notes are noise; skipping loses continuity.; Cursor leverage: generate handoff templates; extract tasks from conversation; assign owners.; Acceptance checks: tasks attached; owners assigned; work continues without stalls.",
+      "keyConcepts": [
+        "Handoff summaries",
+        "Tasks and owners",
+        "Continuity"
+      ]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "New hires struggle to find prior art. What should you implement?",
+      "options": [
+        "Weekly learning digest that surfaces exemplar PRs and key decisions",
+        "A private notebook kept by senior engineers for personal reference",
+        "Rely on code search only; decisions are implicit in the code",
+        "Avoid documenting decisions to encourage exploration"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Headline: curate and broadcast learnings.; Why correct: digests spread knowledge and make discovery easy for new teammates.; Why others are wrong: private notes silo knowledge; code alone misses rationale; avoiding docs repeats mistakes.; Cursor leverage: auto‑compile digests; link to exemplars; tag themes.; Acceptance checks: digest published; onboarding time drops; repeated debates decrease.",
+      "keyConcepts": [
+        "Learning digests",
+        "Exemplars",
+        "Onboarding"
+      ]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Reviewers leave insightful comments that get lost. What is the best capture mechanism?",
+      "options": [
+        "Copy comments into a long wiki page quarterly",
+        "Extract short, indexable snippets with links and tag them by domain",
+        "Screenshot the PR and store images in a shared folder",
+        "Do nothing; insights will re‑emerge naturally over time"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: index bite‑sized, linkable knowledge.; Why correct: short snippets with tags remain discoverable and reusable.; Why others are wrong: quarterly wikis go stale; screenshots are not searchable; waiting wastes time.; Cursor leverage: extract snippets; apply tags; expose search in new PRs.; Acceptance checks: snippets indexed; retrieval success in spot checks; reuse in future PRs observed.",
+      "keyConcepts": [
+        "Indexing",
+        "Tags",
+        "Retrieval"
+      ]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Tribal knowledge is concentrated with a few reviewers. What guardrail helps?",
+      "options": [
+        "Keep the same reviewers on all PRs to maintain consistency",
+        "Rotate reviewers intentionally and pair for risky areas with capture",
+        "Randomize reviewers daily with no consideration for domain",
+        "Limit documentation to reduce maintenance overhead"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: share context through rotation + capture.; Why correct: rotation spreads knowledge; pairing + notes preserves quality.; Why others are wrong: static reviewers concentrate knowledge; randomization loses context; less documentation increases repeats.; Cursor leverage: propose rotation rules; pair on risky PRs; ensure notes captured.; Acceptance checks: reviewer diversity increases; capture rate high; fewer single‑points of failure.",
+      "keyConcepts": [
+        "Reviewer rotation",
+        "Pairing",
+        "Knowledge diffusion"
+      ]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Links in PRs often go stale. What practice improves durability?",
+      "options": [
+        "Use permanent links (commit‑pinned, ADR ids) and brief context in the note",
+        "Avoid linking to anything external to keep PRs future‑proof",
+        "Paste full documents into PR descriptions to have everything in one place",
+        "Rely on search engines to rediscover documents later"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Headline: make references stable and skimmable.; Why correct: commit‑pinned links and short context keep notes useful over time.; Why others are wrong: no links lose history; pasting docs creates noise; search is hit‑or‑miss.; Cursor leverage: convert links to permalinks; insert context macros; validate link health periodically.; Acceptance checks: link rot decreases; notes remain useful; retrieval success improves.",
+      "keyConcepts": [
+        "Permalinks",
+        "Context capture",
+        "Resilience"
+      ]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A recurring debate keeps resurfacing. What should you drive?",
+      "options": [
+        "Open a standards/ADR update with an exemplar and close the loop in PRs",
+        "Ignore the debate and let teams decide locally each time",
+        "Create a lengthy meeting series to discuss repeatedly",
+        "Defer the issue until the next quarter to avoid pressure"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Headline: turn debate into a documented standard.; Why correct: ADR/standards updates provide a single source of truth and reduce thrash.; Why others are wrong: ignoring repeats cost; meetings without artifacts waste time; deferral prolongs pain.; Cursor leverage: draft ADR; link exemplars; post closing comments with links.; Acceptance checks: ADR merged; debates decline; adoption observed in subsequent PRs.",
+      "keyConcepts": [
+        "ADR updates",
+        "Loop closure",
+        "Standards"
+      ]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Write a PR comment template to capture decisions. Include: summary, trade‑offs, links to ADR/exemplars, and next‑step tasks with owners.",
+      "sampleStrongResponse": "Provide a short summary of the decision, list 2–3 trade‑offs, and link to the relevant ADR and exemplar PRs. Add next‑step tasks with owners. Ask Cursor to draft the template, insert macro placeholders, and validate that links resolve."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Outline a knowledge‑sharing program anchored in PRs. Include add note macros → backfill indexing → flip weekly digest → enforce rotation/handoffs → cleanup with safety checks and comms.",
+      "sampleStrongResponse": "Plan: add note macros to PR templates; index historic PR notes; publish a weekly digest; enforce reviewer rotation and pairing handoffs; retire stale capture channels. Safety: onboarding time ↓ X%, debate repeats ↓ Y%, note coverage ≥ Z%. Comms: share how to write notes and where to find them. Ask Cursor to implement macros, indexers, and digest automation."
+    }
+  ]
+},
   "lean-startup": {
   "title": "Lean Startup Knowledge Quiz",
   "totalQuestions": 10,
@@ -4175,6 +4867,179 @@ export const externalQuizzes: Record<string, Quiz> = {
       "points": 5,
       "question": "How would you make a cross‑platform dev workflow reliable across macOS, Linux, and Windows (including WSL)?",
       "sampleStrongResponse": "Containerize the toolchain via devcontainers or Docker to avoid OS differences. If host tools are needed, use asdf/nvm/pyenv to pin versions. Normalize line endings via .editorconfig and git config; avoid OS‑specific paths in scripts. Use cross‑platform CLIs (e.g., shelljs, zx) and verify in CI on all OSes. Document fallbacks and add health checks for services."
+    }
+  ]
+},
+  "logging-strategies": {
+  "title": "Logging Strategies Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "PR adds new log fields across services. What must you require before approving?",
+      "options": [
+        "Adopt a shared structured schema with correlation, redaction, and cardinality/retention budgets",
+        "Mandate DEBUG in prod to capture every event regardless of cost and paging noise",
+        "Skip schema and rely on free‑text with ad‑hoc queries and grep‑style searches",
+        "Disable all sampling so every route emits full payloads for complete visibility"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Headline: standardize structure and safety before volume.; Why correct: a shared JSON schema with correlation IDs and redaction makes logs trustworthy and joinable while budgets keep costs predictable.; Why others are wrong: DEBUG everywhere creates cost/alert storms; free‑text prevents precise joins and indexing; zero sampling ignores cost and still loses fidelity in noise.; Cursor leverage: diff schemas and flag PII/high‑cardinality; generate correlation middleware; propose sampling/retention tiers.; Acceptance checks: schema doc approved; correlation propagated e2e; sampling/retention budgets committed.",
+      "keyConcepts": [
+        "Structured logging",
+        "Correlation IDs",
+        "PII redaction"
+      ]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Teams say &ldquo;We can&rsquo;t trace a user journey.&rdquo; What is the right PR ask?",
+      "options": [
+        "Raise log level to ERROR only and hope pages point to the flow",
+        "Add more random context fields without a standard to increase chances",
+        "Propagate and log a stable traceId/requestId across all boundaries and services",
+        "Turn on expensive full‑body logging for a week across all routes"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Headline: require end‑to‑end correlation, not just more noise.; Why correct: consistent traceId/requestId across hops enables stitching logs, traces, and errors into one narrative.; Why others are wrong: ERROR‑only hides flow; unstandardized fields are not joinable; blanket full‑body logging is risky and costly.; Cursor leverage: generate correlation middleware; add headers/filters to gateways; create a joinable dashboard template.; Acceptance checks: correlation fields present at ingress/egress; sampled journey can be reconstructed; dashboard PR attached.",
+      "keyConcepts": [
+        "Correlation IDs",
+        "Cross‑service tracing",
+        "Joinability"
+      ]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "You notice userId and email are logged as raw fields. What should you insist on?",
+      "options": [
+        "Keep raw PII to accelerate audits since legal can filter later",
+        "Hash/bucket high‑cardinality IDs and apply centralized PII redaction before emit",
+        "Store PII in logs but restrict with network ACLs only for speed",
+        "Drop all user context from logs so nothing sensitive is ever recorded"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: protect privacy without losing signal.; Why correct: centralized redaction and hashing preserve utility while minimizing risk and index bloat.; Why others are wrong: raw PII creates compliance risk; ACLs alone are insufficient; removing all context breaks diagnosis.; Cursor leverage: generate redaction filters; add hash/bucketing helpers; write unit tests proving sensitive fields are scrubbed.; Acceptance checks: redaction tested; high‑cardinality fields bounded; privacy review link added.",
+      "keyConcepts": [
+        "PII redaction",
+        "High cardinality",
+        "Hashing/bucketing"
+      ]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Prod costs spiked after enabling verbose logs. What is the right mitigation plan?",
+      "options": [
+        "Turn off all logs in prod until the bill normalizes",
+        "Move logs to a cheaper region with higher latency and no indexing",
+        "Increase storage quotas so engineers can keep current verbosity indefinitely",
+        "Sample DEBUG by route and lower retention; keep ERROR and audit trails at 100%"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Headline: tune levels, sampling, and retention by risk.; Why correct: tiered policies keep critical signal while trimming cost on low‑value DEBUG.; Why others are wrong: disabling all logs removes safety; moving regions breaks SLOs and search; bigger quotas dodge the root cause.; Cursor leverage: simulate cost deltas; propose per‑route sampling; generate retention policy diffs.; Acceptance checks: policy PR merged; ERROR retained fully; cost dashboard shows target drop.",
+      "keyConcepts": [
+        "Sampling",
+        "Retention tiers",
+        "Level policy"
+      ]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Queries are slow because of high‑cardinality labels. What is your guidance?",
+      "options": [
+        "Add indexes for every field in the log schema to be safe",
+        "Replace structured logs with free‑text so search is simpler to write",
+        "Normalize or hash high‑cardinality fields and precompute targeted projections",
+        "Limit all logs to WARN and ERROR so there are fewer fields to scan"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Headline: control cardinality and query shape.; Why correct: hashing/bucketing and projections reduce index size and keep queries predictable.; Why others are wrong: indexing everything explodes write cost; free‑text removes precision; level limits alone don&rsquo;t fix query shape.; Cursor leverage: detect high‑cardinality fields; propose hashing/bucketing; generate projection queries/dashboards.; Acceptance checks: index size reduced; p95 query latency within budget; projections shipped.",
+      "keyConcepts": [
+        "Cardinality",
+        "Projections",
+        "Index cost"
+      ]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A PR adds request/response bodies to logs on every endpoint. What should you require?",
+      "options": [
+        "Scope to sampled cohorts on risky endpoints and enforce size/PII limits",
+        "Approve as is to maximize future debugging fidelity",
+        "Move bodies to a separate plaintext file for occasional grep",
+        "Disable correlation IDs to save space for the larger bodies"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Headline: bound payloads and scope capture.; Why correct: limiting capture to risky flows with size and redaction controls preserves safety and cost.; Why others are wrong: blanket capture is risky; plaintext separates context and hurts joins; removing correlation breaks diagnosis.; Cursor leverage: generate cohort sampling config; add size/field allow‑lists; write redaction tests.; Acceptance checks: endpoint list agreed; payload limits enforced; privacy sign‑off recorded.",
+      "keyConcepts": [
+        "Scoped capture",
+        "Payload limits",
+        "Privacy guards"
+      ]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Incidents show inconsistent levels (ERROR vs WARN). What do you drive in PRs?",
+      "options": [
+        "Let each team choose levels informally per service culture",
+        "Adopt a level policy with examples/tests and enforce via CI",
+        "Keep levels flexible and rely on on‑call judgment during incidents",
+        "Promote adding emojis/tags to make WARNs look like ERRORs when needed"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: codify level policy and enforce it.; Why correct: a tested policy keeps alert hygiene and predictable paging.; Why others are wrong: ad‑hoc choices cause drift; judgment alone is noisy; emojis don&rsquo;t change semantics.; Cursor leverage: draft the policy with examples; add CI lint rules; generate unit tests for level usage.; Acceptance checks: policy merged; CI failing on violations; alert noise reduced week‑over‑week.",
+      "keyConcepts": [
+        "Level policy",
+        "CI enforcement",
+        "Alert hygiene"
+      ]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "New service launches. What logging guardrails should be in the &ldquo;definition of done&rdquo;?",
+      "options": [
+        "Logs optional in MVP; add them later if incidents occur",
+        "Only console.log statements; structure and context can wait",
+        "Structured logger, correlation propagation, redaction filters, and sampling/retention tiers",
+        "Turn on full TRACE everywhere for the first quarter to be safe"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Headline: ship with the essentials on day one.; Why correct: baseline structure, correlation, redaction, and budgets make incidents diagnosable without runaway cost.; Why others are wrong: deferring logs loses signal; console‑only lacks consistency; TRACE everywhere is unsustainable.; Cursor leverage: scaffold logger wrapper; inject middleware; generate default policies.; Acceptance checks: checklist completed; smoke test shows end‑to‑end correlation; policy dashboards live.",
+      "keyConcepts": [
+        "Service onboarding",
+        "Correlation",
+        "Sampling/retention"
+      ]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Draft a PR comment to de‑risk a new log schema for a hot path. Include: field list diff, level policy alignment, sampling/retention budget (e.g., ingest ≤ 2 GB/day; p95 query ≤ 200 ms), and a rollback plan if costs or latency regress.",
+      "sampleStrongResponse": "Request a diff of fields with types and example events; confirm levels map to the policy (ERROR 100% kept, DEBUG sampled). State the ingest budget (e.g., ≤ 2 GB/day for this route) and a p95 query target (≤ 200 ms for key dashboards). Ask for a minimal index plan and a rollback toggle to revert to the prior schema if costs or p95 regress. Ask Cursor to generate the schema doc, sampling/retention config, index DDL, and a PR‑ready comment with acceptance checks."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Outline a phased rollout to move from free‑text logs to a structured, redacted schema. Include add → dual‑write → flip reads → enforce → cleanup with safety checks and stakeholder comms.",
+      "sampleStrongResponse": "Plan: add a structured logger wrapper and begin dual‑writing structured + free‑text for the hot paths; backfill parsers for historical search; flip dashboards/alerts to structured fields once parity is verified on a sampled slice; enforce redaction/level policies in CI and disable free‑text emits; clean up parsers and indexes. Safety: cohort rollout, p95 query ≤ 200 ms, ingest budget ≤ X GB/day, privacy tests green. Comms: share schema highlights, sampling policy, and expected cost delta; confirm success by stable alert rate and reduced MTTR. Ask Cursor to scaffold the wrapper, redaction filters, CI checks, and a comms note."
     }
   ]
 },
@@ -5214,6 +6079,352 @@ export const externalQuizzes: Record<string, Quiz> = {
     }
   ]
 },
+  "review-criteria": {
+  "title": "Review Criteria Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "PR touches an auth route and adds a new query. What must you require as review criteria?",
+      "options": [
+        "General thumbs‑up from any reviewer without domain context for speed",
+        "Evidence of security/perf gates (threat prompts, contract tests, benchmark or trace) with must‑fix vs suggestions labeled",
+        "Only style conformance and naming since CI will catch the rest",
+        "A larger PR to include unrelated refactors so reviewers see more context"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: tie criteria to risk and evidence.; Why correct: security/perf‑sensitive changes need explicit evidence and must‑fix labeling to avoid escapes while preserving flow.; Why others are wrong: thumbs‑up lacks rigor; style‑only misses risk; bundling increases scope and delays.; Cursor leverage: generate risk prompts; suggest evidence snippets; label feedback categories.; Acceptance checks: evidence attached; must‑fix items addressed; CI green on required checks.",
+      "keyConcepts": [
+        "Risk‑based criteria",
+        "Must‑fix vs suggestion",
+        "Evidence"
+      ]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Review threads drift into style bikeshedding. What is your PR ask?",
+      "options": [
+        "Escalate the debate until consensus emerges regardless of time",
+        "Adopt formatter/linter and mark style comments as suggestions by policy",
+        "Block the PR until all style comments are resolved exactly as requested",
+        "Move the conversation to a separate doc and pause the PR for a week"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: automate style and de‑escalate nitpicks.; Why correct: formatter/linter remove noise and suggestion labels keep velocity.; Why others are wrong: escalation wastes time; blocking for nits harms flow; pausing stalls delivery.; Cursor leverage: add formatter/linter configs; convert comments to suggestions; update PR template language.; Acceptance checks: style noise drops; only must‑fix items block; throughput stable or better.",
+      "keyConcepts": [
+        "Formatter/linter",
+        "Suggestions",
+        "Velocity"
+      ]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A contract change is implied by the diff. What should be required before merge?",
+      "options": [
+        "Trust downstream teams to adapt after release if anything breaks",
+        "Add or update contract tests and versioning/compat notes with rollout plan",
+        "Skip tests because reviewers manually verified the payload shape",
+        "Rename functions to signal a change without further action"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: verify contracts and plan rollout.; Why correct: contract tests and versioning prevent breaking integrators and clarify migration; rollout plans reduce blast radius.; Why others are wrong: hope is not a plan; manual checks miss cases; renames without tests still break callers.; Cursor leverage: generate contract tests; draft versioning notes; create phased rollout tasks.; Acceptance checks: tests green; deprecation path documented; flags/alerts in place.",
+      "keyConcepts": [
+        "Contract tests",
+        "Versioning",
+        "Rollout plan"
+      ]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Reviewers disagree on performance impact. What is the right review criterion?",
+      "options": [
+        "Merge based on seniority to avoid delay",
+        "Require evidence: bench/trace with a target (e.g., p95 ≤ 150 ms) and scope of change",
+        "Wait for production complaints to validate concerns empirically",
+        "Add more reviewers until a majority agrees without evidence"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: decide by evidence, not opinion.; Why correct: measured impact with targets aligns changes to SLOs and avoids regressions.; Why others are wrong: seniority and majority are not proofs; waiting risks customers.; Cursor leverage: propose a micro‑benchmark/trace plan; extract targets from SLOs; post a PR checklist.; Acceptance checks: evidence attached; targets met; no regression alerts post‑merge.",
+      "keyConcepts": [
+        "Performance evidence",
+        "Targets/SLOs",
+        "Scope control"
+      ]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A reviewer blocks on a preference that isn&rsquo;t policy. What should happen?",
+      "options": [
+        "Keep blocking until the author conforms to the reviewer&rsquo;s style",
+        "Label as suggestion, propose a standards update if valuable, and unblock",
+        "Escalate to management immediately to enforce the reviewer&rsquo;s view",
+        "Close the PR and ask for a new one to reset the discussion"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: separate must‑fix from preference.; Why correct: suggestions preserve flow while channeling good ideas into standards.; Why others are wrong: blocking on preference slows delivery; escalation is premature; closing the PR is wasteful.; Cursor leverage: generate example‑backed standards PR; convert comment to suggestion; update template guidance.; Acceptance checks: PR unblocked; follow‑up standards issue filed; cycle time stable.",
+      "keyConcepts": [
+        "Must‑fix vs suggestion",
+        "Standards updates",
+        "Flow"
+      ]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Risky area (payments) had no domain reviewer. What is the correct policy?",
+      "options": [
+        "Any available reviewer can approve to keep velocity high",
+        "Require CODEOWNERS routing and backup reviewers for the domain",
+        "Skip reviews for small diffs because risk is proportional to lines changed",
+        "Defer to post‑merge verification during release only"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: route risky diffs to owners.; Why correct: CODEOWNERS/backup ensures expert eyes on high‑risk areas.; Why others are wrong: velocity without expertise risks escapes; LOC isn&rsquo;t risk; post‑merge checks are too late.; Cursor leverage: update CODEOWNERS; add label routing; propose reviewer rotation.; Acceptance checks: owner review recorded; backups defined; routing audit green.",
+      "keyConcepts": [
+        "CODEOWNERS",
+        "Reviewer routing",
+        "Risk surfaces"
+      ]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Authors complain reviews take too long. What should the criteria emphasize?",
+      "options": [
+        "Long, unstructured PR descriptions to cover every detail",
+        "Short templates prompting intent/risk/evidence and linking to ADRs/exemplars",
+        "Allow merges without reviews during peak periods to catch up",
+        "Add more reviewers to each PR until someone responds"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: improve inputs to improve throughput.; Why correct: concise templates provide the right context fast and reduce back‑and‑forth.; Why others are wrong: long descriptions add noise; skipping reviews increases risk; more reviewers can dilute ownership.; Cursor leverage: generate a PR template; auto‑fill from diff; surface related ADRs/exemplars.; Acceptance checks: TTF review improves; fewer clarification comments; stable quality metrics.",
+      "keyConcepts": [
+        "PR template",
+        "Context quality",
+        "Throughput"
+      ]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A perf‑sensitive change lands without evidence. What is your response?",
+      "options": [
+        "Approve to avoid blocking the release train and gather data later",
+        "Request evidence (bench/trace) and set a rollback trigger if p95 worsens",
+        "Add an additional reviewer to strengthen consensus in the thread",
+        "Increase staging hardware to make the numbers look better"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: require evidence and rollback path.; Why correct: data + rollback reduces customer risk while enabling progress.; Why others are wrong: approve‑now risks regressions; consensus without data is weak; more hardware hides issues.; Cursor leverage: draft bench plan; set p95 target; generate rollback toggle.; Acceptance checks: evidence attached; target met; rollback validated in staging.",
+      "keyConcepts": [
+        "Evidence",
+        "Rollback",
+        "Perf targets"
+      ]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Write a PR comment that de‑risks a security‑touching change. Include: threat prompts, unit/contract tests, SAST evidence, and must‑fix vs suggestions with acceptance checks.",
+      "sampleStrongResponse": "Request a short threat prompt (entry points, trust boundaries), unit + contract tests for new/changed surfaces, and SAST output linked to lines. Label must‑fix vs suggestions explicitly. Ask Cursor to generate the prompt skeleton, tests, and a PR‑ready checklist with acceptance checks (tests green, SAST clean, routes documented)."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Outline a policy refresh for review criteria across repos. Include add checklist → backfill exemplars → flip to must‑fix gating → enforce owners/SLAs → cleanup with safety checks and comms.",
+      "sampleStrongResponse": "Plan: add concise outcome‑based checklists; collect exemplar PRs; flip branch protections to must‑fix checks; enforce CODEOWNERS/SLAs; remove ad‑hoc rules. Safety: TTF review ≤ X hrs, escape rate stable, bench evidence for perf PRs. Comms: share criteria, examples, and expectations; confirm by improved throughput and fewer regressions. Ask Cursor to draft the checklist, protections, and comms."
+    }
+  ]
+},
+  "review-process": {
+  "title": "Review Process Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "PRs are stalling for days. What process change do you require first?",
+      "options": [
+        "Add more reviewers randomly so someone will pick it up",
+        "Define SLAs, owner dashboards, and nudges to keep flow predictable",
+        "Mandate longer PR descriptions so reviewers have more to read",
+        "Wait for end‑of‑week batched reviews to reduce context switching"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: make flow visible and time‑bounded.; Why correct: SLAs + dashboards + nudges create accountability and reduce stale PRs.; Why others are wrong: random reviewers dilute ownership; long descriptions add noise; batching delays learning.; Cursor leverage: generate dashboards; set SLA alerts; add nudge bots.; Acceptance checks: stale PRs decrease; median time‑to‑review improves; ownership coverage increases.",
+      "keyConcepts": [
+        "SLAs",
+        "Dashboards",
+        "Ownership"
+      ]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Large PRs cause thrash. What policy should you drive?",
+      "options": [
+        "Encourage small, focused PRs with clear intent and scoped change surfaces",
+        "Allow very large PRs if the author is confident in the changes",
+        "Bundle unrelated refactors with features to reduce the number of PRs",
+        "Ask reviewers to allocate entire days to reading large PRs thoroughly"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Headline: reduce scope for faster convergence.; Why correct: smaller PRs reduce cognitive load and speed review while making rollbacks safer.; Why others are wrong: confidence is not evidence; bundling hides risk; allocating days doesn&rsquo;t scale.; Cursor leverage: suggest PR splits; generate scoped templates; add flags to gate risky changes.; Acceptance checks: PR size decreases; review iterations fewer; rollback path clear.",
+      "keyConcepts": [
+        "Small PRs",
+        "Scope control",
+        "Rollback safety"
+      ]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Threads devolve into unresolved debates. What mechanism helps?",
+      "options": [
+        "Escalate to director approval for all PRs to force decisions",
+        "Summarize decisions and trade‑offs in PR notes and use ADRs for larger pivots",
+        "Wait for a later sprint to revisit the discussion with fresh minds",
+        "Close threads without summary once a reviewer is satisfied"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: capture decisions to unblock and teach.; Why correct: PR notes and ADRs create clarity and a record for future maintainers.; Why others are wrong: blanket escalation is wasteful; waiting stalls delivery; silent closes lose context.; Cursor leverage: generate decision summaries; link ADR templates; surface related history.; Acceptance checks: notes present; ADRs linked when needed; fewer repeated debates.",
+      "keyConcepts": [
+        "Decision capture",
+        "ADRs",
+        "Maintainability"
+      ]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Rubber‑stamping appears common. What change do you recommend?",
+      "options": [
+        "Require a minimum number of comments per review regardless of substance",
+        "Introduce assignment rules by area and prompt for must‑fix vs suggestions",
+        "Remove all automation so reviewers must read everything manually",
+        "Rotate reviewers more frequently to spread work randomly"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: align reviews to expertise and prompts.; Why correct: proper assignment + prompts focus attention on risk and reduce rubber‑stamping.; Why others are wrong: comment quotas create noise; no automation slows flow; random rotation weakens accountability.; Cursor leverage: propose assignment rules; add comment macros; track must‑fix coverage.; Acceptance checks: rubber‑stamp rate drops; must‑fix prompts addressed; owner coverage improves.",
+      "keyConcepts": [
+        "Assignment rules",
+        "Prompts",
+        "Quality focus"
+      ]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Authors complain about context thrash. What should the process include?",
+      "options": [
+        "Short PR template prompting intent, risk, evidence, and links",
+        "Long narrative sections to capture every possible detail",
+        "Reviewer training to ask authors more clarifying questions",
+        "Slack threads instead of PR templates to keep things conversational"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Headline: right context up front.; Why correct: concise, structured templates reduce back‑and‑forth and set expectations.; Why others are wrong: long narratives bury the signal; training without structure won&rsquo;t fix inputs; Slack threads fragment history.; Cursor leverage: draft a template; auto‑fill from diffs; add a checklist for risky surfaces.; Acceptance checks: fewer clarification comments; faster approvals; better evidence attached.",
+      "keyConcepts": [
+        "PR templates",
+        "Context quality",
+        "Evidence"
+      ]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Stalled reviews spike during holidays. What guardrail helps most?",
+      "options": [
+        "Disable reviews during holidays to respect time off",
+        "Define backup owners in CODEOWNERS and set SLA nudges to backups",
+        "Increase the number of required approvals to enforce quality",
+        "Defer merges until all primary owners return to ensure oversight"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: build resilience into ownership.; Why correct: backups and nudges keep flow without lowering quality.; Why others are wrong: disabling reviews stalls delivery; more approvals slow further; deferring merges piles up risk.; Cursor leverage: update CODEOWNERS backups; configure nudge rules; create a holiday playbook.; Acceptance checks: SLA breaches drop; backups handle load; no quality regressions.",
+      "keyConcepts": [
+        "Backups",
+        "SLAs",
+        "Resilience"
+      ]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Async vs pairing review? What policy balances throughput and quality?",
+      "options": [
+        "Async only, pairing wastes time and doubles effort",
+        "Pair on risky/design‑heavy PRs; async for routine changes with checklists",
+        "Pair for all PRs to maximize shared context",
+        "Async only when owners are unavailable; otherwise always pair"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: use pairing intentionally on high‑leverage PRs.; Why correct: pairing on risky work accelerates convergence; async + checklists keeps routine flow fast.; Why others are wrong: extremes miss balance; pairing everything doesn&rsquo;t scale; async‑only loses shared understanding.; Cursor leverage: detect risk from diffs; suggest pairing slots; attach a checklist.; Acceptance checks: faster convergence on risky PRs; routine PRs stay fast; fewer re‑reviews.",
+      "keyConcepts": [
+        "Pairing vs async",
+        "Risk signals",
+        "Checklists"
+      ]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Queue health is opaque. What should you introduce?",
+      "options": [
+        "Manual spreadsheets to track review status across teams",
+        "Queue dashboards with SLA heatmaps and owner rollups",
+        "Daily standups dedicated solely to PR status updates",
+        "Slack pings to everyone whenever any PR is updated"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: make work visible.; Why correct: dashboards show bottlenecks and ownership at a glance.; Why others are wrong: spreadsheets are brittle; meetings increase overhead; broad pings create noise.; Cursor leverage: generate dashboards; set owner rollups; add SLA alerts.; Acceptance checks: visibility improves; bottlenecks addressed; fewer stale PRs.",
+      "keyConcepts": [
+        "Queue dashboards",
+        "Visibility",
+        "Ownership rollups"
+      ]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Draft a PR comment that upgrades the review process for a large feature. Include: PR splitting plan, owner assignment, SLA targets, and decision capture with ADR links.",
+      "sampleStrongResponse": "Propose splitting the PR by change surface (API, DB, UI); assign owners via CODEOWNERS; set SLA targets (first response ≤ X hrs, merge ≤ Y days). Add a decision note template and link to an ADR for trade‑offs. Ask Cursor to generate the splits, owner map, SLA dashboard, and a PR‑ready comment with acceptance checks."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Outline a rollout for a cross‑team review process refresh. Include add templates → backfill dashboards → flip SLA nudges → enforce owner routing → cleanup with safety checks and comms.",
+      "sampleStrongResponse": "Plan: add concise templates; build queue dashboards; enable SLA nudges; enforce CODEOWNERS routing; retire ad‑hoc processes. Safety: first response ≤ X hrs, stale PRs ↓ Y%, rubber‑stamp rate ↓ Z%. Comms: share expectations, dashboards, and playbooks. Ask Cursor to scaffold templates, dashboards, and automation."
+    }
+  ]
+},
   "risk-assessment": {
   "title": "Risk Assessment Knowledge Quiz",
   "totalQuestions": 10,
@@ -5557,6 +6768,179 @@ export const externalQuizzes: Record<string, Quiz> = {
       "points": 5,
       "question": "Compare canary vs Blue/Green for a high&ndash;traffic service. When would you choose each, and what rollback signals/triggers would you configure?",
       "sampleStrongResponse": "Use canary for incremental risk: start at 1&ndash;5% to validate error rate and p95 latency with multi&ndash;signal confirmation; expand as signals stay green. Choose Blue/Green when you need instant rollback and minimal downtime: maintain two environments and flip traffic atomically. In both cases, define SLO thresholds, synthetic probes, and alerting; auto&ndash;revert on threshold breach and notify stakeholders with version and reason."
+    }
+  ]
+},
+  "root-cause-analysis": {
+  "title": "Root Cause Analysis Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Teams jump to fixes during incidents. What stance should you require in RCAs?",
+      "options": [
+        "Focus on who made the mistake to ensure accountability in future",
+        "Capture an evidence‑based causal chain and conditions before prescribing fixes",
+        "Skip analysis when the system is restored to save time and cost",
+        "Adopt a rotating blame policy so responsibility is distributed evenly"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: analyze causes before actions.; Why correct: a causal chain with evidence avoids shallow symptom fixes and repeats.; Why others are wrong: blame harms learning; skipping analysis loses insight; blame rotation is performative.; Cursor leverage: generate RCA template; extract timeline from logs/traces; draft causal chain prompts.; Acceptance checks: evidence links present; chain reaches systemic factors; actions trace to causes.",
+      "keyConcepts": [
+        "Causal chain",
+        "Evidence links",
+        "Blamelessness"
+      ]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A &ldquo;5 whys&rdquo; stops at the first technical cause. Your guidance?",
+      "options": [
+        "Accept the first cause to close the RCA faster and move on",
+        "Push deeper into conditions/policies and verify with evidence and owners",
+        "Replace 5 whys with a vote on the most likely cause among reviewers",
+        "Ask for longer RCAs by adding more pages without changing content"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: dig to system conditions with owners.; Why correct: deeper why‑levels surface process/policy gaps and require ownership to fix.; Why others are wrong: stopping early repeats; voting is not analysis; longer docs without depth waste time.; Cursor leverage: prompt deeper whys; map causes to owners; add verification checks.; Acceptance checks: cause depth recorded; owner/actions assigned; verification plan included.",
+      "keyConcepts": [
+        "5 Whys",
+        "System conditions",
+        "Ownership"
+      ]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Actions from past RCAs were closed but issues repeat. What should RCAs include?",
+      "options": [
+        "Only a checkbox that the task was completed by the team",
+        "Acceptance criteria and effectiveness verification after rollout",
+        "A celebration note to improve morale after difficult weeks",
+        "A reminder to reopen the ticket if the issue happens again"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: verify that actions worked.; Why correct: acceptance criteria and post‑rollout checks confirm outcomes and prevent drift.; Why others are wrong: completion without effect is hollow; celebrations don&rsquo;t test impact; reminders are not verification.; Cursor leverage: generate acceptance criteria; add monitors/tests; schedule effectiveness reviews.; Acceptance checks: verification results linked; monitors in place; repeat rate drops.",
+      "keyConcepts": [
+        "Acceptance criteria",
+        "Effectiveness review",
+        "Monitors"
+      ]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "RCAs feel personal and defensive. What facilitation change do you drive?",
+      "options": [
+        "Keep naming individuals prominently to show transparency",
+        "Use blameless language and focus on systems, signals, and safeguards",
+        "Limit participation to managers only so emotions are contained",
+        "Move RCAs to email threads to reduce meeting time and cost"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: create safety to learn.; Why correct: blameless framing focuses on systems and encourages truthful evidence sharing.; Why others are wrong: naming blames; manager‑only limits facts; email threads lose facilitation.; Cursor leverage: provide neutral phrasing prompts; review drafts for bias; supply a blameless template.; Acceptance checks: language shifts to systems; participants contribute evidence; action quality improves.",
+      "keyConcepts": [
+        "Blamelessness",
+        "Facilitation",
+        "Learning culture"
+      ]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A complex outage spans multiple teams. What must the RCA capture?",
+      "options": [
+        "Only the final failing component since that is where the outage ended",
+        "A timeline of events with handoffs and conditions across systems",
+        "A list of possible causes gathered from memory and chat logs",
+        "An estimate of cost only; technical details can be inferred later"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: full timeline with cross‑team handoffs.; Why correct: a detailed, evidence‑backed timeline anchors causality and responsibilities.; Why others are wrong: final failure is a symptom; memories are unreliable; cost alone misses mechanism.; Cursor leverage: extract timelines from logs/traces; link PRs/incidents; produce a system map.; Acceptance checks: timeline complete; evidence links verified; teams sign off on sequence.",
+      "keyConcepts": [
+        "Timelines",
+        "Handoffs",
+        "Evidence"
+      ]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Teams debate quick fixes vs program work. What do you recommend in RCAs?",
+      "options": [
+        "Only quick fixes to restore service; program work is a luxury",
+        "Only program‑level actions because quick fixes are band‑aids",
+        "Both corrective (short‑term) and preventive (systemic) actions with owners",
+        "No actions until a steering committee meets next quarter"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Headline: balance corrective and preventive work.; Why correct: short‑term reduces immediate risk while program actions prevent repeats.; Why others are wrong: quick‑only repeats; preventive‑only delays risk reduction; waiting stalls learning.; Cursor leverage: classify actions as CAPA; add owners/dates; link to roadmap.; Acceptance checks: CAPA tracked; owners accountable; repeat rate declines quarter‑over‑quarter.",
+      "keyConcepts": [
+        "CAPA",
+        "Corrective vs preventive",
+        "Ownership"
+      ]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "RCAs are slow to publish. What process improvement do you drive?",
+      "options": [
+        "Skip RCAs for minor incidents to save time universally",
+        "Time‑box triage vs deep dive and template the artifacts collection",
+        "Publish RCAs only at quarter end to batch effort and reduce context switches",
+        "Assign RCAs to the most senior engineer only to guarantee quality"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: add structure and time boxes.; Why correct: separating quick triage from deep dive with templates accelerates throughput without losing depth.; Why others are wrong: skipping loses learning; batching creates delay; senior‑only reduces capacity.; Cursor leverage: provide RCA templates; auto‑collect logs/traces/PR links; add reminders.; Acceptance checks: time to publish improves; template adherence high; stakeholders satisfied with clarity.",
+      "keyConcepts": [
+        "Time‑boxing",
+        "Templates",
+        "Throughput"
+      ]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Action items from RCAs drift without follow‑through. What guardrail helps most?",
+      "options": [
+        "Trust teams to remember and exercise judgment later",
+        "Track actions with owners/dates and verify effectiveness post‑rollout",
+        "Close items after one week to prevent clutter in the tracker",
+        "Move items to a shared doc and revisit annually during audit season"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: make actions accountable and verified.; Why correct: ownership and verification keep improvements real.; Why others are wrong: memory fails; auto‑close hides risk; annual reviews are too slow.; Cursor leverage: create action tracker; set reminders; define verification monitors.; Acceptance checks: ownership present; verification status recorded; outcomes measured.",
+      "keyConcepts": [
+        "Action tracking",
+        "Verification",
+        "Accountability"
+      ]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Draft a PR comment to de‑risk an RCA publication for a major incident. Include: evidence links, causal chain summary, CAPA with owners/dates, and verification criteria tied to SLOs.",
+      "sampleStrongResponse": "Request a linked evidence pack (logs/traces/PRs), a concise causal chain from trigger to impact, and a CAPA list with owners/dates. Define verification like 0.5% error rate improvement and page rate ≤ Y/hr. Ask Cursor to assemble the timeline, draft neutral language, and generate the action tracker with acceptance checks."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Outline a phased RCA program upgrade. Include add template → backfill timelines → flip to burn‑rate pager policy → enforce CAPA tracking → cleanup old docs with safety checks and stakeholder comms.",
+      "sampleStrongResponse": "Plan: add a blameless template and evidence pack checklist; backfill timelines for the last N incidents; flip pager policy to burn‑rate; enforce CAPA tracking with owners/dates; retire legacy formats. Safety: publish time ≤ 7 days, repeat category rate ↓ X%, stakeholder satisfaction ≥ 4/5. Comms: share the template, new policies, and where to find evidence packs. Ask Cursor to draft templates, automation, and comms."
     }
   ]
 },

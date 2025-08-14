@@ -1,0 +1,141 @@
+{
+  "title": "Error Tracking Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Pager fatigue from noisy errors is harming on‑call. What policy should you require?",
+      "options": [
+        "Page on every error seen in any environment for maximum safety",
+        "Route all errors to a shared channel; engineers can triage later manually",
+        "Adopt burn‑rate/SLO paging and digest low‑impact noise with owners",
+        "Disable paging entirely and review errors weekly in a batch"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Headline: align alerts to user impact via SLOs.; Why correct: burn‑rate triggers page only when user experience is at risk; digests handle the rest.; Why others are wrong: page‑all burns trust; shared channels lose ownership; no paging hides urgent issues.; Cursor leverage: generate burn‑rate rules; map owners; create digest workflows.; Acceptance checks: SLO rules in config; owners assigned; page volume reduced with no MTTR increase.",
+      "keyConcepts": ["Burn rate", "SLOs", "Ownership routing"]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Errors are mis‑grouped after a framework upgrade. What do you ask for?",
+      "options": [
+        "Turn off grouping and show raw stacks to avoid mistakes",
+        "Customize fingerprinting to include stable frames and context fields",
+        "Group only by error message text to keep things simple",
+        "Ignore mis‑grouping; it averages out over time in dashboards"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: tune fingerprints for accuracy.; Why correct: adding stable frames and context avoids collapsing distinct bugs or splitting one issue.; Why others are wrong: no grouping explodes noise; message text is brittle; ignoring creates routing chaos.; Cursor leverage: propose fingerprint rules; add tests for grouping outcomes; generate migration notes for the upgrade.; Acceptance checks: grouping accuracy verified on a sample; issue links stable; owner routing correct.",
+      "keyConcepts": ["Fingerprinting", "Context fields", "Noise reduction"]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A PR initializes the tracker without env/service/trace context. Your response?",
+      "options": [
+        "Approve and add context later if owners request it",
+        "Block until standard context fields and redaction are present at init",
+        "Replace the tracker with console logs to keep things simple",
+        "Send all user PII to improve routing accuracy during incidents"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: require context and privacy from the start.; Why correct: standard fields make issues joinable to logs/traces and safe via redaction.; Why others are wrong: deferring context causes drift; console logs lack grouping/routing; PII breaks compliance.; Cursor leverage: generate wrapper SDK; add init checks; write redaction tests.; Acceptance checks: service/env/user/trace present; redaction proven; links to logs/traces verified.",
+      "keyConcepts": ["Context standard", "Redaction", "Joinability"]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Support asks &ldquo;What changed when crashes spiked?&rdquo; What do you enforce?",
+      "options": [
+        "Manual spreadsheets to track releases and compare error counts weekly",
+        "Release annotations in CI and dashboards linking issues to versions",
+        "Rely on engineer memory to recall when code shipped",
+        "Disable release tracking to reduce overhead and keep the pipeline simple"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: link errors to releases automatically.; Why correct: release annotations surface regressions and speed rollback decisions.; Why others are wrong: manual tracking is error‑prone; memory is unreliable; disabling loses critical signal.; Cursor leverage: add CI step for annotations; update dashboards; draft rollback notes.; Acceptance checks: release links present; regression identified in minutes; rollback path documented.",
+      "keyConcepts": ["Release health", "Regression detection", "Rollback readiness"]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "PII appeared in error payloads. What must the PR include?",
+      "options": [
+        "Add a warning comment to remind developers to be careful next time",
+        "Centralize redaction in the SDK and add tests to prove scrubbing",
+        "Disable error tracking for that module to avoid risk entirely",
+        "Route all errors containing PII to a private Slack channel only"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: fix the system, not just the instance.; Why correct: SDK‑level redaction with tests prevents recurrence and proves compliance.; Why others are wrong: comments don&rsquo;t prevent leaks; disabling loses visibility; private channels don&rsquo;t remove data.; Cursor leverage: implement redaction rules; add unit tests; run a backfill scrub if needed.; Acceptance checks: tests green; historical payloads sanitized; privacy sign‑off complete.",
+      "keyConcepts": ["PII redaction", "SDK wrapper", "Compliance"]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Ownership rules are stale and issues bounce between teams. Your PR ask?",
+      "options": [
+        "Remove ownership to avoid mis‑routing until a committee decides",
+        "Route everything to a central triage group indefinitely",
+        "Refresh owner maps by path/service and add fallbacks with escalation",
+        "Close unowned issues automatically after a short timeout"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Headline: keep routing current and resilient.; Why correct: updated maps with fallbacks reduce ping‑pong and speed resolution.; Why others are wrong: removing ownership adds delay; central triage overloads; auto‑closing hides problems.; Cursor leverage: generate owner maps from repo structure; add fallback rules; create a monthly audit task.; Acceptance checks: routing accuracy improved; bounce rate down; audit schedule in place.",
+      "keyConcepts": ["Ownership routing", "Fallbacks", "Operational maturity"]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Noise burst from a flaky integration test drives hundreds of entries. Best stance?",
+      "options": [
+        "Treat as real errors and keep paging the team until fixed",
+        "Throttle and digest the noise while tracking flake trends and owners",
+        "Delete all events from the tracker database to start fresh",
+        "Disable the error tracker until flakiness is resolved in CI"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: manage noise without losing signal.; Why correct: throttling/digests reduce alert fatigue while tracking trends keeps visibility and accountability.; Why others are wrong: paging for flakes burns trust; deletion loses history; disabling removes coverage.; Cursor leverage: configure throttles/digests; tag flaky sources; open stabilization tasks.; Acceptance checks: page rate stabilized; flake issues created; tracker visibility maintained.",
+      "keyConcepts": ["Alert hygiene", "Flake management", "Trend tracking"]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A new mobile app integrates the tracker. What do you require for crash‑free goals?",
+      "options": [
+        "Capture only stack traces without breadcrumbs to reduce payload size",
+        "Include breadcrumbs, release tags, and user/session context with privacy filters",
+        "Disable crash reporting in early versions to avoid noise during development",
+        "Rely on app store reviews to detect stability problems quickly"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: capture context for actionable mobile signals.; Why correct: breadcrumbs and release/session context make crashes reproducible and owner‑routable with privacy protection.; Why others are wrong: stacks alone slow triage; disabling loses early insight; reviews are too slow.; Cursor leverage: generate mobile SDK config; add filters; create release health dashboards.; Acceptance checks: context present; crash‑free target defined; privacy tests pass.",
+      "keyConcepts": ["Breadcrumbs", "Release tagging", "Crash‑free rate"]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Write a PR comment that de‑risks introducing a new error‑tracking SDK. Include: required context fields, burn‑rate paging rules, grouping fingerprints, and a rollback if alert rate exceeds Y/hr.",
+      "sampleStrongResponse": "Ask for a wrapper that initializes service/env/user/trace with default redaction; define burn‑rate thresholds and owners; propose fingerprint rules with tests. Set an alert rate cap (e.g., Y/hr) and a kill switch to revert to prior SDK if noise exceeds budget. Ask Cursor to scaffold the wrapper, tests, and config diffs, and produce a PR‑ready comment with acceptance checks."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Outline a phased rollout to move from noisy pages to SLO burn‑rate alerts. Include add → backfill history → flip paging → enforce policy → cleanup with safety checks and stakeholder comms.",
+      "sampleStrongResponse": "Plan: add burn‑rate policies and owners while continuing current alerts; backfill historical SLOs to set thresholds; flip paging to burn‑rate with a rollback toggle; enforce policy in code and dashboards; remove legacy page‑all rules. Safety: page rate ≤ baseline, MTTR stable, false positive rate ≤ X%. Comms: announce policy, thresholds, and owner maps to support/eng; confirm success by reduced noise and unchanged user impact. Ask Cursor to draft policies, owner maps, and a comms note."
+    }
+  ]
+}

@@ -1,0 +1,141 @@
+{
+  "title": "Review Criteria Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "PR touches an auth route and adds a new query. What must you require as review criteria?",
+      "options": [
+        "General thumbs‑up from any reviewer without domain context for speed",
+        "Evidence of security/perf gates (threat prompts, contract tests, benchmark or trace) with must‑fix vs suggestions labeled",
+        "Only style conformance and naming since CI will catch the rest",
+        "A larger PR to include unrelated refactors so reviewers see more context"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: tie criteria to risk and evidence.; Why correct: security/perf‑sensitive changes need explicit evidence and must‑fix labeling to avoid escapes while preserving flow.; Why others are wrong: thumbs‑up lacks rigor; style‑only misses risk; bundling increases scope and delays.; Cursor leverage: generate risk prompts; suggest evidence snippets; label feedback categories.; Acceptance checks: evidence attached; must‑fix items addressed; CI green on required checks.",
+      "keyConcepts": ["Risk‑based criteria", "Must‑fix vs suggestion", "Evidence"]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Review threads drift into style bikeshedding. What is your PR ask?",
+      "options": [
+        "Escalate the debate until consensus emerges regardless of time",
+        "Adopt formatter/linter and mark style comments as suggestions by policy",
+        "Block the PR until all style comments are resolved exactly as requested",
+        "Move the conversation to a separate doc and pause the PR for a week"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: automate style and de‑escalate nitpicks.; Why correct: formatter/linter remove noise and suggestion labels keep velocity.; Why others are wrong: escalation wastes time; blocking for nits harms flow; pausing stalls delivery.; Cursor leverage: add formatter/linter configs; convert comments to suggestions; update PR template language.; Acceptance checks: style noise drops; only must‑fix items block; throughput stable or better.",
+      "keyConcepts": ["Formatter/linter", "Suggestions", "Velocity"]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A contract change is implied by the diff. What should be required before merge?",
+      "options": [
+        "Trust downstream teams to adapt after release if anything breaks",
+        "Add or update contract tests and versioning/compat notes with rollout plan",
+        "Skip tests because reviewers manually verified the payload shape",
+        "Rename functions to signal a change without further action"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: verify contracts and plan rollout.; Why correct: contract tests and versioning prevent breaking integrators and clarify migration; rollout plans reduce blast radius.; Why others are wrong: hope is not a plan; manual checks miss cases; renames without tests still break callers.; Cursor leverage: generate contract tests; draft versioning notes; create phased rollout tasks.; Acceptance checks: tests green; deprecation path documented; flags/alerts in place.",
+      "keyConcepts": ["Contract tests", "Versioning", "Rollout plan"]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Reviewers disagree on performance impact. What is the right review criterion?",
+      "options": [
+        "Merge based on seniority to avoid delay",
+        "Require evidence: bench/trace with a target (e.g., p95 ≤ 150 ms) and scope of change",
+        "Wait for production complaints to validate concerns empirically",
+        "Add more reviewers until a majority agrees without evidence"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: decide by evidence, not opinion.; Why correct: measured impact with targets aligns changes to SLOs and avoids regressions.; Why others are wrong: seniority and majority are not proofs; waiting risks customers.; Cursor leverage: propose a micro‑benchmark/trace plan; extract targets from SLOs; post a PR checklist.; Acceptance checks: evidence attached; targets met; no regression alerts post‑merge.",
+      "keyConcepts": ["Performance evidence", "Targets/SLOs", "Scope control"]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A reviewer blocks on a preference that isn&rsquo;t policy. What should happen?",
+      "options": [
+        "Keep blocking until the author conforms to the reviewer&rsquo;s style",
+        "Label as suggestion, propose a standards update if valuable, and unblock",
+        "Escalate to management immediately to enforce the reviewer&rsquo;s view",
+        "Close the PR and ask for a new one to reset the discussion"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: separate must‑fix from preference.; Why correct: suggestions preserve flow while channeling good ideas into standards.; Why others are wrong: blocking on preference slows delivery; escalation is premature; closing the PR is wasteful.; Cursor leverage: generate example‑backed standards PR; convert comment to suggestion; update template guidance.; Acceptance checks: PR unblocked; follow‑up standards issue filed; cycle time stable.",
+      "keyConcepts": ["Must‑fix vs suggestion", "Standards updates", "Flow"]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Risky area (payments) had no domain reviewer. What is the correct policy?",
+      "options": [
+        "Any available reviewer can approve to keep velocity high",
+        "Require CODEOWNERS routing and backup reviewers for the domain",
+        "Skip reviews for small diffs because risk is proportional to lines changed",
+        "Defer to post‑merge verification during release only"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: route risky diffs to owners.; Why correct: CODEOWNERS/backup ensures expert eyes on high‑risk areas.; Why others are wrong: velocity without expertise risks escapes; LOC isn&rsquo;t risk; post‑merge checks are too late.; Cursor leverage: update CODEOWNERS; add label routing; propose reviewer rotation.; Acceptance checks: owner review recorded; backups defined; routing audit green.",
+      "keyConcepts": ["CODEOWNERS", "Reviewer routing", "Risk surfaces"]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Authors complain reviews take too long. What should the criteria emphasize?",
+      "options": [
+        "Long, unstructured PR descriptions to cover every detail",
+        "Short templates prompting intent/risk/evidence and linking to ADRs/exemplars",
+        "Allow merges without reviews during peak periods to catch up",
+        "Add more reviewers to each PR until someone responds"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: improve inputs to improve throughput.; Why correct: concise templates provide the right context fast and reduce back‑and‑forth.; Why others are wrong: long descriptions add noise; skipping reviews increases risk; more reviewers can dilute ownership.; Cursor leverage: generate a PR template; auto‑fill from diff; surface related ADRs/exemplars.; Acceptance checks: TTF review improves; fewer clarification comments; stable quality metrics.",
+      "keyConcepts": ["PR template", "Context quality", "Throughput"]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A perf‑sensitive change lands without evidence. What is your response?",
+      "options": [
+        "Approve to avoid blocking the release train and gather data later",
+        "Request evidence (bench/trace) and set a rollback trigger if p95 worsens",
+        "Add an additional reviewer to strengthen consensus in the thread",
+        "Increase staging hardware to make the numbers look better"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: require evidence and rollback path.; Why correct: data + rollback reduces customer risk while enabling progress.; Why others are wrong: approve‑now risks regressions; consensus without data is weak; more hardware hides issues.; Cursor leverage: draft bench plan; set p95 target; generate rollback toggle.; Acceptance checks: evidence attached; target met; rollback validated in staging.",
+      "keyConcepts": ["Evidence", "Rollback", "Perf targets"]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Write a PR comment that de‑risks a security‑touching change. Include: threat prompts, unit/contract tests, SAST evidence, and must‑fix vs suggestions with acceptance checks.",
+      "sampleStrongResponse": "Request a short threat prompt (entry points, trust boundaries), unit + contract tests for new/changed surfaces, and SAST output linked to lines. Label must‑fix vs suggestions explicitly. Ask Cursor to generate the prompt skeleton, tests, and a PR‑ready checklist with acceptance checks (tests green, SAST clean, routes documented)."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Outline a policy refresh for review criteria across repos. Include add checklist → backfill exemplars → flip to must‑fix gating → enforce owners/SLAs → cleanup with safety checks and comms.",
+      "sampleStrongResponse": "Plan: add concise outcome‑based checklists; collect exemplar PRs; flip branch protections to must‑fix checks; enforce CODEOWNERS/SLAs; remove ad‑hoc rules. Safety: TTF review ≤ X hrs, escape rate stable, bench evidence for perf PRs. Comms: share criteria, examples, and expectations; confirm by improved throughput and fewer regressions. Ask Cursor to draft the checklist, protections, and comms."
+    }
+  ]
+}
