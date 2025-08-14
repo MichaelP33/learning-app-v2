@@ -1,0 +1,141 @@
+{
+  "title": "Rate Limiting Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "PR adds a global limit without headers. What is your requirement?",
+      "options": [
+        "Return 429 only; clients can guess backoff",
+        "Return 429 with Retry‑After and X‑RateLimit‑* headers and provide client guidance",
+        "Throttle silently by dropping connections",
+        "Use 500 so clients retry more aggressively"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: clear server hints prevent retry storms.; Why correct: Retry‑After and X‑RateLimit‑* guide clients to adapt safely.; Why others are wrong: silent drops and 500s cause thundering herds; no headers create confusion.; Cursor leverage: scaffold middleware; add headers; update docs/SDK.; Acceptance checks: headers present; client examples updated; 429 rate stable.",
+      "keyConcepts": ["429", "Retry‑After", "X‑RateLimit‑*"]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Limits are enforced by IP only and multi‑tenant customers are throttled unfairly. What do you require?",
+      "options": [
+        "Stay with IP; it’s simplest",
+        "Limit by trusted identity (API key/OAuth client) and segment by plan tier",
+        "Allowlist all known IPs to avoid throttling",
+        "Disable limits for paying customers"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: choose the right identity key for fairness.; Why correct: API key/client identity maps to tenants; plan tiers align SLOs with revenue.; Why others are wrong: IP misattributes; allowlists don’t scale; removing limits breaks isolation.; Cursor leverage: propose identity mapping; config by plan; dashboards.; Acceptance checks: identity confirmed; plan tiers applied; fairness issues resolved.",
+      "keyConcepts": ["Identity", "Plan tiers", "Fairness"]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Short bursts cause user‑visible throttling. What pattern do you require?",
+      "options": [
+        "Leaky bucket only with strict steady state",
+        "Token bucket with burst capacity and clear reset semantics",
+        "Global lock around hot endpoints",
+        "No throttling for GET endpoints"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: allow short bursts within budget.; Why correct: token buckets smooth UX while respecting limits.; Why others are wrong: strict leaky buckets hurt UX; global locks harm throughput; GET can still DDoS.; Cursor leverage: configure bucket sizes; add tests; document headers.; Acceptance checks: burst tolerated; p95 unchanged; error rates stable.",
+      "keyConcepts": ["Token bucket", "Burst", "Reset"]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Batch jobs starve interactive UI. What requirement balances traffic?",
+      "options": [
+        "Single shared bucket for all endpoints",
+        "Separate pools for writes/reads and job/UI with different budgets",
+        "Disable batch jobs during business hours only",
+        "Request clients to slow down manually"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: segment buckets by route and intent.; Why correct: separate pools protect UX and core writes.; Why others are wrong: single buckets cause starvation; time windows are brittle; manual requests don’t scale.; Cursor leverage: per‑route config; docs for SDK backoff; monitoring.; Acceptance checks: UI p95 stable; 429s reduced on UI; batch throughput predictable.",
+      "keyConcepts": ["Segmentation", "GET/POST pools", "SLOs"]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Abuse spike from a single ASN/IP range floods login. What immediate control do you require?",
+      "options": [
+        "Disable limits globally so legit users pass",
+        "Add temporary per‑IP/ASN dampening and CAPTCHA where appropriate",
+        "Throttle by region only",
+        "Return 500 to discourage attackers"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: targeted dampening limits blast radius.; Why correct: per‑IP/ASN throttles abuse while preserving legit traffic; CAPTCHAs help selectively.; Why others are wrong: disabling limits breaks reliability; region throttling is too coarse; 500s encourage retries.; Cursor leverage: add edge rules; feature toggle; alerting.; Acceptance checks: abuse traffic reduced; legit success rate maintained; toggle removed after window.",
+      "keyConcepts": ["Abuse control", "Per‑IP/ASN", "Feature toggle"]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "PR suggests silent drops on limit to hide behavior. What is your position?",
+      "options": [
+        "Approve; security by obscurity is safer",
+        "Reject; respond with 429 and guidance so clients back off",
+        "Return 408 to imply a timeout instead",
+        "Randomize between 429 and 500 to confuse bots"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: explicit feedback prevents storms.; Why correct: 429 + headers enables adaptive clients and stability.; Why others are wrong: obscurity worsens retries; 408 misleads; randomization breaks clients.; Cursor leverage: middleware changes; client examples; monitors.; Acceptance checks: proper status/headers; client SDKs updated; retry storms down.",
+      "keyConcepts": ["429", "Client guidance", "Stability"]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Global limiter sits in the application layer only. What improvement do you require?",
+      "options": [
+        "Keep it app‑only; edge work is unnecessary",
+        "Add an edge/gateway limiter backed by Redis and jittered TTLs; keep app‑side as defense in depth",
+        "Move limiter to a cron job that runs hourly",
+        "Disable limiter in staging to keep config simple"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: enforce limits as close to the edge as possible.; Why correct: edge limits reduce load earlier and improve consistency; app‑side remains as backup.; Why others are wrong: cron is irrelevant; staging config drift is risky; app‑only increases cost.; Cursor leverage: scaffold edge middleware; config validation; dashboards.; Acceptance checks: edge enabled; app fallback present; consistency improved.",
+      "keyConcepts": ["Edge limiting", "Redis", "Defense in depth"]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Clients hammer 429 without backoff. What do you require in SDK guidance?",
+      "options": [
+        "Retry immediately to overcome transient throttles",
+        "Use exponential backoff with jitter and honor Retry‑After/X‑RateLimit‑Reset",
+        "Stop retrying permanently after the first 429",
+        "Retry faster when Retry‑After is missing"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: disciplined retries protect systems and UX.; Why correct: jittered backoff and server hints prevent synchronized storms.; Why others are wrong: immediate/faster retries amplify load; stopping permanently breaks resilience.; Cursor leverage: ship SDK helpers; docs; examples.; Acceptance checks: SDKs updated; backoff adopted; 429 spikes dampened.",
+      "keyConcepts": ["Exponential backoff", "Jitter", "Retry‑After"]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Draft a policy PR for rate limiting: identities, windows, algorithms, headers, and SDK guidance. Include measurable acceptance checks.",
+      "sampleStrongResponse": "Policy: limit by API key/client with token bucket (rate + burst). Windows: 60s and daily quotas per plan. Headers: X‑RateLimit‑Limit/Remaining/Reset and Retry‑After. SDK: exponential backoff with jitter. Acceptance: headers present on 100% of 429; backoff in SDKs; fairness tickets drop; UI p95 unchanged."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Outline a rollout plan to segment GET/POST pools and per‑tenant limits with monitoring and rollback toggles. Include comms to key customers.",
+      "sampleStrongResponse": "Create config for separate GET/POST buckets and per‑tenant caps by plan. Roll out behind flags with dashboards for top 429 producers. Success: UI p95 stable, error budgets respected, and batch throughput within targets. Provide rollback toggles and notify key customers with guidance and SDK updates."
+    }
+  ]
+}

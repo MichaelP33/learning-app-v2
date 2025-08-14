@@ -168,6 +168,179 @@ export const externalQuizzes: Record<string, Quiz> = {
     }
   ]
 },
+  "api-versioning": {
+  "title": "API Versioning Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "PR introduces breaking changes without any policy. What do you require before merge?",
+      "options": [
+        "Ship now and update docs later if customers complain",
+        "Adopt a versioning policy (URI or header) with frozen behavior per major and additive changes within a major",
+        "Hide changes behind feature flags permanently without docs",
+        "Support unlimited concurrent majors indefinitely"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: version lanes isolate breakers; majors freeze contracts.; Why correct: a clear mechanism and compatibility rules prevent silent breaks.; Why others are wrong: ship‑now erodes trust; flags without policy drift; infinite majors explode cost.; Cursor leverage: generate policy PR text; diff OpenAPI between majors; scaffold routers.; Acceptance checks: mechanism chosen; rules documented; routers/tests in place.",
+      "keyConcepts": [
+        "Versioning mechanism",
+        "Compatibility contract",
+        "Additive changes"
+      ]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Team wants both header and URI versioning for flexibility. What stance keeps behavior predictable?",
+      "options": [
+        "Use both; clients can pick any and behavior may differ",
+        "Pick one primary mechanism and apply it consistently across endpoints and gateways",
+        "Avoid versioning entirely; rely on minor changes only",
+        "Randomize version selection per request to balance traffic"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: one primary mechanism reduces ambiguity.; Why correct: consistent routing and caching avoid drift and bugs.; Why others are wrong: mixed mechanisms create cache/tooling issues; no versioning blocks evolution; randomization is chaos.; Cursor leverage: update gateways; adjust caches/CDN; regenerate docs/SDK.; Acceptance checks: single mechanism enforced; headers/paths validated; caches configured.",
+      "keyConcepts": [
+        "URI vs header",
+        "Consistency",
+        "Caching"
+      ]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Silent breaking change in v1 response fields. What remediation do you require?",
+      "options": [
+        "Leave it; customers will adapt",
+        "Add Deprecation/Sunset headers, restore v1 schema, and ship additive v1.1 while planning v2",
+        "Delete v1 immediately and force upgrade",
+        "Change the SDK only without changing the API"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: fix regressions in‑lane and signal change.; Why correct: restore v1 behavior, add headers, and plan a clean v2.; Why others are wrong: ignoring breaks trust; forced migrations cause outages; SDK‑only diverges.; Cursor leverage: diff OpenAPI; generate comms; add middleware for headers.; Acceptance checks: v1 restored; headers present; v2 plan published.",
+      "keyConcepts": [
+        "Deprecation",
+        "Sunset",
+        "Compatibility"
+      ]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A new major (v2) is planned. What rollout plan do you require?",
+      "options": [
+        "Cut over all traffic at once and delete v1 immediately",
+        "Staged rollout with per‑version routers, per‑version docs/SDKs, and adoption dashboards",
+        "Hide v2 behind a query parameter to avoid router changes",
+        "Keep both versions forever to avoid customer comms"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: stage majors with clear lanes and visibility.; Why correct: routers/docs/SDKs per version and dashboards enable orderly adoption.; Why others are wrong: big‑bang cuts break clients; hidden params drift; infinite support explodes cost.; Cursor leverage: scaffold routers; split OpenAPI; build dashboards.; Acceptance checks: per‑version docs/SDKs live; dashboards show adoption; rollback path defined.",
+      "keyConcepts": [
+        "Per‑version routers",
+        "Docs/SDKs",
+        "Staged rollout"
+      ]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Comms for v1 sunset are missing. What do you require?",
+      "options": [
+        "Tweet once and hope customers see it",
+        "Add Deprecation/Sunset headers with dates, publish guides, and email key accounts",
+        "Rely on support tickets to notify customers",
+        "Change only the SDK release notes"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: warn in responses and out‑of‑band.; Why correct: headers surface warnings where calls happen; guides and direct comms de‑risk adoption.; Why others are wrong: tweets and tickets miss traffic; SDK‑only misses curl and custom clients.; Cursor leverage: add headers; draft email templates; generate upgrade guides.; Acceptance checks: headers on every v1 call; comms sent; guide published.",
+      "keyConcepts": [
+        "Deprecation headers",
+        "Sunset",
+        "Migration guides"
+      ]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Within a major, a field removal is proposed. What policy do you require?",
+      "options": [
+        "Allow removals if tests pass",
+        "Freeze schemas within a major; allow only additive changes (new optional fields)",
+        "Remove fields silently and update docs later",
+        "Gate removals by a feature flag only"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: additive‑only policy per major.; Why correct: freezing prevents silent breaks; additive changes preserve compatibility.; Why others are wrong: tests don’t cover all clients; silent changes break consumers; flags without policy drift.; Cursor leverage: add compatibility checks in CI; diff OpenAPI; update style guide.; Acceptance checks: CI blocks breaking diffs; policy documented; examples updated.",
+      "keyConcepts": [
+        "Compatibility",
+        "Additive changes",
+        "CI checks"
+      ]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Gateways/CDN misroute versions occasionally. What do you require to isolate behavior?",
+      "options": [
+        "Allow mixed behavior; it averages out",
+        "Per‑version routes and cache keys; include version in analytics and alerts",
+        "Disable caching entirely to avoid issues",
+        "Forward everything to a single backend and inspect bodies for version"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: route and observe by version.; Why correct: per‑version keys prevent drift and enable visibility.; Why others are wrong: mixed lanes erode trust; no cache kills perf; body sniffing is fragile.; Cursor leverage: configure cache keys; add version analytics; build alerts.; Acceptance checks: version‑tagged metrics; stable routing; no cross‑lane drift.",
+      "keyConcepts": [
+        "Version routing",
+        "Caching",
+        "Analytics"
+      ]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "SDKs and docs drift from behavior. What guardrail do you require?",
+      "options": [
+        "Hand‑edit docs monthly as time allows",
+        "Generate per‑version SDKs/docs from OpenAPI in CI and publish together with releases",
+        "Let each team maintain docs independently of code",
+        "Rely on community PRs to correct mismatches"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: generate artifacts from the source of truth.; Why correct: CI‑generated SDKs/docs keep parity across versions.; Why others are wrong: hand edits drift; siloed docs diverge; ad‑hoc fixes lag.; Cursor leverage: set up pipelines; split specs per version; publish on release.; Acceptance checks: generated artifacts; parity tests green; release notes linked.",
+      "keyConcepts": [
+        "OpenAPI",
+        "SDK generation",
+        "Docs parity"
+      ]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Draft a versioning policy PR note: mechanism (URI or header), compatibility rules (additive within major), deprecation headers, and adoption dashboards. Include acceptance checks.",
+      "sampleStrongResponse": "Policy: choose URI (/v2/...) as the primary lane; freeze behavior per major; allow additive only within a major. Signal deprecations with Deprecation/Sunset headers and dates. Generate per‑version OpenAPI/SDKs. Dashboard: traffic by version and top lagging accounts. Acceptance: routing tests pass; headers present; v1/v2 docs live; alerts wired."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Outline a v1 → v2 migration plan: staging, adapters, comms, rollout, and success metrics (e.g., &ge; 90% v2 traffic in 60 days, zero Sev‑1s).",
+      "sampleStrongResponse": "Stage v2 behind per‑version routers; keep v1 stable. Provide adapters/shims where possible. Publish guides and SDKs. Roll out by account cohorts with dashboards and alerts. Success: &ge; 90% v2 traffic by day 60; deprecation notices acknowledged; no Sev‑1 incidents; rollback plan to route back to v1 if error rate or p95 breach thresholds."
+    }
+  ]
+},
   "artifact-management": {
   "title": "Artifact Management Knowledge Quiz",
   "totalQuestions": 10,
@@ -338,6 +511,185 @@ export const externalQuizzes: Record<string, Quiz> = {
       "points": 5,
       "question": "Your org experienced a &ldquo;prod tag drifted from staging&rdquo; incident. Propose controls in registries and CD to prevent this class of issue permanently.",
       "sampleStrongResponse": "Require deploy by digest in CD; block mutable tags at prod. Verify signatures and provenance at deploy. Record promotion events with actor/time/digest. Use regional mirrors for resilience. Add policy that forbids rebuilds during promotion and alerts on tag moves in prod namespaces."
+    }
+  ]
+},
+  "authentication-authorization": {
+  "title": "Authentication & Authorization Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "PR uses ID Tokens to authorize API calls. What correction do you require?",
+      "options": [
+        "Allow ID Tokens for APIs to simplify flows",
+        "Require Access Tokens for APIs with audience checks; keep ID Token for the client app",
+        "Use refresh tokens directly on APIs for stronger security",
+        "Accept any JWT as long as the signature verifies"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: Access Tokens are for APIs; ID Tokens are for identity.; Why correct: Access Tokens include audience/scope for APIs; ID Tokens identify the user to the client.; Why others are wrong: refresh tokens are not presented to APIs; any‑JWT acceptance risks confused deputy attacks.; Cursor leverage: add middleware for aud/scope; update docs; generate examples.; Acceptance checks: ID vs Access split documented; audience verified; routes enforce scopes.",
+      "keyConcepts": [
+        "Access Token",
+        "ID Token",
+        "Audience",
+        "Scopes"
+      ]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Tokens are long‑lived and sessions don’t rotate. What change do you require?",
+      "options": [
+        "Keep tokens long to reduce logins",
+        "Adopt short‑lived access tokens with refresh rotation and jti checks",
+        "Use a single everlasting access token per user",
+        "Rotate only ID Tokens and leave access tokens as is"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: reduce blast radius with short‑lived access and RTR.; Why correct: rotation with jti prevents replay chains; shorter access lifetimes reduce risk.; Why others are wrong: long‑lived tokens increase breach impact; rotating wrong token doesn’t help.; Cursor leverage: scaffold RTR; add caches by kid; write PR acceptance checks.; Acceptance checks: access TTL short; RTR enforced; revoke path tested.",
+      "keyConcepts": [
+        "Refresh rotation",
+        "jti",
+        "TTL",
+        "Blast radius"
+      ]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Frontend stores tokens in localStorage. What requirement do you set?",
+      "options": [
+        "Keep localStorage; it’s convenient",
+        "Store tokens in HTTP‑only, Secure, SameSite cookies and protect against CSRF",
+        "Embed tokens in URLs for easy sharing",
+        "Send tokens to the client only as base64 to hide them"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: protect tokens from XSS and CSRF.; Why correct: HTTP‑only cookies prevent JS access; SameSite and CSRF patterns mitigate forgery.; Why others are wrong: localStorage is XSS‑exposed; URLs leak; base64 is not security.; Cursor leverage: scaffold cookie config; add CSRF protection; update docs.; Acceptance checks: cookies configured; CSRF checks in place; tests green.",
+      "keyConcepts": [
+        "HTTP‑only cookies",
+        "SameSite",
+        "CSRF",
+        "XSS"
+      ]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Scopes are role names (e.g., admin, user) and partners have over‑broad access. What do you require?",
+      "options": [
+        "Keep role scopes; least privilege is too complex",
+        "Move to resource‑action scopes (e.g., orders:read, refunds:create) and centralize checks",
+        "Let each microservice invent its own scope names independently",
+        "Grant all scopes by default and deny on incident"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: encode least privilege via resource‑action scopes.; Why correct: fine‑grained scopes reduce privilege and align to endpoints.; Why others are wrong: role names are coarse; siloed scopes drift; allow‑all is unsafe.; Cursor leverage: generate a scope matrix; add policy middleware; write PR wording for checks.; Acceptance checks: matrix approved; checks centralized; audit logs capture decisions.",
+      "keyConcepts": [
+        "Least privilege",
+        "Scopes",
+        "Policy middleware",
+        "Audit"
+      ]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "JWKS rotation leads to intermittent token validation failures. What guardrail do you require?",
+      "options": [
+        "Fetch JWKS on every request to ensure freshness",
+        "Cache by kid with backoff and expiry; retry gracefully when keys rotate",
+        "Disable rotation to keep keys stable",
+        "Accept unsigned tokens temporarily during rotation"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: resilient key validation via kid‑aware caches.; Why correct: kid cache + backoff handles rotation safely; prevents outages.; Why others are wrong: per‑request fetch hurts reliability; no rotation is unsafe; unsigned tokens are unacceptable.; Cursor leverage: scaffold JWKS cache; add metrics and alerts; update docs.; Acceptance checks: cache hit rate stable; rotation tested; errors within budget.",
+      "keyConcepts": [
+        "JWKS",
+        "kid",
+        "Caching",
+        "Backoff"
+      ]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Sensitive endpoints (refunds) lack step‑up auth. What do you require?",
+      "options": [
+        "Trust existing sessions; refunds are rare",
+        "Require step‑up auth and re‑authentication window; audit decisions and actor",
+        "Add an extra confirmation dialog only",
+        "Rely on support to catch fraud post‑hoc"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: step‑up for high‑risk actions.; Why correct: step‑up reduces abuse and creates audit evidence.; Why others are wrong: dialogs are not auth; post‑hoc detection is late.; Cursor leverage: scaffold step‑up flow; add audit logs; update scopes.; Acceptance checks: step‑up enforced; audits recorded; abuse rate down.",
+      "keyConcepts": [
+        "Step‑up authentication",
+        "Audit",
+        "Risk"
+      ]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "APIs accept any token regardless of audience claims. What must be added?",
+      "options": [
+        "Accept all tokens to maximize compatibility",
+        "Validate audience (aud) against the API and enforce scope checks per route",
+        "Only check token expiry and ignore audience",
+        "Reject tokens with refresh tokens present"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: validate audience and scopes per API.; Why correct: aud prevents token replay to the wrong API; scopes encode permissions.; Why others are wrong: ignoring aud enables confused deputy; expiry‑only is insufficient.; Cursor leverage: add audience config; route‑level scope checks; tests.; Acceptance checks: aud enforced; scope checks per route; tests pass.",
+      "keyConcepts": [
+        "Audience",
+        "Scopes",
+        "Confused deputy"
+      ]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Partner integration needs machine‑to‑machine auth. What pattern do you require?",
+      "options": [
+        "Share a user’s refresh token with the partner",
+        "Use client credentials or mTLS with scoped Access Tokens and short TTLs",
+        "Let partners call with unsigned JSON payloads",
+        "Reuse session cookies between services"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: use proper service credentials with scopes.; Why correct: client credentials/mTLS issue tokens for services with least privilege.; Why others are wrong: user tokens and cookies are wrong for services; unsigned payloads are insecure.; Cursor leverage: scaffold client‑credentials flow; generate policy; example requests.; Acceptance checks: tokens scoped; TTL short; logs include sub/aud.",
+      "keyConcepts": [
+        "Client credentials",
+        "mTLS",
+        "Scopes",
+        "TTL"
+      ]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Draft a PR comment for securing a new payments API: token types, scopes, TTLs, JWKS caching, and audit requirements. Include measurable acceptance checks.",
+      "sampleStrongResponse": "Require Access Tokens (aud=payments) with resource‑action scopes; TTL &le; 15 min; refresh rotation for browser flows. Cache JWKS by kid with backoff. Log auth decisions with sub/aud/scope/decision. Acceptance: 100% aud validated; scopes enforced per route; rotation tests green; audit logs searchable within 5 min."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Outline a least‑privilege rollout: scope matrix, central checks, step‑up for sensitive actions, and comms. Include success metrics (e.g., over‑broad scope usage ↓ 80%).",
+      "sampleStrongResponse": "Define a resource‑action scope matrix and generate policy middleware for all services. Add step‑up for refunds and admin routes. Centralize checks and audit logs. Communicate partner impact and SDK updates. Success: over‑broad scope usage ↓ 80%, auth errors &le; baseline, and incident rate for access escalation → near zero."
     }
   ]
 },
@@ -3483,6 +3835,186 @@ export const externalQuizzes: Record<string, Quiz> = {
     }
   ]
 },
+  "indexing-strategies": {
+  "title": "Indexing Strategies Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Endpoint lists paid orders by status and created_at with ORDER BY created_at DESC LIMIT 50. What index do you require?",
+      "options": [
+        "A composite on (status, created_at DESC) that covers id/amount to avoid lookups",
+        "An index only on created_at while scanning status in the table",
+        "A functional index on lower(status) to cover all cases generically",
+        "Separate indexes on status and created_at and let the optimizer merge"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Headline: match index order to predicates and sort, cover the select list.; Why correct: equality before range enables a seek + ordered scan; covering avoids lookups.; Why others are wrong: single‑column or function‑wrapped choices lead to scans; index merge is unstable.; Cursor leverage: extract query shape; propose composite order and INCLUDE columns; show plan delta.; Acceptance checks: EXPLAIN shows seek; ORDER BY satisfied; rows read within budget.",
+      "keyConcepts": [
+        "Composite order",
+        "Equality before range",
+        "Covering index",
+        "Rows read"
+      ]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "PR adds covering indexes to every list endpoint and writes slowed down. What review stance keeps balance?",
+      "options": [
+        "Keep all covering indexes; dashboards matter more than writes",
+        "Prune overlapping indexes; keep a minimal set tied to real predicates and budgets",
+        "Add shards so write slowdowns disappear without trade‑offs",
+        "Move all writes to nights so indexes don’t matter during the day"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: curate a minimal set of indexes that pay for themselves.; Why correct: each index adds write work; target hot paths and remove redundancy.; Why others are wrong: reads‑only focus ignores OLTP; more shards don’t fix per‑row index cost; timing shifts pain.; Cursor leverage: inspect predicates; suggest a canonical composite; provide a rollback for dropped indexes.; Acceptance checks: unused indexes pruned; hot paths covered; write metrics stable.",
+      "keyConcepts": [
+        "Write amplification",
+        "Predicate coverage",
+        "Pruning",
+        "OLTP vs analytics"
+      ]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Query uses WHERE DATE(created_at)=? AND ORDER BY created_at. What sargability fix do you require?",
+      "options": [
+        "Keep DATE() on the column; optimizers handle functions well now",
+        "Add an index on DATE(created_at) and keep the function in predicates",
+        "Rewrite to a range on created_at (>= start AND < end) so the index can seek",
+        "Drop ORDER BY and sort in the client to reduce server work"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Headline: keep predicates sargable to enable seeks.; Why correct: removing the function allows index use and ordered scans.; Why others are wrong: function‑wrapped columns defeat indexes; client sorts move cost and risk; functional indexes add complexity.; Cursor leverage: rewrite predicate; show EXPLAIN before/after; propose a composite with ORDER BY alignment.; Acceptance checks: seek confirmed; no sort operator; rows read drop.",
+      "keyConcepts": [
+        "Sargability",
+        "Range predicates",
+        "EXPLAIN",
+        "ORDER BY alignment"
+      ]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Multi‑tenant query filters by tenant_id = ? and updated_at BETWEEN ? AND ? with ORDER BY updated_at. What composite order do you require?",
+      "options": [
+        "(updated_at, tenant_id) so the range comes first for better scans",
+        "(updated_at DESC) only since ORDER BY dominates everything",
+        "(tenant_id) only and accept a sort later for simplicity",
+        "(tenant_id, updated_at) so equality leads and range follows the selective prefix"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Headline: lead with equality, then range to maximize selectivity.; Why correct: equality on tenant_id partitions the space; range on updated_at scans in order.; Why others are wrong: leading with range blocks equality seeks; single‑column indexes leave sorts; ORDER BY alone is insufficient.; Cursor leverage: infer shapes from code; emit canonical index order; verify with plan diff.; Acceptance checks: no sort; seek on tenant_id; predictable p95.",
+      "keyConcepts": [
+        "Composite index",
+        "Selectivity",
+        "Tenant partitioning",
+        "Plan stability"
+      ]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "EXPLAIN shows a scan + sort on amount for a top report. What de‑risking ask precedes merge?",
+      "options": [
+        "Attach EXPLAIN with rows‑read and add a minimal composite/cover to remove sort",
+        "Increase hardware for the cluster to hide the latency temporarily",
+        "Run the query on the primary at peak to observe worst cases live",
+        "Create indexes on every stage of the pipeline to be safe"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Headline: verify plan shape and remove wasted work.; Why correct: plan evidence + minimal index reduces rows read and sorts predictably.; Why others are wrong: hardware hides issues; peak tests risk users; indexing everything inflates writes.; Cursor leverage: summarize plan; generate DDL and rollback; write PR budget text.; Acceptance checks: plan attached; rows‑read reduced; rollback path defined.",
+      "keyConcepts": [
+        "Rows read",
+        "Covering index",
+        "Sort elimination",
+        "Rollback"
+      ]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "You plan to partition data by region. What index note do you require in PRs?",
+      "options": [
+        "Rely on partitioning alone; indexes are unnecessary on partitions",
+        "Align queries to partition pruning and include the partition key in composite prefixes",
+        "Avoid using the partition key in predicates to keep plans generic",
+        "Create identical global indexes regardless of access patterns"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: combine partition pruning with selective prefixes.; Why correct: including the partition key enables pruning and efficient seeks within partitions.; Why others are wrong: partitions don’t replace indexes; ignoring the key defeats pruning; global clones waste cost.; Cursor leverage: detect partition predicates; suggest local index shapes; verify prune in plan.; Acceptance checks: pruning observed; seeks inside partitions; stable p95.",
+      "keyConcepts": [
+        "Partition pruning",
+        "Composite prefixes",
+        "Access patterns"
+      ]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "What evidence should justify adding a new index to a hot endpoint?",
+      "options": [
+        "Anecdotal reports from one developer’s laptop during a demo",
+        "Rows‑read reduction and p95 improvement under representative load",
+        "Number of columns included to make it future‑proof",
+        "Vendor recommendation without local measurements"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: add indexes only with measurable benefit.; Why correct: rows‑read and p95 deltas prove value under real distributions.; Why others are wrong: anecdotes and generic advice are unreliable; over‑wide indexes inflate writes.; Cursor leverage: run plan comparisons; capture rows‑read; write PR budget/acceptance text.; Acceptance checks: measured deltas; index size tracked; write amp within budget.",
+      "keyConcepts": [
+        "Evidence‑based indexing",
+        "Rows read",
+        "p95 latency",
+        "Write amplification"
+      ]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Writes regressed after adding two similar composites: (tenant_id, created_at) and (tenant_id, created_at, status). What do you require?",
+      "options": [
+        "Keep both because future queries might need either form",
+        "Add shards so write cost disappears across nodes",
+        "Consolidate to one canonical composite that matches WHERE and ORDER; drop the overlap with a rollback plan",
+        "Move all writes to a nightly window and hope the pain shifts away"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Headline: drop overlapping shapes and keep one canonical index.; Why correct: a single well‑chosen composite reduces write amp while serving predicates.; Why others are wrong: speculative indexes cost; sharding doesn’t remove per‑row index work; batching shifts pain.; Cursor leverage: suggest canonical shape; generate drop/rollback scripts; monitor write metrics.; Acceptance checks: overlap removed; hot path covered; write p95 stable.",
+      "keyConcepts": [
+        "Index pruning",
+        "Canonical composite",
+        "Write cost",
+        "Rollback"
+      ]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Draft a PR comment for a new hot‑path list query: attach EXPLAIN summary, set a slow‑query budget (e.g., p95 &le; 120 ms), propose the minimal composite/cover, and include a rollback if regressions appear.",
+      "sampleStrongResponse": "Ask for an EXPLAIN with rows read, operators, and sort usage. State a slow‑query budget (p95 &le; 120 ms at current QPS). Propose a composite (equality first, then range, INCLUDE select list) to eliminate scan/sort. Note write‑amp cost and add a rollback toggle and drop script if p95 regresses. Ask Cursor to generate the DDL and PR‑ready acceptance checks."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Outline a phased index cleanup plan that removes redundant indexes safely. Include discovery → evidence → drop behind a flag → monitor → rollback, with comms to stakeholders.",
+      "sampleStrongResponse": "Discovery: collect usage stats and overlap. Evidence: plan diffs and rows‑read vs write‑amp deltas. Drop: disable via flag or mark unused and remove with a rollback script ready. Monitor: p95, error rates, and plan hashes. Rollback on thresholds. Communicate expected impact, success criteria, and an office‑hours window for consumers."
+    }
+  ]
+},
   "integrated-development-environments": {
   "title": "Integrated Development Environments Knowledge Quiz",
   "totalQuestions": 10,
@@ -4351,6 +4883,188 @@ export const externalQuizzes: Record<string, Quiz> = {
     }
   ]
 },
+  "normalization": {
+  "title": "Normalization Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "PR duplicates customer_email in orders to avoid a join. What will you require before merge?",
+      "options": [
+        "Document a single source of truth; add unique on natural keys; define a freshness window; ship CDC/view with a repair job",
+        "Switch to a document store and drop relational constraints for speed",
+        "Disable foreign keys globally so writers are never blocked by checks",
+        "Promise to remove the duplicate later without a plan or owner"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Headline: denormalization needs trust guardrails tied to a normalized source.; Why correct: a clear source of truth with uniqueness prevents drift; CDC/materialized views serve reads without corrupting writes.; Why others are wrong: changing stores does not solve duplication risk; removing FKs hides bugs; vague promises lack safety.; Cursor leverage: draft a denorm trust note; add uniqueness/FK DDL; scaffold a CDC/view and reconciliation job.; Acceptance checks: SoT documented; uniqueness/foreign keys enforced; refresh/repair SLOs defined.",
+      "keyConcepts": [
+        "Denormalization",
+        "Source of truth",
+        "Unique constraints",
+        "CDC",
+        "Materialized view"
+      ]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Design shows only natural keys and no surrogate primary keys. What alignment prevents duplicate entities during merges?",
+      "options": [
+        "Rely on natural keys only; they never change across systems",
+        "Add surrogate PKs and keep unique on natural identifiers; document merge rules and dedupe paths",
+        "Delay key decisions until analytics needs are clearer",
+        "Drop uniqueness to keep writes fast under load"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: combine surrogate identity with business uniqueness checks.; Why correct: surrogate PKs stabilize joins while unique on natural keys prevents duplicates.; Why others are wrong: natural keys can change; delaying creates data debt; removing uniqueness invites drift.; Cursor leverage: generate PK/unique DDL; add merge/dedupe checklist; produce PR text explaining identity strategy.; Acceptance checks: surrogate PK present; unique on natural keys; merge rules documented.",
+      "keyConcepts": [
+        "Surrogate key",
+        "Natural key",
+        "Uniqueness",
+        "Dedupe"
+      ]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Orders table includes customer_city and customer_state copied from profile. What safeguard do you require?",
+      "options": [
+        "Keep derived fields permanently to simplify analytics everywhere",
+        "Use triggers so many tables update the same attributes in place",
+        "Eliminate the transitive dependency; reference customer; if denormed, define staleness and refresh budget",
+        "Make city optional so anomalies are less likely to block writes"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Headline: remove 3NF violations; if you denormalize, bound staleness.; Why correct: 3NF eliminates update anomalies; explicit staleness/refresh keeps copies trustworthy.; Why others are wrong: permanent duplication drifts; triggers multiply failure modes; optional fields hide bugs.; Cursor leverage: flag functional dependencies; suggest 3NF refactor; draft a projection with refresh cadence.; Acceptance checks: 3NF documented; FKs in place; projection refresh and staleness window agreed.",
+      "keyConcepts": [
+        "3NF",
+        "Transitive dependency",
+        "Foreign keys",
+        "Staleness window"
+      ]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Reports over OLTP are slow; proposal is to denormalize OLTP tables wholesale. What requirement keeps trust and performance?",
+      "options": [
+        "Replace OLTP with one wide table so joins disappear entirely",
+        "Add many new OLTP indexes for BI and accept write costs",
+        "Run heavy reports on the primary at peak to find worst case",
+        "Serve BI from denormalized views/warehouse fed from normalized sources with refresh SLOs and keys"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Headline: separate OLTP correctness from BI speed via projections.; Why correct: normalized OLTP protects writes; views/warehouse give fast reads with defined refresh.; Why others are wrong: a single wide table corrodes correctness; piling OLTP indexes inflates writes; running at peak risks customers.; Cursor leverage: generate a star/view DDL; add refresh schedule; outline ownership and lineage.; Acceptance checks: BI served from projections; refresh SLO stated; OLTP write SLOs stable.",
+      "keyConcepts": [
+        "OLTP vs OLAP",
+        "Materialized views",
+        "Refresh SLO",
+        "Lineage"
+      ]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "New normalized_address replaces legacy address_text. What migration plan do you require before rollout?",
+      "options": [
+        "Add → backfill → flip reads → enforce validators → cleanup with rollback toggles",
+        "Flip immediately in prod and fix any fallout as tickets",
+        "Delete the legacy column first to force consumers to adapt",
+        "Hide the new field in UI only and hope downstream copes"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Headline: expand→backfill→flip→enforce→cleanup for safe schema change.; Why correct: phased steps minimize outages and give rollback lines.; Why others are wrong: instant flips cause incidents; deleting first breaks contracts; UI‑only hides coupling.; Cursor leverage: scaffold migration scripts; add backfill batcher; generate PR comment with SLOs and toggles.; Acceptance checks: idempotent backfill; parity checks pass; toggle/rollback path verified.",
+      "keyConcepts": [
+        "Phased migration",
+        "Validators",
+        "Rollback",
+        "Parity checks"
+      ]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Multiple services write to order_totals causing drift. What guardrail do you require?",
+      "options": [
+        "Let each service keep its own totals and reconcile in dashboards",
+        "Establish a single write path; enforce constraints; expose read‑only copies elsewhere",
+        "Run a nightly cron to overwrite totals from a random source",
+        "Use long cross‑service transactions to guarantee global consistency"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: one writer per fact with constraints and clear consumers.; Why correct: single write path + constraints prevent drift; consumers read without mutating.; Why others are wrong: many writers drift; crons hide bugs; global transactions add fragility.; Cursor leverage: draft ownership matrix; add CHECK/unique DDL; propose consumer projections.; Acceptance checks: write owner declared; constraints active; consumers read‑only.",
+      "keyConcepts": [
+        "Single source of truth",
+        "Constraints",
+        "Ownership",
+        "Consumers"
+      ]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "PR stores phone numbers as a comma‑separated string to avoid a join. What is your ask?",
+      "options": [
+        "Approve; parsing strings is simpler than modeling relations",
+        "Switch to one JSON string so the shape is flexible enough",
+        "Model a child table (one row per phone); enforce FK/uniqueness; document access patterns",
+        "Keep a TEXT column and validate in app code only"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Headline: 1NF requires one value per field.; Why correct: a child table with FKs preserves integrity and keeps queries indexable.; Why others are wrong: strings/JSON hide structure and block indexes; app‑only checks miss drift.; Cursor leverage: suggest table DDL; add FK/unique; create query examples for common filters.; Acceptance checks: 1NF respected; FK/unique enforced; queries sargable.",
+      "keyConcepts": [
+        "1NF",
+        "Foreign keys",
+        "Uniqueness",
+        "Sargability"
+      ]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Team proposes dropping foreign keys during peak to speed writes. What stance keeps trust?",
+      "options": [
+        "Drop constraints; they are optional in mature systems",
+        "Rely on app‑level checks only and hope tests catch issues",
+        "Drop FKs nightly and recreate them after traffic slows",
+        "Keep FKs for invariants; quantify write cost; move heavy reads to projections instead of removing integrity"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Headline: protect invariants; optimize reads without sacrificing integrity.; Why correct: FKs enforce correctness; shifting reads to projections avoids write inflation without data risk.; Why others are wrong: removing checks loses trust; app‑only checks fail silently; nightly toggles are brittle.; Cursor leverage: compute write amp of indexes; propose projections; add FK coverage tests.; Acceptance checks: integrity guaranteed; write SLOs measured; projections documented.",
+      "keyConcepts": [
+        "Foreign keys",
+        "Integrity",
+        "Projections",
+        "Write amplification"
+      ]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Draft a PR comment to de‑risk a hot‑path join for order summaries. Include: EXPLAIN summary, slow‑query budget (e.g., p95 &le; 150 ms), minimal index or projection rationale, and a rollback plan if p95 regresses.",
+      "sampleStrongResponse": "Request an EXPLAIN plan snippet and confirm selective starts on customer/order keys with no scans or large memory grants. State a slow‑query budget (for example, p95 &le; 150 ms at current QPS) and propose the smallest composite index or a materialized view if joins are unavoidable. Call out write‑amplification and include a rollback toggle to drop the index or route reads back to the view if p95 regresses. Ask Cursor to summarize the plan, generate the DDL/view and rollback script, and produce PR‑ready acceptance checks."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Outline a phased migration to move a duplicated customer_email into a normalized shape. Include add → backfill → flip → enforce → cleanup with safety checks and stakeholder comms.",
+      "sampleStrongResponse": "Add the normalized column and start dual‑writes behind a flag. Backfill existing rows in shard‑aware batches with idempotent upserts and an error budget. Flip reads via a feature flag and verify parity on a sampled slice. Enforce validators and remove writes to the legacy field. Clean up the old column and monitoring. Safety: p95 &le; target, FK/unique enforced, and a rollback toggle to route reads back. Comms: share staleness window, expected p95, and a blast‑radius note with support/product."
+    }
+  ]
+},
   "package-managers": {
   "title": "Package Managers Knowledge Quiz",
   "totalQuestions": 10,
@@ -4869,6 +5583,358 @@ export const externalQuizzes: Record<string, Quiz> = {
     }
   ]
 },
+  "query-optimization": {
+  "title": "Query Optimization Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "EXPLAIN for a hot query shows a full scan and large memory grant. What is your first de‑risking ask before merge?",
+      "options": [
+        "Attach plan summary; propose a selective start with a minimal index and project only needed fields",
+        "Increase instance size to hide latency and revisit later",
+        "Add hints immediately to force a specific join algorithm",
+        "Test only on developer laptops because data scale is smaller there"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Headline: start from selective sets and remove wasted work.; Why correct: selective seeks and lean projections cut rows read and stabilize memory.; Why others are wrong: hardware hides design issues; hints lock in brittle plans; small data lies.; Cursor leverage: summarize plan operators/hashes; generate minimal DDL; write PR budget text.; Acceptance checks: rows‑read reduced; memory grant lowered; plan hash stable.",
+      "keyConcepts": [
+        "EXPLAIN",
+        "Selective start",
+        "Rows read",
+        "Memory grant"
+      ]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Random p95 spikes for the same query after deploy. What alignment do you require to stabilize plans?",
+      "options": [
+        "Disable statistics collection to avoid plan changes",
+        "Keep stats fresh; parameterize queries; detect parameter sniffing risk and guard",
+        "Pin the plan forever with a hard hint regardless of data",
+        "Retry queries twice and accept spikes as normal"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: stabilize estimates and parameter sensitivity.; Why correct: fresh stats and parameterization prevent plan flips driven by skew.; Why others are wrong: disabling stats hurts estimates; hard hints age poorly; retries mask root cause.; Cursor leverage: add plan‑hash regression alerts; propose guard patterns; generate stats jobs.; Acceptance checks: stable plan hashes; p95 within budget; stats freshness SLO.",
+      "keyConcepts": [
+        "Parameter sniffing",
+        "Statistics",
+        "Plan stability",
+        "p95 latency"
+      ]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Feed endpoint uses offset paging and shows duplicates under heavy writes. What is your requirement?",
+      "options": [
+        "Keep offset and raise page size to reduce calls",
+        "Return everything in one response to avoid pagination complexity",
+        "Move to cursor pagination with a stable ORDER BY and opaque cursor",
+        "Sort in the client to dedupe records post‑hoc"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Headline: use cursor paging to avoid gaps and repeats.; Why correct: stable ordering + cursor prevent drift under writes.; Why others are wrong: larger pages still drift; huge payloads break clients; client sorts cannot fix missing/duplicate items.; Cursor leverage: generate cursor design; add contract tests; produce SDK examples.; Acceptance checks: ORDER BY defined; cursor contract in OpenAPI; gap/repeat tests pass.",
+      "keyConcepts": [
+        "Cursor pagination",
+        "Stable ordering",
+        "OpenAPI contract"
+      ]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A join applies filters after expanding rows, causing large intermediates. What do you ask before approving?",
+      "options": [
+        "Leave as is; optimizers always push down filters correctly",
+        "Push predicates to selective sides and adjust join order to reduce intermediates",
+        "Add a full table scan hint to simplify the plan shape",
+        "Increase connection pool size to hide slow queries"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Headline: push down predicates and right‑size join ordering.; Why correct: reducing intermediates cuts rows read and memory; plans become predictable.; Why others are wrong: optimizers miss pushdowns; hints and pools dodge the issue.; Cursor leverage: produce before/after plans; suggest indexes to support pushdowns; write PR acceptance text.; Acceptance checks: smaller intermediates; rows‑read drop; p95 meets budget.",
+      "keyConcepts": [
+        "Predicate pushdown",
+        "Join order",
+        "Rows read",
+        "p95"
+      ]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "The API shows an N+1 pattern for user orders. What is your proposed change?",
+      "options": [
+        "Keep N+1; it allows simpler code paths for now",
+        "Rewrite as a single query (JOIN/IN with selective start) and measure rows‑read delta",
+        "Add sleeps between queries so the database cools down",
+        "Move the problem to a background job without changing queries"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Headline: collapse N+1 into a single selective query.; Why correct: one well‑shaped query reduces round trips and rows read.; Why others are wrong: sleeps and backgrounding hide issues; code simplicity doesn’t beat latency.; Cursor leverage: generate a rewrite; attach plan diffs; set a slow‑query budget.; Acceptance checks: N reduced to 1; rows‑read down; p95 improved.",
+      "keyConcepts": [
+        "N+1",
+        "Query rewrite",
+        "Rows read"
+      ]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Export endpoint times out and sorts a large dataset client‑side. What is your requirement?",
+      "options": [
+        "Keep client‑side sort; servers are already busy",
+        "Add ORDER BY index, cover select list, and paginate with a streaming cursor",
+        "Return unsorted results and let users adjust",
+        "Increase memory limits until the sort passes"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: eliminate server sorts and stream results.; Why correct: ORDER BY index + covering remove sorts and reduce I/O; streaming keeps memory stable.; Why others are wrong: client sort moves cost to users; unsorted breaks contracts; more memory is brittle.; Cursor leverage: propose composite index; add cursor examples; define p95/throughput targets.; Acceptance checks: no sort operator; p95 within budget; memory steady.",
+      "keyConcepts": [
+        "Sort elimination",
+        "Covering",
+        "Cursor streaming",
+        "p95"
+      ]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Dashboard query competes with OLTP reads and spikes CPU. What guardrail do you require?",
+      "options": [
+        "Run heavy reads on the primary only to ensure freshness",
+        "Cache or route through a read model/projection sized for analytics",
+        "Throttle user traffic globally when dashboards run",
+        "Disable indexes to equalize performance across users"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Headline: decouple analytics from OLTP with caches/read models.; Why correct: dedicated projections keep OLTP predictable; caches reduce load.; Why others are wrong: primary‑only hurts capacity; global throttles punish users; removing indexes slows everything.; Cursor leverage: propose a projection; define refresh budget; add router rules.; Acceptance checks: OLTP p95 stable; projection freshness window agreed; cache hit rate tracked.",
+      "keyConcepts": [
+        "Read models",
+        "Caching",
+        "OLTP vs analytics",
+        "Freshness window"
+      ]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A PR shows an accidental cross join (missing join predicate). What is your review requirement?",
+      "options": [
+        "Approve; cross joins sometimes discover useful combinations",
+        "Add an optimizer hint so the engine chooses a better algorithm",
+        "Require explicit join predicates and verify row estimates and rows‑read in plan",
+        "Move the query to a nightly batch to reduce user impact"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Headline: prevent accidental cross joins with explicit keys.; Why correct: predicates bound the join and stabilize estimates; plans become predictable.; Why others are wrong: hints and timing dodge correctness; batches hide defects.; Cursor leverage: add lints/tests for missing predicates; attach plan diffs; set acceptance checks.; Acceptance checks: join keys present; rows‑read bounded; plan estimates reasonable.",
+      "keyConcepts": [
+        "Cross join",
+        "Join predicates",
+        "Estimates",
+        "Rows read"
+      ]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Draft a PR comment to de‑risk a hot aggregation. Include: EXPLAIN summary, slow‑query budget (e.g., p95 &le; 150 ms), minimal index/rewrite rationale, and a rollback path if p95 regresses.",
+      "sampleStrongResponse": "Request plan operators and rows‑read; confirm selective starts and no cross‑shard or full scans. State p95 &le; 150 ms at current QPS and propose the smallest composite or a rewrite that removes a sort. Call out write‑amp and attach rollback toggles/scripts. Ask Cursor to summarize the plan, generate the DDL/rewrite, and produce PR‑ready acceptance checks."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Outline a staged optimization plan for a slow export: rewrite → index → cache/projection → rollout with flags. Include safety checks and stakeholder comms.",
+      "sampleStrongResponse": "Rewrite predicates for sargability and pushdowns; add ORDER BY index and cover fields; introduce a projection for large scans; cache where safe. Roll out behind flags with plan‑hash and p95 monitors. Success: rows‑read down &ge; 80%, p95 &le; target, and zero contract changes. Communicate expected freshness window and a blast‑radius note to support/product."
+    }
+  ]
+},
+  "rate-limiting": {
+  "title": "Rate Limiting Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "PR adds a global limit without headers. What is your requirement?",
+      "options": [
+        "Return 429 only; clients can guess backoff",
+        "Return 429 with Retry‑After and X‑RateLimit‑* headers and provide client guidance",
+        "Throttle silently by dropping connections",
+        "Use 500 so clients retry more aggressively"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: clear server hints prevent retry storms.; Why correct: Retry‑After and X‑RateLimit‑* guide clients to adapt safely.; Why others are wrong: silent drops and 500s cause thundering herds; no headers create confusion.; Cursor leverage: scaffold middleware; add headers; update docs/SDK.; Acceptance checks: headers present; client examples updated; 429 rate stable.",
+      "keyConcepts": [
+        "429",
+        "Retry‑After",
+        "X‑RateLimit‑*"
+      ]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Limits are enforced by IP only and multi‑tenant customers are throttled unfairly. What do you require?",
+      "options": [
+        "Stay with IP; it’s simplest",
+        "Limit by trusted identity (API key/OAuth client) and segment by plan tier",
+        "Allowlist all known IPs to avoid throttling",
+        "Disable limits for paying customers"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: choose the right identity key for fairness.; Why correct: API key/client identity maps to tenants; plan tiers align SLOs with revenue.; Why others are wrong: IP misattributes; allowlists don’t scale; removing limits breaks isolation.; Cursor leverage: propose identity mapping; config by plan; dashboards.; Acceptance checks: identity confirmed; plan tiers applied; fairness issues resolved.",
+      "keyConcepts": [
+        "Identity",
+        "Plan tiers",
+        "Fairness"
+      ]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Short bursts cause user‑visible throttling. What pattern do you require?",
+      "options": [
+        "Leaky bucket only with strict steady state",
+        "Token bucket with burst capacity and clear reset semantics",
+        "Global lock around hot endpoints",
+        "No throttling for GET endpoints"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: allow short bursts within budget.; Why correct: token buckets smooth UX while respecting limits.; Why others are wrong: strict leaky buckets hurt UX; global locks harm throughput; GET can still DDoS.; Cursor leverage: configure bucket sizes; add tests; document headers.; Acceptance checks: burst tolerated; p95 unchanged; error rates stable.",
+      "keyConcepts": [
+        "Token bucket",
+        "Burst",
+        "Reset"
+      ]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Batch jobs starve interactive UI. What requirement balances traffic?",
+      "options": [
+        "Single shared bucket for all endpoints",
+        "Separate pools for writes/reads and job/UI with different budgets",
+        "Disable batch jobs during business hours only",
+        "Request clients to slow down manually"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: segment buckets by route and intent.; Why correct: separate pools protect UX and core writes.; Why others are wrong: single buckets cause starvation; time windows are brittle; manual requests don’t scale.; Cursor leverage: per‑route config; docs for SDK backoff; monitoring.; Acceptance checks: UI p95 stable; 429s reduced on UI; batch throughput predictable.",
+      "keyConcepts": [
+        "Segmentation",
+        "GET/POST pools",
+        "SLOs"
+      ]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Abuse spike from a single ASN/IP range floods login. What immediate control do you require?",
+      "options": [
+        "Disable limits globally so legit users pass",
+        "Add temporary per‑IP/ASN dampening and CAPTCHA where appropriate",
+        "Throttle by region only",
+        "Return 500 to discourage attackers"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: targeted dampening limits blast radius.; Why correct: per‑IP/ASN throttles abuse while preserving legit traffic; CAPTCHAs help selectively.; Why others are wrong: disabling limits breaks reliability; region throttling is too coarse; 500s encourage retries.; Cursor leverage: add edge rules; feature toggle; alerting.; Acceptance checks: abuse traffic reduced; legit success rate maintained; toggle removed after window.",
+      "keyConcepts": [
+        "Abuse control",
+        "Per‑IP/ASN",
+        "Feature toggle"
+      ]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "PR suggests silent drops on limit to hide behavior. What is your position?",
+      "options": [
+        "Approve; security by obscurity is safer",
+        "Reject; respond with 429 and guidance so clients back off",
+        "Return 408 to imply a timeout instead",
+        "Randomize between 429 and 500 to confuse bots"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: explicit feedback prevents storms.; Why correct: 429 + headers enables adaptive clients and stability.; Why others are wrong: obscurity worsens retries; 408 misleads; randomization breaks clients.; Cursor leverage: middleware changes; client examples; monitors.; Acceptance checks: proper status/headers; client SDKs updated; retry storms down.",
+      "keyConcepts": [
+        "429",
+        "Client guidance",
+        "Stability"
+      ]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Global limiter sits in the application layer only. What improvement do you require?",
+      "options": [
+        "Keep it app‑only; edge work is unnecessary",
+        "Add an edge/gateway limiter backed by Redis and jittered TTLs; keep app‑side as defense in depth",
+        "Move limiter to a cron job that runs hourly",
+        "Disable limiter in staging to keep config simple"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: enforce limits as close to the edge as possible.; Why correct: edge limits reduce load earlier and improve consistency; app‑side remains as backup.; Why others are wrong: cron is irrelevant; staging config drift is risky; app‑only increases cost.; Cursor leverage: scaffold edge middleware; config validation; dashboards.; Acceptance checks: edge enabled; app fallback present; consistency improved.",
+      "keyConcepts": [
+        "Edge limiting",
+        "Redis",
+        "Defense in depth"
+      ]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Clients hammer 429 without backoff. What do you require in SDK guidance?",
+      "options": [
+        "Retry immediately to overcome transient throttles",
+        "Use exponential backoff with jitter and honor Retry‑After/X‑RateLimit‑Reset",
+        "Stop retrying permanently after the first 429",
+        "Retry faster when Retry‑After is missing"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: disciplined retries protect systems and UX.; Why correct: jittered backoff and server hints prevent synchronized storms.; Why others are wrong: immediate/faster retries amplify load; stopping permanently breaks resilience.; Cursor leverage: ship SDK helpers; docs; examples.; Acceptance checks: SDKs updated; backoff adopted; 429 spikes dampened.",
+      "keyConcepts": [
+        "Exponential backoff",
+        "Jitter",
+        "Retry‑After"
+      ]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Draft a policy PR for rate limiting: identities, windows, algorithms, headers, and SDK guidance. Include measurable acceptance checks.",
+      "sampleStrongResponse": "Policy: limit by API key/client with token bucket (rate + burst). Windows: 60s and daily quotas per plan. Headers: X‑RateLimit‑Limit/Remaining/Reset and Retry‑After. SDK: exponential backoff with jitter. Acceptance: headers present on 100% of 429; backoff in SDKs; fairness tickets drop; UI p95 unchanged."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Outline a rollout plan to segment GET/POST pools and per‑tenant limits with monitoring and rollback toggles. Include comms to key customers.",
+      "sampleStrongResponse": "Create config for separate GET/POST buckets and per‑tenant caps by plan. Roll out behind flags with dashboards for top 429 producers. Success: UI p95 stable, error budgets respected, and batch throughput within targets. Provide rollback toggles and notify key customers with guidance and SDK updates."
+    }
+  ]
+},
   "relational-databases": {
   "title": "Relational Databases Quiz",
   "totalQuestions": 10,
@@ -5211,6 +6277,179 @@ export const externalQuizzes: Record<string, Quiz> = {
       "points": 5,
       "question": "Define a submodule/subtree strategy for a shared cryptography library used by multiple services. Cover versioning, release process, and consumer updates.",
       "sampleStrongResponse": "Maintain the library in its own repo with SemVer and signed tags. Consumers integrate via submodule/subtree. Publish releases with changelogs; CI verifies API compatibility. Consumers pin versions and update via scheduled PRs that run full security and performance suites."
+    }
+  ]
+},
+  "rest-best-practices": {
+  "title": "REST Best Practices Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A new POST /orders endpoint may double‑charge on retry. What will you require in the PR?",
+      "options": [
+        "Return 200 OK on duplicates without any indication",
+        "Support an Idempotency‑Key header and return 201 with Location on first success and the original result on replay",
+        "Use a custom verb in the path like /orders/create to signal special logic",
+        "Advise clients to avoid retries altogether"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: idempotent POSTs prevent duplicates and clarify outcomes.; Why correct: Idempotency‑Key enables safe retries; 201 + Location is predictable.; Why others are wrong: silent 200 hides state; RPC verbs in paths break conventions; banning retries is unrealistic.; Cursor leverage: add OpenAPI examples; scaffold middleware; write PR‑ready contract text.; Acceptance checks: key handled; 201 + Location on create; replay returns prior result.",
+      "keyConcepts": [
+        "Idempotency",
+        "201 Created",
+        "Location header"
+      ]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Error responses vary per endpoint. What alignment do you require?",
+      "options": [
+        "Return plain strings to keep payloads small",
+        "Adopt RFC 7807 Problem Details with stable code, message, and traceId",
+        "Use HTML error pages so browsers can render nicely",
+        "Document errors in a wiki page instead of the spec"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: standardize errors for machine handling and DX.; Why correct: Problem Details with code/traceId enables automation and support.; Why others are wrong: strings/HTML are brittle; wikis drift from reality.; Cursor leverage: update OpenAPI; add error middleware; generate SDK samples.; Acceptance checks: schema validated in CI; error examples present; traceId logged.",
+      "keyConcepts": [
+        "RFC 7807",
+        "Error contracts",
+        "traceId"
+      ]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Offset pagination shows duplicates/gaps under writes. What do you require?",
+      "options": [
+        "Keep offset; raise page size and hope for fewer issues",
+        "Use cursor pagination with stable ordering and Link headers",
+        "Return everything in one page to avoid pagination",
+        "Sort in the client and dedupe duplicates"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: cursor paging prevents drift.; Why correct: stable ORDER + opaque cursor avoids gaps/repeats.; Why others are wrong: larger pages still drift; one page is impractical; client sorts can’t fill gaps.; Cursor leverage: generate cursor design; add OpenAPI/SDK examples; create contract tests.; Acceptance checks: ORDER defined; cursor params in spec; no gaps/repeats in tests.",
+      "keyConcepts": [
+        "Cursor pagination",
+        "Stable ordering",
+        "Link headers"
+      ]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "PUT /orders/{id} is not idempotent and can create duplicates. What change do you require?",
+      "options": [
+        "Keep behavior; clients should call carefully",
+        "Make PUT idempotent (replace semantics) and use POST for creation with idempotency",
+        "Rename it to /orders/update and keep semantics the same",
+        "Return 500 on duplicates so clients learn fast"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: align methods to semantics for safety.; Why correct: PUT must be idempotent; POST creation with idempotency prevents duplicates.; Why others are wrong: naming doesn’t fix behavior; 500s are not contracts.; Cursor leverage: update OpenAPI; add method tests; scaffold idempotency middleware.; Acceptance checks: PUT idempotent; POST has Idempotency‑Key; tests pass.",
+      "keyConcepts": [
+        "Method semantics",
+        "PUT vs POST",
+        "Idempotency"
+      ]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Endpoints mix RPC verbs in paths (e.g., /orders/cancelOrder). What is your review stance?",
+      "options": [
+        "Allow RPC verbs; teams can guess semantics",
+        "Model nouns and use standard HTTP methods; represent actions as resources if needed",
+        "Embed verbs deeply to make routes descriptive",
+        "Use POST for every operation to simplify clients"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: REST uses nouns + standard methods.; Why correct: consistent modeling improves predictability and tooling.; Why others are wrong: RPC verbs reduce reuse; over‑descriptive paths harm contracts; one‑verb POST harms caching/idempotency.; Cursor leverage: lint OpenAPI; propose resource names; update examples.; Acceptance checks: nouns in paths; verbs only as methods; docs/SDK regenerated.",
+      "keyConcepts": [
+        "Resource modeling",
+        "HTTP methods",
+        "Consistency"
+      ]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Large collections time out with offset. What do you ask before merge?",
+      "options": [
+        "Keep offset but increase timeouts",
+        "Adopt cursor paging with stable sort and document back/next links",
+        "Return unsorted results to improve speed",
+        "Paginate in the client only"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: stable cursor paging scales.; Why correct: stable sort + links give predictable navigation at scale.; Why others are wrong: timeouts dodge design; unsorted breaks contracts; client‑only paging is brittle.; Cursor leverage: spec examples; header/link helpers; SDK updates.; Acceptance checks: spec validates; e2e tests show no skips/repeats; performance meets SLO.",
+      "keyConcepts": [
+        "Pagination",
+        "Stable sort",
+        "HATEOAS/Links"
+      ]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Some endpoints return HTML errors while others return JSON. What do you require?",
+      "options": [
+        "Keep HTML for readability",
+        "Standardize on JSON Problem Details with content‑type and codes",
+        "Use text/plain for errors to reduce payload size",
+        "Respond 204 No Content on errors to avoid payloads"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: consistent machine‑readable errors.; Why correct: JSON Problem Details enables client automation and logging.; Why others are wrong: HTML/text are brittle; 204 hides failure.; Cursor leverage: add middleware; update OpenAPI; regenerate SDK.; Acceptance checks: correct content‑type; schema validated; examples in docs.",
+      "keyConcepts": [
+        "Problem Details",
+        "Content negotiation",
+        "Error handling"
+      ]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Async processing is added but API blocks until done. What pattern do you ask for?",
+      "options": [
+        "Return 202 Accepted with Location to a status resource and poll",
+        "Keep blocking and raise server timeouts",
+        "Return 201 with body only and no status link",
+        "Use WebSockets for every async job regardless of clients"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Headline: use 202 + status resource for async.; Why correct: decouples long work with a standard pattern and discoverable status.; Why others are wrong: blocking harms reliability; 201 is for creation; WebSockets everywhere is overkill.; Cursor leverage: scaffold job resource; add status schema; update docs.; Acceptance checks: 202 + Location implemented; status schema documented; retry/backoff examples provided.",
+      "keyConcepts": [
+        "202 Accepted",
+        "Status resource",
+        "Asynchrony"
+      ]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Draft a PR comment to make /orders robust: include idempotent POST, cursor paging, RFC 7807 errors, and measurable success (e.g., duplicate rate &lt; 0.1%, p95 list &le; 120 ms).",
+      "sampleStrongResponse": "Specify POST with Idempotency‑Key; return 201 + Location and stable IDs. Use cursor paging with stable ORDER and Link headers. Adopt RFC 7807 with codes and traceId. Success: duplicate charge rate &lt; 0.1%, list p95 &le; 120 ms, and contract tests green. Ask Cursor to update OpenAPI/SDK, scaffold middleware, and add acceptance checks."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Outline a deprecation policy rollout for a breaking response change: warnings → dual responses → versioned endpoint. Include headers, comms, and success metrics.",
+      "sampleStrongResponse": "Phase 1: add deprecation docs and warnings. Phase 2: return both fields with a flag; publish SDK guidance. Phase 3: introduce /v2 with frozen contract. Send Deprecation/Sunset headers with dates; docs/SDK per version. Success: &ge; 90% traffic on new contract, zero Sev‑1s, and customer comms acknowledged."
     }
   ]
 },
@@ -5557,6 +6796,185 @@ export const externalQuizzes: Record<string, Quiz> = {
       "points": 5,
       "question": "Compare canary vs Blue/Green for a high&ndash;traffic service. When would you choose each, and what rollback signals/triggers would you configure?",
       "sampleStrongResponse": "Use canary for incremental risk: start at 1&ndash;5% to validate error rate and p95 latency with multi&ndash;signal confirmation; expand as signals stay green. Choose Blue/Green when you need instant rollback and minimal downtime: maintain two environments and flip traffic atomically. In both cases, define SLO thresholds, synthetic probes, and alerting; auto&ndash;revert on threshold breach and notify stakeholders with version and reason."
+    }
+  ]
+},
+  "schema-design": {
+  "title": "Schema Design Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Proposal models users, orders, and products in one wide table. What alignment do you require before approving?",
+      "options": [
+        "Keep a single table to avoid all joins across the system",
+        "Model clear entities with primary/foreign keys; encode invariants with constraints and ownership",
+        "Store everything as JSON blobs so the schema can change later",
+        "Rely on application code only for data integrity checks"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: design entities with keys and constraints for trust.; Why correct: clear PK/FK and constraints make rules explicit and evolvable.; Why others are wrong: one table harms integrity/scale; JSON blobs block indexes; app‑only checks drift.; Cursor leverage: draft ER diagram; generate PK/FK/unique/check DDL; produce ownership notes.; Acceptance checks: PK/FK present; key constraints enforced; ownership documented.",
+      "keyConcepts": [
+        "Entity boundaries",
+        "Primary/Foreign keys",
+        "Constraints",
+        "Ownership"
+      ]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Design uses only natural keys and no surrogate id. What change do you require to reduce merge risks?",
+      "options": [
+        "Natural keys are enough because business identifiers never change",
+        "Add surrogate PKs and keep unique constraints on natural keys; document merge rules",
+        "Use GUIDs everywhere without any uniqueness on business fields",
+        "Drop uniqueness entirely to reduce write contention"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: stable identity plus business uniqueness.; Why correct: surrogate PKs stabilize joins; unique on natural IDs prevents duplicates.; Why others are wrong: business IDs change; GUIDs without unique checks drift; dropping uniqueness corrodes trust.; Cursor leverage: emit DDL; add merge policy; write PR rationale.; Acceptance checks: surrogate PKs; unique natural keys; merge policy recorded.",
+      "keyConcepts": [
+        "Surrogate key",
+        "Natural key",
+        "Uniqueness",
+        "Merges"
+      ]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A future shard/partition is planned. What early alignment do you require on keys?",
+      "options": [
+        "Choose any key; we can rebalance later with no cost",
+        "Pick shard/partition keys that match dominant filters and access paths; document rebalancing",
+        "Avoid shard keys so cross‑partition joins are easier",
+        "Use random hashing only to avoid hot tenants by default"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Headline: align keys with access to avoid cross‑partition pain.; Why correct: matching keys to filters prevents scatter/gather and hotspots; a rebalancing plan reduces risk.; Why others are wrong: key changes are costly; avoiding keys or random hashes ignores access.; Cursor leverage: analyze filters; simulate scatter/gather; propose key options.; Acceptance checks: key rationale documented; fan‑out eliminated in EXPLAIN; p95 within budget.",
+      "keyConcepts": [
+        "Shard/partition key",
+        "Access patterns",
+        "Scatter/gather",
+        "p95 latency"
+      ]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "PR changes a critical column type and adds NOT NULL. How should the rollout proceed?",
+      "options": [
+        "Apply change in one step in production to save time",
+        "Gate on application restarts only; schema can lag behind",
+        "Use expand → backfill → flip → enforce → cleanup with idempotent batches",
+        "Rely on implicit conversions at runtime across services"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Headline: stage incompatible changes to avoid lock and outage.; Why correct: phased steps minimize locks and allow safe rollback.; Why others are wrong: single‑step changes risk downtime; implicit conversions are brittle.; Cursor leverage: scaffold migration plan; generate backfill scripts; add toggles and monitors.; Acceptance checks: backfill parity; lock times acceptable; rollback path tested.",
+      "keyConcepts": [
+        "Phased migration",
+        "Idempotent backfill",
+        "Rollback",
+        "Locks"
+      ]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Analytics uses the same OLTP store and long joins time out. What do you require?",
+      "options": [
+        "Keep analytics in OLTP and raise timeouts until it passes",
+        "Export normalized data to a star schema or views with refresh SLOs and lineage",
+        "Replace OLTP with a wide denormalized table for everything",
+        "Turn off constraints to speed up analytics joins"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Headline: serve analytics from dedicated shapes, not OLTP.; Why correct: stars/views give fast BI without harming OLTP writes; refresh SLOs keep trust.; Why others are wrong: raising timeouts dodges design; one wide table breaks invariants; removing constraints corrodes data.; Cursor leverage: generate stars/views; schedule refresh; document lineage.; Acceptance checks: BI moved; refresh SLO documented; OLTP p95 steady.",
+      "keyConcepts": [
+        "OLTP vs OLAP",
+        "Star schema",
+        "Views",
+        "Refresh SLO"
+      ]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Security/audit requires who/when on changes. What schema design guardrail do you ask for?",
+      "options": [
+        "Store audit data only in logs and parse later when needed",
+        "Add created_at/updated_at and created_by/updated_by with constraints and triggers where appropriate",
+        "Keep only created_at; updated fields are noisy in analytics",
+        "Track audit fields in a separate spreadsheet maintained by hand"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: capture audit fields at the source with structure.; Why correct: structured audit fields enable traceability and governance.; Why others are wrong: logs/spreadsheets drift; partial fields miss changes.; Cursor leverage: scaffold audit columns/triggers; add validation; propose dashboards.; Acceptance checks: audit fields present; populated correctly; reports wired.",
+      "keyConcepts": [
+        "Audit fields",
+        "Traceability",
+        "Governance"
+      ]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A boolean flag is modeled as a string with free‑form values. What do you require?",
+      "options": [
+        "Allow any string; validation can happen later in the app",
+        "Keep string and add a partial index to filter valid values",
+        "Use a proper boolean or constrained enum and add a CHECK to enforce domain",
+        "Delete the field and infer behavior from logs only"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Headline: encode domain rules in the schema.; Why correct: types and CHECK constraints prevent invalid states at the edge.; Why others are wrong: app‑only checks drift; partial indexes don’t fix bad values; logs are not a source of truth.; Cursor leverage: propose type/enum change; generate CHECK DDL; write PR rationale.; Acceptance checks: constraints enforced; invalid writes blocked; incidents reduced.",
+      "keyConcepts": [
+        "Data types",
+        "CHECK constraint",
+        "Domain rules"
+      ]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Cross‑tenant reports require joins across many partitions. What stance keeps performance predictable?",
+      "options": [
+        "Avoid partitioning; single table scales indefinitely",
+        "Use cross‑partition broadcasts as the default join strategy",
+        "Provide shard‑aware entry points and precomputed extracts; avoid scatter/gather on OLTP",
+        "Run every cross‑tenant report on the primary during peak hours"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Headline: avoid scatter/gather on OLTP; feed cross‑tenant reports from extracts.; Why correct: shard‑aware entry points and extracts keep p95 stable.; Why others are wrong: no partitioning ignores scale; broadcasts explode work; peak primaries risk customers.; Cursor leverage: simulate fan‑out; propose entry points/extracts; add acceptance checks.; Acceptance checks: no scatter/gather in plans; extracts documented; p95 within budget.",
+      "keyConcepts": [
+        "Shard awareness",
+        "Scatter/gather",
+        "Extracts",
+        "p95"
+      ]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Draft a PR comment for a risky schema change. Include: phased plan (add → backfill → flip → enforce → cleanup), constraints to encode rules, and a rollback path with measurable success criteria.",
+      "sampleStrongResponse": "Describe the phased plan with idempotent backfills and toggles. Add keys/uniques/checks to encode invariants. Success: parity on a sampled slice, lock times within budget, and p95 unchanged. Include rollback to previous reads/writes and scripts to revert DDL. Ask Cursor to scaffold migrations, backfill batches, and the PR acceptance checks."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Outline a tenant sharding plan that avoids hotspots. Include key selection, rebalancing, cutover steps, and communication to stakeholders.",
+      "sampleStrongResponse": "Choose a shard key aligned to dominant filters (e.g., tenant_id with optional hash). Plan rebalancing with chunk moves and idempotent backfills. Cutover behind flags per route; verify parity and p95. Communicate blast radius, success metrics, and sunset any legacy paths. Add dashboards for key skew and scatter/gather detection."
     }
   ]
 },

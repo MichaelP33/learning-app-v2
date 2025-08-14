@@ -1,0 +1,141 @@
+{
+  "title": "Query Optimization Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "EXPLAIN for a hot query shows a full scan and large memory grant. What is your first de‑risking ask before merge?",
+      "options": [
+        "Attach plan summary; propose a selective start with a minimal index and project only needed fields",
+        "Increase instance size to hide latency and revisit later",
+        "Add hints immediately to force a specific join algorithm",
+        "Test only on developer laptops because data scale is smaller there"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Headline: start from selective sets and remove wasted work.; Why correct: selective seeks and lean projections cut rows read and stabilize memory.; Why others are wrong: hardware hides design issues; hints lock in brittle plans; small data lies.; Cursor leverage: summarize plan operators/hashes; generate minimal DDL; write PR budget text.; Acceptance checks: rows‑read reduced; memory grant lowered; plan hash stable.",
+      "keyConcepts": ["EXPLAIN", "Selective start", "Rows read", "Memory grant"]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Random p95 spikes for the same query after deploy. What alignment do you require to stabilize plans?",
+      "options": [
+        "Disable statistics collection to avoid plan changes",
+        "Keep stats fresh; parameterize queries; detect parameter sniffing risk and guard",
+        "Pin the plan forever with a hard hint regardless of data",
+        "Retry queries twice and accept spikes as normal"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: stabilize estimates and parameter sensitivity.; Why correct: fresh stats and parameterization prevent plan flips driven by skew.; Why others are wrong: disabling stats hurts estimates; hard hints age poorly; retries mask root cause.; Cursor leverage: add plan‑hash regression alerts; propose guard patterns; generate stats jobs.; Acceptance checks: stable plan hashes; p95 within budget; stats freshness SLO.",
+      "keyConcepts": ["Parameter sniffing", "Statistics", "Plan stability", "p95 latency"]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Feed endpoint uses offset paging and shows duplicates under heavy writes. What is your requirement?",
+      "options": [
+        "Keep offset and raise page size to reduce calls",
+        "Return everything in one response to avoid pagination complexity",
+        "Move to cursor pagination with a stable ORDER BY and opaque cursor",
+        "Sort in the client to dedupe records post‑hoc"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Headline: use cursor paging to avoid gaps and repeats.; Why correct: stable ordering + cursor prevent drift under writes.; Why others are wrong: larger pages still drift; huge payloads break clients; client sorts cannot fix missing/duplicate items.; Cursor leverage: generate cursor design; add contract tests; produce SDK examples.; Acceptance checks: ORDER BY defined; cursor contract in OpenAPI; gap/repeat tests pass.",
+      "keyConcepts": ["Cursor pagination", "Stable ordering", "OpenAPI contract"]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A join applies filters after expanding rows, causing large intermediates. What do you ask before approving?",
+      "options": [
+        "Leave as is; optimizers always push down filters correctly",
+        "Push predicates to selective sides and adjust join order to reduce intermediates",
+        "Add a full table scan hint to simplify the plan shape",
+        "Increase connection pool size to hide slow queries"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Headline: push down predicates and right‑size join ordering.; Why correct: reducing intermediates cuts rows read and memory; plans become predictable.; Why others are wrong: optimizers miss pushdowns; hints and pools dodge the issue.; Cursor leverage: produce before/after plans; suggest indexes to support pushdowns; write PR acceptance text.; Acceptance checks: smaller intermediates; rows‑read drop; p95 meets budget.",
+      "keyConcepts": ["Predicate pushdown", "Join order", "Rows read", "p95"]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "The API shows an N+1 pattern for user orders. What is your proposed change?",
+      "options": [
+        "Keep N+1; it allows simpler code paths for now",
+        "Rewrite as a single query (JOIN/IN with selective start) and measure rows‑read delta",
+        "Add sleeps between queries so the database cools down",
+        "Move the problem to a background job without changing queries"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Headline: collapse N+1 into a single selective query.; Why correct: one well‑shaped query reduces round trips and rows read.; Why others are wrong: sleeps and backgrounding hide issues; code simplicity doesn’t beat latency.; Cursor leverage: generate a rewrite; attach plan diffs; set a slow‑query budget.; Acceptance checks: N reduced to 1; rows‑read down; p95 improved.",
+      "keyConcepts": ["N+1", "Query rewrite", "Rows read"]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Export endpoint times out and sorts a large dataset client‑side. What is your requirement?",
+      "options": [
+        "Keep client‑side sort; servers are already busy",
+        "Add ORDER BY index, cover select list, and paginate with a streaming cursor",
+        "Return unsorted results and let users adjust",
+        "Increase memory limits until the sort passes"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: eliminate server sorts and stream results.; Why correct: ORDER BY index + covering remove sorts and reduce I/O; streaming keeps memory stable.; Why others are wrong: client sort moves cost to users; unsorted breaks contracts; more memory is brittle.; Cursor leverage: propose composite index; add cursor examples; define p95/throughput targets.; Acceptance checks: no sort operator; p95 within budget; memory steady.",
+      "keyConcepts": ["Sort elimination", "Covering", "Cursor streaming", "p95"]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Dashboard query competes with OLTP reads and spikes CPU. What guardrail do you require?",
+      "options": [
+        "Run heavy reads on the primary only to ensure freshness",
+        "Cache or route through a read model/projection sized for analytics",
+        "Throttle user traffic globally when dashboards run",
+        "Disable indexes to equalize performance across users"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Headline: decouple analytics from OLTP with caches/read models.; Why correct: dedicated projections keep OLTP predictable; caches reduce load.; Why others are wrong: primary‑only hurts capacity; global throttles punish users; removing indexes slows everything.; Cursor leverage: propose a projection; define refresh budget; add router rules.; Acceptance checks: OLTP p95 stable; projection freshness window agreed; cache hit rate tracked.",
+      "keyConcepts": ["Read models", "Caching", "OLTP vs analytics", "Freshness window"]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A PR shows an accidental cross join (missing join predicate). What is your review requirement?",
+      "options": [
+        "Approve; cross joins sometimes discover useful combinations",
+        "Add an optimizer hint so the engine chooses a better algorithm",
+        "Require explicit join predicates and verify row estimates and rows‑read in plan",
+        "Move the query to a nightly batch to reduce user impact"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Headline: prevent accidental cross joins with explicit keys.; Why correct: predicates bound the join and stabilize estimates; plans become predictable.; Why others are wrong: hints and timing dodge correctness; batches hide defects.; Cursor leverage: add lints/tests for missing predicates; attach plan diffs; set acceptance checks.; Acceptance checks: join keys present; rows‑read bounded; plan estimates reasonable.",
+      "keyConcepts": ["Cross join", "Join predicates", "Estimates", "Rows read"]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Draft a PR comment to de‑risk a hot aggregation. Include: EXPLAIN summary, slow‑query budget (e.g., p95 &le; 150 ms), minimal index/rewrite rationale, and a rollback path if p95 regresses.",
+      "sampleStrongResponse": "Request plan operators and rows‑read; confirm selective starts and no cross‑shard or full scans. State p95 &le; 150 ms at current QPS and propose the smallest composite or a rewrite that removes a sort. Call out write‑amp and attach rollback toggles/scripts. Ask Cursor to summarize the plan, generate the DDL/rewrite, and produce PR‑ready acceptance checks."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Outline a staged optimization plan for a slow export: rewrite → index → cache/projection → rollout with flags. Include safety checks and stakeholder comms.",
+      "sampleStrongResponse": "Rewrite predicates for sargability and pushdowns; add ORDER BY index and cover fields; introduce a projection for large scans; cache where safe. Roll out behind flags with plan‑hash and p95 monitors. Success: rows‑read down &ge; 80%, p95 &le; target, and zero contract changes. Communicate expected freshness window and a blast‑radius note to support/product."
+    }
+  ]
+}

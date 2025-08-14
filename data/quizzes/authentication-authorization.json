@@ -1,0 +1,141 @@
+{
+  "title": "Authentication & Authorization Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "PR uses ID Tokens to authorize API calls. What correction do you require?",
+      "options": [
+        "Allow ID Tokens for APIs to simplify flows",
+        "Require Access Tokens for APIs with audience checks; keep ID Token for the client app",
+        "Use refresh tokens directly on APIs for stronger security",
+        "Accept any JWT as long as the signature verifies"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: Access Tokens are for APIs; ID Tokens are for identity.; Why correct: Access Tokens include audience/scope for APIs; ID Tokens identify the user to the client.; Why others are wrong: refresh tokens are not presented to APIs; any‑JWT acceptance risks confused deputy attacks.; Cursor leverage: add middleware for aud/scope; update docs; generate examples.; Acceptance checks: ID vs Access split documented; audience verified; routes enforce scopes.",
+      "keyConcepts": ["Access Token", "ID Token", "Audience", "Scopes"]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Tokens are long‑lived and sessions don’t rotate. What change do you require?",
+      "options": [
+        "Keep tokens long to reduce logins",
+        "Adopt short‑lived access tokens with refresh rotation and jti checks",
+        "Use a single everlasting access token per user",
+        "Rotate only ID Tokens and leave access tokens as is"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: reduce blast radius with short‑lived access and RTR.; Why correct: rotation with jti prevents replay chains; shorter access lifetimes reduce risk.; Why others are wrong: long‑lived tokens increase breach impact; rotating wrong token doesn’t help.; Cursor leverage: scaffold RTR; add caches by kid; write PR acceptance checks.; Acceptance checks: access TTL short; RTR enforced; revoke path tested.",
+      "keyConcepts": ["Refresh rotation", "jti", "TTL", "Blast radius"]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Frontend stores tokens in localStorage. What requirement do you set?",
+      "options": [
+        "Keep localStorage; it’s convenient",
+        "Store tokens in HTTP‑only, Secure, SameSite cookies and protect against CSRF",
+        "Embed tokens in URLs for easy sharing",
+        "Send tokens to the client only as base64 to hide them"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: protect tokens from XSS and CSRF.; Why correct: HTTP‑only cookies prevent JS access; SameSite and CSRF patterns mitigate forgery.; Why others are wrong: localStorage is XSS‑exposed; URLs leak; base64 is not security.; Cursor leverage: scaffold cookie config; add CSRF protection; update docs.; Acceptance checks: cookies configured; CSRF checks in place; tests green.",
+      "keyConcepts": ["HTTP‑only cookies", "SameSite", "CSRF", "XSS"]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Scopes are role names (e.g., admin, user) and partners have over‑broad access. What do you require?",
+      "options": [
+        "Keep role scopes; least privilege is too complex",
+        "Move to resource‑action scopes (e.g., orders:read, refunds:create) and centralize checks",
+        "Let each microservice invent its own scope names independently",
+        "Grant all scopes by default and deny on incident"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: encode least privilege via resource‑action scopes.; Why correct: fine‑grained scopes reduce privilege and align to endpoints.; Why others are wrong: role names are coarse; siloed scopes drift; allow‑all is unsafe.; Cursor leverage: generate a scope matrix; add policy middleware; write PR wording for checks.; Acceptance checks: matrix approved; checks centralized; audit logs capture decisions.",
+      "keyConcepts": ["Least privilege", "Scopes", "Policy middleware", "Audit"]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "JWKS rotation leads to intermittent token validation failures. What guardrail do you require?",
+      "options": [
+        "Fetch JWKS on every request to ensure freshness",
+        "Cache by kid with backoff and expiry; retry gracefully when keys rotate",
+        "Disable rotation to keep keys stable",
+        "Accept unsigned tokens temporarily during rotation"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: resilient key validation via kid‑aware caches.; Why correct: kid cache + backoff handles rotation safely; prevents outages.; Why others are wrong: per‑request fetch hurts reliability; no rotation is unsafe; unsigned tokens are unacceptable.; Cursor leverage: scaffold JWKS cache; add metrics and alerts; update docs.; Acceptance checks: cache hit rate stable; rotation tested; errors within budget.",
+      "keyConcepts": ["JWKS", "kid", "Caching", "Backoff"]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Sensitive endpoints (refunds) lack step‑up auth. What do you require?",
+      "options": [
+        "Trust existing sessions; refunds are rare",
+        "Require step‑up auth and re‑authentication window; audit decisions and actor",
+        "Add an extra confirmation dialog only",
+        "Rely on support to catch fraud post‑hoc"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: step‑up for high‑risk actions.; Why correct: step‑up reduces abuse and creates audit evidence.; Why others are wrong: dialogs are not auth; post‑hoc detection is late.; Cursor leverage: scaffold step‑up flow; add audit logs; update scopes.; Acceptance checks: step‑up enforced; audits recorded; abuse rate down.",
+      "keyConcepts": ["Step‑up authentication", "Audit", "Risk"]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "APIs accept any token regardless of audience claims. What must be added?",
+      "options": [
+        "Accept all tokens to maximize compatibility",
+        "Validate audience (aud) against the API and enforce scope checks per route",
+        "Only check token expiry and ignore audience",
+        "Reject tokens with refresh tokens present"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: validate audience and scopes per API.; Why correct: aud prevents token replay to the wrong API; scopes encode permissions.; Why others are wrong: ignoring aud enables confused deputy; expiry‑only is insufficient.; Cursor leverage: add audience config; route‑level scope checks; tests.; Acceptance checks: aud enforced; scope checks per route; tests pass.",
+      "keyConcepts": ["Audience", "Scopes", "Confused deputy"]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Partner integration needs machine‑to‑machine auth. What pattern do you require?",
+      "options": [
+        "Share a user’s refresh token with the partner",
+        "Use client credentials or mTLS with scoped Access Tokens and short TTLs",
+        "Let partners call with unsigned JSON payloads",
+        "Reuse session cookies between services"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: use proper service credentials with scopes.; Why correct: client credentials/mTLS issue tokens for services with least privilege.; Why others are wrong: user tokens and cookies are wrong for services; unsigned payloads are insecure.; Cursor leverage: scaffold client‑credentials flow; generate policy; example requests.; Acceptance checks: tokens scoped; TTL short; logs include sub/aud.",
+      "keyConcepts": ["Client credentials", "mTLS", "Scopes", "TTL"]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Draft a PR comment for securing a new payments API: token types, scopes, TTLs, JWKS caching, and audit requirements. Include measurable acceptance checks.",
+      "sampleStrongResponse": "Require Access Tokens (aud=payments) with resource‑action scopes; TTL &le; 15 min; refresh rotation for browser flows. Cache JWKS by kid with backoff. Log auth decisions with sub/aud/scope/decision. Acceptance: 100% aud validated; scopes enforced per route; rotation tests green; audit logs searchable within 5 min."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Outline a least‑privilege rollout: scope matrix, central checks, step‑up for sensitive actions, and comms. Include success metrics (e.g., over‑broad scope usage ↓ 80%).",
+      "sampleStrongResponse": "Define a resource‑action scope matrix and generate policy middleware for all services. Add step‑up for refunds and admin routes. Centralize checks and audit logs. Communicate partner impact and SDK updates. Success: over‑broad scope usage ↓ 80%, auth errors &le; baseline, and incident rate for access escalation → near zero."
+    }
+  ]
+}

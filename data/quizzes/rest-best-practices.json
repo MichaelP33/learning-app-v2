@@ -1,0 +1,141 @@
+{
+  "title": "REST Best Practices Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A new POST /orders endpoint may double‑charge on retry. What will you require in the PR?",
+      "options": [
+        "Return 200 OK on duplicates without any indication",
+        "Support an Idempotency‑Key header and return 201 with Location on first success and the original result on replay",
+        "Use a custom verb in the path like /orders/create to signal special logic",
+        "Advise clients to avoid retries altogether"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: idempotent POSTs prevent duplicates and clarify outcomes.; Why correct: Idempotency‑Key enables safe retries; 201 + Location is predictable.; Why others are wrong: silent 200 hides state; RPC verbs in paths break conventions; banning retries is unrealistic.; Cursor leverage: add OpenAPI examples; scaffold middleware; write PR‑ready contract text.; Acceptance checks: key handled; 201 + Location on create; replay returns prior result.",
+      "keyConcepts": ["Idempotency", "201 Created", "Location header"]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Error responses vary per endpoint. What alignment do you require?",
+      "options": [
+        "Return plain strings to keep payloads small",
+        "Adopt RFC 7807 Problem Details with stable code, message, and traceId",
+        "Use HTML error pages so browsers can render nicely",
+        "Document errors in a wiki page instead of the spec"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: standardize errors for machine handling and DX.; Why correct: Problem Details with code/traceId enables automation and support.; Why others are wrong: strings/HTML are brittle; wikis drift from reality.; Cursor leverage: update OpenAPI; add error middleware; generate SDK samples.; Acceptance checks: schema validated in CI; error examples present; traceId logged.",
+      "keyConcepts": ["RFC 7807", "Error contracts", "traceId"]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Offset pagination shows duplicates/gaps under writes. What do you require?",
+      "options": [
+        "Keep offset; raise page size and hope for fewer issues",
+        "Use cursor pagination with stable ordering and Link headers",
+        "Return everything in one page to avoid pagination",
+        "Sort in the client and dedupe duplicates"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: cursor paging prevents drift.; Why correct: stable ORDER + opaque cursor avoids gaps/repeats.; Why others are wrong: larger pages still drift; one page is impractical; client sorts can’t fill gaps.; Cursor leverage: generate cursor design; add OpenAPI/SDK examples; create contract tests.; Acceptance checks: ORDER defined; cursor params in spec; no gaps/repeats in tests.",
+      "keyConcepts": ["Cursor pagination", "Stable ordering", "Link headers"]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "PUT /orders/{id} is not idempotent and can create duplicates. What change do you require?",
+      "options": [
+        "Keep behavior; clients should call carefully",
+        "Make PUT idempotent (replace semantics) and use POST for creation with idempotency",
+        "Rename it to /orders/update and keep semantics the same",
+        "Return 500 on duplicates so clients learn fast"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: align methods to semantics for safety.; Why correct: PUT must be idempotent; POST creation with idempotency prevents duplicates.; Why others are wrong: naming doesn’t fix behavior; 500s are not contracts.; Cursor leverage: update OpenAPI; add method tests; scaffold idempotency middleware.; Acceptance checks: PUT idempotent; POST has Idempotency‑Key; tests pass.",
+      "keyConcepts": ["Method semantics", "PUT vs POST", "Idempotency"]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Endpoints mix RPC verbs in paths (e.g., /orders/cancelOrder). What is your review stance?",
+      "options": [
+        "Allow RPC verbs; teams can guess semantics",
+        "Model nouns and use standard HTTP methods; represent actions as resources if needed",
+        "Embed verbs deeply to make routes descriptive",
+        "Use POST for every operation to simplify clients"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: REST uses nouns + standard methods.; Why correct: consistent modeling improves predictability and tooling.; Why others are wrong: RPC verbs reduce reuse; over‑descriptive paths harm contracts; one‑verb POST harms caching/idempotency.; Cursor leverage: lint OpenAPI; propose resource names; update examples.; Acceptance checks: nouns in paths; verbs only as methods; docs/SDK regenerated.",
+      "keyConcepts": ["Resource modeling", "HTTP methods", "Consistency"]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Large collections time out with offset. What do you ask before merge?",
+      "options": [
+        "Keep offset but increase timeouts",
+        "Adopt cursor paging with stable sort and document back/next links",
+        "Return unsorted results to improve speed",
+        "Paginate in the client only"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: stable cursor paging scales.; Why correct: stable sort + links give predictable navigation at scale.; Why others are wrong: timeouts dodge design; unsorted breaks contracts; client‑only paging is brittle.; Cursor leverage: spec examples; header/link helpers; SDK updates.; Acceptance checks: spec validates; e2e tests show no skips/repeats; performance meets SLO.",
+      "keyConcepts": ["Pagination", "Stable sort", "HATEOAS/Links"]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Some endpoints return HTML errors while others return JSON. What do you require?",
+      "options": [
+        "Keep HTML for readability",
+        "Standardize on JSON Problem Details with content‑type and codes",
+        "Use text/plain for errors to reduce payload size",
+        "Respond 204 No Content on errors to avoid payloads"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: consistent machine‑readable errors.; Why correct: JSON Problem Details enables client automation and logging.; Why others are wrong: HTML/text are brittle; 204 hides failure.; Cursor leverage: add middleware; update OpenAPI; regenerate SDK.; Acceptance checks: correct content‑type; schema validated; examples in docs.",
+      "keyConcepts": ["Problem Details", "Content negotiation", "Error handling"]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Async processing is added but API blocks until done. What pattern do you ask for?",
+      "options": [
+        "Return 202 Accepted with Location to a status resource and poll",
+        "Keep blocking and raise server timeouts",
+        "Return 201 with body only and no status link",
+        "Use WebSockets for every async job regardless of clients"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Headline: use 202 + status resource for async.; Why correct: decouples long work with a standard pattern and discoverable status.; Why others are wrong: blocking harms reliability; 201 is for creation; WebSockets everywhere is overkill.; Cursor leverage: scaffold job resource; add status schema; update docs.; Acceptance checks: 202 + Location implemented; status schema documented; retry/backoff examples provided.",
+      "keyConcepts": ["202 Accepted", "Status resource", "Asynchrony"]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Draft a PR comment to make /orders robust: include idempotent POST, cursor paging, RFC 7807 errors, and measurable success (e.g., duplicate rate &lt; 0.1%, p95 list &le; 120 ms).",
+      "sampleStrongResponse": "Specify POST with Idempotency‑Key; return 201 + Location and stable IDs. Use cursor paging with stable ORDER and Link headers. Adopt RFC 7807 with codes and traceId. Success: duplicate charge rate &lt; 0.1%, list p95 &le; 120 ms, and contract tests green. Ask Cursor to update OpenAPI/SDK, scaffold middleware, and add acceptance checks."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Outline a deprecation policy rollout for a breaking response change: warnings → dual responses → versioned endpoint. Include headers, comms, and success metrics.",
+      "sampleStrongResponse": "Phase 1: add deprecation docs and warnings. Phase 2: return both fields with a flag; publish SDK guidance. Phase 3: introduce /v2 with frozen contract. Send Deprecation/Sunset headers with dates; docs/SDK per version. Success: &ge; 90% traffic on new contract, zero Sev‑1s, and customer comms acknowledged."
+    }
+  ]
+}
