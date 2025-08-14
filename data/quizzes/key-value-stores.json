@@ -1,0 +1,141 @@
+{
+  "title": "Key-Value Stores Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Team proposes using a key‑value store to speed dashboards. What alignment prevents surprise &ldquo;stale&rdquo; complaints?",
+      "options": [
+        "Guarantee keys always return the primary&rsquo;s latest data",
+        "Define a freshness window and route must‑be‑fresh reads to the source of truth",
+        "Disable TTLs so cached values persist longer",
+        "Increase instance size so latency hides staleness"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: set a freshness SLA and route critical reads to the source of truth.; Why correct: caches and eventually consistent modes can serve stale values; expectations and routing prevent overpromising.; Why others are wrong: guarantees are unrealistic; disabling TTLs grows staleness; bigger boxes don&rsquo;t change correctness.; Cursor leverage: draft PR‑ready freshness language; list primary‑only paths; add a simple staleness/lag monitor.; Acceptance checks: SLA documented; routes updated; monitoring in place.",
+      "keyConcepts": ["Freshness window", "Must‑be‑fresh routing", "Cache semantics"]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Hot key drives p95 spikes. What&rsquo;s the most effective first mitigation to require?",
+      "options": [
+        "Key salting or sharding to spread load; add per‑key rate limits",
+        "Turn off persistence so writes are faster",
+        "Increase client timeouts to reduce error rates",
+        "Force strong consistency globally to slow readers"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Headline: distribute traffic and protect shards.; Why correct: salting/sharding and rate limits reduce per‑shard pressure.; Why others are wrong: disabling persistence risks data loss; longer timeouts hide issues; strong consistency globally raises latency without fixing hotspots.; Cursor leverage: detect hot keys; propose salting scheme; generate per‑key QPS dashboards.; Acceptance checks: skew reduced; rate limits applied; p95 stabilized.",
+      "keyConcepts": ["Hot keys", "Salting/sharding", "Rate limiting"]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Cache is flapping after deploys (miss → thundering herd). What playbook do you require?",
+      "options": [
+        "Short timeouts, request coalescing, backoff, and prewarm on release",
+        "Raise TTLs across the board so keys rarely expire",
+        "Remove circuit breakers so traffic flows freely",
+        "Retry aggressively from clients until success"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Headline: coalesce, back off, and prewarm to avoid stampedes.; Why correct: coordinated retries and prewarm prevent load spikes and cascading failures.; Why others are wrong: blanket TTL increases hide stale data; removing breakers risks outages; aggressive retries amplify the herd.; Cursor leverage: generate middleware snippets for coalescing; add prewarm steps; produce a release checklist.; Acceptance checks: herd rate drops; error budget protected; prewarm documented.",
+      "keyConcepts": ["Thundering herd", "Request coalescing", "Prewarm"]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Team adds three GSIs for convenience. Writes slowed. What is the TAM ask that balances UX and cost?",
+      "options": [
+        "Keep all GSIs because reads are more important than writes",
+        "Prune to a minimal index set that matches real predicates; quantify write amp",
+        "Switch to eventual consistency for writes",
+        "Increase shard count so write cost disappears"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: curate minimal GSIs and account for write amplification.; Why correct: each GSI adds write work; keeping only predicate‑matching ones preserves throughput.; Why others are wrong: prioritizing reads only harms OLTP; consistency modes don&rsquo;t change write amp; more shards don&rsquo;t remove per‑item index cost.; Cursor leverage: list predicate usage; propose minimal GSI set; estimate write amp and rollback.; Acceptance checks: unused GSIs dropped; hot paths covered; write metrics stable.",
+      "keyConcepts": ["GSI/secondary index", "Write amplification", "Predicate coverage"]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "&ldquo;Stale data&rdquo; reports appear after rollout. What verification and fix path do you require?",
+      "options": [
+        "Verify invalidation events and TTL policy; route must‑be‑fresh reads to the primary",
+        "Reboot the cluster to refresh all keys in memory",
+        "Disable caching across the app to guarantee correctness",
+        "Force synchronous writes on every request"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Headline: check invalidation and TTL, and route critical reads.; Why correct: most stale‑read issues stem from missing invalidations or TTLs too long; routing preserves UX where it matters.; Why others are wrong: reboots are noise; disabling cache kills performance; synchronous writes on every path overconstrains.; Cursor leverage: scan code for emit points; propose TTLs by access pattern; draft route rules.; Acceptance checks: invalidations fixed; TTLs tuned; primary routes set for critical flows.",
+      "keyConcepts": ["Invalidation", "TTL policy", "Primary routing"]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Capacity planning shows memory pressure and eviction storms. What&rsquo;s the right next step?",
+      "options": [
+        "Tune eviction policy and compress values; move large blobs to object storage",
+        "Disable eviction so errors are obvious",
+        "Turn off TTLs to reduce churn",
+        "Increase client retries during storms"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Headline: reduce memory footprint and make eviction behavior predictable.; Why correct: compression and moving blobs out reduce pressure; policy tuning stabilizes p95.; Why others are wrong: disabling eviction isn&rsquo;t supported and would fail hard; turning off TTLs increases staleness; retries amplify storms.; Cursor leverage: estimate value size savings; propose policy settings; add dashboards for eviction and memory.; Acceptance checks: eviction rate drops; p95 stabilizes; blob offload completed.",
+      "keyConcepts": ["Eviction policy", "Compression", "Object storage"]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Feature flags and counters will live in the KVS. What alignment ensures correctness and speed?",
+      "options": [
+        "Atomic increments and namespaced, versioned keys with clear TTLs",
+        "Batch counters nightly to reduce write load",
+        "Use wide keys to pack many values into one item for fewer calls",
+        "Disable TTLs so flags never expire unexpectedly"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Headline: use atomic ops and disciplined key schema.; Why correct: atomic increments keep counters correct; namespacing/versioning and TTLs enable safe rollouts.; Why others are wrong: nightly batches break real‑time; wide keys cause contention; disabling TTLs risks stale flags.; Cursor leverage: generate key naming policy; add atomic op examples; create a TTL matrix by feature.; Acceptance checks: key schema merged; atomic ops used; TTLs documented.",
+      "keyConcepts": ["Atomic increments", "Key schema", "TTL discipline"]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "New design reads via cache but writes only to the primary DB. What is your must‑have to avoid &ldquo;write then stale read&rdquo; bugs?",
+      "options": [
+        "Write‑through or change‑event invalidation so cache reflects updates",
+        "Increase cache size so misses are rare",
+        "Add retries to GET calls until the cache warms",
+        "Disable the cache for all endpoints"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Headline: keep cache coherent via write‑through or invalidation.; Why correct: without update paths, readers can serve stale data after writes.; Why others are wrong: larger caches don&rsquo;t ensure freshness; retries don&rsquo;t fix staleness; killing cache removes the benefit.; Cursor leverage: generate invalidation hooks; propose write‑through for hot keys; add tests that assert freshness after writes.; Acceptance checks: invalidation implemented; freshness tests pass; stale‑read tickets drop.",
+      "keyConcepts": ["Write‑through", "Invalidation", "Cache coherence"]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Draft a PR comment to de‑risk a cache hot path. Include: EXPLAIN‑style access summary, slow‑query budget (e.g., p95 ≤ 50 ms), minimal key schema, TTL policy, and a rollback path if hit rate or p95 regress.",
+      "sampleStrongResponse": "Ask for a brief access pattern summary: key shape, value size, expected QPS, and read/write mix. State the slow‑query budget (for example, p95 ≤ 50 ms, hit rate ≥ 90%). Propose a minimal namespaced, versioned key schema and TTL policy per access pattern. Require a rollback toggle to bypass the cache if p95 or hit rate regress. Ask Cursor to draft the PR comment, key naming policy, and a small dashboard query for hit rate and p95."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Outline a phased migration talk track to introduce a new cache namespace without downtime. Include add → backfill → flip → enforce → cleanup, safety checks, and comms.",
+      "sampleStrongResponse": "Plan: add the new namespaced keys alongside legacy and start dual‑writes; backfill hot keys with a script and prewarm; flip reads via a flag and validate hit rate/p95 on a sampled cohort; enforce writes only to the new namespace; clean up legacy keys with a TTL sweep. Safety: idempotent backfill, circuit breakers, surge controls, and a rollback that routes reads/writes to legacy keys. Comms: share freshness window, p95 and hit‑rate targets, and a blast‑radius note. Ask Cursor to draft the scripts, flags, and stakeholder note."
+    }
+  ]
+}
