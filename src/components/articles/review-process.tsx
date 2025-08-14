@@ -1,155 +1,163 @@
 import React from "react";
 
+export const articleFormatVersion = 2;
+
 export default function ReviewProcess() {
   return (
     <article className="space-y-10">
       {/* Key Concepts */}
-      <section id="key-concepts">
-        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
-          Key Concepts
-        </h2>
+      <section id="key-concepts" className="mb-12">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Key Concepts</h2>
         <div className="space-y-6">
-          {/* Callout 3 (uses callout budget) */}
-          <div className="border-l-4 border-violet-500 bg-violet-50/50 dark:bg-violet-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              Pull Request Templates
-            </h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-3">
-              A good template reduces back‑and‑forth by prompting for intent, risk areas, test plan, rollout/rollback, and screenshots. It creates consistent reviewer context and helps triage routing.
-            </p>
-            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-2">
-              <li>Sections: Summary, Motivation, Scope, Risk Hot‑spots, Test Evidence, Rollout/Backout.</li>
-              <li>Auto‑links: related issues, ADRs, runbooks, and design docs.</li>
-              <li>Checklists: security, accessibility, performance, data changes.</li>
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Plain‑English definition</h3>
+            <p className="text-slate-700 dark:text-gray-300">The review process is how teams move changes from proposal to merge with the right context, the right reviewers, and clear decisions.</p>
+          </div>
+
+          <div className="border-l-4 border-emerald-500 bg-emerald-50/50 dark:bg-emerald-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Why users feel it</h3>
+            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
+              <li>Faster time‑to‑first‑review with clear templates.<ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Example: PRs include intent, risk, evidence.</li><li>Plain English: reviewers get the story quickly.</li></ul></li>
+              <li>Less back‑and‑forth when feedback is labeled.<ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Example: must‑fix vs suggestion labels.</li><li>Plain English: know what to change now vs later.</li></ul></li>
+              <li>Predictable throughput with SLAs and dashboards.<ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Example: stale PR nudges and owner rollups.</li><li>Plain English: nothing falls through the cracks.</li></ul></li>
             </ul>
           </div>
 
-          <div className="pl-6">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              SLAs &amp; Review Flow
-            </h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Teams benefit from explicit SLAs: time to first response, time to approval after changes requested, and expectations during on‑call. SLAs prevent starvation and reduce cycle time variability.
-            </p>
-            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-2">
-              <li>First response within the working day; handoffs across time zones acknowledged.</li>
-              <li>Changes requested should include rationale and precise remediation steps or references.</li>
-              <li>Escalation path when deadlines are at risk (reviewer backups, codeowners fallback).</li>
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Sticky mental model</h3>
+            <p className="text-slate-700 dark:text-gray-300">&ldquo;Air traffic control&rdquo;: intake, routing, sequencing, and clearances keep the runway safe and busy.</p>
+          </div>
+
+          <div className="border-l-4 border-orange-500 bg-orange-50/50 dark:bg-orange-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Strengths &amp; limits (trade‑offs)</h3>
+            <div className="grid gap-4">
+              <div>
+                <h4 className="font-medium text-slate-900 dark:text-white">Strengths</h4>
+                <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
+                  <li>Templates reduce context thrash → faster reviews.<ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Payoff: fewer delays.</li></ul></li>
+                  <li>SLAs and routing improve flow → fewer stale PRs.<ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Payoff: predictable delivery.</li></ul></li>
+                  <li>Non‑blocking feedback preserves velocity.<ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Payoff: momentum without risk.</li></ul></li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="font-medium text-slate-900 dark:text-white">Limits</h4>
+                <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
+                  <li>Heavy templates can be ignored.<ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Tip: keep concise; auto‑fill where possible.</li></ul></li>
+                  <li>Strict reviewers can over‑block.<ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Tip: clarify must‑fix vs suggestions.</li></ul></li>
+                  <li>Ownership drift breaks routing.<ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Tip: maintain CODEOWNERS.</li></ul></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Common misunderstandings</h3>
+            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
+              <li>&ldquo;All comments block.&rdquo; → Impact: stalled PRs → Fix: label must‑fix vs suggestions.</li>
+              <li>&ldquo;Routing is automatic forever.&rdquo; → Impact: mis‑reviews → Fix: maintain owners and backups.</li>
+              <li>&ldquo;No time for templates.&rdquo; → Impact: reviewer confusion → Fix: short, pre‑filled forms.</li>
             </ul>
           </div>
 
-          <div className="pl-6">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              Non‑blocking vs Blocking Feedback
-            </h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Label comments as &ldquo;must‑fix&rdquo; when correctness, security, safety, or policy is affected; otherwise mark suggestions. This preserves momentum and keeps ownership clear.
-            </p>
-            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-2">
-              <li>Provide alternatives with code sketches where helpful.</li>
-              <li>Bundle preference‑level suggestions into a single comment to reduce noise.</li>
-              <li>Defer debates to standards or ADR updates rather than blocking merges repeatedly.</li>
-            </ul>
-          </div>
-
-          <div className="pl-6">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">In practice</h3>
-            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-2">
-              <li>Adopt a single PR template across repos; tailor via labeled sections, not different files.</li>
-              <li>Publish SLAs and dashboards; alert when PRs breach thresholds or go stale.</li>
-              <li>Use labels for &ldquo;must‑fix&rdquo; and &ldquo;suggestion&rdquo; to make status obvious.</li>
+          <div className="border-l-4 border-slate-400 bg-slate-50/50 dark:bg-slate-800/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Related Glossary (terms &amp; tech)</h3>
+            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
+              <li><strong>PR template</strong> — context prompt. <em>Why it matters:</em> speeds onboarding.</li>
+              <li><strong>CODEOWNERS</strong> — routing file. <em>Why it matters:</em> gets experts in the loop.</li>
+              <li><strong>SLA</strong> — service level agreement. <em>Why it matters:</em> predictable throughput.</li>
+              <li><strong>Must‑fix</strong> — blocking feedback. <em>Why it matters:</em> safety without slowdown.</li>
+              <li><strong>Suggestion</strong> — non‑blocking. <em>Why it matters:</em> maintain pace.</li>
+              <li><strong>Queue health</strong> — PR flow metrics. <em>Why it matters:</em> reveals bottlenecks early.</li>
             </ul>
           </div>
         </div>
       </section>
 
       {/* Business & Team Impact */}
-      <section id="business-team-impact">
-        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
-          Business &amp; Team Impact
-        </h2>
+      <section id="business-team-impact" className="mb-12">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Business &amp; Team Impact</h2>
         <div className="space-y-6">
-          <div className="pl-6">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              Ownership &amp; CODEOWNERS
-            </h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Clear ownership accelerates reviews and improves accountability. CODEOWNERS files route changes to domain experts and ensure critical paths always get experienced eyes.
-            </p>
-            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-2">
-              <li>Map critical folders and contracts to specific teams; keep file current with org changes.</li>
-              <li>Use &ldquo;required reviewers&rdquo; only for high‑risk domains to avoid bottlenecks.</li>
-              <li>Provide backup owners to keep SLAs intact during vacations or incidents.</li>
+          <div className="border-l-4 border-emerald-500 bg-emerald-50/50 dark:bg-emerald-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Where it shows up</h3>
+            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
+              <li>Large programs with cross‑team dependencies.<ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Example: dashboard shows queue health.</li></ul></li>
+              <li>High‑risk areas needing expert reviewers.<ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Example: CODEOWNERS routes to security.</li></ul></li>
+              <li>Distributed teams across time zones.<ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Example: SLAs and nudges keep flow.</li></ul></li>
             </ul>
           </div>
 
-          <div className="pl-6">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              Conflict Resolution
-            </h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Technical disagreements should resolve through data and references. Bring logs, benchmarks, or user impact measurements. If unresolved, escalate to agreed tie‑breakers (architect on call, standards council) and capture the decision.
-            </p>
-            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-2">
-              <li>Prefer &ldquo;experiment then decide&rdquo; over extended threads when cost is small.</li>
-              <li>Move heated debates to synchronous calls with a timebox and concrete next steps.</li>
-              <li>Record outcomes to shrink future decision time and reduce repeated debates.</li>
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">What good looks like</h3>
+            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
+              <li>Concise templates with auto‑links → less context thrash.<ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Payoff: faster approvals.</li></ul></li>
+              <li>Must‑fix vs suggestion norms → fewer stalemates.<ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Payoff: momentum with safety.</li></ul></li>
+              <li>Owner dashboards and nudges → predictable throughput.<ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Payoff: no forgotten PRs.</li></ul></li>
             </ul>
           </div>
 
-          <div className="pl-6">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">In practice</h3>
-            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-2">
-              <li>Keep CODEOWNERS small and precise; avoid &ldquo;/*&rdquo; patterns that create noise.</li>
-              <li>Set reviewer rotation for fairness and load balancing; protect focus time.</li>
-              <li>Track &ldquo;PRs waiting on author&rdquo; vs &ldquo;waiting on reviewer&rdquo; to find true bottlenecks.</li>
+          <div className="border-l-4 border-yellow-500 bg-yellow-50/50 dark:bg-yellow-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Failure signals (customer words)</h3>
+            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
+              <li>&ldquo;PRs sit for days without a response.&rdquo; → Likely cause: missing SLAs/dashboards → What to check: owner nudges.</li>
+              <li>&ldquo;The wrong people review my PRs.&rdquo; → Likely cause: stale CODEOWNERS → What to check: owner map updates.</li>
+              <li>&ldquo;Reviews devolve into style debates.&rdquo; → Likely cause: missing template/criteria → What to check: checklists and formatters.</li>
+            </ul>
+          </div>
+
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Industry lenses</h3>
+            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
+              <li><strong>Enterprise Tech</strong>: dashboards, SLAs, strong routing.</li>
+              <li><strong>Non‑Tech Enterprise</strong>: simple templates, minimal blocking.</li>
+              <li><strong>Startups</strong>: lightweight process, focus on correctness and speed.</li>
             </ul>
           </div>
         </div>
       </section>
 
       {/* Cursor Implementation */}
-      <section id="cursor-implementation">
-        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
-          Cursor Implementation
-        </h2>
+      <section id="cursor-implementation" className="mb-12">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Cursor Implementation</h2>
         <div className="space-y-6">
-          <div className="pl-6">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              Automation &amp; Routing
-            </h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Auto‑label PRs by risk domain and changed areas; route to owners; surface &ldquo;must‑fix&rdquo; policies inline. Provide suggested summaries and change impact analysis to reduce reviewer onboarding time.
-            </p>
-            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-2">
-              <li>Generate checklists driven by file types (migrations, controllers, UI components).
-              </li>
-              <li>Post CI status with actionable failure triage; link to playbooks or fix PRs.</li>
-              <li>Offer &ldquo;apply suggestion&rdquo; code edits for low‑risk refactors to reduce back‑and‑forth.</li>
+          <div className="border-l-4 border-slate-400 bg-slate-50/50 dark:bg-slate-800/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">TL;DR (AM-friendly)</h3>
+            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
+              <li>Short templates; clear labels; owner routing.<ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Plain English: right info, right eyes.</li></ul></li>
+              <li>Dashboards and nudges keep flow moving.<ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Payoff: no stale PRs.</li></ul></li>
+              <li>Block only must‑fix items.<ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Payoff: speed with safety.</li></ul></li>
             </ul>
           </div>
 
-          <div className="pl-6">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">
-              Transparent SLAs &amp; Dashboards
-            </h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Provide a dashboard of aging PRs, queue health, and SLA breaches. Nudge reviewers and authors with gentle reminders and ownership summaries.
-            </p>
-            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-2">
-              <li>Daily digest to owners of stale PRs and risk‑labeled items.</li>
-              <li>Time‑to‑merge tracked by area to detect persistent bottlenecks.</li>
-              <li>Heatmaps of code areas with repeated conflicts; propose standard updates or utilities.</li>
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Review workflow (AI in PRs/design)</h3>
+            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
+              <li>Pre‑fill templates from diff context; propose risk hot‑spots and evidence asks.<ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Checklist: screenshots, traces, benchmarks.</li></ul></li>
+              <li>Auto‑label domains and route to CODEOWNERS/backups.<ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Checklist: security, a11y, DB.</li></ul></li>
+              <li>Summarize threads and decisions into notes for future maintainers.</li>
             </ul>
           </div>
 
-          <div className="pl-6">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">In practice</h3>
-            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-2">
-              <li>Start with a lightweight template; iterate based on common gaps seen in reviews.</li>
-              <li>Use labels and CODEOWNERS to keep blocking feedback focused and rare.</li>
-              <li>Escalate via a clear path; record decisions and link to ADRs when policies shift.</li>
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Guardrails &amp; automation</h3>
+            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
+              <li>Branch protections on must‑fix checks; suggestions non‑blocking.<ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Benefit: flow preserved.</li></ul></li>
+              <li>Queue dashboards and SLA alerts; daily stale digests.<ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Benefit: visibility and accountability.</li></ul></li>
+              <li>Template generator per repo with shared sections to avoid drift.</li>
             </ul>
+          </div>
+
+          <div className="border-l-4 border-emerald-500 bg-emerald-50/50 dark:bg-emerald-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Operational playbooks</h3>
+            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
+              <li><strong>Queue backlog</strong>: re‑balance owners; split PRs; raise nudges.<ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Why it helps: restores throughput.</li></ul></li>
+              <li><strong>Review churn</strong>: enforce must‑fix labeling; propose ADRs; bundle suggestions.<ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Why it helps: reduces thrash.</li></ul></li>
+              <li><strong>Ownership drift</strong>: audit CODEOWNERS monthly; add backups and coverage alerts.<ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Why it helps: correct routing.</li></ul></li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Talk track (20 sec)</h3>
+            <p className="text-slate-700 dark:text-gray-300">&ldquo;We streamline reviews with short templates, clear labels, and owner routing—and we track flow with dashboards—so changes land faster without sacrificing safety.&rdquo;</p>
           </div>
         </div>
       </section>

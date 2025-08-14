@@ -4350,6 +4350,181 @@ export const externalQuizzes: Record<string, Quiz> = {
     }
   ]
 },
+  "relational-databases": {
+  "title": "Relational Databases Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Which ACID property guarantees all‑or‑nothing effects for a transaction?",
+      "options": [
+        "Atomicity",
+        "Consistency",
+        "Isolation",
+        "Durability"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Atomicity ensures a transaction either fully applies or does not apply at all; Consistency preserves invariants; Isolation manages visibility; Durability keeps committed data after failures.",
+      "keyConcepts": [
+        "ACID",
+        "Atomicity",
+        "Transaction semantics"
+      ]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Under Read Committed, which anomaly can still occur but is prevented by Repeatable Read?",
+      "options": [
+        "Dirty reads",
+        "Non‑repeatable reads",
+        "Phantom reads",
+        "Lost updates"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Read Committed prevents dirty reads but may allow non‑repeatable reads; Repeatable Read holds row versions/locks to prevent re‑read changes. Phantom reads typically require Serializable to prevent.",
+      "keyConcepts": [
+        "Isolation levels",
+        "Anomalies",
+        "Read Committed",
+        "Repeatable Read"
+      ]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "The primary purpose of normalization (to ~3NF) is to reduce which risk?",
+      "options": [
+        "Index selectivity always decreasing",
+        "Higher I/O for point lookups only",
+        "Update/insert/delete anomalies from redundant data",
+        "Disk usage growing regardless of workload"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Normalization reduces redundancy to prevent anomalies (e.g., update anomalies). It is not a guarantee about index selectivity or inevitable disk growth.",
+      "keyConcepts": [
+        "Normalization",
+        "3NF",
+        "Data anomalies"
+      ]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A foreign key primarily enforces which guarantee?",
+      "options": [
+        "Row uniqueness within a table",
+        "Physical order of rows on disk",
+        "Faster joins by default",
+        "Valid references to a parent row (referential integrity)"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Foreign keys enforce referential integrity. Uniqueness is a primary/candidate key property; physical order relates to clustered storage; indexes influence speed but are not guaranteed by FKs.",
+      "keyConcepts": [
+        "Foreign key",
+        "Referential integrity",
+        "Keys and constraints"
+      ]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Adding several low‑selectivity indexes to a hot OLTP table primarily increases which cost?",
+      "options": [
+        "Write amplification from index maintenance on inserts/updates",
+        "Read latency for index‑only plans in all cases",
+        "Storage overhead remains negligible regardless of index count",
+        "Join correctness decreases as indexes are added"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Each additional index must be maintained on writes, increasing write cost and redo/WAL volume. Read latency may improve or worsen depending on plan; correctness is unaffected by adding valid indexes.",
+      "keyConcepts": [
+        "Indexing",
+        "Selectivity",
+        "Write amplification",
+        "OLTP"
+      ]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Denormalization is most appropriate when your read patterns…",
+      "options": [
+        "Are unpredictable and you cannot define hot queries",
+        "Are stable, read‑heavy, and benefit from pre‑joined data with controlled consistency trade‑offs",
+        "Require strict transactional consistency across many tables on every write",
+        "Change schema weekly, making duplication easy to keep in sync"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Denormalization can pre‑compute joins for stable, read‑heavy access paths when you can manage duplication consistency. Strict cross‑table consistency and highly volatile schemas favor normalization.",
+      "keyConcepts": [
+        "Denormalization",
+        "Read patterns",
+        "Trade‑offs"
+      ]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A query with equality on user_id and a range on created_at still scans the table despite an index on created_at. What is the most likely cause?",
+      "options": [
+        "Table statistics are always the root cause",
+        "A hash index on created_at is required for range conditions",
+        "VACUUM/defragmentation must run before the plan uses the index",
+        "Missing composite index with leading equality column (user_id, created_at)"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "For mixed equality+range predicates, planners prefer a composite index starting with the equality column. Stats or maintenance can matter, but the structural index mismatch is the usual blocker.",
+      "keyConcepts": [
+        "Composite indexes",
+        "Query planning",
+        "SARGability"
+      ]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Frequent write‑write conflicts and blocked readers under high concurrency most likely indicate…",
+      "options": [
+        "Connection pool size is slightly too small",
+        "A read cache miss pattern on dashboards",
+        "Pessimistic locking at a high isolation level causing contention",
+        "Index fragmentation inherently blocks readers"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Under lock‑based engines and higher isolation, long‑held locks can block readers/writers. MVCC mitigates reader blocking; connection pools and fragmentation are separate concerns.",
+      "keyConcepts": [
+        "Concurrency control",
+        "Locking vs MVCC",
+        "Isolation levels"
+      ]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "List three scenarios where a relational database is the better fit than a document store. For each, include one concrete signal (e.g., cross‑row consistency requirement, multi‑table reporting, strict referential integrity).",
+      "sampleStrongResponse": "Examples: (1) Orders/payments where multi‑row atomicity is required — signal: charge + ledger + inventory must commit together. (2) Complex reporting joining many entities — signal: frequent multi‑table joins and ad‑hoc filters. (3) Entitlements/audits with strict relationships — signal: enforced foreign keys and history that must be trustworthy."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Compare normalization (to ~3NF) vs denormalization for a read‑heavy analytics module. For each approach, state when you would choose it and one measurable success criterion (e.g., P95 query latency, write amplification).",
+      "sampleStrongResponse": "Normalization: choose when writes require strong consistency and schema is stable; success: P95 write latency within budget and low anomaly risk. Denormalization: choose when reads are stable/hot and duplication can be reconciled; success: P95 read latency target met with acceptable write amplification and staleness windows clearly defined."
+    }
+  ]
+},
   "repository-organization": {
   "title": "Repository Organization Knowledge Quiz",
   "totalQuestions": 10,

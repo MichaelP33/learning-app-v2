@@ -1,156 +1,163 @@
 import React from "react";
 
+export const articleFormatVersion = 2;
+
 export default function ErrorTracking() {
   return (
     <article className="space-y-10">
       {/* Key Concepts */}
-      <section id="key-concepts">
+      <section id="key-concepts" className="mb-12">
         <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Key Concepts</h2>
         <div className="space-y-6">
           <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Grouping and de‑duplication</h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Error trackers aggregate similar events into issues using fingerprints (stack frames, exception type, message templates). Proper grouping avoids alert storms and preserves signal. Normalize variable parts (IDs, timestamps) and include a stable &ldquo;culprit&rdquo; (top frame or route) for accurate rollups.
-            </p>
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Plain‑English definition</h3>
+            <p className="text-slate-700 dark:text-gray-300">Error tracking groups, prioritizes, and routes application errors so the right team fixes the right issue quickly with full context.</p>
+          </div>
+
+          <div className="border-l-4 border-emerald-500 bg-emerald-50/50 dark:bg-emerald-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Why users feel it</h3>
             <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>Define custom fingerprints for noisy libraries or frameworks that otherwise collapse distinct bugs.</li>
-              <li>Capture request context (headers, params, feature flags) with PII redaction to make issues actionable.</li>
-              <li>Use correlation via <span className="font-medium">traceId</span> and <span className="font-medium">requestId</span> to link errors to traces and logs (observability = system monitoring and debugging).</li>
+              <li>Less paging noise; more actionable alerts.<ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Example: dedupe by fingerprint; route by owner.</li><li>Plain English: only wake people for real issues.</li></ul></li>
+              <li>Faster root cause with links to releases, traces, and logs.<ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Example: issue shows &ldquo;introduced in release X&rdquo;.</li><li>Plain English: fix what changed.</li></ul></li>
+              <li>Clear &ldquo;when to page&rdquo; policy via SLOs and burn rate.<ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Example: page only when budget is burning fast.</li><li>Plain English: fewer false alarms.</li></ul></li>
             </ul>
           </div>
 
-          <div className="pl-6">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Release health and regression detection</h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Track error rate, crash‑free sessions, and p95 latency by release (build SHA). When a new version spikes an issue group, auto‑create a regression and link to the responsible PR. Feature flags should annotate events so you can separate rollout impact from code changes.
-            </p>
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Sticky mental model</h3>
+            <p className="text-slate-700 dark:text-gray-300">&ldquo;Air traffic control for exceptions&rdquo;: radar (ingest), controllers (routing), and flight logs (context) keep skies safe.</p>
+          </div>
+
+          <div className="border-l-4 border-orange-500 bg-orange-50/50 dark:bg-orange-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Strengths &amp; limits (trade‑offs)</h3>
+            <div className="grid gap-4">
+              <div>
+                <h4 className="font-medium text-slate-900 dark:text-white">Strengths</h4>
+                <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
+                  <li>Grouping reduces noise → better focus.<ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Payoff: fewer pager rotations for non‑issues.</li></ul></li>
+                  <li>Release linking speeds regression fixes.<ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Payoff: decisive rollbacks.</li></ul></li>
+                  <li>SLO burn‑rate paging aligns with impact.<ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Payoff: alert hygiene and trust.</li></ul></li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="font-medium text-slate-900 dark:text-white">Limits</h4>
+                <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
+                  <li>Poor fingerprints collapse distinct bugs.<ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Tip: customize per framework.</li></ul></li>
+                  <li>Missing context leads to ping‑pong routing.<ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Tip: standardize env/service/trace/user fields.</li></ul></li>
+                  <li>PII leaks create legal risk.<ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Tip: centralized redaction and tests.</li></ul></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Common misunderstandings</h3>
             <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>Create cohorts by platform, region, and tier to localize issues quickly (distributed systems = applications running across multiple servers).</li>
-              <li>Use &ldquo;first seen&rdquo; and &ldquo;last seen&rdquo; to decide whether to page or schedule work.</li>
+              <li>&ldquo;Every error should page.&rdquo; → Impact: burnout → Fix: page on SLO burn, digest the rest.</li>
+              <li>&ldquo;Stack alone is enough.&rdquo; → Impact: slow triage → Fix: add release, feature flag, and user context.</li>
+              <li>&ldquo;We can ignore flaky errors.&rdquo; → Impact: hidden risk → Fix: mark flaky but trend and cap noise.</li>
             </ul>
           </div>
 
-          <div className="border-l-4 border-amber-500 bg-amber-50/50 dark:bg-amber-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">SLOs and error budgets</h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Attach error rate SLOs (service level objectives) to customer‑visible journeys (checkout, login). Allocate an error budget per period and gate risky releases when budget is exhausted. This ties alerting to business impact rather than raw counts.
-            </p>
+          <div className="border-l-4 border-slate-400 bg-slate-50/50 dark:bg-slate-800/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Related Glossary (terms &amp; tech)</h3>
             <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>Choose a rate metric aligned to experience: crash‑free sessions, error per request, or &ldquo;bad events&rdquo; per minute.</li>
-              <li>Page on SLO burn rate (fast consumption) instead of single spikes to reduce noise.</li>
-              <li>Connect SLOs to on‑call rotations and change freezes to make policy visible.</li>
-            </ul>
-          </div>
-
-          <div className="pl-6">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Alert hygiene and routing</h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Alerts should be actionable, routed to owners, and rate‑limited. Include remediation hints, links to runbooks, and dashboards. Use ownership rules (paths, services, tags) and escalation policies. Suppress duplicates during incident windows (maintenance mode) to avoid paging loops.
-            </p>
-            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>Require an &ldquo;owner&rdquo; tag on every service; route unmapped alerts to a catch‑all team with triage duty.</li>
-              <li>Throttle frequent but low‑impact errors to summary digests; keep paging for budget burn rate only.</li>
-              <li>Enforce quiet hours for non‑critical alerts; send to chat channels rather than pagers.</li>
-            </ul>
-          </div>
-
-          <div className="pl-6">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">In practice</h3>
-            <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>Add custom fingerprints for top three noisy exception families this quarter.</li>
-              <li>Adopt release annotations in CI so each deploy updates the tracker with build metadata.</li>
-              <li>Define SLOs for two critical journeys and rewire alerts to burn‑rate conditions.</li>
+              <li><strong>Fingerprint</strong> — grouping signature. <em>Why it matters:</em> controls noise vs insight.</li>
+              <li><strong>Release health</strong> — errors by version. <em>Why it matters:</em> find regressions fast.</li>
+              <li><strong>Crash‑free rate</strong> — session stability. <em>Why it matters:</em> customer‑centric KPI.</li>
+              <li><strong>Burn rate</strong> — SLO consumption speed. <em>Why it matters:</em> when to page.</li>
+              <li><strong>Ownership rules</strong> — routing map. <em>Why it matters:</em> sends work to the right team.</li>
+              <li><strong>PII redaction</strong> — sensitive data removal. <em>Why it matters:</em> legal/compliance safety.</li>
             </ul>
           </div>
         </div>
       </section>
 
       {/* Business & Team Impact */}
-      <section id="business-team-impact">
+      <section id="business-team-impact" className="mb-12">
         <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Business & Team Impact</h2>
         <div className="space-y-6">
-          <div className="border-l-4 border-violet-500 bg-violet-50/50 dark:bg-violet-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Customer experience and retention</h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Grouping and routing ensure the right team fixes the right problem quickly, improving uptime and NPS. Release health ties issues to specific versions so rollbacks are decisive rather than speculative.
-            </p>
+          <div className="border-l-4 border-emerald-500 bg-emerald-50/50 dark:bg-emerald-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Where it shows up</h3>
             <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>Crash‑free session rates provide a clear, customer‑centric KPI for mobile and web apps.</li>
-              <li>Ownership and dedupe reduce &ldquo;many eyes, nobody accountable&rdquo; failure modes.</li>
+              <li>Mobile/web app stability and crash rates.<ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Example: releases with crash spikes auto‑flagged.</li></ul></li>
+              <li>Service reliability across regions and tiers.<ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Example: cohorts localize a faulty rollout.</li></ul></li>
+              <li>On‑call fatigue and incident churn.<ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Example: burn‑rate paging reduces noise.</li></ul></li>
             </ul>
           </div>
 
-          <div className="pl-6">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Operational efficiency</h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Better grouping and burn‑rate alerts lower pager fatigue. Teams spend fewer cycles re‑triaging duplicate tickets and more cycles resolving root causes. Cost decreases when noise is routed to digests instead of pages.
-            </p>
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">What good looks like</h3>
             <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>Release annotations let engineering managers correlate spikes to specific PRs quickly.</li>
-              <li>Clear SLO policies reduce debate about &ldquo;is this worth a page&rdquo; during incidents.</li>
+              <li>Clear ownership for each issue type → fast routing.<ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Payoff: fewer handoffs.</li></ul></li>
+              <li>Release annotations on every deploy → quick regressions.<ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Payoff: time‑to‑rollback drops.</li></ul></li>
+              <li>Digest summaries for low‑impact noise → fewer pages.<ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Payoff: healthier on‑call.</li></ul></li>
             </ul>
           </div>
 
-          <div className="pl-6">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Risk and compliance</h3>
-            <p className="text-slate-700 dark:text-gray-300 mb-3">
-              Redacted context and owner accountability reduce regulatory exposure. Audit trails of alerts, acks, and mitigations help with SOC 2 and ISO 27001 reviews (compliance frameworks for security and availability).
-            </p>
+          <div className="border-l-4 border-yellow-500 bg-yellow-50/50 dark:bg-yellow-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Failure signals (customer words)</h3>
             <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>Automatically attach incident IDs and links for end‑to‑end traceability in postmortems.</li>
-              <li>Route security exceptions to a separate escalation chain and sequester PII redaction failures.</li>
+              <li>&ldquo;Our app keeps crashing.&rdquo; → Likely cause: release regression → What to check: issue spike by version.</li>
+              <li>&ldquo;We&rsquo;re paged constantly.&rdquo; → Likely cause: noisy routing → What to check: SLO burn‑rate rules.</li>
+              <li>&ldquo;Nobody owns this error.&rdquo; → Likely cause: missing ownership → What to check: code owner mapping.</li>
             </ul>
           </div>
 
-          <div className="pl-6">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">In practice</h3>
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Industry lenses</h3>
             <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>Publish an &ldquo;alert contract&rdquo; with required fields and owner rules; add CI linting.</li>
-              <li>Archive weekly &ldquo;top regressions&rdquo; and create follow‑ups to prevent repeats.</li>
-              <li>Connect tracking with ticketing so acknowledged alerts always create a traceable task.</li>
+              <li><strong>Enterprise Tech</strong>: tight ownership, SARIF/PCI/SOX alignment, detailed dashboards.</li>
+              <li><strong>Non‑Tech Enterprise</strong>: clear pager rules; low‑noise defaults; simple workflows.</li>
+              <li><strong>Startups</strong>: quick setup and essential metrics; grow guardrails later.</li>
             </ul>
           </div>
         </div>
       </section>
 
       {/* Cursor Implementation */}
-      <section id="cursor-implementation">
+      <section id="cursor-implementation" className="mb-12">
         <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Cursor Implementation</h2>
         <div className="space-y-6">
-          <div className="border-l-4 border-cyan-500 bg-cyan-50/50 dark:bg-cyan-950/30 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">SDKs, context, and fingerprints</h3>
+          <div className="border-l-4 border-slate-400 bg-slate-50/50 dark:bg-slate-800/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">TL;DR (AM-friendly)</h3>
             <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>Wrap tracker SDKs to standardize context (service, env, traceId, userId) and redaction.</li>
-              <li>Provide helpers for custom fingerprints, culprit selection, and release metadata attachment.</li>
-              <li>Emit links back to traces and logs using shared IDs for cross‑tool navigation.</li>
+              <li>Standardize context and fingerprints.<ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Plain English: same shape for every error.</li></ul></li>
+              <li>Link errors to releases, traces, and logs.<ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Payoff: find what changed quickly.</li></ul></li>
+              <li>Page on burn‑rate; digest the rest.<ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Payoff: healthier on‑call.</li></ul></li>
             </ul>
           </div>
 
-          <div className="border-l-4 border-slate-500 bg-slate-50/50 dark:bg-slate-900/40 pl-6 py-4 rounded-r-lg">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Alert routing and burn‑rate policies</h3>
+          <div className="border-l-4 border-purple-500 bg-purple-50/50 dark:bg-purple-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Review workflow (AI in PRs/design)</h3>
             <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>Encode ownership in code (directory rules, service maps) and sync to the tracker.</li>
-              <li>Ship SLO templates with default burn‑rate thresholds and escalation paths.</li>
-              <li>Add maintenance windows and incident suppression to avoid paging loops during active response.</li>
+              <li>Check tracker init for required context/redaction.<ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Checklist: service, env, userId, traceId present.</li></ul></li>
+              <li>Validate burn‑rate SLO rules and owners updated with new code areas.<ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Checklist: owner map, escalation path.</li></ul></li>
+              <li>Ensure release annotations happen in CI for deploys.</li>
             </ul>
           </div>
 
-          <div className="pl-6">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Operational practices</h3>
+          <div className="border-l-4 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Guardrails &amp; automation</h3>
             <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>Auto‑link issues to the responsible PR and assign to code owners by default.</li>
-              <li>Expose dashboards for &ldquo;new issues by release&rdquo; and &ldquo;top regressions&rdquo; to drive prioritization.</li>
-              <li>Run monthly hygiene reviews to retire noisy rules and stale issues.</li>
+              <li>Wrapper SDK with default redaction and context.<ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Benefit: fewer leaks and missing fields.</li></ul></li>
+              <li>Auto‑route by file path and service map; fallbacks to a triage team.<ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Benefit: faster assignment.</li></ul></li>
+              <li>Pager rules generated from SLO templates by journey.</li>
             </ul>
           </div>
 
-          <div className="pl-6">
-            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">In practice</h3>
+          <div className="border-l-4 border-emerald-500 bg-emerald-50/50 dark:bg-emerald-950/30 pl-6 py-4 rounded-r-lg">
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Operational playbooks</h3>
             <ul className="list-disc pl-6 text-slate-700 dark:text-gray-300 space-y-1">
-              <li>Create a &ldquo;first responder&rdquo; rotation for tracker triage with clear SLAs to acknowledge and route.</li>
-              <li>Instrument release stages so deploys annotate trackers automatically.</li>
-              <li>Maintain &ldquo;silence policies&rdquo; that require explicit approval to suppress alerts.</li>
+              <li><strong>Regression spike</strong>: identify introducing release; link to PR; rollback or patch.<ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Why it helps: quick impact reduction.</li></ul></li>
+              <li><strong>Noise burst</strong>: tune fingerprints; throttle to digests; keep burn‑rate paging only.<ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Why it helps: restores signal.</li></ul></li>
+              <li><strong>Compliance review</strong>: export redaction proof and owner mappings.<ul className="list-disc pl-6 mt-1 text-slate-600 dark:text-gray-400"><li>Why it helps: audit readiness.</li></ul></li>
             </ul>
+          </div>
+
+          <div>
+            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Talk track (20 sec)</h3>
+            <p className="text-slate-700 dark:text-gray-300">&ldquo;We standardize error context and grouping, link issues to releases and traces, and page on user‑impact—so teams cut noise, find regressions fast, and protect customer experience.&rdquo;</p>
           </div>
         </div>
       </section>
