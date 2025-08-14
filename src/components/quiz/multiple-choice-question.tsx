@@ -19,6 +19,58 @@ export default function MultipleChoiceQuestion({
 }: MultipleChoiceQuestionProps) {
   const correctAnswer = question.correctAnswer;
 
+  // Parse structured sections out of additionalContext when authors use
+  // labels like "Headline:", "Why correct:", "Why others are wrong:",
+  // "Cursor leverage:", and "Acceptance checks:". Falls back gracefully
+  // to plain paragraph rendering if labels are not present.
+  const parseAdditionalContext = (context?: string) => {
+    if (!context) return null;
+    const labels = [
+      "Headline",
+      "Why correct",
+      "Why others are wrong",
+      "Cursor leverage",
+      "Acceptance checks",
+    ];
+
+    const re = new RegExp(
+      `(${labels.join("|")})\\:\\s*([\\s\\S]*?)(?=(?:${labels.join(
+        "|"
+      )})\\:|$)`,
+      "gi"
+    );
+
+    const sections: Record<string, string> = {};
+    let match: RegExpExecArray | null;
+    while ((match = re.exec(context)) !== null) {
+      const key = match[1].toLowerCase();
+      const value = match[2].trim();
+      sections[key] = value;
+    }
+
+    if (Object.keys(sections).length === 0) return null;
+
+    const splitToList = (text?: string): string[] => {
+      if (!text) return [];
+      // Prefer splitting on semicolons; then commas as a fallback.
+      return text
+        .split(/;|\n|\r|\u2022/g)
+        .map((s) => s.replace(/^[-–•]\s*/, "").trim())
+        .filter(Boolean);
+    };
+
+    return {
+      headline: sections["headline"],
+      whyCorrect: sections["why correct"],
+      whyWrong: splitToList(sections["why others are wrong"]),
+      cursorLeverage: splitToList(sections["cursor leverage"]),
+      acceptanceChecks: splitToList(sections["acceptance checks"]),
+      raw: context,
+    };
+  };
+
+  const structured = parseAdditionalContext(question.additionalContext);
+
   const getOptionStyle = (index: number) => {
     if (!showResult) {
       return selectedAnswer === index
@@ -97,11 +149,64 @@ export default function MultipleChoiceQuestion({
           <h4 className="font-semibold text-blue-900 dark:text-blue-100 mb-3">
             Explanation
           </h4>
-          <p className="text-blue-800 dark:text-blue-200 mb-4 leading-relaxed">
-            {question.additionalContext || "No additional context available."}
-          </p>
 
-          <div className="border-t border-blue-200 dark:border-blue-700 pt-4">
+          {!structured ? (
+            <p className="text-blue-800 dark:text-blue-200 mb-4 leading-relaxed">
+              {question.additionalContext || "No additional context available."}
+            </p>
+          ) : (
+            <div className="space-y-4 text-blue-800 dark:text-blue-200">
+              {structured.headline && (
+                <div>
+                  <p className="leading-relaxed font-medium">
+                    {structured.headline}
+                  </p>
+                </div>
+              )}
+
+              {structured.whyCorrect && (
+                <div>
+                  <div className="font-semibold mb-1">Why this is correct</div>
+                  <p className="leading-relaxed">{structured.whyCorrect}</p>
+                </div>
+              )}
+
+              {structured.whyWrong?.length ? (
+                <div>
+                  <div className="font-semibold mb-1">Why others are wrong</div>
+                  <ul className="list-disc pl-5 space-y-1">
+                    {structured.whyWrong.map((item, idx) => (
+                      <li key={idx}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+              ) : null}
+
+              {structured.cursorLeverage?.length ? (
+                <div>
+                  <div className="font-semibold mb-1">Cursor leverage</div>
+                  <ul className="list-disc pl-5 space-y-1">
+                    {structured.cursorLeverage.map((item, idx) => (
+                      <li key={idx}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+              ) : null}
+
+              {structured.acceptanceChecks?.length ? (
+                <div>
+                  <div className="font-semibold mb-1">Acceptance checks</div>
+                  <ul className="list-disc pl-5 space-y-1">
+                    {structured.acceptanceChecks.map((item, idx) => (
+                      <li key={idx}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+              ) : null}
+            </div>
+          )}
+
+          <div className="border-t border-blue-200 dark:border-blue-700 pt-4 mt-4">
             <h5 className="font-medium text-blue-900 dark:text-blue-100 mb-2">
               Key Concepts:
             </h5>

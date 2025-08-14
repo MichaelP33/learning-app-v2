@@ -4359,169 +4359,167 @@ export const externalQuizzes: Record<string, Quiz> = {
       "id": "1",
       "type": "multiple-choice",
       "points": 2,
-      "question": "Which ACID property guarantees all‑or‑nothing effects for a transaction?",
+      "question": "PR writes touch orders, payments, and inventory together. Which review ask best validates all-or-nothing behavior?",
       "options": [
-        "Atomicity",
-        "Consistency",
-        "Isolation",
-        "Durability"
+        "Show the transaction boundary and failure path; confirm partial writes cannot persist",
+        "Increase isolation globally to the strongest level for safety",
+        "Add retries so failures eventually succeed without further checks",
+        "Move the logic into a stored procedure to make it atomic by default"
       ],
       "correctAnswer": 0,
-      "additionalContext": "Atomicity ensures a transaction either fully applies or does not apply at all; Consistency preserves invariants; Isolation manages visibility; Durability keeps committed data after failures.",
+      "additionalContext": "Headline: confirm atomic all-or-nothing across order, payment, inventory. Why correct: asking to show the transaction boundary and failure path validates atomicity and prevents partial writes that confuse customers and finance. Why others are wrong: raising isolation globally is overreach and may reduce throughput without proving atomicity; retry-only does not stop duplicate effects on failure; a stored procedure is not automatically atomic without an explicit transaction. Cursor leverage: ask Cursor to draft a PR-ready comment that highlights begin and commit points, error handling, and an idempotency guard; have it scan the diff for any write before commit. Acceptance checks: transaction scope documented, negative path tested, idempotency keys in place.",
       "keyConcepts": [
         "ACID",
         "Atomicity",
-        "Transaction semantics"
+        "PR review asks"
       ]
     },
     {
       "id": "2",
       "type": "multiple-choice",
       "points": 2,
-      "question": "Under Read Committed, which anomaly can still occur but is prevented by Repeatable Read?",
+      "question": "Product wants dashboards to read from replicas. Which expectation should you set up front?",
       "options": [
-        "Dirty reads",
-        "Non‑repeatable reads",
-        "Phantom reads",
-        "Lost updates"
+        "Replicas reflect the primary instantly for all dashboards",
+        "Agree on a freshness window and route must-be-fresh reads to the primary",
+        "Dashboards should never use replicas to avoid any lag",
+        "Dashboards must exactly match the primary at all times"
       ],
       "correctAnswer": 1,
-      "additionalContext": "Read Committed prevents dirty reads but may allow non‑repeatable reads; Repeatable Read holds row versions/locks to prevent re‑read changes. Phantom reads typically require Serializable to prevent.",
+      "additionalContext": "Headline: set a freshness window and route must-be-fresh reads to primary. Why correct: replicas improve read capacity but may lag; users may see old data after save unless paths are routed. Why others are wrong: instant match and exact equality at all times are overpromises; avoiding replicas entirely wastes safe capacity. Cursor leverage: ask Cursor to produce a 2–3 sentence PR comment that defines the freshness SLA and identifies which read paths stay on primary; request a small monitoring snippet for replica lag. Acceptance checks: freshness window documented, primary paths identified, lag monitoring defined.",
       "keyConcepts": [
-        "Isolation levels",
-        "Anomalies",
-        "Read Committed",
-        "Repeatable Read"
+        "Read replicas",
+        "Freshness window",
+        "Expectation setting"
       ]
     },
     {
       "id": "3",
       "type": "multiple-choice",
       "points": 2,
-      "question": "The primary purpose of normalization (to ~3NF) is to reduce which risk?",
+      "question": "Engineer adds an index on created_at to speed a hot query. What PR comment de-risks this best?",
       "options": [
-        "Index selectivity always decreasing",
-        "Higher I/O for point lookups only",
-        "Update/insert/delete anomalies from redundant data",
-        "Disk usage growing regardless of workload"
+        "Merge now; indexes are always helpful on hot tables",
+        "Also add indexes on every filter column to be safe",
+        "Bump the connection pool so the query gets more concurrent slots",
+        "Share an EXPLAIN for the hot path and justify a minimal composite index that matches predicates; note write cost"
       ],
-      "correctAnswer": 2,
-      "additionalContext": "Normalization reduces redundancy to prevent anomalies (e.g., update anomalies). It is not a guarantee about index selectivity or inevitable disk growth.",
+      "correctAnswer": 3,
+      "additionalContext": "Headline: show plan and choose the smallest index that matches predicates; acknowledge write cost. Why correct: an EXPLAIN confirms plan shape; a minimal composite index that matches equality then range avoids full scans while limiting write amplification. Why others are wrong: merge now or indexing every column is cargo-cult and increases write cost; more pool slots do not fix poor plans. Cursor leverage: ask Cursor to summarize EXPLAIN, propose a minimal composite index DDL, estimate write amplification, and generate a rollback script. Acceptance checks: EXPLAIN attached, slow-query budget stated, index matches predicates, rollback path included.",
       "keyConcepts": [
-        "Normalization",
-        "3NF",
-        "Data anomalies"
+        "EXPLAIN",
+        "Indexing trade-offs",
+        "PR review asks"
       ]
     },
     {
       "id": "4",
       "type": "multiple-choice",
       "points": 2,
-      "question": "A foreign key primarily enforces which guarantee?",
+      "question": "Team proposes raising isolation to Serializable to prevent anomalies. What trade-off must you align on first?",
       "options": [
-        "Row uniqueness within a table",
-        "Physical order of rows on disk",
-        "Faster joins by default",
-        "Valid references to a parent row (referential integrity)"
+        "Serializable guarantees infinite throughput at any scale",
+        "Higher contention and rollbacks under load; ask for expected concurrency and impact",
+        "Read caches will stop working once isolation increases",
+        "Storage costs will grow even if workload stays the same"
       ],
-      "correctAnswer": 3,
-      "additionalContext": "Foreign keys enforce referential integrity. Uniqueness is a primary/candidate key property; physical order relates to clustered storage; indexes influence speed but are not guaranteed by FKs.",
+      "correctAnswer": 1,
+      "additionalContext": "Headline: Serializable reduces anomalies but increases contention and rollbacks. Why correct: you must align on expected concurrency and error budgets before increasing isolation. Why others are wrong: infinite throughput is false; read caches continue to work; storage growth is unrelated. Cursor leverage: ask Cursor to draft questions for expected throughput, conflict rate, and rollback handling; request a short note on fallback isolation per endpoint if regressions appear. Acceptance checks: concurrency profile documented, rollback policy defined, budgeted error rate accepted, fallback path clear.",
       "keyConcepts": [
-        "Foreign key",
-        "Referential integrity",
-        "Keys and constraints"
+        "Isolation",
+        "Throughput trade-offs",
+        "Risk surfacing"
       ]
     },
     {
       "id": "5",
       "type": "multiple-choice",
       "points": 2,
-      "question": "Adding several low‑selectivity indexes to a hot OLTP table primarily increases which cost?",
+      "question": "Reporting is slow but checkouts are sensitive. What approach keeps product traffic safe while speeding reports?",
       "options": [
-        "Write amplification from index maintenance on inserts/updates",
-        "Read latency for index‑only plans in all cases",
-        "Storage overhead remains negligible regardless of index count",
-        "Join correctness decreases as indexes are added"
+        "Move heavy reporting to replicas or materialized views with a freshness SLA",
+        "Run reports on the primary and increase CPU until it is fine",
+        "Denormalize everything immediately to make all reads fast",
+        "Increase isolation so reads are always the latest"
       ],
       "correctAnswer": 0,
-      "additionalContext": "Each additional index must be maintained on writes, increasing write cost and redo/WAL volume. Read latency may improve or worsen depending on plan; correctness is unaffected by adding valid indexes.",
+      "additionalContext": "Headline: protect product traffic by offloading reporting to replicas or materialized views with a freshness window. Why correct: dashboards can tolerate staleness; OLTP cannot tolerate contention. Why others are wrong: running reports on primary risks slow checkouts; denormalize everything is overreach; raising isolation does not address reporting load. Cursor leverage: ask Cursor to produce an SLA phrasing and a small playbook for routing reads and monitoring lag. Acceptance checks: SLA documented, report paths moved, p95 targets set, alerts created.",
       "keyConcepts": [
-        "Indexing",
-        "Selectivity",
-        "Write amplification",
-        "OLTP"
+        "Replica routing",
+        "Materialized views",
+        "Freshness SLA"
       ]
     },
     {
       "id": "6",
       "type": "multiple-choice",
       "points": 2,
-      "question": "Denormalization is most appropriate when your read patterns…",
+      "question": "Team wants to denormalize a feed for speed. What must be documented to keep trust?",
       "options": [
-        "Are unpredictable and you cannot define hot queries",
-        "Are stable, read‑heavy, and benefit from pre‑joined data with controlled consistency trade‑offs",
-        "Require strict transactional consistency across many tables on every write",
-        "Change schema weekly, making duplication easy to keep in sync"
+        "That the entire app is now eventually consistent everywhere",
+        "That no further indexes will ever be needed",
+        "That refunds and reversals are no longer supported",
+        "Freshness window, source of truth, conflict resolution, and write-amplification budget"
       ],
-      "correctAnswer": 1,
-      "additionalContext": "Denormalization can pre‑compute joins for stable, read‑heavy access paths when you can manage duplication consistency. Strict cross‑table consistency and highly volatile schemas favor normalization.",
+      "correctAnswer": 3,
+      "additionalContext": "Headline: denormalization is safe only with trust guardrails. Why correct: documenting freshness window, source of truth, conflict resolution, and a write-amplification budget prevents confusion and data drift. Why others are wrong: calling the whole app eventually consistent is unnecessary; claiming no future indexes is unrealistic; dropping support for reversals breaks product needs. Cursor leverage: ask Cursor to generate a short design note template that captures these guardrails and a checklist for PR review. Acceptance checks: guardrails filled, reconciliation flow owned, staleness window communicated.",
       "keyConcepts": [
         "Denormalization",
-        "Read patterns",
-        "Trade‑offs"
+        "Trust guardrails",
+        "Documentation"
       ]
     },
     {
       "id": "7",
       "type": "multiple-choice",
       "points": 2,
-      "question": "A query with equality on user_id and a range on created_at still scans the table despite an index on created_at. What is the most likely cause?",
+      "question": "Schema change adds a non-nullable column to a large table. Which plan do you require before approving?",
       "options": [
-        "Table statistics are always the root cause",
-        "A hash index on created_at is required for range conditions",
-        "VACUUM/defragmentation must run before the plan uses the index",
-        "Missing composite index with leading equality column (user_id, created_at)"
+        "Apply a blocking ALTER during a short maintenance window",
+        "Ship the app change first; fix the schema after release",
+        "Phase it: add nullable, backfill in batches, flip flag, enforce, then drop old paths",
+        "Rename the table to avoid risks and migrate later"
       ],
-      "correctAnswer": 3,
-      "additionalContext": "For mixed equality+range predicates, planners prefer a composite index starting with the equality column. Stats or maintenance can matter, but the structural index mismatch is the usual blocker.",
+      "correctAnswer": 2,
+      "additionalContext": "Headline: ship schema changes in phases so rush hour never locks the app. Why correct: add then backfill in batches, flip via flag, enforce, and clean up reduces blocking risk and enables rollback. Why others are wrong: blocking ALTER risks downtime; shipping app first can break writes; renaming the table is high-risk and rarely needed. Cursor leverage: ask Cursor to produce a phased plan with batch SQL, metrics to watch, and a rollback toggle. Acceptance checks: batch size and pacing defined, feature flag identified, monitoring and rollback documented.",
       "keyConcepts": [
-        "Composite indexes",
-        "Query planning",
-        "SARGability"
+        "Phased migrations",
+        "Operational risk",
+        "Rollback plan"
       ]
     },
     {
       "id": "8",
       "type": "multiple-choice",
       "points": 2,
-      "question": "Frequent write‑write conflicts and blocked readers under high concurrency most likely indicate…",
+      "question": "Customers report seeing old data right after saving. What is the likely cause and best guidance?",
       "options": [
-        "Connection pool size is slightly too small",
-        "A read cache miss pattern on dashboards",
-        "Pessimistic locking at a high isolation level causing contention",
-        "Index fragmentation inherently blocks readers"
+        "Indexes are corrupt; rebuild all indexes",
+        "The database is down; restart the cluster to refresh",
+        "Reads hit a replica before catch-up; route freshness-critical reads to the primary and set a freshness window",
+        "Disable replicas; transactions are being lost"
       ],
       "correctAnswer": 2,
-      "additionalContext": "Under lock‑based engines and higher isolation, long‑held locks can block readers/writers. MVCC mitigates reader blocking; connection pools and fragmentation are separate concerns.",
+      "additionalContext": "Headline: this is replica lag; route must-be-fresh paths to primary. Why correct: replicas can serve stale reads immediately after a write; routing and SLA language avoid user confusion. Why others are wrong: index rebuilds or restarts do not address lag; disabling replicas loses safe capacity. Cursor leverage: ask Cursor to draft the PR comment that sets the freshness window and identifies primary-only paths plus a simple lag monitor. Acceptance checks: routes updated, SLA documented, monitoring in place.",
       "keyConcepts": [
-        "Concurrency control",
-        "Locking vs MVCC",
-        "Isolation levels"
+        "Replica lag",
+        "Freshness SLA",
+        "Routing"
       ]
     },
     {
       "id": "9",
       "type": "freeform",
       "points": 4,
-      "question": "List three scenarios where a relational database is the better fit than a document store. For each, include one concrete signal (e.g., cross‑row consistency requirement, multi‑table reporting, strict referential integrity).",
-      "sampleStrongResponse": "Examples: (1) Orders/payments where multi‑row atomicity is required — signal: charge + ledger + inventory must commit together. (2) Complex reporting joining many entities — signal: frequent multi‑table joins and ad‑hoc filters. (3) Entitlements/audits with strict relationships — signal: enforced foreign keys and history that must be trustworthy."
+      "question": "Draft a PR comment to de-risk a new hot-path query. Include: EXPLAIN plan, slow-query budget target, minimal non-overlapping index rationale, and rollback plan if p95 regresses.",
+      "sampleStrongResponse": "Ask for EXPLAIN on the exact WHERE and ORDER BY; confirm the plan avoids full scans and uses a composite index that matches predicates. State the slow-query budget (for example, p95 at or below 120 ms) and propose the smallest non-overlapping index that meets it. Call out write-amplification impact on inserts and updates, and require a rollback toggle or script if p95 regresses after deploy. Use Cursor to summarize EXPLAIN, generate the DDL and rollback, and produce a PR-ready comment."
     },
     {
       "id": "10",
       "type": "freeform",
       "points": 5,
-      "question": "Compare normalization (to ~3NF) vs denormalization for a read‑heavy analytics module. For each approach, state when you would choose it and one measurable success criterion (e.g., P95 query latency, write amplification).",
-      "sampleStrongResponse": "Normalization: choose when writes require strong consistency and schema is stable; success: P95 write latency within budget and low anomaly risk. Denormalization: choose when reads are stable/hot and duplication can be reconciled; success: P95 read latency target met with acceptable write amplification and staleness windows clearly defined."
+      "question": "Outline a phased migration talk track for a non-nullable column on a large table. Include steps, safety checks, and how you will communicate risk to product and support.",
+      "sampleStrongResponse": "Plan: add a nullable column; backfill in batches with monitoring; dual-write and validate; flip a feature flag to switch reads and writes; enforce non-null; remove legacy code. Safety: idempotent writes, timeouts and retry budget, metrics for backfill pace, and a rollback path. Communication: share expected blast radius, any maintenance window, and success metrics such as zero lock timeouts and stable p95. Ask Cursor to draft the step plan, batch SQL, and a stakeholder note for support and product."
     }
   ]
 },
