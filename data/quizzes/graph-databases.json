@@ -1,0 +1,141 @@
+{
+  "title": "Graph Databases Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Design proposes a friend‑of‑friend feature. What baseline ask ensures traversals stay predictable at scale?",
+      "options": [
+        "Start from a selective label+property index and cap hop depth",
+        "Enable cross‑partition scans to discover more connections",
+        "Remove uniqueness constraints so merges are easier",
+        "Increase instance size and let the planner explore freely"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Headline: selective starts and hop caps keep p95 stable.; Why correct: a tight starting set and capped depth bound the search and cost.; Why others are wrong: cross‑partition scans explode fan‑out; dropping constraints invites duplicates; bigger boxes hide plan issues.; Cursor leverage: produce an EXPLAIN/PROFILE summary; flag start cardinality; suggest a depth cap with weights.; Acceptance checks: selective index defined; hop cap documented; p95 budget stated.",
+      "keyConcepts": ["Selective start", "Hop cap", "p95 latency"]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A deep path query (5+ hops) is slow and flaky. What is the best TAM‑lens guidance?",
+      "options": [
+        "Precompute a projection/materialized subgraph for the hot path and route reads there",
+        "Double the cluster size so long traversals complete in time",
+        "Remove all filters to avoid index lookups",
+        "Switch to SQL joins for anything over two hops"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Headline: precompute busy routes into a projection.; Why correct: projections stabilize latency and cost for repeated paths.; Why others are wrong: scaling hardware does not bound search; removing filters broadens search; blanket switching to SQL misfits relationship queries.; Cursor leverage: generate a projection definition and refresh schedule; add a freshness SLA; produce routing notes.; Acceptance checks: projection built; freshness window documented; hot query routed to projection.",
+      "keyConcepts": ["Projections", "Freshness window", "Traversal budget"]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Fraud team flags random latency spikes tied to a few high‑degree accounts. What should you require?",
+      "options": [
+        "A hot‑node analysis and mitigations like uniqueness scopes, caps, or neighborhood summaries",
+        "Broader traversals so the spikes average out",
+        "Relaxed timeouts to avoid errors during peaks",
+        "Global consistency so all traversals see the same data"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Headline: identify hot hubs and mitigate fan‑out.; Why correct: high‑degree nodes cause explosive paths; caps and summaries bound cost.; Why others are wrong: broader traversals increase cost; longer timeouts hide problems; consistency settings don&rsquo;t solve fan‑out.; Cursor leverage: detect high‑degree nodes; propose caps and summaries; add alerts on per‑node QPS.; Acceptance checks: hot nodes listed; mitigations merged; p95 improved under load.",
+      "keyConcepts": ["High‑degree nodes", "Fan‑out", "Mitigations"]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "PR adds a MATCH with variable‑length patterns. What review stance keeps risk low?",
+      "options": [
+        "Require EXPLAIN/PROFILE, uniqueness rules, and a max traversal depth",
+        "Prefer unlimited expansion for completeness",
+        "Turn off indexes temporarily to test raw traversal speed",
+        "Delay code review until after production metrics are available"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Headline: verify plan, uniqueness, and depth bounds before merge.; Why correct: variable lengths can explode; the plan and rules keep search tight.; Why others are wrong: unlimited expansions risk outages; disabling indexes is not realistic; waiting for prod metrics is unsafe.; Cursor leverage: summarize plan; point out missing uniqueness; suggest a safe depth cap.; Acceptance checks: EXPLAIN attached; uniqueness set; depth cap enforced in code.",
+      "keyConcepts": ["Variable‑length patterns", "Uniqueness", "EXPLAIN/PROFILE"]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Product suggests building recommendations directly with 4‑hop traversals. What expectation should you set?",
+      "options": [
+        "Define a traversal budget (hops/time) and relevance weights; precompute common results",
+        "Allow arbitrary hops so recall is maximized",
+        "Use cross‑partition breadth‑first searches for completeness",
+        "Guarantee identical results to the data warehouse aggregations"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Headline: align on traversal and time budgets with explainable weighting.; Why correct: budgets and weights keep latency predictable and results relevant.; Why others are wrong: arbitrary hops and cross‑partition BFS blow up cost; exact equality with warehouse is unrealistic and unnecessary.; Cursor leverage: draft a budget doc; generate Cypher/Gremlin with weights; add a projection plan.; Acceptance checks: hop/time budget approved; weights documented; p95 and CTR targets set.",
+      "keyConcepts": ["Traversal budget", "Weights/filters", "Projections"]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Analytics asks to run wide ad‑hoc joins over the graph for daily reporting. What guidance keeps the stack fit‑for‑purpose?",
+      "options": [
+        "Route heavy tabular aggregations to the warehouse; keep the graph for relationship queries",
+        "Mirror the entire graph into SQL daily and drop the graph",
+        "Add more edges so joins are faster",
+        "Raise request timeouts so long joins can finish"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Headline: send tabular analytics to the warehouse, keep graph for relationships.; Why correct: warehouses excel at scans/aggregations; graphs at traversals.; Why others are wrong: mirroring then dropping misuses both; more edges worsen write cost; longer timeouts hide misfit.; Cursor leverage: produce guidance on which workloads go where; add a pipeline stub; draft PR language.; Acceptance checks: workload split documented; pipeline defined; graph queries scoped to relationships.",
+      "keyConcepts": ["Workload split", "Warehouse vs graph", "Query fit"]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Org permissions look wrong after a reorg. What&rsquo;s your first verification step?",
+      "options": [
+        "Check ingestion lag and failed edge upserts; reconcile affected subgraphs",
+        "Disable caching layers so results are truly fresh",
+        "Increase hop limits to ensure distant managers are included",
+        "Add retries to writes and hope consistency improves"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Headline: verify freshness and data integrity of edges.; Why correct: reorgs require timely edge updates; fixing ingestion restores correctness.; Why others are wrong: disabling caches may not help stale edges; more hops add noise; retries don&rsquo;t fix missing data.; Cursor leverage: generate a reconciliation query; list failed upserts; produce a rebuild script for the subgraph.; Acceptance checks: lag cleared; edges reconciled; sampled audits pass.",
+      "keyConcepts": ["Ingestion lag", "Edge reconciliation", "Permissions"]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "PR proposes removing label+property indexes to speed writes. What trade‑off do you insist be documented?",
+      "options": [
+        "Starting sets will broaden, increasing traversal cost; define the slow‑query budget and risk",
+        "Reads will always be wrong until caches warm",
+        "Write cost will drop to zero regardless of workload",
+        "Consistency levels will automatically improve"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Headline: removing selective indexes broadens start sets and raises traversal cost.; Why correct: bounded starts are key to predictable hops/time; budgets must be re‑aligned.; Why others are wrong: caches don&rsquo;t determine correctness here; write cost never drops to zero; consistency is unrelated.; Cursor leverage: summarize EXPLAIN before/after; estimate p95 impact; draft the risk note in PR.; Acceptance checks: budget updated; impact quantified; escalation/rollback path captured.",
+      "keyConcepts": ["Selective index", "Traversal cost", "Budget alignment"]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Draft a PR comment to de‑risk a MATCH with variable‑length patterns. Include: EXPLAIN/PROFILE summary, traversal budget (e.g., max 3 hops or 200 ms), uniqueness rule, selective start, and rollback if p95 regresses.",
+      "sampleStrongResponse": "Ask for PROFILE on the exact MATCH and confirm the start set uses a label+property index. Require a uniqueness mode and a max depth (for example, 3 hops or 200 ms). State the slow‑query budget and propose a projection if results are reused. Provide a rollback toggle to cap depth in production if p95 regresses. Ask Cursor to generate the EXPLAIN summary and PR‑ready acceptance checks."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Outline a phased migration talk track to introduce a new relationship type across the org graph. Include add → backfill → flip → enforce → cleanup, safety checks, and stakeholder comms.",
+      "sampleStrongResponse": "Plan: add the new relationship type and start dual‑writing; backfill edges from authoritative sources in batches; flip reads to prefer the new type with sampled parity checks; enforce uniqueness/constraints; remove legacy relationships and code paths. Safety: shard‑aware batching, max hop/time budget, idempotent backfill, and a rollback that routes reads to legacy edges. Comms: share expected freshness window, p95 targets, and a blast‑radius note with support/security. Ask Cursor to draft Cypher/Gremlin backfill scripts, constraints, and the stakeholder note."
+    }
+  ]
+}
