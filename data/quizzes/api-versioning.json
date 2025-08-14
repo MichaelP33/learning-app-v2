@@ -1,0 +1,141 @@
+{
+  "title": "API Versioning Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "PR introduces breaking changes without any policy. What do you require before merge?",
+      "options": [
+        "Ship now and update docs later if customers complain",
+        "Adopt a versioning policy (URI or header) with frozen behavior per major and additive changes within a major",
+        "Hide changes behind feature flags permanently without docs",
+        "Support unlimited concurrent majors indefinitely"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: version lanes isolate breakers; majors freeze contracts.; Why correct: a clear mechanism and compatibility rules prevent silent breaks.; Why others are wrong: ship‑now erodes trust; flags without policy drift; infinite majors explode cost.; Cursor leverage: generate policy PR text; diff OpenAPI between majors; scaffold routers.; Acceptance checks: mechanism chosen; rules documented; routers/tests in place.",
+      "keyConcepts": ["Versioning mechanism", "Compatibility contract", "Additive changes"]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Team wants both header and URI versioning for flexibility. What stance keeps behavior predictable?",
+      "options": [
+        "Use both; clients can pick any and behavior may differ",
+        "Pick one primary mechanism and apply it consistently across endpoints and gateways",
+        "Avoid versioning entirely; rely on minor changes only",
+        "Randomize version selection per request to balance traffic"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: one primary mechanism reduces ambiguity.; Why correct: consistent routing and caching avoid drift and bugs.; Why others are wrong: mixed mechanisms create cache/tooling issues; no versioning blocks evolution; randomization is chaos.; Cursor leverage: update gateways; adjust caches/CDN; regenerate docs/SDK.; Acceptance checks: single mechanism enforced; headers/paths validated; caches configured.",
+      "keyConcepts": ["URI vs header", "Consistency", "Caching"]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Silent breaking change in v1 response fields. What remediation do you require?",
+      "options": [
+        "Leave it; customers will adapt",
+        "Add Deprecation/Sunset headers, restore v1 schema, and ship additive v1.1 while planning v2",
+        "Delete v1 immediately and force upgrade",
+        "Change the SDK only without changing the API"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: fix regressions in‑lane and signal change.; Why correct: restore v1 behavior, add headers, and plan a clean v2.; Why others are wrong: ignoring breaks trust; forced migrations cause outages; SDK‑only diverges.; Cursor leverage: diff OpenAPI; generate comms; add middleware for headers.; Acceptance checks: v1 restored; headers present; v2 plan published.",
+      "keyConcepts": ["Deprecation", "Sunset", "Compatibility"]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A new major (v2) is planned. What rollout plan do you require?",
+      "options": [
+        "Cut over all traffic at once and delete v1 immediately",
+        "Staged rollout with per‑version routers, per‑version docs/SDKs, and adoption dashboards",
+        "Hide v2 behind a query parameter to avoid router changes",
+        "Keep both versions forever to avoid customer comms"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: stage majors with clear lanes and visibility.; Why correct: routers/docs/SDKs per version and dashboards enable orderly adoption.; Why others are wrong: big‑bang cuts break clients; hidden params drift; infinite support explodes cost.; Cursor leverage: scaffold routers; split OpenAPI; build dashboards.; Acceptance checks: per‑version docs/SDKs live; dashboards show adoption; rollback path defined.",
+      "keyConcepts": ["Per‑version routers", "Docs/SDKs", "Staged rollout"]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Comms for v1 sunset are missing. What do you require?",
+      "options": [
+        "Tweet once and hope customers see it",
+        "Add Deprecation/Sunset headers with dates, publish guides, and email key accounts",
+        "Rely on support tickets to notify customers",
+        "Change only the SDK release notes"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: warn in responses and out‑of‑band.; Why correct: headers surface warnings where calls happen; guides and direct comms de‑risk adoption.; Why others are wrong: tweets and tickets miss traffic; SDK‑only misses curl and custom clients.; Cursor leverage: add headers; draft email templates; generate upgrade guides.; Acceptance checks: headers on every v1 call; comms sent; guide published.",
+      "keyConcepts": ["Deprecation headers", "Sunset", "Migration guides"]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Within a major, a field removal is proposed. What policy do you require?",
+      "options": [
+        "Allow removals if tests pass",
+        "Freeze schemas within a major; allow only additive changes (new optional fields)",
+        "Remove fields silently and update docs later",
+        "Gate removals by a feature flag only"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: additive‑only policy per major.; Why correct: freezing prevents silent breaks; additive changes preserve compatibility.; Why others are wrong: tests don’t cover all clients; silent changes break consumers; flags without policy drift.; Cursor leverage: add compatibility checks in CI; diff OpenAPI; update style guide.; Acceptance checks: CI blocks breaking diffs; policy documented; examples updated.",
+      "keyConcepts": ["Compatibility", "Additive changes", "CI checks"]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Gateways/CDN misroute versions occasionally. What do you require to isolate behavior?",
+      "options": [
+        "Allow mixed behavior; it averages out",
+        "Per‑version routes and cache keys; include version in analytics and alerts",
+        "Disable caching entirely to avoid issues",
+        "Forward everything to a single backend and inspect bodies for version"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: route and observe by version.; Why correct: per‑version keys prevent drift and enable visibility.; Why others are wrong: mixed lanes erode trust; no cache kills perf; body sniffing is fragile.; Cursor leverage: configure cache keys; add version analytics; build alerts.; Acceptance checks: version‑tagged metrics; stable routing; no cross‑lane drift.",
+      "keyConcepts": ["Version routing", "Caching", "Analytics"]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "SDKs and docs drift from behavior. What guardrail do you require?",
+      "options": [
+        "Hand‑edit docs monthly as time allows",
+        "Generate per‑version SDKs/docs from OpenAPI in CI and publish together with releases",
+        "Let each team maintain docs independently of code",
+        "Rely on community PRs to correct mismatches"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: generate artifacts from the source of truth.; Why correct: CI‑generated SDKs/docs keep parity across versions.; Why others are wrong: hand edits drift; siloed docs diverge; ad‑hoc fixes lag.; Cursor leverage: set up pipelines; split specs per version; publish on release.; Acceptance checks: generated artifacts; parity tests green; release notes linked.",
+      "keyConcepts": ["OpenAPI", "SDK generation", "Docs parity"]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Draft a versioning policy PR note: mechanism (URI or header), compatibility rules (additive within major), deprecation headers, and adoption dashboards. Include acceptance checks.",
+      "sampleStrongResponse": "Policy: choose URI (/v2/...) as the primary lane; freeze behavior per major; allow additive only within a major. Signal deprecations with Deprecation/Sunset headers and dates. Generate per‑version OpenAPI/SDKs. Dashboard: traffic by version and top lagging accounts. Acceptance: routing tests pass; headers present; v1/v2 docs live; alerts wired."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Outline a v1 → v2 migration plan: staging, adapters, comms, rollout, and success metrics (e.g., &ge; 90% v2 traffic in 60 days, zero Sev‑1s).",
+      "sampleStrongResponse": "Stage v2 behind per‑version routers; keep v1 stable. Provide adapters/shims where possible. Publish guides and SDKs. Roll out by account cohorts with dashboards and alerts. Success: &ge; 90% v2 traffic by day 60; deprecation notices acknowledged; no Sev‑1 incidents; rollback plan to route back to v1 if error rate or p95 breach thresholds."
+    }
+  ]
+}

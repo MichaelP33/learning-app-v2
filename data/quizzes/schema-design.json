@@ -1,0 +1,141 @@
+{
+  "title": "Schema Design Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Proposal models users, orders, and products in one wide table. What alignment do you require before approving?",
+      "options": [
+        "Keep a single table to avoid all joins across the system",
+        "Model clear entities with primary/foreign keys; encode invariants with constraints and ownership",
+        "Store everything as JSON blobs so the schema can change later",
+        "Rely on application code only for data integrity checks"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: design entities with keys and constraints for trust.; Why correct: clear PK/FK and constraints make rules explicit and evolvable.; Why others are wrong: one table harms integrity/scale; JSON blobs block indexes; app‑only checks drift.; Cursor leverage: draft ER diagram; generate PK/FK/unique/check DDL; produce ownership notes.; Acceptance checks: PK/FK present; key constraints enforced; ownership documented.",
+      "keyConcepts": ["Entity boundaries", "Primary/Foreign keys", "Constraints", "Ownership"]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Design uses only natural keys and no surrogate id. What change do you require to reduce merge risks?",
+      "options": [
+        "Natural keys are enough because business identifiers never change",
+        "Add surrogate PKs and keep unique constraints on natural keys; document merge rules",
+        "Use GUIDs everywhere without any uniqueness on business fields",
+        "Drop uniqueness entirely to reduce write contention"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: stable identity plus business uniqueness.; Why correct: surrogate PKs stabilize joins; unique on natural IDs prevents duplicates.; Why others are wrong: business IDs change; GUIDs without unique checks drift; dropping uniqueness corrodes trust.; Cursor leverage: emit DDL; add merge policy; write PR rationale.; Acceptance checks: surrogate PKs; unique natural keys; merge policy recorded.",
+      "keyConcepts": ["Surrogate key", "Natural key", "Uniqueness", "Merges"]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A future shard/partition is planned. What early alignment do you require on keys?",
+      "options": [
+        "Choose any key; we can rebalance later with no cost",
+        "Pick shard/partition keys that match dominant filters and access paths; document rebalancing",
+        "Avoid shard keys so cross‑partition joins are easier",
+        "Use random hashing only to avoid hot tenants by default"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Headline: align keys with access to avoid cross‑partition pain.; Why correct: matching keys to filters prevents scatter/gather and hotspots; a rebalancing plan reduces risk.; Why others are wrong: key changes are costly; avoiding keys or random hashes ignores access.; Cursor leverage: analyze filters; simulate scatter/gather; propose key options.; Acceptance checks: key rationale documented; fan‑out eliminated in EXPLAIN; p95 within budget.",
+      "keyConcepts": ["Shard/partition key", "Access patterns", "Scatter/gather", "p95 latency"]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "PR changes a critical column type and adds NOT NULL. How should the rollout proceed?",
+      "options": [
+        "Apply change in one step in production to save time",
+        "Gate on application restarts only; schema can lag behind",
+        "Use expand → backfill → flip → enforce → cleanup with idempotent batches",
+        "Rely on implicit conversions at runtime across services"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Headline: stage incompatible changes to avoid lock and outage.; Why correct: phased steps minimize locks and allow safe rollback.; Why others are wrong: single‑step changes risk downtime; implicit conversions are brittle.; Cursor leverage: scaffold migration plan; generate backfill scripts; add toggles and monitors.; Acceptance checks: backfill parity; lock times acceptable; rollback path tested.",
+      "keyConcepts": ["Phased migration", "Idempotent backfill", "Rollback", "Locks"]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Analytics uses the same OLTP store and long joins time out. What do you require?",
+      "options": [
+        "Keep analytics in OLTP and raise timeouts until it passes",
+        "Export normalized data to a star schema or views with refresh SLOs and lineage",
+        "Replace OLTP with a wide denormalized table for everything",
+        "Turn off constraints to speed up analytics joins"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Headline: serve analytics from dedicated shapes, not OLTP.; Why correct: stars/views give fast BI without harming OLTP writes; refresh SLOs keep trust.; Why others are wrong: raising timeouts dodges design; one wide table breaks invariants; removing constraints corrodes data.; Cursor leverage: generate stars/views; schedule refresh; document lineage.; Acceptance checks: BI moved; refresh SLO documented; OLTP p95 steady.",
+      "keyConcepts": ["OLTP vs OLAP", "Star schema", "Views", "Refresh SLO"]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Security/audit requires who/when on changes. What schema design guardrail do you ask for?",
+      "options": [
+        "Store audit data only in logs and parse later when needed",
+        "Add created_at/updated_at and created_by/updated_by with constraints and triggers where appropriate",
+        "Keep only created_at; updated fields are noisy in analytics",
+        "Track audit fields in a separate spreadsheet maintained by hand"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: capture audit fields at the source with structure.; Why correct: structured audit fields enable traceability and governance.; Why others are wrong: logs/spreadsheets drift; partial fields miss changes.; Cursor leverage: scaffold audit columns/triggers; add validation; propose dashboards.; Acceptance checks: audit fields present; populated correctly; reports wired.",
+      "keyConcepts": ["Audit fields", "Traceability", "Governance"]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A boolean flag is modeled as a string with free‑form values. What do you require?",
+      "options": [
+        "Allow any string; validation can happen later in the app",
+        "Keep string and add a partial index to filter valid values",
+        "Use a proper boolean or constrained enum and add a CHECK to enforce domain",
+        "Delete the field and infer behavior from logs only"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Headline: encode domain rules in the schema.; Why correct: types and CHECK constraints prevent invalid states at the edge.; Why others are wrong: app‑only checks drift; partial indexes don’t fix bad values; logs are not a source of truth.; Cursor leverage: propose type/enum change; generate CHECK DDL; write PR rationale.; Acceptance checks: constraints enforced; invalid writes blocked; incidents reduced.",
+      "keyConcepts": ["Data types", "CHECK constraint", "Domain rules"]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Cross‑tenant reports require joins across many partitions. What stance keeps performance predictable?",
+      "options": [
+        "Avoid partitioning; single table scales indefinitely",
+        "Use cross‑partition broadcasts as the default join strategy",
+        "Provide shard‑aware entry points and precomputed extracts; avoid scatter/gather on OLTP",
+        "Run every cross‑tenant report on the primary during peak hours"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Headline: avoid scatter/gather on OLTP; feed cross‑tenant reports from extracts.; Why correct: shard‑aware entry points and extracts keep p95 stable.; Why others are wrong: no partitioning ignores scale; broadcasts explode work; peak primaries risk customers.; Cursor leverage: simulate fan‑out; propose entry points/extracts; add acceptance checks.; Acceptance checks: no scatter/gather in plans; extracts documented; p95 within budget.",
+      "keyConcepts": ["Shard awareness", "Scatter/gather", "Extracts", "p95"]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Draft a PR comment for a risky schema change. Include: phased plan (add → backfill → flip → enforce → cleanup), constraints to encode rules, and a rollback path with measurable success criteria.",
+      "sampleStrongResponse": "Describe the phased plan with idempotent backfills and toggles. Add keys/uniques/checks to encode invariants. Success: parity on a sampled slice, lock times within budget, and p95 unchanged. Include rollback to previous reads/writes and scripts to revert DDL. Ask Cursor to scaffold migrations, backfill batches, and the PR acceptance checks."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Outline a tenant sharding plan that avoids hotspots. Include key selection, rebalancing, cutover steps, and communication to stakeholders.",
+      "sampleStrongResponse": "Choose a shard key aligned to dominant filters (e.g., tenant_id with optional hash). Plan rebalancing with chunk moves and idempotent backfills. Cutover behind flags per route; verify parity and p95. Communicate blast radius, success metrics, and sunset any legacy paths. Add dashboards for key skew and scatter/gather detection."
+    }
+  ]
+}

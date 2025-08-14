@@ -1,0 +1,141 @@
+{
+  "title": "Indexing Strategies Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Endpoint lists paid orders by status and created_at with ORDER BY created_at DESC LIMIT 50. What index do you require?",
+      "options": [
+        "A composite on (status, created_at DESC) that covers id/amount to avoid lookups",
+        "An index only on created_at while scanning status in the table",
+        "A functional index on lower(status) to cover all cases generically",
+        "Separate indexes on status and created_at and let the optimizer merge"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Headline: match index order to predicates and sort, cover the select list.; Why correct: equality before range enables a seek + ordered scan; covering avoids lookups.; Why others are wrong: single‑column or function‑wrapped choices lead to scans; index merge is unstable.; Cursor leverage: extract query shape; propose composite order and INCLUDE columns; show plan delta.; Acceptance checks: EXPLAIN shows seek; ORDER BY satisfied; rows read within budget.",
+      "keyConcepts": ["Composite order", "Equality before range", "Covering index", "Rows read"]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "PR adds covering indexes to every list endpoint and writes slowed down. What review stance keeps balance?",
+      "options": [
+        "Keep all covering indexes; dashboards matter more than writes",
+        "Prune overlapping indexes; keep a minimal set tied to real predicates and budgets",
+        "Add shards so write slowdowns disappear without trade‑offs",
+        "Move all writes to nights so indexes don’t matter during the day"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: curate a minimal set of indexes that pay for themselves.; Why correct: each index adds write work; target hot paths and remove redundancy.; Why others are wrong: reads‑only focus ignores OLTP; more shards don’t fix per‑row index cost; timing shifts pain.; Cursor leverage: inspect predicates; suggest a canonical composite; provide a rollback for dropped indexes.; Acceptance checks: unused indexes pruned; hot paths covered; write metrics stable.",
+      "keyConcepts": ["Write amplification", "Predicate coverage", "Pruning", "OLTP vs analytics"]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Query uses WHERE DATE(created_at)=? AND ORDER BY created_at. What sargability fix do you require?",
+      "options": [
+        "Keep DATE() on the column; optimizers handle functions well now",
+        "Add an index on DATE(created_at) and keep the function in predicates",
+        "Rewrite to a range on created_at (>= start AND < end) so the index can seek",
+        "Drop ORDER BY and sort in the client to reduce server work"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Headline: keep predicates sargable to enable seeks.; Why correct: removing the function allows index use and ordered scans.; Why others are wrong: function‑wrapped columns defeat indexes; client sorts move cost and risk; functional indexes add complexity.; Cursor leverage: rewrite predicate; show EXPLAIN before/after; propose a composite with ORDER BY alignment.; Acceptance checks: seek confirmed; no sort operator; rows read drop.",
+      "keyConcepts": ["Sargability", "Range predicates", "EXPLAIN", "ORDER BY alignment"]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Multi‑tenant query filters by tenant_id = ? and updated_at BETWEEN ? AND ? with ORDER BY updated_at. What composite order do you require?",
+      "options": [
+        "(updated_at, tenant_id) so the range comes first for better scans",
+        "(updated_at DESC) only since ORDER BY dominates everything",
+        "(tenant_id) only and accept a sort later for simplicity",
+        "(tenant_id, updated_at) so equality leads and range follows the selective prefix"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Headline: lead with equality, then range to maximize selectivity.; Why correct: equality on tenant_id partitions the space; range on updated_at scans in order.; Why others are wrong: leading with range blocks equality seeks; single‑column indexes leave sorts; ORDER BY alone is insufficient.; Cursor leverage: infer shapes from code; emit canonical index order; verify with plan diff.; Acceptance checks: no sort; seek on tenant_id; predictable p95.",
+      "keyConcepts": ["Composite index", "Selectivity", "Tenant partitioning", "Plan stability"]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "EXPLAIN shows a scan + sort on amount for a top report. What de‑risking ask precedes merge?",
+      "options": [
+        "Attach EXPLAIN with rows‑read and add a minimal composite/cover to remove sort",
+        "Increase hardware for the cluster to hide the latency temporarily",
+        "Run the query on the primary at peak to observe worst cases live",
+        "Create indexes on every stage of the pipeline to be safe"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Headline: verify plan shape and remove wasted work.; Why correct: plan evidence + minimal index reduces rows read and sorts predictably.; Why others are wrong: hardware hides issues; peak tests risk users; indexing everything inflates writes.; Cursor leverage: summarize plan; generate DDL and rollback; write PR budget text.; Acceptance checks: plan attached; rows‑read reduced; rollback path defined.",
+      "keyConcepts": ["Rows read", "Covering index", "Sort elimination", "Rollback"]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "You plan to partition data by region. What index note do you require in PRs?",
+      "options": [
+        "Rely on partitioning alone; indexes are unnecessary on partitions",
+        "Align queries to partition pruning and include the partition key in composite prefixes",
+        "Avoid using the partition key in predicates to keep plans generic",
+        "Create identical global indexes regardless of access patterns"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: combine partition pruning with selective prefixes.; Why correct: including the partition key enables pruning and efficient seeks within partitions.; Why others are wrong: partitions don’t replace indexes; ignoring the key defeats pruning; global clones waste cost.; Cursor leverage: detect partition predicates; suggest local index shapes; verify prune in plan.; Acceptance checks: pruning observed; seeks inside partitions; stable p95.",
+      "keyConcepts": ["Partition pruning", "Composite prefixes", "Access patterns"]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "What evidence should justify adding a new index to a hot endpoint?",
+      "options": [
+        "Anecdotal reports from one developer’s laptop during a demo",
+        "Rows‑read reduction and p95 improvement under representative load",
+        "Number of columns included to make it future‑proof",
+        "Vendor recommendation without local measurements"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: add indexes only with measurable benefit.; Why correct: rows‑read and p95 deltas prove value under real distributions.; Why others are wrong: anecdotes and generic advice are unreliable; over‑wide indexes inflate writes.; Cursor leverage: run plan comparisons; capture rows‑read; write PR budget/acceptance text.; Acceptance checks: measured deltas; index size tracked; write amp within budget.",
+      "keyConcepts": ["Evidence‑based indexing", "Rows read", "p95 latency", "Write amplification"]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Writes regressed after adding two similar composites: (tenant_id, created_at) and (tenant_id, created_at, status). What do you require?",
+      "options": [
+        "Keep both because future queries might need either form",
+        "Add shards so write cost disappears across nodes",
+        "Consolidate to one canonical composite that matches WHERE and ORDER; drop the overlap with a rollback plan",
+        "Move all writes to a nightly window and hope the pain shifts away"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Headline: drop overlapping shapes and keep one canonical index.; Why correct: a single well‑chosen composite reduces write amp while serving predicates.; Why others are wrong: speculative indexes cost; sharding doesn’t remove per‑row index work; batching shifts pain.; Cursor leverage: suggest canonical shape; generate drop/rollback scripts; monitor write metrics.; Acceptance checks: overlap removed; hot path covered; write p95 stable.",
+      "keyConcepts": ["Index pruning", "Canonical composite", "Write cost", "Rollback"]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Draft a PR comment for a new hot‑path list query: attach EXPLAIN summary, set a slow‑query budget (e.g., p95 &le; 120 ms), propose the minimal composite/cover, and include a rollback if regressions appear.",
+      "sampleStrongResponse": "Ask for an EXPLAIN with rows read, operators, and sort usage. State a slow‑query budget (p95 &le; 120 ms at current QPS). Propose a composite (equality first, then range, INCLUDE select list) to eliminate scan/sort. Note write‑amp cost and add a rollback toggle and drop script if p95 regresses. Ask Cursor to generate the DDL and PR‑ready acceptance checks."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Outline a phased index cleanup plan that removes redundant indexes safely. Include discovery → evidence → drop behind a flag → monitor → rollback, with comms to stakeholders.",
+      "sampleStrongResponse": "Discovery: collect usage stats and overlap. Evidence: plan diffs and rows‑read vs write‑amp deltas. Drop: disable via flag or mark unused and remove with a rollback script ready. Monitor: p95, error rates, and plan hashes. Rollback on thresholds. Communicate expected impact, success criteria, and an office‑hours window for consumers."
+    }
+  ]
+}

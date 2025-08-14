@@ -1,0 +1,141 @@
+{
+  "title": "Normalization Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "PR duplicates customer_email in orders to avoid a join. What will you require before merge?",
+      "options": [
+        "Document a single source of truth; add unique on natural keys; define a freshness window; ship CDC/view with a repair job",
+        "Switch to a document store and drop relational constraints for speed",
+        "Disable foreign keys globally so writers are never blocked by checks",
+        "Promise to remove the duplicate later without a plan or owner"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Headline: denormalization needs trust guardrails tied to a normalized source.; Why correct: a clear source of truth with uniqueness prevents drift; CDC/materialized views serve reads without corrupting writes.; Why others are wrong: changing stores does not solve duplication risk; removing FKs hides bugs; vague promises lack safety.; Cursor leverage: draft a denorm trust note; add uniqueness/FK DDL; scaffold a CDC/view and reconciliation job.; Acceptance checks: SoT documented; uniqueness/foreign keys enforced; refresh/repair SLOs defined.",
+      "keyConcepts": ["Denormalization", "Source of truth", "Unique constraints", "CDC", "Materialized view"]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Design shows only natural keys and no surrogate primary keys. What alignment prevents duplicate entities during merges?",
+      "options": [
+        "Rely on natural keys only; they never change across systems",
+        "Add surrogate PKs and keep unique on natural identifiers; document merge rules and dedupe paths",
+        "Delay key decisions until analytics needs are clearer",
+        "Drop uniqueness to keep writes fast under load"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: combine surrogate identity with business uniqueness checks.; Why correct: surrogate PKs stabilize joins while unique on natural keys prevents duplicates.; Why others are wrong: natural keys can change; delaying creates data debt; removing uniqueness invites drift.; Cursor leverage: generate PK/unique DDL; add merge/dedupe checklist; produce PR text explaining identity strategy.; Acceptance checks: surrogate PK present; unique on natural keys; merge rules documented.",
+      "keyConcepts": ["Surrogate key", "Natural key", "Uniqueness", "Dedupe"]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Orders table includes customer_city and customer_state copied from profile. What safeguard do you require?",
+      "options": [
+        "Keep derived fields permanently to simplify analytics everywhere",
+        "Use triggers so many tables update the same attributes in place",
+        "Eliminate the transitive dependency; reference customer; if denormed, define staleness and refresh budget",
+        "Make city optional so anomalies are less likely to block writes"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Headline: remove 3NF violations; if you denormalize, bound staleness.; Why correct: 3NF eliminates update anomalies; explicit staleness/refresh keeps copies trustworthy.; Why others are wrong: permanent duplication drifts; triggers multiply failure modes; optional fields hide bugs.; Cursor leverage: flag functional dependencies; suggest 3NF refactor; draft a projection with refresh cadence.; Acceptance checks: 3NF documented; FKs in place; projection refresh and staleness window agreed.",
+      "keyConcepts": ["3NF", "Transitive dependency", "Foreign keys", "Staleness window"]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Reports over OLTP are slow; proposal is to denormalize OLTP tables wholesale. What requirement keeps trust and performance?",
+      "options": [
+        "Replace OLTP with one wide table so joins disappear entirely",
+        "Add many new OLTP indexes for BI and accept write costs",
+        "Run heavy reports on the primary at peak to find worst case",
+        "Serve BI from denormalized views/warehouse fed from normalized sources with refresh SLOs and keys"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Headline: separate OLTP correctness from BI speed via projections.; Why correct: normalized OLTP protects writes; views/warehouse give fast reads with defined refresh.; Why others are wrong: a single wide table corrodes correctness; piling OLTP indexes inflates writes; running at peak risks customers.; Cursor leverage: generate a star/view DDL; add refresh schedule; outline ownership and lineage.; Acceptance checks: BI served from projections; refresh SLO stated; OLTP write SLOs stable.",
+      "keyConcepts": ["OLTP vs OLAP", "Materialized views", "Refresh SLO", "Lineage"]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "New normalized_address replaces legacy address_text. What migration plan do you require before rollout?",
+      "options": [
+        "Add → backfill → flip reads → enforce validators → cleanup with rollback toggles",
+        "Flip immediately in prod and fix any fallout as tickets",
+        "Delete the legacy column first to force consumers to adapt",
+        "Hide the new field in UI only and hope downstream copes"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Headline: expand→backfill→flip→enforce→cleanup for safe schema change.; Why correct: phased steps minimize outages and give rollback lines.; Why others are wrong: instant flips cause incidents; deleting first breaks contracts; UI‑only hides coupling.; Cursor leverage: scaffold migration scripts; add backfill batcher; generate PR comment with SLOs and toggles.; Acceptance checks: idempotent backfill; parity checks pass; toggle/rollback path verified.",
+      "keyConcepts": ["Phased migration", "Validators", "Rollback", "Parity checks"]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Multiple services write to order_totals causing drift. What guardrail do you require?",
+      "options": [
+        "Let each service keep its own totals and reconcile in dashboards",
+        "Establish a single write path; enforce constraints; expose read‑only copies elsewhere",
+        "Run a nightly cron to overwrite totals from a random source",
+        "Use long cross‑service transactions to guarantee global consistency"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: one writer per fact with constraints and clear consumers.; Why correct: single write path + constraints prevent drift; consumers read without mutating.; Why others are wrong: many writers drift; crons hide bugs; global transactions add fragility.; Cursor leverage: draft ownership matrix; add CHECK/unique DDL; propose consumer projections.; Acceptance checks: write owner declared; constraints active; consumers read‑only.",
+      "keyConcepts": ["Single source of truth", "Constraints", "Ownership", "Consumers"]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "PR stores phone numbers as a comma‑separated string to avoid a join. What is your ask?",
+      "options": [
+        "Approve; parsing strings is simpler than modeling relations",
+        "Switch to one JSON string so the shape is flexible enough",
+        "Model a child table (one row per phone); enforce FK/uniqueness; document access patterns",
+        "Keep a TEXT column and validate in app code only"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Headline: 1NF requires one value per field.; Why correct: a child table with FKs preserves integrity and keeps queries indexable.; Why others are wrong: strings/JSON hide structure and block indexes; app‑only checks miss drift.; Cursor leverage: suggest table DDL; add FK/unique; create query examples for common filters.; Acceptance checks: 1NF respected; FK/unique enforced; queries sargable.",
+      "keyConcepts": ["1NF", "Foreign keys", "Uniqueness", "Sargability"]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Team proposes dropping foreign keys during peak to speed writes. What stance keeps trust?",
+      "options": [
+        "Drop constraints; they are optional in mature systems",
+        "Rely on app‑level checks only and hope tests catch issues",
+        "Drop FKs nightly and recreate them after traffic slows",
+        "Keep FKs for invariants; quantify write cost; move heavy reads to projections instead of removing integrity"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Headline: protect invariants; optimize reads without sacrificing integrity.; Why correct: FKs enforce correctness; shifting reads to projections avoids write inflation without data risk.; Why others are wrong: removing checks loses trust; app‑only checks fail silently; nightly toggles are brittle.; Cursor leverage: compute write amp of indexes; propose projections; add FK coverage tests.; Acceptance checks: integrity guaranteed; write SLOs measured; projections documented.",
+      "keyConcepts": ["Foreign keys", "Integrity", "Projections", "Write amplification"]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Draft a PR comment to de‑risk a hot‑path join for order summaries. Include: EXPLAIN summary, slow‑query budget (e.g., p95 &le; 150 ms), minimal index or projection rationale, and a rollback plan if p95 regresses.",
+      "sampleStrongResponse": "Request an EXPLAIN plan snippet and confirm selective starts on customer/order keys with no scans or large memory grants. State a slow‑query budget (for example, p95 &le; 150 ms at current QPS) and propose the smallest composite index or a materialized view if joins are unavoidable. Call out write‑amplification and include a rollback toggle to drop the index or route reads back to the view if p95 regresses. Ask Cursor to summarize the plan, generate the DDL/view and rollback script, and produce PR‑ready acceptance checks."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Outline a phased migration to move a duplicated customer_email into a normalized shape. Include add → backfill → flip → enforce → cleanup with safety checks and stakeholder comms.",
+      "sampleStrongResponse": "Add the normalized column and start dual‑writes behind a flag. Backfill existing rows in shard‑aware batches with idempotent upserts and an error budget. Flip reads via a feature flag and verify parity on a sampled slice. Enforce validators and remove writes to the legacy field. Clean up the old column and monitoring. Safety: p95 &le; target, FK/unique enforced, and a rollback toggle to route reads back. Comms: share staleness window, expected p95, and a blast‑radius note with support/product."
+    }
+  ]
+}
