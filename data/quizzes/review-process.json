@@ -1,0 +1,141 @@
+{
+  "title": "Review Process Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "PRs are stalling for days. What process change do you require first?",
+      "options": [
+        "Add more reviewers randomly so someone will pick it up",
+        "Define SLAs, owner dashboards, and nudges to keep flow predictable",
+        "Mandate longer PR descriptions so reviewers have more to read",
+        "Wait for end‑of‑week batched reviews to reduce context switching"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: make flow visible and time‑bounded.; Why correct: SLAs + dashboards + nudges create accountability and reduce stale PRs.; Why others are wrong: random reviewers dilute ownership; long descriptions add noise; batching delays learning.; Cursor leverage: generate dashboards; set SLA alerts; add nudge bots.; Acceptance checks: stale PRs decrease; median time‑to‑review improves; ownership coverage increases.",
+      "keyConcepts": ["SLAs", "Dashboards", "Ownership"]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Large PRs cause thrash. What policy should you drive?",
+      "options": [
+        "Encourage small, focused PRs with clear intent and scoped change surfaces",
+        "Allow very large PRs if the author is confident in the changes",
+        "Bundle unrelated refactors with features to reduce the number of PRs",
+        "Ask reviewers to allocate entire days to reading large PRs thoroughly"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Headline: reduce scope for faster convergence.; Why correct: smaller PRs reduce cognitive load and speed review while making rollbacks safer.; Why others are wrong: confidence is not evidence; bundling hides risk; allocating days doesn&rsquo;t scale.; Cursor leverage: suggest PR splits; generate scoped templates; add flags to gate risky changes.; Acceptance checks: PR size decreases; review iterations fewer; rollback path clear.",
+      "keyConcepts": ["Small PRs", "Scope control", "Rollback safety"]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Threads devolve into unresolved debates. What mechanism helps?",
+      "options": [
+        "Escalate to director approval for all PRs to force decisions",
+        "Summarize decisions and trade‑offs in PR notes and use ADRs for larger pivots",
+        "Wait for a later sprint to revisit the discussion with fresh minds",
+        "Close threads without summary once a reviewer is satisfied"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: capture decisions to unblock and teach.; Why correct: PR notes and ADRs create clarity and a record for future maintainers.; Why others are wrong: blanket escalation is wasteful; waiting stalls delivery; silent closes lose context.; Cursor leverage: generate decision summaries; link ADR templates; surface related history.; Acceptance checks: notes present; ADRs linked when needed; fewer repeated debates.",
+      "keyConcepts": ["Decision capture", "ADRs", "Maintainability"]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Rubber‑stamping appears common. What change do you recommend?",
+      "options": [
+        "Require a minimum number of comments per review regardless of substance",
+        "Introduce assignment rules by area and prompt for must‑fix vs suggestions",
+        "Remove all automation so reviewers must read everything manually",
+        "Rotate reviewers more frequently to spread work randomly"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: align reviews to expertise and prompts.; Why correct: proper assignment + prompts focus attention on risk and reduce rubber‑stamping.; Why others are wrong: comment quotas create noise; no automation slows flow; random rotation weakens accountability.; Cursor leverage: propose assignment rules; add comment macros; track must‑fix coverage.; Acceptance checks: rubber‑stamp rate drops; must‑fix prompts addressed; owner coverage improves.",
+      "keyConcepts": ["Assignment rules", "Prompts", "Quality focus"]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Authors complain about context thrash. What should the process include?",
+      "options": [
+        "Short PR template prompting intent, risk, evidence, and links",
+        "Long narrative sections to capture every possible detail",
+        "Reviewer training to ask authors more clarifying questions",
+        "Slack threads instead of PR templates to keep things conversational"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Headline: right context up front.; Why correct: concise, structured templates reduce back‑and‑forth and set expectations.; Why others are wrong: long narratives bury the signal; training without structure won&rsquo;t fix inputs; Slack threads fragment history.; Cursor leverage: draft a template; auto‑fill from diffs; add a checklist for risky surfaces.; Acceptance checks: fewer clarification comments; faster approvals; better evidence attached.",
+      "keyConcepts": ["PR templates", "Context quality", "Evidence"]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Stalled reviews spike during holidays. What guardrail helps most?",
+      "options": [
+        "Disable reviews during holidays to respect time off",
+        "Define backup owners in CODEOWNERS and set SLA nudges to backups",
+        "Increase the number of required approvals to enforce quality",
+        "Defer merges until all primary owners return to ensure oversight"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: build resilience into ownership.; Why correct: backups and nudges keep flow without lowering quality.; Why others are wrong: disabling reviews stalls delivery; more approvals slow further; deferring merges piles up risk.; Cursor leverage: update CODEOWNERS backups; configure nudge rules; create a holiday playbook.; Acceptance checks: SLA breaches drop; backups handle load; no quality regressions.",
+      "keyConcepts": ["Backups", "SLAs", "Resilience"]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Async vs pairing review? What policy balances throughput and quality?",
+      "options": [
+        "Async only, pairing wastes time and doubles effort",
+        "Pair on risky/design‑heavy PRs; async for routine changes with checklists",
+        "Pair for all PRs to maximize shared context",
+        "Async only when owners are unavailable; otherwise always pair"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: use pairing intentionally on high‑leverage PRs.; Why correct: pairing on risky work accelerates convergence; async + checklists keeps routine flow fast.; Why others are wrong: extremes miss balance; pairing everything doesn&rsquo;t scale; async‑only loses shared understanding.; Cursor leverage: detect risk from diffs; suggest pairing slots; attach a checklist.; Acceptance checks: faster convergence on risky PRs; routine PRs stay fast; fewer re‑reviews.",
+      "keyConcepts": ["Pairing vs async", "Risk signals", "Checklists"]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Queue health is opaque. What should you introduce?",
+      "options": [
+        "Manual spreadsheets to track review status across teams",
+        "Queue dashboards with SLA heatmaps and owner rollups",
+        "Daily standups dedicated solely to PR status updates",
+        "Slack pings to everyone whenever any PR is updated"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: make work visible.; Why correct: dashboards show bottlenecks and ownership at a glance.; Why others are wrong: spreadsheets are brittle; meetings increase overhead; broad pings create noise.; Cursor leverage: generate dashboards; set owner rollups; add SLA alerts.; Acceptance checks: visibility improves; bottlenecks addressed; fewer stale PRs.",
+      "keyConcepts": ["Queue dashboards", "Visibility", "Ownership rollups"]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Draft a PR comment that upgrades the review process for a large feature. Include: PR splitting plan, owner assignment, SLA targets, and decision capture with ADR links.",
+      "sampleStrongResponse": "Propose splitting the PR by change surface (API, DB, UI); assign owners via CODEOWNERS; set SLA targets (first response ≤ X hrs, merge ≤ Y days). Add a decision note template and link to an ADR for trade‑offs. Ask Cursor to generate the splits, owner map, SLA dashboard, and a PR‑ready comment with acceptance checks."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Outline a rollout for a cross‑team review process refresh. Include add templates → backfill dashboards → flip SLA nudges → enforce owner routing → cleanup with safety checks and comms.",
+      "sampleStrongResponse": "Plan: add concise templates; build queue dashboards; enable SLA nudges; enforce CODEOWNERS routing; retire ad‑hoc processes. Safety: first response ≤ X hrs, stale PRs ↓ Y%, rubber‑stamp rate ↓ Z%. Comms: share expectations, dashboards, and playbooks. Ask Cursor to scaffold templates, dashboards, and automation."
+    }
+  ]
+}

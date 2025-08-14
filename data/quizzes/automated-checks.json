@@ -1,0 +1,141 @@
+{
+  "title": "Automated Checks Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "CI is slow and noisy. What principle should guide your checks?",
+      "options": [
+        "Run every check on every change regardless of path or risk",
+        "Target checks by changed paths/risk and keep failures explainable with fixes",
+        "Turn off most checks to restore velocity and rely on reviewers",
+        "Batch all checks nightly so daytime merges are fast"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: run the right checks with actionable output.; Why correct: path/risk targeting speeds CI; explainable failures unblock devs.; Why others are wrong: all‑checks always is slow; turning off checks loses safety; nightly batches delay feedback.; Cursor leverage: infer checks from diff; post SARIF with fix hints; track CI SLAs.; Acceptance checks: CI time meets target; failures include fixes; developer satisfaction improves.",
+      "keyConcepts": ["Path targeting", "Explainable failures", "CI SLAs"]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Security wants stronger gates without blocking everything. Your approach?",
+      "options": [
+        "Fail all security findings immediately regardless of severity",
+        "Adopt policy‑as‑code with severity thresholds and time‑boxed waivers",
+        "Move security checks post‑merge to avoid developer friction",
+        "Leave security to annual audits instead of CI"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: enforce must‑fix, allow managed exceptions.; Why correct: policy‑as‑code makes rules clear and reviewable while waivers prevent deadlocks.; Why others are wrong: fail‑all blocks velocity; post‑merge is too late; annual audits miss issues.; Cursor leverage: generate policy configs; add waiver templates; link SARIF to lines.; Acceptance checks: must‑fix blocked; waiver SLAs tracked; noise low.",
+      "keyConcepts": ["Policy‑as‑code", "Waivers", "Severity thresholds"]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Diff coverage is low on changed code. What is the right stance?",
+      "options": [
+        "Block on global coverage percentage only; diff coverage is optional",
+        "Require diff coverage targets on changed lines and critical paths",
+        "Ignore coverage entirely and rely on manual testing",
+        "Increase unit test counts without regard to relevance"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: test where change risk is.; Why correct: diff coverage focuses effort on changed code and hot paths.; Why others are wrong: global % can hide gaps; ignoring coverage misses defects; counting tests incentivizes noise.; Cursor leverage: compute diff coverage; suggest test cases; annotate gaps.; Acceptance checks: diff targets met; critical paths covered; escapes stable or down.",
+      "keyConcepts": ["Diff coverage", "Risk focus", "Critical paths"]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Flaky tests are eroding trust. What check automation helps?",
+      "options": [
+        "Retry failures endlessly until they pass and then merge",
+        "Quarantine flakes with owner notification and require stabilization PRs",
+        "Delete flaky tests to clean dashboards quickly",
+        "Ignore flakiness if overall pass rate is acceptable"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: isolate and fix flakes systematically.; Why correct: quarantine + owners maintain signal while driving cleanup.; Why others are wrong: endless retries hide issues; deletion loses coverage; ignoring preserves noise.; Cursor leverage: detect flakes; auto‑retry and quarantine; create owner tasks.; Acceptance checks: flake rate drops; quarantines resolved; CI trust improves.",
+      "keyConcepts": ["Flake quarantine", "Owner routing", "Signal quality"]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "PR adds a new API. What automated checks should block merge?",
+      "options": [
+        "Formatter and linter only; API behavior can be reviewed manually",
+        "Contract tests, schema validation, and security scanning for the new surface",
+        "Skip checks for small endpoints to keep velocity high",
+        "Only end‑to‑end tests since they cover the whole stack"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: block on contract/security for new surfaces.; Why correct: preventing breaking changes and vulnerabilities is critical for APIs.; Why others are wrong: style‑only misses risk; skipping by size ignores impact; e2e‑only is brittle.; Cursor leverage: scaffold contract tests; add schema docs; configure SAST/DAST.; Acceptance checks: contracts green; scans clean; docs linked.",
+      "keyConcepts": ["Contract tests", "Schema validation", "Security scans"]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "CI time exceeds targets after monorepo growth. Best first step?",
+      "options": [
+        "Parallelize jobs and add caching keyed by paths and lockfiles",
+        "Disable heavy checks permanently to recover speed",
+        "Move all checks to nightly and accept slower feedback",
+        "Ask engineers to run all checks locally before pushing"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Headline: speed up without losing coverage.; Why correct: parallelism + caching attack critical path while preserving safety.; Why others are wrong: disabling or moving checks delays feedback; local‑only lacks consistency.; Cursor leverage: profile CI; add cache keys; tune parallelism.; Acceptance checks: CI p95 within SLA; cache hit rate rises; failure detection unchanged.",
+      "keyConcepts": ["Parallelism", "Caching", "CI profiling"]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Bypass culture appears: frequent &ldquo;admin merges.&rdquo; What should you implement?",
+      "options": [
+        "Encourage admin merges to keep velocity high during crunch times",
+        "Require waiver workflow with approvers, scope, and expiry; audit weekly",
+        "Hide failing checks from the PR UI to reduce pressure on teams",
+        "Lower thresholds so checks pass more easily without waivers"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: make exceptions explicit and temporary.; Why correct: waivers with owners/expiry preserve standards and provide visibility.; Why others are wrong: admin merges erode trust; hiding failures removes feedback; lowering bars hides risk.; Cursor leverage: add waiver form to template; build audit report; alert on expiry.; Acceptance checks: admin merges decrease; waivers tracked; expiries enforced.",
+      "keyConcepts": ["Waiver workflow", "Audit", "Standards"]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Checks produce long logs with no clear fix. What do you require?",
+      "options": [
+        "Accept verbose logs as the cost of safety",
+        "SARIF annotations with line‑level pointers and doc links for remediation",
+        "Ask developers to read the entire log and guess the fix",
+        "Disable the check to avoid developer frustration"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: make failures self‑service with pointers.; Why correct: SARIF annotations speed fixes and adoption.; Why others are wrong: verbosity without guidance slows teams; guessing wastes time; disabling removes safety.; Cursor leverage: integrate SARIF; link docs; propose autofix PRs.; Acceptance checks: mean time‑to‑fix drops; adoption increases; developer survey improves.",
+      "keyConcepts": ["SARIF", "Remediation guidance", "Adoption"]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Write a PR comment to de‑risk a new CI gate for contracts. Include: path targeting, failing example, SARIF annotation, and waiver rules with expiry.",
+      "sampleStrongResponse": "Ask for path‑based targeting (only API packages), a failing example linked to the diff, and SARIF inline annotations with doc links. Define waiver policy (owner/approver, scope, expiry). Ask Cursor to generate config diffs, a waiver template, and a PR‑ready comment with acceptance checks (targeting verified, SARIF visible, waivers enforced)."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Outline a progressive‑hardening plan for automated checks. Include add core checks → backfill policies → flip must‑fix gates → enforce waivers → cleanup with safety checks and stakeholder comms.",
+      "sampleStrongResponse": "Plan: add core checks (formatter/linter/tests/contracts); backfill policy‑as‑code; flip must‑fix gates for high‑risk areas; enforce waiver workflow with audit; remove redundant checks. Safety: CI p95 ≤ X min, flake rate ≤ Y%, escape rate stable. Comms: share thresholds and waiver process. Ask Cursor to draft configs, thresholds, and a comms note."
+    }
+  ]
+}

@@ -1,0 +1,141 @@
+{
+  "title": "Root Cause Analysis Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Teams jump to fixes during incidents. What stance should you require in RCAs?",
+      "options": [
+        "Focus on who made the mistake to ensure accountability in future",
+        "Capture an evidence‑based causal chain and conditions before prescribing fixes",
+        "Skip analysis when the system is restored to save time and cost",
+        "Adopt a rotating blame policy so responsibility is distributed evenly"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: analyze causes before actions.; Why correct: a causal chain with evidence avoids shallow symptom fixes and repeats.; Why others are wrong: blame harms learning; skipping analysis loses insight; blame rotation is performative.; Cursor leverage: generate RCA template; extract timeline from logs/traces; draft causal chain prompts.; Acceptance checks: evidence links present; chain reaches systemic factors; actions trace to causes.",
+      "keyConcepts": ["Causal chain", "Evidence links", "Blamelessness"]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A &ldquo;5 whys&rdquo; stops at the first technical cause. Your guidance?",
+      "options": [
+        "Accept the first cause to close the RCA faster and move on",
+        "Push deeper into conditions/policies and verify with evidence and owners",
+        "Replace 5 whys with a vote on the most likely cause among reviewers",
+        "Ask for longer RCAs by adding more pages without changing content"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: dig to system conditions with owners.; Why correct: deeper why‑levels surface process/policy gaps and require ownership to fix.; Why others are wrong: stopping early repeats; voting is not analysis; longer docs without depth waste time.; Cursor leverage: prompt deeper whys; map causes to owners; add verification checks.; Acceptance checks: cause depth recorded; owner/actions assigned; verification plan included.",
+      "keyConcepts": ["5 Whys", "System conditions", "Ownership"]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Actions from past RCAs were closed but issues repeat. What should RCAs include?",
+      "options": [
+        "Only a checkbox that the task was completed by the team",
+        "Acceptance criteria and effectiveness verification after rollout",
+        "A celebration note to improve morale after difficult weeks",
+        "A reminder to reopen the ticket if the issue happens again"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: verify that actions worked.; Why correct: acceptance criteria and post‑rollout checks confirm outcomes and prevent drift.; Why others are wrong: completion without effect is hollow; celebrations don&rsquo;t test impact; reminders are not verification.; Cursor leverage: generate acceptance criteria; add monitors/tests; schedule effectiveness reviews.; Acceptance checks: verification results linked; monitors in place; repeat rate drops.",
+      "keyConcepts": ["Acceptance criteria", "Effectiveness review", "Monitors"]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "RCAs feel personal and defensive. What facilitation change do you drive?",
+      "options": [
+        "Keep naming individuals prominently to show transparency",
+        "Use blameless language and focus on systems, signals, and safeguards",
+        "Limit participation to managers only so emotions are contained",
+        "Move RCAs to email threads to reduce meeting time and cost"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: create safety to learn.; Why correct: blameless framing focuses on systems and encourages truthful evidence sharing.; Why others are wrong: naming blames; manager‑only limits facts; email threads lose facilitation.; Cursor leverage: provide neutral phrasing prompts; review drafts for bias; supply a blameless template.; Acceptance checks: language shifts to systems; participants contribute evidence; action quality improves.",
+      "keyConcepts": ["Blamelessness", "Facilitation", "Learning culture"]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A complex outage spans multiple teams. What must the RCA capture?",
+      "options": [
+        "Only the final failing component since that is where the outage ended",
+        "A timeline of events with handoffs and conditions across systems",
+        "A list of possible causes gathered from memory and chat logs",
+        "An estimate of cost only; technical details can be inferred later"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: full timeline with cross‑team handoffs.; Why correct: a detailed, evidence‑backed timeline anchors causality and responsibilities.; Why others are wrong: final failure is a symptom; memories are unreliable; cost alone misses mechanism.; Cursor leverage: extract timelines from logs/traces; link PRs/incidents; produce a system map.; Acceptance checks: timeline complete; evidence links verified; teams sign off on sequence.",
+      "keyConcepts": ["Timelines", "Handoffs", "Evidence"]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Teams debate quick fixes vs program work. What do you recommend in RCAs?",
+      "options": [
+        "Only quick fixes to restore service; program work is a luxury",
+        "Only program‑level actions because quick fixes are band‑aids",
+        "Both corrective (short‑term) and preventive (systemic) actions with owners",
+        "No actions until a steering committee meets next quarter"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Headline: balance corrective and preventive work.; Why correct: short‑term reduces immediate risk while program actions prevent repeats.; Why others are wrong: quick‑only repeats; preventive‑only delays risk reduction; waiting stalls learning.; Cursor leverage: classify actions as CAPA; add owners/dates; link to roadmap.; Acceptance checks: CAPA tracked; owners accountable; repeat rate declines quarter‑over‑quarter.",
+      "keyConcepts": ["CAPA", "Corrective vs preventive", "Ownership"]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "RCAs are slow to publish. What process improvement do you drive?",
+      "options": [
+        "Skip RCAs for minor incidents to save time universally",
+        "Time‑box triage vs deep dive and template the artifacts collection",
+        "Publish RCAs only at quarter end to batch effort and reduce context switches",
+        "Assign RCAs to the most senior engineer only to guarantee quality"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: add structure and time boxes.; Why correct: separating quick triage from deep dive with templates accelerates throughput without losing depth.; Why others are wrong: skipping loses learning; batching creates delay; senior‑only reduces capacity.; Cursor leverage: provide RCA templates; auto‑collect logs/traces/PR links; add reminders.; Acceptance checks: time to publish improves; template adherence high; stakeholders satisfied with clarity.",
+      "keyConcepts": ["Time‑boxing", "Templates", "Throughput"]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Action items from RCAs drift without follow‑through. What guardrail helps most?",
+      "options": [
+        "Trust teams to remember and exercise judgment later",
+        "Track actions with owners/dates and verify effectiveness post‑rollout",
+        "Close items after one week to prevent clutter in the tracker",
+        "Move items to a shared doc and revisit annually during audit season"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: make actions accountable and verified.; Why correct: ownership and verification keep improvements real.; Why others are wrong: memory fails; auto‑close hides risk; annual reviews are too slow.; Cursor leverage: create action tracker; set reminders; define verification monitors.; Acceptance checks: ownership present; verification status recorded; outcomes measured.",
+      "keyConcepts": ["Action tracking", "Verification", "Accountability"]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Draft a PR comment to de‑risk an RCA publication for a major incident. Include: evidence links, causal chain summary, CAPA with owners/dates, and verification criteria tied to SLOs.",
+      "sampleStrongResponse": "Request a linked evidence pack (logs/traces/PRs), a concise causal chain from trigger to impact, and a CAPA list with owners/dates. Define verification like 0.5% error rate improvement and page rate ≤ Y/hr. Ask Cursor to assemble the timeline, draft neutral language, and generate the action tracker with acceptance checks."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Outline a phased RCA program upgrade. Include add template → backfill timelines → flip to burn‑rate pager policy → enforce CAPA tracking → cleanup old docs with safety checks and stakeholder comms.",
+      "sampleStrongResponse": "Plan: add a blameless template and evidence pack checklist; backfill timelines for the last N incidents; flip pager policy to burn‑rate; enforce CAPA tracking with owners/dates; retire legacy formats. Safety: publish time ≤ 7 days, repeat category rate ↓ X%, stakeholder satisfaction ≥ 4/5. Comms: share the template, new policies, and where to find evidence packs. Ask Cursor to draft templates, automation, and comms."
+    }
+  ]
+}

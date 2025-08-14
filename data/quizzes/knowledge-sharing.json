@@ -1,0 +1,141 @@
+{
+  "title": "Knowledge Sharing Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Review conversations are rich but nothing is captured. What policy should you require?",
+      "options": [
+        "Let reviewers decide ad‑hoc whether to write notes or not",
+        "Capture short, link‑rich PR notes with decisions and rationale near the code",
+        "Move all discussion into a separate wiki and keep PRs minimal",
+        "Rely on memory and chat history to reconstruct context later"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: leave breadcrumbs by the code.; Why correct: short notes with links make history discoverable and maintainable.; Why others are wrong: ad‑hoc capture leads to gaps; separate wikis drift; memory/chat are unreliable.; Cursor leverage: provide note macros; extract entities/links; index notes across repos.; Acceptance checks: notes present in PRs; decisions/links captured; discoverability improves.",
+      "keyConcepts": ["PR notes", "Discoverability", "Maintainability"]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Teams keep re‑debating common patterns. What should reviewers do?",
+      "options": [
+        "Link to exemplars and standards/ADRs in comments and propose updates if gaps exist",
+        "Repeat the full explanation in each PR to ensure everyone reads it",
+        "Avoid linking to external docs to keep the PR focused",
+        "Escalate debates immediately to managers to stop the churn"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Headline: anchor to shared patterns and evolve them.; Why correct: exemplars + standards reduce debate and improve consistency; gaps lead to updates.; Why others are wrong: repeating wastes time; avoiding links loses history; escalation is premature.; Cursor leverage: insert comment macros with links; find similar past PRs; draft standards updates.; Acceptance checks: links present; debate frequency drops; standards refreshed where needed.",
+      "keyConcepts": ["Exemplars", "Standards/ADRs", "Comment macros"]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Handoffs stall after pairing sessions. What is the right practice?",
+      "options": [
+        "Trust the author to remember next steps and follow up later",
+        "Generate pairing summaries with concrete next‑step tasks and owners",
+        "Record long meeting notes and attach them verbatim to the PR",
+        "Skip pairing notes to avoid cluttering the PR history"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: turn handoffs into tasks.; Why correct: summaries with owners keep momentum and preserve context.; Why others are wrong: memory fails; long notes are noise; skipping loses continuity.; Cursor leverage: generate handoff templates; extract tasks from conversation; assign owners.; Acceptance checks: tasks attached; owners assigned; work continues without stalls.",
+      "keyConcepts": ["Handoff summaries", "Tasks and owners", "Continuity"]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "New hires struggle to find prior art. What should you implement?",
+      "options": [
+        "Weekly learning digest that surfaces exemplar PRs and key decisions",
+        "A private notebook kept by senior engineers for personal reference",
+        "Rely on code search only; decisions are implicit in the code",
+        "Avoid documenting decisions to encourage exploration"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Headline: curate and broadcast learnings.; Why correct: digests spread knowledge and make discovery easy for new teammates.; Why others are wrong: private notes silo knowledge; code alone misses rationale; avoiding docs repeats mistakes.; Cursor leverage: auto‑compile digests; link to exemplars; tag themes.; Acceptance checks: digest published; onboarding time drops; repeated debates decrease.",
+      "keyConcepts": ["Learning digests", "Exemplars", "Onboarding"]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Reviewers leave insightful comments that get lost. What is the best capture mechanism?",
+      "options": [
+        "Copy comments into a long wiki page quarterly",
+        "Extract short, indexable snippets with links and tag them by domain",
+        "Screenshot the PR and store images in a shared folder",
+        "Do nothing; insights will re‑emerge naturally over time"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: index bite‑sized, linkable knowledge.; Why correct: short snippets with tags remain discoverable and reusable.; Why others are wrong: quarterly wikis go stale; screenshots are not searchable; waiting wastes time.; Cursor leverage: extract snippets; apply tags; expose search in new PRs.; Acceptance checks: snippets indexed; retrieval success in spot checks; reuse in future PRs observed.",
+      "keyConcepts": ["Indexing", "Tags", "Retrieval"]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Tribal knowledge is concentrated with a few reviewers. What guardrail helps?",
+      "options": [
+        "Keep the same reviewers on all PRs to maintain consistency",
+        "Rotate reviewers intentionally and pair for risky areas with capture",
+        "Randomize reviewers daily with no consideration for domain",
+        "Limit documentation to reduce maintenance overhead"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: share context through rotation + capture.; Why correct: rotation spreads knowledge; pairing + notes preserves quality.; Why others are wrong: static reviewers concentrate knowledge; randomization loses context; less documentation increases repeats.; Cursor leverage: propose rotation rules; pair on risky PRs; ensure notes captured.; Acceptance checks: reviewer diversity increases; capture rate high; fewer single‑points of failure.",
+      "keyConcepts": ["Reviewer rotation", "Pairing", "Knowledge diffusion"]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Links in PRs often go stale. What practice improves durability?",
+      "options": [
+        "Use permanent links (commit‑pinned, ADR ids) and brief context in the note",
+        "Avoid linking to anything external to keep PRs future‑proof",
+        "Paste full documents into PR descriptions to have everything in one place",
+        "Rely on search engines to rediscover documents later"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Headline: make references stable and skimmable.; Why correct: commit‑pinned links and short context keep notes useful over time.; Why others are wrong: no links lose history; pasting docs creates noise; search is hit‑or‑miss.; Cursor leverage: convert links to permalinks; insert context macros; validate link health periodically.; Acceptance checks: link rot decreases; notes remain useful; retrieval success improves.",
+      "keyConcepts": ["Permalinks", "Context capture", "Resilience"]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A recurring debate keeps resurfacing. What should you drive?",
+      "options": [
+        "Open a standards/ADR update with an exemplar and close the loop in PRs",
+        "Ignore the debate and let teams decide locally each time",
+        "Create a lengthy meeting series to discuss repeatedly",
+        "Defer the issue until the next quarter to avoid pressure"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Headline: turn debate into a documented standard.; Why correct: ADR/standards updates provide a single source of truth and reduce thrash.; Why others are wrong: ignoring repeats cost; meetings without artifacts waste time; deferral prolongs pain.; Cursor leverage: draft ADR; link exemplars; post closing comments with links.; Acceptance checks: ADR merged; debates decline; adoption observed in subsequent PRs.",
+      "keyConcepts": ["ADR updates", "Loop closure", "Standards"]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Write a PR comment template to capture decisions. Include: summary, trade‑offs, links to ADR/exemplars, and next‑step tasks with owners.",
+      "sampleStrongResponse": "Provide a short summary of the decision, list 2–3 trade‑offs, and link to the relevant ADR and exemplar PRs. Add next‑step tasks with owners. Ask Cursor to draft the template, insert macro placeholders, and validate that links resolve."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Outline a knowledge‑sharing program anchored in PRs. Include add note macros → backfill indexing → flip weekly digest → enforce rotation/handoffs → cleanup with safety checks and comms.",
+      "sampleStrongResponse": "Plan: add note macros to PR templates; index historic PR notes; publish a weekly digest; enforce reviewer rotation and pairing handoffs; retire stale capture channels. Safety: onboarding time ↓ X%, debate repeats ↓ Y%, note coverage ≥ Z%. Comms: share how to write notes and where to find them. Ask Cursor to implement macros, indexers, and digest automation."
+    }
+  ]
+}

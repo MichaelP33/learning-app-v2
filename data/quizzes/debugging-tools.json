@@ -1,0 +1,141 @@
+{
+  "title": "Debugging Tools Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Prod bug is intermittent and hard to reproduce. What should you require first?",
+      "options": [
+        "Capture a golden trace/profile on a safe replica and standardize repro scripts",
+        "Spin up a bigger cluster and hope the symptom disappears under load",
+        "SSH into prod boxes and add printf statements directly on live code",
+        "Ask authors to re‑read the code slowly to find the mistake by inspection"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Headline: collect safe, high‑fidelity evidence.; Why correct: golden traces/profiles and repro scripts turn anecdotes into repeatable evidence without risky live edits.; Why others are wrong: more hardware masks bugs; live printf is unsafe; reading code alone misses runtime conditions.; Cursor leverage: generate repro plan/scripts; suggest tracing/profiling presets; link evidence to the PR.; Acceptance checks: golden trace/profile attached; repro script passes; risk assessment noted.",
+      "keyConcepts": ["Golden trace", "Profiling presets", "Repro scripts"]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Team proposes always attaching a debugger in prod. What is the right stance?",
+      "options": [
+        "Approve always‑on debug sessions for maximum insight and live patching",
+        "Forbid all forms of attach because it is inherently unsafe in every case",
+        "Use printf in loops instead of any debugger or tracing instrumentation",
+        "Allow read‑only remote attach with audits on replicas and short, scoped sessions"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Headline: enable safe attach under guardrails.; Why correct: read‑only, audited, short‑lived sessions on replicas reduce risk while enabling real‑world diagnosis.; Why others are wrong: always‑on is risky; absolute bans block learning; printf loops add noise and risk.; Cursor leverage: generate attach configs; add audit logging; create a time‑boxed attach runbook.; Acceptance checks: read‑only mode enforced; session logs stored; replica policy documented.",
+      "keyConcepts": ["Remote attach", "Audit trails", "Risk reduction"]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Perf regression claim is based on &ldquo;CPU 100%&rdquo; alone. What do you ask for in the PR?",
+      "options": [
+        "Approval now; CPU is definitive proof of a code bug",
+        "Wall‑time vs CPU‑time profiles and comparative flamegraphs before/after",
+        "A larger staging cluster to duplicate high CPU with more machines",
+        "Turning off GC to see if CPU falls during the test runs"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: require comparative profiles tied to user impact.; Why correct: wall vs CPU time and flamegraph diffs expose true hot paths and misattribution.; Why others are wrong: CPU alone is ambiguous; more machines hide causes; disabling GC is unrealistic.; Cursor leverage: run profiler presets; generate before/after flamegraphs; summarize hotspots with suggested fixes.; Acceptance checks: profiles attached; hotspot named; expected p95 improvement stated.",
+      "keyConcepts": ["Flamegraphs", "CPU vs wall time", "p95 impact"]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A &ldquo;works on my machine&rdquo; bug hits one cohort only. First diagnostic move?",
+      "options": [
+        "Rewrite the feature to a different language to avoid environment issues",
+        "Add tracing with stable context fields and capture a cohort‑specific golden trace",
+        "Wait for more reports before spending time on instrumentation",
+        "Enable DEBUG logs globally to collect as much information as possible"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: add traces to isolate environment/inputs.; Why correct: stable context + cohort golden trace surfaces the divergent path and inputs.; Why others are wrong: language rewrites are overkill; waiting delays learning; DEBUG everywhere is costly/noisy.; Cursor leverage: generate trace instrumentation diff; add context fields; create cohort router rules.; Acceptance checks: trace covers boundaries; cohort reproduced; divergent hop identified.",
+      "keyConcepts": ["Tracing", "Context fields", "Golden trace"]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A PR introduces a sampling profiler for prod. What boundary should you set?",
+      "options": [
+        "Allow unlimited duration to ensure rare events are captured",
+        "Run continuous profiling on every node at full frequency all the time",
+        "Scope to short windows with low overhead and publish flamegraph artifacts",
+        "Block profiling entirely because it can perturb performance measurements"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Headline: profile briefly with artifacts.; Why correct: short, low‑overhead sampling windows are safe and produce diffable artifacts.; Why others are wrong: unlimited windows risk overhead; always‑on everywhere is wasteful; blocking loses insight.; Cursor leverage: template profiler scripts; set safe defaults; store artifacts and links.; Acceptance checks: duration/frequency documented; artifacts attached; overhead budget respected.",
+      "keyConcepts": ["Sampling profiler", "Overhead budget", "Artifacts"]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "The trace naming is inconsistent across services. What is your PR ask?",
+      "options": [
+        "Adopt a naming standard for service/operation/span kinds and update emitters",
+        "Keep current names to preserve team autonomy on terminology",
+        "Remove tracing and rely on logs only for simplicity and speed",
+        "Only rename spans involved in current incidents; leave the rest alone"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Headline: enforce naming standards for clarity.; Why correct: consistent names make traces searchable and comparable across teams.; Why others are wrong: autonomy without standards hurts joins; removing tracing loses causality; selective renames keep drift.; Cursor leverage: draft naming guide; generate PRs to update emitters; add lint checks for names.; Acceptance checks: naming guide merged; emitters updated; search queries standardize.",
+      "keyConcepts": ["Naming standards", "Traceability", "Cross‑team consistency"]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Developer wants to debug a race condition with breakpoints. Your guidance?",
+      "options": [
+        "Use breakpoints to pause threads and observe interleavings directly",
+        "Disable concurrency to make the race disappear and call it fixed",
+        "Run on a single CPU core to reduce scheduling complexity permanently",
+        "Prefer tracepoints/logs and targeted sleeps; avoid stop‑the‑world pauses"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Headline: avoid perturbing timing in race diagnosis.; Why correct: tracepoints/logs keep timing closer to real while revealing order; breakpoints mask races.; Why others are wrong: disabling concurrency hides bugs; single‑core is not representative; pauses change behavior.; Cursor leverage: add tracepoints; generate timing diagrams; propose targeted stress tests.; Acceptance checks: race reproduced with tracepoints; order clarified; fix validated under load.",
+      "keyConcepts": ["Race conditions", "Tracepoints", "Determinism"]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Teams propose one tool to rule them all. What do you advocate?",
+      "options": [
+        "Use only logs; traces and profilers add unnecessary complexity",
+        "Use only traces; logs and profilers are redundant for modern systems",
+        "Combine logs, traces, and profiles; each sees different aspects of behavior",
+        "Avoid tools and focus only on reading code and unit tests carefully"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Headline: use complementary tools together.; Why correct: logs show events, traces show causality, profiles show hot paths; together they close blind spots.; Why others are wrong: single‑tool dogma leaves gaps; reading code alone misses runtime context.; Cursor leverage: generate a combined evidence checklist; produce side‑by‑side diffs; attach artifacts to PRs.; Acceptance checks: artifacts for all three present; shared narrative written; decision captured in PR notes.",
+      "keyConcepts": ["Logs vs traces vs profiles", "Complementarity", "Evidence pack"]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Write a PR comment to de‑risk a performance fix on a hot path. Include: before/after profiles, p95 target (e.g., ≤ 150 ms), tracing evidence of the slow hop, and a rollback flag if p95 regresses after deploy.",
+      "sampleStrongResponse": "Ask for sampling profiles and flamegraphs before/after showing wall vs CPU time for the suspected function; include a golden trace identifying the slow hop. State a p95 budget (≤ 150 ms at current QPS) and request a feature flag/rollback toggle if p95 regresses. Ask Cursor to generate profiler scripts, merge the artifacts into the PR, and draft the acceptance checks (artifact links, p95 met, rollback validated)."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Plan a phased rollout for enabling tracing and profiling on a critical service. Include add → backfill exemplars → flip dashboards → enforce standards → cleanup with safety checks and comms.",
+      "sampleStrongResponse": "Plan: add minimal tracing/profiling presets; capture exemplars and check in golden trace/profile; flip dashboards/SLOs to use new spans once parity with logs is verified; enforce naming/context standards via CI; clean up legacy scripts. Safety: limit overhead ≤ 2% CPU, session windows ≤ 5 min, p95 latency unchanged. Comms: share the presets, exemplars, expected impact, and owner runbooks. Ask Cursor to generate instrumentation diffs, presets, and a comms note."
+    }
+  ]
+}
