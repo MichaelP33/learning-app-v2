@@ -1,0 +1,141 @@
+{
+  "title": "Code Quality Gates Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "PR introduces quality gates that block on any warning. What adjustment keeps velocity while enforcing real risk?",
+      "options": [
+        "Map severity tiers to outcomes and gate only on critical/high for PRs",
+        "Block on all warnings and errors equally for consistency",
+        "Turn off gates and rely on manual QA to catch issues",
+        "Gate on file count and churn as proxies for quality"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Headline: map signals to decisions with context.; Why correct: severity→outcome keeps focus on risk and reduces unnecessary blocks.; Why others are wrong: blocking on all warnings stalls flow; removing gates loses automation; file count is unrelated to quality.; Cursor leverage: generate a severity map; update CI checks; annotate PRs with statuses.; Acceptance checks: gates block only critical/high; time‑to‑green improves; warning volume tracked.",
+      "keyConcepts": ["Severity mapping", "Risk focus", "CI gates"]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Exceptions are requested frequently. What policy prevents gate erosion?",
+      "options": [
+        "Open‑ended waivers approved once and reused",
+        "Short‑lived waivers with owner, rationale, and expiry",
+        "Team‑wide ignore flags during crunch time",
+        "Automatic approval for any low‑risk change"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: exceptions are safety valves with constraints.; Why correct: owner+rationale+expiry ensures accountability and cleanup.; Why others are wrong: open‑ended waivers become permanent; blanket flags spread; auto‑approval is unsafe.; Cursor leverage: add waiver fields to PR template; CI check expiry; dashboard exception counts.; Acceptance checks: waivers include owner/rationale/expiry; counts trend down; auto‑expiry notifications enabled.",
+      "keyConcepts": ["Exceptions", "Ownership", "Expiry"]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Teams propose hard gates on all repos on day one. What rollout strategy should you require?",
+      "options": [
+        "Immediate hard gates everywhere to set the standard",
+        "Only soft gates forever to avoid friction",
+        "Progressive hardening: guidance → soft gates → hard gates based on evidence",
+        "Rotate gate categories randomly to spread attention"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Headline: harden progressively with evidence.; Why correct: staged rollout builds trust and uses incident learnings; avoids disruption.; Why others are wrong: hard‑all causes bypasses; soft‑only lacks enforcement; random rotation lacks strategy.; Cursor leverage: publish a gate roadmap; measure time‑to‑green; tune thresholds iteratively.; Acceptance checks: roadmap approved; staged milestones hit; fewer bypasses and stable velocity.",
+      "keyConcepts": ["Progressive hardening", "Roadmap", "Evidence"]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Gate signals are scattered across tools. What implementation improves clarity and governance?",
+      "options": [
+        "Let each team choose their own reporting format",
+        "Email logs to reviewers and ask them to summarize",
+        "Hide details to keep PR pages tidy",
+        "Aggregate results via SARIF and expose a single PR status view"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Headline: unify signals for fast, auditable decisions.; Why correct: SARIF aggregation centralizes findings and enables dashboards.; Why others are wrong: many formats fragment review; emails are toil; hiding details blocks learning.; Cursor leverage: wire SARIF outputs; build dashboards; add pass/warn/fail badges.; Acceptance checks: single status view live; dashboards show trends; audits reference SARIF.",
+      "keyConcepts": ["SARIF", "Aggregation", "Governance"]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "PR gates use global coverage %, causing frequent unrelated blocks. What fix should you require?",
+      "options": [
+        "Gate on diff coverage and publish nightly full scans for trends",
+        "Disable coverage entirely in favor of linting",
+        "Raise the global threshold to motivate teams",
+        "Exclude large directories permanently to stop blocks"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Headline: fair coverage gating uses deltas and trends.; Why correct: diff gates avoid punishing unrelated files; nightly scans show progress.; Why others are wrong: disabling coverage removes a key signal; higher global bars are blunt; broad exclusions hide risk.; Cursor leverage: update CI to diff gating; add nightly job; post trend charts.; Acceptance checks: fewer unrelated blocks; trend visible by module; diff gates green.",
+      "keyConcepts": ["Diff coverage", "Trends", "Fair gating"]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Performance budgets are discussed but not enforced. What change turns intent into action?",
+      "options": [
+        "Track budgets manually in a spreadsheet",
+        "Add CI status checks comparing PR metrics to budget with tolerances",
+        "Rely on post‑release monitoring only",
+        "Increase instance size in CI to pass benchmarks"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: make budgets executable in CI.; Why correct: status checks catch regressions pre‑merge and quantify risk.; Why others are wrong: manual tracking is error‑prone; post‑release is too late; bigger machines hide issues.; Cursor leverage: wire benchmark step; compute p95 deltas; fail on sustained regression.; Acceptance checks: CI shows pass/warn/fail; charts attached; rollback toggle documented.",
+      "keyConcepts": ["Perf budgets", "CI checks", "Regression gates"]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Exception approvals are slow and unclear. What operating model improves decisions?",
+      "options": [
+        "Let any reviewer approve to reduce delays",
+        "Auto‑approve if CI is otherwise green",
+        "Define an approval path with roles, SLAs, and compensating controls",
+        "Batch all exceptions monthly for a committee review"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Headline: clear ownership and SLAs yield predictable approvals.; Why correct: defined roles and controls ensure risk is understood and mitigated.; Why others are wrong: any‑approver dilutes accountability; auto‑approve ignores context; monthly batches delay delivery.; Cursor leverage: extend PR template with waiver fields; route approvals; log decisions.; Acceptance checks: approval SLAs met; owners identified; compensating controls captured.",
+      "keyConcepts": ["Approvals", "Ownership", "Compensating controls"]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Gates are inconsistent across repos. What implementation pattern brings consistency with flexibility?",
+      "options": [
+        "Copy‑paste workflows into each repo and edit ad hoc",
+        "Centralize everything with no repo overrides",
+        "Let each repo reinvent gates to match their culture",
+        "Ship reusable CI templates and per‑repo quality profiles (JSON/YAML)"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Headline: standardize via templates with local profiles.; Why correct: shared templates enforce core rules; profiles allow context‑specific thresholds.; Why others are wrong: copy‑paste drifts; no overrides ignores context; total freedom fragments governance.; Cursor leverage: publish templates; generate starter profiles; lint profiles in CI.; Acceptance checks: templates adopted; profiles validated; variance reduced across repos.",
+      "keyConcepts": ["Templates", "Profiles", "Consistency"]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Draft a PR comment to add composite quality gates. Include: tests/coverage/lints/perf/vuln signals, thresholds per tier, exception workflow, and acceptance checks (e.g., diff ≥ 80%, p95 ≤ 150 ms, 0 critical vulns).",
+      "sampleStrongResponse": "Propose composite gates: tests (diff ≥ 80%), coverage (no drop vs baseline), lints (no criticals; highs warn), perf (p95 ≤ 150 ms; no sustained regressions), vulnerabilities (0 criticals). Add severity mapping and an exception workflow with owner/rationale/expiry and compensating controls. Ask Cursor to generate a quality profile, CI templates, and a PR template with waiver fields. Acceptance: status checks visible; waiver process documented; dashboards show trends."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Outline a phased gate rollout across repos. Include add → backfill → flip → enforce → cleanup with safety checks and stakeholder comms.",
+      "sampleStrongResponse": "Plan: add reusable CI templates and starter quality profiles; publish severity mapping. Backfill by integrating tests/coverage/lints/perf/vuln checks; document baselines. Flip to diff‑only gates on PRs and nightly full scans; publish dashboards. Enforce critical gates and exception workflow with expiry. Cleanup noisy rules and long‑lived waivers. Safety: time‑to‑green ≤ 10 min; failure budget ≤ 2%. Comms: RFC + office hours; success = reduced rollbacks, predictable approvals, and consistent thresholds by tier."
+    }
+  ]
+}

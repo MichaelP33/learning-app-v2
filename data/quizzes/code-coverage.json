@@ -1,0 +1,141 @@
+{
+  "title": "Code Coverage Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "PR proposes a global 90% line coverage gate immediately. What should you require instead?",
+      "options": [
+        "Gate PRs on diff coverage with ratchet‑only and risk‑tier targets per module",
+        "Apply 90% global line coverage across all repos now to be consistent",
+        "Track only line coverage and skip branches for simpler reporting",
+        "Count generated files to raise coverage while teams catch up"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Headline: fair gates use diff coverage, ratchets, and risk tiers, not a blunt global %. ; Why correct: diff+ratchet prevents regressions while risk tiers focus investment on hot paths.; Why others are wrong: immediate global gate blocks low‑risk changes; lines‑only misses branches; including generated files inflates numbers with no safety.; Cursor leverage: annotate PRs with diff coverage; suggest tiered targets by module; propose an exclusions policy with rationale.; Acceptance checks: diff coverage gate enabled; risk tiers documented; generated/legacy exclusions justified.",
+      "keyConcepts": ["Diff coverage", "Risk tiers", "Exclusions policy"]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A module shows 95% coverage but regressions keep escaping. What is the best next step?",
+      "options": [
+        "Lower the threshold to reduce false alarms and developer friction",
+        "Add mutation testing on that module to detect weak assertions",
+        "Ignore the module since high coverage proves it is safe",
+        "Switch to counting functions only because it is more granular"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: high % can hide shallow checks; use mutation to validate assertion strength.; Why correct: mutation testing reveals tests that execute code but fail to fail on faults.; Why others are wrong: lowering thresholds ignores the problem; high % is not proof of quality; function‑only metrics still miss assert quality.; Cursor leverage: add a targeted mutation job; surface survived mutants in PR; recommend stronger assertions for risky branches.; Acceptance checks: mutation score reported; survived mutants addressed; escapes reduced for the module.",
+      "keyConcepts": ["Mutation testing", "Assertion strength", "Escapes"]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Coverage reports show gaps on error branches in payments. What review ask keeps focus where it matters?",
+      "options": [
+        "Increase the global threshold by 5% to push teams to add tests",
+        "Exclude the payments code to avoid blocking releases",
+        "Add tests targeting error/edge branches on the hot path first",
+        "Run coverage only nightly so PRs are not slowed down"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Headline: prioritize branch coverage on hot paths and error handling.; Why correct: users feel failures on error paths; targeted branch tests deliver the safety we need.; Why others are wrong: global bumps are blunt; exclusions hide risk; nightly‑only delays feedback.; Cursor leverage: highlight untested branches in PR; propose specific test cases; generate a short PR comment with acceptance checks.; Acceptance checks: risky branches covered; diff coverage green; failures reproduced and pinned by tests.",
+      "keyConcepts": ["Branch coverage", "Hot paths", "Risk‑based testing"]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Generated code (types, clients) drags down coverage and causes noise. What policy should you require?",
+      "options": [
+        "Exclude generated/legacy files with rationale and track separately",
+        "Delete generated code from the repo to avoid measurement errors",
+        "Mark all generated files as covered to normalize the metric",
+        "Raise thresholds to compensate so teams write more tests elsewhere"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Headline: cut noise with justified exclusions, not gaming or deletion.; Why correct: policy‑based exclusions keep the signal clean while preserving accountability.; Why others are wrong: deleting artifacts breaks builds; marking as covered is misleading; raising thresholds elsewhere distorts behavior.; Cursor leverage: propose an exclusions policy template; update config; annotate PRs where exclusions apply.; Acceptance checks: exclusions documented; CI shows separate metrics; reviewers see rationale in PR.",
+      "keyConcepts": ["Exclusions policy", "Signal vs noise", "CI config"]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Team wants one uniform threshold for every repo. What stance keeps coverage useful?",
+      "options": [
+        "Set a single 85% threshold org‑wide for simplicity",
+        "Turn thresholds off and rely on human review only",
+        "Gate only on file count to avoid gaming the metric",
+        "Adopt tiered targets by domain criticality and hotness"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Headline: context‑aware thresholds yield ROI; uniform numbers don&rsquo;t.; Why correct: critical code deserves stricter targets; low‑risk libs can be lighter to maintain flow.; Why others are wrong: one size fits none; removing gates loses automation; file count is irrelevant to risk.; Cursor leverage: map repos to tiers; suggest module‑level targets; generate a dashboard by domain.; Acceptance checks: tier map approved; thresholds per tier configured; trend reports published.",
+      "keyConcepts": ["Risk tiers", "Thresholds", "Governance"]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "PR coverage fails due to untouched legacy files. What fix maintains flow and trust?",
+      "options": [
+        "Quarantine the failure and merge without action",
+        "Switch the gate to diff coverage and preserve a legacy baseline",
+        "Exclude the entire directory permanently from coverage",
+        "Lower the org threshold until PRs pass again"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: gate on diffs and keep baselines to avoid punishing unrelated changes.; Why correct: diff gates ensure no regressions while legacy baselines track improvement separately.; Why others are wrong: merging without action erodes trust; broad exclusions hide risk; lowering thresholds rewards the wrong behavior.; Cursor leverage: update CI to use diff coverage; compute baselines; post PR comments with untested lines.; Acceptance checks: diff gate green; baseline unchanged; targeted follow‑ups opened for legacy hot spots.",
+      "keyConcepts": ["Diff gates", "Baselines", "PR workflow"]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A team tracks only line coverage. What improvement should you ask for to better reflect risk?",
+      "options": [
+        "Keep lines only; branches/functions add noise",
+        "Switch to mutation score only and drop coverage entirely",
+        "Track line + branch + function coverage together",
+        "Gate on file churn rather than execution metrics"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Headline: combine multiple coverage dimensions to find blind spots.; Why correct: branches/functions expose decision points missed by lines alone.; Why others are wrong: lines‑only is shallow; mutation‑only is heavy and complementary; churn is not a test execution signal.; Cursor leverage: configure reporters to output all metrics; update dashboards; highlight modules with branch gaps.; Acceptance checks: dashboards show three metrics; PRs annotate branch misses; gaps reduced on hot modules.",
+      "keyConcepts": ["Branches/functions", "Blind spots", "Dashboards"]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Coverage drops slightly on a PR refactor. What de‑risking request should you make before merge?",
+      "options": [
+        "Ignore minor drops; refactors are safe by definition",
+        "Revert the refactor regardless of impact",
+        "Raise the global threshold so the PR must add tests everywhere",
+        "Add targeted tests for changed logic and assert edge branches"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Headline: refactors still need behavior‑focused tests where logic changed.; Why correct: targeted tests restore coverage on the delta and protect behavior.; Why others are wrong: ignoring drops lets risk in; reverting by default blocks improvements; global threshold changes are blunt.; Cursor leverage: diff‑aware test suggestions; generate cases for changed branches; comment on risky lines.; Acceptance checks: diff coverage ≥ target; edge branches covered; CI green after added tests.",
+      "keyConcepts": ["Refactors", "Delta tests", "Edge branches"]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Draft a PR comment that de‑risks a coverage change on a hot module. Include: diff coverage summary, branch gaps on error paths, a ratchet target (e.g., no drop vs baseline), and a plan to add mutation tests if escapes persist.",
+      "sampleStrongResponse": "Ask for a diff coverage report highlighting untested lines/branches on the hot path. State the ratchet goal: no drop vs baseline and diff ≥ 80% for changed files. Call out error branches lacking assertions and propose 2–3 test cases. If incidents continue, add a targeted mutation job and gate on mutation score ≥ 60% for that module. Ask Cursor to annotate PR lines, generate test skeletons, and attach a checklist with acceptance: diff ≥ 80%, no baseline drop, error branches covered."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Outline a phased coverage policy rollout. Include add → backfill → flip → enforce → cleanup with safety checks and stakeholder comms.",
+      "sampleStrongResponse": "Plan: add diff coverage gates and publish nightly full reports by module; define risk tiers and an exclusions policy. Backfill by focusing on top hot paths to raise branch coverage; document baselines. Flip to ratchet‑only on PRs (diff ≥ 80%; no baseline drop) with dashboards. Enforce stricter tier targets on critical modules and add mutation testing if escapes persist. Cleanup noisy exclusions and remove vanity thresholds. Safety: track time‑to‑green, flake rate, and a failure budget ≤ 2%. Comms: share tier maps and SLAs; success = no baseline drops for two weeks and hot‑path branch gaps closed."
+    }
+  ]
+}

@@ -1,0 +1,141 @@
+{
+  "title": "Integration Testing Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "PR uses real third‑party APIs in CI for integration tests. What requirement keeps fidelity without flakiness/cost?",
+      "options": [
+        "Record/replay with a mock server validated by consumer/provider contracts",
+        "Keep real API calls but raise timeouts and retries across the suite",
+        "Disable the tests on PRs and run them only nightly",
+        "Stub responses inline in each test to avoid network calls"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Headline: verify against contracts and use a mock server rather than live externals.; Why correct: contract‑validated mock servers give realism without rate limits and variability.; Why others are wrong: higher timeouts/retries add time and hide issues; skipping on PRs delays feedback; inline stubs drift from real contracts.; Cursor leverage: generate a mock server from contracts; add verification to CI; scaffold failure cases.; Acceptance checks: contracts attached; mock server configured; PR checks pass without external calls.",
+      "keyConcepts": ["Contract tests", "Mock server", "CI reliability"]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Some tests randomly fail due to shared DB state. What change restores isolation and speed?",
+      "options": [
+        "Increase sleeps between tests to allow cleanup to finish",
+        "Use per‑test transactions with rollback or truncate schema between tests",
+        "Serialize the suite to avoid concurrent writers",
+        "Switch all tests to unit level to avoid shared state"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: isolate DB state per test to remove cross‑test coupling.; Why correct: transactions/rollback or truncate keep tests independent and parallel‑friendly.; Why others are wrong: sleeps are brittle; serializing kills speed; moving to unit ignores integration behavior.; Cursor leverage: add DB helpers for transactions/truncate; detect shared fixtures; propose parallel‑safe setup.; Acceptance checks: no state leakage between tests; suite runs in parallel; flake rate ≤ 1%.",
+      "keyConcepts": ["Per‑test isolation", "Transactions", "Parallel runs"]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Developers wait for services to become ready using fixed sleeps. What should you require?",
+      "options": [
+        "Increase sleep duration to a safe margin across environments",
+        "Run readiness only on nightly builds to speed PRs",
+        "Replace sleeps with explicit health/readiness checks and wait‑for‑ready hooks",
+        "Assume services are ready; retry failing tests once"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Headline: waits must follow readiness signals, not time.; Why correct: health/readiness checks remove nondeterminism and reduce waste across machines.; Why others are wrong: longer sleeps increase runtime; skipping in PRs defers failures; retries hide nondeterminism.; Cursor leverage: scaffold wait‑for‑ready utilities; integrate health checks into fixtures; remove sleeps automatically.; Acceptance checks: no sleeps; readiness checks in logs; stable run times within budget.",
+      "keyConcepts": ["Readiness checks", "Health checks", "Determinism"]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Team runs integration tests against shared cloud databases. What keeps runs reproducible and local/CI parity high?",
+      "options": [
+        "Run against staging to match production data and load",
+        "Use a single shared schema and coordinate via a calendar",
+        "Turn off parallelism so shared DB state does not conflict",
+        "Use Testcontainers/ephemeral DBs with pinned versions and seeded fixtures"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Headline: ephemeral, version‑pinned infra with seeded data yields parity and speed.; Why correct: Testcontainers reproduce environments; fixtures make results stable and portable.; Why others are wrong: staging adds variability and coupling; shared schemas cause flake; disabling parallelism slows feedback.; Cursor leverage: generate container configs; create seed scripts; add pinned image tags.; Acceptance checks: containers spin with pins; seed logs present; parallel CI time within budget.",
+      "keyConcepts": ["Testcontainers", "Seed data", "Pinned versions"]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A queue‑processing test sometimes duplicates work under retries. What policy should be enforced?",
+      "options": [
+        "Assert idempotency and error semantics at the boundary with retries",
+        "Disable retries to avoid duplicates and reduce noise",
+        "Move the test to E2E where the issue will show up anyway",
+        "Increase backoff intervals so duplicates are less frequent"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Headline: idempotent boundaries make integration robust to retries.; Why correct: asserting idempotency/error semantics ensures safe behavior despite network failures.; Why others are wrong: disabling retries reduces resilience; E2E is later and slower; longer backoff treats symptoms not causes.; Cursor leverage: add idempotency checks; generate retry/error tests; flag missing 409/5xx semantics.; Acceptance checks: idempotency proven; negative cases present; duplicate processing eliminated in tests.",
+      "keyConcepts": ["Idempotency", "Error semantics", "Resilience"]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "PR seeds data by hitting admin endpoints during tests. What is the better approach?",
+      "options": [
+        "Call production APIs to ensure full fidelity of business logic",
+        "Use direct fixture builders/factories and DB helpers for fast setup",
+        "Share a global seed dataset across all tests to save time",
+        "Generate CSVs and import them before the test run"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: seed via builders/fixtures close to storage for speed and isolation.; Why correct: direct seeding is faster and avoids coupling to admin endpoints or global datasets.; Why others are wrong: production API seeding is slow/flaky; shared datasets couple tests; CSV imports add overhead and drift.; Cursor leverage: scaffold fixture builders; add per‑test DB helpers; remove admin‑API seeding from tests.; Acceptance checks: per‑test seed APIs exist; setup time reduced; no reliance on admin endpoints.",
+      "keyConcepts": ["Fixtures/builders", "Isolation", "Speed"]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Integration suite is noisy in logs and hard to debug failures. What should you ask for?",
+      "options": [
+        "Reduce logging to errors only to keep output short",
+        "Run tests locally only where logs are easy to see",
+        "Capture structured logs/traces as artifacts and attach to CI",
+        "Disable tracing because it slows tests down"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Headline: observability artifacts make failures diagnosable.; Why correct: structured logs/traces attached to CI speed triage and enable remote debugging.; Why others are wrong: hiding logs removes evidence; local‑only does not help PRs; disabling tracing sacrifices signal.; Cursor leverage: add artifact upload steps; standardize trace/log format; link artifacts in PR comments.; Acceptance checks: artifacts visible in CI; failures linked to traces; mean time‑to‑diagnosis improves.",
+      "keyConcepts": ["Observability", "CI artifacts", "Debuggability"]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "&ldquo;Works on my machine&rdquo; happens frequently for integration tests. What change addresses root causes?",
+      "options": [
+        "Ask developers to upgrade their laptops and rerun",
+        "Turn off tests on developer machines and rely on CI",
+        "Use random ports and sleep to avoid conflicts",
+        "Pin container images/versions and provide a reproducible local harness"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Headline: parity comes from pinned environments and a reproducible harness.; Why correct: pinning images/env and a local harness removes drift between machines and CI.; Why others are wrong: hardware upgrades do not fix drift; CI‑only hides issues until late; random ports+sleeps are brittle.; Cursor leverage: create a dev harness script; pin images in compose files; document readiness/wait hooks.; Acceptance checks: one‑command local run works; versions pinned; no environment‑drift failures in a sprint.",
+      "keyConcepts": ["Pinned environments", "Local harness", "Parity"]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Draft a PR comment to de‑risk a hot integration path (service + DB). Include: readiness strategy, idempotency/error checks, fixture seeding plan, and a runtime budget (e.g., p95 ≤ 4 min, flake ≤ 1%).",
+      "sampleStrongResponse": "Ask for explicit wait‑for‑ready hooks (no sleeps), pinned container versions, and per‑test isolation (transactions or truncate). Require idempotency and error semantics (409 conflict, 5xx retry) with negative cases. Propose fixture builders to seed data directly, avoiding admin endpoints. Set budgets (suite p95 ≤ 4 min; flake ≤ 1%). Ask Cursor to scaffold Testcontainers, seed scripts, and artifact upload for logs/traces; include a rollback to quarantine a failing shard if budgets are breached after merge."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Outline a phased rollout to adopt Testcontainers and seeded fixtures. Include add → backfill → flip → enforce → cleanup with safety checks and comms.",
+      "sampleStrongResponse": "Plan: add container configs with pinned images and health checks; provide seed builders and a local harness. Backfill the top 20 tests by failure rate to use containers + per‑test isolation. Flip CI to parallel shards with artifacts uploaded; verify green runs twice. Enforce by removing sleeps and blocking external network calls in tests; budgets: suite p95 ≤ 4 min, flake ≤ 1%. Cleanup shared DB/state paths and admin‑API seeding. Safety: shard‑aware teardown, resource caps, and retries on container pull. Comms: publish the harness command and budgets; success = no external calls, stable green for two weeks."
+    }
+  ]
+}

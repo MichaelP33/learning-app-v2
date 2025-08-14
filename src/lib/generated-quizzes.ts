@@ -1206,6 +1206,179 @@ export const externalQuizzes: Record<string, Quiz> = {
     }
   ]
 },
+  "code-coverage": {
+  "title": "Code Coverage Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "PR proposes a global 90% line coverage gate immediately. What should you require instead?",
+      "options": [
+        "Gate PRs on diff coverage with ratchet‑only and risk‑tier targets per module",
+        "Apply 90% global line coverage across all repos now to be consistent",
+        "Track only line coverage and skip branches for simpler reporting",
+        "Count generated files to raise coverage while teams catch up"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Headline: fair gates use diff coverage, ratchets, and risk tiers, not a blunt global %. ; Why correct: diff+ratchet prevents regressions while risk tiers focus investment on hot paths.; Why others are wrong: immediate global gate blocks low‑risk changes; lines‑only misses branches; including generated files inflates numbers with no safety.; Cursor leverage: annotate PRs with diff coverage; suggest tiered targets by module; propose an exclusions policy with rationale.; Acceptance checks: diff coverage gate enabled; risk tiers documented; generated/legacy exclusions justified.",
+      "keyConcepts": [
+        "Diff coverage",
+        "Risk tiers",
+        "Exclusions policy"
+      ]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A module shows 95% coverage but regressions keep escaping. What is the best next step?",
+      "options": [
+        "Lower the threshold to reduce false alarms and developer friction",
+        "Add mutation testing on that module to detect weak assertions",
+        "Ignore the module since high coverage proves it is safe",
+        "Switch to counting functions only because it is more granular"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: high % can hide shallow checks; use mutation to validate assertion strength.; Why correct: mutation testing reveals tests that execute code but fail to fail on faults.; Why others are wrong: lowering thresholds ignores the problem; high % is not proof of quality; function‑only metrics still miss assert quality.; Cursor leverage: add a targeted mutation job; surface survived mutants in PR; recommend stronger assertions for risky branches.; Acceptance checks: mutation score reported; survived mutants addressed; escapes reduced for the module.",
+      "keyConcepts": [
+        "Mutation testing",
+        "Assertion strength",
+        "Escapes"
+      ]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Coverage reports show gaps on error branches in payments. What review ask keeps focus where it matters?",
+      "options": [
+        "Increase the global threshold by 5% to push teams to add tests",
+        "Exclude the payments code to avoid blocking releases",
+        "Add tests targeting error/edge branches on the hot path first",
+        "Run coverage only nightly so PRs are not slowed down"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Headline: prioritize branch coverage on hot paths and error handling.; Why correct: users feel failures on error paths; targeted branch tests deliver the safety we need.; Why others are wrong: global bumps are blunt; exclusions hide risk; nightly‑only delays feedback.; Cursor leverage: highlight untested branches in PR; propose specific test cases; generate a short PR comment with acceptance checks.; Acceptance checks: risky branches covered; diff coverage green; failures reproduced and pinned by tests.",
+      "keyConcepts": [
+        "Branch coverage",
+        "Hot paths",
+        "Risk‑based testing"
+      ]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Generated code (types, clients) drags down coverage and causes noise. What policy should you require?",
+      "options": [
+        "Exclude generated/legacy files with rationale and track separately",
+        "Delete generated code from the repo to avoid measurement errors",
+        "Mark all generated files as covered to normalize the metric",
+        "Raise thresholds to compensate so teams write more tests elsewhere"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Headline: cut noise with justified exclusions, not gaming or deletion.; Why correct: policy‑based exclusions keep the signal clean while preserving accountability.; Why others are wrong: deleting artifacts breaks builds; marking as covered is misleading; raising thresholds elsewhere distorts behavior.; Cursor leverage: propose an exclusions policy template; update config; annotate PRs where exclusions apply.; Acceptance checks: exclusions documented; CI shows separate metrics; reviewers see rationale in PR.",
+      "keyConcepts": [
+        "Exclusions policy",
+        "Signal vs noise",
+        "CI config"
+      ]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Team wants one uniform threshold for every repo. What stance keeps coverage useful?",
+      "options": [
+        "Set a single 85% threshold org‑wide for simplicity",
+        "Turn thresholds off and rely on human review only",
+        "Gate only on file count to avoid gaming the metric",
+        "Adopt tiered targets by domain criticality and hotness"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Headline: context‑aware thresholds yield ROI; uniform numbers don&rsquo;t.; Why correct: critical code deserves stricter targets; low‑risk libs can be lighter to maintain flow.; Why others are wrong: one size fits none; removing gates loses automation; file count is irrelevant to risk.; Cursor leverage: map repos to tiers; suggest module‑level targets; generate a dashboard by domain.; Acceptance checks: tier map approved; thresholds per tier configured; trend reports published.",
+      "keyConcepts": [
+        "Risk tiers",
+        "Thresholds",
+        "Governance"
+      ]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "PR coverage fails due to untouched legacy files. What fix maintains flow and trust?",
+      "options": [
+        "Quarantine the failure and merge without action",
+        "Switch the gate to diff coverage and preserve a legacy baseline",
+        "Exclude the entire directory permanently from coverage",
+        "Lower the org threshold until PRs pass again"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: gate on diffs and keep baselines to avoid punishing unrelated changes.; Why correct: diff gates ensure no regressions while legacy baselines track improvement separately.; Why others are wrong: merging without action erodes trust; broad exclusions hide risk; lowering thresholds rewards the wrong behavior.; Cursor leverage: update CI to use diff coverage; compute baselines; post PR comments with untested lines.; Acceptance checks: diff gate green; baseline unchanged; targeted follow‑ups opened for legacy hot spots.",
+      "keyConcepts": [
+        "Diff gates",
+        "Baselines",
+        "PR workflow"
+      ]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A team tracks only line coverage. What improvement should you ask for to better reflect risk?",
+      "options": [
+        "Keep lines only; branches/functions add noise",
+        "Switch to mutation score only and drop coverage entirely",
+        "Track line + branch + function coverage together",
+        "Gate on file churn rather than execution metrics"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Headline: combine multiple coverage dimensions to find blind spots.; Why correct: branches/functions expose decision points missed by lines alone.; Why others are wrong: lines‑only is shallow; mutation‑only is heavy and complementary; churn is not a test execution signal.; Cursor leverage: configure reporters to output all metrics; update dashboards; highlight modules with branch gaps.; Acceptance checks: dashboards show three metrics; PRs annotate branch misses; gaps reduced on hot modules.",
+      "keyConcepts": [
+        "Branches/functions",
+        "Blind spots",
+        "Dashboards"
+      ]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Coverage drops slightly on a PR refactor. What de‑risking request should you make before merge?",
+      "options": [
+        "Ignore minor drops; refactors are safe by definition",
+        "Revert the refactor regardless of impact",
+        "Raise the global threshold so the PR must add tests everywhere",
+        "Add targeted tests for changed logic and assert edge branches"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Headline: refactors still need behavior‑focused tests where logic changed.; Why correct: targeted tests restore coverage on the delta and protect behavior.; Why others are wrong: ignoring drops lets risk in; reverting by default blocks improvements; global threshold changes are blunt.; Cursor leverage: diff‑aware test suggestions; generate cases for changed branches; comment on risky lines.; Acceptance checks: diff coverage ≥ target; edge branches covered; CI green after added tests.",
+      "keyConcepts": [
+        "Refactors",
+        "Delta tests",
+        "Edge branches"
+      ]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Draft a PR comment that de‑risks a coverage change on a hot module. Include: diff coverage summary, branch gaps on error paths, a ratchet target (e.g., no drop vs baseline), and a plan to add mutation tests if escapes persist.",
+      "sampleStrongResponse": "Ask for a diff coverage report highlighting untested lines/branches on the hot path. State the ratchet goal: no drop vs baseline and diff ≥ 80% for changed files. Call out error branches lacking assertions and propose 2–3 test cases. If incidents continue, add a targeted mutation job and gate on mutation score ≥ 60% for that module. Ask Cursor to annotate PR lines, generate test skeletons, and attach a checklist with acceptance: diff ≥ 80%, no baseline drop, error branches covered."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Outline a phased coverage policy rollout. Include add → backfill → flip → enforce → cleanup with safety checks and stakeholder comms.",
+      "sampleStrongResponse": "Plan: add diff coverage gates and publish nightly full reports by module; define risk tiers and an exclusions policy. Backfill by focusing on top hot paths to raise branch coverage; document baselines. Flip to ratchet‑only on PRs (diff ≥ 80%; no baseline drop) with dashboards. Enforce stricter tier targets on critical modules and add mutation testing if escapes persist. Cleanup noisy exclusions and remove vanity thresholds. Safety: track time‑to‑green, flake rate, and a failure budget ≤ 2%. Comms: share tier maps and SLAs; success = no baseline drops for two weeks and hot‑path branch gaps closed."
+    }
+  ]
+},
   "code-editors-vs-ides": {
   "title": "Code Editors vs IDEs Knowledge Quiz",
   "totalQuestions": 10,
@@ -1390,6 +1563,179 @@ export const externalQuizzes: Record<string, Quiz> = {
     }
   ]
 },
+  "code-quality-gates": {
+  "title": "Code Quality Gates Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "PR introduces quality gates that block on any warning. What adjustment keeps velocity while enforcing real risk?",
+      "options": [
+        "Map severity tiers to outcomes and gate only on critical/high for PRs",
+        "Block on all warnings and errors equally for consistency",
+        "Turn off gates and rely on manual QA to catch issues",
+        "Gate on file count and churn as proxies for quality"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Headline: map signals to decisions with context.; Why correct: severity→outcome keeps focus on risk and reduces unnecessary blocks.; Why others are wrong: blocking on all warnings stalls flow; removing gates loses automation; file count is unrelated to quality.; Cursor leverage: generate a severity map; update CI checks; annotate PRs with statuses.; Acceptance checks: gates block only critical/high; time‑to‑green improves; warning volume tracked.",
+      "keyConcepts": [
+        "Severity mapping",
+        "Risk focus",
+        "CI gates"
+      ]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Exceptions are requested frequently. What policy prevents gate erosion?",
+      "options": [
+        "Open‑ended waivers approved once and reused",
+        "Short‑lived waivers with owner, rationale, and expiry",
+        "Team‑wide ignore flags during crunch time",
+        "Automatic approval for any low‑risk change"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: exceptions are safety valves with constraints.; Why correct: owner+rationale+expiry ensures accountability and cleanup.; Why others are wrong: open‑ended waivers become permanent; blanket flags spread; auto‑approval is unsafe.; Cursor leverage: add waiver fields to PR template; CI check expiry; dashboard exception counts.; Acceptance checks: waivers include owner/rationale/expiry; counts trend down; auto‑expiry notifications enabled.",
+      "keyConcepts": [
+        "Exceptions",
+        "Ownership",
+        "Expiry"
+      ]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Teams propose hard gates on all repos on day one. What rollout strategy should you require?",
+      "options": [
+        "Immediate hard gates everywhere to set the standard",
+        "Only soft gates forever to avoid friction",
+        "Progressive hardening: guidance → soft gates → hard gates based on evidence",
+        "Rotate gate categories randomly to spread attention"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Headline: harden progressively with evidence.; Why correct: staged rollout builds trust and uses incident learnings; avoids disruption.; Why others are wrong: hard‑all causes bypasses; soft‑only lacks enforcement; random rotation lacks strategy.; Cursor leverage: publish a gate roadmap; measure time‑to‑green; tune thresholds iteratively.; Acceptance checks: roadmap approved; staged milestones hit; fewer bypasses and stable velocity.",
+      "keyConcepts": [
+        "Progressive hardening",
+        "Roadmap",
+        "Evidence"
+      ]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Gate signals are scattered across tools. What implementation improves clarity and governance?",
+      "options": [
+        "Let each team choose their own reporting format",
+        "Email logs to reviewers and ask them to summarize",
+        "Hide details to keep PR pages tidy",
+        "Aggregate results via SARIF and expose a single PR status view"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Headline: unify signals for fast, auditable decisions.; Why correct: SARIF aggregation centralizes findings and enables dashboards.; Why others are wrong: many formats fragment review; emails are toil; hiding details blocks learning.; Cursor leverage: wire SARIF outputs; build dashboards; add pass/warn/fail badges.; Acceptance checks: single status view live; dashboards show trends; audits reference SARIF.",
+      "keyConcepts": [
+        "SARIF",
+        "Aggregation",
+        "Governance"
+      ]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "PR gates use global coverage %, causing frequent unrelated blocks. What fix should you require?",
+      "options": [
+        "Gate on diff coverage and publish nightly full scans for trends",
+        "Disable coverage entirely in favor of linting",
+        "Raise the global threshold to motivate teams",
+        "Exclude large directories permanently to stop blocks"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Headline: fair coverage gating uses deltas and trends.; Why correct: diff gates avoid punishing unrelated files; nightly scans show progress.; Why others are wrong: disabling coverage removes a key signal; higher global bars are blunt; broad exclusions hide risk.; Cursor leverage: update CI to diff gating; add nightly job; post trend charts.; Acceptance checks: fewer unrelated blocks; trend visible by module; diff gates green.",
+      "keyConcepts": [
+        "Diff coverage",
+        "Trends",
+        "Fair gating"
+      ]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Performance budgets are discussed but not enforced. What change turns intent into action?",
+      "options": [
+        "Track budgets manually in a spreadsheet",
+        "Add CI status checks comparing PR metrics to budget with tolerances",
+        "Rely on post‑release monitoring only",
+        "Increase instance size in CI to pass benchmarks"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: make budgets executable in CI.; Why correct: status checks catch regressions pre‑merge and quantify risk.; Why others are wrong: manual tracking is error‑prone; post‑release is too late; bigger machines hide issues.; Cursor leverage: wire benchmark step; compute p95 deltas; fail on sustained regression.; Acceptance checks: CI shows pass/warn/fail; charts attached; rollback toggle documented.",
+      "keyConcepts": [
+        "Perf budgets",
+        "CI checks",
+        "Regression gates"
+      ]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Exception approvals are slow and unclear. What operating model improves decisions?",
+      "options": [
+        "Let any reviewer approve to reduce delays",
+        "Auto‑approve if CI is otherwise green",
+        "Define an approval path with roles, SLAs, and compensating controls",
+        "Batch all exceptions monthly for a committee review"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Headline: clear ownership and SLAs yield predictable approvals.; Why correct: defined roles and controls ensure risk is understood and mitigated.; Why others are wrong: any‑approver dilutes accountability; auto‑approve ignores context; monthly batches delay delivery.; Cursor leverage: extend PR template with waiver fields; route approvals; log decisions.; Acceptance checks: approval SLAs met; owners identified; compensating controls captured.",
+      "keyConcepts": [
+        "Approvals",
+        "Ownership",
+        "Compensating controls"
+      ]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Gates are inconsistent across repos. What implementation pattern brings consistency with flexibility?",
+      "options": [
+        "Copy‑paste workflows into each repo and edit ad hoc",
+        "Centralize everything with no repo overrides",
+        "Let each repo reinvent gates to match their culture",
+        "Ship reusable CI templates and per‑repo quality profiles (JSON/YAML)"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Headline: standardize via templates with local profiles.; Why correct: shared templates enforce core rules; profiles allow context‑specific thresholds.; Why others are wrong: copy‑paste drifts; no overrides ignores context; total freedom fragments governance.; Cursor leverage: publish templates; generate starter profiles; lint profiles in CI.; Acceptance checks: templates adopted; profiles validated; variance reduced across repos.",
+      "keyConcepts": [
+        "Templates",
+        "Profiles",
+        "Consistency"
+      ]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Draft a PR comment to add composite quality gates. Include: tests/coverage/lints/perf/vuln signals, thresholds per tier, exception workflow, and acceptance checks (e.g., diff ≥ 80%, p95 ≤ 150 ms, 0 critical vulns).",
+      "sampleStrongResponse": "Propose composite gates: tests (diff ≥ 80%), coverage (no drop vs baseline), lints (no criticals; highs warn), perf (p95 ≤ 150 ms; no sustained regressions), vulnerabilities (0 criticals). Add severity mapping and an exception workflow with owner/rationale/expiry and compensating controls. Ask Cursor to generate a quality profile, CI templates, and a PR template with waiver fields. Acceptance: status checks visible; waiver process documented; dashboards show trends."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Outline a phased gate rollout across repos. Include add → backfill → flip → enforce → cleanup with safety checks and stakeholder comms.",
+      "sampleStrongResponse": "Plan: add reusable CI templates and starter quality profiles; publish severity mapping. Backfill by integrating tests/coverage/lints/perf/vuln checks; document baselines. Flip to diff‑only gates on PRs and nightly full scans; publish dashboards. Enforce critical gates and exception workflow with expiry. Cleanup noisy rules and long‑lived waivers. Safety: time‑to‑green ≤ 10 min; failure budget ≤ 2%. Comms: RFC + office hours; success = reduced rollbacks, predictable approvals, and consistent thresholds by tier."
+    }
+  ]
+},
   "code-reviews": {
   "title": "Code Reviews Knowledge Quiz",
   "totalQuestions": 10,
@@ -1559,6 +1905,179 @@ export const externalQuizzes: Record<string, Quiz> = {
       "points": 5,
       "question": "A teammate flags that reviews feel like gates rather than collaboration. How would you reset norms and measure improvement?",
       "sampleStrongResponse": "Run a brief workshop to align on goals and examples of constructive feedback; update PR template to separate must‑fix vs suggestions and rationale. Measure review turnaround, change success rate, and developer sentiment over 2–3 sprints."
+    }
+  ]
+},
+  "contract-testing": {
+  "title": "Contract Testing Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "PR introduces a breaking API change. What do you require before merge to protect consumers?",
+      "options": [
+        "Publish a MAJOR with deprecation window and verify against all active consumer contracts",
+        "Update the README to note the breaking change and merge",
+        "Ship as MINOR since most consumers won&rsquo;t notice",
+        "Coordinate on a Slack thread and proceed if no one objects"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Headline: breaking changes must be versioned and verified against consumers.; Why correct: MAJOR+deprecation plus provider verification prevents unexpected breakage.; Why others are wrong: docs alone are unenforced; wrong semver hides risk; ad‑hoc comms provide no guarantees.; Cursor leverage: generate contract diffs; publish migration notes; set broker to block providers failing verification.; Acceptance checks: MAJOR tag prepared; verification green for supported consumers; deprecation notice communicated.",
+      "keyConcepts": [
+        "Semver",
+        "Provider verification",
+        "Deprecation window"
+      ]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Who should author contracts to reflect real usage and why?",
+      "options": [
+        "Providers, because they know their API design best",
+        "Consumers, because they specify the behavior they depend on",
+        "Security team, because they own governance",
+        "QA, because they write most tests"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: consumer‑driven contracts align with actual usage.; Why correct: consumers capture needs precisely; providers verify to ensure compatibility.; Why others are wrong: provider‑authored contracts miss real usage; security/QA may support but are not the source of truth.; Cursor leverage: scaffold consumer contracts; tag by environment; wire provider verification in CI.; Acceptance checks: contracts originate from consumers; registry shows ownership; provider PRs verify automatically.",
+      "keyConcepts": [
+        "Consumer‑driven",
+        "Ownership",
+        "Verification"
+      ]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "What&rsquo;s the minimum addition you should require when contracts only include happy paths?",
+      "options": [
+        "Keep happy paths and test errors only in E2E",
+        "Document errors in README without executable checks",
+        "Add negative cases and error semantics (404/409/5xx) with realistic payloads",
+        "Use retries to tolerate errors instead of documenting them"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Headline: contracts must capture error cases to prevent silent breakage.; Why correct: encoding errors/pagination prevents regressions and mismatches.; Why others are wrong: E2E is late and broad; docs without checks drift; retries hide incompatibilities.; Cursor leverage: extend contracts with error/pagination; generate provider verification; attach diffs to PR.; Acceptance checks: error cases added; provider verification green; docs align with contracts.",
+      "keyConcepts": [
+        "Negative cases",
+        "Error semantics",
+        "Verification"
+      ]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Provider verification is flaky due to stale contracts in the broker. What policy reduces noise?",
+      "options": [
+        "Disable verification for older consumers to speed builds",
+        "Keep all historical contracts forever for completeness",
+        "Allow providers to bypass failed verification with a flag",
+        "Tag and retire unused contracts quickly; require ownership and expiry"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Headline: govern the broker with ownership and lifecycle.; Why correct: retiring stale contracts and enforcing ownership reduces noise and drift.; Why others are wrong: disabling checks risks breaking users; keeping all forever increases noise; bypass flags erode trust.; Cursor leverage: add broker governance rules; dashboard ownership/expiry; notify on stale contracts.; Acceptance checks: stale contracts retired; ownership fields present; verification flake rate drops.",
+      "keyConcepts": [
+        "Broker governance",
+        "Ownership",
+        "Noise reduction"
+      ]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Event schema changed additively (new optional field). What guidance keeps consumers safe?",
+      "options": [
+        "Require tolerant readers and verify existing contracts continue to pass",
+        "Block any schema change unless all consumers confirm",
+        "Publish a MAJOR for any field change to be safe",
+        "Remove old fields immediately to simplify payloads"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Headline: additive changes are safe with tolerant readers and verification.; Why correct: consumers ignoring unknown fields keep compatibility; verification confirms.; Why others are wrong: unanimity blocks progress; MAJOR for additive is too heavy; removing fields immediately breaks consumers.; Cursor leverage: scan consumers for tolerant parsing; run verification; publish migration notes.; Acceptance checks: tolerant readers present; verification green; changelog documents additive change.",
+      "keyConcepts": [
+        "Tolerant reader",
+        "Additive changes",
+        "Compatibility"
+      ]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Provider proposes removing an error field used for client retries. What should you require?",
+      "options": [
+        "Remove immediately and tell clients to update",
+        "Deprecate with a window; provide adapters; verify consumer contracts before removal",
+        "Hide the field behind a feature flag with no timeline",
+        "Document the change in release notes and proceed"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: deprecation windows plus verification prevent breaking consumers.; Why correct: adapters and time allow safe migration; contract checks ensure readiness.; Why others are wrong: immediate removal breaks clients; flags without timeline drift; docs alone don&rsquo;t protect.; Cursor leverage: generate adapters; schedule verification runs; add deprecation headers.; Acceptance checks: window announced; adapters available; all supported consumers verified before removal.",
+      "keyConcepts": [
+        "Deprecation",
+        "Adapters",
+        "Verification"
+      ]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Contracts and OpenAPI docs diverged. What is the right ask in review?",
+      "options": [
+        "Trust the OpenAPI only since it is the official document",
+        "Accept drift and schedule a cleanup later",
+        "Align executable contracts and OpenAPI; regenerate SDKs from source of truth",
+        "Trust contracts only and delete OpenAPI to avoid confusion"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Headline: the executable source of truth must align with docs and SDKs.; Why correct: keeping contracts and OpenAPI in sync ensures generated SDKs and consumers match behavior.; Why others are wrong: trusting one alone leaves drift; deleting one removes useful artifacts; deferring cleanup perpetuates risk.; Cursor leverage: diff contracts vs OpenAPI; regenerate SDKs; open PRs to sync.; Acceptance checks: no diffs between contracts and OpenAPI; SDKs regenerated; CI check added to prevent drift.",
+      "keyConcepts": [
+        "Source of truth",
+        "SDK generation",
+        "Alignment"
+      ]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Provider&rsquo;s CI is slow due to exhaustive verification. What change preserves safety with better flow?",
+      "options": [
+        "Skip verification on PRs and run only on merges to main",
+        "Verify a random subset of consumers on each run",
+        "Disable negative cases to speed up checks",
+        "Scope verification to contracts tagged for the target environment and supported versions"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Headline: scope checks by environment/version rather than skipping.; Why correct: targeted verification keeps safety while improving speed.; Why others are wrong: skipping on PRs delays break detection; random subsets miss critical consumers; removing negatives weakens safety.; Cursor leverage: tag contracts by env; configure broker to select relevant sets; parallelize verification.; Acceptance checks: PR verification time reduced; only relevant contracts checked; no increase in escapes.",
+      "keyConcepts": [
+        "Scoped verification",
+        "Environments",
+        "Efficiency"
+      ]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Draft a PR comment to de‑risk a provider change that alters response fields. Include: contract diff summary, semver decision, verification scope, and a rollback if consumer error rate rises > 1%.",
+      "sampleStrongResponse": "Request a contract diff showing added/removed/changed fields and whether changes are additive or breaking. Decide semver (MAJOR vs MINOR) and document a deprecation window if breaking. Scope provider verification to supported consumers in prod/stage tags and include negative cases. Ask Cursor to generate SDKs and migration notes, and to add a rollback toggle (feature flag or adapter) if post‑deploy consumer error rate > 1% or verification failures appear."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Outline a phased policy for adopting consumer‑driven contracts org‑wide. Include add → backfill → flip → enforce → cleanup with safety checks and comms.",
+      "sampleStrongResponse": "Plan: add a broker and start with one consumer/provider; wire provider verification in CI. Backfill top APIs by traffic with consumer‑authored contracts and negative cases. Flip by requiring verification on provider PRs (scoped by env/version) and publishing SDKs from contracts. Enforce by blocking merges on verification failures; budgets: verification p95 ≤ 8 min, failure budget ≤ 2% flaky runs. Cleanup stale contracts and tag ownership/expiry. Comms: publish semver/deprecation policy and a status dashboard; success = zero unexpected consumer breakages and on‑time upgrades."
     }
   ]
 },
@@ -2777,6 +3296,179 @@ export const externalQuizzes: Record<string, Quiz> = {
     }
   ]
 },
+  "end-to-end-testing": {
+  "title": "End-to-End Testing Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "PR adds many UI tests using brittle CSS selectors. What should you require to stabilize selectors?",
+      "options": [
+        "Adopt data‑testid or role‑based selectors tied to semantics",
+        "Keep CSS selectors and increase retries with exponential backoff",
+        "Use XPath for more precise targeting across the DOM",
+        "Wait for random delays to ensure elements finish rendering"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Headline: stable, semantic selectors reduce flake and maintenance.; Why correct: data‑test/role selectors are robust to styling/structure changes.; Why others are wrong: retries and sleeps hide timing issues; XPath is brittle across minor DOM shifts; random waits increase time and flake.; Cursor leverage: generate Playwright/Cypress locators; suggest adding data‑test attributes; update page objects.; Acceptance checks: selectors use data‑test/roles; no random waits; flake rate ≤ 2% on PRs.",
+      "keyConcepts": [
+        "Stable selectors",
+        "Playwright/Cypress",
+        "Flake reduction"
+      ]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Smoke suite on PRs frequently times out. What scope and cadence change keeps confidence without blocking?",
+      "options": [
+        "Run all journeys on every PR to maximize safety",
+        "Tag a thin smoke set for PRs and run full regression nightly",
+        "Disable PR E2E and rely on staging QA only",
+        "Randomly sample 50% of tests on PRs to reduce runtime"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: a thin smoke set keeps velocity while guarding revenue paths.; Why correct: smoke on PRs + nightly regression balances speed and safety.; Why others are wrong: running all journeys blocks flow; disabling PR coverage risks escapes; random sampling misses critical paths.; Cursor leverage: tag tests (smoke/regression); set CI matrices; generate a run profile under 5 minutes.; Acceptance checks: PR smoke p95 ≤ 5 min; nightly regression scheduled; coverage includes login/checkout.",
+      "keyConcepts": [
+        "Smoke vs regression",
+        "Cadence",
+        "Runtime budgets"
+      ]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Tests use fixed sleeps to wait for UI/network. What is the better pattern?",
+      "options": [
+        "Increase sleeps to a conservative buffer per page",
+        "Retry failed assertions up to 3 times",
+        "Use explicit waits for conditions (visible, enabled, network idle)",
+        "Turn off animations to speed up and keep sleeps as is"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Headline: explicit waits match app semantics and remove nondeterminism.; Why correct: condition‑based waits stabilize tests and reduce timeouts.; Why others are wrong: longer sleeps slow and still flake; retries hide timing bugs; disabling animations alone does not replace waits.; Cursor leverage: replace sleeps with waitFor APIs; add network‑idle waits; update utilities across the suite.; Acceptance checks: no arbitrary sleeps; waits target semantics; timeout rate falls below 2%.",
+      "keyConcepts": [
+        "Explicit waits",
+        "Semantics",
+        "Stability"
+      ]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Suites fail due to shared test accounts and polluted data. What guardrail do you request?",
+      "options": [
+        "One global account with careful cleanup steps",
+        "Freeze test data to a golden environment snapshot",
+        "Use a shared admin account and reset passwords nightly",
+        "Unique data per run via seeding APIs and teardown hooks"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Headline: independence per test run reduces cross‑test coupling.; Why correct: unique seeds and teardown isolate tests and enable parallelism.; Why others are wrong: shared accounts still couple tests; golden snapshots drift; admin workarounds add toil and risk.; Cursor leverage: add seeding endpoints and cleanup hooks; generate unique IDs per run; enforce teardown in page objects.; Acceptance checks: no shared accounts; seeds logged; parallel shards stable.",
+      "keyConcepts": [
+        "Unique seeds",
+        "Teardown",
+        "Parallelism"
+      ]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Critical flows sometimes fail due to third‑party instability. What keeps E2E robust and focused?",
+      "options": [
+        "Use a mock server for third‑party calls while validating contracts in CI",
+        "Hit the real third‑party in all tests to catch real issues",
+        "Disable those flows from E2E and trust unit tests instead",
+        "Quarantine the failing tests indefinitely"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Headline: isolate externals in E2E and verify with contracts elsewhere.; Why correct: mocking externals stabilizes tests; contract tests ensure fidelity.; Why others are wrong: real calls cause flakes and cost; removing flows loses coverage; quarantine without plan reduces signal.; Cursor leverage: scaffold mock servers; tag tests to use them; add provider verification in CI.; Acceptance checks: no live external calls; contracts verified; flake rate ≤ 2% for these flows.",
+      "keyConcepts": [
+        "Mock server",
+        "Contracts",
+        "Stability"
+      ]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Artifacts are not captured, making failures hard to diagnose. What should be added?",
+      "options": [
+        "Reduce assertions to lower the chance of failure",
+        "Enable trace/video/screenshot capture on failure and upload to CI",
+        "Run locally with --headed mode only for debugging",
+        "Disable parallel runs to make logs easier to read"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: rich artifacts speed ownership and fixes.; Why correct: traces/video/screenshot provide direct evidence for triage.; Why others are wrong: fewer assertions hide bugs; local‑only does not help PRs; disabling parallelism slows feedback.; Cursor leverage: configure artifact upload; link artifacts in PR comments; auto‑open failing step traces.; Acceptance checks: artifacts visible in CI; time‑to‑diagnosis drops; owners fix within the sprint.",
+      "keyConcepts": [
+        "Artifacts",
+        "Debuggability",
+        "Ownership"
+      ]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "PR proposes 80+ E2E tests covering small logic branches. What should you advise?",
+      "options": [
+        "Approve as is to maximize user‑level coverage",
+        "Run them only weekly to control cost",
+        "Keep few high‑value journeys in E2E; push logic down to unit/integration",
+        "Replace with snapshots to capture DOM states cheaply"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Headline: keep E2E thin; assert logic at lower layers.; Why correct: pushing logic to unit/integration preserves speed and reduces flake while E2E covers journeys.; Why others are wrong: more E2E increases cost/flake; snapshots are brittle; weekly runs delay feedback.; Cursor leverage: map assertions to the right layer; generate unit/integration specs; tag a smoke E2E set.; Acceptance checks: E2E count reduced; smoke p95 ≤ 5 min; key journeys retained.",
+      "keyConcepts": [
+        "Test pyramid",
+        "Layering",
+        "Cost vs confidence"
+      ]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A login test fails intermittently due to clock drift and scheduled jobs. What fix should be prioritized?",
+      "options": [
+        "Retry the test immediately on failure to see if it passes",
+        "Increase the global timeout to absorb delays",
+        "Skip the test until the flake disappears",
+        "Stabilize time by pinning server/client clocks and waiting on semantic signals"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Headline: control time and wait on semantics to eliminate flake.; Why correct: pinning time/waits (e.g., token validity, network idle) removes drift‑induced failures.; Why others are wrong: retries hide flake; bigger timeouts slow runs; skipping loses coverage.; Cursor leverage: add server clock sync for preview; use explicit waits; create a reproducer script.; Acceptance checks: failure eliminated in 50 runs; no arbitrary sleeps; stable green for two weeks.",
+      "keyConcepts": [
+        "Clock drift",
+        "Explicit waits",
+        "Stability budgets"
+      ]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Draft a PR comment to de‑risk a hot E2E journey (login → checkout). Include: selector policy, wait strategy, smoke/regression tags, and a PR runtime budget (e.g., smoke p95 ≤ 5 min).",
+      "sampleStrongResponse": "Ask for data‑test/role selectors and page objects, explicit waits (visible/enabled/network idle), and a thin smoke tag for PRs with full regressions nightly. Set budgets (smoke p95 ≤ 5 min; flake ≤ 2%). Ask Cursor to generate Playwright specs with seeding/cleanup helpers, enable trace/video on failure, and attach artifact links to the PR. Include a rollback toggle to quarantine a flaky spec if the budget is breached after merge."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Outline a phased plan to refactor E2E to a thin, stable suite. Include add → backfill → flip → enforce → cleanup with safety checks and comms.",
+      "sampleStrongResponse": "Plan: add page objects, data‑test selectors, and explicit wait utilities; tag smoke vs regression. Backfill by converting the top 10 flaky tests to use stable selectors and waits; replace logic assertions with unit/integration tests. Flip PR runs to smoke only with artifact upload; verify p95 ≤ 5 min. Enforce by blocking sleeps and live external calls; budgets: flake ≤ 2%, smoke ≤ 5 min. Cleanup brittle snapshots and shared accounts. Safety: preview env pins, unique seeds, and parallel shards. Comms: publish run profiles and SLOs; success = stable green for two weeks and reduced E2E count with unchanged coverage of key journeys."
+    }
+  ]
+},
   "extension-ecosystems": {
   "title": "Extension Ecosystems Knowledge Quiz",
   "totalQuestions": 10,
@@ -3663,6 +4355,179 @@ export const externalQuizzes: Record<string, Quiz> = {
         "Rename Symbol",
         "Verification"
       ]
+    }
+  ]
+},
+  "integration-testing": {
+  "title": "Integration Testing Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "PR uses real third‑party APIs in CI for integration tests. What requirement keeps fidelity without flakiness/cost?",
+      "options": [
+        "Record/replay with a mock server validated by consumer/provider contracts",
+        "Keep real API calls but raise timeouts and retries across the suite",
+        "Disable the tests on PRs and run them only nightly",
+        "Stub responses inline in each test to avoid network calls"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Headline: verify against contracts and use a mock server rather than live externals.; Why correct: contract‑validated mock servers give realism without rate limits and variability.; Why others are wrong: higher timeouts/retries add time and hide issues; skipping on PRs delays feedback; inline stubs drift from real contracts.; Cursor leverage: generate a mock server from contracts; add verification to CI; scaffold failure cases.; Acceptance checks: contracts attached; mock server configured; PR checks pass without external calls.",
+      "keyConcepts": [
+        "Contract tests",
+        "Mock server",
+        "CI reliability"
+      ]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Some tests randomly fail due to shared DB state. What change restores isolation and speed?",
+      "options": [
+        "Increase sleeps between tests to allow cleanup to finish",
+        "Use per‑test transactions with rollback or truncate schema between tests",
+        "Serialize the suite to avoid concurrent writers",
+        "Switch all tests to unit level to avoid shared state"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: isolate DB state per test to remove cross‑test coupling.; Why correct: transactions/rollback or truncate keep tests independent and parallel‑friendly.; Why others are wrong: sleeps are brittle; serializing kills speed; moving to unit ignores integration behavior.; Cursor leverage: add DB helpers for transactions/truncate; detect shared fixtures; propose parallel‑safe setup.; Acceptance checks: no state leakage between tests; suite runs in parallel; flake rate ≤ 1%.",
+      "keyConcepts": [
+        "Per‑test isolation",
+        "Transactions",
+        "Parallel runs"
+      ]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Developers wait for services to become ready using fixed sleeps. What should you require?",
+      "options": [
+        "Increase sleep duration to a safe margin across environments",
+        "Run readiness only on nightly builds to speed PRs",
+        "Replace sleeps with explicit health/readiness checks and wait‑for‑ready hooks",
+        "Assume services are ready; retry failing tests once"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Headline: waits must follow readiness signals, not time.; Why correct: health/readiness checks remove nondeterminism and reduce waste across machines.; Why others are wrong: longer sleeps increase runtime; skipping in PRs defers failures; retries hide nondeterminism.; Cursor leverage: scaffold wait‑for‑ready utilities; integrate health checks into fixtures; remove sleeps automatically.; Acceptance checks: no sleeps; readiness checks in logs; stable run times within budget.",
+      "keyConcepts": [
+        "Readiness checks",
+        "Health checks",
+        "Determinism"
+      ]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Team runs integration tests against shared cloud databases. What keeps runs reproducible and local/CI parity high?",
+      "options": [
+        "Run against staging to match production data and load",
+        "Use a single shared schema and coordinate via a calendar",
+        "Turn off parallelism so shared DB state does not conflict",
+        "Use Testcontainers/ephemeral DBs with pinned versions and seeded fixtures"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Headline: ephemeral, version‑pinned infra with seeded data yields parity and speed.; Why correct: Testcontainers reproduce environments; fixtures make results stable and portable.; Why others are wrong: staging adds variability and coupling; shared schemas cause flake; disabling parallelism slows feedback.; Cursor leverage: generate container configs; create seed scripts; add pinned image tags.; Acceptance checks: containers spin with pins; seed logs present; parallel CI time within budget.",
+      "keyConcepts": [
+        "Testcontainers",
+        "Seed data",
+        "Pinned versions"
+      ]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A queue‑processing test sometimes duplicates work under retries. What policy should be enforced?",
+      "options": [
+        "Assert idempotency and error semantics at the boundary with retries",
+        "Disable retries to avoid duplicates and reduce noise",
+        "Move the test to E2E where the issue will show up anyway",
+        "Increase backoff intervals so duplicates are less frequent"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Headline: idempotent boundaries make integration robust to retries.; Why correct: asserting idempotency/error semantics ensures safe behavior despite network failures.; Why others are wrong: disabling retries reduces resilience; E2E is later and slower; longer backoff treats symptoms not causes.; Cursor leverage: add idempotency checks; generate retry/error tests; flag missing 409/5xx semantics.; Acceptance checks: idempotency proven; negative cases present; duplicate processing eliminated in tests.",
+      "keyConcepts": [
+        "Idempotency",
+        "Error semantics",
+        "Resilience"
+      ]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "PR seeds data by hitting admin endpoints during tests. What is the better approach?",
+      "options": [
+        "Call production APIs to ensure full fidelity of business logic",
+        "Use direct fixture builders/factories and DB helpers for fast setup",
+        "Share a global seed dataset across all tests to save time",
+        "Generate CSVs and import them before the test run"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: seed via builders/fixtures close to storage for speed and isolation.; Why correct: direct seeding is faster and avoids coupling to admin endpoints or global datasets.; Why others are wrong: production API seeding is slow/flaky; shared datasets couple tests; CSV imports add overhead and drift.; Cursor leverage: scaffold fixture builders; add per‑test DB helpers; remove admin‑API seeding from tests.; Acceptance checks: per‑test seed APIs exist; setup time reduced; no reliance on admin endpoints.",
+      "keyConcepts": [
+        "Fixtures/builders",
+        "Isolation",
+        "Speed"
+      ]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Integration suite is noisy in logs and hard to debug failures. What should you ask for?",
+      "options": [
+        "Reduce logging to errors only to keep output short",
+        "Run tests locally only where logs are easy to see",
+        "Capture structured logs/traces as artifacts and attach to CI",
+        "Disable tracing because it slows tests down"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Headline: observability artifacts make failures diagnosable.; Why correct: structured logs/traces attached to CI speed triage and enable remote debugging.; Why others are wrong: hiding logs removes evidence; local‑only does not help PRs; disabling tracing sacrifices signal.; Cursor leverage: add artifact upload steps; standardize trace/log format; link artifacts in PR comments.; Acceptance checks: artifacts visible in CI; failures linked to traces; mean time‑to‑diagnosis improves.",
+      "keyConcepts": [
+        "Observability",
+        "CI artifacts",
+        "Debuggability"
+      ]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "&ldquo;Works on my machine&rdquo; happens frequently for integration tests. What change addresses root causes?",
+      "options": [
+        "Ask developers to upgrade their laptops and rerun",
+        "Turn off tests on developer machines and rely on CI",
+        "Use random ports and sleep to avoid conflicts",
+        "Pin container images/versions and provide a reproducible local harness"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Headline: parity comes from pinned environments and a reproducible harness.; Why correct: pinning images/env and a local harness removes drift between machines and CI.; Why others are wrong: hardware upgrades do not fix drift; CI‑only hides issues until late; random ports+sleeps are brittle.; Cursor leverage: create a dev harness script; pin images in compose files; document readiness/wait hooks.; Acceptance checks: one‑command local run works; versions pinned; no environment‑drift failures in a sprint.",
+      "keyConcepts": [
+        "Pinned environments",
+        "Local harness",
+        "Parity"
+      ]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Draft a PR comment to de‑risk a hot integration path (service + DB). Include: readiness strategy, idempotency/error checks, fixture seeding plan, and a runtime budget (e.g., p95 ≤ 4 min, flake ≤ 1%).",
+      "sampleStrongResponse": "Ask for explicit wait‑for‑ready hooks (no sleeps), pinned container versions, and per‑test isolation (transactions or truncate). Require idempotency and error semantics (409 conflict, 5xx retry) with negative cases. Propose fixture builders to seed data directly, avoiding admin endpoints. Set budgets (suite p95 ≤ 4 min; flake ≤ 1%). Ask Cursor to scaffold Testcontainers, seed scripts, and artifact upload for logs/traces; include a rollback to quarantine a failing shard if budgets are breached after merge."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Outline a phased rollout to adopt Testcontainers and seeded fixtures. Include add → backfill → flip → enforce → cleanup with safety checks and comms.",
+      "sampleStrongResponse": "Plan: add container configs with pinned images and health checks; provide seed builders and a local harness. Backfill the top 20 tests by failure rate to use containers + per‑test isolation. Flip CI to parallel shards with artifacts uploaded; verify green runs twice. Enforce by removing sleeps and blocking external network calls in tests; budgets: suite p95 ≤ 4 min, flake ≤ 1%. Cleanup shared DB/state paths and admin‑API seeding. Safety: shard‑aware teardown, resource caps, and retries on container pull. Comms: publish the harness command and budgets; success = no external calls, stable green for two weeks."
     }
   ]
 },
@@ -4694,6 +5559,179 @@ export const externalQuizzes: Record<string, Quiz> = {
       "points": 5,
       "question": "You must land a risky concurrency change under time pressure. Propose a pairing plan (who, when, where) and justify the ROI. How will you measure success?",
       "sampleStrongResponse": "Pair a domain expert with an implementer in the highest‑risk code area during peak collaboration hours. Use shared cursors, prompts, and test‑first scaffolding. Success metrics: reduction in escaped defects, faster code review cycle time, stable performance metrics, and positive developer sentiment."
+    }
+  ]
+},
+  "performance-benchmarks": {
+  "title": "Performance Benchmarks Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "PR claims a performance win using average latency. What should you require to avoid misleading results?",
+      "options": [
+        "Report distributions (p50/p95/p99) with throughput and saturation",
+        "Use only averages since they are simpler to compare",
+        "Run one quick test; if it is faster, ship it",
+        "Ignore latency and focus on CPU utilization only"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Headline: users feel tails; measure distributions, not just averages.; Why correct: p95/p99 expose tail pain; pairing with throughput/saturation shows trade‑offs.; Why others are wrong: averages hide spikes; one run is noise; CPU‑only misses latency.; Cursor leverage: generate benchmark scripts; add percentile calc; attach charts.; Acceptance checks: p95/p99 reported; throughput and CPU captured; charts attached in PR.",
+      "keyConcepts": [
+        "p95/p99",
+        "Throughput",
+        "Saturation"
+      ]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Results vary widely between runs. What setup change increases reproducibility?",
+      "options": [
+        "Run on developer laptops to simulate real variety",
+        "Pin runners/env and use a reproducible harness with datasets",
+        "Increase test duration randomly to smooth noise",
+        "Use production traffic mixed with lab data"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: control variables to trust results.; Why correct: pinned env + reproducible harness reduce drift and noise.; Why others are wrong: laptops add variability; random durations distort; prod traffic mixes signals.; Cursor leverage: scaffold harness scripts; pin versions; document datasets.; Acceptance checks: variance reduced; harness logged; runs repeatable on CI.",
+      "keyConcepts": [
+        "Reproducibility",
+        "Harness",
+        "Pinned env"
+      ]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Benchmarks show a 5% improvement in one run. What is the best follow‑up?",
+      "options": [
+        "Merge immediately to capture the win",
+        "Switch to a different runner to see a bigger win",
+        "Repeat runs and compare distributions with error bars/tolerances",
+        "Ignore small changes; only 50% wins matter"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Headline: confirm with repeated runs and statistical tolerance.; Why correct: error bars distinguish signal from noise; avoids false claims.; Why others are wrong: one run can be noise; changing runners breaks comparability; ignoring small wins loses progress.; Cursor leverage: add repeated‑run scripts; compute CIs; produce PR charts.; Acceptance checks: repeated runs done; CIs show significance; decision documented.",
+      "keyConcepts": [
+        "Error bars",
+        "Confidence intervals",
+        "Repeated runs"
+      ]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Microbenchmarks look great, but production p95 regressed. What alignment do you require?",
+      "options": [
+        "Trust microbench only; it is simpler and faster",
+        "Disable p95 tracking to reduce noise",
+        "Use only macro tests and stop running microbenchmarks",
+        "Match workload shape and environment to prod where possible"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Headline: align harness and workload to reduce lab‑prod gaps.; Why correct: representative data/concurrency reduces surprises.; Why others are wrong: micro‑only misses system effects; removing p95 hides pain; macro‑only loses fast feedback.; Cursor leverage: document workload shape; add macro suite on pinned runners; compare side‑by‑side.; Acceptance checks: harness fields filled; macro suite added; lab vs prod gap narrowed.",
+      "keyConcepts": [
+        "Workload shape",
+        "Macro vs micro",
+        "p95"
+      ]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "PR adds an optimization without a performance budget. What should you require before merge?",
+      "options": [
+        "Define a slow‑query/perf budget (e.g., p95 ≤ 150 ms) and acceptance checks",
+        "Approve now and retroactively check dashboards",
+        "Add more CPUs to the CI runners so it passes",
+        "Measure only cold start to be conservative"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Headline: set budgets to guard against regressions.; Why correct: budgets create shared targets and CI gates; acceptance checks keep scope clear.; Why others are wrong: retro checks miss regressions; hardware changes hide issues; cold‑only is incomplete.; Cursor leverage: add budget text; gate PRs on meaningful deltas; attach charts with tolerances.; Acceptance checks: budget stated in PR; gate configured; charts uploaded.",
+      "keyConcepts": [
+        "Performance budget",
+        "CI gates",
+        "Acceptance checks"
+      ]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A database endpoint meets average SLO but users complain of spikes. What should you request?",
+      "options": [
+        "Ignore outliers as noise and keep the average SLO",
+        "Investigate p95/p99 and profile heavy operators (rows/bytes moved)",
+        "Throttle all requests globally to cap usage",
+        "Run the benchmark longer and hope spikes disappear"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: tails and heavy operators drive user pain.; Why correct: examining p95/p99 and rows/bytes highlights bottlenecks; profiling targets fixes.; Why others are wrong: averages hide pain; throttling blindly harms good requests; longer runs without analysis waste time.; Cursor leverage: add flamegraph/EXPLAIN; propose index/caching; chart tails.; Acceptance checks: tail reduced; heavy ops identified; SLO met.",
+      "keyConcepts": [
+        "Tail latency",
+        "Profiling",
+        "Heavy operators"
+      ]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "CI perf checks flake due to environment drift. What change restores trust?",
+      "options": [
+        "Disable perf checks on PRs and run them manually",
+        "Increase thresholds so flakes no longer fail",
+        "Pin runner types/versions and isolate resources for perf jobs",
+        "Share runners with unit tests to use idle capacity"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Headline: consistent runners and isolation reduce variance.; Why correct: pinning/isolating removes background interference.; Why others are wrong: manual runs delay feedback; looser thresholds hide regressions; shared runners add contention.; Cursor leverage: set up a dedicated perf job; define runner pins; report variance in PR.; Acceptance checks: variance budget met; pins logged in CI; fewer flaky perf failures.",
+      "keyConcepts": [
+        "Runner pinning",
+        "Isolation",
+        "Variance budget"
+      ]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A claim of 2× throughput appears, but error rate increased. What is the correct review stance?",
+      "options": [
+        "Accept higher errors temporarily to keep the gain",
+        "Ignore errors during benchmarks to avoid noise",
+        "Use closed‑loop load to force constant concurrency only",
+        "Validate throughput at SLO (latency + error budget) rather than peak only"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Headline: capacity must be measured at acceptable latency and errors.; Why correct: throughput at SLO reflects usable capacity, not raw peak.; Why others are wrong: trading errors for throughput harms users; ignoring errors is unsafe; forcing closed‑loop only can hide saturation behavior.; Cursor leverage: compute capacity at SLO; chart error/latency curves; surface the knee.; Acceptance checks: capacity at SLO reported; error budget respected; decision documented.",
+      "keyConcepts": [
+        "Capacity at SLO",
+        "Error budget",
+        "Latency‑throughput trade‑off"
+      ]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Draft a PR comment to de‑risk a hot‑path optimization. Include: percentile report, harness details (dataset/concurrency/warm/cold), perf budget (e.g., p95 ≤ 150 ms), and rollback if budget is breached post‑merge.",
+      "sampleStrongResponse": "Request charts for p50/p95/p99 with throughput and CPU/allocs, plus harness details (dataset size, open/closed loop, warm/cold). Set a budget (e.g., p95 ≤ 150 ms at current QPS) and require error rate within the budget. Ask Cursor to generate the harness script, pinned runner config, and a PR comment with acceptance checks. Include a rollback toggle if p95 or errors regress after deploy."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Outline a phased perf policy. Include add → backfill → flip → enforce → cleanup with safety checks and stakeholder comms.",
+      "sampleStrongResponse": "Plan: add reproducible harnesses with pinned runners and budgets per endpoint/job. Backfill hot paths with baselines and repeated‑run scripts. Flip PRs to run microbenchmarks with gates on meaningful deltas; run macro suites nightly. Enforce budgets (p95/p99, throughput at SLO) and track capacity trends. Cleanup flaky environments and noisy metrics. Safety: variance budget ≤ 10%, failure budget ≤ 2%. Comms: publish budgets and dashboards; success = p95 stable within budget, capacity at SLO tracked, and fewer perf regressions post‑merge."
     }
   ]
 },
@@ -5732,6 +6770,179 @@ export const externalQuizzes: Record<string, Quiz> = {
     }
   ]
 },
+  "static-analysis": {
+  "title": "Static Analysis Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "PR turns on all ESLint/SAST rules at once and blocks merges. What policy keeps flow while raising signal?",
+      "options": [
+        "Curate high‑signal rules first; baseline now; ratchet on new/touched code",
+        "Enable every rule to catch more issues early and hard‑fail PRs",
+        "Run analysis only nightly to avoid PR delays",
+        "Turn off SAST and rely on code review for security findings"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Headline: tune for signal and adopt progressively.; Why correct: curated rules + baselines avoid alert fatigue and unblock teams while improving steadily.; Why others are wrong: all‑rules hard fail causes bypass behavior; nightly hides issues; turning off SAST loses left‑shifted detection.; Cursor leverage: propose a rule set; generate baselines; add diff‑only gating.; Acceptance checks: curated config merged; baseline stored; PR diffs annotated without hard fails on legacy.",
+      "keyConcepts": [
+        "Curation",
+        "Baselines",
+        "Diff gating"
+      ]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Developers complain about noisy findings. What should you require to restore trust?",
+      "options": [
+        "Hard‑fail on all severities to force compliance",
+        "Severity tiers with staged hardening and suppression policy with expiry",
+        "Disable most rules and keep only style checks",
+        "Move analysis to a separate pipeline without PR annotations"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: control noise with severity tiers and expiring suppressions.; Why correct: mapping severity→outcome and time‑boxed suppressions keeps focus on real risk.; Why others are wrong: hard‑failing all severities blocks flow; disabling rules loses value; off‑PR pipelines reduce feedback.; Cursor leverage: add severity mapping; scaffold suppression templates; wire approvals and expiry.; Acceptance checks: findings drop in medium noise; time‑to‑green improves; expired suppressions tracked.",
+      "keyConcepts": [
+        "Severity tiers",
+        "Suppressions",
+        "Signal vs noise"
+      ]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Security wants stronger checks without harming PR velocity. What setup balances speed and depth?",
+      "options": [
+        "Run deep SAST on every PR and block merges for any finding",
+        "Skip SAST entirely and rely on penetration tests",
+        "Light lint/type checks on PRs; deep SAST nightly with hard fails on criticals",
+        "Run only style rules locally to reduce CI time"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Headline: split checks by cost and risk.; Why correct: fast PR checks keep flow; deep SAST nightly catches serious issues and blocks on criticals.; Why others are wrong: deep PR SAST is slow; skipping SAST loses coverage; style‑only misses risks.; Cursor leverage: configure two profiles; set schedules; publish SARIF to dashboards.; Acceptance checks: PR checks ≤ budget; nightly SAST reports; criticals block with clear remediation.",
+      "keyConcepts": [
+        "Policy‑as‑code",
+        "SAST vs lint",
+        "Scheduling"
+      ]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Findings include framework‑false‑positives. What should you ask teams to add?",
+      "options": [
+        "A global ignore for the entire rule to be safe",
+        "Manual review only for those files without automation",
+        "Suppressions without rationale to speed merges",
+        "Stack‑specific configuration and rule tuning with tests"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Headline: tune rules to the framework to reduce false positives.; Why correct: stack‑aware configs catch the right patterns and minimize noise.; Why others are wrong: global ignores hide real issues; manual‑only is toil; unreasoned suppressions spread.; Cursor leverage: propose tuned configs; add sample tests to validate rules; create docs with examples.; Acceptance checks: false positive rate drops; configs stored centrally; tests for rules pass in CI.",
+      "keyConcepts": [
+        "Rule tuning",
+        "Framework awareness",
+        "False positives"
+      ]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Many critical findings sit untriaged for weeks. What governance should you require?",
+      "options": [
+        "Triage SLAs, ownership mapping, and dashboards for criticals",
+        "Let teams self‑organize without central visibility",
+        "Auto‑close findings older than 30 days",
+        "Downgrade severities to reduce pressure"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Headline: ownership and SLAs drive timely remediation.; Why correct: clear owners and SLAs ensure risk is addressed; dashboards provide visibility.; Why others are wrong: no visibility → no action; auto‑closing hides risk; downgrades mask severity.; Cursor leverage: create dashboards; assign owners; send alerts for SLA breaches.; Acceptance checks: time‑to‑triage improves; backlog of criticals drops; ownership fields filled in SARIF.",
+      "keyConcepts": [
+        "Ownership",
+        "SLAs",
+        "Dashboards"
+      ]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "PRs are blocked frequently for style nits. What change keeps speed without losing standards?",
+      "options": [
+        "Disable all style rules in CI and rely on reviews",
+        "Enable editor autofix and downgrade style findings to warnings in PRs",
+        "Raise the timeouts so CI isn&rsquo;t a bottleneck",
+        "Require manual sign‑off from a style council before merging"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: fix style automatically; reserve blocks for real risk.; Why correct: autofix shifts remediation left and removes manual toil; warnings keep flow while educating.; Why others are wrong: disabling rules loses consistency; timeouts don&rsquo;t change noise; manual sign‑offs add delay and little value.; Cursor leverage: add editor/CI autofix; configure severity mapping; provide quick‑fix docs.; Acceptance checks: PR time‑to‑green improves; style blocks near zero; overall findings trend down.",
+      "keyConcepts": [
+        "Autofix",
+        "Severity mapping",
+        "Flow"
+      ]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A repo adds policy‑as‑code but teams keep bypassing it. What&rsquo;s the right ask?",
+      "options": [
+        "Hard‑fail all policies immediately to stop bypass",
+        "Remove gates and adopt trust‑based guidance",
+        "Enforce gates only on high‑risk categories; publish a roadmap for hardening",
+        "Hide policy details so developers cannot game them"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Headline: progressive hardening improves adoption.; Why correct: focusing on high‑risk categories first builds trust, then you can harden more.; Why others are wrong: hard‑fail everything triggers workarounds; removing gates loses benefits; secrecy breeds resentment.; Cursor leverage: define a hardening roadmap; measure time‑to‑green; tune rules iteratively.; Acceptance checks: bypass rate drops; fewer waivers; clear milestones achieved.",
+      "keyConcepts": [
+        "Progressive hardening",
+        "Risk focus",
+        "Adoption"
+      ]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Suppressions are piling up. What policy keeps exceptions from eroding standards?",
+      "options": [
+        "Unlimited suppressions as long as tests are green",
+        "Permanent global ignore files for convenience",
+        "Suppressions allowed but without owner fields",
+        "Time‑boxed suppressions with rationale, owner, and expiry"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Headline: exceptions need ownership and a sunset.; Why correct: rationale+owner+expiry prevents permanent debt and tracks blast radius.; Why others are wrong: unlimited/ownerless suppressions grow unchecked; permanent ignores hide issues.; Cursor leverage: add suppression templates; CI checks for expiry; auto‑notify owners.; Acceptance checks: suppression count/age trend down; expired items resolved; exceptions reviewed in PRs.",
+      "keyConcepts": [
+        "Exceptions",
+        "Ownership",
+        "Expiry"
+      ]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Draft a PR comment to tighten static checks without blocking flow. Include: curated rule set, baseline strategy, severity mapping, and a gate budget (e.g., block criticals; warn highs; log mediums).",
+      "sampleStrongResponse": "Ask for a curated rule set with stack‑specific tuning; commit baselines for existing findings. Map severities to outcomes (block criticals; warn high; log medium) and enable editor autofix. Set budgets: PR checks ≤ 2 min; no criticals allowed. Ask Cursor to generate configs, suppression templates with expiry, and a PR checklist linking docs. Acceptance: curated config present; baseline stored; PR annotations show severity mapping; time‑to‑green meets budget."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Outline a phased static analysis adoption plan. Include add → backfill → flip → enforce → cleanup with safety checks and stakeholder comms.",
+      "sampleStrongResponse": "Plan: add curated ESLint/TS/SAST configs with editor autofix; store baselines. Backfill by fixing top criticals and high‑noise rules with tuned configs. Flip PRs to diff‑only gating with severity mapping; publish SARIF dashboards. Enforce by hard‑failing criticals and expiring suppressions; track time‑to‑green. Cleanup by pruning noisy rules and consolidating policies. Safety: failure budget ≤ 2%, PR checks ≤ 2 min. Comms: share the roadmap and run fix‑it sprints; success = lower criticals, improved time‑to‑green, and fewer waivers."
+    }
+  ]
+},
   "technical-debt-management": {
   "title": "Technical Debt Management Knowledge Quiz",
   "totalQuestions": 10,
@@ -5902,6 +7113,180 @@ export const externalQuizzes: Record<string, Quiz> = {
       "points": 5,
       "question": "Propose a quarterly technical debt roadmap that balances feature delivery and debt. Include triggers to escalate specific items.",
       "sampleStrongResponse": "Reserve a 10–15% allocation for prioritized debt tied to measurable outcomes (lead time, CFR). Use an impact/effort matrix, set triggers like incident count or blocked PRs, and review monthly. Escalate items when triggers fire or variance grows."
+    }
+  ]
+},
+  "unit-testing": {
+  "title": "Unit Testing Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "PR adds unit tests that call Date.now() and Math.random(). What do you require to keep determinism and isolation?",
+      "options": [
+        "Inject a fake clock and seeded RNG; remove time/random from the unit",
+        "Increase retries and add sleeps to reduce flakiness during CI",
+        "Run these tests only at night when machines are less busy",
+        "Use a global beforeAll to set system time once for the entire suite"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Headline: determinism requires controlling time and randomness at the unit boundary.; Why correct: faking the clock and seeding randomness makes outcomes repeatable and independent of machine timing.; Why others are wrong: sleeps mask races and slow the suite; time of day does not remove nondeterminism; global time for the whole suite couples tests and leaks state.; Cursor leverage: refactor to inject a Clock/IdGenerator; add fake timers/seed helpers; generate AAA test skeletons.; Acceptance checks: no sleeps in unit tests; seeded RNG used; fake clock per test with reset between cases.",
+      "keyConcepts": [
+        "Determinism",
+        "Isolation",
+        "Fake clock",
+        "Seeded randomness"
+      ]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Team mocks every collaborator deeply and asserts call counts. What coaching keeps unit tests resilient?",
+      "options": [
+        "Mock more methods to ensure stricter expectations across modules",
+        "Prefer fakes/stubs at seams and assert outcomes at the public boundary",
+        "Replace tests with E2E flows to capture the same behavior",
+        "Use snapshot tests for all intermediate objects to catch changes"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: assert behavior at boundaries and prefer fakes over brittle interaction mocks.; Why correct: fakes/stubs decouple from internals; outcome assertions survive refactors.; Why others are wrong: more mocks amplify brittleness; E2E does not replace unit scope; snapshots of internals lock in implementation details.; Cursor leverage: identify seams and suggest fakes; rewrite brittle interaction tests to outcome‑based; add a PR checklist for unit scope.; Acceptance checks: assertions on outputs/state; minimal mocks for protocols; internals not snapshotted.",
+      "keyConcepts": [
+        "Mocks vs fakes",
+        "Boundary assertions",
+        "Refactor safety"
+      ]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Unit tests sometimes hit the network/filesystem. What change preserves the pyramid shape and speed?",
+      "options": [
+        "Allow real IO but add a 5s test timeout to catch hangs",
+        "Retry failed tests automatically up to 3 times",
+        "Isolate the unit by substituting in‑memory fakes for IO collaborators",
+        "Mark IO tests as @slow and keep them in the unit layer"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Headline: unit tests must remove real IO to stay fast and reliable.; Why correct: in‑memory fakes keep tests hermetic and fast, preserving the base of the pyramid.; Why others are wrong: longer timeouts hide slowness; retries mask nondeterminism; @slow labels keep the wrong scope in the wrong layer.; Cursor leverage: detect network/fs usage in unit tests; scaffold in‑memory fakes; propose moving true IO checks to integration tests.; Acceptance checks: no network/fs in unit layer; fakes in place; integration tests cover real IO.",
+      "keyConcepts": [
+        "Isolation",
+        "Test pyramid",
+        "In‑memory fakes"
+      ]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "PR shows flaky unit tests fixed by adding sleeps. What stance should you take in review?",
+      "options": [
+        "Accept sleeps if they are shorter than 100ms",
+        "Approve now and open a ticket to clean up later",
+        "Increase global Jest/JUnit timeouts to hide flakes",
+        "Reject sleeps; remove nondeterminism by injecting time/IDs and isolating state"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Headline: fix the cause of flakes, not the symptom.; Why correct: isolating time/state restores determinism and makes tests fast/reliable.; Why others are wrong: small sleeps still race; tickets defer quality and normalize pain; longer timeouts slow feedback and hide issues.; Cursor leverage: rewrite tests with fake timers; generate deterministic builders/fixtures; add a flake budget check in CI.; Acceptance checks: no sleeps remain; flake rate ≤ 0.5%; per‑test state reset verified.",
+      "keyConcepts": [
+        "Flakiness",
+        "State isolation",
+        "Fake timers"
+      ]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A PR asserts specific private method calls on a class. What guardrail keeps tests valuable through refactors?",
+      "options": [
+        "Assert public behavior and observable side effects, not private calls",
+        "Expose more internals so tests can verify each step",
+        "Freeze the class API to avoid breaking tests",
+        "Move these checks to a golden snapshot of the class instance"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Headline: test behavior contracts, not implementation details.; Why correct: public‑boundary assertions allow internal refactors without test churn.; Why others are wrong: exposing internals increases coupling; freezing APIs blocks improvement; snapshots of internals become brittle noise.; Cursor leverage: suggest behavior‑named tests; convert private‑call assertions to outcome checks; add examples for AAA pattern.; Acceptance checks: tests named by behavior; no assertions on privates; AAA structure visible.",
+      "keyConcepts": [
+        "Behavioral testing",
+        "Arrange‑Act‑Assert",
+        "Encapsulation"
+      ]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "CI shows unit suite runtime creeping up. What is your first ask to restore speed without losing signal?",
+      "options": [
+        "Parallelize by default and accept occasional flakes as the trade‑off",
+        "Prune duplicate tests, use builders/factories, and enforce per‑test time budgets",
+        "Disable coverage locally to speed dev and turn it on only nightly",
+        "Move half the unit tests to integration to reduce count"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: reduce redundancy and overhead while preserving unit scope.; Why correct: builders cut setup cost; time budgets and pruning keep fast, high‑signal suites.; Why others are wrong: accepting flakes erodes trust; disabling coverage hides gaps; demoting to integration slows feedback.; Cursor leverage: surface slowest tests; generate builders/fakes; add per‑test budget checks in CI.; Acceptance checks: suite runtime within budget; duplicates removed; top N slow tests improved.",
+      "keyConcepts": [
+        "Runtime budgets",
+        "Builders/fixtures",
+        "Signal vs noise"
+      ]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Dev proposes mocking a protocol boundary (SMTP/HTTP client). When is strict mocking appropriate at unit level?",
+      "options": [
+        "When you want to guarantee no regressions regardless of refactors",
+        "When most collaborators are already mocked in other tests",
+        "When the protocol itself is the behavior and interaction order matters",
+        "When integration tests are not yet written and time is short"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Headline: mock protocols only when interaction is the behavior.; Why correct: protocol semantics (e.g., retries, headers) are part of behavior and warrant interaction checks.; Why others are wrong: guarantees independent of refactors are unrealistic; copying patterns spreads brittleness; missing integrations is not a reason to misuse unit tests.; Cursor leverage: identify true protocol seams; scaffold strict mocks there; add notes to cover the rest via integration tests.; Acceptance checks: mocks limited to protocol seams; behavior asserted elsewhere by outcomes; integration plan documented.",
+      "keyConcepts": [
+        "Protocol mocks",
+        "Interaction vs outcome",
+        "Seams"
+      ]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Some units rely on global singletons. What refactor request improves testability without large rewrites?",
+      "options": [
+        "Keep singletons and patch them via monkey‑patching in tests",
+        "Wrap singletons with module‑level helpers and re‑export",
+        "Replace singletons with a service locator for dynamic lookup",
+        "Introduce dependency injection so tests can pass fakes"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Headline: inject dependencies to enable isolation and fakes.; Why correct: DI makes seams explicit and allows fast, deterministic unit tests.; Why others are wrong: monkey‑patching is fragile and leaks across tests; wrappers preserve hidden coupling; service locators hide wiring and complicate reasoning.; Cursor leverage: propose a small DI refactor; generate constructor/function params; scaffold in‑memory fakes; Acceptance checks: dependencies passed in; globals removed from units; tests use fakes without patches.",
+      "keyConcepts": [
+        "Dependency injection",
+        "Seams",
+        "Testability"
+      ]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Draft a PR comment to de‑risk new unit tests on a hot module. Include: AAA outline, determinism plan (fake clock/seeded RNG), per‑test time budget (e.g., ≤ 50 ms), and a rollback path if flake rate exceeds 0.5% in a week.",
+      "sampleStrongResponse": "Request an AAA skeleton with behavior‑named tests and explicit builders. State determinism requirements (fake clock and seeded RNG; no network/fs). Set a per‑test budget (≤ 50 ms, suite ≤ 2 min) and a flake SLO (≤ 0.5%). Note minimal change surface (inject dependencies rather than patching). Ask Cursor to generate builders/fakes, add fake‑timer helpers, and wire a CI check that fails if flake rate exceeds the SLO. Include a rollback toggle to revert to the previous test doubles or quarantine the new cases if the SLO is breached after merge."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Outline a phased migration to make legacy unit tests deterministic. Include add → backfill → flip → enforce → cleanup with safety checks and stakeholder comms.",
+      "sampleStrongResponse": "Plan: add injection points (Clock/IdGenerator) and fake‑timer utilities; start dual‑running deterministic tests alongside legacy ones. Backfill by converting the top 30% slowest/flake‑prone tests first using builders/fakes. Flip defaults via a config flag so all new tests must inject time and collaborators; verify green on two consecutive runs. Enforce by adding CI checks: no sleeps, no network/fs, per‑test ≤ 50 ms; gate on flake rate ≤ 0.5%. Cleanup by removing monkey‑patches and flaky skips, deleting deprecated helpers. Safety: shard runs, isolate global state, and track mean time‑to‑green. Comms: post the budget (per‑test ≤ 50 ms, suite ≤ 2 min), the flake SLO, and an escalation path; confirm success by zero sleeps in unit tests and stable green runs."
     }
   ]
 },

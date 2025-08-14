@@ -1,0 +1,141 @@
+{
+  "title": "Static Analysis Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "PR turns on all ESLint/SAST rules at once and blocks merges. What policy keeps flow while raising signal?",
+      "options": [
+        "Curate high‑signal rules first; baseline now; ratchet on new/touched code",
+        "Enable every rule to catch more issues early and hard‑fail PRs",
+        "Run analysis only nightly to avoid PR delays",
+        "Turn off SAST and rely on code review for security findings"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Headline: tune for signal and adopt progressively.; Why correct: curated rules + baselines avoid alert fatigue and unblock teams while improving steadily.; Why others are wrong: all‑rules hard fail causes bypass behavior; nightly hides issues; turning off SAST loses left‑shifted detection.; Cursor leverage: propose a rule set; generate baselines; add diff‑only gating.; Acceptance checks: curated config merged; baseline stored; PR diffs annotated without hard fails on legacy.",
+      "keyConcepts": ["Curation", "Baselines", "Diff gating"]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Developers complain about noisy findings. What should you require to restore trust?",
+      "options": [
+        "Hard‑fail on all severities to force compliance",
+        "Severity tiers with staged hardening and suppression policy with expiry",
+        "Disable most rules and keep only style checks",
+        "Move analysis to a separate pipeline without PR annotations"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: control noise with severity tiers and expiring suppressions.; Why correct: mapping severity→outcome and time‑boxed suppressions keeps focus on real risk.; Why others are wrong: hard‑failing all severities blocks flow; disabling rules loses value; off‑PR pipelines reduce feedback.; Cursor leverage: add severity mapping; scaffold suppression templates; wire approvals and expiry.; Acceptance checks: findings drop in medium noise; time‑to‑green improves; expired suppressions tracked.",
+      "keyConcepts": ["Severity tiers", "Suppressions", "Signal vs noise"]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Security wants stronger checks without harming PR velocity. What setup balances speed and depth?",
+      "options": [
+        "Run deep SAST on every PR and block merges for any finding",
+        "Skip SAST entirely and rely on penetration tests",
+        "Light lint/type checks on PRs; deep SAST nightly with hard fails on criticals",
+        "Run only style rules locally to reduce CI time"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Headline: split checks by cost and risk.; Why correct: fast PR checks keep flow; deep SAST nightly catches serious issues and blocks on criticals.; Why others are wrong: deep PR SAST is slow; skipping SAST loses coverage; style‑only misses risks.; Cursor leverage: configure two profiles; set schedules; publish SARIF to dashboards.; Acceptance checks: PR checks ≤ budget; nightly SAST reports; criticals block with clear remediation.",
+      "keyConcepts": ["Policy‑as‑code", "SAST vs lint", "Scheduling"]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Findings include framework‑false‑positives. What should you ask teams to add?",
+      "options": [
+        "A global ignore for the entire rule to be safe",
+        "Manual review only for those files without automation",
+        "Suppressions without rationale to speed merges",
+        "Stack‑specific configuration and rule tuning with tests"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Headline: tune rules to the framework to reduce false positives.; Why correct: stack‑aware configs catch the right patterns and minimize noise.; Why others are wrong: global ignores hide real issues; manual‑only is toil; unreasoned suppressions spread.; Cursor leverage: propose tuned configs; add sample tests to validate rules; create docs with examples.; Acceptance checks: false positive rate drops; configs stored centrally; tests for rules pass in CI.",
+      "keyConcepts": ["Rule tuning", "Framework awareness", "False positives"]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Many critical findings sit untriaged for weeks. What governance should you require?",
+      "options": [
+        "Triage SLAs, ownership mapping, and dashboards for criticals",
+        "Let teams self‑organize without central visibility",
+        "Auto‑close findings older than 30 days",
+        "Downgrade severities to reduce pressure"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Headline: ownership and SLAs drive timely remediation.; Why correct: clear owners and SLAs ensure risk is addressed; dashboards provide visibility.; Why others are wrong: no visibility → no action; auto‑closing hides risk; downgrades mask severity.; Cursor leverage: create dashboards; assign owners; send alerts for SLA breaches.; Acceptance checks: time‑to‑triage improves; backlog of criticals drops; ownership fields filled in SARIF.",
+      "keyConcepts": ["Ownership", "SLAs", "Dashboards"]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "PRs are blocked frequently for style nits. What change keeps speed without losing standards?",
+      "options": [
+        "Disable all style rules in CI and rely on reviews",
+        "Enable editor autofix and downgrade style findings to warnings in PRs",
+        "Raise the timeouts so CI isn&rsquo;t a bottleneck",
+        "Require manual sign‑off from a style council before merging"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: fix style automatically; reserve blocks for real risk.; Why correct: autofix shifts remediation left and removes manual toil; warnings keep flow while educating.; Why others are wrong: disabling rules loses consistency; timeouts don&rsquo;t change noise; manual sign‑offs add delay and little value.; Cursor leverage: add editor/CI autofix; configure severity mapping; provide quick‑fix docs.; Acceptance checks: PR time‑to‑green improves; style blocks near zero; overall findings trend down.",
+      "keyConcepts": ["Autofix", "Severity mapping", "Flow"]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A repo adds policy‑as‑code but teams keep bypassing it. What&rsquo;s the right ask?",
+      "options": [
+        "Hard‑fail all policies immediately to stop bypass",
+        "Remove gates and adopt trust‑based guidance",
+        "Enforce gates only on high‑risk categories; publish a roadmap for hardening",
+        "Hide policy details so developers cannot game them"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Headline: progressive hardening improves adoption.; Why correct: focusing on high‑risk categories first builds trust, then you can harden more.; Why others are wrong: hard‑fail everything triggers workarounds; removing gates loses benefits; secrecy breeds resentment.; Cursor leverage: define a hardening roadmap; measure time‑to‑green; tune rules iteratively.; Acceptance checks: bypass rate drops; fewer waivers; clear milestones achieved.",
+      "keyConcepts": ["Progressive hardening", "Risk focus", "Adoption"]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Suppressions are piling up. What policy keeps exceptions from eroding standards?",
+      "options": [
+        "Unlimited suppressions as long as tests are green",
+        "Permanent global ignore files for convenience",
+        "Suppressions allowed but without owner fields",
+        "Time‑boxed suppressions with rationale, owner, and expiry"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Headline: exceptions need ownership and a sunset.; Why correct: rationale+owner+expiry prevents permanent debt and tracks blast radius.; Why others are wrong: unlimited/ownerless suppressions grow unchecked; permanent ignores hide issues.; Cursor leverage: add suppression templates; CI checks for expiry; auto‑notify owners.; Acceptance checks: suppression count/age trend down; expired items resolved; exceptions reviewed in PRs.",
+      "keyConcepts": ["Exceptions", "Ownership", "Expiry"]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Draft a PR comment to tighten static checks without blocking flow. Include: curated rule set, baseline strategy, severity mapping, and a gate budget (e.g., block criticals; warn highs; log mediums).",
+      "sampleStrongResponse": "Ask for a curated rule set with stack‑specific tuning; commit baselines for existing findings. Map severities to outcomes (block criticals; warn high; log medium) and enable editor autofix. Set budgets: PR checks ≤ 2 min; no criticals allowed. Ask Cursor to generate configs, suppression templates with expiry, and a PR checklist linking docs. Acceptance: curated config present; baseline stored; PR annotations show severity mapping; time‑to‑green meets budget."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Outline a phased static analysis adoption plan. Include add → backfill → flip → enforce → cleanup with safety checks and stakeholder comms.",
+      "sampleStrongResponse": "Plan: add curated ESLint/TS/SAST configs with editor autofix; store baselines. Backfill by fixing top criticals and high‑noise rules with tuned configs. Flip PRs to diff‑only gating with severity mapping; publish SARIF dashboards. Enforce by hard‑failing criticals and expiring suppressions; track time‑to‑green. Cleanup by pruning noisy rules and consolidating policies. Safety: failure budget ≤ 2%, PR checks ≤ 2 min. Comms: share the roadmap and run fix‑it sprints; success = lower criticals, improved time‑to‑green, and fewer waivers."
+    }
+  ]
+}
