@@ -1,0 +1,141 @@
+{
+  "title": "Unit Testing Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "PR adds unit tests that call Date.now() and Math.random(). What do you require to keep determinism and isolation?",
+      "options": [
+        "Inject a fake clock and seeded RNG; remove time/random from the unit",
+        "Increase retries and add sleeps to reduce flakiness during CI",
+        "Run these tests only at night when machines are less busy",
+        "Use a global beforeAll to set system time once for the entire suite"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Headline: determinism requires controlling time and randomness at the unit boundary.; Why correct: faking the clock and seeding randomness makes outcomes repeatable and independent of machine timing.; Why others are wrong: sleeps mask races and slow the suite; time of day does not remove nondeterminism; global time for the whole suite couples tests and leaks state.; Cursor leverage: refactor to inject a Clock/IdGenerator; add fake timers/seed helpers; generate AAA test skeletons.; Acceptance checks: no sleeps in unit tests; seeded RNG used; fake clock per test with reset between cases.",
+      "keyConcepts": ["Determinism", "Isolation", "Fake clock", "Seeded randomness"]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Team mocks every collaborator deeply and asserts call counts. What coaching keeps unit tests resilient?",
+      "options": [
+        "Mock more methods to ensure stricter expectations across modules",
+        "Prefer fakes/stubs at seams and assert outcomes at the public boundary",
+        "Replace tests with E2E flows to capture the same behavior",
+        "Use snapshot tests for all intermediate objects to catch changes"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: assert behavior at boundaries and prefer fakes over brittle interaction mocks.; Why correct: fakes/stubs decouple from internals; outcome assertions survive refactors.; Why others are wrong: more mocks amplify brittleness; E2E does not replace unit scope; snapshots of internals lock in implementation details.; Cursor leverage: identify seams and suggest fakes; rewrite brittle interaction tests to outcome‑based; add a PR checklist for unit scope.; Acceptance checks: assertions on outputs/state; minimal mocks for protocols; internals not snapshotted.",
+      "keyConcepts": ["Mocks vs fakes", "Boundary assertions", "Refactor safety"]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Unit tests sometimes hit the network/filesystem. What change preserves the pyramid shape and speed?",
+      "options": [
+        "Allow real IO but add a 5s test timeout to catch hangs",
+        "Retry failed tests automatically up to 3 times",
+        "Isolate the unit by substituting in‑memory fakes for IO collaborators",
+        "Mark IO tests as @slow and keep them in the unit layer"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Headline: unit tests must remove real IO to stay fast and reliable.; Why correct: in‑memory fakes keep tests hermetic and fast, preserving the base of the pyramid.; Why others are wrong: longer timeouts hide slowness; retries mask nondeterminism; @slow labels keep the wrong scope in the wrong layer.; Cursor leverage: detect network/fs usage in unit tests; scaffold in‑memory fakes; propose moving true IO checks to integration tests.; Acceptance checks: no network/fs in unit layer; fakes in place; integration tests cover real IO.",
+      "keyConcepts": ["Isolation", "Test pyramid", "In‑memory fakes"]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "PR shows flaky unit tests fixed by adding sleeps. What stance should you take in review?",
+      "options": [
+        "Accept sleeps if they are shorter than 100ms",
+        "Approve now and open a ticket to clean up later",
+        "Increase global Jest/JUnit timeouts to hide flakes",
+        "Reject sleeps; remove nondeterminism by injecting time/IDs and isolating state"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Headline: fix the cause of flakes, not the symptom.; Why correct: isolating time/state restores determinism and makes tests fast/reliable.; Why others are wrong: small sleeps still race; tickets defer quality and normalize pain; longer timeouts slow feedback and hide issues.; Cursor leverage: rewrite tests with fake timers; generate deterministic builders/fixtures; add a flake budget check in CI.; Acceptance checks: no sleeps remain; flake rate ≤ 0.5%; per‑test state reset verified.",
+      "keyConcepts": ["Flakiness", "State isolation", "Fake timers"]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A PR asserts specific private method calls on a class. What guardrail keeps tests valuable through refactors?",
+      "options": [
+        "Assert public behavior and observable side effects, not private calls",
+        "Expose more internals so tests can verify each step",
+        "Freeze the class API to avoid breaking tests",
+        "Move these checks to a golden snapshot of the class instance"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Headline: test behavior contracts, not implementation details.; Why correct: public‑boundary assertions allow internal refactors without test churn.; Why others are wrong: exposing internals increases coupling; freezing APIs blocks improvement; snapshots of internals become brittle noise.; Cursor leverage: suggest behavior‑named tests; convert private‑call assertions to outcome checks; add examples for AAA pattern.; Acceptance checks: tests named by behavior; no assertions on privates; AAA structure visible.",
+      "keyConcepts": ["Behavioral testing", "Arrange‑Act‑Assert", "Encapsulation"]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "CI shows unit suite runtime creeping up. What is your first ask to restore speed without losing signal?",
+      "options": [
+        "Parallelize by default and accept occasional flakes as the trade‑off",
+        "Prune duplicate tests, use builders/factories, and enforce per‑test time budgets",
+        "Disable coverage locally to speed dev and turn it on only nightly",
+        "Move half the unit tests to integration to reduce count"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: reduce redundancy and overhead while preserving unit scope.; Why correct: builders cut setup cost; time budgets and pruning keep fast, high‑signal suites.; Why others are wrong: accepting flakes erodes trust; disabling coverage hides gaps; demoting to integration slows feedback.; Cursor leverage: surface slowest tests; generate builders/fakes; add per‑test budget checks in CI.; Acceptance checks: suite runtime within budget; duplicates removed; top N slow tests improved.",
+      "keyConcepts": ["Runtime budgets", "Builders/fixtures", "Signal vs noise"]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Dev proposes mocking a protocol boundary (SMTP/HTTP client). When is strict mocking appropriate at unit level?",
+      "options": [
+        "When you want to guarantee no regressions regardless of refactors",
+        "When most collaborators are already mocked in other tests",
+        "When the protocol itself is the behavior and interaction order matters",
+        "When integration tests are not yet written and time is short"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Headline: mock protocols only when interaction is the behavior.; Why correct: protocol semantics (e.g., retries, headers) are part of behavior and warrant interaction checks.; Why others are wrong: guarantees independent of refactors are unrealistic; copying patterns spreads brittleness; missing integrations is not a reason to misuse unit tests.; Cursor leverage: identify true protocol seams; scaffold strict mocks there; add notes to cover the rest via integration tests.; Acceptance checks: mocks limited to protocol seams; behavior asserted elsewhere by outcomes; integration plan documented.",
+      "keyConcepts": ["Protocol mocks", "Interaction vs outcome", "Seams"]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Some units rely on global singletons. What refactor request improves testability without large rewrites?",
+      "options": [
+        "Keep singletons and patch them via monkey‑patching in tests",
+        "Wrap singletons with module‑level helpers and re‑export",
+        "Replace singletons with a service locator for dynamic lookup",
+        "Introduce dependency injection so tests can pass fakes"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Headline: inject dependencies to enable isolation and fakes.; Why correct: DI makes seams explicit and allows fast, deterministic unit tests.; Why others are wrong: monkey‑patching is fragile and leaks across tests; wrappers preserve hidden coupling; service locators hide wiring and complicate reasoning.; Cursor leverage: propose a small DI refactor; generate constructor/function params; scaffold in‑memory fakes; Acceptance checks: dependencies passed in; globals removed from units; tests use fakes without patches.",
+      "keyConcepts": ["Dependency injection", "Seams", "Testability"]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Draft a PR comment to de‑risk new unit tests on a hot module. Include: AAA outline, determinism plan (fake clock/seeded RNG), per‑test time budget (e.g., ≤ 50 ms), and a rollback path if flake rate exceeds 0.5% in a week.",
+      "sampleStrongResponse": "Request an AAA skeleton with behavior‑named tests and explicit builders. State determinism requirements (fake clock and seeded RNG; no network/fs). Set a per‑test budget (≤ 50 ms, suite ≤ 2 min) and a flake SLO (≤ 0.5%). Note minimal change surface (inject dependencies rather than patching). Ask Cursor to generate builders/fakes, add fake‑timer helpers, and wire a CI check that fails if flake rate exceeds the SLO. Include a rollback toggle to revert to the previous test doubles or quarantine the new cases if the SLO is breached after merge."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Outline a phased migration to make legacy unit tests deterministic. Include add → backfill → flip → enforce → cleanup with safety checks and stakeholder comms.",
+      "sampleStrongResponse": "Plan: add injection points (Clock/IdGenerator) and fake‑timer utilities; start dual‑running deterministic tests alongside legacy ones. Backfill by converting the top 30% slowest/flake‑prone tests first using builders/fakes. Flip defaults via a config flag so all new tests must inject time and collaborators; verify green on two consecutive runs. Enforce by adding CI checks: no sleeps, no network/fs, per‑test ≤ 50 ms; gate on flake rate ≤ 0.5%. Cleanup by removing monkey‑patches and flaky skips, deleting deprecated helpers. Safety: shard runs, isolate global state, and track mean time‑to‑green. Comms: post the budget (per‑test ≤ 50 ms, suite ≤ 2 min), the flake SLO, and an escalation path; confirm success by zero sleeps in unit tests and stable green runs."
+    }
+  ]
+}

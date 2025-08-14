@@ -1,0 +1,141 @@
+{
+  "title": "End-to-End Testing Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "PR adds many UI tests using brittle CSS selectors. What should you require to stabilize selectors?",
+      "options": [
+        "Adopt data‑testid or role‑based selectors tied to semantics",
+        "Keep CSS selectors and increase retries with exponential backoff",
+        "Use XPath for more precise targeting across the DOM",
+        "Wait for random delays to ensure elements finish rendering"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Headline: stable, semantic selectors reduce flake and maintenance.; Why correct: data‑test/role selectors are robust to styling/structure changes.; Why others are wrong: retries and sleeps hide timing issues; XPath is brittle across minor DOM shifts; random waits increase time and flake.; Cursor leverage: generate Playwright/Cypress locators; suggest adding data‑test attributes; update page objects.; Acceptance checks: selectors use data‑test/roles; no random waits; flake rate ≤ 2% on PRs.",
+      "keyConcepts": ["Stable selectors", "Playwright/Cypress", "Flake reduction"]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Smoke suite on PRs frequently times out. What scope and cadence change keeps confidence without blocking?",
+      "options": [
+        "Run all journeys on every PR to maximize safety",
+        "Tag a thin smoke set for PRs and run full regression nightly",
+        "Disable PR E2E and rely on staging QA only",
+        "Randomly sample 50% of tests on PRs to reduce runtime"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: a thin smoke set keeps velocity while guarding revenue paths.; Why correct: smoke on PRs + nightly regression balances speed and safety.; Why others are wrong: running all journeys blocks flow; disabling PR coverage risks escapes; random sampling misses critical paths.; Cursor leverage: tag tests (smoke/regression); set CI matrices; generate a run profile under 5 minutes.; Acceptance checks: PR smoke p95 ≤ 5 min; nightly regression scheduled; coverage includes login/checkout.",
+      "keyConcepts": ["Smoke vs regression", "Cadence", "Runtime budgets"]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Tests use fixed sleeps to wait for UI/network. What is the better pattern?",
+      "options": [
+        "Increase sleeps to a conservative buffer per page",
+        "Retry failed assertions up to 3 times",
+        "Use explicit waits for conditions (visible, enabled, network idle)",
+        "Turn off animations to speed up and keep sleeps as is"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Headline: explicit waits match app semantics and remove nondeterminism.; Why correct: condition‑based waits stabilize tests and reduce timeouts.; Why others are wrong: longer sleeps slow and still flake; retries hide timing bugs; disabling animations alone does not replace waits.; Cursor leverage: replace sleeps with waitFor APIs; add network‑idle waits; update utilities across the suite.; Acceptance checks: no arbitrary sleeps; waits target semantics; timeout rate falls below 2%.",
+      "keyConcepts": ["Explicit waits", "Semantics", "Stability"]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Suites fail due to shared test accounts and polluted data. What guardrail do you request?",
+      "options": [
+        "One global account with careful cleanup steps",
+        "Freeze test data to a golden environment snapshot",
+        "Use a shared admin account and reset passwords nightly",
+        "Unique data per run via seeding APIs and teardown hooks"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Headline: independence per test run reduces cross‑test coupling.; Why correct: unique seeds and teardown isolate tests and enable parallelism.; Why others are wrong: shared accounts still couple tests; golden snapshots drift; admin workarounds add toil and risk.; Cursor leverage: add seeding endpoints and cleanup hooks; generate unique IDs per run; enforce teardown in page objects.; Acceptance checks: no shared accounts; seeds logged; parallel shards stable.",
+      "keyConcepts": ["Unique seeds", "Teardown", "Parallelism"]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Critical flows sometimes fail due to third‑party instability. What keeps E2E robust and focused?",
+      "options": [
+        "Use a mock server for third‑party calls while validating contracts in CI",
+        "Hit the real third‑party in all tests to catch real issues",
+        "Disable those flows from E2E and trust unit tests instead",
+        "Quarantine the failing tests indefinitely"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Headline: isolate externals in E2E and verify with contracts elsewhere.; Why correct: mocking externals stabilizes tests; contract tests ensure fidelity.; Why others are wrong: real calls cause flakes and cost; removing flows loses coverage; quarantine without plan reduces signal.; Cursor leverage: scaffold mock servers; tag tests to use them; add provider verification in CI.; Acceptance checks: no live external calls; contracts verified; flake rate ≤ 2% for these flows.",
+      "keyConcepts": ["Mock server", "Contracts", "Stability"]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Artifacts are not captured, making failures hard to diagnose. What should be added?",
+      "options": [
+        "Reduce assertions to lower the chance of failure",
+        "Enable trace/video/screenshot capture on failure and upload to CI",
+        "Run locally with --headed mode only for debugging",
+        "Disable parallel runs to make logs easier to read"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: rich artifacts speed ownership and fixes.; Why correct: traces/video/screenshot provide direct evidence for triage.; Why others are wrong: fewer assertions hide bugs; local‑only does not help PRs; disabling parallelism slows feedback.; Cursor leverage: configure artifact upload; link artifacts in PR comments; auto‑open failing step traces.; Acceptance checks: artifacts visible in CI; time‑to‑diagnosis drops; owners fix within the sprint.",
+      "keyConcepts": ["Artifacts", "Debuggability", "Ownership"]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "PR proposes 80+ E2E tests covering small logic branches. What should you advise?",
+      "options": [
+        "Approve as is to maximize user‑level coverage",
+        "Run them only weekly to control cost",
+        "Keep few high‑value journeys in E2E; push logic down to unit/integration",
+        "Replace with snapshots to capture DOM states cheaply"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Headline: keep E2E thin; assert logic at lower layers.; Why correct: pushing logic to unit/integration preserves speed and reduces flake while E2E covers journeys.; Why others are wrong: more E2E increases cost/flake; snapshots are brittle; weekly runs delay feedback.; Cursor leverage: map assertions to the right layer; generate unit/integration specs; tag a smoke E2E set.; Acceptance checks: E2E count reduced; smoke p95 ≤ 5 min; key journeys retained.",
+      "keyConcepts": ["Test pyramid", "Layering", "Cost vs confidence"]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A login test fails intermittently due to clock drift and scheduled jobs. What fix should be prioritized?",
+      "options": [
+        "Retry the test immediately on failure to see if it passes",
+        "Increase the global timeout to absorb delays",
+        "Skip the test until the flake disappears",
+        "Stabilize time by pinning server/client clocks and waiting on semantic signals"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Headline: control time and wait on semantics to eliminate flake.; Why correct: pinning time/waits (e.g., token validity, network idle) removes drift‑induced failures.; Why others are wrong: retries hide flake; bigger timeouts slow runs; skipping loses coverage.; Cursor leverage: add server clock sync for preview; use explicit waits; create a reproducer script.; Acceptance checks: failure eliminated in 50 runs; no arbitrary sleeps; stable green for two weeks.",
+      "keyConcepts": ["Clock drift", "Explicit waits", "Stability budgets"]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Draft a PR comment to de‑risk a hot E2E journey (login → checkout). Include: selector policy, wait strategy, smoke/regression tags, and a PR runtime budget (e.g., smoke p95 ≤ 5 min).",
+      "sampleStrongResponse": "Ask for data‑test/role selectors and page objects, explicit waits (visible/enabled/network idle), and a thin smoke tag for PRs with full regressions nightly. Set budgets (smoke p95 ≤ 5 min; flake ≤ 2%). Ask Cursor to generate Playwright specs with seeding/cleanup helpers, enable trace/video on failure, and attach artifact links to the PR. Include a rollback toggle to quarantine a flaky spec if the budget is breached after merge."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Outline a phased plan to refactor E2E to a thin, stable suite. Include add → backfill → flip → enforce → cleanup with safety checks and comms.",
+      "sampleStrongResponse": "Plan: add page objects, data‑test selectors, and explicit wait utilities; tag smoke vs regression. Backfill by converting the top 10 flaky tests to use stable selectors and waits; replace logic assertions with unit/integration tests. Flip PR runs to smoke only with artifact upload; verify p95 ≤ 5 min. Enforce by blocking sleeps and live external calls; budgets: flake ≤ 2%, smoke ≤ 5 min. Cleanup brittle snapshots and shared accounts. Safety: preview env pins, unique seeds, and parallel shards. Comms: publish run profiles and SLOs; success = stable green for two weeks and reduced E2E count with unchanged coverage of key journeys."
+    }
+  ]
+}

@@ -1,0 +1,141 @@
+{
+  "title": "Performance Benchmarks Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "PR claims a performance win using average latency. What should you require to avoid misleading results?",
+      "options": [
+        "Report distributions (p50/p95/p99) with throughput and saturation",
+        "Use only averages since they are simpler to compare",
+        "Run one quick test; if it is faster, ship it",
+        "Ignore latency and focus on CPU utilization only"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Headline: users feel tails; measure distributions, not just averages.; Why correct: p95/p99 expose tail pain; pairing with throughput/saturation shows trade‑offs.; Why others are wrong: averages hide spikes; one run is noise; CPU‑only misses latency.; Cursor leverage: generate benchmark scripts; add percentile calc; attach charts.; Acceptance checks: p95/p99 reported; throughput and CPU captured; charts attached in PR.",
+      "keyConcepts": ["p95/p99", "Throughput", "Saturation"]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Results vary widely between runs. What setup change increases reproducibility?",
+      "options": [
+        "Run on developer laptops to simulate real variety",
+        "Pin runners/env and use a reproducible harness with datasets",
+        "Increase test duration randomly to smooth noise",
+        "Use production traffic mixed with lab data"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: control variables to trust results.; Why correct: pinned env + reproducible harness reduce drift and noise.; Why others are wrong: laptops add variability; random durations distort; prod traffic mixes signals.; Cursor leverage: scaffold harness scripts; pin versions; document datasets.; Acceptance checks: variance reduced; harness logged; runs repeatable on CI.",
+      "keyConcepts": ["Reproducibility", "Harness", "Pinned env"]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Benchmarks show a 5% improvement in one run. What is the best follow‑up?",
+      "options": [
+        "Merge immediately to capture the win",
+        "Switch to a different runner to see a bigger win",
+        "Repeat runs and compare distributions with error bars/tolerances",
+        "Ignore small changes; only 50% wins matter"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Headline: confirm with repeated runs and statistical tolerance.; Why correct: error bars distinguish signal from noise; avoids false claims.; Why others are wrong: one run can be noise; changing runners breaks comparability; ignoring small wins loses progress.; Cursor leverage: add repeated‑run scripts; compute CIs; produce PR charts.; Acceptance checks: repeated runs done; CIs show significance; decision documented.",
+      "keyConcepts": ["Error bars", "Confidence intervals", "Repeated runs"]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Microbenchmarks look great, but production p95 regressed. What alignment do you require?",
+      "options": [
+        "Trust microbench only; it is simpler and faster",
+        "Disable p95 tracking to reduce noise",
+        "Use only macro tests and stop running microbenchmarks",
+        "Match workload shape and environment to prod where possible"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Headline: align harness and workload to reduce lab‑prod gaps.; Why correct: representative data/concurrency reduces surprises.; Why others are wrong: micro‑only misses system effects; removing p95 hides pain; macro‑only loses fast feedback.; Cursor leverage: document workload shape; add macro suite on pinned runners; compare side‑by‑side.; Acceptance checks: harness fields filled; macro suite added; lab vs prod gap narrowed.",
+      "keyConcepts": ["Workload shape", "Macro vs micro", "p95"]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "PR adds an optimization without a performance budget. What should you require before merge?",
+      "options": [
+        "Define a slow‑query/perf budget (e.g., p95 ≤ 150 ms) and acceptance checks",
+        "Approve now and retroactively check dashboards",
+        "Add more CPUs to the CI runners so it passes",
+        "Measure only cold start to be conservative"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Headline: set budgets to guard against regressions.; Why correct: budgets create shared targets and CI gates; acceptance checks keep scope clear.; Why others are wrong: retro checks miss regressions; hardware changes hide issues; cold‑only is incomplete.; Cursor leverage: add budget text; gate PRs on meaningful deltas; attach charts with tolerances.; Acceptance checks: budget stated in PR; gate configured; charts uploaded.",
+      "keyConcepts": ["Performance budget", "CI gates", "Acceptance checks"]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A database endpoint meets average SLO but users complain of spikes. What should you request?",
+      "options": [
+        "Ignore outliers as noise and keep the average SLO",
+        "Investigate p95/p99 and profile heavy operators (rows/bytes moved)",
+        "Throttle all requests globally to cap usage",
+        "Run the benchmark longer and hope spikes disappear"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: tails and heavy operators drive user pain.; Why correct: examining p95/p99 and rows/bytes highlights bottlenecks; profiling targets fixes.; Why others are wrong: averages hide pain; throttling blindly harms good requests; longer runs without analysis waste time.; Cursor leverage: add flamegraph/EXPLAIN; propose index/caching; chart tails.; Acceptance checks: tail reduced; heavy ops identified; SLO met.",
+      "keyConcepts": ["Tail latency", "Profiling", "Heavy operators"]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "CI perf checks flake due to environment drift. What change restores trust?",
+      "options": [
+        "Disable perf checks on PRs and run them manually",
+        "Increase thresholds so flakes no longer fail",
+        "Pin runner types/versions and isolate resources for perf jobs",
+        "Share runners with unit tests to use idle capacity"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Headline: consistent runners and isolation reduce variance.; Why correct: pinning/isolating removes background interference.; Why others are wrong: manual runs delay feedback; looser thresholds hide regressions; shared runners add contention.; Cursor leverage: set up a dedicated perf job; define runner pins; report variance in PR.; Acceptance checks: variance budget met; pins logged in CI; fewer flaky perf failures.",
+      "keyConcepts": ["Runner pinning", "Isolation", "Variance budget"]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "A claim of 2× throughput appears, but error rate increased. What is the correct review stance?",
+      "options": [
+        "Accept higher errors temporarily to keep the gain",
+        "Ignore errors during benchmarks to avoid noise",
+        "Use closed‑loop load to force constant concurrency only",
+        "Validate throughput at SLO (latency + error budget) rather than peak only"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Headline: capacity must be measured at acceptable latency and errors.; Why correct: throughput at SLO reflects usable capacity, not raw peak.; Why others are wrong: trading errors for throughput harms users; ignoring errors is unsafe; forcing closed‑loop only can hide saturation behavior.; Cursor leverage: compute capacity at SLO; chart error/latency curves; surface the knee.; Acceptance checks: capacity at SLO reported; error budget respected; decision documented.",
+      "keyConcepts": ["Capacity at SLO", "Error budget", "Latency‑throughput trade‑off"]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Draft a PR comment to de‑risk a hot‑path optimization. Include: percentile report, harness details (dataset/concurrency/warm/cold), perf budget (e.g., p95 ≤ 150 ms), and rollback if budget is breached post‑merge.",
+      "sampleStrongResponse": "Request charts for p50/p95/p99 with throughput and CPU/allocs, plus harness details (dataset size, open/closed loop, warm/cold). Set a budget (e.g., p95 ≤ 150 ms at current QPS) and require error rate within the budget. Ask Cursor to generate the harness script, pinned runner config, and a PR comment with acceptance checks. Include a rollback toggle if p95 or errors regress after deploy."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Outline a phased perf policy. Include add → backfill → flip → enforce → cleanup with safety checks and stakeholder comms.",
+      "sampleStrongResponse": "Plan: add reproducible harnesses with pinned runners and budgets per endpoint/job. Backfill hot paths with baselines and repeated‑run scripts. Flip PRs to run microbenchmarks with gates on meaningful deltas; run macro suites nightly. Enforce budgets (p95/p99, throughput at SLO) and track capacity trends. Cleanup flaky environments and noisy metrics. Safety: variance budget ≤ 10%, failure budget ≤ 2%. Comms: publish budgets and dashboards; success = p95 stable within budget, capacity at SLO tracked, and fewer perf regressions post‑merge."
+    }
+  ]
+}

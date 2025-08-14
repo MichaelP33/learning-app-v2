@@ -1,0 +1,141 @@
+{
+  "title": "Contract Testing Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "PR introduces a breaking API change. What do you require before merge to protect consumers?",
+      "options": [
+        "Publish a MAJOR with deprecation window and verify against all active consumer contracts",
+        "Update the README to note the breaking change and merge",
+        "Ship as MINOR since most consumers won&rsquo;t notice",
+        "Coordinate on a Slack thread and proceed if no one objects"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Headline: breaking changes must be versioned and verified against consumers.; Why correct: MAJOR+deprecation plus provider verification prevents unexpected breakage.; Why others are wrong: docs alone are unenforced; wrong semver hides risk; ad‑hoc comms provide no guarantees.; Cursor leverage: generate contract diffs; publish migration notes; set broker to block providers failing verification.; Acceptance checks: MAJOR tag prepared; verification green for supported consumers; deprecation notice communicated.",
+      "keyConcepts": ["Semver", "Provider verification", "Deprecation window"]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Who should author contracts to reflect real usage and why?",
+      "options": [
+        "Providers, because they know their API design best",
+        "Consumers, because they specify the behavior they depend on",
+        "Security team, because they own governance",
+        "QA, because they write most tests"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: consumer‑driven contracts align with actual usage.; Why correct: consumers capture needs precisely; providers verify to ensure compatibility.; Why others are wrong: provider‑authored contracts miss real usage; security/QA may support but are not the source of truth.; Cursor leverage: scaffold consumer contracts; tag by environment; wire provider verification in CI.; Acceptance checks: contracts originate from consumers; registry shows ownership; provider PRs verify automatically.",
+      "keyConcepts": ["Consumer‑driven", "Ownership", "Verification"]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "What&rsquo;s the minimum addition you should require when contracts only include happy paths?",
+      "options": [
+        "Keep happy paths and test errors only in E2E",
+        "Document errors in README without executable checks",
+        "Add negative cases and error semantics (404/409/5xx) with realistic payloads",
+        "Use retries to tolerate errors instead of documenting them"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Headline: contracts must capture error cases to prevent silent breakage.; Why correct: encoding errors/pagination prevents regressions and mismatches.; Why others are wrong: E2E is late and broad; docs without checks drift; retries hide incompatibilities.; Cursor leverage: extend contracts with error/pagination; generate provider verification; attach diffs to PR.; Acceptance checks: error cases added; provider verification green; docs align with contracts.",
+      "keyConcepts": ["Negative cases", "Error semantics", "Verification"]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Provider verification is flaky due to stale contracts in the broker. What policy reduces noise?",
+      "options": [
+        "Disable verification for older consumers to speed builds",
+        "Keep all historical contracts forever for completeness",
+        "Allow providers to bypass failed verification with a flag",
+        "Tag and retire unused contracts quickly; require ownership and expiry"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Headline: govern the broker with ownership and lifecycle.; Why correct: retiring stale contracts and enforcing ownership reduces noise and drift.; Why others are wrong: disabling checks risks breaking users; keeping all forever increases noise; bypass flags erode trust.; Cursor leverage: add broker governance rules; dashboard ownership/expiry; notify on stale contracts.; Acceptance checks: stale contracts retired; ownership fields present; verification flake rate drops.",
+      "keyConcepts": ["Broker governance", "Ownership", "Noise reduction"]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Event schema changed additively (new optional field). What guidance keeps consumers safe?",
+      "options": [
+        "Require tolerant readers and verify existing contracts continue to pass",
+        "Block any schema change unless all consumers confirm",
+        "Publish a MAJOR for any field change to be safe",
+        "Remove old fields immediately to simplify payloads"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Headline: additive changes are safe with tolerant readers and verification.; Why correct: consumers ignoring unknown fields keep compatibility; verification confirms.; Why others are wrong: unanimity blocks progress; MAJOR for additive is too heavy; removing fields immediately breaks consumers.; Cursor leverage: scan consumers for tolerant parsing; run verification; publish migration notes.; Acceptance checks: tolerant readers present; verification green; changelog documents additive change.",
+      "keyConcepts": ["Tolerant reader", "Additive changes", "Compatibility"]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Provider proposes removing an error field used for client retries. What should you require?",
+      "options": [
+        "Remove immediately and tell clients to update",
+        "Deprecate with a window; provide adapters; verify consumer contracts before removal",
+        "Hide the field behind a feature flag with no timeline",
+        "Document the change in release notes and proceed"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: deprecation windows plus verification prevent breaking consumers.; Why correct: adapters and time allow safe migration; contract checks ensure readiness.; Why others are wrong: immediate removal breaks clients; flags without timeline drift; docs alone don&rsquo;t protect.; Cursor leverage: generate adapters; schedule verification runs; add deprecation headers.; Acceptance checks: window announced; adapters available; all supported consumers verified before removal.",
+      "keyConcepts": ["Deprecation", "Adapters", "Verification"]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Contracts and OpenAPI docs diverged. What is the right ask in review?",
+      "options": [
+        "Trust the OpenAPI only since it is the official document",
+        "Accept drift and schedule a cleanup later",
+        "Align executable contracts and OpenAPI; regenerate SDKs from source of truth",
+        "Trust contracts only and delete OpenAPI to avoid confusion"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Headline: the executable source of truth must align with docs and SDKs.; Why correct: keeping contracts and OpenAPI in sync ensures generated SDKs and consumers match behavior.; Why others are wrong: trusting one alone leaves drift; deleting one removes useful artifacts; deferring cleanup perpetuates risk.; Cursor leverage: diff contracts vs OpenAPI; regenerate SDKs; open PRs to sync.; Acceptance checks: no diffs between contracts and OpenAPI; SDKs regenerated; CI check added to prevent drift.",
+      "keyConcepts": ["Source of truth", "SDK generation", "Alignment"]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Provider&rsquo;s CI is slow due to exhaustive verification. What change preserves safety with better flow?",
+      "options": [
+        "Skip verification on PRs and run only on merges to main",
+        "Verify a random subset of consumers on each run",
+        "Disable negative cases to speed up checks",
+        "Scope verification to contracts tagged for the target environment and supported versions"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Headline: scope checks by environment/version rather than skipping.; Why correct: targeted verification keeps safety while improving speed.; Why others are wrong: skipping on PRs delays break detection; random subsets miss critical consumers; removing negatives weakens safety.; Cursor leverage: tag contracts by env; configure broker to select relevant sets; parallelize verification.; Acceptance checks: PR verification time reduced; only relevant contracts checked; no increase in escapes.",
+      "keyConcepts": ["Scoped verification", "Environments", "Efficiency"]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Draft a PR comment to de‑risk a provider change that alters response fields. Include: contract diff summary, semver decision, verification scope, and a rollback if consumer error rate rises > 1%.",
+      "sampleStrongResponse": "Request a contract diff showing added/removed/changed fields and whether changes are additive or breaking. Decide semver (MAJOR vs MINOR) and document a deprecation window if breaking. Scope provider verification to supported consumers in prod/stage tags and include negative cases. Ask Cursor to generate SDKs and migration notes, and to add a rollback toggle (feature flag or adapter) if post‑deploy consumer error rate > 1% or verification failures appear."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Outline a phased policy for adopting consumer‑driven contracts org‑wide. Include add → backfill → flip → enforce → cleanup with safety checks and comms.",
+      "sampleStrongResponse": "Plan: add a broker and start with one consumer/provider; wire provider verification in CI. Backfill top APIs by traffic with consumer‑authored contracts and negative cases. Flip by requiring verification on provider PRs (scoped by env/version) and publishing SDKs from contracts. Enforce by blocking merges on verification failures; budgets: verification p95 ≤ 8 min, failure budget ≤ 2% flaky runs. Cleanup stale contracts and tag ownership/expiry. Comms: publish semver/deprecation policy and a status dashboard; success = zero unexpected consumer breakages and on‑time upgrades."
+    }
+  ]
+}
