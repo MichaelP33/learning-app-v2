@@ -1,0 +1,141 @@
+{
+  "title": "Document Databases Quiz",
+  "totalQuestions": 10,
+  "totalPoints": 25,
+  "questions": [
+    {
+      "id": "1",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Team proposes embedding order items, shipping address, and payment summary into one document for speed. What alignment do you require before approving?",
+      "options": [
+        "Add global schema validation to reject any unknown fields",
+        "Shard randomly to avoid hotspots regardless of access patterns",
+        "Confirm single‑document atomicity and size budget; shape embeds to hot reads",
+        "Create a join table to normalize everything for analytics"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Headline: align on single‑document atomicity and document size budget tied to dominant reads.; Why correct: embedding works when the hot path is satisfied in one atomic write and the document stays within size limits.; Why others are wrong: blanket validation does not prove atomicity or fit; random sharding ignores access patterns and risks scatter‑gather; full normalization defeats the purpose of a document store for object‑centric reads.; Cursor leverage: generate a PR comment that states the atomicity boundary; add a doc‑size budget and hot‑path examples; request a one‑pager on shard‑key rationale.; Acceptance checks: atomic write scope documented; max document size stated; shard‑key aligned to dominant filters.",
+      "keyConcepts": ["Single‑document atomicity", "Document size limits", "Access‑pattern modeling"]
+    },
+    {
+      "id": "2",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Customers say &ldquo;I saved but still see old totals.&rdquo; What expectation should you set and require in the PR?",
+      "options": [
+        "Rebuild every index to refresh query results",
+        "Disable secondaries entirely to guarantee freshness",
+        "Raise write concern to the fastest setting across services",
+        "Set a staleness window and route must‑be‑fresh reads to the primary"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Headline: document an agreed freshness window and route must‑be‑fresh reads to primary/causal sessions.; Why correct: secondaries can lag; expectation language prevents overpromising and clarifies when primary reads are required.; Why others are wrong: index rebuilds do not address replica lag; disabling secondaries wastes safe capacity; changing write concern does not guarantee read‑after‑write across replicas.; Cursor leverage: draft the freshness SLA text; identify primary‑only paths; add a simple lag monitor with alert thresholds.; Acceptance checks: SLA documented in code/docs; router rules updated; replica‑lag alerts configured.",
+      "keyConcepts": ["Replica lag", "Freshness window", "Primary‑only reads"]
+    },
+    {
+      "id": "3",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "PR adds a new aggregation pipeline for a dashboard. What de‑risking request should you make before merge?",
+      "options": [
+        "Add indexes for every intermediate stage output to be safe",
+        "Attach an EXPLAIN‑like summary and index coverage; stream stages and project only needed fields",
+        "Increase cluster size temporarily to reduce risk without further checks",
+        "Run the pipeline on the primary during peak to simulate worst case"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: verify plan shape and index coverage; keep the pipeline streaming and lean.; Why correct: an EXPLAIN‑like output surfaces scans/fan‑out; projecting only needed fields and ensuring index coverage keeps latency predictable.; Why others are wrong: indexing every stage inflates write cost; extra hardware hides design issues; running on primary at peak risks customer impact.; Cursor leverage: summarize the plan; flag unindexed predicates; propose a minimal index and a rollback script.; Acceptance checks: plan attached; minimal index justified; rollback path defined.",
+      "keyConcepts": ["Aggregation pipeline", "Index coverage", "EXPLAIN/PROFILE"]
+    },
+    {
+      "id": "4",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Team wants to duplicate product names into order documents to speed reads. What do you require to keep trust?",
+      "options": [
+        "Document source of truth, freshness SLA, repair job, and write‑amplification budget",
+        "Guarantee all services are now strongly consistent everywhere",
+        "Disable updates to product names to avoid drift",
+        "Commit to removing all denormalization in the next sprint"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Headline: denormalization needs explicit guardrails to remain trustworthy.; Why correct: defining source of truth, staleness window, repair/rebuild path, and write‑amp budget prevents silent drift and runaway costs.; Why others are wrong: global strong consistency is unrealistic; freezing updates blocks real needs; promising removal ignores the valid performance goal.; Cursor leverage: generate a short design note template; include a reconciliation job stub; estimate write‑amp and size growth.; Acceptance checks: guardrails documented; repair job owned with SLO; staleness communicated to stakeholders.",
+      "keyConcepts": ["Denormalization", "Trust guardrails", "Repair jobs"]
+    },
+    {
+      "id": "5",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "After sharding, a profile page is randomly slow. What is the most likely diagnosis and first ask?",
+      "options": [
+        "Document size limits were exceeded; move attachments to object storage",
+        "Cross‑zone network is flaky; add client retries globally",
+        "Shard key misaligned with dominant filters; ask for scatter‑gather evidence and key rationale",
+        "Secondaries are overloaded; route all reads to primary"
+      ],
+      "correctAnswer": 2,
+      "additionalContext": "Headline: poor shard‑key choice causes scatter‑gather and random p95 spikes.; Why correct: when the key does not match filters, queries fan out; asking for evidence and rationale drives a fix.; Why others are wrong: oversize docs hurt throughput but not random fan‑out; generic network retries mask the issue; routing to primary dodges the root cause and can overload it.; Cursor leverage: analyze query filters vs shard‑key; simulate scatter‑gather; propose alternative keys.; Acceptance checks: key rationale documented; fan‑out eliminated in EXPLAIN; p95 stabilized within budget.",
+      "keyConcepts": ["Shard key", "Scatter‑gather", "p95 latency"]
+    },
+    {
+      "id": "6",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Average document size doubled due to optional fields. What is the best move to keep latency predictable?",
+      "options": [
+        "Accept growth; storage is cheap and performance won&rsquo;t change",
+        "Create per‑field indexes to accelerate sparse lookups across the board",
+        "Turn off schema validation so compression can work better",
+        "Split hot sub‑objects into targeted projections and keep documents under size limits"
+      ],
+      "correctAnswer": 3,
+      "additionalContext": "Headline: keep documents lean and precompute targeted projections for hot reads.; Why correct: smaller docs improve I/O and cache hit rates; projections stabilize latency for frequent reads.; Why others are wrong: size growth hurts cache/throughput; blanket indexing increases write amp; validation does not materially change payload size.; Cursor leverage: estimate size impact; propose projection shapes; add a size budget check in CI.; Acceptance checks: doc size tracked; projections deployed; latency SLO met.",
+      "keyConcepts": ["Document size limits", "Projections/materialized views", "Latency SLO"]
+    },
+    {
+      "id": "7",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "PR adds three new secondary indexes and writes slowed down. What review stance keeps balance?",
+      "options": [
+        "Keep all indexes; read speed is the only priority for dashboards",
+        "Prune overlapping indexes and keep a minimal set tied to real predicates; note write cost",
+        "Add shards so write slowdown will disappear without trade‑offs",
+        "Move all writes to nightly windows and accept slower merges"
+      ],
+      "correctAnswer": 1,
+      "additionalContext": "Headline: curate a minimal index set that matches predicates and budgets write amp.; Why correct: each index adds write work; the smallest set that serves real queries preserves throughput.; Why others are wrong: reads‑only focus ignores OLTP needs; more shards don&rsquo;t fix per‑document write amp; batching shifts pain and risks staleness.; Cursor leverage: inspect query predicates; suggest a composite index; provide a rollback for dropped indexes.; Acceptance checks: unused indexes pruned; hot path covered by minimal index; write metrics stable.",
+      "keyConcepts": ["Index planning", "Write amplification", "Predicate coverage"]
+    },
+    {
+      "id": "8",
+      "type": "multiple-choice",
+      "points": 2,
+      "question": "Team will refresh a materialized projection via change streams. What guardrails do you require?",
+      "options": [
+        "Idempotent consumers with backpressure and replay; enforce size limits",
+        "Emit every change to all downstream services to be extra safe",
+        "Use long TTLs so projections rarely update even after writes",
+        "Disable primary reads to force all queries through projections"
+      ],
+      "correctAnswer": 0,
+      "additionalContext": "Headline: make consumers idempotent, resilient, and bounded.; Why correct: idempotency + backpressure + replay keep projections correct under retries and bursts; size checks avoid runaway growth.; Why others are wrong: broadcasting to all services creates noise and cost; long TTLs risk staleness; disabling primary reads removes a safety valve.; Cursor leverage: generate consumer skeletons with idempotency; add replay tests; create a projection size budget check.; Acceptance checks: idempotency proven in tests; replay path documented; size budget enforced.",
+      "keyConcepts": ["Change streams", "Materialized projection", "Idempotency"]
+    },
+    {
+      "id": "9",
+      "type": "freeform",
+      "points": 4,
+      "question": "Draft a PR comment to de‑risk a new hot‑path aggregation. Include: EXPLAIN‑like summary, slow‑query budget (e.g., p95 ≤ 150 ms), minimal index coverage rationale, and a rollback plan if p95 regresses.",
+      "sampleStrongResponse": "Request an EXPLAIN/PROFILE snippet for the exact match/project/sort stages and confirm there are no collection scans or cross‑shard fan‑outs. State the slow‑query budget (for example, p95 ≤ 150 ms at current QPS) and propose the smallest composite index that matches equality then range predicates. Call out write‑amplification cost and ask for a rollback toggle or script to drop the index if p95 regresses after deploy. Ask Cursor to summarize the plan, generate the index DDL and rollback, and produce a PR‑ready comment that captures the budget and acceptance checks."
+    },
+    {
+      "id": "10",
+      "type": "freeform",
+      "points": 5,
+      "question": "Outline a phased migration talk track for moving a denormalized field into a validated shape. Include add → backfill → flip → enforce → cleanup with safety checks and stakeholder comms.",
+      "sampleStrongResponse": "Plan: add the new validated field and start dual‑writing; backfill existing documents in batches with pacing and error budgets; flip reads via a feature flag and verify parity on a sampled slice; enforce validators and remove writes to the legacy field; clean up the old field and monitoring. Safety: idempotent backfill, shard‑aware batching, p95 targets, and a rollback toggle to route reads back. Comms: share the freshness window, expected p95, and a blast‑radius note with support/product; confirm success by zero drift and stable p95 after flip. Ask Cursor to draft the batch plan, flags, and a stakeholder note."
+    }
+  ]
+}
