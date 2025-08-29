@@ -1,6 +1,6 @@
 "use client";
 
-import { BookOpen, TrendingUp, Target } from "lucide-react";
+import { BookOpen, TrendingUp, Target, MessageSquare } from "lucide-react";
 import { useState, useEffect } from "react";
 import {
   getAllCategories,
@@ -13,6 +13,7 @@ import { PageTransition } from "@/components/page-transition";
 import { FloatingCard } from "@/components/animated-card";
 import { CategoryCardClient } from "@/components/category-card-client";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 // Note: Gradients are now handled by the gradient system library
 
@@ -110,6 +111,15 @@ export default function HomePage() {
             }}
           />
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 relative z-10">
+            {/* Give Feedback Button - Upper Right */}
+            <div className="absolute top-4 right-4 sm:top-6 sm:right-6">
+              <Link href="/feedback">
+                <button className="px-4 py-2 rounded-lg bg-white/20 hover:bg-white/30 text-white text-sm font-medium transition-colors backdrop-blur-sm border border-white/20">
+                  Give Feedback
+                </button>
+              </Link>
+            </div>
+            
             <div className="text-center">
               {/* Enhanced H1 with white text on gradient background */}
               <motion.h1
@@ -283,6 +293,8 @@ export default function HomePage() {
               </motion.div>
             </FloatingCard>
           </div>
+
+
         </main>
       </div>
     </PageTransition>
